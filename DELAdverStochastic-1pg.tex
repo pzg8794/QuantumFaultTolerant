@@ -1,0 +1,244 @@
+\documentclass[10pt]{article}
+
+% Packages
+\usepackage[margin=1in]{geometry}   % 1 inch margins
+\usepackage{fancyhdr}               % Custom headers/footers
+\usepackage{lastpage}               % Reference total page number
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{comment}
+\usepackage{subcaption}
+\usepackage{titlesec}
+\usepackage{array}
+\usepackage[most]{tcolorbox}
+\usepackage{cleveref}
+\usepackage{pgfgantt}
+\usepackage{adjustbox} % adjust the side of the gant chart
+%%%%
+
+%% Check to see which of the below are actually needed
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{amsfonts}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, shapes, fit}
+
+\newcommand\Title{Fault Tolerant Quantum Repeaters}
+% 
+
+% Expanding and Developing....
+
+\usepackage[numbers,sort]{natbib} % Cite things in order in the body
+%% Removed from the data managemnt page
+%\usepackage{times}
+\usepackage{url}
+\usepackage{color} % needed for todo
+\usepackage{enumitem}
+\usepackage{soul} % highlighting 
+%\setlist{leftmargin=6.0mm, noitemsep}
+\setlist{noitemsep}
+\usepackage{cleveref} %Cref
+
+\usepackage{xspace} % Needed for et al.
+\newcommand{\ie}{\emph{i.e.,}\xspace}
+\newcommand{\eg}{\emph{e.g.,}\xspace}
+\newcommand{\etc}{etc.\xspace}
+\newcommand{\etal}{\emph{et~al.}\xspace} 
+%\newcommand{\acite}[1]{\citeauthor{#1}~\cite{#1}} % Not working
+
+\newlist{learningObjectives}{enumerate}{1}
+%\setlist[learningObjectives, 1]{leftmargin=.7in, label = LO\arabic*:, noitemsep}
+%\setlist[learningObjectives, 1]{leftmargin=.13in, noitemsep}
+\setlist[learningObjectives,1]{label={},noitemsep, leftmargin=.13in}% 
+\newcommand{\LearningObjective}[3]{#1: #2 (#3)}
+\newcommand{\descStep}[2]{\noindent \textbf{#1: } #2}
+\newcommand{\smallTitle}[1]{\vspace{1mm} \noindent \textbf{#1: }}
+\newcommand{\descIStep}[2]{\noindent \emph{#1: } #2} % Italics not just bold
+
+\newcommand{\todo}[1]{\textcolor{cyan}{\textbf{[#1]}}}
+\newcommand{\dan}[1]{\textcolor{blue}{{\it [Dan: #1]}}}
+\newcommand{\travis}[1]{\textcolor{green}{{\it [Travis: #1]}}}
+\newcommand{\jason}[1]{\textcolor{red}{{\it [Jason: #1]}}}
+
+%\newcommand\Title{Contextual and Uncertainty-Aware Adaptive Quantum Error Management1}
+\newcommand\MainTitle{Quantum Entanglement Path Selection and Qubit Allocation via Adversarial and Stochastic Group Neural Bandits} % Can look at a shorter title
+
+\setlist{noitemsep, leftmargin=6.0mm}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+
+% Header and footer setup
+\pagestyle{fancy}
+\fancyhf{} % Clear all header/footer fields
+
+% Define values for the header
+
+\fancyhead[L]{\MainTitle}
+\fancyhead[C]{}
+%\fancyhead[R]{dxkvse@rit.edu}
+\fancyhead[R]{XXXXXX}
+
+% Footer: Page x of y
+\fancyfoot[C]{Page \thepage\ of \pageref{lastpage}}
+
+% Title
+\title{\vspace{-2cm} \bfseries \MainTitle}%: Integrating DRL, CMAB, and Post-Processing Strategies}
+%\author{Daniel Krutz \{dxkvse@rit.edu\}\\}
+\author{XXXX \{XXX@XXX.edu\}\\}
+
+\date{}
+
+%% Change the size of the section labels
+\titleformat{\section}
+  {\normalfont\bfseries\Large} % font and size %large
+  {\thesection}{1em}{}              % section number formatting
+
+%% Change the spacing between sections
+\titlespacing*{\section}
+  {0pt}   % Left margin
+  {1ex}   % Space before the section
+  {0.5ex} % Space after the section
+
+\begin{document}
+
+%% start defining the layout of the 1st page
+\fancypagestyle{firstpage}{
+  \fancyhf{}              % Clear all header/footer
+  \renewcommand{\headrulewidth}{0pt} % No header rule
+  \fancyfoot[C]{Page \thepage\ of \pageref{lastpage}} 
+}
+%% end defining the layout of the 1st page
+
+\maketitle
+%\thispagestyle{fancy} % Apply fancy header/footer to title page
+%\thispagestyle{empty} % Suppress header/footer on the first page
+\thispagestyle{firstpage}
+
+\vspace{-8mm}
+{\par\centering
+ \begin{tcolorbox}[enhanced, width=1.03\linewidth, 
+            %colback=blue!50!white!20,
+            arc=0pt, outer arc=0pt, 
+            borderline={1.5pt}{0pt}{black!90},
+            borderline={0.25pt}{3pt}{black!70, sharp corners},
+            drop fuzzy shadow]
+    \centering
+{\large %\textbf{Synopsis}
+\par\medskip}
+\normalsize%\itshape
+This work provides an adaptive quantum network framework that optimizes qubit allocation and entanglement paths under stochastic and adversarial conditions.
+\end{tcolorbox}\par}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\dan{proofread everything}
+\subsection*{Overview}
+
+% Give an overview of the problem
+Most existing research assumes that the success rates of entanglement links between neighboring quantum nodes are already known. This is problematic because, in realistic quantum networks, these rates are often unknown, time-varying, and affected by noise, hardware imperfections, and environmental fluctuations, making it difficult to accurately model, optimize, or predict network performance without adaptive estimation or calibration mechanisms. Protocols that assume fixed or ideal success rates often underperform or fail in practice—misjudging entanglement fidelity, throughput, and even security guarantees. There is thus a need for quantum networks that utilize robust, data-driven methods that dynamically learn and adapt to actual link success rates.
+
+% Describe adversarial and sctochastic networks
+There are two manners of quantum networks: I) \emph{Adversarial}, where the behavior of the network or certain nodes is influenced by a strategic opponent that may intentionally disrupt, manipulate, or eavesdrop on quantum links, and II) \emph{Stochastic}, where link successes, failures, and noise arise from random physical processes and environmental factors rather than deliberate interference.
+
+% Provide an overview of how we will address the problem
+The proposed work will address the problem of accurately estimating and adapting to uncertain, time-varying entanglement success rates in quantum networks to enable reliable, efficient, and secure network operation. This will be accomplished by utilizing adversarial and stocahstic multi-armed bandits
+
+
+
+\subsubsection*{Proposed Process Overview} % Reword this
+
+Our proposed work will address both stochastic and adversarial scenarios.
+
+\smallTitle{Stochastic Process Overview}
+In stochastic quantum network environments, where link success rates fluctuate due to noise, decoherence, and hardware variability but are not driven by malicious interference, we propose an adaptive decision-making framework that integrates Self-Organizing Maps (SOMs), Graph-Based Genetic Programming (EXA-GP), and Informed Contextual Multi-Armed Bandits (iCMAB). SOMs cluster qubits based on real-time performance metrics to optimize resource grouping, while EXA-GP evolves quantum interaction topologies to improve entanglement efficiency. The iCMAB algorithm then allocates qubits and selects entanglement paths by balancing exploration and exploitation using historical and contextual data. Together, these components enable the system to continuously learn the stochastic behavior of quantum links, optimize network throughput, and improve reliability without requiring prior knowledge of success probabilities. This data-driven approach provides a scalable and resilient foundation for managing uncertainty in quantum resource allocation and routing.
+
+\smallTitle{Adversarial Process Overview}
+In adversarial quantum network settings, where link reliability may be intentionally disrupted by external attacks or malicious noise injection, we model the Quantum Data Network (QDN) as a dynamic graph where each edge represents a probabilistic entanglement link with unknown and time-varying success rates. The system must simultaneously estimate these rates, allocate qubits, and select entanglement paths while accounting for potential adversarial interference. Using a learning-based approach, the process models each path’s entanglement success as an unknown function learned through observation, allowing the system to infer and adapt to attack patterns over time. The adversary is represented as an agent that selectively targets paths or communication channels each time slot, and the quantum system responds by adjusting its allocation and path strategies to maximize the cumulative success probability of entanglement. This adversarial formulation supports robust, attack-resilient quantum communication through continual learning and adaptive resource control.\dan{Jie: Change anything in this that you see fit.}\dan{Jie: It might also be good for you to mention some of the things that you will change/enchance with this submission so they're not just funding what you've already done}
+
+
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=0.75\linewidth]{images/Adversarial.png}
+    \subcaption{Example of Adversarial scenario}\label{fig:sub:one}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=0.75\linewidth]{images/dummy.png}
+    \subcaption{Second subimage.}\label{fig:sub:two}
+  \end{subfigure}
+
+  \caption{Examples of adversarial and Stochastic Entanglement Path Selection Scenario.}
+  \label{fig:overall}
+\end{figure}
+
+
+
+
+
+
+\subsubsection*{Foundational Work} % Reword this
+The proposed effort will utilize our existing publications in both adversarial multi-armed bandits for entanglement path selection and qubit allocation~\cite{huang2024quantum, wang2024adaptive}, and machine learning~\cite{}, thus providing confidence in its ability to have a ?transformative? impact on qubit allocation and path planning.
+
+
+
+\subsubsection*{Benefits} % Reword this
+Specifically, our work will provide the following advantages:
+
+\begin{itemize}
+    \item \descStep{Defense-aware entanglement optimization}{Models explicit adversarial interference (\eg attacks on quantum or classical channels) to ensure entanglement path selection remains reliable even under targeted disruptions.}
+    \item \descStep{Dynamic, feedback-driven adaptation}{Real-time feedback from observed outcomes (success/failure) drives continual improvement in both path selection and defense mechanisms.}
+    \item \descStep{Optimized long-term entanglement success rate}{Through joint optimization of qubit allocation and path selection, the system maximizes the overall entanglement success probability across time slots, improving throughput and efficiency in hostile settings.}
+    \item \descStep{Improved scalability and decision efficiency}{By combining clustering (SOM) with evolutionary optimization (EXA-GP), the process can efficiently scale to large quantum networks, enabling faster and more reliable path and qubit selection.}
+    \item \descStep{XXX}{XXXXX}
+    \item \descStep{XXX}{XXXXX}
+    \item \descStep{XXX}{XXXXX}
+
+    
+\end{itemize}
+
+
+%\dan{why this this problematic} In contrast, this paper tackles the online problem of determining the optimal path and qubit allocation strategy — aiming to learn, in real time, how to maximize the success rate of entanglement between two chosen quantum computers without prior knowledge of link performance. The proposed method employs a multi-armed bandit (MAB) framework, specifically `informed Contextual Multi-Armed Bandits' (iCMAB) approach, which models each potential path as a group and treats qubit allocation decisions as arm selections. Our contributions include: I)
+
+
+
+
+
+
+
+%- Have a side by side image showing the adversarial and stochastic component
+
+
+
+\label{lastpage}
+%\cleardoublepage
+
+
+%\appendix
+
+
+%% DK: Put onto a different page since it does not count against the page limit
+%\setcounter{page}{1}
+
+%\cfoot{\thepage}
+%\pagenumbering{roman}
+%\section{Appendix}
+
+%\input{sections/Appendix.tex}
+
+
+%% I think the appendix goes before the bib. Otherwise, I could see people missing it
+%\newpage
+%\pagebreak
+%\addcontentsline{toc}{section}{References}
+\bibliographystyle{plain}
+\bibliography{refs}
+\end{document}
+
+
+

@@ -1,0 +1,587 @@
+% NACWD: https://sam.gov/opp/f3ac4dc51fd14872b9493ed39ad8ee72/view
+% 3 pages
+
+
+%-- Submitted by SOAR 8/8/25
+
+%Academia (college and universities) shall submit white papers under this BAA to: NAWCAD-Academia-BAA@us.navy.mil
+% All others, including businesses (large, small, small disadvantaged, etc.), other organizations (including non-profit), and entities (foreign and domestic) shall submit white papers under this BAA to: NAWCAD-Industry-BAA@us.navy.mil
+
+
+%If addressing more than one Research Opportunity Area of Interest, then separate standalone white paper submissions shall be required. White papers with general responses to multiple areas of interest will be determined to be non-compliant and will not be further considered.
+
+\documentclass[12pt]{article}
+
+\usepackage{cite}
+\usepackage{listings}
+\usepackage{times}
+\usepackage{color}
+\usepackage{url}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{enumitem} % Use for enumerating A, B, C etc...
+\urlstyle{same} % Used for formatting formatting url footnotes
+\usepackage{fancyhdr} % Header
+%\usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
+\usepackage[table,xcdraw]{xcolor} % helps to format TOC
+\usepackage{soul} % highlighting
+%\usepackage{pgfgantt} % Project timeline
+\usepackage[titletoc,toc,title]{appendix} % Need for appendix, page numbering
+\usepackage{tikz}
+\usetikzlibrary{calc,arrows.meta,fit,positioning}
+%\usepackage{amssymb,graphicx} % Events and milestones
+\usepackage{amsmath}
+\usepackage{mathtools}
+%\usepackage{bbm}
+\usepackage{amssymb}
+\usepackage{lastpage}
+\usepackage{booktabs} % used for \toprule in tables
+\usepackage{subcaption}
+\usepackage{fancybox}
+\usepackage{comment}
+\usepackage{wrapfig}
+\usepackage{array}
+\usepackage{titlesec} % Title spacing
+
+%\usepackage{hyperref}       % hyperlinks
+
+\usepackage{booktabs}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\usepackage{amssymb}% http://ctan.org/pkg/amssymb
+\usepackage{pifont}%
+\usepackage{soul} % highlighting 
+\usepackage[normalem]{ulem}
+\usepackage[most]{tcolorbox} % Use for grey box at start of narrative
+
+%\usepackage{algorithm}
+%\usepackage[noend]{algpseudocode}
+
+\usepackage{framed}		% Allows drawing text boxes
+\usepackage{pgfgantt}
+\usepackage{rotating}
+\usepackage[graphicx]{realboxes}
+\usepackage{pgf-umlsd}
+\usepackage{tikz}
+
+\setlist{noitemsep}
+
+\usepackage{caption}
+%\usepackage{subcaption}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{subfig} % Side by side images
+
+\usepackage{adjustbox} % adjust the side of the gant chart
+\usepackage{multicol} % Include this in your preamble
+
+
+\usepackage{xspace} % Needed for et al.
+\newcommand{\ie}{\emph{i.e.,}\xspace}
+\newcommand{\eg}{\emph{e.g.,}\xspace}
+\newcommand{\etc}{etc.\xspace}
+\newcommand{\etal}{\emph{et~al.}\xspace}  
+
+\setlist[itemize,enumerate]{noitemsep, leftmargin=.5cm}
+
+\newcommand{\smallTitle}[1]{\vspace{1mm} \noindent \textbf{#1 }} % Just bold, no indent
+\newcommand{\descStep}[2]{\noindent \textbf{#1: } #2}
+\newcommand{\objective}[3]{\vspace{2mm} \noindent \textbf{{Objective #1 - #2: }} #3} % Describing objectives
+\newcommand{\descItem}[2]{\noindent \emph{#1: } #2}
+
+% Page margins etc....
+\usepackage[bottom=1in, left=1in, right=1in, top=1in]{geometry} % Should all be 1
+%.85
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+
+
+% Set normal paragraph indentation (e.g., 15pt)
+\setlength{\parindent}{15pt}
+
+% Ensure the first paragraph after section titles is NOT indented
+% but subsequent paragraphs ARE indented
+
+\makeatletter
+\let\orig@section\section
+\renewcommand{\section}{%
+  \@ifstar{\orig@section*}{\@section@noindent}%
+}
+\newcommand{\@section@noindent}[1]{%
+  \orig@section{#1}%
+  \@afterindentfalse\@afterheading
+}
+\let\orig@subsection\subsection
+\renewcommand{\subsection}{%
+  \@ifstar{\orig@subsection*}{\@subsection@noindent}%
+}
+\newcommand{\@subsection@noindent}[1]{%
+  \orig@subsection{#1}%
+  \@afterindentfalse\@afterheading
+}
+\let\orig@subsubsection\subsubsection
+\renewcommand{\subsubsection}{%
+  \@ifstar{\orig@subsubsection*}{\@subsubsection@noindent}%
+}
+\newcommand{\@subsubsection@noindent}[1]{%
+  \orig@subsubsection{#1}%
+  \@afterindentfalse\@afterheading
+}
+\makeatother
+
+\newcommand{\todo}[1]{\textcolor{cyan}{\textbf{[#1]}}}
+\newcommand{\dan}[1]{\textcolor{blue}{{\it [Dan: #1]}}}
+\newcommand{\qi}[1]{\textcolor{red}{{\it [Qi: #1]}}}
+\newcommand{\alex}[1]{\textcolor{green}{{\it [Alex: #1]}}}
+\newcommand{\travis}[1]{\textcolor{brown}{{\it [Travis: #1]}}}
+
+
+\titleformat{\section}
+  {\normalfont\large\bfseries} % font
+  {\thesection}{1em}{}         % label
+
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries}
+  {\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries}
+  {\thesubsubsection}{1em}{}
+
+%%% Start column formatting
+% Note: In overleaf sometimes columns fail to render. Check on PDF Output
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}} % raggedright= align left
+\definecolor{Gray}{gray}{0.80} % the lower the #, the darker it gets
+%%% End Table formatting
+
+% Using Recurrent Neural Networks to Account for Tactic Volatility and Improve the Decision-Making Process of Autonomous Systems 
+
+\newcommand{\Title}{Contextual and Uncertainty-Aware Adaptive Quantum Error Management}
+
+\newcommand{\shortTitle}{Adaptive Quantum Error Mitigation}
+
+\newcommand{\CallNumber}{DE-FOA-0003600} % BAA Number
+\newcommand{\CallName}{XXXX}
+%\newcommand{\BAANumber}{N00421-18-S-0001}
+
+\usepackage{fancyhdr} % Header
+\pagestyle{fancy}
+\lhead{\emph{\shortTitle}}
+%\rhead{Krutz (RIT)}
+\rhead{dxkvse@rit.edu}
+%\rhead{}
+
+
+%\setlength\cftparskip{-.7pt} %% Table of contents spacing
+%\setlength\cftbeforechapskip{0pt}
+
+\titlespacing\section{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+\titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+\titlespacing\subsubsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+
+\begin{document}
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.3mm}} % Defines a new command for the horizontal lines, change thickness here
+
+%%%%%%% Start new Title format
+
+
+%% DK: I am not sure if we should have this
+%\noindent\large \CallName, \CallNumber\\[.20cm] % Call Name
+
+%  \textsc{\Large White Paper Submission\dan{update page with required information}}\\[0.5cm] % Major heading
+
+%\noindent\large \CallNumber\\[.20cm] % Call Name
+
+
+\begin{center}
+  \textsc{\Large Pre Application Submission}\\[0.5cm] % Major heading such as course name
+  \textsc{\large \CallNumber}\\[1.5cm]   %% Fix this
+\end{center}
+
+%\noindent \LARGE \textbf{\Title}\\[.10cm] % Title
+%\noindent \Large \textbf{\Title}\\[.10cm] 
+\vspace{-8mm}
+\begin{center}
+\LARGE \textbf{\Title}\\[.10cm]
+\end{center}
+
+
+
+
+\noindent \large  \underline{\textbf{Technical Proposal}}\\ [.15cm] 
+
+\begin{tabular}{ L{50mm} L{100mm} }
+
+%\normalsize \textbf{Technical Proposal:} & \normalsize  \CallName, \CallNumber  \\
+
+%\noindent\large Technical Proposal: N00174-18-0001\\[.20cm]
+%\noindent\large NEC Technical POC: \\[.20cm]
+%\noindent\large Topic Number: \\[.20cm]
+
+%\normalsize \textbf{BAA Number:} & \normalsize \CallNumber  \\
+%\normalsize \textbf{Proposed Title:} & \normalsize  \Title  \\ 
+\normalsize \textbf{Research opportunity area:} & \normalsize Quantum Computing \\ 
+% Research opportunity area of interest
+
+\normalsize \textbf{Technical POC/PI:} & \normalsize  Dr. Daniel E. Krutz\\
+% & \vspace{-2mm} \normalsize Department of Software Engineering\\
+
+   & \vspace{-4mm} \normalsize Rochester Institute of Technology \\
+   & \vspace{-6mm} \normalsize Rochester, NY 14623 \\
+%   & \vspace{-8mm} \normalsize Phone: (585) 705-0077 \\
+   & \vspace{-8mm} \normalsize Email: dxkvse@rit.edu \\ \\
+
+
+
+\normalsize \textbf{Project Members:} & \normalsize  Dr. Daniel E. Krutz; Rochester Institute of Technology\\
+% & \vspace{-2mm} \normalsize Department of Software Engineering\\
+
+   & \vspace{-4mm} \normalsize Dr. Jason Pollack; Syracuse University \\
+   & \vspace{-6mm} \normalsize Dr. Travis Desell;  Rochester Institute of Technology\\ \\
+
+
+\begin{comment}
+\vspace{-6mm}\normalsize \textbf{Administrative POC:} & \vspace{-6mm} \normalsize Ms. Katey Sackett \\
+
+%   & \vspace{-8mm} \normalsize Senior Research Administrator  \\
+   & \vspace{-9mm} \normalsize Sponsored Research Services  \\
+   & \vspace{-11mm} \normalsize Rochester Institute of Technology  \\
+   & \vspace{-13mm} \normalsize University Services Center, Suite 2400  \\
+   & \vspace{-15mm} \normalsize 141 Lomb Memorial Drive, Rochester, NY 14623-5608   \\
+   & \vspace{-17mm} \normalsize Rochester, NY 14623-5608  \\
+%   & \vspace{-19mm} \normalsize Phone: (585)-475-2262  \\
+%   & \vspace{-22mm} \normalsize Facsimile: (585)-475-2262  \\
+   & \vspace{-21mm} \normalsize Email: kxssrs@rit.edu  \\
+\end{comment}
+
+%BAA Number, proposed title, research opportunity area of interest, contracts and technical points of contact, telephone number, facsimile number, and E-mail address
+
+
+\end{tabular}
+
+ \end{titlepage}
+
+\cfoot{\thepage}
+\pagenumbering{alph} % Start roman numbering
+\setcounter{tocdepth}{1} % Show sections
+
+\cfoot{} % Leave blank
+
+
+%%%%% TOC - Start
+%\renewcommand\contentsname{Table of Contents}
+%\tableofcontents
+%\listoffigures
+%\listoftables
+%\newpage
+
+%%%%% TOC - End
+
+
+\setcounter{page}{1}
+\pagenumbering{arabic} % Switch to normal numbers
+
+%\cfoot{\thepage\ of \pageref{LastPage}}
+\fancyfoot[C]{Page~\thepage~of~\pageref{lastpage}}
+
+
+
+\section{Technical Concept}
+%\todo{submitted 8/8}
+%CG: I changed the wording a bit so that the proposed work is not potentially regarded as incremental.
+
+{\par\centering
+ \begin{tcolorbox}[enhanced, width=1.00\linewidth, 
+            %colback=blue!50!white!20,
+            arc=0pt, outer arc=0pt, 
+            borderline={1.5pt}{0pt}{black!90},
+            borderline={0.25pt}{3pt}{black!70, sharp corners},
+            drop fuzzy shadow]
+    \centering
+{\large %\textbf{Synopsis}
+\par\medskip}
+\normalsize%\itshape
+Intelligently apply Real-time/Post processing error management strategies to quantum systems to enable effective, but resource friendly error management.
+\end{tcolorbox}\par}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Error management techniques including both run-time and post-processing strategies—are paramount to maintaining computational fidelity. While these techniques have shown promise, current state-of-the-art methods remain limited. Traditional quantum error mitigation and correction (QEM/QEC) strategies often rely on static, resource-intensive approaches such as always-on QEC or pre-defined probabilistic error cancellation (PEC) schedules. These methods struggle to cope with the inherently dynamic, noise-prone, and resource-constrained environments typical of real-world quantum hardware. Although machine learning is increasingly being explored to enhance both run-time and post-processing error management, its current implementations are limited by  insufficient context-awareness, lack of generalization across varying noise profiles, high training overheads, and the difficulty of integrating predictive models with low-latency, hardware-level control systems. %As a result, the state of the art in quantum computing remains constrained; inadequate error management techniques can severely degrade performance by allowing fragile quantum states to accumulate uncorrected errors, ultimately resulting in incorrect outcomes and potential system failure.
+
+% What is the proposed solution
+To address current limitations in intelligently-abled QEM/QEC, we have created a new framework \emph{Quantum Uncertainty-Aware, Adaptive, and Robust Correction} (QUARC) that leverages real-time context awareness, hierarchical self-organizing learning (GHSOM), deep reinforcement learning (DRL), and sparse variational Gaussian processes (SVGP) integrated with contextual multi-armed bandits (CMAB) and noise-sensitive multi-armed bandits (NS-MAB), to dynamically select and adapt both quantum \ul{run-time} error correction (Figure~\ref{fig: RTProcess}) and \ul{post-processing} strategies (Figure~\ref{fig: PostProcess}) such as probabilistic error cancellation (PEC), zero-noise extrapolation (ZNE), and measurement error mitigation (MEM) based on evolving noise conditions and system performance feedback. The benefit of proposed process in relation to the state of the art is its ability to adaptively and intelligently select the most effective QEC and post-processing strategies in real time based on evolving noise patterns and contextual feedback, resulting in improved error resilience, resource efficiency, and performance stability in dynamic quantum computing environments. Our QUARC framework selectively applies the most appropriate error mitigation or correction strategy only when and where it’s most effective. This minimizes resource overhead while preserving computational fidelity and reliability. The effort will benefit NISQ hardware by minimizing unnecessary error management overhead and dynamically adapting to time-varying noise environments, thereby improving qubit utilization, circuit efficiency, and overall computational fidelity on resource-constrained, noise-sensitive quantum devices.  % This can be cleaned up a bit.
+
+%\dan{Create an overview of the two components together.} % What is a holistic diagram that describes the two processes? ()
+
+
+
+
+
+\smallTitle{Advancements Beyond the State of the Art}
+%\noindent This work introduces key innovations in dynamic channel access:
+
+\begin{itemize}
+
+    \item \descStep{Context-Aware Error Management}{Uses real-time telemetry and noise models to tailor error correction and mitigation to current hardware conditions.}
+
+    \item \descStep{Uncertainty-Aware Decisions}{Applies mitigation only when justified, using SVGP to avoid overconfidence and optimize resource use.}
+
+    \item \descStep{Expert-Guided Safety}{Integrates human rules for safe, transparent, traceable operations.}
+
+%\item \descStep{Expert-Guided Safety}{Integrates human-defined rules to ensure safe, transparent, and traceable operations.}
+
+    \item \descStep{Continuous Adaptation}{Learns and improves strategies over time through online feedback, ensuring robustness in evolving environments.}
+
+\end{itemize}
+
+\pagebreak
+
+The proposed solution consists of two key components: a real-time error correction strategy selector and a post-processing error mitigation module.
+
+\subsection{Component \#1: Real-Time Quantum Error Correction (QEC) Strategy Selection}
+\label{sec: RBRealTimeStrategySelection}
+
+
+% Have a simple visual aide
+%%%%%% Start flowchart %%%%%%
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\tikzstyle{rrec} = [rectangle, draw, fill=white!20, text width=8.95em, text centered, minimum height=2.7em]
+\tikzstyle{feedback} = [draw, -{Stealth[length=2mm]}, thick, dashed]
+\tikzstyle{labelnode} = [text width=8em, align=center, font=\footnotesize]
+
+\begin{figure}[h!]
+\footnotesize
+\begin{center}
+\scalebox{.88}{
+\begin{tikzpicture}[node distance = 4.0cm, line width=.5mm]
+
+% Main nodes
+\node [rrec, minimum width=8.4em, text width=10em] (1) {Real-Time Context Mapping via GHSOM};
+\node [rrec, right of=1, minimum width=8.4em, text width=10em] (2) {Noise Evolution Forecasting (DRL + SVGP)};
+\node [rrec, right of=2, minimum width=8.4em, text width=10em] (3) {QEC Strategy Selection w/CMAB};
+\node [rrec, right of=3, minimum width=8.4em, text width=10em] (4) {Expert-Guided Rule Check};
+\node [rrec, right of=4, minimum width=8.4em, text width=10em] (5) {Execution Layer Interface};
+
+% Arrows between stages
+\draw [arrow] (1) -- (2);
+\draw [arrow] (2) -- (3);
+\draw [arrow] (3) -- (4);
+\draw [arrow] (4) -- (5);
+
+% Feedback loop path
+\coordinate (feedbackstart) at ($(5.south) + (0,-0.0)$);
+\coordinate (feedbackmid) at ($(3.south) + (0,-0.4)$);
+\coordinate (feedbackend) at ($(1.south) + (0,-0.0)$);
+
+\draw [feedback] (feedbackstart) |- (feedbackmid) -| (feedbackend);
+
+% Feedback label placed at midpoint under box 3
+\node [labelnode] at (feedbackmid) {Feedback Loop \& Continual Learning};
+
+\end{tikzpicture}
+}
+\caption{Adaptive Run-time Error Correction with Feedback Loop Informing Upstream}% Components}
+\label{fig: RTProcess}
+\end{center}
+\end{figure}
+\vspace{-10mm}
+
+\subsubsection{Proposed Solution: Adaptive, Context-Aware QEC Strategy Selection}
+
+We propose a dynamic, context-aware framework for runtime quantum error correction (QEC) that intelligently determines both when and how to intervene. Our system leverages real-time telemetry, predictive noise modeling, uncertainty quantification, and expert-defined constraints to select among full QEC codes, lightweight detection mechanisms, or strategic inaction—balancing fidelity gains, resource cost, and forecast confidence.
+
+\smallTitle{Key Components}
+\begin{itemize}
+\item \descStep{GHSOM}{An unsupervised neural network clusters high-dimensional telemetry (\eg noise rates, coherence times) into low-dimensional operational contexts. These clusters support semantic recognition of known and novel noise regimes, enabling situationally aware QEC decisions.}
+\item \descStep{DRL + SVGP}{A DRL agent forecasts short-term noise evolution using learned policies from interaction with a simulator or real device. A Sparse Variational Gaussian Process (SVGP) quantifies prediction uncertainty, enabling risk-aware QEC actions and fallback to conservative strategies when needed.}
+\item \descStep{CMAB}{A Contextual Multi-Armed Bandit (CMAB) selects QEC strategies using Thompson Sampling to optimize expected reward, considering telemetry, forecasts, uncertainty, and constraints. Strategy options include full QEC, detection-only, or inaction.}
+\end{itemize}
+
+\smallTitle{Decision Workflow}
+\begin{enumerate}
+\item \textbf{Context Mapping:} GHSOM processes streaming telemetry to identify operational regimes and detect anomalies.
+\item \textbf{Noise Forecasting:} DRL predicts noise dynamics; SVGP assesses forecast confidence to guide risk-aware decisions.
+\item \textbf{Strategy Selection:} CMAB chooses the optimal QEC action using utility estimates that trade off fidelity gain, resource cost, and forecast uncertainty.
+\item \textbf{Rule Verification:} Selected actions are checked against formal safety rules (\eg avoid full QEC if gate fidelity $<$ 0.95).
+\item \textbf{Execution:} Validated strategies are compiled into hardware-specific instructions, respecting topology and timing constraints.
+\item \textbf{Closed-Loop Learning:} Post-execution feedback updates all modules—GHSOM, DRL, SVGP, and CMAB—for continual improvement.
+\end{enumerate}
+
+\pagebreak
+\smallTitle{Anticipated Benefits}
+\begin{multicols}{2}
+\begin{itemize}
+    \item \textbf{Proactive corrections} using noise forecast.
+    \item \textbf{Flexible actions,} inc. strategic inaction.
+    \item \textbf{Uncertainty-aware} decisions via SVGP.
+    \item \textbf{Expert rule enforcement} for op. safety.
+    \item \textbf{Ongoing learning} to adapt over time.
+    \end{itemize}
+\end{multicols}
+
+%\begin{itemize}
+%\item \textbf{Proactive corrections} based on forecasted noise.
+%\item \textbf{Flexible actions,} including strategic inaction.
+%\item \textbf{Uncertainty-aware} decisions via SVGP.
+%\item \textbf{Expert rule enforcement} for operational safety.
+%\item \textbf{Ongoing learning} to adapt over time.
+%\end{itemize}
+
+
+
+
+
+
+%------------------------------------------------------------
+%------------------------------------------------------------
+%------------------------------------------------------------
+%------------------------------------------------------------
+%------------------------------------------------------------
+%------------------------------------------------------------
+
+
+
+\subsection{Component \#2: Post-Processing Error Management Strategy (PEC, ZNE, MEM)}
+\label{sec: RBPostStrategySelection}
+
+
+%%%%%% Start Post Processing Figure %%%%%%
+
+\begin{figure}[h!]
+\footnotesize
+    \begin{center}
+    \scalebox{.88}{ % Change the size of everything 
+    \begin{tikzpicture}[node distance = 4cm, line width=.5mm]
+
+    % Nodes
+    \node [rrec] (1) {Context Mapping via VBC};
+    \node [rrec, right of=1] (2) {Predictive Fidelity Modeling};
+    \node [rrec, right of=2] (3) {Post-Processing Selection via NS-MAB};
+    \node [rrec, right of=3] (4) {Domain Rule Verification};
+    \node [rrec, right of=4] (5) {Execution and Logging};
+%    \node [rrec, right of=5] (6) {Online Learning Loop};
+
+    % Arrows
+    \draw [arrow] (1) -- (2);
+    \draw [arrow] (2) -- (3);
+    \draw [arrow] (3) -- (4);
+    \draw [arrow] (4) -- (5);
+%    \draw [arrow] (5) -- (6);
+
+    % Feedback loop from Execution to Context Mapping
+ %   \path [line] (5.south) |- ++(0,-1.8) -| node[below, text width=12em, align=center, midway]
+%    {Feedback for Online Learning \\ (VBC, Bayesian Model, NS-MAB)} (1.south);
+
+
+\coordinate (feedbackstart) at ($(5.south) + (0,-0.0)$);
+\coordinate (feedbackmid) at ($(3.south) + (0,-0.4)$);
+\coordinate (feedbackend) at ($(1.south) + (0,-0.0)$);
+
+\draw [feedback] (feedbackstart) |- (feedbackmid) -| (feedbackend);
+
+% Feedback label placed at midpoint under box 3
+\node [labelnode] at (feedbackmid) {Feedback Loop \& Continual Learning};
+
+    \end{tikzpicture}
+    } % scalebox
+ \caption{Adaptive Post-Processing Error Mitigation (QEM) with Feedback Loop}
+ \label{fig: PostProcess}
+\end{center}
+\end{figure}
+
+
+%%%%%% End Post Processing Figure %%%%%%
+\vspace{-10mm}
+
+\subsubsection{Proposed Solution: Adaptive Post-Processing Framework}
+
+We propose a data-driven, context-aware framework that adaptively selects post-processing strategies using predictive modeling, online learning, and logic-based constraints. Unlike static pipelines, this system tailors decisions to each circuit run, improving fidelity while conserving resources.
+
+\smallTitle{Core Components}
+\begin{itemize}
+\item \textbf{Variational Bayesian Clustering (VBC):} Categorizes execution metadata into context classes (\eg ``readout-biased'', "coherently noisy"), enabling context-aware decisions.
+\item \textbf{Bayesian Predictive Models:} Estimate the expected fidelity gain and uncertainty of each method (\eg ZNE, PEC, MEM) for a given context.
+\item \textbf{Non-Stationary Multi-Armed Bandits (NS-MAB):} Selects the optimal post-processing action (or none) by learning from evolving effectiveness in dynamic environments.
+\item \textbf{Constraint Logic Layer:} Enforces domain rules (\eg hardware-specific limits, runtime constraints) to override or filter actions as needed.
+\end{itemize}
+
+\begin{comment}
+\smallTitle{Adaptive Workflow}
+\begin{enumerate}
+\item \textbf{Context Mapping:} VBC clusters each execution into a learned context to identify likely noise characteristics.
+\item \textbf{Fidelity Forecasting:} Bayesian models predict the benefit of each post-processing method and provide uncertainty bounds.
+\item \textbf{Strategy Selection:} NS-MAB chooses between ZNE, MEM, lightweight PEC, or inaction, balancing expected gain and resource cost.
+\item \textbf{Rule Enforcement:} Actions are filtered through constraint logic to ensure operational compliance and safety.
+\item \textbf{Execution and Logging:} The selected method is applied, and metadata is stored for traceability and learning.
+\item \textbf{Online Learning:} Models are updated based on outcomes, allowing adaptation to hardware drift and shifting circuit behavior.
+\end{enumerate}
+\end{comment}
+
+
+\smallTitle{Benefits}
+This approach enables smarter, resource-aware quantum post-processing that adapts to hardware variability, integrates uncertainty into decision-making, and continuously learns to improve fidelity over time.
+
+
+
+\smallTitle{Differentiation from existing efforts} The proposed AQEM framework differs from current efforts by integrating dynamic, dual decision-making, determining both when to apply error correction and which specific strategy to employ. Unlike traditional QEC or dynamical decoupling methods that follow fixed codes or pulse sequences, our proposed `AQEM' framework leverages real-time telemetry, predictive noise modeling via deep reinforcement learning, and uncertainty quantification through sparse variational Gaussian processes to anticipate errors and select optimal interventions. It further improves upon existing approaches by using contextual multi-armed bandits to balance fidelity, resource costs, and risk, incorporating expert rule verification for safe operation, and translating high-level decisions into hardware-specific execution, enabling practical, adaptive, and efficient runtime QEC. The closed-loop learning mechanism continuously refines utilized modules based on performance feedback, allowing the system to adapt to both short-term fluctuations and long-term hardware variations, a capability absent in standard Quantum Error Correction Codes (QECC) or dynamical decoupling (DD) implementations.
+
+
+
+%\section{Forecasted Award Instrument Type}
+\section{Period of Performance}
+\hl{5/26-4/29}
+
+%\vspace{-6mm}
+
+
+% Consider what else we would likek to add
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\vspace{-4mm}
+\subsection{Cost Estimate} % Required Section
+%\vspace{-4mm}
+\noindent The total budget is \$175k/yr for a total cost of \$525k.%, supporting (I) Demonstration implementation II) Faculty and PhD student support III) Equipment (III) Implementations (IV) Dissemination.
+%\noindent All project members are US citizens who have the anticipated ability to receive the appropriate level security clearance should the project be funded.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\label{lastpage}
+\cleardoublepage
+
+
+\appendix
+
+
+%% DK: Put onto a different page since it does not count against the page limit
+\setcounter{page}{1}
+
+\cfoot{\thepage}
+\pagenumbering{roman}
+%\section{Appendix}
+
+%\input{sections/Appendix.tex}
+
+
+%% I think the appendix goes before the bib. Otherwise, I could see people missing it
+%\newpage
+%\pagebreak
+%\addcontentsline{toc}{section}{References}
+%\bibliographystyle{plain}
+%\bibliography{refs}
+
+\end{document}

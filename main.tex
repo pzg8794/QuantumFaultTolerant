@@ -1,0 +1,396 @@
+\documentclass[sigconf,anonymous,review,natbib=false]{acmart}
+
+
+
+%%%%
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{subcaption}
+\usepackage{caption}  % for \caption*
+\usepackage{enumerate}
+\usepackage{url}
+\usepackage{cite}
+\usepackage{balance}
+\usepackage{enumitem}
+\usepackage{soul} % highlighting
+\usepackage{booktabs} % used for \toprule in tables
+\usepackage{multicol} % Enables multiple columns
+\usepackage[flushleft]{threeparttable}
+%\usepackage{slashbox}
+\usepackage{multirow}
+\usepackage{booktabs} 
+
+\usepackage[square,numbers]{natbib}
+
+\usepackage[nameinlink]{cleveref}
+
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{comment}
+\usepackage{amsmath, amsthm}
+\usepackage{xspace}
+
+\usepackage{siunitx}
+\sisetup{output-exponent-marker=\ensuremath{\mathrm{e}}}
+\usepackage{tikz}
+\usepackage{enumitem} 
+\usetikzlibrary{shapes.geometric, arrows, calc, fit,decorations.pathreplacing,bending}%,
+\usepackage{graphicx} % Required for \scalebox
+
+
+\newcommand{\ie}{\emph{i.e.,}\xspace}
+\newcommand{\eg}{\emph{e.g.,}\xspace}
+\newcommand{\etc}{etc.\xspace}
+\newcommand{\etal}{\emph{et~al.}\xspace} 
+\newcommand{\descStep}[2]{\noindent \textbf{#1: } #2}
+\newcommand{\smallTitle}[1]{\vspace{1mm} \noindent \textbf{#1: }}
+
+%\usepackage{threeparttable}
+%\usepackage{tabularx}
+
+
+\newcommand{\todo}[1]{\textcolor{cyan}{\textbf{[#1]}}}
+\newcommand{\dan}[1]{\textcolor{blue}{{\it [Dan: #1]}}}
+\newcommand{\piter}[1]{\textcolor{green}{{\it [Piter: #1]}}}
+
+%%%%%
+
+
+%% end of the preamble, start of the body of the document source.
+\begin{document}
+
+
+\title{XXXXX} 
+
+
+
+\author{Ben Trovato}
+\authornote{Both authors contributed equally to this research.}
+\email{trovato@corporation.com}
+\orcid{1234-5678-9012}
+\author{G.K.M. Tobin}
+\authornotemark[1]
+\email{webmaster@marysville-ohio.com}
+\affiliation{%
+  \institution{Institute for Clarity in Documentation}
+  \city{Dublin}
+  \state{Ohio}
+  \country{USA}
+}
+
+
+\author{XXXX}
+\affiliation{%
+  \institution{XXXX}
+  \city{XXXX}
+  \country{XXX}}
+\email{XXXX@XXXX.XXXX}
+
+
+
+
+\begin{abstract}
+
+
+% [Provide some background similar to Jie's work here]
+
+Most existing research assumes that the success rates of entanglement links between neighboring quantum nodes are already known. \dan{why this this problematic} In contrast, this paper tackles the online problem of determining the optimal path and qubit allocation strategy — aiming to learn, in real time, how to maximize the success rate of entanglement between two chosen quantum computers without prior knowledge of link performance. The proposed method employs a multi-armed bandit (MAB) framework, specifically `informed Contextual Multi-Armed Bandits' (iCMAB) approach, which models each potential path as a group and treats qubit allocation decisions as arm selections. Our contributions include: I)
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DK: Perhaps bounce the idea of of Stefan
+%   DK: Consider doing the experiment using their QDN if applicable. Do it in a paper or even a grant. See how we can piggy back on their effort.
+% 
+%
+
+\end{abstract}
+
+\maketitle
+
+
+\section{Introduction}
+\dan{dan}\piter{piter}\todo{todo}\hl{hi}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+- Jie's paper incorporates neural network-based contextual information to predict outcomes for paths that haven’t been fully tried yet, making the exploration smarter than pure random selection. How do we compare against this?
+
+
+
+
+
+To summarize, this work makes the following contributions:
+
+
+\begin{itemize}[leftmargin=2em]%[leftmargin=*]
+
+    \item \descStep{XXXX}{XXXXX.}
+    \item \descStep{XXXX}{XXXXX.}
+    \item \descStep{XXXX}{XXXXX.}
+    \item \descStep{Robust Simulations}{We conduct robust simulation to demonstrate the benefits of our proposed XYZ process over existing bandit algorithms.}
+%    \item \descStep{XXXX}{XXXXX.}
+%    \item \descStep{XXXX}{XXXXX.}
+
+\end{itemize}
+
+%The rest of the paper is organized as follows: Section~\ref{sec: developedLab} presents our created experiential education lab, and Section~\ref{sec: studydesign} discusses the design of our study. Evaluation results are provided in Section~\ref{sec: Evaluation} and Section~\ref{sec: Discussion} discusses the findings of our research. Section~\ref{sec: RelatedWork} presents related works, and Section~\ref{sec: Conclusion} provides a conclusion.
+%\dan{update everything above}
+
+
+
+
+\section{Background} 
+\label{sec: Background}
+
+% Why are entanglement connections important. What are they
+% What are the existing problems in general work.
+% What will we do
+% What problem will we solve
+
+%%%%%
+
+
+
+
+
+
+
+
+% Do this for both Qubit allocation and entanglement path selection
+
+%%%%%%%%%% Why are entanglement connections important. What are they %%%%%%%%%%
+
+
+% What is a quantum data network
+
+
+
+
+
+
+
+
+% Why is entangelment important
+
+
+
+
+% Why is path selection important
+
+
+
+
+
+%%%%%%%%%% What are the existing problems %%%%%%%%%%
+
+
+
+
+
+
+%%%%%%%%%% What will we do %%%%%%%%%%
+
+
+
+
+
+
+%%%%%%%%%% What problem will we solve %%%%%%%%%%
+
+
+
+
+%%%%%%%%%% What are some existing efforts and how will our work differ %%%%%%%%%%
+
+
+
+
+\section{System Model} 
+\label{sec: SystemModel}
+% Look at following Jie's example with this
+
+
+
+% We will likely want to create a block of pesudo code (or a code block) describing our process
+
+
+
+
+
+
+
+\section{Study Design} %%% DK: DO we have this section
+\label{sec: studydesign}
+
+\todo{Piter: Define your RQs here}
+
+Drawing from adversarial bandits \cite{jie2024expneuralucb}, neural forecasting \cite{brahmachari2024quantum}, and quantum uncertainty modeling \cite{kozlowski2022utility}, we define ten research questions (RQs) to evaluate a hybrid iCMAB–EXPNeuralUCB framework across stochastic and adversarial regimes. The evaluation spans multiple uncertainty scenarios (baseline, stochastic, Markov, adaptive, online-adaptive) with horizons from 4k to 24k timesteps, focusing on performance, stability, and integration benefits under dynamic routing and allocation. Primary RQs (1–5) target core comparisons; extended RQs explore capacity, convergence, and adaptability. 
+
+\newcommand{\RQA}{\textbf{RQ1:} How do temporally correlated attacks (e.g., Markov, adaptive) affect routing performance compared to i.i.d. stochastic noise across equal horizons?}
+
+\newcommand{\RQB}{\textbf{RQ2:} Can EXAMM-evolved neural forecasting improve routing efficiency over reactive baselines across heterogeneous uncertainty scenarios?}
+
+\newcommand{\RQC}{\textbf{RQ3:} How does the hybrid approach compare to best-of-both-worlds contextual bandits (e.g., NeuralUCB/NeuralTS, LinUCB/LinTS) under mixed stochastic–adversarial conditions?}
+
+\newcommand{\RQD}{\textbf{RQ4:} What gains result from integrating neural forecasting into adversarial group selection for dynamic qubit allocation policies?}
+
+\newcommand{\RQE}{\textbf{RQ5:} How do variations in forecast quality manifest in system stability, as measured by automatic retry incidence and convergence consistency?}
+
+\newcommand{\RQF}{\textbf{RQ6:} Can replay buffer scaling (capacity \(= 2T\) vs. \(T\)) recover stochastic performance lost under capacity-limited neural bandit training?}
+
+\newcommand{\RQG}{\textbf{RQ7:} How does convergence speed (runtime and time-to-target efficiency) differ under temporally correlated adversarial behavior versus i.i.d. stochastic failures?}
+
+% \newcommand{\RQH}{\textbf{RQ8:} }
+% \newcommand{\RQI}{\textbf{RQ9:} }
+% \newcommand{\RQJ}{\textbf{RQ10:} }
+
+\RQA 
+
+\RQB 
+
+\RQC 
+
+\RQD 
+
+\RQE 
+
+\RQF 
+
+\RQG 
+
+
+% Is a MAB approach good for path selection<- Check to see if this has been done before
+
+
+% How do the various MAB approaches compare (MAB vs CMAB, vs iCMAB) in stochastic environments
+
+
+
+% How do these processes compare in an adversarial setting. Are they best for an adversarial setting <-- If we get deep into this, we will likley need to use similar metrics as Jie's paper
+
+
+
+% How do environmental factors (number of hops, noise, \etc) impact the performance
+
+
+
+\section{Simulation Results} 
+\label{sec: SimulationResults}
+\dan{Piter: This is your section}
+
+
+
+\subsection{Adversarial}
+
+
+
+
+
+\subsection{Stochastic}
+
+
+
+
+\section{Discussion} 
+\label{sec:Discussion}
+
+% What do the results actually show
+
+
+\subsection{Limitations and Future Work} 
+\label{sec: Threats}
+
+
+
+\smallTitle{Limitations} 
+
+
+\smallTitle{Future Work} 
+
+% For us it will be implementing the work in a physical network if we can (Stefan)
+% 
+
+
+% Who determines where the repeaters are set? <-- Look at this optimization
+% Repeaters with error correction
+
+Find out evaluation methodology
+
+Network scales
+
+Comparison at similar scales
+
+
+\subsection{Primary Implications/Findings} 
+\label{sec: PrimaryImplications}
+
+
+
+\section{Related Work} 
+\label{sec: RelatedWork}
+
+\todo{Piter: Do this part next} 
+% Directly compare and contrast what we are doing to existing processes
+
+% 2-3 sentence overview of the existing paper
+% 1-2 sentence overview of how the proposed work directly contrasts with this existing effort
+
+
+%%%% Here are some papers to compare against
+%https://www.arxiv.org/abs/2506.12462
+%https://genesys-lab.org/papers/Quantum_Bandit_ICC2023.pdf
+%https://arxiv.org/abs/2411.00316
+%https://www.cse.cuhk.edu.hk/~cslui/PUBLICATION/INFOCOM24-Quantum%20BGP.pdf (Quantum BGP with Online Path Selection via Network Benchmarking)
+
+Quantum network routing and resource allocation have attracted significant attention as quantum internet infrastructure matures. While existing methods tackle entanglement distribution across varying network assumptions, most focus on either complete topology knowledge or fixed adversarial scenarios. Our work bridges this divide by systematically evaluating contextual neural bandit algorithms across stochastic and adversarial environments at 4k timesteps, introducing computational stability metrics—such as retry rates and scenario-dependent model selection—that are largely absent from prior literature.
+
+\subsection{Quantum Network Routing \& Path Selection}
+
+\textit{\smallTitle{Quantum BGP with Online Path Selection~\cite{liu2024qbgp}} }
+Liu \etal propose the Quantum Border Gateway Protocol (QBGP) for inter-domain routing across untrusted quantum Internet Service Providers (qISPs), using an online top-$K$ path selection algorithm that maximizes information gain to identify high-fidelity paths while minimizing resource use across large multi-qISP networks.  
+Our work focuses on intra-domain routing using contextual pursuit neural bandits that dynamically learn optimal policies under stochastic link failures (25\% rate matching experimental quantum networks), introducing retry-based computational stability metrics and scenario-specific model recommendations absent from QBGP's benchmarking-oriented design.
+
+\noindent\textit{\smallTitle{Cost-Vector Analysis and Multi-Path Routing~\cite{smith2024costvector}} }
+Leone \etal recast quantum networks as multi-graphs weighted by transmission and coherence probabilities, enabling static multi-path optimization through cost-vector analysis. In contrast, our contextual pursuit neural bandit model adaptively learns routing strategies online without prior link success rates, capturing temporal variation and quantifying computational stability through automatic retry detection at 4k horizons.
+
+\subsection{MABs for Quantum Networks}
+
+\textit{\smallTitle{Adversarial Group Neural Bandits for Quantum Routing~\cite{jie2024expneuralucb}} }
+Huang \etal introduce EXPNeuralUCB, a neural bandit algorithm that merges adversarial robustness (EXP3) with contextual reward learning for joint path and qubit allocation, achieving $O(T^{3/4}\sqrt{\log T})$ regret bounds evaluated to 10k timesteps in their experiments. We extend their work by introducing contextual pursuit-based alternatives (CPursuitNeuralUCB, iCPursuitNeuralUCB) and conducting systematic stochastic evaluation at 4k timesteps, demonstrating CPursuitNeuralUCB's 93.8\% efficiency vs. EXPNeuralUCB's 91.6\% in natural noise, while identifying EXPNeuralUCB's catastrophic degradation (69.1\%) in Adaptive scenarios—exposing limitations of adversarially-robust methods under reactive attacks.
+
+\noindent\textit{\smallTitle{NeuralUCB and NeuralTS~\cite{zhou2020neuralucb,zhang2022neuralts}} }
+Zhou \etal and Zhang \etal propose neural contextual bandit algorithms combining deep neural networks with UCB and Thompson Sampling exploration, excelling on structured deterministic datasets. Our evaluation demonstrates that pure neural approaches (GNeuralUCB) lead to computational instability (3 retries, 3 under-threshold episodes) in Adaptive scenarios at 4k frames, while contextual pursuit mechanisms (CPursuitNeuralUCB) maintain zero-retry stability—revealing the value of statistical learning layers for quantum routing reliability.
+
+\noindent\textit{\smallTitle{Quantum Contextual Bandits and Recommender Systems~\cite{brahmachari2024quantum}} }
+Brahmachari \etal formalize quantum contextual bandits as theoretical extensions of classical bandits using Hilbert-space embeddings. Our work provides an empirical bridge—evaluating contextual pursuit neural bandits under realistic quantum network conditions (stochastic 25\% failure, Markov, Adaptive, Online-Adaptive), linking theoretical constructs to practical routing and allocation problems with scenario-specific deployment guidelines.
+
+\subsection{Benchmarking \& Evaluation Frameworks}
+
+\textit{\smallTitle{Quantum Network Utility Framework~\cite{kozlowski2022utility}} }
+Kozlowski \etal define network utility metrics based on application-level value rather than physical fidelity, enabling cross-network comparison. Our analysis complements this perspective by quantifying algorithmic efficiency relative to an Oracle baseline at 4k timesteps, introducing retry rates and convergence consistency as hardware-independent stability metrics, and providing scenario-specific model selection rules for production deployment.
+
+\noindent\textit{\smallTitle{A Benchmarking Procedure for Quantum Networks~\cite{coopmans2021benchmark}} }
+Coopmans \etal design a benchmarking suite for quantum network simulators to validate entanglement routing and fidelity under varying conditions. We extend this validation concept to algorithmic benchmarking—evaluating contextual pursuit, ARIMA-informed, and adversarial neural bandits under five distinct uncertainty regimes (Stochastic 25\%, Markov, Adaptive, Online-Adaptive, Baseline) with stability analysis and scenario-dependent model recommendations.
+
+
+
+
+
+\section{Conclusion}
+\label{sec: Conclusion}
+
+
+
+\section*{Acknowledgments}
+
+
+
+\clearpage
+\balance
+%\clearpage % Might want to add this back in
+%\bibliographystyle{abbrv}
+% \bibliographystyle{IEEEtran}
+\bibliographystyle{abbrvnat}
+\bibliography{refs}
+
+\end{document}
