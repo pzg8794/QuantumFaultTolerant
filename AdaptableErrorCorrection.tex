@@ -2,13 +2,7 @@
 % 3 pages
 
 
-%-- Submitted by SOAR 8/8/25
-
-%Academia (college and universities) shall submit white papers under this BAA to: NAWCAD-Academia-BAA@us.navy.mil
-% All others, including businesses (large, small, small disadvantaged, etc.), other organizations (including non-profit), and entities (foreign and domestic) shall submit white papers under this BAA to: NAWCAD-Industry-BAA@us.navy.mil
-
-
-%If addressing more than one Research Opportunity Area of Interest, then separate standalone white paper submissions shall be required. White papers with general responses to multiple areas of interest will be determined to be non-compliant and will not be further considered.
+% https://pamspublic.science.energy.gov/WebPAMSEPSExternal/login.aspx
 
 \documentclass[12pt]{article}
 
@@ -53,7 +47,7 @@
 \usepackage{soul} % highlighting 
 \usepackage[normalem]{ulem}
 \usepackage[most]{tcolorbox} % Use for grey box at start of narrative
-
+\usepackage{cleveref}
 %\usepackage{algorithm}
 %\usepackage[noend]{algpseudocode}
 
@@ -159,9 +153,10 @@
 
 % Using Recurrent Neural Networks to Account for Tactic Volatility and Improve the Decision-Making Process of Autonomous Systems 
 
+
 \newcommand{\Title}{Contextual and Uncertainty-Aware Adaptive Quantum Error Management}
 
-\newcommand{\shortTitle}{Adaptive Quantum Error Mitigation}
+\newcommand{\shortTitle}{Contextual and Uncertainty-Aware Adaptive Quantum Error Management}
 
 \newcommand{\CallNumber}{DE-FOA-0003600} % BAA Number
 \newcommand{\CallName}{XXXX}
@@ -226,7 +221,11 @@
 
 %\normalsize \textbf{BAA Number:} & \normalsize \CallNumber  \\
 %\normalsize \textbf{Proposed Title:} & \normalsize  \Title  \\ 
-\normalsize \textbf{Research opportunity area:} & \normalsize Quantum Computing \\ 
+\normalsize \textbf{Subprogram Topic:} & \normalsize Quantum Error Detection, Prevention, Protection, and Correction Protocols Across the Quantum Software Stack \\ 
+
+\normalsize \textbf{Subprogram Contact:} & \normalsize  Dr. Marco Fornari\\
+   & \vspace{-8mm} \normalsize Dr. Pavel Lougovski \\ 
+
 % Research opportunity area of interest
 
 \normalsize \textbf{Technical POC/PI:} & \normalsize  Dr. Daniel E. Krutz\\
@@ -291,7 +290,6 @@
 \fancyfoot[C]{Page~\thepage~of~\pageref{lastpage}}
 
 
-
 \section{Technical Concept}
 %\todo{submitted 8/8}
 %CG: I changed the wording a bit so that the proposed work is not potentially regarded as incremental.
@@ -307,34 +305,77 @@
 {\large %\textbf{Synopsis}
 \par\medskip}
 \normalsize%\itshape
-Intelligently apply Real-time/Post processing error management strategies to quantum systems to enable effective, but resource friendly error management.
+Intelligently apply real-time and post processing error management strategies to quantum systems to enable effective, but resource friendly error management.
 \end{tcolorbox}\par}
 
 
 
-
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Quantum error management techniques including both run-time and post-processing strategies are paramount to maintaining computational fidelity. While these techniques have shown promise, current state-of-the-art methods remain limited. Traditional quantum error mitigation and correction (QEM/QEC) strategies often rely on static, resource-intensive approaches such as always-on QEC or pre-defined probabilistic error cancellation (PEC) schedules. These methods struggle to cope with the inherently dynamic, noise-prone, and resource-constrained environments typical of real-world quantum hardware. Although machine learning is increasingly being explored to enhance both run-time and post-processing error management, its current implementations are limited by  insufficient context-awareness, lack of generalization across varying noise profiles, high training overheads, and the difficulty of integrating predictive models with low-latency, hardware-level control systems. %As a result, the state of the art in quantum computing remains constrained; inadequate error management techniques can severely degrade performance by allowing fragile quantum states to accumulate uncorrected errors, ultimately resulting in incorrect outcomes and potential system failure.
 
-Error management techniques including both run-time and post-processing strategies—are paramount to maintaining computational fidelity. While these techniques have shown promise, current state-of-the-art methods remain limited. Traditional quantum error mitigation and correction (QEM/QEC) strategies often rely on static, resource-intensive approaches such as always-on QEC or pre-defined probabilistic error cancellation (PEC) schedules. These methods struggle to cope with the inherently dynamic, noise-prone, and resource-constrained environments typical of real-world quantum hardware. Although machine learning is increasingly being explored to enhance both run-time and post-processing error management, its current implementations are limited by  insufficient context-awareness, lack of generalization across varying noise profiles, high training overheads, and the difficulty of integrating predictive models with low-latency, hardware-level control systems. %As a result, the state of the art in quantum computing remains constrained; inadequate error management techniques can severely degrade performance by allowing fragile quantum states to accumulate uncorrected errors, ultimately resulting in incorrect outcomes and potential system failure.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usetikzlibrary{fit}
+
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\tikzstyle{rrec} = [rectangle, draw, fill=white!20, text width=8.95em, text centered, minimum height=2.7em]
+\tikzstyle{rrecsmall} = [rectangle, draw, fill=white!20, text width=8.95em, text centered, minimum height=1.35em]
+\tikzstyle{feedback} = [draw, -{Stealth[length=2mm]}, thick, dashed]
+%\tikzstyle{labelnode} = [text width=8em, align=center, font=\footnotesize]
+\tikzstyle{labelnode} = [text width=18em, align=center, font=\footnotesize]
+\tikzstyle{dottedbox} = [draw, dashed, rounded corners, inner sep=6pt, fit=#1]
+
+\begin{figure}[h!]
+\footnotesize
+\begin{center}
+\scalebox{.80}{
+\begin{tikzpicture}[node distance = 3.6cm, line width=.5mm]
+
+% Main nodes
+\node [rrec, minimum width=8.4em, text width=9em] (1) {Context Mapping};
+\node [rrec, right of=1, minimum width=8.4em, text width=9em] (2) {Noise/Fidelity Prediction};
+\node [rrec, right of=2, minimum width=8.4em, text width=9em] (3) {Adaptive Strategy Selection};
+\node [rrec, right of=3, minimum width=8.4em, text width=9em] (4) {Rule Verification};
+\node [rrec, right of=4, minimum width=8.4em, text width=9em] (5) {Execution \& Logging};
+
+% Arrows
+\draw [arrow] (1) -- (2);
+\draw [arrow] (2) -- (3);
+\draw [arrow] (3) -- (4);
+\draw [arrow] (4) -- (5);
+
+% Feedback loop
+\coordinate (feedbackstart) at ($(5.south) + (0,-0.0)$);
+\coordinate (feedbackmid) at ($(3.south) + (0,-0.5)$);
+\coordinate (feedbackend) at ($(1.south) + (0,-0.0)$);
+
+\draw [feedback] (feedbackstart) |- (feedbackmid) -| (feedbackend);
+
+% Feedback label
+\node [labelnode, below=0.0cm of feedbackmid, align=center] {Feedback Loop \& Continual Learning};
+
+\end{tikzpicture}
+} % end scalebox
+\caption{Generalized Adaptive Error Management Framework For Run-Time/Post Processing}
+\label{fig: GeneralProcess}
+\end{center}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vspace{-5mm}
 
 % What is the proposed solution
-To address current limitations in intelligently-abled QEM/QEC, we have created a new framework \emph{Quantum Uncertainty-Aware, Adaptive, and Robust Correction} (QUARC) that leverages real-time context awareness, hierarchical self-organizing learning (GHSOM), deep reinforcement learning (DRL), and sparse variational Gaussian processes (SVGP) integrated with contextual multi-armed bandits (CMAB) and noise-sensitive multi-armed bandits (NS-MAB), to dynamically select and adapt both quantum \ul{run-time} error correction (Figure~\ref{fig: RTProcess}) and \ul{post-processing} strategies (Figure~\ref{fig: PostProcess}) such as probabilistic error cancellation (PEC), zero-noise extrapolation (ZNE), and measurement error mitigation (MEM) based on evolving noise conditions and system performance feedback. The benefit of proposed process in relation to the state of the art is its ability to adaptively and intelligently select the most effective QEC and post-processing strategies in real time based on evolving noise patterns and contextual feedback, resulting in improved error resilience, resource efficiency, and performance stability in dynamic quantum computing environments. Our QUARC framework selectively applies the most appropriate error mitigation or correction strategy only when and where it’s most effective. This minimizes resource overhead while preserving computational fidelity and reliability. The effort will benefit NISQ hardware by minimizing unnecessary error management overhead and dynamically adapting to time-varying noise environments, thereby improving qubit utilization, circuit efficiency, and overall computational fidelity on resource-constrained, noise-sensitive quantum devices.  % This can be cleaned up a bit.
-
-%\dan{Create an overview of the two components together.} % What is a holistic diagram that describes the two processes? ()
-
-
-
-
+To address current limitations in intelligently-abled QEM/QEC, we will develop a new framework \emph{Quantum Uncertainty-Aware, Adaptive, and Robust Correction} (QUARC) that leverages real-time context awareness, hierarchical self-organizing learning (GHSOM), deep reinforcement learning (DRL), and sparse variational Gaussian processes (SVGP) integrated with contextual multi-armed bandits (CMAB) and noise-sensitive multi-armed bandits (NS-MAB), to dynamically select and adapt both quantum \ul{run-time} error correction (Figure~\ref{fig: RTProcess}) and \ul{post-processing} strategies (Figure~\ref{fig: PostProcess}) such as probabilistic error cancellation (PEC), zero-noise extrapolation (ZNE), and measurement error mitigation (MEM) based on evolving noise conditions and system performance feedback. %The benefit of proposed process in relation to the state of the art is its ability to adaptively and intelligently select the most effective QEC and post-processing strategies in real time based on evolving noise patterns and contextual feedback, resulting in improved error resilience, resource efficiency, and performance stability in dynamic quantum computing environments. 
+Our QUARC framework will selectively apply the most appropriate error mitigation or correction strategy only when and where it's most effective. This minimizes resource overhead while preserving computational fidelity and reliability. The effort will benefit NISQ hardware by minimizing unnecessary error management overhead and dynamically adapting to time-varying noise environments, thereby improving qubit utilization, circuit efficiency, and overall computational fidelity on resource-constrained, noise-sensitive quantum devices.
 
 \smallTitle{Advancements Beyond the State of the Art}
-%\noindent This work introduces key innovations in dynamic channel access:
-
+\vspace{-1mm}
 \begin{itemize}
 
-    \item \descStep{Context-Aware Error Management}{Uses real-time telemetry and noise models to tailor error correction and mitigation to current hardware conditions.}
+    \item \descStep{Context-Aware Error Management}{Tailor error correction and mitigation to current hardware conditions using real-time telemetry and noise models.}
 
     \item \descStep{Uncertainty-Aware Decisions}{Applies mitigation only when justified, using SVGP to avoid overconfidence and optimize resource use.}
 
@@ -348,7 +389,8 @@ To address current limitations in intelligently-abled QEM/QEC, we have created a
 
 \pagebreak
 
-The proposed solution consists of two key components: a real-time error correction strategy selector and a post-processing error mitigation module.
+The proposed `QUARC' solution consists of two key components: a real-time error correction strategy selector (\Cref{sec: RBRealTimeStrategySelection}) and a post-processing error mitigation module (\Cref{sec: RBPostStrategySelection}).
+
 
 \subsection{Component \#1: Real-Time Quantum Error Correction (QEC) Strategy Selection}
 \label{sec: RBRealTimeStrategySelection}
@@ -402,25 +444,24 @@ The proposed solution consists of two key components: a real-time error correcti
 
 We propose a dynamic, context-aware framework for runtime quantum error correction (QEC) that intelligently determines both when and how to intervene. Our system leverages real-time telemetry, predictive noise modeling, uncertainty quantification, and expert-defined constraints to select among full QEC codes, lightweight detection mechanisms, or strategic inaction—balancing fidelity gains, resource cost, and forecast confidence.
 
-\smallTitle{Key Components}
+\smallTitle{Key Components of Real-Time QEC Strategy Selector}
 \begin{itemize}
-\item \descStep{GHSOM}{An unsupervised neural network clusters high-dimensional telemetry (\eg noise rates, coherence times) into low-dimensional operational contexts. These clusters support semantic recognition of known and novel noise regimes, enabling situationally aware QEC decisions.}
-\item \descStep{DRL + SVGP}{A DRL agent forecasts short-term noise evolution using learned policies from interaction with a simulator or real device. A Sparse Variational Gaussian Process (SVGP) quantifies prediction uncertainty, enabling risk-aware QEC actions and fallback to conservative strategies when needed.}
+\item \descStep{GHSOM}{An unsupervised neural network clusters high-dimensional telemetry (\eg noise rates, coherence times) into low-dimensional operational contexts. These clusters support recognition of known and novel noise regimes, enabling situationally aware QEC decisions.}
+\item \descStep{DRL + SVGP}{A DRL agent forecasts short-term noise using learned policies from a simulator or real device. A Sparse Variational Gaussian Process quantifies uncertainty, enabling risk-aware QEC actions and fallback to conservative strategies.}%A DRL agent forecasts short-term noise evolution using learned policies from interaction with a simulator or real device. A Sparse Variational Gaussian Process (SVGP) quantifies prediction uncertainty, enabling risk-aware QEC actions and fallback to conservative strategies when needed.}
 \item \descStep{CMAB}{A Contextual Multi-Armed Bandit (CMAB) selects QEC strategies using Thompson Sampling to optimize expected reward, considering telemetry, forecasts, uncertainty, and constraints. Strategy options include full QEC, detection-only, or inaction.}
 \end{itemize}
 
-\smallTitle{Decision Workflow}
+\smallTitle{Decision Workflow of Real-Time QEC Strategy Selector}
 \begin{enumerate}
-\item \textbf{Context Mapping:} GHSOM processes streaming telemetry to identify operational regimes and detect anomalies.
-\item \textbf{Noise Forecasting:} DRL predicts noise dynamics; SVGP assesses forecast confidence to guide risk-aware decisions.
-\item \textbf{Strategy Selection:} CMAB chooses the optimal QEC action using utility estimates that trade off fidelity gain, resource cost, and forecast uncertainty.
-\item \textbf{Rule Verification:} Selected actions are checked against formal safety rules (\eg avoid full QEC if gate fidelity $<$ 0.95).
-\item \textbf{Execution:} Validated strategies are compiled into hardware-specific instructions, respecting topology and timing constraints.
-\item \textbf{Closed-Loop Learning:} Post-execution feedback updates all modules—GHSOM, DRL, SVGP, and CMAB—for continual improvement.
+\item \descStep{Context Mapping}{GHSOM processes telemetry streams to identify and detect anomalies.}
+\item \descStep{Noise Forecasting}{DRL predicts noise; SVGP assesses confidence guiding decisions.} %DRL predicts noise dynamics; SVGP assesses forecast confidence to guide risk-aware decisions.
+\item \descStep{Strategy Selection}{CMAB chooses the optimal QEC action using utility estimates that trade off fidelity gain, resource cost, and forecast uncertainty.}
+\item \descStep{Rule Verification}{Selected actions are checked against formal safety rules.}% (\eg avoid full QEC if gate fidelity $<$ 0.95).
+\item \descStep{Execution}{Validated strategies are compiled into hardware-specific instructions, respecting topology and timing constraints.}
+\item \descStep{Closed-Loop Learning}{Post-execution feedback updates all modules—GHSOM, DRL, SVGP, and CMAB—for continual improvement.}
 \end{enumerate}
 
-\pagebreak
-\smallTitle{Anticipated Benefits}
+\smallTitle{Anticipated Benefits of Real-Time QEC Strategy Selector}
 \begin{multicols}{2}
 \begin{itemize}
     \item \textbf{Proactive corrections} using noise forecast.
@@ -509,12 +550,12 @@ We propose a dynamic, context-aware framework for runtime quantum error correcti
 
 We propose a data-driven, context-aware framework that adaptively selects post-processing strategies using predictive modeling, online learning, and logic-based constraints. Unlike static pipelines, this system tailors decisions to each circuit run, improving fidelity while conserving resources.
 
-\smallTitle{Core Components}
+\smallTitle{Core Components of Adaptive Post-Processing Framework}
 \begin{itemize}
-\item \textbf{Variational Bayesian Clustering (VBC):} Categorizes execution metadata into context classes (\eg ``readout-biased'', "coherently noisy"), enabling context-aware decisions.
-\item \textbf{Bayesian Predictive Models:} Estimate the expected fidelity gain and uncertainty of each method (\eg ZNE, PEC, MEM) for a given context.
-\item \textbf{Non-Stationary Multi-Armed Bandits (NS-MAB):} Selects the optimal post-processing action (or none) by learning from evolving effectiveness in dynamic environments.
-\item \textbf{Constraint Logic Layer:} Enforces domain rules (\eg hardware-specific limits, runtime constraints) to override or filter actions as needed.
+\item \descStep{Variational Bayesian Clustering (VBC)}{Categorizes execution metadata into context classes (\eg ``readout-biased'', ``coherently noisy''), enabling context-aware decisions.}
+\item \descStep{Bayesian Predictive Models}{Estimate the expected fidelity gain and uncertainty of each method (\eg ZNE, PEC, MEM) for a given context.}
+\item \descStep{Non-Stationary Multi-Armed Bandits (NS-MAB)}{Selects the optimal post-processing action (or none) by learning from evolving effectiveness in dynamic environments.}
+\item \descStep{Constraint Logic Layer}{Enforces domain rules (\eg hardware-specific limits, runtime constraints) to override or filter actions as needed.}
 \end{itemize}
 
 \begin{comment}
@@ -531,17 +572,44 @@ We propose a data-driven, context-aware framework that adaptively selects post-p
 
 
 \smallTitle{Benefits}
-This approach enables smarter, resource-aware quantum post-processing that adapts to hardware variability, integrates uncertainty into decision-making, and continuously learns to improve fidelity over time.
+This approach enables resource-aware quantum post-processing that adapts to hardware variability, integrates uncertainty into decisions, and continuously learns to improve fidelity.
+
+%This approach enables smarter, resource-aware quantum post-processing that adapts to hardware variability, integrates uncertainty into decision-making, and continuously learns to improve fidelity over time.
 
 
 
-\smallTitle{Differentiation from existing efforts} The proposed AQEM framework differs from current efforts by integrating dynamic, dual decision-making, determining both when to apply error correction and which specific strategy to employ. Unlike traditional QEC or dynamical decoupling methods that follow fixed codes or pulse sequences, our proposed `AQEM' framework leverages real-time telemetry, predictive noise modeling via deep reinforcement learning, and uncertainty quantification through sparse variational Gaussian processes to anticipate errors and select optimal interventions. It further improves upon existing approaches by using contextual multi-armed bandits to balance fidelity, resource costs, and risk, incorporating expert rule verification for safe operation, and translating high-level decisions into hardware-specific execution, enabling practical, adaptive, and efficient runtime QEC. The closed-loop learning mechanism continuously refines utilized modules based on performance feedback, allowing the system to adapt to both short-term fluctuations and long-term hardware variations, a capability absent in standard Quantum Error Correction Codes (QECC) or dynamical decoupling (DD) implementations.
+\smallTitle{Differentiation from Existing Efforts} The proposed AQEM framework uniquely integrates dual, dynamic decision-making—determining both when and which error correction strategy to apply. Unlike fixed QEC or dynamical decoupling methods, AQEM uses real-time telemetry, predictive noise modeling via deep reinforcement learning, and uncertainty quantification with sparse variational Gaussian processes to anticipate errors. Contextual multi-armed bandits balance fidelity, cost, and risk, while expert rules ensure safe operation and decisions are translated into hardware-specific execution. A closed-loop learning mechanism continuously adapts to short-term fluctuations and long-term hardware variations, surpassing traditional QECC or DD approaches.
 
 
 
+%The proposed AQEM framework differs from current efforts by integrating dynamic, dual decision-making, determining both when to apply error correction and which specific strategy to employ. Unlike traditional QEC or dynamical decoupling methods that follow fixed codes or pulse sequences, our proposed `AQEM' framework leverages real-time telemetry, predictive noise modeling via deep reinforcement learning, and uncertainty quantification through sparse variational Gaussian processes to anticipate errors and select optimal interventions. It further improves upon existing approaches by using contextual multi-armed bandits to balance fidelity, resource costs, and risk, incorporating expert rule verification for safe operation, and translating high-level decisions into hardware-specific execution, enabling practical, adaptive, and efficient runtime QEC. The closed-loop learning mechanism continuously refines utilized modules based on performance feedback, allowing the system to adapt to both short-term fluctuations and long-term hardware variations, a capability absent in standard Quantum Error Correction Codes (QECC) or dynamical decoupling (DD) implementations.
+
+
+
+% DK: Move this:
+% "with specific emphasis of codesign of quantum algorithms for applications within the DOE SC mission space"
+
+
+\smallTitle{Alignment with DOE SC Mission and Codesign Objectives} This work advances the DOE Office of Science mission by integrating algorithmic innovation and quantum error management within a co-design framework. QUARC can jointly optimizes adaptive error correction, mitigation, and algorithm parameters for DOE-relevant workloads in areas such as materials, chemistry, and nuclear or high-energy physics. By coupling algorithm design with noise-aware control and hardware constraints, QUARC enhances the fidelity and scalability of quantum computations.
+
+
+
+
+
+\smallTitle{Simulation-to-Hardware Transition for Predictive Module Development} QUARC's predictive modules—GHSOM clustering, DRL forecasting, SVGP uncertainty modeling, and CMAB/NS-MAB optimization—will first be developed and benchmarked on simulated quantum devices for controlled testing. After validation, execution, feedback, expert-rule, and adaptive control layers will later be deployed and refined on real hardware to ensure practical, constrained performance. %The components of QUARC that involve model development, training, and evaluation of predictive modules (\eg GHSOM clustering, DRL noise forecasting, SVGP uncertainty modeling, and CMAB/NS-MAB policy optimization) will initially operate with simulated or emulated quantum devices to allow controlled benchmarking and safe exploration. Once validated, the execution and feedback interfaces, expert-rule verification, and adaptive control layers will later be deployed and refined on real quantum hardware platforms to ensure practical, hardware-constrained performance.
+
+
+% I am not sure if we need this section
+%\subsubsection{Deliverables}
+
+
+
+
+
+% Do we even need this section
 %\section{Forecasted Award Instrument Type}
-\section{Period of Performance}
-\hl{5/26-4/29}
+%\section{Period of Performance}
+%\hl{5/26-4/28}
 
 %\vspace{-6mm}
 
@@ -552,11 +620,19 @@ This approach enables smarter, resource-aware quantum post-processing that adapt
 
 %%%%%%%%%%%%%%%%%%%%%%
 
-\vspace{-4mm}
+%\vspace{-4mm}
 \subsection{Cost Estimate} % Required Section
 %\vspace{-4mm}
-\noindent The total budget is \$175k/yr for a total cost of \$525k.%, supporting (I) Demonstration implementation II) Faculty and PhD student support III) Equipment (III) Implementations (IV) Dissemination.
+\noindent The total combined budget for RIT and Syracuse University is \$250k/yr for a total cost of \$550k.%, supporting (I) Demonstration implementation II) Faculty and PhD student support III) Equipment (III) Implementations (IV) Dissemination.
 %\noindent All project members are US citizens who have the anticipated ability to receive the appropriate level security clearance should the project be funded.
+
+
+
+
+%- Do we have all of the areas that we need
+%- How can we clarify and shorten?
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -572,7 +648,31 @@ This approach enables smarter, resource-aware quantum post-processing that adapt
 
 \cfoot{\thepage}
 \pagenumbering{roman}
-%\section{Appendix}
+\section{Appendix}
+\subsection*{Listing of Senior/Key Personnel}
+
+
+%Additional Attachment (not counted toward page limit)
+%Listing of Senior/Key Personnel.
+%Person | Title | Expertise
+
+% DK: Maybe mention SE since it shows that we will ultimately be able to deliver a working product
+\noindent The project team brings together deep expertise in machine learning, quantum computing, and software development. Collectively, team members have authored dozens of publications in these areas, including numerous publications featured in top-tier academic venues.
+
+\newcommand{\TeamMember}[3]{\noindent \textbf{#1: } #2 - #3}
+
+ \begin{enumerate}%[noitemsep, leftmargin=*]
+
+    \item \TeamMember{Daniel Krutz}{Assc. Professor, Rochester Institute of Technology}{Machine Learning/Software Development}
+    
+    \item \TeamMember{Jason Pollack}{Assistant Professor, Syracuse University}{Quantum Computing}
+
+    \item \TeamMember{Travis Desell}{Professor, Rochester Institute of Technology}{Machine Learning}
+
+  \end{enumerate}
+
+
+
 
 %\input{sections/Appendix.tex}
 

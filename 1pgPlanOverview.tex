@@ -1,0 +1,272 @@
+\documentclass[10pt]{article}
+
+% Packages
+\usepackage[margin=1in]{geometry}   % 1 inch margins
+\usepackage{fancyhdr}               % Custom headers/footers
+\usepackage{lastpage}               % Reference total page number
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{comment}
+\usepackage{subcaption}
+\usepackage{titlesec}
+\usepackage{array}
+%\usepackage{hyperref}
+\usepackage[most]{tcolorbox}
+\usepackage{cleveref}
+\usepackage{pgfgantt}
+\usepackage{adjustbox} % adjust the side of the gant chart
+\usepackage{multicol}
+%%%%
+\usepackage{booktabs} % used for \toprule in tables
+
+\usepackage{subcaption}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+%\usetikzlibrary{decorations.pathmorphing} % example library
+\usetikzlibrary{shapes, arrows.meta, positioning, decorations.pathreplacing, calc, fit}
+
+
+
+\usepackage[numbers,sort]{natbib} % Cite things in order in the body
+%% Removed from the data managemnt page
+\usepackage{times}
+\usepackage{url}
+\usepackage{color} % needed for todo
+\usepackage{enumitem}
+\usepackage{soul} % highlighting 
+\urlstyle{same} % Have the URL font be identical to the rest of the paper
+
+
+%\setlist{leftmargin=6.0mm, noitemsep}
+\setlist{noitemsep}
+
+\usepackage{xspace} % Needed for et al.
+\newcommand{\ie}{\emph{i.e.,}\xspace}
+\newcommand{\eg}{\emph{e.g.,}\xspace}
+\newcommand{\etc}{etc.\xspace}
+\newcommand{\etal}{\emph{et~al.}\xspace} 
+\newcommand{\todo}[1]{\textcolor{cyan}{\textbf{[#1]}}}
+\newcommand{\dan}[1]{\textcolor{blue}{{\it [Dan: #1]}}}
+\newcommand{\sam}[1]{\textcolor{red}{{\it [Sam: #1]}}}
+
+
+
+\newcommand\MainTitle{CISE Paper Submission: MABS \& QDNs}
+%\newcommand\MainTitle{XXXXX}
+
+\setlist{noitemsep, leftmargin=6.0mm}
+\newcommand{\smallTitle}[1]{\vspace{1mm} \noindent \textbf{#1: }}
+\newcommand{\descStep}[2]{\noindent \textbf{#1: } #2}
+
+
+
+% Set normal paragraph indentation (e.g., 15pt)
+\setlength{\parindent}{15pt}
+
+% Ensure the first paragraph after section titles is NOT indented
+% but subsequent paragraphs ARE indented
+
+\makeatletter
+
+
+% RE-ENABLE THIS
+\let\orig@section\section
+\renewcommand{\section}{%
+  \@ifstar{\orig@section*}{\@section@noindent}%
+}
+\newcommand{\@section@noindent}[1]{%
+  \orig@section{#1}%
+  \@afterindentfalse\@afterheading
+}
+\let\orig@subsection\subsection
+\renewcommand{\subsection}{%
+  \@ifstar{\orig@subsection*}{\@subsection@noindent}%
+}
+\newcommand{\@subsection@noindent}[1]{%
+  \orig@subsection{#1}%
+  \@afterindentfalse\@afterheading
+}
+\let\orig@subsubsection\subsubsection
+\renewcommand{\subsubsection}{%
+  \@ifstar{\orig@subsubsection*}{\@subsubsection@noindent}%
+}
+\newcommand{\@subsubsection@noindent}[1]{%
+  \orig@subsubsection{#1}%
+  \@afterindentfalse\@afterheading
+}
+
+\titlespacing\section{0pt}{3pt plus 1pt minus 1pt}{0.75pt plus 0.5pt minus 0.5pt}
+\titlespacing\subsection{0pt}{3pt plus 1pt minus 1pt}{0pt plus 0.5pt minus 0.5pt}
+\titlespacing\subsubsection{0pt}{3pt plus 1pt minus 1pt}{0pt plus 0.5pt minus 0.5pt}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+
+% Header and footer setup
+\pagestyle{fancy}
+\fancyhf{} % Clear all header/footer fields
+
+% Define values for the header
+
+\fancyhead[L]{LLLLLL}
+\fancyhead[C]{}
+\fancyhead[R]{dxkvse@rit.edu}
+
+% Footer: Page x of y
+%\fancyfoot[C]{Page \thepage\ of \pageref{lastpage}} % Comment out to remove page number
+
+% Title
+\title{\vspace{-2cm} \bfseries \MainTitle}%: Integrating DRL, CMAB, and Post-Processing Strategies}
+%\author{Daniel Krutz \{dxkvse@rit.edu\}\\}
+\date{}
+
+%% Change the size of the section labels
+\titleformat{\section}
+  {\normalfont\bfseries\Large} % font and size %large
+  {\thesection}{1em}{}              % section number formatting
+
+%% Change the spacing between sections
+\titlespacing*{\section}
+  {0pt}   % Left margin
+  {1ex}   % Space before the section
+  {0.5ex} % Space after the section
+
+\begin{document}
+
+%% start defining the layout of the 1st page
+\fancypagestyle{firstpage}{
+  \fancyhf{}              % Clear all header/footer
+  \renewcommand{\headrulewidth}{0pt} % No header rule
+%  \fancyfoot[C]{Page \thepage\ of \pageref{lastpage}}   % Comment out to remove page number
+}
+%% end defining the layout of the 1st page
+
+\maketitle
+%\thispagestyle{fancy} % Apply fancy header/footer to title page
+%\thispagestyle{empty} % Suppress header/footer on the first page
+\thispagestyle{firstpage}
+
+\linespread{1.005} % Help with NSF page spacing error
+\selectfont
+
+\vspace{-8mm}
+{\par\centering
+ \begin{tcolorbox}[enhanced, width=1.03\linewidth, 
+            %colback=blue!50!white!20,
+            arc=0pt, outer arc=0pt, 
+            borderline={1.5pt}{0pt}{black!90},
+            borderline={0.25pt}{3pt}{black!70, sharp corners},
+            drop fuzzy shadow]
+    \centering
+{\large %\textbf{Synopsis}
+\par\medskip}
+\normalsize%\itshape
+Use novel MAB-focused ML to Assist Stochastic Entanglement Path Selection and ?QubitAllocation?
+\end{tcolorbox}\par}
+
+
+%%% Are we going to address Jie's comments in the email
+% I’m not sure that simply adding a new ML method is the best approach. Bandits are already ML-based, so unless this new approach tackles a specific quantum network challenge connected to path selection, it might pull the proposal too far toward ML. It would be great if the ML aspect were designed to solve a unique quantum problem, but I don’t have a good idea for that yet.
+
+
+% Adaptive/Online Entanglement Routing
+
+\section*{Overview}
+
+The objective of this work is to apply MAB-based techniques to enhance entanglement routing in QDNs. This will be achieved by xyz...
+
+
+
+\section{Open Problems in Adaptive/Online Entanglement Routing}
+
+
+% DK: How to have the ML address these open problems
+\begin{enumerate}
+    \item Probabilistic Link Success and Uncertainty - Quantifying uncertainty in real-time and propagating it through routing decisions; Handling correlated failures (e.g., multiple links affected by the same noise source); Incorporating imperfect fidelity and probabilistic purification in path evaluation.
+    \item 
+    \item 
+    \item 
+    \item 
+
+\end{enumerate}
+
+? Entangled pairs may require purification to improve fidelity, consuming additional qubits and time. < Do something with our Error Mitigation work? - How could error mitigation be used to address these challenges?
+
+
+> What is the unique quantum problem that we are solving?
+
+\smallTitle{Problems Addressed}
+
+\begin{enumerate}
+    \item How to support entanglement routing (\eg selecting a path, allocating qubits, scheduling entanglement attempts, performing entanglement swapping, handling purification, managing memory constraints) in stochastic QDNs.
+    \item 
+    \item -- Something ML focused.
+\end{enumerate}
+
+
+
+
+\smallTitle{Research Questions}
+\begin{enumerate}
+    \item 
+    
+%    \item \descStep{XXX}{XXX}
+%    \item \descStep{XXX}{XXX}
+%    \item \descStep{XXX}{XXX}
+%    \item \descStep{XXX}{XXX}
+%    \item \descStep{XXX}{XXX}
+
+\end{enumerate}
+
+% ? Something about topology? - Does it make sense to do this?
+% Entanglement routing techniques
+% ML-focused RQs
+
+
+
+\smallTitle{Advancements Over State of the Art}
+\begin{enumerate}
+    \item \descStep{XXX}{XXX}
+    \item \descStep{XXX}{XXX}
+    \item \descStep{XXX}{XXX}
+    \item \descStep{XXX}{XXX}
+    \item \descStep{XXX}{XXX}
+
+    
+\end{enumerate}
+
+
+
+\smallTitle{How the ML is designed to solve a unique quantum problem}
+
+
+
+
+
+
+
+\label{lastpage}
+\pagebreak
+%\cleardoublepage
+
+
+%\appendix
+
+
+%% DK: Put onto a different page since it does not count against the page limit
+%\setcounter{page}{1}
+
+\cfoot{\thepage}
+\pagenumbering{roman}
+
+
+\end{document}
+
+
+
+
+What our work will do
+What makes the work unique/different

@@ -1,0 +1,79 @@
+\section{Related Work}
+\label{sec:RelatedWork}
+
+\subsection{Literature Selection Methodology}
+
+We situate multi-armed bandits (MABs) as a family of uncertainty-aware sequential decision rules and use quantum entanglement routing as a stress test where stochastic noise, structured disruption, and resource constraints jointly shape performance. Our scope spans: (i) finite-time regret analyses in stochastic and adversarial regimes, (ii) contextual and neural representations for structured environments, (iii) hybrid constructions that combine mechanisms across regimes, and (iv) predictive (informed) bandits that incorporate explicit forecasts or learned dynamics.
+
+\subsubsection{Search Strategy and Time Span (2002--2025)}
+
+We queried arXiv, IEEE Xplore, and the ACM Digital Library over the 2002--2025 window using combinations of:
+\emph{multi-armed bandits, contextual bandits, adversarial bandits, neural bandits, exploration--exploitation, predictive bandits, online forecasting, informed contextual bandits, quantum routing}.
+We then performed backward/forward snowballing from canonical anchors (e.g., UCB/EXP3 foundations; LinUCB and neural contextual bandits; recent bandit-based quantum-routing studies), prioritizing work that either:
+(a) introduced a reusable mechanism (confidence bounds, posterior sampling, adversarial randomization, pursuit-style updates, forecasting/world models), or
+(b) demonstrated cross-domain transfer under materially different constraints (e.g., routing, communications, finance, healthcare).
+
+The chosen time span captures the modern finite-time theory for stochastic and adversarial learning, the rise of contextual formulations for structured decision-making, and recent neural, hybrid, and predictive variants designed for complex, partially observed environments.
+
+\subsubsection{Inclusion and Exclusion Criteria}
+    \begin{description}[leftmargin=1.5em]
+      \item \textit{Included:}
+        \begin{enumerate}[leftmargin=1.8em]
+          \item Canonical stochastic and adversarial MAB algorithms with regret guarantees~\cite{auer2002ucb1,thompson1933likelihood,auer2002nonstochastic}.
+          \item Contextual neural bandits that scale action selection to structured/high-dimensional contexts~\cite{li2010contextual,zhou2020neuralucb,zhang2020neural}.
+          \item Predictive/informed contextual bandits that integrate forecasting or learned dynamics~\cite{zhang2021icmab,box2015time}.
+          \item Hybrid methods that combine mechanisms across regimes~\cite{thathachar2011networks}.
+          \item Cross-domain applications where the same mechanism is instantiated under different reward and constraint models.
+        \end{enumerate}
+    
+      \item \textit{Excluded:}
+        \begin{enumerate}[leftmargin=1.8em]
+          \item Offline optimization/control without online learning under bandit feedback.
+          \item Single-domain demonstrations without reusable algorithmic insight.
+          \item Pure tuning studies without methodological novelty, clearly stated assumptions, or reproducibility artifacts.
+        \end{enumerate}
+    \end{description}
+
+
+\subsection{Foundational Bandits and Regret Regimes}
+
+Foundational results formalize the exploration--exploitation trade-off and provide regret guarantees that define the efficiency--robustness envelope. In stochastic i.i.d.\ settings, UCB-style optimism and Thompson-style posterior sampling achieve logarithmic-in-horizon regret under standard gap conditions~\cite{auer2002ucb1,thompson1933likelihood}. In adversarial settings, EXP3 attains sublinear regret without stochastic assumptions, trading some benign-regime efficiency for worst-case protection~\cite{auer2002nonstochastic}. These regimes motivate why quantum routing evaluations should explicitly separate \emph{natural noise} from \emph{coordinated disruption}: the learning objective and the appropriate safety guarantees depend on the feedback model.
+
+\subsection{Contextual and Neural Bandits}
+
+Contextual bandits condition decisions on observable state, enabling structured decision-making when arms are not exchangeable. LinUCB models rewards as linear in context and selects actions via a confidence bonus~\cite{li2010contextual}. NeuralUCB and NeuralTS generalize this principle by learning representations with deep networks while retaining uncertainty-aware action selection through confidence-style bounds or sampling in representation space~\cite{zhou2020neuralucb,zhang2020neural}. The shared abstraction is mechanism-level:
+\emph{learn a value predictor, maintain an uncertainty estimate over that predictor, and act optimistically or probabilistically.}
+In quantum routing, the natural context includes topology/hop structure, link-quality indicators, and any measurable signals of load, memory, or temporal drift.
+
+\subsection{Adversarial and Hybrid Robustness}
+
+Adversarial bandits prioritize worst-case guarantees (e.g., EXP3-style randomization, which can be essential under nonstationarity or strategic manipulation~\cite{auer2002nonstochastic}. Hybrid designs aim to combine robust exploration with structured exploitation---for example, layering pursuit-style updates over context-conditioned value estimation or embedding adversarial weighting within learned reward models~\cite{thathachar2011networks}. Within quantum-routing studies, adversarial-first formulations are often motivated by jamming or targeted disruption; however, comparisons across families are frequently confounded by mismatched assumptions about allocation, memory/replay semantics, and evaluation taxonomies. This motivates treating allocation policies and replay parameterization as first-class experimental factors when assessing robustness under mixed threats.
+
+\subsection{Predictive and Informed Bandits}
+
+Predictive (informed) contextual bandits augment the decision rule with a forecasting or world-model component so that learning can anticipate drift rather than purely react to it. iCMAB exemplifies this direction by coupling contextual decision rules with an explicit predictive model of future context dynamics~\cite{zhang2021icmab}. In our setting, we instantiate an informed variant by warming up predictive context with a classical time-series forecaster (ARIMA)~\cite{box2015time}. The core idea is again mechanism-level:
+\emph{forecasting can augment the context signal}, but it does not replace the need for robust exploration and allocation policies under strategic threats.
+
+\subsection{Quantum Network Routing with Bandits}
+
+Recent quantum-network work applies bandits (and related online learning) to path selection under stochastic decoherence and, in some cases, structured disruption~\cite{wehner2018quantum,huang2024quantum,wang2025learning,li2025multipath,liu2024qbgp}. 
+Wang et al.~\cite{wang2025learning} focus on learning high-quality paths under stochastic dynamics, while Li et al.~\cite{li2025multipath} extend online path selection to inter-domain routing protocols where policy decisions must remain stable under heterogeneous administrative constraints; Liu et al.~\cite{liu2024qbgp} similarly emphasizes online benchmarking signals to support routing-policy adaptation. 
+Across studies, experimental assumptions differ materially---especially in how qubits are allocated across paths, how memory/replay is parameterized relative to the horizon, and how threat processes are modeled---which complicates direct algorithm-to-algorithm comparison. 
+Our benchmark addresses this by evaluating multiple algorithm classes under a shared threat taxonomy and by treating allocator policy and replay configuration as explicit experimental factors rather than fixed background choices, enabling direct attribution of robustness to the \emph{algorithm--allocator--capacity} triad.
+
+\subsection{Toward a Modular, Universal Bandit Stack}
+
+Across domains, the recurring meta-problem is stable: \emph{choose actions under uncertainty using an uncertainty-aware value estimate.}
+What varies is the adapter layer: how context is defined, how rewards are observed, and what constraints must be respected (e.g., qubit budgets, routing thresholds, replay semantics). We operationalize this view as a modular stack:
+\begin{enumerate}[label=(\roman*),leftmargin=2em]
+  \item an \emph{allocator/decision rule},
+  \item an optional \emph{forecasting layer} that augments context,
+  \item a \emph{domain adapter} mapping quantum-routing signals to the shared allocator interface.
+\end{enumerate}
+Best-of-both-worlds bandit theory motivates this mixed-regime view: algorithms such as Tsallis-INF achieve strong guarantees in both stochastic and adversarial settings without knowing the regime a priori~\cite{zimmert2019optimal}.
+In our setting, we operationalize this idea empirically by stress-testing the same allocator stack across stochastic, structured, and adaptive threats.
+
+Within this stack, our study provides a controlled comparison of classical, contextual/neural, adversarial, and informed variants under stochastic and adaptive disruption, clarifying when robustness is determined not only by the decision rule, but also by allocator choice and replay configuration.
+
+
+\dan{make sure that you are directly comparing your work against existing papers, not only existing processes: \eg ~\cite{10621263} and others}

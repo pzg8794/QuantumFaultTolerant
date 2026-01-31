@@ -1,0 +1,62 @@
+*** Unique challenges faced by Quantum Path Selection vs Regular Path selection
+
+- Since you cannot copy "clone" qubits, then this eliminates many variations of routing techniques
+- Paths carry entanglement and not packets
+- Problablistc nature, no deterministic link costs
+- 
+
+
+
+
+***** What the problem that the existing paper is addressing *******
+
+
+
+****** What are the problems that we will address in the new paper
+
+
+
+- Stocahstic routing technique
+Specific routing problem related to path selection: 
+
+
+
+
+&&&&&&&
+
+- Why is routing in a QDN different from a traditional network/routing problem
+- What is a QDN used for
+- What is the problem that this work is solving
+- Read more about how quantum repeaters work
+
+
+? Bell state measurement
+? Entanglement swapping
+How are optics used in quantum computers < optics
+? What are the 4 bell states
+? Randomness in quantum computing
+? Are actual qubits sent
+
+
+
+- Quantum switches - add these in
+- How does Jie deal with path explosion
+
+
+
+? What is the problem that we can solve that is not addressed in this paper
+?
+
+
+Is this correct: In entaglement swapping, lets assume A wants to talk to B, with a router in the middle. A would create and enangelment with the router (C) and another qubit in the router (D) would make an enanglement with B. C and D would then become entangled therefore essentially creating a link between A an B
+
+
+So are the 4 bell states basically: 1) Both qubits are 0, 2) Both Qubits are 1, 3) 1 qubit is  .....? Finish this
+
+
+
+
+Next:
+- Quantum teleportation
+- Understand how QDN works. How do flying bits etc... work
+- 
