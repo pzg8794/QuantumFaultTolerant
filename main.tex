@@ -224,13 +224,7 @@
 
 %\dan{Is there just an evaluation that is done, or is there something new proposed? If something new is proposed, it should be mentioned here}
 Quantum entanglement routing requires dynamic path selection and qubit allocation under noisy, uncertain, and adversarial conditions. Existing routing approaches often assume stationary link behavior, decouple selection from allocation, or rely on offline optimization—assumptions that break when link fidelities drift, and disruptions adapt to the learner. In this paper, we present a systematic evaluation of context-aware stochastic bandit algorithms for joint path selection and qubit allocation in quantum networks. Across 552 configurations spanning 13 algorithms, 5 threat scenarios (Stochastic, Markov, Adaptive, OnlineAdaptive, Baseline), 4 allocator strategies, and 2 capacity settings, pursuit--neural hybrids emerge as the most robust family, achieving 86--89\% oracle-normalized efficiency on average and approaching 90\% under favorable capacity--allocator regimes. They outperform non-contextual bandit baselines by 18--24 percentage points (pp) and sustain higher worst-case performance under strategic attacks than adversarial-first designs. We validate robustness through cross-testbed evaluation on three external quantum network simulators (15--100 nodes, 4--15 paths, diverse noise models), where scenario-aggregated efficiencies span 69.6--78.0\% on Papers 2/7 and 42.5--44.1\% on Paper 12, exposing clear scale- and physics-dependent performance limitations.
-
-\begin{comment}
-Alternative abstract draft retained during merge (contains inline author note):
-
-We present a systematic evaluation of context-aware pursuit neural bandit algorithms for joint path selection and qubit allocation in quantum networks\dan{Is there just an evaluation that is done, or is there something new proposed? If something new is proposed, it should be mentioned here}. Across 552 configurations spanning 13 algorithms, 5 threat scenarios (Stochastic, Markov, Adaptive, OnlineAdaptive, Baseline), 4 allocator strategies, and 2 capacity settings, pursuit--neural hybrids emerge as the most robust family, achieving 86--89\% oracle-normalized efficiency on average and approaching 90\% under favorable capacity--allocator regimes. They outperform non-contextual bandit baselines by 18--24 percentage points (pp) and sustain higher worst-case performance under strategic attacks than adversarial-first designs.
-\end{comment}
-
+% Alternative abstract draft retained during merge (contains inline author note): We present a systematic evaluation of context-aware pursuit neural bandit algorithms for joint path selection and qubit allocation in quantum networks\dan{Is there just an evaluation that is done, or is there something new proposed? If something new is proposed, it should be mentioned here}. Across 552 configurations spanning 13 algorithms, 5 threat scenarios (Stochastic, Markov, Adaptive, OnlineAdaptive, Baseline), 4 allocator strategies, and 2 capacity settings, pursuit--neural hybrids emerge as the most robust family, achieving 86--89\% oracle-normalized efficiency on average and approaching 90\% under favorable capacity--allocator regimes. They outperform non-contextual bandit baselines by 18--24 percentage points (pp) and sustain higher worst-case performance under strategic attacks than adversarial-first designs.
 Most critically, we uncover a \emph{capacity paradox}: increasing replay capaciity from $T$ to $2T$ (capacity notation defined in \S\ref{subsec:capacity}) can induce a 22--31 pp efficiency collapse under Adaptive attacks, indicating that resource \emph{predictability}, not bandwidth, limits robustness against intelligent adversaries. Allocator choice further induces 10--15 pp swings for identical algorithms, establishing algorithm--allocator co-design as a deployment requirement. We derive threat-responsive allocation guidelines that yield 86--90\% efficiency versus 68--77\% for non-contextual baselines, suggesting broader applicability to resource-constrained online decision systems facing intelligent adversaries.
 
 \end{abstract}
@@ -759,7 +753,7 @@ This architecture enables \textbf{systematic ablation} across allocators, algori
 % \vspace{0.25em}
 
 
-\noindent Our study addresses three core questions about stochastic decoherence impact, adversarial robustness, and deployment tradeoffs in algorithm--allocator--capacity selection.
+\noindent Our study addresses three core questions about stochastic decoherence impact, adversarial robustness, and deployment tradeoffs in algorithm--allocator--capacity selection. \devroop{Wont it make more sense to just relay the questions here and answer them in the results and discussion section?}
 
 \subsubsection*{\textbf{RQ1}}
 \label{subsubsec:rq1_question}
@@ -1400,7 +1394,7 @@ We execute ensembles of $S \in \{3, 5, 8, 10\}$ independent runs (seeds fixed fo
 
 \section{Simulation Results}
 \label{sec:SimulationResults}
-
+\devroop{refer the tables per your findings. they have not all been refered}
 We evaluate bandit-based quantum routing agents across five threat scenarios
 (\small\texttt{Baseline, Stochastic, Markov, Adaptive, OnlineAdaptive}), multiple time horizons,
 and replay-capacity scales ($s \in \{1, 1.5, 2\}$) under capacity semantics ($T$ and $T_b$),
@@ -2178,7 +2172,7 @@ We evaluated our algorithms on three established quantum network testbeds, each 
 
 \begin{table*}[ht!]
 \centering
-\caption{Cross-testbed performance comparison using scenario-aggregated Oracle-normalized efficiency (\%) and scenario champions from \texttt{scenario\_winner}. Numeric columns are means across all five scenarios (\texttt{none}, \texttt{stochastic}, \texttt{markov}, \texttt{adaptive}, \texttt{onlineadaptive}), 4 allocators, and scales $s \in \{1.0,1.5,2.0\}$ (\texttt{cap\_type}=T), with 5 runs per setting.}
+\caption{Cross-testbed performance comparison using scenario-aggregated Oracle-normalized efficiency (\%) and scenario champions from \texttt{scenario\_winner}. Numeric columns are means across all five scenarios (\texttt{none}, \texttt{stochastic}, \texttt{markov}, \texttt{adaptive}, \texttt{onlineadaptive}), 4 allocators, and scales $s \in \{1.0,1.5,2.0\}$ (\texttt{cap\_type}=T), with 5 runs per setting.\devroop{Maybe have one more paper if you can.}}
 \label{tab:testbed_comparison}
 \small
 \begin{tabular}{l l c c c c l}
