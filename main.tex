@@ -758,10 +758,9 @@ This architecture enables \textbf{systematic ablation} across allocators, algori
 % \vspace{0.25em}
 
 
-\noindent Our study addresses three core questions about (i) stochastic decoherence impact,
-(ii) adversarial robustness, and (iii) deployment tradeoffs in algorithm--allocator--capacity selection.
+\noindent Our study addresses three core questions about stochastic decoherence impact, adversarial robustness, and deployment tradeoffs in algorithm--allocator--capacity selection.
 
-\subsubsection{RQ1}
+\subsubsection*{\textbf{RQ1}}
 \label{subsubsec:rq1_question}
 
 \textbf{Does stochastic decoherence degrade routing efficiency enough to make classical MABs insufficient?}
@@ -855,10 +854,12 @@ yielding an average gap of approximately \textbf{24 pp} (see \S\ref{subsec:rq1_a
   \emph{Yes}. In the matched testbed slice ($T_b$, $s{=}2$, non-random allocators, 3- and 5-run suites), pursuit--neural models remain $\ge 85\%$ under \textsc{Stochastic} across the primary horizons used in validated suites.
 \end{itemize}
 
-\subsubsection{RQ2}
+\subsubsection*{\textbf{RQ2}}
 \label{subsubsec:rq2_question}
 
 \textbf{How do classical baselines and context-aware models perform across increasingly sophisticated threats?}
+
+\devroop{You have repeating supporting questions. Club them together}
 
 
 \begin{figure}[ht!]
@@ -977,7 +978,7 @@ same threat regimes (\small\texttt{CMAB} experiments).
 % RQ3: Deployment Optimization
 % ----------------------------------------------------------------------------
 
-\subsubsection{RQ3}
+\subsubsection*{\textbf{RQ3}}
 \label{subsubsec:rq3_question}
 
 \textbf{What combinations of algorithm, allocator, and capacity semantics maximize efficiency and stability across deployment scenarios?}
@@ -1106,7 +1107,7 @@ This section specifies the experimental design used to evaluate adaptive quantum
 We use a 4-node quantum network with four alternative paths connecting source $S$ to destination $D$ via repeater nodes (\Cref{fig:network_topology}). Paths $P_1$ and $P_4$ have two hops, while $P_2$ and $P_3$ have three hops, matching common small-scale quantum-network architectures and demonstrations~\cite{wehner2018quantum,pompili2021realization}. This topology provides sufficient action-space complexity for bandit learning~\cite{huang2024quantum,expneural2024,dai2020quantum} while keeping exhaustive cross-product sweeps tractable (hundreds of algorithm--scenario--allocator configurations; see \Cref{tab:config_summary}).
 
 Total physical network capacity is fixed at 35 qubits across all experiments, representing resource-constrained early-stage deployments~\cite{simon2017towards}. This induces non-trivial exploration--exploitation tradeoffs: algorithms cannot over-provision all paths. Per-path allocations are determined by the allocator (\Cref{tab:setup-allocators}), enabling controlled comparison of static versus adaptive resource management.
-
+\devroop{format the figure. Labels and arrows are out of place a bit.}
 % NOTE: TikZ uses right=of / below=of -> requires \usetikzlibrary{positioning}
 \begin{figure}[ht!]
 \centering
