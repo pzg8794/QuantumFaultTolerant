@@ -30,7 +30,7 @@
 | ID | Date Added | Location | Comment / Issue | Planned Fix | Status | Commit | Related Canonical Task(s) | Notes |
 |---|---|---|---|---|---|---|---|---|
 | C-001 | 2026-02-14 | Abstract | Clarify whether this is “evaluation only” vs. new contribution | Add explicit novelty framing (benchmark + taxonomy + capacity paradox + deployment rules) | Planned |  | T-2026-007, T-2025-011 | Also see D-001 |
-| C-002 | 2026-02-14 | Introduction | Cleanup TODOs and improve narrative flow | Rewrite intro flow: problem → gap → approach → contributions | Planned |  | T-2026-007, T-2025-011 |  |
+| C-002 | 2026-02-14 | Introduction | Dan: "someplace likely add in a paragraph that describes why quantum networking path determination is 'unique' to traditional routing or even path determination" | Add one paragraph after Key Contributions clarifying uniqueness (routing–allocation–capacity coupling; joint path+allocation+policy under controlled threat taxonomy; allocator/capacity as first-class variables; cross-testbed validation; deployment rules) | Done | TBD | T-2026-007, T-2025-011 | Inserted in `main.tex` after Key Contributions; Dan note commented as resolved |
 | C-003 | 2026-02-14 | Related Work | Dan: "make sure that you are directly comparing your work against existing papers, not only existing processes: \eg ~\cite{10621263} and others" | Ensure every process/method in Related Work is explicitly attributed to the paper(s) that introduced it, with clear descriptions of what each paper does and how it differs from our work | Done |  | T-2026-007, T-2025-015 | Implemented in `02--related_works.tex` (added explicit compares; removed the in-text Dan note and the `main.tex` TODO once resolved; left `% [C-003]` pointers in source for traceability) |
 | C-007 | 2026-02-15 | References + Cross-Testbed Validation | Paper 12 / QuARC misattributed as “Wang et al.” (but QuARC paper is Clayton/Wu/Bhattacharjee) | Add a dedicated BibTeX key (`clayton2024quarc`) for QuARC (arXiv:2410.23007) and update any Paper 12 testbed citations/mappings to point to it; keep `wang2024adaptive` reserved for Lei Wang’s user-centric routing paper | Done | 338d284 | T-2026-007, T-2025-015 | Verified from the QuARC PDF author list (Connor Clayton et al.) vs the “Adaptive User-Centric…” PDF (Lei Wang et al.) |
 | C-004 | 2026-02-14 | Results Section | Improve continuity; organize by RQs | Add short “RQ claim → evidence → takeaway” scaffolding per subsection | Planned |  | T-2025-011 |  |
@@ -38,6 +38,36 @@
 | C-006 | 2026-02-14 | Submission Hygiene | Anonymity question + acknowledgments | Decide anonymous vs non-anonymous; adjust authors/acks accordingly | Planned |  | T-2025-011 |  |
 
 ---
+
+## C-002 Draft Fix: Introduction — Why OUR Quantum Path Determination Approach is Unique
+
+### C-002 — Introduction: Our Unique Approach Paragraph (Dan's request)
+
+**Solves:** C-002 (Introduction narrative flow + Dan's uniqueness paragraph)
+
+**Source TODO/comment:**
+- `main.tex` Introduction section (line ~30, inline TODO): "TODO: I need to clean this part up Dan someplace likely add in a paragraph that describes why quantum networking path determination is 'unique' to traditional routing or even path determination"
+
+**Issue:** The introduction already contrasts quantum routing with classical packet switching (no-cloning, probabilistic links, consumable entanglement). However, Dan wants a paragraph that explains why **our specific approach** to quantum path determination is unique compared to prior quantum routing work—not a repeat of the quantum-vs-classical fundamentals.
+
+**Target location:** [../main.tex](../main.tex), Introduction, after the Key Contributions list and before Related Work.
+
+**Proposed text (LaTeX):**
+```tex
+Beyond the physics-level differences from classical networking, quantum path determination tightly couples routing to resource allocation and control: each attempted hop consumes scarce qubits and memory, and allocator and replay-capacity choices shape both what feedback the learner receives and what attack surface an adaptive disruptor can exploit. Accordingly, we study routing as a joint decision problem over path selection, qubit allocation, and learning policy under a controlled threat taxonomy spanning stochastic noise, structured dynamics, and adaptive disruption. By varying allocator strategy and capacity semantics as first-class experimental variables and validating across three external testbeds, we derive deployment rules that map threat conditions to model--allocator--capacity choices rather than prescribing a single fixed routing policy.
+```
+
+**Why this makes sense:**
+- Directly addresses Dan’s request by making the uniqueness and practical value of your framework explicit.
+- Provides a clear contrast with prior work and makes allocator/capacity assumptions explicit as deployment-critical variables (not implementation details).
+- Fits naturally after the existing classical-vs-quantum contrast, bridging to the Gap/Approach sections.
+
+**Resolution checklist (apply only after approval):**
+- Insert the paragraph after Key Contributions in `main.tex` (do not move other content).
+- Keep Dan’s comment as an audit trail but mark it resolved by commenting it out (prefix with `%`) and appending: `RESOLVED by paragraph inserted after Key Contributions (commit: TBD)`.
+
+**Applied (2026-02-16):**
+- Inserted after Key Contributions in `main.tex`; Dan note commented as resolved.
 
 ## C-003 Analysis: Related Work Paper Attribution Audit
 
@@ -316,6 +346,8 @@ These mirror the active paper-related items in the canonical tracker so the pape
 | Date | Location | Change Summary | Why | Commit | Notes |
 |---|---|---|---|---|---|
 | 2026-02-14 | main.tex | Resolved merge conflicts in abstract; preserved alternative draft in comments | Merge without losing content | 5180e32 |  |
+| 2026-02-16 | tracking/PAPER-CHANGES-TRACKER.md | Drafted and recorded C-002 uniqueness paragraph + placement guidance | Capture proposed intro edit before applying it to `main.tex` |  | Pending insertion in `main.tex` |
+| 2026-02-16 | main.tex | Inserted C-002 uniqueness paragraph after Key Contributions; resolved Dan note | Clarifies uniqueness without changing flow |  | Resolves C-002 |
 
 ---
 

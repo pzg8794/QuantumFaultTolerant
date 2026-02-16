@@ -290,7 +290,7 @@ Quantum networks, entanglement routing, multi-armed bandits, adversarial learnin
 
 
 
-\dan{somepleace likely add in a paragraph that describes why quantum networking path determination is `unique' to traditional routing or even path determination} % DK: Perhaps do a paragraph for this
+% \dan{somepleace likely add in a paragraph that describes why quantum networking path determination is `unique' to traditional routing or even path determination} % RESOLVED by uniqueness paragraph after Key Contributions (C-002)
 % %%% Some examples
 %   Entanglement distribution instead of data packets
 %   No copying or amplification
@@ -362,6 +362,8 @@ A central empirical finding challenges conventional intuition: increasing replay
 
 \item \textbf{Allocator--algorithm co-design and deployment rules:} Allocator choice produces large performance shifts for identical policies, implying that allocator selection must be matched to the threat regime. We distill threat-responsive heuristics for choosing model families, allocators, and capacity scales in deployment.
 \end{itemize}
+
+Beyond the physics-level differences from classical networking, quantum path determination tightly couples routing to resource allocation and control: each attempted hop consumes scarce qubits and memory, and allocator and replay-capacity choices shape both what feedback the learner receives and what attack surface an adaptive disruptor can exploit. Accordingly, we study routing as a joint decision problem over path selection, qubit allocation, and learning policy under a controlled threat taxonomy spanning stochastic noise, structured dynamics, and adaptive disruption. By varying allocator strategy and capacity semantics as first-class experimental variables and validating across three external testbeds, we derive deployment rules that map threat conditions to model--allocator--capacity choices rather than prescribing a single fixed routing policy.
 
 % Section ---- Related Works will go here
 \input{sections/02--related_works}
