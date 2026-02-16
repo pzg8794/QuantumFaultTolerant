@@ -279,7 +279,7 @@ Quantum networks, entanglement routing, multi-armed bandits, adversarial learnin
 % %\dan{update everything above}
 
 \section{Introduction}
-\todo{I need to clean this part up}
+% \todo{I need to clean this part up}
 %   DK: The general writing needs to be made more clear
 
 % Background
@@ -856,7 +856,7 @@ yielding an average gap of approximately \textbf{24 pp} (see \S\ref{subsec:rq1_a
 
 \textbf{How do classical baselines and context-aware models perform across increasingly sophisticated threats?}
 
-\devroop{You have repeating supporting questions. Club them together}
+% \devroop{You have repeating supporting questions. Club them together} % RESOLVED by C-008 consolidation
 
 
 \begin{figure}[ht!]
@@ -925,25 +925,15 @@ Across \small\texttt{Markov}, \small\texttt{Adaptive}, and \small\texttt{OnlineA
 \noindent\textit{Supporting questions:}
 \begin{itemize}[leftmargin=2em]
   \item \small\texttt{\textbf{RQ2a}:}
-  \emph{Under natural noise, do context-aware algorithms outperform classical/adversarial-first baselines?}\\
+  \emph{Do context-aware algorithms outperform classical and adversarial-first baselines under natural stochastic noise, and do they maintain this advantage under structured and adaptive threat regimes?}\\
   \textit{Yes.}
-  Under \small\texttt{Stochastic} decoherence, contextual and neural--contextual models retain the \textit{15--25 pp} gain observed in RQ1 and remain above the 85\% target.
-
-  \item \small\texttt{\textbf{RQ2b}:}
-  \emph{Under structured and reactive attacks, do adversarial-first defenses dominate?}\\
-  \textit{No.}
-  Pursuit-based models retain \textit{high averages ($\simeq$89\%)} and floors of \textit{65--73\%} across \small\texttt{Markov}, \small\texttt{Adaptive}, and \small\texttt{OnlineAdaptive} threats. Adversarial-first methods degrade to floors near \textit{52--54\%}.%
+  Under \small\texttt{Stochastic} decoherence, contextual and neural--contextual models retain the \textit{15--25 pp} gain observed in RQ1 and remain above the 85\% target. Under \small\texttt{Markov}/\small\texttt{Adaptive}/\small\texttt{OnlineAdaptive}, pursuit-based models keep \textit{high averages ($\simeq$89\%)} and floors of \textit{65--73\%}, while adversarial-first methods fall to floors near \textit{52--54\%}.%
   \cite{auer2002nonstochastic}
 
-  \item \small\texttt{\textbf{RQ2c}:}
-  \emph{Under mixed stochastic + adversarial failures, which family degrades most gracefully?}\\
+  \item \small\texttt{\textbf{RQ2b}:}
+  \emph{Which algorithm family degrades most gracefully as threat sophistication escalates from stochastic to reactive adversaries, and which consistently defines the efficiency frontier across all threat scenarios?}\\
   \textit{Pursuit models.}
-  Pursuit-based models show the smoothest degradation, preserving high average efficiency with tighter variability as threats escalate.
-
-  \item \small\texttt{\textbf{RQ2d}:}
-  \emph{As threat sophistication increases (Baseline, \dots, OnlineAdaptive), which algorithms define the frontier?}\\
-  % \small\texttt{iCPursuitNeuralUCB.}
-  \small\texttt{iCPursuitNeuralUCB} defines the most favorable frontier, maintaining the highest overall average efficiency while preserving strong robustness floors.
+  Pursuit-based models show the smoothest degradation, and \small\texttt{iCPursuitNeuralUCB} most consistently sits on/near the top efficiency envelope while maintaining strong threat-wide robustness.
 \end{itemize}
 
 Context-aware pursuit--neural routing remains the strongest on average across escalation, while classical baselines stay far
@@ -953,22 +943,6 @@ respectively in validated suites (\small\texttt{Hybrid}, $T_b$, $s{=}2$, \emph{D
 with worst-case floors in the \textbf{64--71\%} range driven primarily by \textsc{OnlineAdaptive}/\textsc{Markov} slices
 (see \S\ref{subsec:rq2_answer}). By comparison, representative classical baselines remain near \textbf{64--70\%} across the
 same threat regimes (\small\texttt{CMAB} experiments).
-
-\textbf{Supporting questions:}
-\begin{itemize}[leftmargin=2em]
-  \item \textbf{RQ2a:} \textit{Under natural noise, do context-aware models outperform classical baselines?} \\
-  \emph{Yes}. The advantage from RQ1 persists under matched \textsc{Stochastic} conditions.
-
-  \item \textbf{RQ2b:} \textit{Under structured and reactive attacks, do classical baselines remain competitive?} \\
-  \emph{No.} Classical baselines stay near 64--70\% in \textsc{Markov}/\textsc{Adaptive}/\textsc{OnlineAdaptive}, while pursuit--neural routing maintains $\approx$91--94\% averages.
-
-  \item \textbf{RQ2c:} \textit{Which family degrades most gracefully as threat sophistication increases?} \\
-  % \emph{Pursuit--neural.} 
-  Pursuit--neural models preserve high mean efficiency across escalation, with degradation concentrated in worst-case \textsc{OnlineAdaptive}/\textsc{Markov} slices.
-
-  \item \textbf{RQ2d:} \textit{Which algorithm best defines the frontier?} \\
-  Across the validated suites, \small\texttt{iCPursuitNeuralUCB} is consistently on/near the top envelope for average efficiency while maintaining strong threat-wide robustness in many static configurations.
-\end{itemize}
 
 
 % ----------------------------------------------------------------------------
@@ -1170,9 +1144,10 @@ We evaluate 3 horizons---\small\texttt{4K,6K,8K} frames---to capture short-, mid
 \begin{table}[ht!]
 \footnotesize
 \centering
+\setlength{\tabcolsep}{4pt}
 \caption{Experimental configuration summary: design dimensions, options, and linkage to research questions (Phase totals sum to 552 configuration units; Phase~2 is executed for both CMAB and iCMAB families at 180 conditions per family). Each configuration is evaluated with up to 10 independent runs.}
 \label{tab:config_summary}
-\begin{tabular}{lll}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.32\linewidth} >{\raggedright\arraybackslash}X >{\centering\arraybackslash}c}
 \toprule
 \textbf{Configuration Dimension} & \textbf{Options Tested} & \textbf{RQ(s)} \\
 \midrule
@@ -1197,7 +1172,7 @@ Algorithm families  & Classical (4), Predictive (1) & $RQ1$ \& \\
 \quad Ph 3 (Dynamic allocation)   & 240 conditions  & $RQ3_c$ \\
 \quad \textit{Ph 4 (Capacity ablation)} & \textit{120 conditions} & $RQ3_b$ \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \end{table}
 
 % ----------------------------------------------------------------------------
@@ -1259,13 +1234,13 @@ Replay ($T_b,T$) & All & $T_b=sF_b,\;T=sF_c$ & \cite{schaul2015prioritized,mnih2
   \item \small\texttt{Stochastic} (\textbf{RQ1, RQ2a}): 6.25\% i.i.d.\ failure rate. Tests if specialized defenses are required under natural noise.%
   \cite{huang2024quantum}
 
-  \item \small\texttt{Markov} (\textbf{RQ2b}): 25\% attack rate using a 4-state transition process. Models state-dependent disruption.%
+  \item \small\texttt{Markov} (\textbf{RQ2a--b}): 25\% attack rate using a 4-state transition process. Models state-dependent disruption.%
   \cite{expneural2024}
 
-  \item \small\texttt{Adaptive} (\textbf{RQ2b}): 25\% attack rate targeting high-usage paths over a sliding window ($w=50$). Models reactive targeting based on medium-term behavior.%
+  \item \small\texttt{Adaptive} (\textbf{RQ2a--b}): 25\% attack rate targeting high-usage paths over a sliding window ($w=50$). Models reactive targeting based on medium-term behavior.%
   \cite{huang2024quantum,expneural2024}
 
-  \item \small\texttt{OnlineAdaptive} (\textbf{RQ2b}): 25\% attack rate with exponential memory decay ($\gamma=0.97$) and softmax targeting. Models continuous policy adaptation at the highest threat level.%
+  \item \small\texttt{OnlineAdaptive} (\textbf{RQ2a--b}): 25\% attack rate with exponential memory decay ($\gamma=0.97$) and softmax targeting. Models continuous policy adaptation at the highest threat level.%
   \cite{huang2024quantum,expneural2024}
 \end{itemize}
 
@@ -1619,9 +1594,9 @@ legend style={font=\tiny}
 
 \noindent\textit{Supporting Question Answers:}
 \begin{itemize}[nosep]
-  \item \textit{\textbf{RQ1a}:} Several paper baselines degrade into the $60$--80\% band under stochastic noise, indicating insufficient performance floors.
-  \item \textit{\textbf{RQ1b}:} The best contextual baselines (\texttt{CPursuit}, \texttt{(i)CEpsilonGreedy}) remain $>\!85\%$ on average.
-  \item \textit{\textbf{RQ1c}:} Stochastic noise exposes structural failures (collapses to $\approx 37\%$) independent of adversarial pressure.
+\item \textbf{RQ1a:} Several paper baselines degrade into the $60$--80\% band under stochastic noise, indicating insufficient performance floors.
+\item \textbf{RQ1b:} The best contextual baselines (\texttt{CPursuit}, \texttt{(i)CEpsilonGreedy}) remain $>\!85\%$ on average.
+\item \textbf{RQ1c:} Stochastic noise exposes structural failures (collapses to $\approx 37\%$) independent of adversarial pressure.
 \end{itemize}
 
 % ============================================================================
@@ -1756,9 +1731,8 @@ under reactive attack conditions, despite competitive average efficiency in some
 
 \noindent\textit{Supporting Question Answers:}
 \begin{itemize}[nosep]
-\item \textit{\textbf{RQ2a}:} Contextual baselines remain competitive under structured (Markov) disruption and do not require adversarial weighting to sustain high efficiency.
-\item \textit{\textbf{RQ2b}:} Under reactive threats, robustness is driven by structural/context-aware learning; adversarial-first weighting alone is insufficient.
-\item \textit{\textbf{RQ2c}:} \small\texttt{iCEpsilonGreedy} provides the best stability-floor profile (CV 3.6\%, floor 81\%), whereas \small\texttt{EXPNeuralUCB} shows the strongest fragility (CV 16.5\%, floor 18\%).
+\item \small\texttt{\textbf{RQ2a}:} Yes on both counts. Under stochastic decoherence (6.25\% i.i.d.\ disruption), context-aware pursuit--neural models maintain 87--93\% Oracle-normalized efficiency, retaining the 15--25~pp advantage over classical baselines observed in RQ1 and remaining above the 85\% deployment target. This advantage persists under structured and adaptive threats: across Markov, Adaptive, and OnlineAdaptive regimes, pursuit-based models sustain $\sim$89\% average efficiency with robustness floors of 65--73\%, while adversarial-first methods (EXP3-family) degrade to floors near 52--54.5\%, demonstrating that context-awareness provides superior robustness across all threat escalation levels.
+\item \small\texttt{\textbf{RQ2b}:} Pursuit--neural models degrade most gracefully, preserving high mean efficiency (90.8--93.5\%) with tighter variability as threats escalate from Baseline through OnlineAdaptive, with degradation concentrated in worst-case OnlineAdaptive/Markov slices rather than distributed broadly. Across the validated suites, \small\texttt{iCPursuitNeuralUCB} consistently defines the efficiency frontier, maintaining the highest overall average efficiency while preserving strong robustness floors ($\geq$85\% in static configurations), outperforming classical baselines by 20--30~pp and adversarial-first methods by 6--11~pp in scenario-aggregated comparisons.
 \end{itemize}
 
 % ============================================================================
