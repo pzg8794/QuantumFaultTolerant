@@ -160,7 +160,7 @@
 
 \begin{document}
 
-\title{Qubit Allocation in a Quantum Network using Stochastic Bandits}
+\title{\hl{Qubit Allocation in a Quantum Network using Stochastic Bandits}}
 
 \author{First Author,~Second Author,~and~Third Author%
 \thanks{Affiliations and funding info here.}}
@@ -308,8 +308,8 @@ Quantum routing differs fundamentally from classical packet switching because th
 Existing quantum routing research often evaluates algorithms under \emph{incompatible assumptions, metrics, or threat models}, complicating direct comparisons and obscuring deployment tradeoffs. Two streams are especially prominent:
 
 \begin{enumerate}
-\item \textbf{Adversarial-first approaches} (e.g., EXP3-family designs~\cite{auer2002exp3,huang2025quantum}) assume worst-case link behavior and prioritize robustness under attack, often sacrificing stochastic efficiency.
-\item \textbf{Stochastic/contextual-first approaches} (e.g., contextual and informed CMAB/iCMAB variants~\cite{chu2011contextual,wang2025learning,kar2024icmab}) leverage predictive environmental structure for efficiency under natural noise, but offer limited evidence under coordinated adaptive adversaries.
+\item \textbf{Adversarial-first approaches} (\eg EXP3-family designs~\cite{auer2002exp3,huang2025quantum}) assume worst-case link behavior and prioritize robustness under attack, often sacrificing stochastic efficiency.
+\item \textbf{Stochastic/contextual-first approaches} (\eg contextual and informed CMAB/iCMAB variants~\cite{chu2011contextual,wang2025learning,kar2024icmab}) leverage predictive environmental structure for efficiency under natural noise, but offer limited evidence under coordinated adaptive adversaries.
 \end{enumerate}
 
 This divide leaves three deployment-critical gaps insufficiently isolated in prior evaluations:
@@ -443,7 +443,7 @@ Beyond the physics-level differences from classical networking, quantum path det
 
 \subsection{Quantum Networks and Entanglement Routing}
 
-Quantum networks rely on entanglement distribution across repeaters and end-nodes to enable long-distance quantum communication, distributed quantum computing, and sensing applications~\cite{wehner2018quantum,kimble2008quantum}. Unlike classical networks where packets can be buffered and forwarded with near-deterministic behavior, quantum networking operates under fundamental constraints: quantum states are fragile, entanglement generation and swapping are probabilistic, and the \emph{quality} of distributed entanglement (e.g., fidelity) degrades under decoherence and imperfect operations~\cite{briegel1998quantum,dahlberg2021netsquid}.
+Quantum networks rely on entanglement distribution across repeaters and end-nodes to enable long-distance quantum communication, distributed quantum computing, and sensing applications~\cite{wehner2018quantum,kimble2008quantum}. Unlike classical networks where packets can be buffered and forwarded with near-deterministic behavior, quantum networking operates under fundamental constraints: quantum states are fragile, entanglement generation and swapping are probabilistic, and the \emph{quality} of distributed entanglement (\eg fidelity) degrades under decoherence and imperfect operations~\cite{briegel1998quantum,dahlberg2021netsquid}.
 
 Quantum teleportation~\cite{bennett1993teleporting} enables qubit transmission by consuming shared entanglement between nodes, while entanglement swapping~\cite{zukowski1993event} at repeaters extends entanglement over long distances by stitching together shorter entangled segments. Because routing decisions must be made repeatedly from noisy outcomes and time-varying link conditions, quantum path selection naturally becomes a \emph{sequential decision problem under uncertainty}, for which multi-armed bandits (MABs) provide a principled abstraction~\cite{lattimore2020bandit,bubeck2012regret}.
 
@@ -451,14 +451,14 @@ Traditional quantum routing often assumes either (i) complete topology and stabl
 
 \subsection{The Multi-Armed Bandit Abstraction}
 
-A multi-armed bandit (MAB) formalizes online routing as follows: at each time step $t$, an agent selects one of $K$ candidate actions (e.g., paths or allocation decisions), observes a reward signal (e.g., entanglement success/failure or efficiency proxy), and aims to minimize regret relative to an oracle policy~\cite{lattimore2020bandit}. The central challenge is the exploration--exploitation trade-off: learning which actions are reliable while maintaining high routing performance~\cite{bubeck2012regret}.
+A multi-armed bandit (MAB) formalizes online routing as follows: at each time step $t$, an agent selects one of $K$ candidate actions (\eg paths or allocation decisions), observes a reward signal (\eg entanglement success/failure or efficiency proxy), and aims to minimize regret relative to an oracle policy~\cite{lattimore2020bandit}. The central challenge is the exploration--exploitation trade-off: learning which actions are reliable while maintaining high routing performance~\cite{bubeck2012regret}.
 
 Several bandit variants align with different quantum-network assumptions and threat models:
 \begin{itemize}[leftmargin=2em]
-\item \textbf{Classical (stochastic) bandits} assume stationary reward distributions (e.g., UCB-style methods)~\cite{auer2002finite}.
-\item \textbf{Contextual bandits} incorporate observable side information (e.g., topology features or load indicators) to improve decisions when context is predictive~\cite{chu2011contextual}.
+\item \textbf{Classical (stochastic) bandits} assume stationary reward distributions (\eg UCB-style methods)~\cite{auer2002finite}.
+\item \textbf{Contextual bandits} incorporate observable side information (\eg topology features or load indicators) to improve decisions when context is predictive~\cite{chu2011contextual}.
 \item \textbf{Neural contextual bandits} use function approximation to model nonlinear reward while preserving principled exploration via uncertainty-aware decision rules~\cite{zhou2020neuralucb}.
-\item \textbf{Adversarial bandits} guard against worst-case or non-stochastic reward sequences (e.g., EXP3 algorithm)~\cite{auer2002exp3}.
+\item \textbf{Adversarial bandits} guard against worst-case or non-stochastic reward sequences (\eg EXP3 algorithm)~\cite{auer2002exp3}.
 \item \textbf{Predictive/informed bandits} augment decisions with forecasts of future conditions~\cite{kar2024icmab}.
 \end{itemize}
 
@@ -466,13 +466,13 @@ This taxonomy provides a natural lens for quantum routing: stochastic noise moti
 
 \subsection{Allocation and Capacity Semantics}
 
-In addition to choosing routes, practical quantum routing must manage resource allocation decisions (e.g., how many attempts or qubits to allocate across competing paths within a decision epoch). Allocation policies can materially change performance even for the same underlying bandit learner, because they shape both the information collected and the predictability of routing behavior under disruption.
+In addition to choosing routes, practical quantum routing must manage resource allocation decisions (\eg how many attempts or qubits to allocate across competing paths within a decision epoch). Allocation policies can materially change performance even for the same underlying bandit learner, because they shape both the information collected and the predictability of routing behavior under disruption.
 
-Many learning-based routing implementations also impose finite-memory or replay semantics (e.g., bounded histories, windowed updates, or capped experience buffers) that affect stability under nonstationarity and vulnerability under strategic adaptation. These design choices motivate evaluating routing policies jointly with allocator strategy and capacity semantics, rather than treating them as independent knobs.
+Many learning-based routing implementations also impose finite-memory or replay semantics (\eg bounded histories, windowed updates, or capped experience buffers) that affect stability under nonstationarity and vulnerability under strategic adaptation. These design choices motivate evaluating routing policies jointly with allocator strategy and capacity semantics, rather than treating them as independent knobs.
 
 \subsection{Problem Scope}
 
-Motivated by these considerations, we study how modeling choices (e.g., contextual vs.\ adversarial vs.\ predictive), allocator strategies, and capacity semantics jointly affect routing robustness under diverse threat regimes. Specifically, we evaluate \textbf{16 models} (15 learned policies + Oracle) across \textbf{5 threat scenarios}, \textbf{4 allocators}, capacity scales $S \in \{1.0, 1.5, 2.0\}$, and 3--5 run ensembles to isolate which design choices matter most and to support actionable deployment guidance.
+Motivated by these considerations, we study how modeling choices (\eg contextual vs.\ adversarial vs.\ predictive), allocator strategies, and capacity semantics jointly affect routing robustness under diverse threat regimes. Specifically, we evaluate \textbf{16 models} (15 learned policies + Oracle) across \textbf{5 threat scenarios}, \textbf{4 allocators}, capacity scales $S \in \{1.0, 1.5, 2.0\}$, and 3--5 run ensembles to isolate which design choices matter most and to support actionable deployment guidance.
 
 %By systematically evaluating four algorithms across five scenarios, two capacity settings, four allocators, and three horizons, we isolate which design choices matter most and provide actionable deployment rules for next-generation quantum networks.
 
@@ -493,7 +493,7 @@ We study a canonical 4-node quantum network connecting source $S$ (Alice) to des
 \item \textbf{2-hop paths} ($P_1 = S{\to}B{\to}D$, $P_2 = S{\to}C{\to}D$): one repeater, two entanglement links
 \item \textbf{3-hop paths} ($P_3 = S{\to}B{\to}C{\to}D$, $P_4 = S{\to}C{\to}B{\to}D$): two repeaters, three links
 \end{itemize}
-Each path $P_r$ has $h_r$ hops ($h_1 = h_2 = 2$, $h_3 = h_4 = 3$), where a \textbf{hop} denotes a single entanglement link between adjacent nodes (e.g., source-to-repeater or repeater-to-destination) requiring one entanglement generation operation. Shorter paths reduce swapping overhead but may traverse noisier channels; longer paths enable route diversity but accumulate fidelity loss.
+Each path $P_r$ has $h_r$ hops ($h_1 = h_2 = 2$, $h_3 = h_4 = 3$), where a \textbf{hop} denotes a single entanglement link between adjacent nodes (\eg source-to-repeater or repeater-to-destination) requiring one entanglement generation operation. Shorter paths reduce swapping overhead but may traverse noisier channels; longer paths enable route diversity but accumulate fidelity loss.
 
 \smallTitle{Qubit budget and allocator policies}
 The network operates under a \textbf{fixed total budget of 35 qubits} distributed across paths. We evaluate \textbf{four allocator strategies} that dynamically or statically assign qubits:
@@ -592,7 +592,7 @@ s \cdot F_c & \text{(current-frames replay, $T$-type)}
 \]
 \noindent To eliminate ambiguity in memory scaling, we distinguish \textbf{two replay-capacity types}. Let:
 \begin{itemize}
-\item $F_b$: \textbf{base per-run horizon} (frames)---the standard episode length before scaling (e.g., 4K, 6K, or 8K frames)
+\item $F_b$: \textbf{base per-run horizon} (frames)---the standard episode length before scaling (\eg 4K, 6K, or 8K frames)
 \item $F_c$: \textbf{current per-run horizon} (frames)---actual frames after any horizon scaling
 \item $s \in \{1, 1.5, 2\}$: \textbf{capacity scale factor} (default $s=2$)
 \end{itemize}
@@ -705,7 +705,7 @@ Both are \textbf{always scaled} (even when $s=1$). This separation is critical f
 
 \noindent Our evaluation infrastructure consists of \textbf{six layers} (Figure~\ref{fig:framework}):
 \begin{enumerate}
-\item \textbf{ALLOCATOR:} Top-level policy (e.g., DynamicUCB)
+\item \textbf{ALLOCATOR:} Top-level policy (\eg DynamicUCB)
 \item \textbf{CONFIGURATION:} Shared experimental setup (topology, scenarios, capacity, seeds)
 \item \textbf{EVALUATOR:} Orchestrates runs, logs, threat models
 \item \textbf{RUNNER:} Batch execution engine with Oracle tracking
@@ -1018,7 +1018,7 @@ same threat regimes (\small\texttt{CMAB} experiments).
 Deployment tradeoffs are real, but \textbf{robust static configurations do exist} in our expanded benchmark.
 In our \small\texttt{Hybrid} validated suites (excluding Random allocator), we observe \textbf{many} fixed
 (model, allocator, cap\_type, scale, frames, runs) configurations whose \textbf{minimum} efficiency remains
-$\ge 85\%$ across \textbf{all five threats} (e.g., \textbf{236} validated configurations meet this criterion), and the
+$\ge 85\%$ across \textbf{all five threats} (\eg \textbf{236} validated configurations meet this criterion), and the
 best static configurations sustain threat-wide minima above \textbf{93\%}. At the same time, \textbf{capacity semantics}
 ($T_b$ vs.\ $T$), replay scale $s$, and allocator choice introduce large interaction effects---including
 \textbf{up to $\approx$53 pp} swings between $T_b$ and $T$ in some matched settings---so selecting for \emph{peak} efficiency or
@@ -1032,7 +1032,7 @@ best static configurations sustain threat-wide minima above \textbf{93\%}. At th
 
   \item \textbf{RQ3b:} 
   \textit{Do larger replay scales $T_b \rightarrow T$ universally help?} \\
-  \emph{No.} Capacity is not monotone: validated suites show settings where increasing $s$ reduces performance under \textsc{Adaptive} targeting (e.g., $\approx$26 pp drops in matched slices), and switching $T_b \leftrightarrow T$ can produce \textbf{$>$50 pp} swings in either direction depending on threat structure.
+  \emph{No.} Capacity is not monotone: validated suites show settings where increasing $s$ reduces performance under \textsc{Adaptive} targeting (\eg $\approx$26 pp drops in matched slices), and switching $T_b \leftrightarrow T$ can produce \textbf{$>$50 pp} swings in either direction depending on threat structure.
 
   \item \textbf{RQ3c:} \textit{Is there a universal allocator strategy?} \\
   \emph{No.} Allocator choice interacts with threat and semantics: while allocators often cluster within single-digit differences, worst-case matched slices exhibit allocator spans that can exceed \textbf{10 pp} and, in extreme cases, \textbf{$>$30 pp}.
@@ -1373,7 +1373,7 @@ We organize results by research question (\Cref{sec:research_questions}) to high
 Results are organized by research question (\Cref{sec:research_questions}) to emphasize
 (1) which model families are viable under natural stochastic decoherence, and
 (2) how robustness changes as threats become structured and adaptive.
-Allocator-comparison and full hybrid deployment rules (e.g., \small\texttt{Fixed/Thompson/DynamicUCB/Random})
+Allocator-comparison and full hybrid deployment rules (\eg \small\texttt{Fixed/Thompson/DynamicUCB/Random})
 are deferred to RQ3, which studies allocator--capacity interactions.
 
 % ----------------------------------------------------------------------------
@@ -1823,7 +1823,7 @@ and three horizons (\small\texttt{4K, 6K, 8K}).
 \noindent
 The corpus stores ensemble averages for \textbf{3-run} and \textbf{5-run} suites.
 Unless otherwise stated, point estimates report the \textbf{mean of the 3- and 5-run suite values}.
-Volatility proxies (e.g., CV) are computed \emph{across scenario means within a configuration},
+Volatility proxies (\eg CV) are computed \emph{across scenario means within a configuration},
 since per-run variance is not represented in the ensemble tables.
 Run-level artifacts and aggregation scripts are provided in the Supplement.
 
@@ -2023,7 +2023,7 @@ DynamicUCB     & 70.1 & 68.2 & 3.0 \\
 \textit{Answer to RQ3c:}
 As summarized in \Cref{tab:rq3c_allocators}, allocator effects are not independent. \textbf{Fixed} provides the strongest global robustness for
 iCPursuitNeuralUCB in this corpus (best average and best floor), while \textbf{Thompson} is highly
-effective in specific regimes (e.g., Adaptive) but can underperform severely when mismatched
+effective in specific regimes (\eg Adaptive) but can underperform severely when mismatched
 (large drops in Baseline/Stochastic). This makes allocator selection a first-class deployment decision.
 
 % ============================================================================
@@ -2444,7 +2444,7 @@ Second, \textbf{replay capacity must be treated as a coupled control variable}, 
 \subsection{Limitations}
 
 \textbf{Topology and scale.}
-All experiments in this study are conducted on a single 4‑node, 4‑path diamond topology with mid‑range horizons (primarily $F_b \in \{4\text{K}, 6\text{K}, 8\text{K}\}$ frames). This controlled setting enables clean attribution of effects across algorithm, allocator, and replay‑capacity dimensions, but it does not exhaust the structural diversity of real quantum networks. Larger and more heterogeneous graphs (e.g., asymmetric hop counts, non‑uniform link quality, path interference, and expanded path sets) may shift absolute efficiency levels and alter the strength of allocator–capacity interactions.
+All experiments in this study are conducted on a single 4‑node, 4‑path diamond topology with mid‑range horizons (primarily $F_b \in \{4\text{K}, 6\text{K}, 8\text{K}\}$ frames). This controlled setting enables clean attribution of effects across algorithm, allocator, and replay‑capacity dimensions, but it does not exhaust the structural diversity of real quantum networks. Larger and more heterogeneous graphs (\eg asymmetric hop counts, non‑uniform link quality, path interference, and expanded path sets) may shift absolute efficiency levels and alter the strength of allocator–capacity interactions.
 
 \textbf{Simulation fidelity and hardware constraints.}
 Threat regimes are instantiated as synthetic processes designed to capture stochastic, structured, and reactive interference patterns. The current simulator does not yet incorporate hardware‑anchored constraints such as control‑plane latency, scheduling delays, memory/queue effects, or non‑ideal operations that couple timing and resource contention. These factors can influence both the effective adaptivity of an adversary and the translation of allocator decisions into realized qubit utilization, so hardware‑grounded follow‑on evaluation is required before making deployment‑level claims.
@@ -2453,21 +2453,21 @@ Threat regimes are instantiated as synthetic processes designed to capture stoch
 Replay capacity is examined through two anchoring rules ($\small\texttt{cap\_type} \in \{\mathrm{Tb}, \mathrm{T}\}$) and three multiplicative scales ($s \in \{1, 1.5, 2\}$) over mid‑range horizons. This sweep is sufficient to expose the non‑monotone behaviors motivating the capacity‑paradox claim, but broader coverage (additional scales, longer horizons, and more topologies) is needed to bound tail risk and to characterize how capacity sensitivity evolves as learning time increases and the action space grows.
 
 \textbf{Forecasting scope.}
-Predictive context is currently instantiated via an ARIMA warm‑up procedure. More expressive temporal models (e.g., RNN/Transformer families) and calibrated uncertainty mechanisms are not yet evaluated, and their sensitivity, stability, and failure modes under reactive adversaries remain open.
+Predictive context is currently instantiated via an ARIMA warm‑up procedure. More expressive temporal models (\eg RNN/Transformer families) and calibrated uncertainty mechanisms are not yet evaluated, and their sensitivity, stability, and failure modes under reactive adversaries remain open.
 
 \textbf{Corpus boundaries and reproducibility scope.}
-The results emphasized in this paper are anchored to the curated evaluation corpus and the corresponding reproducibility artifacts released with the manuscript (e.g., corpus schema, configuration enumerations, run‑level summaries, and threat–allocator–capacity cross‑product metadata). Claims are therefore scoped to this corpus; generalization beyond its design space should be treated cautiously until additional topologies and hardware tests are incorporated.
+The results emphasized in this paper are anchored to the curated evaluation corpus and the corresponding reproducibility artifacts released with the manuscript (\eg corpus schema, configuration enumerations, run‑level summaries, and threat–allocator–capacity cross‑product metadata). Claims are therefore scoped to this corpus; generalization beyond its design space should be treated cautiously until additional topologies and hardware tests are incorporated.
 
 \subsection{Future Work}
 
 \textbf{Hardware‑grounded validation.}
-A primary next step is to evaluate the threat‑adaptive deployment stack under realistic operational constraints by deploying pursuit‑based contextual bandits (e.g., iCPursuitNeuralUCB with allocator switching) on a quantum‑repeater testbed. The goal is to test whether allocator choice and replay‑capacity parameterization remain beneficial when control latency, scheduling delays, and non‑ideal operations are present.
+A primary next step is to evaluate the threat‑adaptive deployment stack under realistic operational constraints by deploying pursuit‑based contextual bandits (\eg iCPursuitNeuralUCB with allocator switching) on a quantum‑repeater testbed. The goal is to test whether allocator choice and replay‑capacity parameterization remain beneficial when control latency, scheduling delays, and non‑ideal operations are present.
 
 \textbf{Standardized cross-testbed benchmarking.}
 As outlined in \S\ref{sec:testbed_comparison}, we are conducting follow-up evaluations that deploy all three external testbeds (Papers 2, 7, and 12) using our standardized run protocol (4K base/2K step frames, 3/5/10 runs, unified threat scenarios). This will enable direct efficiency comparisons across sparse (15-node), dense (50-node), and mid-scale (100-node) topologies under identical experimental conditions, testing whether pursuit-neural dominance persists and whether the capacity paradox manifests consistently across network structures.
 
 \textbf{Scaling topology and allocation.}
-We will extend the evaluation framework to larger routing graphs and expanded action spaces (e.g., more than 20 candidate paths), including hierarchical or multi‑level allocation strategies. This will test whether the capacity paradox persists, weakens, or changes character when routing becomes more combinatorial and path diversity increases.
+We will extend the evaluation framework to larger routing graphs and expanded action spaces (\eg more than 20 candidate paths), including hierarchical or multi‑level allocation strategies. This will test whether the capacity paradox persists, weakens, or changes character when routing becomes more combinatorial and path diversity increases.
 
 \textbf{Automated threat detection and configuration switching.}
 We plan to formalize the heuristic meta‑policy into a learned threat detector and configuration selector (allocator + replay \small\texttt{cap\_type} + scale), trained and evaluated under mixed and time‑varying attacks. This enables automated switching beyond manual rules and supports deployment policies explicitly optimized for tail‑risk control.
