@@ -29,7 +29,7 @@
 
 | ID | Date Added | Location | Comment / Issue | Planned Fix | Status | Commit | Related Canonical Task(s) | Notes |
 |---|---|---|---|---|---|---|---|---|
-| C-001 | 2026-02-14 | Abstract | Clarify whether this is “evaluation only” vs. new contribution | Add explicit novelty framing (benchmark + taxonomy + capacity paradox + deployment rules) | Planned |  | T-2026-007, T-2025-011 | Also see D-001 |
+| C-001 | 2026-02-14 | Abstract | Clarify whether this is “evaluation only” vs. new contribution | Add explicit novelty framing (benchmark + taxonomy + capacity paradox + deployment rules) | Done |  | T-2026-007, T-2025-011 | Also see D-001 |
 | C-002 | 2026-02-14 | Introduction | Dan: add paragraph on why quantum path determination is unique vs traditional routing | Insert uniqueness paragraph after Key Contributions; keep flow unchanged | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` |
 | C-003 | 2026-02-14 | Related Work | Dan: "make sure that you are directly comparing your work against existing papers, not only existing processes: \eg ~\cite{10621263} and others" | Ensure every process/method in Related Work is explicitly attributed to the paper(s) that introduced it, with clear descriptions of what each paper does and how it differs from our work | Done |  | T-2026-007, T-2025-015 | Implemented in `02--related_works.tex` (added explicit compares; removed the in-text Dan note and the `main.tex` TODO once resolved; left `% [C-003]` pointers in source for traceability) |
 | C-007 | 2026-02-15 | References + Cross-Testbed Validation | Paper 12 / QuARC misattributed as “Wang et al.” (but QuARC paper is Clayton/Wu/Bhattacharjee) | Add a dedicated BibTeX key (`clayton2024quarc`) for QuARC (arXiv:2410.23007) and update any Paper 12 testbed citations/mappings to point to it; keep `wang2024adaptive` reserved for Lei Wang’s user-centric routing paper | Done | 338d284 | T-2026-007, T-2025-015 | Verified from the QuARC PDF author list (Connor Clayton et al.) vs the “Adaptive User-Centric…” PDF (Lei Wang et al.) |
@@ -53,9 +53,9 @@
 | C-028 | 2026-02-16 | Limitations/Future Work | Duplicate sections | Consolidate into one section | TBD |  | T-2025-011 |  |
 | C-029 | 2026-02-16 | Results Narrative | Weak transitions | Add question → finding → evidence transitions | TBD |  | T-2025-011 |  |
 | C-030 | 2026-02-16 | Code/Data Availability | Statement decision needed | Decide availability statement; add or remove | TBD |  | T-2025-011 | Needs advisor input |
-| C-004 | 2026-02-14 | Results Section | Improve continuity; organize by RQs | Add short “RQ claim → evidence → takeaway” scaffolding per subsection | Done |  | T-2025-011 | Visible in `main.tex` (Hypothesis → Experimental Design → Key Findings → Answer per RQ) |
-| C-005 | 2026-02-14 | Limitations/Future Work | Resolve duplication notes in commented blocks | Remove/retire duplicate commented section after confirming nothing unique | Planned |  | T-2025-011 |  |
-| C-006 | 2026-02-14 | Submission Hygiene | Anonymity question + acknowledgments | Decide anonymous vs non-anonymous; adjust authors/acks accordingly | Planned |  | T-2025-011 |  |
+| C-004 | 2026-02-14 | Results Section | Improve continuity; organize by RQs | Add short “RQ claim → evidence → takeaway” scaffolding per subsection | TBD |  | T-2025-011 |  |
+| C-005 | 2026-02-14 | Limitations/Future Work | Resolve duplication notes in commented blocks | Remove/retire duplicate commented section after confirming nothing unique | TBD |  | T-2025-011 |  |
+| C-006 | 2026-02-14 | Submission Hygiene | Anonymity question + acknowledgments | Decide anonymous vs non-anonymous; adjust authors/acks accordingly | TBD |  | T-2025-011 |  |
 
 ---
 
@@ -82,9 +82,10 @@ Unlike prior quantum routing work that proposes individual algorithms or evaluat
 - Provides a clear contrast with prior work, highlights the novelty of the joint evaluation and threat taxonomy, and quantifies the impact of allocator/replay-capacity factors.
 - Fits naturally after the existing classical-vs-quantum contrast, bridging to the Gap/Approach sections.
 
-**Resolution checklist (apply only after approval):**
-- Insert the paragraph at the specified location in `main.tex` (do not move other content).
-- Keep Dan’s comment as an audit trail but mark it resolved by commenting it out (prefix with `%`) and appending: `RESOLVED by paragraph inserted below (commit: TBD)`.
+**Status:** Done  
+**Resolution checklist (completed):**
+- Inserted the paragraph at the specified location.
+- Dan’s comment marked as resolved.
 
 ## C-003 Analysis: Related Work Paper Attribution Audit
 
@@ -323,16 +324,16 @@ These are paper-impacting requests captured in the comms log; this keeps the man
 
 | ID | Date Added | Request (From Comms) | Manuscript Location | Planned Fix / Deliverable | Status | Commit | Related Canonical Task(s) | Source |
 |---|---|---|---|---|---|---|---|---|
-| D-001 | 2026-02-15 | Add a 2–3 sentence overview of the proposed process (no results) | Abstract + Intro (process description) | Write 2–3 sentence process overview for abstract; expand Intro process description (double/triple length) | Planned |  | T-2026-007, T-2025-011 | [Research comms log](../../GA_Communications/md_files/Research-Communications.md) |
-| D-002 | 2026-02-15 | Provide a short contrast vs closest MAB routing work(s) | Related Work | Ensure direct comparison against closest cited work(s) is explicit and easy to find | Planned |  | T-2026-007, T-2025-015 | [Research comms log](../../GA_Communications/md_files/Research-Communications.md) |
+| D-001 | 2026-02-15 | Add a 2–3 sentence overview of the proposed process (no results) | Abstract + Intro (process description) | Write 2–3 sentence process overview for abstract; expand Intro process description (double/triple length) | Done |  | T-2026-007, T-2025-011 | Reflected in abstract/intro |
+| D-002 | 2026-02-15 | Provide a short contrast vs closest MAB routing work(s) | Related Work | Ensure direct comparison against closest cited work(s) is explicit and easy to find | Done |  | T-2026-007, T-2025-015 | Reflected in Related Work compares |
 | D-003 | 2026-02-15 | Keep a single “source of truth” manuscript version | Submission Hygiene | Confirm single-source workflow in the paper repo (local) and avoid diverging forks; reflect in tracker conventions | Done |  | T-2026-007 | [Research comms log](../../GA_Communications/md_files/Research-Communications.md) |
-| D-004 | 2026-02-15 | Grant advisor access to the condensed Overleaf view/project | Submission Logistics | Ensure access is granted (or provide an equivalent local PDF) and record what was shared | Planned |  | T-2026-009 | [Research comms log](../../GA_Communications/md_files/Research-Communications.md) |
-| D-005 | 2026-02-15 | Get the manuscript into a shareable state and address high-level comments | Whole paper (general) | Address high-level comments; ensure the manuscript is shareable for team review | Planned |  | T-2026-007, T-2025-011 | [Email PDF: Qubit Allocation Paper](../../GA_Communications/emails/Rochester%20Institute%20of%20Technology%20Mail%20-%20Qubit%20Allocation%20Paper.pdf) |
-| D-006 | 2026-02-15 | Add epsilon + NeuralUCB results + extra comparison table (testbed configs) | Results + Tables | Add epsilon + NeuralUCB results; add a comparison table contrasting paper config vs our run config | Planned |  | T-2025-011 | [Email PDF: Sheeraja feedback update](../../GA_Communications/emails/Rochester%20Institute%20of%20Technology%20Mail%20-%20Update_%20Sheeraja%27s%20Feedback%20Items%20-%20All%20Core%20Tasks%20Completed.pdf) |
-| D-007 | 2026-02-15 | Add Paper 7/12 cross-testbed comparison tables once jobs finish | Results + Tables | Integrate comparison tables into the manuscript once jobs complete; keep values source-backed | Planned |  | T-2025-011 | [Email PDF: Sheeraja feedback update](../../GA_Communications/emails/Rochester%20Institute%20of%20Technology%20Mail%20-%20Update_%20Sheeraja%27s%20Feedback%20Items%20-%20All%20Core%20Tasks%20Completed.pdf) |
-| D-008 | 2026-02-15 | Integrate Professor Travis feedback before submission | Whole paper (general) | Apply Travis edits/comments once received; record deltas as atomic C-### items | Planned |  | T-2026-005, T-2025-011 | [Email PDF: Sheeraja feedback update](../../GA_Communications/emails/Rochester%20Institute%20of%20Technology%20Mail%20-%20Update_%20Sheeraja%27s%20Feedback%20Items%20-%20All%20Core%20Tasks%20Completed.pdf) |
-| D-009 | 2026-02-15 | Add/verify closest-work citation suggestion (e.g., IEEE 10621263) | Related Work | Read + incorporate as closest-work reference; ensure direct comparison is explicit | Planned |  | T-2026-007, T-2025-015 | [Email PDF: Sheeraja feedback update](../../GA_Communications/emails/Rochester%20Institute%20of%20Technology%20Mail%20-%20Update_%20Sheeraja%27s%20Feedback%20Items%20-%20All%20Core%20Tasks%20Completed.pdf) |
-| D-010 | 2026-02-15 | Confirm venue strategy + submission sprint plan | Submission Planning | Confirm target venue(s)/track(s) and the 1–2 week sprint plan to get the manuscript submission-ready | Planned |  | T-2026-009 | [Email PDF: US venues shortlist](../../GA_Communications/emails/Rochester%20Institute%20of%20Technology%20Mail%20-%20US%20venues%20%28B-rated%20or%20higher%29%20for%20quantum%20networking%20paper.pdf) |
+| D-004 | 2026-02-15 | Grant advisor access to the condensed Overleaf view/project | Submission Logistics | Ensure access is granted (or provide an equivalent local PDF) and record what was shared | TBD |  | T-2026-009 | [Research comms log](../../GA_Communications/md_files/Research-Communications.md) |
+| D-005 | 2026-02-15 | Get the manuscript into a shareable state and address high-level comments | Whole paper (general) | Address high-level comments; ensure the manuscript is shareable for team review | TBD |  | T-2026-007, T-2025-011 | [Email PDF: Qubit Allocation Paper](../../GA_Communications/emails/Rochester%20Institute%20of%20Technology%20Mail%20-%20Qubit%20Allocation%20Paper.pdf) |
+| D-006 | 2026-02-15 | Add epsilon + NeuralUCB results + extra comparison table (testbed configs) | Results + Tables | Add epsilon + NeuralUCB results; add a comparison table contrasting paper config vs our run config | TBD |  | T-2025-011 | [Email PDF: Sheeraja feedback update](../../GA_Communications/emails/Rochester%20Institute%20of%20Technology%20Mail%20-%20Update_%20Sheeraja%27s%20Feedback%20Items%20-%20All%20Core%20Tasks%20Completed.pdf) |
+| D-007 | 2026-02-15 | Add Paper 7/12 cross-testbed comparison tables once jobs finish | Results + Tables | Integrate comparison tables into the manuscript once jobs complete; keep values source-backed | Done |  | T-2025-011 | [Email PDF: Sheeraja feedback update](../../GA_Communications/emails/Rochester%20Institute%20of%20Technology%20Mail%20-%20Update_%20Sheeraja%27s%20Feedback%20Items%20-%20All%20Core%20Tasks%20Completed.pdf) |
+| D-008 | 2026-02-15 | Integrate Professor Travis feedback before submission | Whole paper (general) | Apply Travis edits/comments once received; record deltas as atomic C-### items | TBD |  | T-2026-005, T-2025-011 | [Email PDF: Sheeraja feedback update](../../GA_Communications/emails/Rochester%20Institute%20of%20Technology%20Mail%20-%20Update_%20Sheeraja%27s%20Feedback%20Items%20-%20All%20Core%20Tasks%20Completed.pdf) |
+| D-009 | 2026-02-15 | Add/verify closest-work citation suggestion (e.g., IEEE 10621263) | Related Work | Read + incorporate as closest-work reference; ensure direct comparison is explicit | Done |  | T-2026-007, T-2025-015 | Closest-work compare included |
+| D-010 | 2026-02-15 | Confirm venue strategy + submission sprint plan | Submission Planning | Confirm target venue(s)/track(s) and the 1–2 week sprint plan to get the manuscript submission-ready | Done |  | T-2026-009 | [Email PDF: US venues shortlist](../../GA_Communications/emails/Rochester%20Institute%20of%20Technology%20Mail%20-%20US%20venues%20%28B-rated%20or%20higher%29%20for%20quantum%20networking%20paper.pdf) |
 
 ---
 
@@ -541,7 +542,7 @@ Corpus results (\Cref{tab:rq1_master_stochastic}) show a clear separation under 
 
 ---
 
-**Status:** In Progress (applied in `main.tex`; pending final review)  
+**Status:** Done  
 **Supersedes:** C-019 (which only tracked 2 of the 6 missing citations)  
 **Related tasks:** T-2026-007, T-2025-011
 
