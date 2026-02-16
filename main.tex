@@ -779,8 +779,8 @@ This architecture enables \textbf{systematic ablation} across allocators, algori
   grid=major,
   grid style={line width=.1pt, draw=gray!10},
   legend pos=south east,
-  legend columns=4,
-  legend style={font=\tiny}
+  legend columns=2,
+  legend style={font=\scriptsize}
 ]
 
 % Context Models T Scale (iCMAB + CMAB avg @ T)
@@ -1078,16 +1078,16 @@ This section specifies the experimental design used to evaluate adaptive quantum
 We use a 4-node quantum network with four alternative paths connecting source $S$ to destination $D$ via repeater nodes (\Cref{fig:network_topology}). Paths $P_1$ and $P_4$ have two hops, while $P_2$ and $P_3$ have three hops, matching common small-scale quantum-network architectures and demonstrations~\cite{wehner2018quantum,pompili2021realization}. This topology provides sufficient action-space complexity for bandit learning~\cite{huang2024quantum,expneural2024,dai2020quantum} while keeping exhaustive cross-product sweeps tractable (hundreds of algorithm--scenario--allocator configurations; see \Cref{tab:config_summary}).
 
 Total physical network capacity is fixed at 35 qubits across all experiments, representing resource-constrained early-stage deployments~\cite{simon2017towards}. This induces non-trivial exploration--exploitation tradeoffs: algorithms cannot over-provision all paths. Per-path allocations are determined by the allocator (\Cref{tab:setup-allocators}), enabling controlled comparison of static versus adaptive resource management.
-\devroop{format the figure. Labels and arrows are out of place a bit.}
+% \devroop{format the figure. Labels and arrows are out of place a bit.} % RESOLVED by C-011 figure simplification
 % NOTE: TikZ uses right=of / below=of -> requires \usetikzlibrary{positioning}
 \begin{figure}[ht!]
 \centering
 \small
 \caption{4-node quantum network topology with four alternative entanglement paths.
 Paths $P_1$ and $P_2$ use 2 hops; $P_3$ and $P_4$ use 3 hops.
-Total capacity is 35 qubits, allocated per path by strategy (\Cref{tab:setup-allocators}).}
+Total capacity is 35 qubits, allocated per path by strategy (\Cref{tab:setup-allocators}); example splits: Fixed (8,10,8,9), Thompson (9,9,9,8).}
 \begin{tikzpicture}[
-  node distance=2.0cm and 2.0cm,
+  node distance=2.5cm and 3.0cm,
   thick,
   main/.style={circle,draw,minimum size=0.6cm,font=\small},
   link/.style={line width=0.8pt, draw=gray!55},
@@ -1106,32 +1106,28 @@ Total capacity is 35 qubits, allocated per path by strategy (\Cref{tab:setup-all
   \draw[link] (R2) -- (D);
   \draw[link] (R1) -- (R2);
 
-  % ---- Paths (draw full paths; use slight offsets so they don't overlap) ----
-
-  % P1: S -> R1 -> D (2-hop)  [more separation]
+  % ---- Paths (use bends to avoid overlap) ----
+  % P1: S -> R1 -> D (2-hop)
   \draw[path, blue]
-    ($(S)+(0,0.09)$) -- node[above, font=\scriptsize] {$P_1$ (2-hop)} ($(R1)+(0,0.16)$) -- ($(D)+(0,0.16)$);
+    (S) to[bend left=15] node[above, font=\scriptsize] {$P_1$ (2-hop)} (R1)
+        to[bend left=15] (D);
 
-  % P2: S -> R2 -> D (2-hop)  [more separation]
+  % P2: S -> R2 -> D (2-hop)
   \draw[path, red]
-    ($(S)+(0,-0.16)$) -- node[left, font=\scriptsize] {$P_2$ (2-hop)} ($(R2)+(0,-0.16)$) -- ($(D)+(0,-0.16)$);
+    (S) to[bend right=15] node[left, font=\scriptsize] {$P_2$ (2-hop)} (R2)
+        to[bend right=15] (D);
 
-  % P3: S -> R1 -> R2 -> D (3-hop)  [more separation]
+  % P3: S -> R1 -> R2 -> D (3-hop)
   \draw[path, green!60!black]
-    ($(S)+(0.22,0.22)$) -- ($(R1)+(0.22,0.26)$)
-    -- node[right, font=\scriptsize] {$P_3$ (3-hop)} ($(R2)+(0.22,-0.22)$)
-    -- ($(D)+(0.32,-0.14)$);
+    (S) to[bend left=10] (R1)
+        to[bend left=10] node[right, font=\scriptsize] {$P_3$ (3-hop)} (R2)
+        to[bend left=10] (D);
 
-  % P4: S -> R2 -> R1 -> D (3-hop)  [more separation]
+  % P4: S -> R2 -> R1 -> D (3-hop)
   \draw[path, orange]
-    ($(S)+(-0.32,-0.14)$) -- ($(R2)+(-0.22,-0.22)$)
-    -- node[left, font=\scriptsize] {$P_4$ (3-hop)} ($(R1)+(-0.16,0.07)$)
-    -- ($(D)+(-0.17,0.07)$);
-
-  % Annotations
-  \node[below=0.3cm of S, font=\scriptsize] {Total: 35 qubits};
-  \node[below=0.3cm of D, font=\scriptsize, align=center]
-    {Example splits: \\ Fixed $(8,10,8,9)$, Thompson $(9,9,9,8)$};
+    (S) to[bend right=10] (R2)
+        to[bend right=10] node[left, font=\scriptsize] {$P_4$ (3-hop)} (R1)
+        to[bend right=10] (D);
 \end{tikzpicture}
 \label{fig:network_topology}
 \end{figure}
@@ -1199,7 +1195,7 @@ Scaling applies to replay memory; the 35-qubit physical network capacity remains
 % Threat Taxonomy Intro & Hyperparameter Table
 % ----------------------------------------------------------------------------
 \noindent\textit{Adversarial threat taxonomy.}
-We evaluate five scenarios spanning the efficiency--security spectrum: natural stochastic decoherence, Markovian structure, and three grades of adaptive adversarial attacks (\textbf{RQ2}). This taxonomy enables controlled comparisons under matched interference regimes.%
+We evaluate five scenarios spanning the efficiency--security spectrum: natural stochastic decoherence, Markovian structure, and three grades of adaptive adversarial attacks (\textbf{RQ2}). This taxonomy enables controlled comparisons under matched interference regimes. Hyperparameter settings are summarized in \Cref{tab:setup-hyperparameters}.%
 \cite{huang2024quantum,expneural2024}
 
 \begin{table}[ht!]
@@ -1248,37 +1244,26 @@ Replay ($T_b,T$) & All & $T_b=sF_b,\;T=sF_c$ & \cite{schaul2015prioritized,mnih2
 % Algorithm Portfolio
 % ----------------------------------------------------------------------------
 \subsubsection{Algorithm portfolio (\textbf{RQ2})}
-We evaluate 14 algorithms spanning three generations of MAB development plus an Oracle baseline. Phase progression covers classical exploration (Phase~1), adversarial defenses (Phase~1--2), contextual/neural methods (Phase~2), and pursuit-based predictive models (Phase~2--3), enabling systematic comparison across architectural paradigms.
+We evaluate 14 algorithms spanning three generations of MAB development plus an Oracle baseline. Phase progression (\Cref{tab:setup-algorithm-portfolio}) covers classical exploration (Phase~1), adversarial defenses (Phase~1--2), contextual/neural methods (Phase~2), and pursuit-based predictive models (Phase~2--3), enabling systematic comparison across architectural paradigms.
 
 \begin{table}[ht!]
-\footnotesize
+\small
 \centering
 \caption{Algorithm portfolio by evaluation phase. Phases progress from classical $\to$ adversarial $\to$ contextual $\to$ predictive.}
 \label{tab:setup-algorithm-portfolio}
-\begin{tabular}{lll}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.13\linewidth} >{\raggedright\arraybackslash}p{0.28\linewidth} >{\raggedright\arraybackslash}X}
 \toprule
 \textbf{Phase} & \textbf{Category} & \textbf{Algorithms} \\
 \midrule
-Phase 1 & Classical MAB &
-   LinUCB~\cite{li2010contextual}, LinTS~\cite{agrawal2013thompson}, \\
-        &               &
-  UCB1~\cite{auer2002finite}, Thompson Sampling~\cite{thompson1933likelihood}\\
-Phase 1--2 & Adversarial &
-  EXP3~\cite{auer2002nonstochastic}, EXPUCB~\cite{expneural2024}, \\
-           &             &
-  EXPNeuralUCB~\cite{expneural2024} \\
-Phase 2 & Contextual/Neural &
-  GNeuralUCB, NeuralUCB~\cite{zhou2020neural}, \\
-        &                   &
-  NeuralTS~\cite{zhang2020neural}, CEpsilonGreedy, \\
-          &                   &  CThompsonSampling \\
-Phase 2--3 & Pursuit-based &
-  CPursuitNeuralUCB (ours) \\
-Phase 3 & Predictive &
-  iCPursuitNeuralUCB (ours) \\
+Phase 1 & Classical MAB & LinUCB~\cite{li2010contextual}, LinTS~\cite{agrawal2013thompson}, UCB1~\cite{auer2002finite}, Thompson Sampling~\cite{thompson1933likelihood} \\
+Phase 1--2 & Adversarial & EXP3~\cite{auer2002nonstochastic}, EXPUCB~\cite{expneural2024}, EXPNeuralUCB~\cite{expneural2024} \\
+Phase 2 & Contextual/Neural & GNeuralUCB, NeuralUCB~\cite{zhou2020neural}, NeuralTS~\cite{zhang2020neural}, CEpsilonGreedy, CThompsonSampling \\
+Phase 2--3 & Pursuit-based & CPursuitNeuralUCB (ours) \\
+Phase 3 & Predictive & iCPursuitNeuralUCB (ours) \\
 Baseline & Oracle & Perfect information \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \end{table}
 
 \subsubsection{Key algorithm features}
@@ -1305,20 +1290,21 @@ At a high level, our algorithms handle uncertainty in three different ways:
 Phase~3 introduces dynamic allocators (\Cref{tab:setup-allocators}) to test allocator--algorithm interactions (\textbf{RQ3c}). Each strategy distributes the fixed 35-qubit capacity per path using either static rules or learned uncertainty; allocator performance and runtime are reported in the Results section.
 
 \begin{table}[ht!]
+\footnotesize
 \caption{Qubit allocation strategies and parameterization (Phase~3).}
 \label{tab:setup-allocators}
-\scriptsize
 \centering
-\begin{tabular}{ll}
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.19\linewidth} >{\raggedright\arraybackslash}p{0.12\linewidth} X}
 \toprule
-\textbf{Allocator} & \textbf{Mechanism} \\
+\textbf{Allocator} & \textbf{Type} & \textbf{Description} \\
 \midrule
-Fixed      & Static distribution $(8,10,8,9)$ \\
-Thompson   & Bayesian posterior sampling (Beta priors)~\cite{thompson1933likelihood,agrawal2013thompson,russo2018tutorial} \\
-DynamicUCB & UCB-based allocation with exploration weight $\lambda = 2.0$~\cite{auer2002finite} \\
-Random     & Uniform random allocation subject to $\sum_k c_k = 35$ \\
+Fixed      & Static   & Static distribution $(8,10,8,9)$ (baseline). \\
+Thompson   & Adaptive & Bayesian posterior sampling (Beta priors) over path utilities~\cite{thompson1933likelihood,agrawal2013thompson,russo2018tutorial}. \\
+DynamicUCB & Adaptive & UCB-based allocation with exploration weight $\lambda = 2.0$~\cite{auer2002finite}. \\
+Random     & Control  & Uniform random allocation subject to $\sum_k c_k = 35$. \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \end{table}
 
 % ----------------------------------------------------------------------------
@@ -1371,7 +1357,7 @@ We execute ensembles of $S \in \{3, 5, 8, 10\}$ independent runs (seeds fixed fo
 
 \section{Simulation Results}
 \label{sec:SimulationResults}
-\devroop{refer the tables per your findings. they have not all been refered}
+% \devroop{refer the tables per your findings. they have not all been refered}
 We evaluate bandit-based quantum routing agents across five threat scenarios
 (\small\texttt{Baseline, Stochastic, Markov, Adaptive, OnlineAdaptive}), multiple time horizons,
 and replay-capacity scales ($s \in \{1, 1.5, 2\}$) under capacity semantics ($T$ and $T_b$),
@@ -1467,41 +1453,40 @@ with run-level outputs and aggregation code available in Appendix~\ref{app:data_
 % ----------------------------------------------------------------------------
 \subsubsection{Key Findings}
 
-Corpus results show a clear separation under stochastic decoherence: a small top tier remains
+Corpus results (\Cref{tab:rq1masterstochastic}) show a clear separation under stochastic decoherence: a small top tier remains
 deployment-viable ($\gtrsim 85\%$), while several variants degrade into the 60--80\% band, and the weakest
 policies collapse toward $\approx 37$--40\% even without adversarial pressure.
 
 \begin{table}[ht!]
-\caption{RQ1: performance under 6.25\% stochastic decoherence, aggregated across horizons,
-replay scales $s\!\in\!\{1,1.5,2\}$, and both capacity semantics ($T$ and $T_b$).
-Values report mean Oracle-normalised efficiency (\%) for 3-run and 5-run ensembles.}
-\footnotesize
+\small  % Reduce font size
+\caption{RQ1 performance under 6.25\% stochastic decoherence, aggregated across horizons, replay scales \(s \in \{1,1.5,2\}\), and both capacity semantics (T and Tb). Values report mean Oracle-normalised efficiency for 3-run and 5-run ensembles.}
+\label{tab:rq1masterstochastic}
 \centering
-\begin{tabular}{lccc}
-\toprule
-\textbf{Model (paper baselines only)} & \textbf{3 Runs} & \textbf{5 Runs} & \textbf{Avg.\ Eff.\ (\%)}\\
-\midrule
-\textbf{Top tier (viable under stochastic)}\\
-CPursuit           & 89.6 & 90.1 & \textbf{89.9}\\
-iCEpsilonGreedy    & 88.0 & 88.6 & 88.3\\
-CEpsilonGreedy     & 87.5 & 87.9 & 87.8\\
-GNeuralUCB         & 85.2 & 86.3 & 85.9\\
-\midrule
-\textbf{Mid-tier (degraded)}\\
-EXPNeuralUCB       & 82.1 & 83.8 & 83.1\\
-EXPUCB             & 76.2 & 78.4 & 77.6\\
-CEXP4              & 70.1 & 70.2 & 70.1\\
-iCPursuit          & 68.7 & 69.0 & 68.9\\
-CThompsonSampling  & 66.6 & 68.1 & 67.5\\
-iCThompsonSampling & 66.5 & 68.0 & 67.5\\
-\midrule
-\textbf{Collapsed (structural failure)}\\
-CEpochGreedy       & 37.6 & 37.6 & 37.6\\
-iCEpochGreedy      & 37.5 & 37.5 & 37.5\\
-iCEXP4             & 37.4 & 37.4 & 37.4\\
-\bottomrule
+\setlength{\tabcolsep}{5pt}  % Reduce column padding
+\begin{tabular}{p{4.0cm}ccc}
+\hline
+\textbf{Model} & \textbf{3 Runs} & \textbf{5 Runs} & \textbf{Avg. Eff.} \\
+\hline
+\multicolumn{4}{l}{\textit{Top tier (viable under stochastic)}} \\
+CPursuit & 89.6 & 90.1 & 89.9 \\
+iCEpsilonGreedy & 88.0 & 88.6 & 88.3 \\
+CEpsilonGreedy & 87.5 & 87.9 & 87.8 \\
+GNeuralUCB & 85.2 & 86.3 & 85.9 \\
+\hline
+\multicolumn{4}{l}{\textit{Mid-tier (degraded)}} \\
+EXPNeuralUCB & 82.1 & 83.8 & 83.1 \\
+EXPUCB & 76.2 & 78.4 & 77.6 \\
+CEXP4 & 70.1 & 70.2 & 70.1 \\
+iCPursuit & 68.7 & 69.0 & 68.9 \\
+CThompsonSampling & 66.6 & 68.1 & 67.5 \\
+iCThompsonSampling & 66.5 & 68.0 & 67.5 \\
+\hline
+\multicolumn{4}{l}{\textit{Collapsed (structural failure)}} \\
+CEpochGreedy & 37.6 & 37.6 & 37.6 \\
+iCEpochGreedy & 37.5 & 37.5 & 37.5 \\
+iCEXP4 & 37.4 & 37.4 & 37.4 \\
+\hline
 \end{tabular}
-\label{tab:rq1_master_stochastic}
 \end{table}
 
 
@@ -1756,8 +1741,8 @@ under reactive attack conditions, despite competitive average efficiency in some
   grid=major,
   grid style={line width=.1pt, draw=gray!10},
   legend pos=south east,
-  legend columns=6,
-  legend style={font=\tiny}
+  legend columns=3,
+  legend style={font=\scriptsize}
 ]
 
 % ----- T -----
@@ -1925,9 +1910,9 @@ We isolate architecture impact under a fixed setting (6K horizon, \small\texttt{
 $T$-type capacity with $s{=}2$), reporting the mean of the 3- and 5-run suite values:
 
 \begin{table}[ht!]
+\footnotesize
 \caption{Predictive context impact under a fixed deployment: 6K horizon, \small\texttt{Fixed} allocator, $T$-type, $s{=}2$.
 Values are ensemble means (averaged across the 3-run and 5-run suites) from the hybrid evaluation corpus.}
-\scriptsize
 \centering
 \begin{tabular}{lccccccc}
 \toprule
@@ -1937,13 +1922,13 @@ CPursuitNeuralUCB  & 98.5 & 93.8 & 93.9 & 87.4 & 80.2 & 90.8 & 7.2 \\
 iCPursuitNeuralUCB & 99.1 & 94.0 & 94.1 & 88.0 & 99.1 & 94.9 & 4.9 \\
 \bottomrule
 \end{tabular}
-{\scriptsize{Bl=Baseline, Sh=Stochastic, Mk=Markov, Ag=Adaptive, OA=OnlineAdaptive.}}
+{\footnotesize{Bl=Baseline, Sh=Stochastic, Mk=Markov, Ag=Adaptive, OA=OnlineAdaptive.}}
 \label{tab:rq3a_informative}
 \end{table}
 
 \noindent
 \textit{Answer to RQ3a:}
-\textbf{iCPursuitNeuralUCB improves global robustness primarily by lifting OnlineAdaptive performance}
+As shown in \Cref{tab:rq3a_informative}, \textbf{iCPursuitNeuralUCB improves global robustness primarily by lifting OnlineAdaptive performance}
 (+18.3 pp under the same deployment setting), yielding a higher overall average and a tighter
 cross-scenario dispersion. Stochastic/Markov behavior remains essentially unchanged, suggesting that
 informative context is most valuable when threats evolve online rather than under purely stochastic decoherence.
@@ -1993,7 +1978,7 @@ including pronounced degradations at the intermediate scale.
 
 \noindent
 \textit{Answer to RQ3b:}
-Replay capacity is not a ``more is better'' knob. Under $T$-type anchoring, both pursuit-based hybrids
+Replay capacity is not a ``more is better'' knob. Under $T$-type anchoring (\Cref{tab:rq3b_capacity_scaling}), both pursuit-based hybrids
 exhibit a sharp degradation at $s{=}1.5$ followed by recovery at $s{=}2$.
 This motivates treating replay specification as a co-design decision with allocator policy ($RQ3_c$),
 rather than a monotone robustness lever.
@@ -2036,7 +2021,7 @@ DynamicUCB     & 70.1 & 68.2 & 3.0 \\
 
 \noindent
 \textit{Answer to RQ3c:}
-Allocator effects are not independent. \textbf{Fixed} provides the strongest global robustness for
+As summarized in \Cref{tab:rq3c_allocators}, allocator effects are not independent. \textbf{Fixed} provides the strongest global robustness for
 iCPursuitNeuralUCB in this corpus (best average and best floor), while \textbf{Thompson} is highly
 effective in specific regimes (e.g., Adaptive) but can underperform severely when mismatched
 (large drops in Baseline/Stochastic). This makes allocator selection a first-class deployment decision.
@@ -2062,8 +2047,8 @@ effective in specific regimes (e.g., Adaptive) but can underperform severely whe
   grid=major,
   grid style={line width=.1pt, draw=gray!10},
   legend pos=south east,
-  legend columns=4,
-  legend style={font=\tiny}
+  legend columns=2,
+  legend style={font=\scriptsize}
 ]
 
 \addplot[color=teal!80, mark=o, line width=2pt, smooth] coordinates {

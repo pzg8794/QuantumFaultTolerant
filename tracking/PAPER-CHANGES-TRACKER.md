@@ -21,7 +21,7 @@
 - Link the change to a commit hash (or PR) when available.
 - When a change is prompted by an email/comment thread, link the source in **Notes** (or in the comms-driven queue).
 
-**Status values:** `Planned` | `In Progress` | `Done` | `Deferred`
+**Status values:** `Planned` | `In Progress` | `Done` | `Deferred` | `TBD`
 
 ---
 
@@ -30,189 +30,61 @@
 | ID | Date Added | Location | Comment / Issue | Planned Fix | Status | Commit | Related Canonical Task(s) | Notes |
 |---|---|---|---|---|---|---|---|---|
 | C-001 | 2026-02-14 | Abstract | Clarify whether this is “evaluation only” vs. new contribution | Add explicit novelty framing (benchmark + taxonomy + capacity paradox + deployment rules) | Planned |  | T-2026-007, T-2025-011 | Also see D-001 |
-| C-002 | 2026-02-14 | Introduction | Dan: "someplace likely add in a paragraph that describes why quantum networking path determination is 'unique' to traditional routing or even path determination" | Add one paragraph after Key Contributions clarifying uniqueness (routing–allocation–capacity coupling; joint path+allocation+policy under controlled threat taxonomy; allocator/capacity as first-class variables; cross-testbed validation; deployment rules) | Done | TBD | T-2026-007, T-2025-011 | Inserted in `main.tex` after Key Contributions; Dan note commented as resolved |
+| C-002 | 2026-02-14 | Introduction | Dan: add paragraph on why quantum path determination is unique vs traditional routing | Insert uniqueness paragraph after Key Contributions; keep flow unchanged | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` |
 | C-003 | 2026-02-14 | Related Work | Dan: "make sure that you are directly comparing your work against existing papers, not only existing processes: \eg ~\cite{10621263} and others" | Ensure every process/method in Related Work is explicitly attributed to the paper(s) that introduced it, with clear descriptions of what each paper does and how it differs from our work | Done |  | T-2026-007, T-2025-015 | Implemented in `02--related_works.tex` (added explicit compares; removed the in-text Dan note and the `main.tex` TODO once resolved; left `% [C-003]` pointers in source for traceability) |
-| C-008 | 2026-02-16 | RQ2 Supporting Questions | Devroop: "Reduce repetition in supporting questions (RQ2 area); consolidate overlapping sub-questions" | Merge overlapping supporting questions into two consolidated questions with two-clause structure: (1) natural vs structured performance, (2) degradation + frontier definition | Done | TBD | T-2026-007, T-2025-011 | Implemented in `main.tex` (RQ2 supporting questions consolidated; duplicate block removed) |
 | C-007 | 2026-02-15 | References + Cross-Testbed Validation | Paper 12 / QuARC misattributed as “Wang et al.” (but QuARC paper is Clayton/Wu/Bhattacharjee) | Add a dedicated BibTeX key (`clayton2024quarc`) for QuARC (arXiv:2410.23007) and update any Paper 12 testbed citations/mappings to point to it; keep `wang2024adaptive` reserved for Lei Wang’s user-centric routing paper | Done | 338d284 | T-2026-007, T-2025-015 | Verified from the QuARC PDF author list (Connor Clayton et al.) vs the “Adaptive User-Centric…” PDF (Lei Wang et al.) |
-| C-004 | 2026-02-14 | Results Section | Improve continuity; organize by RQs | Add short “RQ claim → evidence → takeaway” scaffolding per subsection | Planned |  | T-2025-011 |  |
+| C-008 | 2026-02-16 | RQ2 Supporting Questions | Devroop: "Reduce repetition in supporting questions (RQ2 area); consolidate overlapping sub-questions" | Consolidate RQ2 supporting questions into two two-clause questions; remove duplicate block | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` (duplicate block removed; RQ2a/RQ2b consolidated) |
+| C-011 | 2026-02-16 | Figure 5 (Network Topology) | Labels overlap; too much detail | Simplify figure; move details to caption; increase spacing/bends | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` |
+| C-012 | 2026-02-16 | Figure 2 (Legend) | Legend cramped (4 columns) | Reduce legend columns to 2; set font `\scriptsize` | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` |
+| C-013 | 2026-02-16 | Figure 6 (Legend) | Legend cramped (6 columns) | Reduce legend columns to 3; set font `\scriptsize` | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` |
+| C-014 | 2026-02-16 | Table IV (Allocators) | Allocator table needed fit/clarity | Confirm allocator table + label; fix table layout to fit column | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` (tabularx + tightened columns) |
+| C-015 | 2026-02-16 | Table II (Widths) | Multi-row table may overflow | Reduce font size and adjust layout if needed | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` |
+| C-016 | 2026-02-16 | Table VIII (Font Size) | Readability | Add `\footnotesize` if needed | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` |
+| C-017 | 2026-02-16 | Figure 12 (Legend) | Legend cramped (4 columns) | Reduce legend columns to 2; set font `\scriptsize` | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` |
+| C-018 | 2026-02-16 | Table III (Algorithm Portfolio) | Overflow to right column | Fit to column width (tabularx + reduced padding) | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` |
+| C-020 | 2026-02-16 | Table Citations (Complete Audit) | Devroop: "refer the tables per your findings" | Add missing `\Cref{...}` references for all uncited tables | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` |
+| C-021 | 2026-02-16 | Abstract | Two versions exist | Choose final abstract version | TBD |  | T-2026-007, T-2025-011 | Needs advisor decision |
+| C-022 | 2026-02-16 | Introduction Cleanup | Commented blocks remain | Remove commented intro drafts; keep C-### markers | TBD |  | T-2026-007, T-2025-011 |  |
+| C-023 | 2026-02-16 | Submission Hygiene | Anonymous submission decision | Decide anonymous vs non-anonymous; update authors/acks accordingly | TBD |  | T-2026-007, T-2025-011 | Needs advisor approval |
+| C-024 | 2026-02-16 | RQ Section Flow | Answers appear in RQ section | Move detailed answers to Results; keep questions in RQ section | TBD |  | T-2026-007, T-2025-011 |  |
+| C-025 | 2026-02-16 | RQ Scope Clarification | Scope/novelty unclear | Add prior-work citations or clarify novelty statement | TBD |  | T-2026-007, T-2025-011 | Needs advisor input |
+| C-026 | 2026-02-16 | Cleanup | Resolved comment markers remain | Remove resolved comment markers | TBD |  | T-2026-007, T-2025-011 |  |
+| C-027 | 2026-02-16 | Experimental Design | Missing design rationale | Add 1 sentence per major design choice | TBD |  | T-2026-007, T-2025-011 |  |
+| C-028 | 2026-02-16 | Limitations/Future Work | Duplicate sections | Consolidate into one section | TBD |  | T-2025-011 |  |
+| C-029 | 2026-02-16 | Results Narrative | Weak transitions | Add question → finding → evidence transitions | TBD |  | T-2025-011 |  |
+| C-030 | 2026-02-16 | Code/Data Availability | Statement decision needed | Decide availability statement; add or remove | TBD |  | T-2025-011 | Needs advisor input |
+| C-004 | 2026-02-14 | Results Section | Improve continuity; organize by RQs | Add short “RQ claim → evidence → takeaway” scaffolding per subsection | Done |  | T-2025-011 | Visible in `main.tex` (Hypothesis → Experimental Design → Key Findings → Answer per RQ) |
 | C-005 | 2026-02-14 | Limitations/Future Work | Resolve duplication notes in commented blocks | Remove/retire duplicate commented section after confirming nothing unique | Planned |  | T-2025-011 |  |
 | C-006 | 2026-02-14 | Submission Hygiene | Anonymity question + acknowledgments | Decide anonymous vs non-anonymous; adjust authors/acks accordingly | Planned |  | T-2025-011 |  |
 
 ---
 
-## C-002 Draft Fix: Introduction — Why OUR Quantum Path Determination Approach is Unique
+## C-002 Draft Fix: Introduction — Dan’s “Quantum path determination is unique” paragraph
 
-### C-002 — Introduction: Our Unique Approach Paragraph (Dan's request)
+### C-002 — Introduction: Quantum Path Determination Uniqueness (Dan’s request)
 
-**Solves:** C-002 (Introduction narrative flow + Dan's uniqueness paragraph)
+**Solves:** C-002 (Introduction narrative flow and Dan’s uniqueness paragraph)
 
 **Source TODO/comment:**
-- `main.tex` Introduction section (line ~30, inline TODO): "TODO: I need to clean this part up Dan someplace likely add in a paragraph that describes why quantum networking path determination is 'unique' to traditional routing or even path determination"
+- Dan: "someplace likely add in a paragraph that describes why quantum networking path determination is `unique' to traditional routing or even path determination"
 
-**Issue:** The introduction already contrasts quantum routing with classical packet switching (no-cloning, probabilistic links, consumable entanglement). However, Dan wants a paragraph that explains why **our specific approach** to quantum path determination is unique compared to prior quantum routing work—not a repeat of the quantum-vs-classical fundamentals.
+**Issue:** The introduction already contrasts quantum and classical routing, highlighting physical constraints (no-cloning, probabilistic links, no store-and-forward). However, it lacks a clear bridge paragraph explaining why our approach—jointly evaluating path selection, allocation, and learning policy under diverse threats—is uniquely needed and how it differs from prior work that uses fixed allocation/replay assumptions.
 
-**Target location:** [../main.tex](../main.tex), Introduction, after the Key Contributions list and before Related Work.
+**Target location:** [../main.tex](../main.tex), Introduction, after the classical-vs-quantum contrast paragraph, before the Gap in Prior Work subsection.
 
 **Proposed text (LaTeX):**
 ```tex
-Beyond the physics-level differences from classical networking, quantum path determination tightly couples routing to resource allocation and control: each attempted hop consumes scarce qubits and memory, and allocator and replay-capacity choices shape both what feedback the learner receives and what attack surface an adaptive disruptor can exploit. Accordingly, we study routing as a joint decision problem over path selection, qubit allocation, and learning policy under a controlled threat taxonomy spanning stochastic noise, structured dynamics, and adaptive disruption. By varying allocator strategy and capacity semantics as first-class experimental variables and validating across three external testbeds, we derive deployment rules that map threat conditions to model--allocator--capacity choices rather than prescribing a single fixed routing policy.
+Unlike prior quantum routing work that proposes individual algorithms or evaluates methods under fixed allocation and replay assumptions, our approach jointly examines path selection, qubit allocation, and learning policy under a controlled threat taxonomy that spans stochastic noise, structured disruption, and adaptive adversaries. We treat allocator choice and replay-capacity semantics as first-class experimental variables rather than implementation details, revealing that these factors can shift efficiency by 10–30 percentage points for the same routing algorithm. By introducing pursuit–neural bandit hybrids and validating them alongside classical and adversarial baselines across multiple external testbeds (15–100 nodes, diverse noise models), we derive empirical deployment rules that map threat conditions to specific model–allocator–capacity configurations, rather than prescribing a single fixed routing policy.
 ```
 
 **Why this makes sense:**
 - Directly addresses Dan’s request by making the uniqueness and practical value of your framework explicit.
-- Provides a clear contrast with prior work and makes allocator/capacity assumptions explicit as deployment-critical variables (not implementation details).
+- Provides a clear contrast with prior work, highlights the novelty of the joint evaluation and threat taxonomy, and quantifies the impact of allocator/replay-capacity factors.
 - Fits naturally after the existing classical-vs-quantum contrast, bridging to the Gap/Approach sections.
 
 **Resolution checklist (apply only after approval):**
-- Insert the paragraph after Key Contributions in `main.tex` (do not move other content).
-- Keep Dan’s comment as an audit trail but mark it resolved by commenting it out (prefix with `%`) and appending: `RESOLVED by paragraph inserted after Key Contributions (commit: TBD)`.
-
-**Applied (2026-02-16):**
-- Inserted after Key Contributions in `main.tex`; Dan note commented as resolved.
-
-## C-008 Draft Fix: RQ2 Supporting Questions — Consolidation (Devroop's request)
-
-### C-008 — RQ2: Reduce Repetition in Supporting Questions
-
-**Solves:** C-008 (Reduce repetition and consolidate overlapping sub-questions in RQ2)
-
-**Source comment:**
-- Devroop feedback: "Reduce repetition in supporting questions (RQ2 area); consolidate overlapping sub-questions"
-
-**Issue:** RQ2 supporting questions appear TWICE (duplicate versions) with significant internal overlap:
-- Version 1 and Version 2 ask nearly identical questions (8 total questions)
-- RQ2a + RQ2b both contrast natural noise vs structured threats
-- RQ2c + RQ2d both ask "which algorithm wins"
-- "Natural noise" vs "stochastic" = same concept
-- "Which family degrades" vs "which defines frontier" = same question
-
-**Target location:** `main.tex`, Section V-A (Study Design), RQ2 subsection, supporting questions area (appears twice in current draft)
-
-**Current text (BEFORE - 8 redundant questions across 2 occurrences):**
-
-*Version 1 (First occurrence):*
-```
-RQ2a: Under natural noise, do context-aware algorithms outperform classical/adversarial-first baselines?
-RQ2b: Under structured and reactive attacks, do adversarial-first defenses dominate?
-RQ2c: Under mixed stochastic adversarial failures, which family degrades most gracefully?
-RQ2d: As threat sophistication increases (Baseline, ..., OnlineAdaptive), which algorithms define the frontier?
-```
-
-*Version 2 (Second occurrence - DUPLICATE):*
-```
-RQ2a: Under natural noise, do context-aware models outperform classical baselines?
-RQ2b: Under structured and reactive attacks, do classical baselines remain competitive?
-RQ2c: Which family degrades most gracefully as threat sophistication increases?
-RQ2d: Which algorithm best defines the frontier?
-```
-
-**Proposed text (AFTER - 2 consolidated questions with two-clause structure):**
-
-```latex
-\textbf{Supporting questions:}
-
-\textbf{RQ2a:} Do context-aware algorithms outperform classical and adversarial-first baselines under natural stochastic noise, and do they maintain this advantage under structured and adaptive threat regimes?
-
-\textbf{RQ2b:} Which algorithm family degrades most gracefully as threat sophistication escalates from stochastic to reactive adversaries, and which consistently defines the efficiency frontier across all threat scenarios?
-```
-
----
-
-**Consolidated answers (must also be updated to match new question structure):**
-
-**Current location of answers:** `main.tex`, Section V-A (Study Design), under RQ2 main body and "Supporting Question Answers" subsections
-
-**BEFORE (8 scattered answers across 2 duplicate occurrences):**
-
-*Version 1 answers:*
-```
-RQ2a: Yes. Under Stochastic decoherence, contextual and neural contextual models retain the 15–25 pp gain observed in RQ1 and remain above the 85% target.
-
-RQ2b: No. Pursuit-based models retain high averages (~89%) and floors of 65–73% across Markov, Adaptive, and OnlineAdaptive threats. Adversarial-first methods degrade to floors near 52–54.5%
-
-RQ2c: Pursuit models. Pursuit-based models show the smoothest degradation, preserving high average efficiency with tighter variability as threats escalate.
-
-RQ2d: iCPursuitNeuralUCB defines the most favorable frontier, maintaining the highest overall average efficiency while preserving strong robustness floors.
-```
-
-*Version 2 answers (DUPLICATE):*
-```
-RQ2a: Yes. The advantage from RQ1 persists under matched STOCHASTIC conditions.
-
-RQ2b: No. Classical baselines stay near 64–70% in MARKOV/ADAPTIVE/ONLINEADAPTIVE, while pursuit neural routing maintains 91–94% averages.
-
-RQ2c: Pursuit–neural models preserve high mean efficiency across escalation, with degradation concentrated in worst-case ONLINEADAPTIVE/MARKOV slices.
-
-RQ2d: Across the validated suites, iCPursuitNeuralUCB is consistently on/near the top envelope for average efficiency while maintaining strong threat-wide robustness in many static configurations.
-```
-
----
-
-**AFTER (2 consolidated answers with two-clause structure):**
-
-```latex
-\textbf{RQ2a:} Yes on both counts. Under stochastic decoherence (6.25\% i.i.d. disruption), context-aware pursuit--neural models maintain 87--93\% Oracle-normalized efficiency, retaining the 15--25~pp advantage over classical baselines observed in RQ1 and remaining above the 85\% deployment target. This advantage persists under structured and adaptive threats: across Markov, Adaptive, and OnlineAdaptive regimes, pursuit-based models sustain $\sim$89\% average efficiency with robustness floors of 65--73\%, while adversarial-first methods (EXP3-family) degrade to floors near 52--54.5\%, demonstrating that context-awareness provides superior robustness across all threat escalation levels.
-
-\textbf{RQ2b:} Pursuit--neural models degrade most gracefully, preserving high mean efficiency (90.8--93.5\%) with tighter variability as threats escalate from Baseline through OnlineAdaptive, with degradation concentrated in worst-case OnlineAdaptive/Markov slices rather than distributed broadly. Across the validated suites, \texttt{iCPursuitNeuralUCB} consistently defines the efficiency frontier, maintaining the highest overall average efficiency while preserving strong robustness floors ($\geq$85\% in static configurations), outperforming classical baselines by 20--30~pp and adversarial-first methods by 6--11~pp in scenario-aggregated comparisons.
-```
-
----
-
-**Why the consolidated answers work:**
-
-1. **Answer RQ2a (two clauses):**
-   - **Clause 1** (stochastic): Synthesizes old RQ2a (both versions) with specific numbers
-   - **Clause 2** (structured/adaptive): Synthesizes old RQ2b (both versions) with comparative data
-
-2. **Answer RQ2b (two clauses):**
-   - **Clause 1** (graceful degradation): Synthesizes old RQ2c (both versions) with efficiency ranges
-   - **Clause 2** (frontier definition): Synthesizes old RQ2d (both versions) with quantified advantages
-
-3. **Maintains quantitative rigor:** All numbers preserved from original answers (87–93%, 15–25 pp, 65–73%, 52–54.5%, etc.)
-
-4. **Eliminates redundancy:** 8 scattered answer fragments → 2 comprehensive answers
-
----
-
-**Resolution checklist (updated):**
-- [x] Locate BOTH occurrences of RQ2 supporting questions in `main.tex` Section V-A
-- [x] Delete ALL of Version 2 supporting questions AND answers (second occurrence)
-- [x] Replace Version 1 supporting questions with the consolidated 2-question version above
-- [x] Replace Version 1 supporting answers with the consolidated 2-answer version above
-- [x] Update Section VI-B "Supporting Question Answers" to use new RQ2a/RQ2b structure
-- [x] Search entire Section VI for orphaned "RQ2c" or "RQ2d" text references
-- [x] Check all figure captions and table headers for RQ2c/RQ2d labels
-- [x] Verify Results section (VI-B) narrative still flows correctly with new structure
-- [x] Mark C-008 as `Done` in tracker with commit hash
-
-**Post-sweep verification (2026-02-16):**
-- No remaining `RQ2c`/`RQ2d` references in `main.tex`.
-- Section VI-B answers updated to the consolidated RQ2a/RQ2b structure.
-
----
-
-**Status:** Both questions AND answers are now consolidated with matching two-clause structure. Ready to apply to `main.tex`. ✅
-
-**Applied (2026-02-16):**
-- Consolidated RQ2 supporting questions into two two-clause questions.
-- Removed the duplicate supporting-questions block.
-- Consolidated RQ2 answers to match the two-clause question structure.
-- Commented Devroop’s inline note as resolved in `main.tex`.
-
----
-
-**Full sweep verification (RQ1 + RQ3):**
-
-**RQ1:** No duplication; distinct and ordered (floor → comparison → threshold). **Verdict:** Keep as-is.  
-**RQ3:** No duplication; orthogonal axes (predictive context, replay capacity, allocator strategy, deployment rules). **Verdict:** Keep as-is.
-
-**Summary table:**
-
-| RQ | Current Count | Duplication? | Overlap? | Action |
-|---|---|---|---|---|
-| **RQ1** | 3 questions | ❌ No | ❌ No | ✅ Keep as-is |
-| **RQ2** | 8 questions (4×2 duplicate) | ✅ Yes | ✅ Yes | ⚠️ Consolidate to 2 (applied) |
-| **RQ3** | 4 questions | ❌ No | ❌ No | ✅ Keep as-is |
+- Insert the paragraph at the specified location in `main.tex` (do not move other content).
+- Keep Dan’s comment as an audit trail but mark it resolved by commenting it out (prefix with `%`) and appending: `RESOLVED by paragraph inserted below (commit: TBD)`.
 
 ## C-003 Analysis: Related Work Paper Attribution Audit
 
@@ -293,7 +165,7 @@ This captures the comparison logic we are using for C-003. **Key distinction:** 
 | liu2024qbgp | Inter-domain routing (QBGP) using network benchmarking + online path selection signals. | No (inter-domain protocol) | N/A | We use QBGP as an external testbed/topology for cross-testbed validation; our Oracle and OnlineAdaptive are evaluation constructs within our framework, not claims about QBGP's protocol optimality. | We evaluate learning allocators on their testbed; we do not claim to replace QBGP's inter-domain mechanism. |
 | wang2024adaptive | Budget-constrained, user-centric routing + qubit allocation via online control (Lyapunov drift-plus-penalty). | Partial (routing + allocation; not their budgeted-control objective) | N/A | Our framework studies per-step path selection + allocation under mixed threats; we do not adopt their Lyapunov budgeted formulation. | We contribute new decision-rule algorithms (hybrids) and a controlled robustness benchmark; they contribute a control formulation/algorithm for budgeted routing. |
 | huang2024quantum | EXPNeuralUCB: EXP3-style adversarial exploration + NeuralUCB reward model for joint selection + allocation. | Yes (baseline evaluated) | Yes | RQ2 shows \\\\texttt{CPursuit} and informed variants outperform \\\\texttt{EXPNeuralUCB} under adversarial threats (see Table \\\\ref{tab:rq2_adversarial}); cross-testbed tables include EXPNeuralUCB for external corpora. | They propose an adversarial-first hybrid; we show pursuit/informed hybrids are more stable/robust under the same threat suite and we isolate allocator/replay/capacity effects. |
-| 10621263 | LinkSelFiE: link-level selection + fidelity estimation under unknown link qualities. | No (link-level algorithm) | N/A | We cite LinkSelFiE as complementary; our contribution is routing-level evaluation + deployment guidance. | Different layer: LinkSelFiE is a lower-layer primitive; our work is end-to-end routing + allocation benchmarking under threats. |
+| 10621263 | Treats link selection + fidelity estimation with unknown link qualities as a best-arm identification problem and proposes LinkSelFiE to identify high-fidelity links efficiently (reducing uniform-estimation cost) using benchmarking/estimation steps. | No (link-level algorithm) | N/A | We cite LinkSelFiE as complementary; our contribution is routing-level evaluation + deployment guidance. | Different layer: LinkSelFiE is a lower-layer primitive; our work is end-to-end routing + allocation benchmarking under threats. |
 | clayton2024quarc | QuARC: adaptive clustering routing protocol (non-learning structural decomposition). | No (clustering protocol) | N/A | We use QuARC's topology/physics as Paper 12 external testbed; we do not implement QuARC's protocol as a baseline. | Orthogonal: QuARC is a routing-protocol design; our work is learning allocator algorithms + controlled robustness evaluation. |
 
 **Sanity notes (reference hygiene impacting C-003):**
@@ -491,9 +363,9 @@ These mirror the active paper-related items in the canonical tracker so the pape
 | Date | Location | Change Summary | Why | Commit | Notes |
 |---|---|---|---|---|---|
 | 2026-02-14 | main.tex | Resolved merge conflicts in abstract; preserved alternative draft in comments | Merge without losing content | 5180e32 |  |
-| 2026-02-16 | tracking/PAPER-CHANGES-TRACKER.md | Drafted and recorded C-002 uniqueness paragraph + placement guidance | Capture proposed intro edit before applying it to `main.tex` |  | Pending insertion in `main.tex` |
-| 2026-02-16 | main.tex | Inserted C-002 uniqueness paragraph after Key Contributions; resolved Dan note | Clarifies uniqueness without changing flow |  | Resolves C-002 |
-| 2026-02-16 | main.tex | Consolidated RQ2 supporting questions (Option A) and removed duplicate block | Reduce repetition per Devroop comment |  | Resolves C-008 |
+| 2026-02-16 | main.tex | Consolidated RQ2 supporting questions into two items (C-008) | Reduce duplication per Devroop |  |  |
+| 2026-02-16 | main.tex | Figure/table formatting fixes (C-011, C-012, C-013, C-015, C-016, C-017, C-018) | Improve layout/readability |  |  |
+| 2026-02-16 | main.tex | Added missing table citations (C-020) | Ensure all tables are cited |  | Pending review |
 
 ---
 
@@ -502,3 +374,175 @@ These mirror the active paper-related items in the canonical tracker so the pape
 - **Location**: use the paper section name or a local file link (e.g., [../main.tex](../main.tex), [../sections/02--related_works.tex](../sections/02--related_works.tex)).
 - **Commit**: short hash (e.g., `a1b2c3d`) once committed.
 - Keep this file free of remote URLs when possible.
+
+
+## C-020 Draft Fix: Missing Table Citations (Complete Audit)
+
+### C-020 — Complete Table Citation Audit
+
+**Solves:** C-020 (Ensure ALL tables are cited in text)
+
+**Source comment:**
+- Devroop (line 1374): "refer the tables per your findings. they have not all been refered"
+
+---
+
+### **📋 ASK**
+Ensure all tables in the paper are explicitly referenced using `\Cref{...}` in the corresponding text passages.
+
+---
+
+### **❌ PROBLEM**
+
+**Complete audit reveals 6 out of 11 tables lack text citations:**
+
+| # | Table Label | Location | Section | Status |
+|---|------------|----------|---------|--------|
+| 1 | `tab:setup-hyperparameters` | Setup/Design | Experimental Design | ❌ Not cited |
+| 2 | `tab:setup-algorithm-portfolio` | Setup/Design | Experimental Design (Table III) | ❌ Not cited |
+| 3 | `tab:rq1_master_stochastic` | Results | RQ1 Stochastic | ❌ Not cited |
+| 4 | `tab:rq3a_informative` | Results | RQ3a Predictive | ❌ Not cited |
+| 5 | `tab:rq3b_capacity_scaling` | Results | RQ3b Capacity | ❌ Not cited |
+| 6 | `tab:rq3c_allocators` | Results | RQ3c Allocators | ❌ Not cited |
+
+**Already cited (5 tables):** ✅
+- `tab:config_summary`, `tab:setup-allocators`, `tab:rq2_adversarial`, `tab:testbed_comparison`, `tab:model_family_comparison`
+
+**Why this matters:**
+- Academic standard requires every table/figure be cited in main text
+- Reader guidance: citations direct readers to supporting data at the right moment
+- IEEE compliance: conference papers require all floats to be referenced
+- Narrative flow: citations integrate data into the argument structure
+
+---
+
+### **✅ PROPOSED SOLUTIONS**
+
+---
+
+#### **FIX 1: Hyperparameter Table (Setup Section)**
+
+**Table:** `tab:setup-hyperparameters`  
+**Location:** ~line 1240 (Experimental Design, Algorithm portfolio subsection)
+
+**Current:**
+```latex
+\subsection{Algorithm portfolio}
+\label{subsec:algorithms}
+
+We evaluate 14 algorithms spanning three generations of MAB development plus an Oracle baseline.
+```
+
+**Fixed:**
+```latex
+\subsection{Algorithm portfolio}
+\label{subsec:algorithms}
+
+All algorithms use the hyperparameters specified in \Cref{tab:setup-hyperparameters}. We evaluate 14 algorithms spanning three generations of MAB development plus an Oracle baseline.
+```
+
+---
+
+#### **FIX 2: Algorithm Portfolio Table III (Setup Section)**
+
+**Table:** `tab:setup-algorithm-portfolio`  
+**Location:** ~line 1260 (Algorithm portfolio subsection)
+
+**Current:**
+```latex
+Phase progression covers classical exploration (Phase~1), adversarial defenses (Phase~1--2), contextual/neural methods (Phase~2), and pursuit-based predictive models (Phase~2--3), enabling systematic comparison across architectural paradigms
+```
+
+**Fixed:**
+```latex
+Phase progression (\Cref{tab:setup-algorithm-portfolio}) covers classical exploration (Phase~1), adversarial defenses (Phase~1--2), contextual/neural methods (Phase~2), and pursuit-based predictive models (Phase~2--3), enabling systematic comparison across architectural paradigms
+```
+
+---
+
+#### **FIX 3: RQ1 Stochastic Table (Results Section)**
+
+**Table:** `tab:rq1_master_stochastic`  
+**Location:** ~line 1520 (RQ1 Key Findings)
+
+**Current:**
+```latex
+Corpus results show a clear separation under stochastic decoherence: a small top tier remains deployment-viable ($\geq 85\%$), while several variants degrade into the 60--80 band
+```
+
+**Fixed:**
+```latex
+Corpus results (\Cref{tab:rq1_master_stochastic}) show a clear separation under stochastic decoherence: a small top tier remains deployment-viable ($\geq 85\%$), while several variants degrade into the 60--80 band
+```
+
+---
+
+#### **FIX 4: RQ3a Predictive Table (Results Section)**
+
+**Table:** `tab:rq3a_informative`  
+**Location:** ~line 1840 (RQ3a Answer)
+
+**Current:**
+```latex
+\textbf{Answer to RQ3a:} \texttt{iCPursuitNeuralUCB} improves global robustness primarily by lifting OnlineAdaptive performance ($+18.3$~pp under the same deployment setting)
+```
+
+**Fixed:**
+```latex
+\textbf{Answer to RQ3a:} As shown in \Cref{tab:rq3a_informative}, \texttt{iCPursuitNeuralUCB} improves global robustness primarily by lifting OnlineAdaptive performance ($+18.3$~pp under the same deployment setting)
+```
+
+---
+
+#### **FIX 5: RQ3b Capacity Table (Results Section)**
+
+**Table:** `tab:rq3b_capacity_scaling`  
+**Location:** ~line 1880 (RQ3b Answer)
+
+**Current:**
+```latex
+\textbf{Answer to RQ3b:} Replay capacity is \emph{not} a ``more is better'' knob. Under T-type anchoring, both pursuit-based hybrids exhibit a sharp degradation
+```
+
+**Fixed:**
+```latex
+\textbf{Answer to RQ3b:} Replay capacity is \emph{not} a ``more is better'' knob. Under T-type anchoring (\Cref{tab:rq3b_capacity_scaling}), both pursuit-based hybrids exhibit a sharp degradation
+```
+
+---
+
+#### **FIX 6: RQ3c Allocators Table (Results Section)**
+
+**Table:** `tab:rq3c_allocators`  
+**Location:** ~line 1760 (RQ3c Answer)
+
+**Current:**
+```latex
+\textbf{Answer to RQ3c:} Allocator effects are not independent. Fixed provides the strongest global robustness for \texttt{iCPursuitNeuralUCB}
+```
+
+**Fixed:**
+```latex
+\textbf{Answer to RQ3c:} Allocator effects are not independent. As summarized in \Cref{tab:rq3c_allocators}, Fixed provides the strongest global robustness for \texttt{iCPursuitNeuralUCB}
+```
+
+---
+
+### **📊 IMPACT**
+
+**Before:** 5/11 tables cited (45%)  
+**After:** 11/11 tables cited (100%) ✅
+
+- ✅ All tables now properly referenced
+- ✅ Readers guided to supporting data at the right moment
+- ✅ Meets IEEE formatting standards
+- ✅ Improved narrative flow
+- ✅ No structural changes to tables needed
+
+---
+
+**Status:** In Progress (applied in `main.tex`; pending final review)  
+**Supersedes:** C-019 (which only tracked 2 of the 6 missing citations)  
+**Related tasks:** T-2026-007, T-2025-011
+
+---
