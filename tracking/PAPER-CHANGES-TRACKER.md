@@ -46,7 +46,7 @@
 | C-021 | 2026-02-16 | Abstract | Two versions exist | Choose final abstract version | TBD |  | T-2026-007, T-2025-011 | Needs advisor decision |
 | C-022 | 2026-02-16 | Introduction Cleanup | Commented blocks remain | Remove commented intro drafts; keep C-### markers | TBD |  | T-2026-007, T-2025-011 |  |
 | C-023 | 2026-02-16 | Submission Hygiene | Anonymous submission decision | Decide anonymous vs non-anonymous; update authors/acks accordingly | TBD |  | T-2026-007, T-2025-011 | Needs advisor approval |
-| C-024 | 2026-02-16 | RQ Section Flow | Answers appear in RQ section | Move detailed answers to Results; keep questions in RQ section | TBD |  | T-2026-007, T-2025-011 |  |
+| C-024 | 2026-02-16 | RQ Section Flow | Answers appear in RQ section | Move detailed answers to Results; keep questions in RQ section | TBD |  | T-2026-007, T-2025-011 | Needs Dan approval |
 | C-025 | 2026-02-16 | RQ Scope Clarification | Scope/novelty unclear | Add prior-work citations or clarify novelty statement | TBD |  | T-2026-007, T-2025-011 | Needs advisor input |
 | C-026 | 2026-02-16 | Cleanup | Resolved comment markers remain | Remove resolved comment markers | TBD |  | T-2026-007, T-2025-011 |  |
 | C-027 | 2026-02-16 | Experimental Design | Missing design rationale | Add 1 sentence per major design choice | TBD |  | T-2026-007, T-2025-011 |  |
@@ -56,8 +56,95 @@
 | C-004 | 2026-02-14 | Results Section | Improve continuity; organize by RQs | Add short “RQ claim → evidence → takeaway” scaffolding per subsection | TBD |  | T-2025-011 |  |
 | C-005 | 2026-02-14 | Limitations/Future Work | Resolve duplication notes in commented blocks | Remove/retire duplicate commented section after confirming nothing unique | TBD |  | T-2025-011 |  |
 | C-006 | 2026-02-14 | Submission Hygiene | Anonymity question + acknowledgments | Decide anonymous vs non-anonymous; adjust authors/acks accordingly | TBD |  | T-2025-011 |  |
+| C-031 | 2026-02-17 | Title | Comment: paper focuses on entanglement routing; include in title | Update title to explicitly include “entanglement routing” and clarify evaluation framing | Done |  | T-2026-007, T-2025-011 | DECISION: “Threat-Aware Evaluation of Quantum Entanglement Routing and Qubit Allocation via Hybrid Contextual Bandits” (concise, domain-clear, evaluation-framed) |
+| C-032 | 2026-02-17 | Abstract | Comment: abstract confusing; unclear if evaluation-only vs new contributions; too many numbers; unclear referents (“they”); sentence clarity | Rewrite abstract for clarity: (1) state contribution type carefully, (2) reduce numeric density (keep 1 scale indicator), (3) fix ambiguous referents, (4) remove duplicate/alternate abstract + inline comments from compiled draft, (5) reconcile count consistency with body or avoid counts | Planned |  | T-2026-007, T-2025-011 | Visible: abstract block + inline Dan note in `main.tex` |
+| C-033 | 2026-02-17 | Introduction | Comment: “Yet, reliable end-to-end entanglement…” needs citation | Add citation(s) supporting entanglement fragility + probabilistic swapping + decoherence/interference claims | Planned |  | T-2026-007, T-2025-015 | Visible: intro paragraph in `main.tex` |
+| C-034 | 2026-02-17 | Introduction | Comment: may need more/updated citations for swapping waiting-time compounding | Audit and update the waiting-time citation(s) around entanglement swapping stochastic waiting-time effects | Planned |  | T-2026-007, T-2025-015 | Visible: waiting-time sentence + current cite in `main.tex` |
+| C-035 | 2026-02-17 | Introduction | Comment: remove “Gap in Prior Work” subsection to keep flow consistent | Remove/merge the “Gap in Prior Work” subsection heading and integrate content into the surrounding intro flow | Planned |  | T-2026-007, T-2025-011 | Visible: `\\subsection{Gap in Prior Work}` in `main.tex` |
+| C-036 | 2026-02-17 | Introduction | Comment: move “In total, we report about … evaluations …” to Results/Discussion | Relocate the evaluation-count sentence to Results/Discussion (keep intro high-level) | Planned |  | T-2026-007, T-2025-011 | Visible: intro “Our Approach and Evaluation Scope” area in `main.tex` |
+| C-037 | 2026-02-17 | Contributions | Comment: reword “Unified, reproducible benchmarking across bandit families” bullet | Rewrite contribution bullet for readability and tighter claim language; also standardize EXP3 citation key usage across manuscript | Planned |  | T-2026-007, T-2025-011 | Visible: contributions list in `main.tex` |
+| C-038 | 2026-02-17 | Framework Section | Comment: speak more about the layers (Algorithmic Framework) | Expand the framework description to explicitly name/describe the layers (env/threat/allocator/capacity/learner/metrics) | Planned |  | T-2026-007, T-2025-011 | Visible: “Algorithmic Framework” section in `main.tex` |
+| C-039 | 2026-02-17 | Cross-Testbed Validation | Comment: mentions noise models/settings without explaining what they are/how they work | Add brief explanations/citations for noise models/settings; ensure Paper 7 is described accurately (noise channels + benchmarking, not “context-driven rewards”) and align the Key Contributions parenthetical with the detailed section | Planned |  | T-2026-007, T-2025-011 | Visible: cross-testbed bullets + contributions text in `main.tex` |
 
 ---
+
+## C-031–C-039 Comment Details (Ask → Meaning → Issue → Proposed Fix)
+
+Use these blocks to preserve the intent of the comment and keep fixes reviewable before touching `main.tex`.
+
+### C-031 — Title: include entanglement routing
+- **Ask:** Include entanglement routing in the title if the paper focuses on it.
+- **Meaning:** The title should reflect the paper’s primary topic(s), not only “qubit allocation”.
+- **Issue:** Current title may under-signal the routing contribution and mis-set reader expectations.
+- **Proposed fix:** Update the title to explicitly include “entanglement routing” (keep qubit allocation if still central).
+- **Deep notes (from report):**
+  - Current title says “stochastic,” but the paper emphasizes threat escalation (Markov/Adaptive/OnlineAdaptive) and “capacity paradox” behavior; avoid underselling scope.
+  - Candidate title directions to consider: “bandit learning under threats,” “context-aware bandits,” or “adversarial-robust bandits.”
+- **Decision (2026-02-17):**
+  - Selected final title: \textit{Threat-Aware Evaluation of Quantum Entanglement Routing and Qubit Allocation via Hybrid Contextual Bandits}.
+  - Rationale: concise, domain-clear, evaluation-framed, and better aligned with entanglement routing + threat taxonomy scope than the prior “stochastic” title.
+
+### C-032 — Abstract clarity + contribution type
+- **Ask:** Abstract is confusing; clarify whether this is evaluation-only or includes new contributions; reduce number density; fix ambiguous referents (“they”); fix sentence clarity.
+- **Meaning:** Make the abstract readable on first pass and explicit about contribution type.
+- **Issue:** Dense numeric listing + ambiguous pronouns makes the primary takeaway hard to parse; one sentence was flagged as unclear.
+- **Proposed fix:** Rewrite abstract with a simple structure: (1) problem + scope, (2) what we contribute (evaluation framework + any new model/family), (3) 1–2 key findings (keep only essential numbers; move deep numerics to Results).
+- **Deep notes (from report):**
+  - Remove duplicate/alternate abstract draft and any inline author notes from the compiled manuscript.
+  - Reduce numeric overload: keep **one** scale indicator (either internal-corpus breadth or external-testbed span), not multiple ranges + multiple counts.
+  - Avoid pronouns like “they”: name the subject (“pursuit–neural hybrids…”).
+  - Count consistency: Intro uses different totals (models/evaluations) than the abstract; either reconcile via “curated corpora” wording or avoid the counts in abstract.
+  - Be careful with novelty wording: don’t over-claim “new algorithms” unless the paper explicitly positions CPursuitNeuralUCB/iCPursuitNeuralUCB as introduced here (vs baseline import).
+
+### C-033 — Intro claim needs citation (entanglement fragility / probabilistic swapping / decoherence)
+- **Ask:** Add citation for: “Yet, reliable end-to-end entanglement is difficult to sustain…”
+- **Meaning:** Anchor the claim in prior work (foundational quantum networking/repeater citations).
+- **Issue:** Statement reads as a factual claim but is currently not explicitly supported by a citation.
+- **Proposed fix:** Add 1–2 citations immediately supporting fragility + probabilistic generation/swapping + decoherence/interference.
+- **Deep notes (from report):** Cross-testbed sources can support this claim (e.g., Chaudhary testbed and/or QBGP) in addition to foundational repeater/swapping citations.
+
+### C-034 — Update/expand waiting-time citation(s)
+- **Ask:** May need more/updated citations for: “entanglement swapping introduces stochastic waiting-time effects…”
+- **Meaning:** Ensure the cited work is the right authority and add a second supporting cite if needed.
+- **Issue:** Single citation may be outdated/insufficient for the exact claim phrasing.
+- **Proposed fix:** Audit the citation(s) for that sentence; add/replace with stronger or additional references if applicable.
+- **Deep notes (from report):** If adding a second citation, prefer a repeater waiting-time / memory-decoherence authority (not just “routing exists”).
+
+### C-035 — Intro flow: remove “Gap in Prior Work” subsection heading
+- **Ask:** “You can remove these sections. Make the flow consistent.” (Gap in Prior Work)
+- **Meaning:** Avoid abrupt heading/structure changes that break narrative flow.
+- **Issue:** The heading may be redundant with the surrounding intro flow and reads like a structural speed bump.
+- **Proposed fix:** Remove/merge the subsection heading and integrate the content into the surrounding intro (keep the same ideas).
+- **Deep notes (from report):** If we remove only this one heading while keeping other intro subheadings, flow may become *less* consistent; consider either (a) keep but rename, or (b) convert intro subheadings to a consistent paragraph-style scheme.
+
+### C-036 — Move evaluation counts out of intro
+- **Ask:** Move: “In total, we report about … evaluations …” to Results/Discussion.
+- **Meaning:** Keep intro high-level; move detailed corpus accounting to where results/methods are discussed.
+- **Issue:** Large numeric accounting in the intro distracts from the problem/approach message.
+- **Proposed fix:** Relocate the evaluation-count sentence to Study Design (preferred) or Results/Discussion; keep intro high-level.
+
+### C-037 — Reword contributions bullet (benchmarking across families)
+- **Ask:** Reword the “Unified, reproducible benchmarking across bandit families” contribution bullet.
+- **Meaning:** Keep the claim but make it easier to read and less jargon-heavy.
+- **Issue:** Current bullet is long and reads as a dense citation dump.
+- **Proposed fix:** Rewrite as a shorter bullet that states: apples-to-apples benchmarking across decision-rule families under a shared threat taxonomy (citations can remain but be lighter).
+- **Deep notes (from report):** Standardize EXP3 citation key usage across the manuscript (avoid mixed keys like `auer2002exp3` vs `auer2002nonstochastic`).
+
+### C-038 — Framework: explain the layers
+- **Ask:** “You need to speak more about the layers” (Algorithmic Framework).
+- **Meaning:** Readers should understand the stack (environment/threat/allocator/capacity/learner/metrics) without guessing.
+- **Issue:** Framework description may not explicitly enumerate layers and their interfaces.
+- **Proposed fix:** Add a brief layer breakdown (1–2 sentences per layer) and state what inputs/outputs pass between layers.
+- **Deep notes (from report):** Framework figure lists only a subset of algorithms (hybrid set) in the “Configuration” block; text should clarify the figure is illustrative/corpus-specific and that the full evaluation spans the complete model portfolio.
+
+### C-039 — Cross-testbed: explain referenced models/settings
+- **Ask:** You mention noise models/settings but don’t discuss what/how they work.
+- **Meaning:** Provide minimal interpretive context so testbed configs are understandable to non-authors.
+- **Issue:** Cross-testbed bullets list model names/params without explanation.
+- **Proposed fix:** Add 1-line explanations (and/or citations) for the named noise models and key parameter meanings.
+- **Deep notes (from report):**
+  - Align the Key Contributions “diverse noise models” parenthetical with what each cited testbed actually does.
+  - Correct Paper 7 description: QBGP uses noise-channel modeling (e.g., depolarizing channels) + benchmarking-driven fidelity estimation; avoid “context-driven rewards/dynamics” wording.
 
 ## C-002 Draft Fix: Introduction — Dan’s “Quantum path determination is unique” paragraph
 
