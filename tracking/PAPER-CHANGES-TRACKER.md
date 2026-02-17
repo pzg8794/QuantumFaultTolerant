@@ -43,7 +43,7 @@
 | C-017 | 2026-02-16 | Figure 12 (Legend) | Legend cramped (4 columns) | Reduce legend columns to 2; set font `\scriptsize` | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` |
 | C-018 | 2026-02-16 | Table III (Algorithm Portfolio) | Overflow to right column | Fit to column width (tabularx + reduced padding) | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` |
 | C-020 | 2026-02-16 | Table Citations (Complete Audit) | Devroop: "refer the tables per your findings" | Add missing `\Cref{...}` references for all uncited tables | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` |
-| C-021 | 2026-02-16 | Abstract | Two versions exist | Choose final abstract version | TBD |  | T-2026-007, T-2025-011 | Needs advisor decision |
+| C-021 | 2026-02-16 | Abstract | Two versions exist | Choose final abstract version | Done |  | T-2026-007, T-2025-011 | Resolved via C-032 (single abstract retained) |
 | C-022 | 2026-02-16 | Introduction Cleanup | Commented blocks remain | Remove commented intro drafts; keep C-### markers | TBD |  | T-2026-007, T-2025-011 |  |
 | C-023 | 2026-02-16 | Submission Hygiene | Anonymous submission decision | Decide anonymous vs non-anonymous; update authors/acks accordingly | TBD |  | T-2026-007, T-2025-011 | Needs advisor approval |
 | C-024 | 2026-02-16 | RQ Section Flow | Answers appear in RQ section | Move detailed answers to Results; keep questions in RQ section | TBD |  | T-2026-007, T-2025-011 | Needs Dan approval |
@@ -57,7 +57,7 @@
 | C-005 | 2026-02-14 | Limitations/Future Work | Resolve duplication notes in commented blocks | Remove/retire duplicate commented section after confirming nothing unique | TBD |  | T-2025-011 |  |
 | C-006 | 2026-02-14 | Submission Hygiene | Anonymity question + acknowledgments | Decide anonymous vs non-anonymous; adjust authors/acks accordingly | TBD |  | T-2025-011 |  |
 | C-031 | 2026-02-17 | Title | Comment: paper focuses on entanglement routing; include in title | Update title to explicitly include “entanglement routing” and clarify evaluation framing | Done |  | T-2026-007, T-2025-011 | DECISION: “Threat-Aware Evaluation of Quantum Entanglement Routing and Qubit Allocation via Hybrid Contextual Bandits” (concise, domain-clear, evaluation-framed) |
-| C-032 | 2026-02-17 | Abstract | Comment: abstract confusing; unclear if evaluation-only vs new contributions; too many numbers; unclear referents (“they”); sentence clarity | Rewrite abstract for clarity: (1) state contribution type carefully, (2) reduce numeric density (keep 1 scale indicator), (3) fix ambiguous referents, (4) remove duplicate/alternate abstract + inline comments from compiled draft, (5) reconcile count consistency with body or avoid counts | Planned |  | T-2026-007, T-2025-011 | Visible: abstract block + inline Dan note in `main.tex` |
+| C-032 | 2026-02-17 | Abstract | Comment: abstract confusing; unclear if evaluation-only vs new contributions; too many numbers; unclear referents (“they”); sentence clarity | Rewrite abstract for clarity: (1) state contribution type carefully, (2) reduce numeric density (keep 1 scale indicator), (3) fix ambiguous referents, (4) remove duplicate/alternate abstract + inline comments from compiled draft, (5) reconcile count consistency with body or avoid counts | Done |  | T-2026-007, T-2025-011 | Approved draft applied in `main.tex` (4-paragraph structure; reduced numeric overload; clarified scope/novelty language) |
 | C-033 | 2026-02-17 | Introduction | Comment: “Yet, reliable end-to-end entanglement…” needs citation | Add citation(s) supporting entanglement fragility + probabilistic swapping + decoherence/interference claims | Planned |  | T-2026-007, T-2025-015 | Visible: intro paragraph in `main.tex` |
 | C-034 | 2026-02-17 | Introduction | Comment: may need more/updated citations for swapping waiting-time compounding | Audit and update the waiting-time citation(s) around entanglement swapping stochastic waiting-time effects | Planned |  | T-2026-007, T-2025-015 | Visible: waiting-time sentence + current cite in `main.tex` |
 | C-035 | 2026-02-17 | Introduction | Comment: remove “Gap in Prior Work” subsection to keep flow consistent | Remove/merge the “Gap in Prior Work” subsection heading and integrate content into the surrounding intro flow | Planned |  | T-2026-007, T-2025-011 | Visible: `\\subsection{Gap in Prior Work}` in `main.tex` |
@@ -95,6 +95,39 @@ Use these blocks to preserve the intent of the comment and keep fixes reviewable
   - Avoid pronouns like “they”: name the subject (“pursuit–neural hybrids…”).
   - Count consistency: Intro uses different totals (models/evaluations) than the abstract; either reconcile via “curated corpora” wording or avoid the counts in abstract.
   - Be careful with novelty wording: don’t over-claim “new algorithms” unless the paper explicitly positions CPursuitNeuralUCB/iCPursuitNeuralUCB as introduced here (vs baseline import).
+
+
+**Approved draft (2026-02-17) — apply to `main.tex`:**
+```tex
+Quantum entanglement routing requires dynamic path selection and qubit allocation
+under noisy and adversarial conditions. Existing routing approaches often assume
+stationary link behavior, decouple selection from allocation, or rely on offline
+optimization—assumptions that can fail when link fidelities drift and disruptions
+adapt online.
+
+In this paper, we present a systematic threat-aware evaluation of bandit algorithms
+(contextual, adversarial, and hybrid) for joint path selection and qubit allocation
+in quantum networks, introducing pursuit--neural hybrid variants that balance
+stochastic efficiency with adversarial robustness. We evaluate 13 algorithms across
+five threat scenarios while varying allocator policies and replay-capacity semantics.
+
+Pursuit--neural hybrids emerge as the most robust family, outperforming non-contextual
+bandit baselines by 18--24 percentage points and sustaining higher worst-case performance
+under strategic attacks than adversarial-first designs.
+
+We validate robustness through cross-testbed evaluation on three external quantum
+network simulators, confirming consistent robustness trends across diverse topologies
+and noise models while exposing scale- and physics-dependent performance limitations.
+```
+
+**Decision rationale (why this wording):**
+- Dan’s core feedback was “too many numbers” in the abstract; we removed the full design-grid accounting (e.g., configs/allocators/capacity settings and per-testbed efficiency ranges).
+- We adopted a clear 4-part structure (problem/gap → what we do → headline finding → validation/impact) while keeping the wording evaluation-framed.
+- We fixed two clarity traps that could trigger new reviewer confusion:
+  - Avoided partial parenthetical lists (e.g., implying the full threat set but listing only examples).
+  - Replaced “context-aware stochastic bandits” framing with an umbrella “threat-aware” framing (contextual, adversarial, hybrid) to match scope.
+- We clarified “novelty vs evaluation” language by using “introducing pursuit--neural hybrid variants” (rather than “including”), without expanding into a long novelty claim.
+- Capacity-paradox details remain in the body; we intentionally did not restate them in the abstract to keep numeric density low.
 
 ### C-033 — Intro claim needs citation (entanglement fragility / probabilistic swapping / decoherence)
 - **Ask:** Add citation for: “Yet, reliable end-to-end entanglement is difficult to sustain…”
@@ -454,6 +487,7 @@ These mirror the active paper-related items in the canonical tracker so the pape
 | 2026-02-16 | main.tex | Consolidated RQ2 supporting questions into two items (C-008) | Reduce duplication per Devroop |  |  |
 | 2026-02-16 | main.tex | Figure/table formatting fixes (C-011, C-012, C-013, C-015, C-016, C-017, C-018) | Improve layout/readability |  |  |
 | 2026-02-16 | main.tex | Added missing table citations (C-020) | Ensure all tables are cited |  | Pending review |
+| 2026-02-17 | main.tex | Updated title to include entanglement routing (C-031) | Align title with paper scope |  |  |
 
 ---
 
