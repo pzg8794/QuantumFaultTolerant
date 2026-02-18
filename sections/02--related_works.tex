@@ -19,9 +19,9 @@ The chosen time span captures the modern finite-time theory for stochastic and a
     \begin{description}[leftmargin=1.5em]
       \item \textit{Included:}
         \begin{enumerate}[leftmargin=1.8em]
-          \item Canonical stochastic and adversarial MAB algorithms with regret guarantees~\cite{auer2002ucb1,thompson1933likelihood,auer2002nonstochastic}.
-          \item Contextual neural bandits that scale action selection to structured/high-dimensional contexts~\cite{li2010contextual,zhou2020neuralucb,zhang2020neural}.
-          \item Predictive/informed contextual bandits that integrate forecasting or learned dynamics~\cite{zhang2021icmab,box2015time}.
+          \item Canonical stochastic and adversarial MAB algorithms with regret guarantees~\cite{auer2002finite,thompson1933likelihood,auer2002nonstochastic}.
+          \item Contextual neural bandits that scale action selection to structured/high-dimensional contexts~\cite{li2010contextual,zhou2020neuralucb,zhang2022neuralts}.
+          \item Predictive/informed contextual bandits that integrate forecasting or learned dynamics~\cite{kar2024icmab,box2015time}.
           \item Hybrid methods that combine mechanisms across regimes~\cite{thathachar2011networks}.
           \item Cross-domain applications where the same mechanism is instantiated under different reward and constraint models.
         \end{enumerate}
@@ -37,11 +37,11 @@ The chosen time span captures the modern finite-time theory for stochastic and a
 
 \subsection{Foundational Bandits and Regret Regimes}
 
-Foundational results formalize the exploration--exploitation trade-off and provide regret guarantees that define the efficiency--robustness envelope. In stochastic i.i.d.\ settings, UCB-style optimism and Thompson-style posterior sampling achieve logarithmic-in-horizon regret under standard gap conditions~\cite{auer2002ucb1,thompson1933likelihood}. In adversarial settings, EXP3 attains sublinear regret without stochastic assumptions, trading some benign-regime efficiency for worst-case protection~\cite{auer2002nonstochastic}. These regimes motivate why quantum routing evaluations should explicitly separate \emph{natural noise} from \emph{coordinated disruption}: the learning objective and the appropriate safety guarantees depend on the feedback model.
+Foundational results formalize the exploration--exploitation trade-off and provide regret guarantees that define the efficiency--robustness envelope. In stochastic i.i.d.\ settings, UCB-style optimism and Thompson-style posterior sampling achieve logarithmic-in-horizon regret under standard gap conditions~\cite{auer2002finite,thompson1933likelihood}. In adversarial settings, EXP3 attains sublinear regret without stochastic assumptions, trading some benign-regime efficiency for worst-case protection~\cite{auer2002nonstochastic}. These regimes motivate why quantum routing evaluations should explicitly separate \emph{natural noise} from \emph{coordinated disruption}: the learning objective and the appropriate safety guarantees depend on the feedback model.
 
 \subsection{Contextual and Neural Bandits}
 
-Contextual bandits condition decisions on observable state, enabling structured decision-making when arms are not exchangeable. LinUCB models rewards as linear in context and selects actions via a confidence bonus~\cite{li2010contextual}. NeuralUCB and NeuralTS generalize this principle by learning representations with deep networks while retaining uncertainty-aware action selection through confidence-style bounds or sampling in representation space~\cite{zhou2020neuralucb,zhang2020neural}. The shared abstraction is mechanism-level:
+Contextual bandits condition decisions on observable state, enabling structured decision-making when arms are not exchangeable. LinUCB models rewards as linear in context and selects actions via a confidence bonus~\cite{li2010contextual}. NeuralUCB and NeuralTS generalize this principle by learning representations with deep networks while retaining uncertainty-aware action selection through confidence-style bounds or sampling in representation space~\cite{zhou2020neuralucb,zhang2022neuralts}. The shared abstraction is mechanism-level:
 \emph{learn a value predictor, maintain an uncertainty estimate over that predictor, and act optimistically or probabilistically.}
 In quantum routing, the natural context includes topology/hop structure, link-quality indicators, and any measurable signals of load, memory, or temporal drift.
 
@@ -51,7 +51,7 @@ Adversarial bandits prioritize worst-case guarantees (e.g., EXP3-style randomiza
 
 \subsection{Predictive and Informed Bandits}
 
-Predictive (informed) contextual bandits augment the decision rule with a forecasting or world-model component so that learning can anticipate drift rather than purely react to it. iCMAB exemplifies this direction by coupling contextual decision rules with an explicit predictive model of future context dynamics~\cite{zhang2021icmab}. In our setting, we instantiate an informed variant by warming up predictive context with a classical time-series forecaster (ARIMA)~\cite{box2015time}. The core idea is again mechanism-level:
+Predictive (informed) contextual bandits augment the decision rule with a forecasting or world-model component so that learning can anticipate drift rather than purely react to it. iCMAB exemplifies this direction by coupling contextual decision rules with an explicit predictive model of future context dynamics~\cite{kar2024icmab}. In our setting, we instantiate an informed variant by warming up predictive context with a classical time-series forecaster (ARIMA)~\cite{box2015time}. The core idea is again mechanism-level:
 \emph{forecasting can augment the context signal}, but it does not replace the need for robust exploration and allocation policies under strategic threats.
 
 \subsection{Quantum Network Routing with Bandits}

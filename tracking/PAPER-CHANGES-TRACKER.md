@@ -68,6 +68,7 @@
 | C-040 | 2026-02-18 | Build / Appendix Ref | LaTeX warning: `app:data_artifacts` undefined (Appendix ref referenced in Results) | Add/confirm Appendix section with `\\label{app:data_artifacts}` (or update refs to correct label); remove “(or Supplementary Material)” placeholder if not applicable | Deferred |  | T-2026-007, T-2025-011 | Snippet in Results: “...provided in Appendix~\\ref{app:data_artifacts} ...” |
 | C-041 | 2026-02-18 | Build / LaTeX Output | LaTeX warning: “Missing character: There is no ` in font nullfont!” (appears near RQ2 supporting-answers block in log) | Identify and remove/escape stray backtick(s) causing the warning (keep semantics unchanged) | Deferred |  | T-2026-007, T-2025-011 | Locus per `main.log`: warnings emitted around input lines ~962–974 (RQ2→RQ3 transition); likely tied to hyperref/bookmark string generation rather than visible glyphs |
 | C-042 | 2026-02-18 | Conclusion | Dan: “Not sure where this should go” (classical-vs-quantum routing paragraph) | Comment out the redundant background paragraph in the Conclusion (already covered in Intro) and tighten the Conclusion body into 2–3 result-focused paragraphs | Done | TBD | T-2026-007, T-2025-011 | Applied in `main.tex` (Dan note + redundant paragraph commented; conclusion rewritten to avoid repetition) |
+| C-043 | 2026-02-18 | References / BibTeX | Audit: inconsistent/duplicate BibTeX keys (risk of wrong/missing citations) | Standardize on one key per paper; remove duplicate/placeholder BibTeX entries; verify all `\\cite{...}` keys resolve | Done | TBD | T-2026-007, T-2025-015 | Standardized keys used in `main.tex`/`02--related_works.tex`; verified no missing cite keys; no remaining duplicate DOI/title groups in `refs.bib` |
 
 ---
 
@@ -201,7 +202,7 @@ and noise models while exposing scale- and physics-dependent performance limitat
 
 **Decision (approved wording):**
 ```tex
-\item \textbf{Unified, reproducible apples-to-apples benchmarking:} We evaluate adversarial (EXP3-family), contextual (CMAB/iCMAB), and hybrid pursuit--neural bandit policies under a shared threat taxonomy, enabling direct comparison of robustness--efficiency tradeoffs~\cite{auer2002nonstochastic,huang2025quantum,chu2011contextual,kar2024icmab}.
+\item \textbf{Unified, reproducible apples-to-apples benchmarking:} We evaluate adversarial (EXP3-family), contextual (CMAB/iCMAB), and hybrid pursuit--neural bandit policies under a shared threat taxonomy, enabling direct comparison of robustness--efficiency tradeoffs~\cite{auer2002nonstochastic,huang2024quantum,chu2011contextual,kar2024icmab}.
 ```
 
 **Decision rationale (citation key):**
@@ -362,10 +363,10 @@ Available quantum routing papers:
 
 | Subsection | Paper Attribution Status | Issues |
 |---|---|---|
-| **Foundational Bandits and Regret Regimes** | ✓ All papers explicitly named | auer2002ucb1 (UCB), thompson1933likelihood (Thompson Sampling), auer2002nonstochastic (EXP3) all explicitly tied to their algorithms |
-| **Contextual and Neural Bandits** | ✓ All papers explicitly named | li2010contextual (LinUCB), zhou2020neuralucb (NeuralUCB), zhang2020neural (NeuralTS) all explicitly tied to their contributions |
+| **Foundational Bandits and Regret Regimes** | ✓ All papers explicitly named | auer2002finite (UCB1), thompson1933likelihood (Thompson Sampling), auer2002nonstochastic (EXP3) all explicitly tied to their algorithms |
+| **Contextual and Neural Bandits** | ✓ All papers explicitly named | li2010contextual (LinUCB), zhou2020neuralucb (NeuralUCB), zhang2022neuralts (NeuralTS) all explicitly tied to their contributions |
 | **Adversarial and Hybrid Robustness** | ✓ Papers named | auer2002nonstochastic (EXP3), thathachar2011networks (pursuit/hybrid) explicitly cited |
-| **Predictive and Informed Bandits** | ✓ Papers explicitly named | zhang2021icmab (iCMAB), box2015time (ARIMA forecasting) explicitly tied to contributions |
+| **Predictive and Informed Bandits** | ✓ Papers explicitly named | kar2024icmab (informed contextual bandits / iCMAB framing), box2015time (ARIMA forecasting) explicitly tied to contributions |
 | **Quantum Network Routing with Bandits** | ✓ Implemented | Added explicit Huang attribution + LinkSelFiE contrast + adjacent-routing positioning + Wang (adaptive) comparison; added checklist tables to prevent over-claiming |
 
 ### Summary

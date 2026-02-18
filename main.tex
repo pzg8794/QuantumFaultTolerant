@@ -305,12 +305,12 @@ Quantum networks, entanglement routing, multi-armed bandits, adversarial learnin
 
 Quantum entanglement distribution is a foundational primitive of the quantum Internet, enabling applications ranging from quantum key distribution (QKD) to distributed quantum computing~\cite{kimble2008quantum,wehner2018quantum,wootters1982single,bennett1993teleporting}. Yet, reliable end-to-end entanglement is difficult to sustain: quantum states are fragile, entanglement generation and swapping are probabilistic, and performance degrades rapidly under decoherence and interference~\cite{briegel1998quantum,dahlberg2021netsquid,zukowski1993event}. In repeater-based architectures~\cite{briegel1998quantum}, entanglement swapping introduces stochastic waiting-time effects that compound along multi-hop routes~\cite{wang2019waiting}. These properties create a sequential decision problem in which a routing agent must repeatedly select among candidate paths while learning from noisy outcomes, making multi-armed bandits (MABs) a natural abstraction for online path selection and adaptation~\cite{lattimore2020bandit,bubeck2012regret}.
 
-Quantum routing differs fundamentally from classical packet switching because the underlying resource is \emph{entanglement}, not transferable data. Quantum states cannot be copied or amplified due to the no-cloning theorem~\cite{wootters1982single}, rendering standard store-and-forward buffering impossible. Instead, communication relies on establishing entanglement---a consumable resource constrained by memory coherence times and operation-induced fidelity loss---and then consuming that entanglement to support protocols such as teleportation~\cite{bennett1993teleporting}. Furthermore, entanglement swapping succeeds only with a non-unit probability~\cite{zukowski1993event}, making link availability stochastic rather than deterministic. Consequently, routing must jointly optimize success probability and fidelity under uncertainty that evolves over time~\cite{li2025multipath,wang2025learning,huang2025quantum}.
+Quantum routing differs fundamentally from classical packet switching because the underlying resource is \emph{entanglement}, not transferable data. Quantum states cannot be copied or amplified due to the no-cloning theorem~\cite{wootters1982single}, rendering standard store-and-forward buffering impossible. Instead, communication relies on establishing entanglement---a consumable resource constrained by memory coherence times and operation-induced fidelity loss---and then consuming that entanglement to support protocols such as teleportation~\cite{bennett1993teleporting}. Furthermore, entanglement swapping succeeds only with a non-unit probability~\cite{zukowski1993event}, making link availability stochastic rather than deterministic. Consequently, routing must jointly optimize success probability and fidelity under uncertainty that evolves over time~\cite{li2025multipath,wang2025learning,huang2024quantum}.
 
 However, existing quantum routing research often evaluates algorithms under \emph{incompatible assumptions, metrics, or threat models}, complicating direct comparisons and obscuring deployment tradeoffs. Two streams are especially prominent:
 
 \begin{enumerate}
-\item \textbf{Adversarial-first approaches} (\eg EXP3-family designs~\cite{auer2002nonstochastic,huang2025quantum}) assume worst-case link behavior and prioritize robustness under attack, often sacrificing stochastic efficiency.
+\item \textbf{Adversarial-first approaches} (\eg EXP3-family designs~\cite{auer2002nonstochastic,huang2024quantum}) assume worst-case link behavior and prioritize robustness under attack, often sacrificing stochastic efficiency.
 \item \textbf{Stochastic/contextual-first approaches} (\eg contextual and informed CMAB/iCMAB variants~\cite{chu2011contextual,wang2025learning,kar2024icmab}) leverage predictive environmental structure for efficiency under natural noise, but offer limited evidence under coordinated adaptive adversaries.
 \end{enumerate}
 
@@ -327,7 +327,7 @@ Allocator choice and replay/capacity semantics are typically treated as implemen
 
 \subsection{Our Approach and Evaluation Scope}
 
-To address these gaps, we have developed a \emph{robust routing evaluation framework} that compares adversarial-first (EXP3-family), stochastic/contextual-first (CMAB/iCMAB-family), and \emph{hybrid pursuit--neural} models (including EXPNeuralUCB~\cite{jie2024expneuralucb}) under a unified threat taxonomy. The overall decision flow is summarized in Fig.~\ref{fig:framework}.
+To address these gaps, we have developed a \emph{robust routing evaluation framework} that compares adversarial-first (EXP3-family), stochastic/contextual-first (CMAB/iCMAB-family), and \emph{hybrid pursuit--neural} models (including EXPNeuralUCB~\cite{huang2024quantum}) under a unified threat taxonomy. The overall decision flow is summarized in Fig.~\ref{fig:framework}.
 % \begin{figure}[htbp]
 % \centering
 % \includegraphics[width=0.9\linewidth]{figures/flowchart.pdf}
@@ -352,7 +352,7 @@ A central empirical finding challenges conventional intuition: increasing replay
 \subsection{Key Contributions}
 
 \begin{itemize}[leftmargin=2em]
-\item \textbf{Unified, reproducible apples-to-apples benchmarking:} We evaluate adversarial (EXP3-family), contextual (CMAB/iCMAB), and hybrid pursuit--neural bandit policies under a shared threat taxonomy, enabling direct comparison of robustness--efficiency tradeoffs~\cite{auer2002nonstochastic,huang2025quantum,chu2011contextual,kar2024icmab}.
+\item \textbf{Unified, reproducible apples-to-apples benchmarking:} We evaluate adversarial (EXP3-family), contextual (CMAB/iCMAB), and hybrid pursuit--neural bandit policies under a shared threat taxonomy, enabling direct comparison of robustness--efficiency tradeoffs~\cite{auer2002nonstochastic,huang2024quantum,chu2011contextual,kar2024icmab}.
 
 \item \textbf{Cross-testbed validation at multiple scales:} We validate our algorithms on three external quantum network testbeds from prior work~\cite{chaudhary2023quantum,liu2024qbgp,clayton2024quarc}, spanning 15--100 nodes, 4--15 routing paths, and diverse evaluation settings (stochastic gate/channel errors, benchmarking-driven fidelity estimation and online path selection, and fusion-based entanglement). Using scenario-aggregated metrics across all five threats, model efficiencies span 69.6--78.0\% on Papers 2/7 and 42.5--44.1\% on Paper 12, indicating strong topology/physics dependence and clear mid-scale fusion-network limitations (\S\ref{sec:testbed_comparison}).
 
@@ -447,7 +447,7 @@ Quantum networks rely on entanglement distribution across repeaters and end-node
 
 Quantum teleportation~\cite{bennett1993teleporting} enables qubit transmission by consuming shared entanglement between nodes, while entanglement swapping~\cite{zukowski1993event} at repeaters extends entanglement over long distances by stitching together shorter entangled segments. Because routing decisions must be made repeatedly from noisy outcomes and time-varying link conditions, quantum path selection naturally becomes a \emph{sequential decision problem under uncertainty}, for which multi-armed bandits (MABs) provide a principled abstraction~\cite{lattimore2020bandit,bubeck2012regret}.
 
-Traditional quantum routing often assumes either (i) complete topology and stable link characterization enabling offline optimization, or (ii) fixed, heuristically tuned allocation rules. These assumptions can break in realistic deployments where link conditions must be learned online and routing must adapt to demand variability and disruptive events, including strategic interference~\cite{li2025multipath,wang2025learning,huang2025quantum}.
+Traditional quantum routing often assumes either (i) complete topology and stable link characterization enabling offline optimization, or (ii) fixed, heuristically tuned allocation rules. These assumptions can break in realistic deployments where link conditions must be learned online and routing must adapt to demand variability and disruptive events, including strategic interference~\cite{li2025multipath,wang2025learning,huang2024quantum}.
 
 \subsection{The Multi-Armed Bandit Abstraction}
 
@@ -462,7 +462,7 @@ Several bandit variants align with different quantum-network assumptions and thr
 \item \textbf{Predictive/informed bandits} augment decisions with forecasts of future conditions~\cite{kar2024icmab}.
 \end{itemize}
 
-This taxonomy provides a natural lens for quantum routing: stochastic noise motivates contextual/neural modeling, while strategic disruption motivates adversarial robustness~\cite{huang2025quantum}.
+This taxonomy provides a natural lens for quantum routing: stochastic noise motivates contextual/neural modeling, while strategic disruption motivates adversarial robustness~\cite{huang2024quantum}.
 
 \subsection{Allocation and Capacity Semantics}
 
@@ -729,7 +729,7 @@ and \textbf{VISUALIZER} aggregates results into scenario rankings, efficiency cu
 
 \noindent Figure~\ref{fig:framework} is illustrative (one representative configuration); the full evaluated model portfolio
 is summarized in \Cref{tab:setup-algorithm-portfolio}.
-This architecture enables \textbf{systematic ablation} across allocators, algorithms, and threat regimes under consistent capacity semantics, ensuring reproducible comparisons~\cite{wang2025learning,huang2025quantum}.
+This architecture enables \textbf{systematic ablation} across allocators, algorithms, and threat regimes under consistent capacity semantics, ensuring reproducible comparisons~\cite{wang2025learning,huang2024quantum}.
 
 
 
@@ -1094,7 +1094,7 @@ This section specifies the experimental design used to evaluate adaptive quantum
 % Network Configuration
 % ----------------------------------------------------------------------------
 \paragraph*{Network configuration}
-We use a 4-node quantum network with four alternative paths connecting source $S$ to destination $D$ via repeater nodes (\Cref{fig:network_topology}). Paths $P_1$ and $P_4$ have two hops, while $P_2$ and $P_3$ have three hops, matching common small-scale quantum-network architectures and demonstrations~\cite{wehner2018quantum,pompili2021realization}. This topology provides sufficient action-space complexity for bandit learning~\cite{huang2024quantum,expneural2024,dai2020quantum} while keeping exhaustive cross-product sweeps tractable (hundreds of algorithm--scenario--allocator configurations; see \Cref{tab:config_summary}).
+We use a 4-node quantum network with four alternative paths connecting source $S$ to destination $D$ via repeater nodes (\Cref{fig:network_topology}). Paths $P_1$ and $P_4$ have two hops, while $P_2$ and $P_3$ have three hops, matching common small-scale quantum-network architectures and demonstrations~\cite{wehner2018quantum,pompili2021realization}. This topology provides sufficient action-space complexity for bandit learning~\cite{huang2024quantum,dai2020quantum} while keeping exhaustive cross-product sweeps tractable (hundreds of algorithm--scenario--allocator configurations; see \Cref{tab:config_summary}).
 
 Total physical network capacity is fixed at 35 qubits across all experiments, representing resource-constrained early-stage deployments~\cite{simon2017towards}. This induces non-trivial exploration--exploitation tradeoffs: algorithms cannot over-provision all paths. Per-path allocations are determined by the allocator (\Cref{tab:setup-allocators}), enabling controlled comparison of static versus adaptive resource management.
 % \devroop{format the figure. Labels and arrows are out of place a bit.} % RESOLVED by C-011 figure simplification
@@ -1215,7 +1215,7 @@ Scaling applies to replay memory; the 35-qubit physical network capacity remains
 % ----------------------------------------------------------------------------
 \noindent\textit{Adversarial threat taxonomy.}
 We evaluate five scenarios spanning the efficiency--security spectrum: natural stochastic decoherence, Markovian structure, and three grades of adaptive adversarial attacks (\textbf{RQ2}). This taxonomy enables controlled comparisons under matched interference regimes. Hyperparameter settings are summarized in \Cref{tab:setup-hyperparameters}.%
-\cite{huang2024quantum,expneural2024}
+\cite{huang2024quantum}
 
 \begin{table}[ht!]
 \footnotesize
@@ -1226,10 +1226,10 @@ We evaluate five scenarios spanning the efficiency--security spectrum: natural s
 \toprule
 \textbf{Parameter} & \textbf{Algorithm} & \textbf{Value} & \textbf{Ref.} \\
 \midrule
-Neural LR & EXPNeuralUCB & 0.01 & \cite{expneural2024} \\
-          & GNeuralUCB   & 0.2  & \cite{zhou2020neural} \\
+Neural LR & EXPNeuralUCB & 0.01 & \cite{huang2024quantum} \\
+          & GNeuralUCB   & 0.2  & \cite{zhou2020neuralucb} \\
 \addlinespace[2pt]
-Exp. Weight & EXPNeuralUCB & 0.05  & \cite{expneural2024} \\
+Exp. Weight & EXPNeuralUCB & 0.05  & \cite{huang2024quantum} \\
             & EXPUCB       & 0.005 & Tuned \\
 \addlinespace[2pt]
 Pursuit LR & Pursuit family & 0.2 & \cite{thathachar2011networks} \\
@@ -1250,13 +1250,13 @@ Replay ($T_b,T$) & All & $T_b=sF_b,\;T=sF_c$ & \cite{schaul2015prioritized,mnih2
   \cite{huang2024quantum}
 
   \item \small\texttt{Markov} (\textbf{RQ2a--b}): 25\% attack rate using a 4-state transition process. Models state-dependent disruption.%
-  \cite{expneural2024}
+  \cite{huang2024quantum}
 
   \item \small\texttt{Adaptive} (\textbf{RQ2a--b}): 25\% attack rate targeting high-usage paths over a sliding window ($w=50$). Models reactive targeting based on medium-term behavior.%
-  \cite{huang2024quantum,expneural2024}
+  \cite{huang2024quantum}
 
   \item \small\texttt{OnlineAdaptive} (\textbf{RQ2a--b}): 25\% attack rate with exponential memory decay ($\gamma=0.97$) and softmax targeting. Models continuous policy adaptation at the highest threat level.%
-  \cite{huang2024quantum,expneural2024}
+  \cite{huang2024quantum}
 \end{itemize}
 
 % ----------------------------------------------------------------------------
@@ -1276,8 +1276,8 @@ We evaluate 14 algorithms spanning three generations of MAB development plus an 
 \textbf{Phase} & \textbf{Category} & \textbf{Algorithms} \\
 \midrule
 Phase 1 & Classical MAB & LinUCB~\cite{li2010contextual}, LinTS~\cite{agrawal2013thompson}, UCB1~\cite{auer2002finite}, Thompson Sampling~\cite{thompson1933likelihood} \\
-Phase 1--2 & Adversarial & EXP3~\cite{auer2002nonstochastic}, EXPUCB~\cite{expneural2024}, EXPNeuralUCB~\cite{expneural2024} \\
-Phase 2 & Contextual/Neural & GNeuralUCB, NeuralUCB~\cite{zhou2020neural}, NeuralTS~\cite{zhang2020neural}, CEpsilonGreedy, CThompsonSampling \\
+Phase 1--2 & Adversarial & EXP3~\cite{auer2002nonstochastic}, EXPUCB~\cite{huang2024quantum}, EXPNeuralUCB~\cite{huang2024quantum} \\
+Phase 2 & Contextual/Neural & GNeuralUCB, NeuralUCB~\cite{zhou2020neuralucb}, NeuralTS~\cite{zhang2022neuralts}, CEpsilonGreedy, CThompsonSampling \\
 Phase 2--3 & Pursuit-based & CPursuitNeuralUCB (ours) \\
 Phase 3 & Predictive & iCPursuitNeuralUCB (ours) \\
 Baseline & Oracle & Perfect information \\
