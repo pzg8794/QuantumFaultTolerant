@@ -712,6 +712,23 @@ Both are \textbf{always scaled} (even when $s=1$). This separation is critical f
 \item \textbf{MODEL:} Quantum routing stack (algorithms + neural)
 \item \textbf{VISUALIZER:} Aggregates results into efficiency curves, tables, and winner summaries
 \end{enumerate}
+
+\noindent\textbf{Interface view (how the layers connect).}
+Each experiment instantiates a consistent decision pipeline:
+\emph{Environment} (topology + link/fidelity model)
+$\rightarrow$ \emph{Threat/Noise process} (how disruptions evolve)
+$\rightarrow$ \emph{Allocator} (maps total capacity to per-path budgets)
+$\rightarrow$ \emph{Capacity semantics} (e.g., $T$ vs. $T_b$, replay scale $s$; \S\ref{subsec:capacity})
+$\rightarrow$ \emph{Learner/Policy} (bandit selects paths from feedback/context)
+$\rightarrow$ \emph{Metrics} (oracle-normalized efficiency and robustness summaries).
+
+\noindent In our implementation, \textbf{CONFIGURATION} fixes the shared environment, threat regime, and capacity semantics;
+\textbf{ALLOCATOR} chooses the distribution rule; \textbf{EVALUATOR} instantiates the threat model and logging/oracle tracking;
+\textbf{RUNNER} executes batched runs under fixed seeds and aggregation rules; \textbf{MODEL} implements the bandit policy and routing stack;
+and \textbf{VISUALIZER} aggregates results into scenario rankings, efficiency curves, and summary tables.
+
+\noindent Figure~\ref{fig:framework} is illustrative (one representative configuration); the full evaluated model portfolio
+is summarized in \Cref{tab:setup-algorithm-portfolio}.
 This architecture enables \textbf{systematic ablation} across allocators, algorithms, and threat regimes under consistent capacity semantics, ensuring reproducible comparisons~\cite{wang2025learning,huang2025quantum}.
 
 
@@ -2122,7 +2139,7 @@ To validate the generalizability and robustness of our proposed algorithms, we c
 We evaluated our algorithms on three established quantum network testbeds, each representing different operational scales and physical constraints:
 
 \begin{itemize}[nosep]
-\item \textbf{Paper 2 Testbed}~\cite{chaudhary2023quantum}: Large-scale stochastic network with adaptive capacity allocation. 15-node, 51-edge topology with 8 routing paths. Uses \texttt{StochasticPaper2NoiseModel} with comprehensive gate errors ($p_{\text{BSM}} = 0.2$, $p_{\text{depol}} = 0.1$, $p_{\text{gate}} = 0.2$) and memory decoherence ($p_{\text{init}} = 10^{-5}$, attenuation $= 0.05$). Evaluation-corpus results aggregate 5 runs at 4000 base frames and 2000-frame steps across 4 allocators (\texttt{Default}, \texttt{Dynamic}, \texttt{Random}, \texttt{ThompsonSampling}) and scales $s \in \{1.0, 1.5, 2.0\}$ (\texttt{cap\_type}=T).
+\item \textbf{Paper 2 Testbed}~\cite{chaudhary2023quantum}: Large-scale stochastic-noise quantum communication testbed for learning-based route selection. 15-node, 51-edge topology with 8 routing paths. Uses \texttt{StochasticPaper2NoiseModel} with comprehensive gate errors ($p_{\text{BSM}} = 0.2$, $p_{\text{depol}} = 0.1$, $p_{\text{gate}} = 0.2$) and memory decoherence ($p_{\text{init}} = 10^{-5}$, attenuation $= 0.05$). Evaluation-corpus results aggregate 5 runs at 4000 base frames and 2000-frame steps across 4 allocators (\texttt{Default}, \texttt{Dynamic}, \texttt{Random}, \texttt{ThompsonSampling}) and scales $s \in \{1.0, 1.5, 2.0\}$ (\texttt{cap\_type}=T).
 
 \item \textbf{Paper 7 Testbed}~\cite{liu2024qbgp}: Small-scale high-density network. 50-node, 141-edge topology with 15 routing paths. Uses minimal noise modeling (context-driven external rewards). Evaluation-corpus results aggregate 5 runs at 50 base frames and 50-frame steps across 4 allocators (\texttt{Default}, \texttt{Dynamic}, \texttt{Random}, \texttt{ThompsonSampling}) and scales $s \in \{1.0, 1.5, 2.0\}$ (\texttt{cap\_type}=T), representing rapid decision-making under tight resource constraints.
 

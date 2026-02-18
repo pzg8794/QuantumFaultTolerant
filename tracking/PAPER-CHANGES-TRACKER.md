@@ -63,8 +63,10 @@
 | C-035 | 2026-02-17 | Introduction | Comment: remove “Gap in Prior Work” subsection to keep flow consistent | Remove the “Gap in Prior Work” subsection heading and keep the same content as a normal intro paragraph to preserve flow | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` (removed subsection heading; added transition “However, …”) |
 | C-036 | 2026-02-17 | Introduction → Study Design | Comment: move “In total, we report about … evaluations …” to Results/Discussion | Move corpus accounting (7,890 / 835) out of the Introduction into Study Design (corpus accounting belongs with methods) | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` (removed from Intro; added to Study Design opening) |
 | C-037 | 2026-02-17 | Contributions | Comment: reword “Unified, reproducible benchmarking across bandit families” bullet (apples-to-apples) | Update bullet to explicitly say apples-to-apples and keep wording concise | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` (bullet rewritten; EXP3 key standardized to `auer2002nonstochastic`) |
-| C-038 | 2026-02-17 | Framework Section | Comment: speak more about the layers (Algorithmic Framework) | Expand the framework description to explicitly name/describe the layers (env/threat/allocator/capacity/learner/metrics) | Planned |  | T-2026-007, T-2025-011 | Visible: “Algorithmic Framework” section in `main.tex` |
-| C-039 | 2026-02-17 | Cross-Testbed Validation | Comment: mentions noise models/settings without explaining what they are/how they work | Add brief explanations/citations for noise models/settings; ensure Paper 7 is described accurately (noise channels + benchmarking, not “context-driven rewards”) and align the Key Contributions parenthetical with the detailed section | Planned |  | T-2026-007, T-2025-011 | Visible: cross-testbed bullets + contributions text in `main.tex` |
+| C-038 | 2026-02-17 | Framework Section | Comment: speak more about the layers (Algorithmic Framework) | Expand the framework description to explicitly name/describe the layers (env/threat/allocator/capacity/learner/metrics) | Done | TBD | T-2026-007, T-2025-011 | Applied in `main.tex` directly after the six-layer list in the Algorithmic Framework section |
+| C-039 | 2026-02-17 | Cross-Testbed Validation | Comment: mentions noise models/settings without explaining what they are/how they work | Add brief explanations/citations for noise models/settings; ensure Paper 7 is described accurately (noise channels + benchmarking, not “context-driven rewards”) and align the Key Contributions parenthetical with the detailed section | In Progress | TBD | T-2026-007, T-2025-011 | Started with Paper 2 reference/wording cleanup; Paper 7/Key-Contrib alignment pending |
+| C-040 | 2026-02-18 | Build / Appendix Ref | LaTeX warning: `app:data_artifacts` undefined (Appendix ref referenced in Results) | Add/confirm Appendix section with `\\label{app:data_artifacts}` (or update refs to correct label); remove “(or Supplementary Material)” placeholder if not applicable | Deferred |  | T-2026-007, T-2025-011 | Snippet in Results: “...provided in Appendix~\\ref{app:data_artifacts} ...” |
+| C-041 | 2026-02-18 | Build / LaTeX Output | LaTeX warning: “Missing character: There is no ` in font nullfont!” (appears near RQ2 supporting-answers block in log) | Identify and remove/escape stray backtick(s) causing the warning (keep semantics unchanged) | Deferred |  | T-2026-007, T-2025-011 | Snippet near log locus: “Supporting questions: ... Under \\texttt{Stochastic} decoherence ...” |
 
 ---
 
@@ -216,6 +218,34 @@ and noise models while exposing scale- and physics-dependent performance limitat
 - **Issue:** Framework description may not explicitly enumerate layers and their interfaces.
 - **Proposed fix:** Add a brief layer breakdown (1–2 sentences per layer) and state what inputs/outputs pass between layers.
 - **Deep notes (from report):** Framework figure lists only a subset of algorithms (hybrid set) in the “Configuration” block; text should clarify the figure is illustrative/corpus-specific and that the full evaluation spans the complete model portfolio.
+- **Decision rationale (how we got to the draft):**
+  - We kept the change \emph{surgical}: add a single interface paragraph rather than rewriting the full framework section.
+  - We anchored the “interface stack” to the paper’s existing six-layer names (ALLOCATOR / CONFIGURATION / EVALUATOR / RUNNER / MODEL / VISUALIZER), so it reads like an explanation of our implementation (not a second taxonomy).
+  - We explicitly clarify that Fig.~\ref{fig:framework} is illustrative and that the full evaluated portfolio lives in \Cref{tab:setup-algorithm-portfolio}.
+  
+**Proposed text (LaTeX; insert right after `\end{enumerate}` in the Algorithmic Framework section, before the next paragraph):**
+```latex
+\noindent\textbf{Interface view (how the layers connect).}
+Each experiment instantiates a consistent decision pipeline:
+\emph{Environment} (topology + link/fidelity model)
+$\rightarrow$ \emph{Threat/Noise process} (how disruptions evolve)
+$\rightarrow$ \emph{Allocator} (maps total capacity to per-path budgets)
+$\rightarrow$ \emph{Capacity semantics} (e.g., $T$ vs. $T_b$, replay scale $s$; \S\ref{subsec:capacity})
+$\rightarrow$ \emph{Learner/Policy} (bandit selects paths from feedback/context)
+$\rightarrow$ \emph{Metrics} (oracle-normalized efficiency and robustness summaries).
+
+\noindent In our implementation, \textbf{CONFIGURATION} fixes the shared environment, threat regime, and capacity semantics;
+\textbf{ALLOCATOR} chooses the distribution rule; \textbf{EVALUATOR} instantiates the threat model and logging/oracle tracking;
+\textbf{RUNNER} executes batched runs under fixed seeds and aggregation rules; \textbf{MODEL} implements the bandit policy and routing stack;
+and \textbf{VISUALIZER} aggregates results into scenario rankings, efficiency curves, and summary tables.
+
+\noindent Figure~\ref{fig:framework} is illustrative (one representative configuration); the full evaluated model portfolio
+is summarized in \Cref{tab:setup-algorithm-portfolio}.
+```
+
+**Applied (2026-02-18):**
+- Inserted the “Interface view (how the layers connect)” block in `main.tex` immediately after the `\end{enumerate}` list in the Algorithmic Framework section.
+- Rebuilt `main.pdf` for GitHub rendering.
 
 ### C-039 — Cross-testbed: explain referenced models/settings
 - **Ask:** You mention noise models/settings but don’t discuss what/how they work.
@@ -225,6 +255,26 @@ and noise models while exposing scale- and physics-dependent performance limitat
 - **Deep notes (from report):**
   - Align the Key Contributions “diverse noise models” parenthetical with what each cited testbed actually does.
   - Correct Paper 7 description: QBGP uses noise-channel modeling (e.g., depolarizing channels) + benchmarking-driven fidelity estimation; avoid “context-driven rewards/dynamics” wording.
+
+**Applied (Paper 2 reference cleanup; 2026-02-18):**
+- Updated the Paper 2 testbed bullet in `main.tex` to remove the inaccurate “adaptive capacity allocation” phrasing and describe it as a stochastic-noise testbed for learning-based route selection.
+- Updated `refs.bib` for `chaudhary2023quantum` (replaced “and others” with the actual author list from the PDF header; expanded the ICC booktitle).
+
+### C-040 — Fix undefined Appendix label (`app:data_artifacts`)
+- **Ask:** Fix LaTeX warning: `Reference 'app:data_artifacts' ... undefined`.
+- **Meaning:** The Appendix reference should resolve; reproducibility artifacts should point to an existing, labeled section.
+- **Issue:** `main.tex` references `Appendix~\ref{app:data_artifacts}` in Results, but the label is missing/mismatched.
+- **Proposed fix:** Add or correct the appendix section and ensure it includes `\label{app:data_artifacts}`; update any mismatched `\ref{...}` usages accordingly. Remove the “(or Supplementary Material)” placeholder if the submission does not include supplementary material.
+- **Easy-to-spot snippet (in paper):** “with full reproducibility artifacts provided in Appendix~\ref{app:data_artifacts} ...”
+- **Status:** Deferred (handle after queue).
+
+### C-041 — Resolve “Missing character: There is no ` in font nullfont!” warning
+- **Ask:** Eliminate the LaTeX warning “Missing character: There is no ` in font nullfont!”.
+- **Meaning:** Clean compilation warnings; ensure no stray characters are being dropped in the PDF output.
+- **Issue:** The warning appears in `main.log` near the RQ2 supporting-answers block (log associates it with the paragraph around the “Supporting questions” list).
+- **Proposed fix:** Locate the exact offending character(s) (likely an accidental backtick in text/label/caption) and replace with proper LaTeX quoting (``...''), `\texttt{...}`, or remove if unintended.
+- **Easy-to-spot snippet (near locus):** “Supporting questions: ... Under \texttt{Stochastic} decoherence, contextual and neural--contextual models ...”
+- **Status:** Deferred (handle after queue).
 
 ## C-002 Draft Fix: Introduction — Dan’s “Quantum path determination is unique” paragraph
 
