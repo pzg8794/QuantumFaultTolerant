@@ -66,7 +66,8 @@
 | C-038 | 2026-02-17 | Framework Section | Comment: speak more about the layers (Algorithmic Framework) | Expand the framework description to explicitly name/describe the layers (env/threat/allocator/capacity/learner/metrics) | Done | TBD | T-2026-007, T-2025-011 | Applied in `main.tex` directly after the six-layer list in the Algorithmic Framework section |
 | C-039 | 2026-02-17 | Cross-Testbed Validation | Comment: mentions noise models/settings without explaining what they are/how they work | Add brief explanations/citations for noise models/settings; ensure Paper 7 is described accurately (benchmarking-driven fidelity estimation + online path selection, not “context-driven rewards”) and align the Key Contributions parenthetical with the detailed section | Done | TBD | T-2026-007, T-2025-011 | Paper 2/7 bullets corrected; Key Contributions aligned; 1-line “what/how” context added before the external-testbed list |
 | C-040 | 2026-02-18 | Build / Appendix Ref | LaTeX warning: `app:data_artifacts` undefined (Appendix ref referenced in Results) | Add/confirm Appendix section with `\\label{app:data_artifacts}` (or update refs to correct label); remove “(or Supplementary Material)” placeholder if not applicable | Deferred |  | T-2026-007, T-2025-011 | Snippet in Results: “...provided in Appendix~\\ref{app:data_artifacts} ...” |
-| C-041 | 2026-02-18 | Build / LaTeX Output | LaTeX warning: “Missing character: There is no ` in font nullfont!” (appears near RQ2 supporting-answers block in log) | Identify and remove/escape stray backtick(s) causing the warning (keep semantics unchanged) | Deferred |  | T-2026-007, T-2025-011 | Snippet near log locus: “Supporting questions: ... Under \\texttt{Stochastic} decoherence ...” |
+| C-041 | 2026-02-18 | Build / LaTeX Output | LaTeX warning: “Missing character: There is no ` in font nullfont!” (appears near RQ2 supporting-answers block in log) | Identify and remove/escape stray backtick(s) causing the warning (keep semantics unchanged) | Deferred |  | T-2026-007, T-2025-011 | Locus per `main.log`: warnings emitted around input lines ~962–974 (RQ2→RQ3 transition); likely tied to hyperref/bookmark string generation rather than visible glyphs |
+| C-042 | 2026-02-18 | Conclusion | Dan: “Not sure where this should go” (classical-vs-quantum routing paragraph) | Comment out the redundant background paragraph in the Conclusion (already covered in Intro) and tighten the Conclusion body into 2–3 result-focused paragraphs | Done | TBD | T-2026-007, T-2025-011 | Applied in `main.tex` (Dan note + redundant paragraph commented; conclusion rewritten to avoid repetition) |
 
 ---
 
@@ -288,6 +289,30 @@ is summarized in \Cref{tab:setup-algorithm-portfolio}.
 - **Proposed fix:** Locate the exact offending character(s) (likely an accidental backtick in text/label/caption) and replace with proper LaTeX quoting (``...''), `\texttt{...}`, or remove if unintended.
 - **Easy-to-spot snippet (near locus):** “Supporting questions: ... Under \texttt{Stochastic} decoherence, contextual and neural--contextual models ...”
 - **Status:** Deferred (handle after queue).
+
+**Triage note (2026-02-18):**
+- Confirmed there are no literal backtick characters in the active RQ2 supporting-question text; the warning persists after normal rebuild and appears in `main.log` around the RQ2→RQ3 transition (input lines ~962–974), suggesting a bookmark/aux-write interaction.
+
+**Next debugging step (proposed):**
+- Replace `\subsubsection*{\textbf{RQ1}}/\textbf{RQ2}/\textbf{RQ3}` with `\texorpdfstring{...}{RQ#}` (or remove the inner `\textbf`) so hyperref sees a plain PDF-string title, then rebuild and confirm the warning disappears.
+
+### C-042 — Conclusion: move/remove the classical-vs-quantum routing paragraph
+- **Ask:** Dan: “Not sure where this should go” (refers to the paragraph right below the comment).
+- **Meaning:** The “what makes this routing process different from classical routing” explanation should have one clear home (and not appear as an unresolved comment in the compiled draft).
+- **Issue:** The Conclusion currently contains an unresolved `\dan{...}` note and a paragraph that largely duplicates the Introduction’s “Quantum routing differs…” explanation (so it reads redundant at the end).
+- **Proposed fix (approved approach):**
+  - Comment out the Dan note and the redundant “Quantum entanglement routing differs…” paragraph in the Conclusion (it is already covered in the Introduction), and rewrite the Conclusion into 2–3 result-focused paragraphs (what we built, what we found, why it matters, what’s next).
+
+**Easy-to-spot snippet (in paper):**
+```tex
+\dan{Not sure where this should go}
+%% What makes this routing process different from a classical routing problem
+Quantum entanglement routing differs fundamentally from classical routing because ...
+```
+
+**Applied (2026-02-18):**
+- Commented the inline `\dan{Not sure where this should go}` note and the following background paragraph in the Conclusion to avoid duplication with the Introduction.
+- Replaced the Conclusion body with a tighter 3-paragraph wrap-up focused on benchmark contribution, the capacity paradox, allocator non-interchangeability, and future work.
 
 ## C-002 Draft Fix: Introduction — Dan’s “Quantum path determination is unique” paragraph
 
