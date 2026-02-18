@@ -59,7 +59,7 @@
 | C-031 | 2026-02-17 | Title | Comment: paper focuses on entanglement routing; include in title | Update title to explicitly include “entanglement routing” and clarify evaluation framing | Done |  | T-2026-007, T-2025-011 | DECISION: “Threat-Aware Evaluation of Quantum Entanglement Routing and Qubit Allocation via Hybrid Contextual Bandits” (concise, domain-clear, evaluation-framed) |
 | C-032 | 2026-02-17 | Abstract | Comment: abstract confusing; unclear if evaluation-only vs new contributions; too many numbers; unclear referents (“they”); sentence clarity | Rewrite abstract for clarity: (1) state contribution type carefully, (2) reduce numeric density (keep 1 scale indicator), (3) fix ambiguous referents, (4) remove duplicate/alternate abstract + inline comments from compiled draft, (5) reconcile count consistency with body or avoid counts | Done |  | T-2026-007, T-2025-011 | Approved draft applied in `main.tex` (4-paragraph structure; reduced numeric overload; clarified scope/novelty language) |
 | C-033 | 2026-02-17 | Introduction | Comment: “Yet, reliable end-to-end entanglement…” needs citation | Add a minimal citation to support fragility + probabilistic swapping + decoherence/interference claim (without adding number/citation clutter) | Done |  | T-2026-007, T-2025-015 | Applied in `main.tex`: `~\\cite{briegel1998quantum,dahlberg2021netsquid,zukowski1993event}` at end of the “Yet, …” sentence |
-| C-034 | 2026-02-17 | Introduction | Comment: may need more/updated citations for swapping waiting-time compounding | Audit and update the waiting-time citation(s) around entanglement swapping stochastic waiting-time effects | Planned |  | T-2026-007, T-2025-015 | Visible: waiting-time sentence + current cite in `main.tex` |
+| C-034 | 2026-02-17 | Introduction | Comment: may need more/updated citations for swapping waiting-time compounding | Validate waiting-time citation support and update the BibTeX metadata for the targeted waiting-time reference (no extra padding citations) | Done |  | T-2026-007, T-2025-015 | Kept `~\\cite{wang2019waiting}` in `main.tex`; updated `refs.bib` entry for completeness |
 | C-035 | 2026-02-17 | Introduction | Comment: remove “Gap in Prior Work” subsection to keep flow consistent | Remove/merge the “Gap in Prior Work” subsection heading and integrate content into the surrounding intro flow | Planned |  | T-2026-007, T-2025-011 | Visible: `\\subsection{Gap in Prior Work}` in `main.tex` |
 | C-036 | 2026-02-17 | Introduction | Comment: move “In total, we report about … evaluations …” to Results/Discussion | Relocate the evaluation-count sentence to Results/Discussion (keep intro high-level) | Planned |  | T-2026-007, T-2025-011 | Visible: intro “Our Approach and Evaluation Scope” area in `main.tex` |
 | C-037 | 2026-02-17 | Contributions | Comment: reword “Unified, reproducible benchmarking across bandit families” bullet | Rewrite contribution bullet for readability and tighter claim language; also standardize EXP3 citation key usage across manuscript | Planned |  | T-2026-007, T-2025-011 | Visible: contributions list in `main.tex` |
@@ -149,8 +149,15 @@ and noise models while exposing scale- and physics-dependent performance limitat
 - **Ask:** May need more/updated citations for: “entanglement swapping introduces stochastic waiting-time effects…”
 - **Meaning:** Ensure the cited work is the right authority and add a second supporting cite if needed.
 - **Issue:** Single citation may be outdated/insufficient for the exact claim phrasing.
-- **Proposed fix:** Audit the citation(s) for that sentence; add/replace with stronger or additional references if applicable.
+- **Proposed fix:** Keep `~\cite{wang2019waiting}` (it is directly on-point for probabilistic swapping waiting times); avoid adding off-target routing citations purely to pad support. If any change is needed, prefer improving the BibTeX completeness for `wang2019waiting` rather than adding a new key.
 - **Deep notes (from report):** If adding a second citation, prefer a repeater waiting-time / memory-decoherence authority (not just “routing exists”).
+
+**Decision rationale (why no extra cite was added):**
+- The sentence is already supported by a directly matching waiting-time paper (`wang2019waiting`) plus repeater context in the preceding clause (`briegel1998quantum`).
+- Adding a routing-protocol citation (e.g., `li2025multipath`) risks looking like citation padding if it does not explicitly discuss waiting-time compounding.
+
+**Applied (2026-02-18):**
+- Updated `refs.bib` entry `wang2019waiting` to include `url` and `publisher` metadata (no change to the in-text citation).
 
 ### C-035 — Intro flow: remove “Gap in Prior Work” subsection heading
 - **Ask:** “You can remove these sections. Make the flow consistent.” (Gap in Prior Work)
