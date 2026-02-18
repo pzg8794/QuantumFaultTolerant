@@ -60,7 +60,7 @@
 | C-032 | 2026-02-17 | Abstract | Comment: abstract confusing; unclear if evaluation-only vs new contributions; too many numbers; unclear referents (“they”); sentence clarity | Rewrite abstract for clarity: (1) state contribution type carefully, (2) reduce numeric density (keep 1 scale indicator), (3) fix ambiguous referents, (4) remove duplicate/alternate abstract + inline comments from compiled draft, (5) reconcile count consistency with body or avoid counts | Done |  | T-2026-007, T-2025-011 | Approved draft applied in `main.tex` (4-paragraph structure; reduced numeric overload; clarified scope/novelty language) |
 | C-033 | 2026-02-17 | Introduction | Comment: “Yet, reliable end-to-end entanglement…” needs citation | Add a minimal citation to support fragility + probabilistic swapping + decoherence/interference claim (without adding number/citation clutter) | Done |  | T-2026-007, T-2025-015 | Applied in `main.tex`: `~\\cite{briegel1998quantum,dahlberg2021netsquid,zukowski1993event}` at end of the “Yet, …” sentence |
 | C-034 | 2026-02-17 | Introduction | Comment: may need more/updated citations for swapping waiting-time compounding | Validate waiting-time citation support and update the BibTeX metadata for the targeted waiting-time reference (no extra padding citations) | Done |  | T-2026-007, T-2025-015 | Kept `~\\cite{wang2019waiting}` in `main.tex`; updated `refs.bib` entry for completeness |
-| C-035 | 2026-02-17 | Introduction | Comment: remove “Gap in Prior Work” subsection to keep flow consistent | Remove/merge the “Gap in Prior Work” subsection heading and integrate content into the surrounding intro flow | Planned |  | T-2026-007, T-2025-011 | Visible: `\\subsection{Gap in Prior Work}` in `main.tex` |
+| C-035 | 2026-02-17 | Introduction | Comment: remove “Gap in Prior Work” subsection to keep flow consistent | Remove the “Gap in Prior Work” subsection heading and keep the same content as a normal intro paragraph to preserve flow | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` (removed subsection heading; added transition “However, …”) |
 | C-036 | 2026-02-17 | Introduction | Comment: move “In total, we report about … evaluations …” to Results/Discussion | Relocate the evaluation-count sentence to Results/Discussion (keep intro high-level) | Planned |  | T-2026-007, T-2025-011 | Visible: intro “Our Approach and Evaluation Scope” area in `main.tex` |
 | C-037 | 2026-02-17 | Contributions | Comment: reword “Unified, reproducible benchmarking across bandit families” bullet | Rewrite contribution bullet for readability and tighter claim language; also standardize EXP3 citation key usage across manuscript | Planned |  | T-2026-007, T-2025-011 | Visible: contributions list in `main.tex` |
 | C-038 | 2026-02-17 | Framework Section | Comment: speak more about the layers (Algorithmic Framework) | Expand the framework description to explicitly name/describe the layers (env/threat/allocator/capacity/learner/metrics) | Planned |  | T-2026-007, T-2025-011 | Visible: “Algorithmic Framework” section in `main.tex` |
@@ -165,6 +165,14 @@ and noise models while exposing scale- and physics-dependent performance limitat
 - **Issue:** The heading may be redundant with the surrounding intro flow and reads like a structural speed bump.
 - **Proposed fix:** Remove/merge the subsection heading and integrate the content into the surrounding intro (keep the same ideas).
 - **Deep notes (from report):** If we remove only this one heading while keeping other intro subheadings, flow may become *less* consistent; consider either (a) keep but rename, or (b) convert intro subheadings to a consistent paragraph-style scheme.
+
+**Decision rationale (why this approach):**
+- Implemented the minimal structural change requested: removed only the `\subsection{Gap in Prior Work}` heading.
+- Preserved all gap content and enumerations verbatim to avoid changing argument/claims while improving narrative flow.
+- Added a single transition word (“However,”) so the paragraph reads naturally without a heading.
+
+**Applied (2026-02-18):**
+- Removed `\subsection{Gap in Prior Work}` in `main.tex` and integrated the paragraph into the surrounding intro flow.
 
 ### C-036 — Move evaluation counts out of intro
 - **Ask:** Move: “In total, we report about … evaluations …” to Results/Discussion.
