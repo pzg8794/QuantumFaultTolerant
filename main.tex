@@ -310,7 +310,7 @@ Quantum routing differs fundamentally from classical packet switching because th
 However, existing quantum routing research often evaluates algorithms under \emph{incompatible assumptions, metrics, or threat models}, complicating direct comparisons and obscuring deployment tradeoffs. Two streams are especially prominent:
 
 \begin{enumerate}
-\item \textbf{Adversarial-first approaches} (\eg EXP3-family designs~\cite{auer2002exp3,huang2025quantum}) assume worst-case link behavior and prioritize robustness under attack, often sacrificing stochastic efficiency.
+\item \textbf{Adversarial-first approaches} (\eg EXP3-family designs~\cite{auer2002nonstochastic,huang2025quantum}) assume worst-case link behavior and prioritize robustness under attack, often sacrificing stochastic efficiency.
 \item \textbf{Stochastic/contextual-first approaches} (\eg contextual and informed CMAB/iCMAB variants~\cite{chu2011contextual,wang2025learning,kar2024icmab}) leverage predictive environmental structure for efficiency under natural noise, but offer limited evidence under coordinated adaptive adversaries.
 \end{enumerate}
 
@@ -352,7 +352,7 @@ A central empirical finding challenges conventional intuition: increasing replay
 \subsection{Key Contributions}
 
 \begin{itemize}[leftmargin=2em]
-\item \textbf{Unified, reproducible benchmarking across bandit families:} We provide an apples-to-apples evaluation across EXP3-family adversarial baselines~\cite{auer2002exp3,huang2025quantum}, contextual/iCMAB-family methods~\cite{chu2011contextual,kar2024icmab}, and hybrid pursuit--neural models under a shared threat taxonomy.
+\item \textbf{Unified, reproducible apples-to-apples benchmarking:} We evaluate adversarial (EXP3-family), contextual (CMAB/iCMAB), and hybrid pursuit--neural bandit policies under a shared threat taxonomy, enabling direct comparison of robustness--efficiency tradeoffs~\cite{auer2002nonstochastic,huang2025quantum,chu2011contextual,kar2024icmab}.
 
 \item \textbf{Cross-testbed validation at multiple scales:} We validate our algorithms on three external quantum network testbeds from prior work~\cite{chaudhary2023quantum,liu2024qbgp,clayton2024quarc}, spanning 15--100 nodes, 4--15 routing paths, and diverse noise models (stochastic gate errors, fusion-based entanglement, context-driven dynamics). Using scenario-aggregated metrics across all five threats, model efficiencies span 69.6--78.0\% on Papers 2/7 and 42.5--44.1\% on Paper 12, indicating strong topology/physics dependence and clear mid-scale fusion-network limitations (\S\ref{sec:testbed_comparison}).
 
@@ -458,7 +458,7 @@ Several bandit variants align with different quantum-network assumptions and thr
 \item \textbf{Classical (stochastic) bandits} assume stationary reward distributions (\eg UCB-style methods)~\cite{auer2002finite}.
 \item \textbf{Contextual bandits} incorporate observable side information (\eg topology features or load indicators) to improve decisions when context is predictive~\cite{chu2011contextual}.
 \item \textbf{Neural contextual bandits} use function approximation to model nonlinear reward while preserving principled exploration via uncertainty-aware decision rules~\cite{zhou2020neuralucb}.
-\item \textbf{Adversarial bandits} guard against worst-case or non-stochastic reward sequences (\eg EXP3 algorithm)~\cite{auer2002exp3}.
+\item \textbf{Adversarial bandits} guard against worst-case or non-stochastic reward sequences (\eg EXP3 algorithm)~\cite{auer2002nonstochastic}.
 \item \textbf{Predictive/informed bandits} augment decisions with forecasts of future conditions~\cite{kar2024icmab}.
 \end{itemize}
 

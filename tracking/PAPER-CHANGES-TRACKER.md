@@ -62,7 +62,7 @@
 | C-034 | 2026-02-17 | Introduction | Comment: may need more/updated citations for swapping waiting-time compounding | Validate waiting-time citation support and update the BibTeX metadata for the targeted waiting-time reference (no extra padding citations) | Done |  | T-2026-007, T-2025-015 | Kept `~\\cite{wang2019waiting}` in `main.tex`; updated `refs.bib` entry for completeness |
 | C-035 | 2026-02-17 | Introduction | Comment: remove “Gap in Prior Work” subsection to keep flow consistent | Remove the “Gap in Prior Work” subsection heading and keep the same content as a normal intro paragraph to preserve flow | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` (removed subsection heading; added transition “However, …”) |
 | C-036 | 2026-02-17 | Introduction → Study Design | Comment: move “In total, we report about … evaluations …” to Results/Discussion | Move corpus accounting (7,890 / 835) out of the Introduction into Study Design (corpus accounting belongs with methods) | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` (removed from Intro; added to Study Design opening) |
-| C-037 | 2026-02-17 | Contributions | Comment: reword “Unified, reproducible benchmarking across bandit families” bullet | Rewrite contribution bullet for readability and tighter claim language; also standardize EXP3 citation key usage across manuscript | Planned |  | T-2026-007, T-2025-011 | Visible: contributions list in `main.tex` |
+| C-037 | 2026-02-17 | Contributions | Comment: reword “Unified, reproducible benchmarking across bandit families” bullet (apples-to-apples) | Update bullet to explicitly say apples-to-apples and keep wording concise | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` (bullet rewritten; EXP3 key standardized to `auer2002nonstochastic`) |
 | C-038 | 2026-02-17 | Framework Section | Comment: speak more about the layers (Algorithmic Framework) | Expand the framework description to explicitly name/describe the layers (env/threat/allocator/capacity/learner/metrics) | Planned |  | T-2026-007, T-2025-011 | Visible: “Algorithmic Framework” section in `main.tex` |
 | C-039 | 2026-02-17 | Cross-Testbed Validation | Comment: mentions noise models/settings without explaining what they are/how they work | Add brief explanations/citations for noise models/settings; ensure Paper 7 is described accurately (noise channels + benchmarking, not “context-driven rewards”) and align the Key Contributions parenthetical with the detailed section | Planned |  | T-2026-007, T-2025-011 | Visible: cross-testbed bullets + contributions text in `main.tex` |
 
@@ -195,6 +195,20 @@ and noise models while exposing scale- and physics-dependent performance limitat
 - **Issue:** Current bullet is long and reads as a dense citation dump.
 - **Proposed fix:** Rewrite as a shorter bullet that states: apples-to-apples benchmarking across decision-rule families under a shared threat taxonomy (citations can remain but be lighter).
 - **Deep notes (from report):** Standardize EXP3 citation key usage across the manuscript (avoid mixed keys like `auer2002exp3` vs `auer2002nonstochastic`).
+
+**Decision (approved wording):**
+```tex
+\item \textbf{Unified, reproducible apples-to-apples benchmarking:} We evaluate adversarial (EXP3-family), contextual (CMAB/iCMAB), and hybrid pursuit--neural bandit policies under a shared threat taxonomy, enabling direct comparison of robustness--efficiency tradeoffs~\cite{auer2002nonstochastic,huang2025quantum,chu2011contextual,kar2024icmab}.
+```
+
+**Decision rationale (citation key):**
+- `refs.bib` contained two keys for the same Auer et al.\ (2002) adversarial bandits paper (`auer2002exp3` and `auer2002nonstochastic`).
+- We standardized the manuscript to cite `auer2002nonstochastic` and removed the duplicate `auer2002exp3` entry to avoid ambiguity and ezproxy URLs in the bibliography.
+
+**Applied (2026-02-18):**
+- Updated the Key Contributions bullet wording in `main.tex`.
+- Replaced remaining `\cite{auer2002exp3}` uses in `main.tex` with `\cite{auer2002nonstochastic}`.
+- Removed the duplicate BibTeX entry `auer2002exp3` from `refs.bib`.
 
 ### C-038 — Framework: explain the layers
 - **Ask:** “You need to speak more about the layers” (Algorithmic Framework).
