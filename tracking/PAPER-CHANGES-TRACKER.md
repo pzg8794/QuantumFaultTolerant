@@ -61,7 +61,7 @@
 | C-033 | 2026-02-17 | Introduction | Comment: “Yet, reliable end-to-end entanglement…” needs citation | Add a minimal citation to support fragility + probabilistic swapping + decoherence/interference claim (without adding number/citation clutter) | Done |  | T-2026-007, T-2025-015 | Applied in `main.tex`: `~\\cite{briegel1998quantum,dahlberg2021netsquid,zukowski1993event}` at end of the “Yet, …” sentence |
 | C-034 | 2026-02-17 | Introduction | Comment: may need more/updated citations for swapping waiting-time compounding | Validate waiting-time citation support and update the BibTeX metadata for the targeted waiting-time reference (no extra padding citations) | Done |  | T-2026-007, T-2025-015 | Kept `~\\cite{wang2019waiting}` in `main.tex`; updated `refs.bib` entry for completeness |
 | C-035 | 2026-02-17 | Introduction | Comment: remove “Gap in Prior Work” subsection to keep flow consistent | Remove the “Gap in Prior Work” subsection heading and keep the same content as a normal intro paragraph to preserve flow | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` (removed subsection heading; added transition “However, …”) |
-| C-036 | 2026-02-17 | Introduction | Comment: move “In total, we report about … evaluations …” to Results/Discussion | Relocate the evaluation-count sentence to Results/Discussion (keep intro high-level) | Planned |  | T-2026-007, T-2025-011 | Visible: intro “Our Approach and Evaluation Scope” area in `main.tex` |
+| C-036 | 2026-02-17 | Introduction → Study Design | Comment: move “In total, we report about … evaluations …” to Results/Discussion | Move corpus accounting (7,890 / 835) out of the Introduction into Study Design (corpus accounting belongs with methods) | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` (removed from Intro; added to Study Design opening) |
 | C-037 | 2026-02-17 | Contributions | Comment: reword “Unified, reproducible benchmarking across bandit families” bullet | Rewrite contribution bullet for readability and tighter claim language; also standardize EXP3 citation key usage across manuscript | Planned |  | T-2026-007, T-2025-011 | Visible: contributions list in `main.tex` |
 | C-038 | 2026-02-17 | Framework Section | Comment: speak more about the layers (Algorithmic Framework) | Expand the framework description to explicitly name/describe the layers (env/threat/allocator/capacity/learner/metrics) | Planned |  | T-2026-007, T-2025-011 | Visible: “Algorithmic Framework” section in `main.tex` |
 | C-039 | 2026-02-17 | Cross-Testbed Validation | Comment: mentions noise models/settings without explaining what they are/how they work | Add brief explanations/citations for noise models/settings; ensure Paper 7 is described accurately (noise channels + benchmarking, not “context-driven rewards”) and align the Key Contributions parenthetical with the detailed section | Planned |  | T-2026-007, T-2025-011 | Visible: cross-testbed bullets + contributions text in `main.tex` |
@@ -178,7 +178,16 @@ and noise models while exposing scale- and physics-dependent performance limitat
 - **Ask:** Move: “In total, we report about … evaluations …” to Results/Discussion.
 - **Meaning:** Keep intro high-level; move detailed corpus accounting to where results/methods are discussed.
 - **Issue:** Large numeric accounting in the intro distracts from the problem/approach message.
-- **Proposed fix:** Relocate the evaluation-count sentence to Study Design (preferred) or Results/Discussion; keep intro high-level.
+- **Proposed fix:** Remove the sentence from the Introduction and place it in Study Design as a one-line corpus accounting statement.
+
+**Decision rationale (placement):**
+- The core constraint was “too many numbers in the intro”; moving the counts out resolves the complaint without changing values.
+- Study Design is the natural home for corpus accounting (methods), while Results should stay focused on findings.
+- Keep the change move-only: do not alter the counts or add new claims.
+
+**Applied (2026-02-18):**
+- Removed the 7,890/835 sentence from the Introduction (“Our Approach and Evaluation Scope”).
+- Added the same sentence to the opening of Study Design as corpus accounting.
 
 ### C-037 — Reword contributions bullet (benchmarking across families)
 - **Ask:** Reword the “Unified, reproducible benchmarking across bandit families” contribution bullet.
