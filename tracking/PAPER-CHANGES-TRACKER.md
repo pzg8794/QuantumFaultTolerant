@@ -58,7 +58,7 @@
 | C-006 | 2026-02-14 | Submission Hygiene | Anonymity question + acknowledgments | Decide anonymous vs non-anonymous; adjust authors/acks accordingly | TBD |  | T-2025-011 |  |
 | C-031 | 2026-02-17 | Title | Comment: paper focuses on entanglement routing; include in title | Update title to explicitly include “entanglement routing” and clarify evaluation framing | Done |  | T-2026-007, T-2025-011 | DECISION: “Threat-Aware Evaluation of Quantum Entanglement Routing and Qubit Allocation via Hybrid Contextual Bandits” (concise, domain-clear, evaluation-framed) |
 | C-032 | 2026-02-17 | Abstract | Comment: abstract confusing; unclear if evaluation-only vs new contributions; too many numbers; unclear referents (“they”); sentence clarity | Rewrite abstract for clarity: (1) state contribution type carefully, (2) reduce numeric density (keep 1 scale indicator), (3) fix ambiguous referents, (4) remove duplicate/alternate abstract + inline comments from compiled draft, (5) reconcile count consistency with body or avoid counts | Done |  | T-2026-007, T-2025-011 | Approved draft applied in `main.tex` (4-paragraph structure; reduced numeric overload; clarified scope/novelty language) |
-| C-033 | 2026-02-17 | Introduction | Comment: “Yet, reliable end-to-end entanglement…” needs citation | Add citation(s) supporting entanglement fragility + probabilistic swapping + decoherence/interference claims | Planned |  | T-2026-007, T-2025-015 | Visible: intro paragraph in `main.tex` |
+| C-033 | 2026-02-17 | Introduction | Comment: “Yet, reliable end-to-end entanglement…” needs citation | Add a minimal citation to support fragility + probabilistic swapping + decoherence/interference claim (without adding number/citation clutter) | Done |  | T-2026-007, T-2025-015 | Applied in `main.tex`: `~\\cite{briegel1998quantum,dahlberg2021netsquid,zukowski1993event}` at end of the “Yet, …” sentence |
 | C-034 | 2026-02-17 | Introduction | Comment: may need more/updated citations for swapping waiting-time compounding | Audit and update the waiting-time citation(s) around entanglement swapping stochastic waiting-time effects | Planned |  | T-2026-007, T-2025-015 | Visible: waiting-time sentence + current cite in `main.tex` |
 | C-035 | 2026-02-17 | Introduction | Comment: remove “Gap in Prior Work” subsection to keep flow consistent | Remove/merge the “Gap in Prior Work” subsection heading and integrate content into the surrounding intro flow | Planned |  | T-2026-007, T-2025-011 | Visible: `\\subsection{Gap in Prior Work}` in `main.tex` |
 | C-036 | 2026-02-17 | Introduction | Comment: move “In total, we report about … evaluations …” to Results/Discussion | Relocate the evaluation-count sentence to Results/Discussion (keep intro high-level) | Planned |  | T-2026-007, T-2025-011 | Visible: intro “Our Approach and Evaluation Scope” area in `main.tex` |
@@ -133,8 +133,17 @@ and noise models while exposing scale- and physics-dependent performance limitat
 - **Ask:** Add citation for: “Yet, reliable end-to-end entanglement is difficult to sustain…”
 - **Meaning:** Anchor the claim in prior work (foundational quantum networking/repeater citations).
 - **Issue:** Statement reads as a factual claim but is currently not explicitly supported by a citation.
-- **Proposed fix:** Add 1–2 citations immediately supporting fragility + probabilistic generation/swapping + decoherence/interference.
+- **Proposed fix (minimal):** Append `~\cite{briegel1998quantum,dahlberg2021netsquid,zukowski1993event}` to the end of the “Yet, reliable end-to-end entanglement…” sentence in `main.tex` (all keys already exist in `refs.bib` and are already used elsewhere in the intro).
 - **Deep notes (from report):** Cross-testbed sources can support this claim (e.g., Chaudhary testbed and/or QBGP) in addition to foundational repeater/swapping citations.
+
+**Decision rationale (why this citation set):**
+- Keep the fix minimal to avoid triggering Dan’s “too many numbers” / clutter feedback in the intro.
+- Use existing BibTeX keys already in the paper (no new bibliography additions required).
+- Use citations that directly support the specific mechanisms named in the sentence (repeaters/operations: `briegel1998quantum`; simulator + decoherence/imperfections context: `dahlberg2021netsquid`; swapping is probabilistic: `zukowski1993event`).
+- Keep `wang2019waiting` focused on the waiting-time compounding claim (C-034).
+
+**Applied (2026-02-18):**
+- Added `~\cite{briegel1998quantum,dahlberg2021netsquid,zukowski1993event}` to the end of the “Yet, …” sentence in `main.tex`.
 
 ### C-034 — Update/expand waiting-time citation(s)
 - **Ask:** May need more/updated citations for: “entanglement swapping introduces stochastic waiting-time effects…”
