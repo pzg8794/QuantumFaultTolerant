@@ -64,7 +64,7 @@
 | C-036 | 2026-02-17 | Introduction → Study Design | Comment: move “In total, we report about … evaluations …” to Results/Discussion | Move corpus accounting (7,890 / 835) out of the Introduction into Study Design (corpus accounting belongs with methods) | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` (removed from Intro; added to Study Design opening) |
 | C-037 | 2026-02-17 | Contributions | Comment: reword “Unified, reproducible benchmarking across bandit families” bullet (apples-to-apples) | Update bullet to explicitly say apples-to-apples and keep wording concise | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` (bullet rewritten; EXP3 key standardized to `auer2002nonstochastic`) |
 | C-038 | 2026-02-17 | Framework Section | Comment: speak more about the layers (Algorithmic Framework) | Expand the framework description to explicitly name/describe the layers (env/threat/allocator/capacity/learner/metrics) | Done | TBD | T-2026-007, T-2025-011 | Applied in `main.tex` directly after the six-layer list in the Algorithmic Framework section |
-| C-039 | 2026-02-17 | Cross-Testbed Validation | Comment: mentions noise models/settings without explaining what they are/how they work | Add brief explanations/citations for noise models/settings; ensure Paper 7 is described accurately (noise channels + benchmarking, not “context-driven rewards”) and align the Key Contributions parenthetical with the detailed section | In Progress | TBD | T-2026-007, T-2025-011 | Started with Paper 2 reference/wording cleanup; Paper 7/Key-Contrib alignment pending |
+| C-039 | 2026-02-17 | Cross-Testbed Validation | Comment: mentions noise models/settings without explaining what they are/how they work | Add brief explanations/citations for noise models/settings; ensure Paper 7 is described accurately (benchmarking-driven fidelity estimation + online path selection, not “context-driven rewards”) and align the Key Contributions parenthetical with the detailed section | Done | TBD | T-2026-007, T-2025-011 | Paper 2/7 bullets corrected; Key Contributions aligned; 1-line “what/how” context added before the external-testbed list |
 | C-040 | 2026-02-18 | Build / Appendix Ref | LaTeX warning: `app:data_artifacts` undefined (Appendix ref referenced in Results) | Add/confirm Appendix section with `\\label{app:data_artifacts}` (or update refs to correct label); remove “(or Supplementary Material)” placeholder if not applicable | Deferred |  | T-2026-007, T-2025-011 | Snippet in Results: “...provided in Appendix~\\ref{app:data_artifacts} ...” |
 | C-041 | 2026-02-18 | Build / LaTeX Output | LaTeX warning: “Missing character: There is no ` in font nullfont!” (appears near RQ2 supporting-answers block in log) | Identify and remove/escape stray backtick(s) causing the warning (keep semantics unchanged) | Deferred |  | T-2026-007, T-2025-011 | Snippet near log locus: “Supporting questions: ... Under \\texttt{Stochastic} decoherence ...” |
 
@@ -260,6 +260,11 @@ is summarized in \Cref{tab:setup-algorithm-portfolio}.
 - Updated the Paper 2 testbed bullet in `main.tex` to remove the inaccurate “adaptive capacity allocation” phrasing and describe it as a stochastic-noise testbed for learning-based route selection.
 - Updated `refs.bib` for `chaudhary2023quantum` (replaced “and others” with the actual author list from the PDF header; expanded the ICC booktitle).
 
+**Applied (Paper 7 + alignment + 1-line context; 2026-02-18):**
+- Replaced the Paper 7 testbed description in `main.tex` to reference QBGP’s network benchmarking + online top-$K$ path selection (and removed “context-driven external rewards” wording).
+- Added a single sentence before the external-testbed bullet list explaining, at a high level, what each testbed’s link-quality model/estimation setting represents.
+- Updated the Key Contributions bullet noise-model parenthetical in `main.tex` to align with the corrected Paper 7 wording (benchmarking-driven fidelity estimation / online path selection).
+
 ### C-040 — Fix undefined Appendix label (`app:data_artifacts`)
 - **Ask:** Fix LaTeX warning: `Reference 'app:data_artifacts' ... undefined`.
 - **Meaning:** The Appendix reference should resolve; reproducibility artifacts should point to an existing, labeled section.
@@ -267,6 +272,14 @@ is summarized in \Cref{tab:setup-algorithm-portfolio}.
 - **Proposed fix:** Add or correct the appendix section and ensure it includes `\label{app:data_artifacts}`; update any mismatched `\ref{...}` usages accordingly. Remove the “(or Supplementary Material)” placeholder if the submission does not include supplementary material.
 - **Easy-to-spot snippet (in paper):** “with full reproducibility artifacts provided in Appendix~\ref{app:data_artifacts} ...”
 - **Status:** Deferred (handle after queue).
+
+**Proposed text (LaTeX; insert after `\\section{Conclusion}` and before `\\section*{Acknowledgments}`):**
+```latex
+\appendices
+\section{Reproducibility Artifacts}
+\label{app:data_artifacts}
+\noindent We provide reproducibility artifacts for the curated evaluation corpus, including configuration snapshots, dataset summaries, and scripts used to generate all reported tables and plots. These materials accompany the paper in the project repository and are intended to enable independent re-computation of the Oracle-normalized efficiency and robustness summaries reported in \S\ref{sec:simulation_results}.
+```
 
 ### C-041 — Resolve “Missing character: There is no ` in font nullfont!” warning
 - **Ask:** Eliminate the LaTeX warning “Missing character: There is no ` in font nullfont!”.
