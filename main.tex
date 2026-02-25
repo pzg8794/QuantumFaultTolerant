@@ -938,7 +938,12 @@ yielding an average gap of approximately \textbf{24 pp} (see \S\ref{subsec:rq1_a
 \end{axis}
 \end{tikzpicture}
 \vspace{-0.4cm}
-\caption{\tiny Peak/mean/floor at the default 2T--2T$_b$ budgets with 3-run horizons. Context models retain much higher floors; CPursuit achieves $96.2\%$ peak but drops to $37.2\%$ in worst-case; EXPNeuralUCB's floor drops to $59.9\%$.}
+\caption{Worst-case robustness is best reflected in the floor:
+context-aware models retain substantially higher worst-case performance
+than adversarial-first baselines at the default $2T$--$2T_b$ budget
+(3-run horizons). \texttt{CPursuit} attains a high peak ($96.2\%$)
+but a low floor ($37.2\%$), whereas \texttt{EXPNeuralUCB}'s floor
+is $59.9\%$.}
 \label{fig:floor}
 \end{figure}
 
