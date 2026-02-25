@@ -69,6 +69,16 @@
 | C-041 | 2026-02-18 | Build / LaTeX Output | LaTeX warning: “Missing character: There is no ` in font nullfont!” (appears near RQ2 supporting-answers block in log) | Identify and remove/escape stray backtick(s) causing the warning (keep semantics unchanged) | Deferred |  | T-2026-007, T-2025-011 | Locus per `main.log`: warnings emitted around input lines ~962–974 (RQ2→RQ3 transition); likely tied to hyperref/bookmark string generation rather than visible glyphs |
 | C-042 | 2026-02-18 | Conclusion | Dan: “Not sure where this should go” (classical-vs-quantum routing paragraph) | Comment out the redundant background paragraph in the Conclusion (already covered in Intro) and tighten the Conclusion body into 2–3 result-focused paragraphs | Done | TBD | T-2026-007, T-2025-011 | Applied in `main.tex` (Dan note + redundant paragraph commented; conclusion rewritten to avoid repetition) |
 | C-043 | 2026-02-18 | References / BibTeX | Audit: inconsistent/duplicate BibTeX keys (risk of wrong/missing citations) | Standardize on one key per paper; remove duplicate/placeholder BibTeX entries; verify all `\\cite{...}` keys resolve | Done | TBD | T-2026-007, T-2025-015 | Standardized keys used in `main.tex`/`02--related_works.tex`; verified no missing cite keys; no remaining duplicate DOI/title groups in `refs.bib` |
+| C-044 | 2026-02-20 | Introduction | Dan: “These should have citations… build this up… drive home the problem.” (re: incompatible assumptions/threat models) | Add 1–2 citations supporting the incompatibility claim; add 1–2 sentences that explicitly connect incompatibility to blocked comparisons + obscured deployment tradeoffs | Planned |  | T-2026-007, T-2025-015 | Target: “However, existing quantum routing research often evaluates algorithms under incompatible assumptions…” |
+| C-045 | 2026-02-20 | Introduction | Dan: “Intro focuses too much on the process… Focus on the problem… tiny bit on the process… more on the findings/impacts.” | Rebalance intro: expand problem/gap framing; compress framework/process exposition; add a short findings/impact preview (avoid numeric overload) | Planned |  | T-2026-007, T-2025-011 | Applies to the full Intro and the “To address these gaps…” paragraph |
+| C-046 | 2026-02-20 | Introduction | Dan: “Find newer citations if you can.” | Identify 1–2 newer/stronger citations for central intro claims (only if they materially improve support; avoid padding) | Planned |  | T-2026-007, T-2025-015 | Intro-only; keep changes minimal |
+| C-047 | 2026-02-20 | Introduction | Dan: “what gap? Add a few words context.” | Add a short clarifier phrase after “gap” mentions so the specific gap is explicit (taxonomy vs allocator/capacity controls vs assumption mismatch, etc.) | Planned |  | T-2026-007, T-2025-011 | Keep edits surgical (few words) |
+| C-048 | 2026-02-20 | Figures (Captions) | Dan: “Too wordy and dont change caption size.” (re: Context vs EXP3 caption) | Rewrite caption to takeaway-first + 1 supporting statistic; remove manual `\\tiny` and use IEEE default caption sizing | Planned |  | T-2026-007, T-2025-011 | Target: `\\label{fig:context_exp3_capacity}` |
+| C-049 | 2026-02-20 | Figures (Captions) | Dan: “For all references, mention the primary takeaway.” (re: floor/peak/mean caption) | Rewrite number-led captions so the first clause states the takeaway; keep caption sizing unchanged (no manual `\\tiny`) | Planned |  | T-2026-007, T-2025-011 | Target: `\\label{fig:floor}` (and similar caption patterns) |
+| C-050 | 2026-02-20 | Study Design | Dan: “If there are any similar studies, then cite them.” | Add 1–2 closest-study citations in Study Design and include a 1-line takeaway per citation | Planned |  | T-2026-007, T-2025-015 | Location: `\\section{Study Design}` |
+| C-051 | 2026-02-20 | Research Questions | Dan: “Some of these RQs can be simplified, and maybe broken up.” | Simplify RQ wording for standalone readability; split only when one RQ truly bundles multiple independent asks | Planned |  | T-2026-007, T-2025-011 | Start with RQ1 block |
+| C-052 | 2026-02-20 | Research Questions | Dan: “Predicitive 'what' context.” (re: RQ3a) | Clarify what “predictive context” refers to (forecasted/informed context) so the question reads standalone | Planned |  | T-2026-007, T-2025-011 | Target: RQ3a line |
+| C-053 | 2026-02-20 | Research Questions | Dan: “All RQs should largely be written so that they can be understood as standalone questions.” (re: RQ3d) | Rewrite RQs to remove ambiguous “we/this/it” phrasing and add minimal context nouns so each reads standalone | Planned |  | T-2026-007, T-2025-011 | Target: RQ3d (and any other RQs with implicit referents) |
 
 ---
 
@@ -314,6 +324,70 @@ Quantum entanglement routing differs fundamentally from classical routing becaus
 **Applied (2026-02-18):**
 - Commented the inline `\dan{Not sure where this should go}` note and the following background paragraph in the Conclusion to avoid duplication with the Introduction.
 - Replaced the Conclusion body with a tighter 3-paragraph wrap-up focused on benchmark contribution, the capacity paradox, allocator non-interchangeability, and future work.
+
+---
+
+## C-044–C-053 Comment Details (Ask → Meaning → Issue → Proposed Fix)
+
+### C-044 — Intro: “incompatible assumptions…” needs citations + sharper motivation
+- **Ask:** “These should have citations… build this up… drive home the problem.” (Dan, 2026-02-20).
+- **Meaning:** Don’t leave a broad “prior work is incompatible” claim uncited; explicitly motivate why incompatibility matters for comparisons and deployment.
+- **Issue:** The intro sentence “However, existing quantum routing research often evaluates algorithms under incompatible assumptions…” is currently uncited and under-motivated.
+- **Proposed fix:** Add 1–2 citations that concretely exemplify mismatched assumptions/metrics/threat models, and add 1–2 sentences stating the practical consequence (comparisons confounded; deployment tradeoffs obscured).
+
+### C-045 — Intro: re-balance problem vs process vs impact
+- **Ask:** “The intro focuses too much on the process…” (Dan, 2026-02-20).
+- **Meaning:** The intro should lead with the problem and why it matters, briefly state what we do, then preview the key findings/impact.
+- **Issue:** Intro paragraphs risk reading like a framework/process description rather than a problem + results preview.
+- **Proposed fix:** Expand the “what breaks in practice” motivation; compress the framework description to 1–2 sentences; add a short findings/impact preview (without numeric overload).
+
+### C-046 — Intro: newer citations (only if they materially help)
+- **Ask:** “Find newer citations if you can.” (Dan, 2026-02-20).
+- **Meaning:** Where an intro claim is central, prefer recent authoritative citations over older/weaker ones.
+- **Issue:** Some intro claims could be supported by more recent references.
+- **Proposed fix:** Replace or add 1–2 newer citations for the most central intro claim(s) only; avoid padding.
+
+### C-047 — Intro: “what gap?” needs a few words of context
+- **Ask:** “what gap? Add a few words context” (Dan, 2026-02-20).
+- **Meaning:** “Gap” should name the missing element so the sentence stands alone.
+- **Issue:** “Gap” statements can be ambiguous without specifying whether the gap is taxonomy/allocator/capacity controls/assumption mismatch.
+- **Proposed fix:** Add a few words clarifying the specific gap immediately where “gap” is mentioned.
+
+### C-048 — Figure caption: too wordy + don’t change caption size
+- **Ask:** “Too wordy and dont change caption size” (Dan, 2026-02-20).
+- **Meaning:** Captions should be takeaway-first; avoid dense multi-number blocks; do not force `\tiny` caption sizing.
+- **Issue:** `\caption{\tiny ...}` captions are long and number-heavy.
+- **Proposed fix:** Remove `\tiny` and rewrite each flagged caption to: (takeaway) + (one key statistic) + (optional pointer to a table/appendix for full breakdown).
+
+### C-049 — Captions: when citing numbers, state primary takeaway first
+- **Ask:** “For all references, mention the primary takeaway.” (Dan, 2026-02-20).
+- **Meaning:** Captions and in-text references should state the message before listing supporting numbers.
+- **Issue:** Some captions are number-led rather than message-led.
+- **Proposed fix:** Rewrite number-led captions so the first clause is the takeaway; keep caption sizing unchanged.
+
+### C-050 — Study Design: cite similar studies if they exist
+- **Ask:** “If there are any similar studies, then cite them.” (Dan, 2026-02-20).
+- **Meaning:** Study Design choices should be anchored to related evaluation approaches where applicable.
+- **Issue:** Study Design may read as “from scratch” without anchoring to closest evaluation/routing studies.
+- **Proposed fix:** Add 1–2 closest-study citations in Study Design and include a 1-line takeaway for each (why it is relevant).
+
+### C-051 — RQs: simplify and/or split where needed
+- **Ask:** “Some of these RQs can be simplified, and maybe broken up.” (Dan, 2026-02-20).
+- **Meaning:** RQs should be readable and not overly compound.
+- **Issue:** Some RQs may bundle multiple constructs in one question or require surrounding context.
+- **Proposed fix:** Rewrite RQs to be shorter/more direct; split only if one RQ truly contains two independent asks.
+
+### C-052 — RQ3a: clarify “predictive context”
+- **Ask:** “Predicitive 'what' context.” (Dan, 2026-02-20).
+- **Meaning:** The RQ should define what “predictive” refers to so it stands alone.
+- **Issue:** “Predictive context” is underspecified in the RQ line.
+- **Proposed fix:** Add a short clarifier (forecasted/informed/warm-started context) so RQ3a reads standalone.
+
+### C-053 — RQs: ensure standalone readability
+- **Ask:** “All RQs should largely be written so that they can be understood as standalone questions.” (Dan, 2026-02-20).
+- **Meaning:** Avoid ambiguous pronouns; include minimal context nouns.
+- **Issue:** Some RQs may rely on surrounding prose for meaning.
+- **Proposed fix:** Rewrite RQs to include minimal subject nouns (threat regime, deployment rules, stability metric) so each reads standalone.
 
 ## C-002 Draft Fix: Introduction — Dan’s “Quantum path determination is unique” paragraph
 
