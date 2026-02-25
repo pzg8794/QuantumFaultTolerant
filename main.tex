@@ -327,21 +327,25 @@ Allocator choice and replay/capacity semantics are typically treated as implemen
 
 \subsection{Our Approach and Evaluation Scope}
 
-To address these gaps, we have developed a \emph{robust routing evaluation framework} that compares adversarial-first (EXP3-family), stochastic/contextual-first (CMAB/iCMAB-family), and \emph{hybrid pursuit--neural} models (including EXPNeuralUCB~\cite{huang2024quantum}) under a unified threat taxonomy. The overall decision flow is summarized in Fig.~\ref{fig:framework}.
+To address these gaps, we have developed a \emph{robust routing evaluation framework}
+that compares adversarial-first (EXP3-family), stochastic/contextual-first
+(CMAB/iCMAB-family), and \emph{hybrid pursuit--neural} models
+(including EXPNeuralUCB~\cite{huang2024quantum}) under a unified threat taxonomy.
+The overall decision flow is summarized in Fig.~\ref{fig:framework}.
 % \begin{figure}[htbp]
 % \centering
 % \includegraphics[width=0.9\linewidth]{figures/flowchart.pdf}
 % \caption{Unified evaluation loop: the agent observes network context (topology features and fidelity estimates), selects a route using its bandit policy, and updates from probabilistic rewards under a specified threat process and allocator/capacity regime.}
 % \label{fig:system_flowchart}
 % \end{figure}
-\noindent Our analysis is organized into \textbf{curated evaluation corpora} spanning:
-\begin{itemize}[leftmargin=2em]
-\item \textbf{16 models}: 15 learned routing policies plus an Oracle upper bound
-\item \textbf{5 threat scenarios}: Baseline, Stochastic, Markov, Adaptive, OnlineAdaptive
-\item \textbf{4 allocators}: Default, Dynamic, Thompson, Random
-\item \textbf{Replay/capacity settings}: two capacity semantics ($T_b$ vs. $T$, see \S\ref{subsec:capacity}) evaluated across scales $s \in \{1.0, 1.5, 2.0\}$
-\item \textbf{Frame horizons}: 4K--12K frames, with \textbf{3-run} and \textbf{5-run} ensembles
-\end{itemize}
+\noindent Across the resulting evaluation corpora, we find that context-aware
+pursuit--neural hybrids consistently offer the strongest
+robustness--efficiency tradeoff, and that replay capacity exhibits a
+threat-dependent \emph{capacity paradox} that can amplify vulnerability
+under adaptive disruption.
+
+\noindent Section~\ref{sec:studydesign} details the full experimental grid
+(models, threats, allocators, and replay-capacity semantics).
 
 \subsection{The Capacity Paradox}
 
