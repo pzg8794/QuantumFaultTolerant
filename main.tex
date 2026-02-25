@@ -849,7 +849,10 @@ This architecture enables \textbf{systematic ablation} across allocators, algori
 \end{axis}
 \end{tikzpicture}
 \vspace{-0.5cm}
-\caption{\tiny Context vs EXP3 (Non-Hybrid): \textbf{Context models} (iCMABs + CMABs) maintain 85.9–93.3\% efficiency across T/Tb scales and all scenarios, averaging **88.6\%**. \textbf{EXP3-based models} range 77.2–90.5\% with lower consistency (82.1\% avg), showing 6.5–8.2 pp gaps under capacity-constrained (Tb) conditions. Context-awareness provides superior scale-robust quantum routing. Values aggregated from evaluation corpora across scales 1.0–2.0.}
+\caption{Context vs.\ EXP3 (non-hybrid): Contextual (CMAB/iCMAB) methods
+are more scale-robust than EXP3 baselines across scenarios, with higher
+average Oracle-normalized efficiency and a wider gap under
+capacity-constrained ($T_b$) settings across scales $s \in \{1.0,1.5,2.0\}$.}
 \label{fig:context_exp3_capacity}
 \end{figure}
 
