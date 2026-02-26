@@ -882,7 +882,7 @@ yielding an average gap of approximately \textbf{24 pp} (see \S\ref{subsec:rq1_a
 \subsubsection*{\textbf{RQ2}}
 \label{subsubsec:rq2_question}
 
-\textbf{How do classical baselines and context-aware models perform across increasingly sophisticated threats?}
+\textbf{How do baselines and contextual MABs perform across increasingly sophisticated threat regimes?}
 
 % \devroop{You have repeating supporting questions. Club them together} % RESOLVED by C-008 consolidation
 
@@ -958,13 +958,13 @@ Across \small\texttt{Markov}, \small\texttt{Adaptive}, and \small\texttt{OnlineA
 \noindent\textit{Supporting questions:}
 \begin{itemize}[leftmargin=2em]
   \item \small\texttt{\textbf{RQ2a}:}
-  \emph{Do context-aware algorithms outperform classical and adversarial-first baselines under natural stochastic noise, and do they maintain this advantage under structured and adaptive threat regimes?}\\
+  \emph{Do context-aware routing policies outperform baseline policies under stochastic disruption, and do they maintain this advantage under structured and adaptive threat regimes?}\\
   \textit{Yes.}
   Under \small\texttt{Stochastic} decoherence, contextual and neural--contextual models retain the \textit{15--25 pp} gain observed in RQ1 and remain above the 85\% target. Under \small\texttt{Markov}/\small\texttt{Adaptive}/\small\texttt{OnlineAdaptive}, pursuit-based models keep \textit{high averages ($\simeq$89\%)} and floors of \textit{65--73\%}, while adversarial-first methods fall to floors near \textit{52--54\%}.%
   \cite{auer2002nonstochastic}
 
   \item \small\texttt{\textbf{RQ2b}:}
-  \emph{Which algorithm family degrades most gracefully as threat sophistication escalates from stochastic to reactive adversaries, and which consistently defines the efficiency frontier across all threat scenarios?}\\
+  \emph{Which model family degrades most gracefully and consistently defines the efficiency frontier across all threat scenarios?}\\
   \textit{Pursuit models.}
   Pursuit-based models show the smoothest degradation, and \small\texttt{iCPursuitNeuralUCB} most consistently sits on/near the top efficiency envelope while maintaining strong threat-wide robustness.
 \end{itemize}
@@ -985,7 +985,7 @@ same threat regimes (\small\texttt{CMAB} experiments).
 \subsubsection*{\textbf{RQ3}}
 \label{subsubsec:rq3_question}
 
-\textbf{What combinations of algorithm, allocator, and capacity semantics maximize efficiency and stability across deployment scenarios?}
+\textbf{What combinations of algorithm, allocator, and capacity semantics maximize routing efficiency and stability across deployment scenarios?}
 
 \begin{figure}[ht!]
 \scriptsize
@@ -1064,13 +1064,13 @@ best static configurations sustain threat-wide minima above \textbf{93\%}. At th
   \emph{Yes.} In validated suites, predictive variants can improve mean efficiency and/or reduce variability under non-reactive noise depending on the matched configuration; additional 10-run observations further support this trend.
 
   \item \textbf{RQ3b:} 
-  \textit{Do larger replay scales $T_b \rightarrow T$ universally help?} \\
+  \textit{Do larger replay-capacity scales ($T_b \rightarrow T$) improve routing robustness?} \\
   \emph{No.} Capacity is not monotone: validated suites show settings where increasing $s$ reduces performance under \textsc{Adaptive} targeting (\eg $\approx$26 pp drops in matched slices), and switching $T_b \leftrightarrow T$ can produce \textbf{$>$50 pp} swings in either direction depending on threat structure.
 
-  \item \textbf{RQ3c:} \textit{Is there a universal allocator strategy?} \\
+  \item \textbf{RQ3c:} \textit{Is there a universal allocator strategy for entanglement routing under threat variation?} \\
   \emph{No.} Allocator choice interacts with threat and semantics: while allocators often cluster within single-digit differences, worst-case matched slices exhibit allocator spans that can exceed \textbf{10 pp} and, in extreme cases, \textbf{$>$30 pp}.
 
-  \item \textbf{RQ3d:} \textit{Can we map threat characteristics to stable deployment rules?} \\
+  \item \textbf{RQ3d:} \textit{Can we map threat characteristics to stable deployment rules for entanglement routing?} \\
   \emph{Yes.} Because threat-wide $\ge 85\%$ static configurations exist, deployment rules can be expressed as \emph{(i)} a small set of robust defaults (static, threat-wide) plus \emph{(ii)} optional threat-tuned switches when optimizing for peak efficiency/variance.
 \end{itemize}
 

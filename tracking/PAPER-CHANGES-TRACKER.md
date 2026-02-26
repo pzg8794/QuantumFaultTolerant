@@ -78,7 +78,7 @@
 | C-050 | 2026-02-20 | Study Design | Dan: “If there are any similar studies, then cite them.” | Add closest-study citations in Study Design (testbeds + benchmarking context) without over-claiming methodological overlap | Done | TBD | T-2026-007, T-2025-015 | Applied in `main.tex` Study Design opening: testbed comparability cites `chaudhary2023quantum,liu2024qbgp,clayton2024quarc`; scoped benchmarking as “complementing” `coopmans2021benchmark,kozlowski2022utility` |
 | C-051 | 2026-02-20 | Research Questions | Dan: “Some of these RQs can be simplified, and maybe broken up.” | Simplify RQ wording for standalone readability; split only when one RQ truly bundles multiple independent asks | Done | TBD | T-2026-007, T-2025-011 | Applied to RQ1 block (main + RQ1a/b/c wording tightened) |
 | C-052 | 2026-02-20 | Research Questions | Dan: “Predicitive 'what' context.” (re: RQ3a) | Clarify what “predictive context” refers to so the question reads standalone (name the mechanism) | Done | TBD | T-2026-007, T-2025-011 | Applied in `main.tex`: “predictive (ARIMA-informed) context” + “routing stability” |
-| C-053 | 2026-02-20 | Research Questions | Dan: “All RQs should largely be written so that they can be understood as standalone questions.” (re: RQ3d) | Rewrite RQs to remove ambiguous “we/this/it” phrasing and add minimal context nouns so each reads standalone | Planned |  | T-2026-007, T-2025-011 | Target: RQ3d (and any other RQs with implicit referents) |
+| C-053 | 2026-02-20 | Research Questions | Dan: “All RQs should largely be written so that they can be understood as standalone questions.” (re: RQ3d) | Rewrite RQs to remove ambiguous “we/this/it” phrasing and add minimal context nouns so each reads standalone | Done | TBD | T-2026-007, T-2025-011 | Applied to RQ2 + RQ3 main + supporting questions (adds “routing/entanglement routing”, clarifies replay-capacity wording) |
 
 ---
 
@@ -408,6 +408,10 @@ Quantum entanglement routing differs fundamentally from classical routing becaus
 - **Meaning:** Avoid ambiguous pronouns; include minimal context nouns.
 - **Issue:** Some RQs may rely on surrounding prose for meaning.
 - **Proposed fix:** Rewrite RQs to include minimal subject nouns (threat regime, deployment rules, stability metric) so each reads standalone.
+- **Applied (2026-02-26):** Updated RQ2 + RQ3 question lines for standalone readability:
+  - RQ2 main now explicitly references contextual MABs and threat regimes.
+  - RQ2a/b tighten wording (stochastic disruption; “model family…”; keep “efficiency frontier” phrasing).
+  - RQ3 main adds “routing”; RQ3b clarifies replay-capacity scale notation; RQ3c/d specify “entanglement routing” and “threat variation”.
 
 ## C-002 Draft Fix: Introduction — Dan’s “Quantum path determination is unique” paragraph
 
