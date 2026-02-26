@@ -76,7 +76,7 @@
 | C-048 | 2026-02-20 | Figures (Captions) | Dan: “Too wordy and dont change caption size.” (re: Context vs EXP3 caption) | Rewrite caption to takeaway-first; remove manual `\\tiny` and use IEEE default caption sizing | Done | TBD | T-2026-007, T-2025-011 | Applied in `main.tex` at `\\label{fig:context_exp3_capacity}` (removed `\\tiny`; shortened to takeaway-first caption) |
 | C-049 | 2026-02-20 | Figures (Captions) | Dan: “For all references, mention the primary takeaway.” (re: floor/peak/mean caption) | Rewrite number-led captions so the first clause states the takeaway; keep caption sizing unchanged (no manual `\\tiny`) | Done | TBD | T-2026-007, T-2025-011 | Applied in `main.tex` at `\\label{fig:floor}` (takeaway-first caption; removed manual `\\tiny`) |
 | C-050 | 2026-02-20 | Study Design | Dan: “If there are any similar studies, then cite them.” | Add closest-study citations in Study Design (testbeds + benchmarking context) without over-claiming methodological overlap | Done | TBD | T-2026-007, T-2025-015 | Applied in `main.tex` Study Design opening: testbed comparability cites `chaudhary2023quantum,liu2024qbgp,clayton2024quarc`; scoped benchmarking as “complementing” `coopmans2021benchmark,kozlowski2022utility` |
-| C-051 | 2026-02-20 | Research Questions | Dan: “Some of these RQs can be simplified, and maybe broken up.” | Simplify RQ wording for standalone readability; split only when one RQ truly bundles multiple independent asks | Planned |  | T-2026-007, T-2025-011 | Start with RQ1 block |
+| C-051 | 2026-02-20 | Research Questions | Dan: “Some of these RQs can be simplified, and maybe broken up.” | Simplify RQ wording for standalone readability; split only when one RQ truly bundles multiple independent asks | Done | TBD | T-2026-007, T-2025-011 | Applied to RQ1 block (main + RQ1a/b/c wording tightened) |
 | C-052 | 2026-02-20 | Research Questions | Dan: “Predicitive 'what' context.” (re: RQ3a) | Clarify what “predictive context” refers to (forecasted/informed context) so the question reads standalone | Planned |  | T-2026-007, T-2025-011 | Target: RQ3a line |
 | C-053 | 2026-02-20 | Research Questions | Dan: “All RQs should largely be written so that they can be understood as standalone questions.” (re: RQ3d) | Rewrite RQs to remove ambiguous “we/this/it” phrasing and add minimal context nouns so each reads standalone | Planned |  | T-2026-007, T-2025-011 | Target: RQ3d (and any other RQs with implicit referents) |
 
@@ -390,6 +390,11 @@ Quantum entanglement routing differs fundamentally from classical routing becaus
 - **Meaning:** RQs should be readable and not overly compound.
 - **Issue:** Some RQs may bundle multiple constructs in one question or require surrounding context.
 - **Proposed fix:** Rewrite RQs to be shorter/more direct; split only if one RQ truly contains two independent asks.
+- **Applied (2026-02-26):** Simplified the RQ1 block questions without changing intent:
+  - RQ1: “Under stochastic decoherence, are baseline MABs deployment-viable?”
+  - RQ1a: removed the incorrect “(EXP3-based)” parenthetical; “baseline MABs …”
+  - RQ1b: removed redundant “classical”; “outperform baselines …”
+  - RQ1c: “top-tier contextual MABs … 85\% deployment target …”
 
 ### C-052 — RQ3a: clarify “predictive context”
 - **Ask:** “Predicitive 'what' context.” (Dan, 2026-02-20).

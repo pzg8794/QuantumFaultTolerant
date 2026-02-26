@@ -785,7 +785,7 @@ This architecture enables \textbf{systematic ablation} across allocators, algori
 \subsubsection*{\textbf{RQ1}}
 \label{subsubsec:rq1_question}
 
-\textbf{Does stochastic decoherence degrade routing efficiency enough to make classical MABs insufficient?}
+\textbf{Under stochastic decoherence, are baseline MABs deployment-viable?}
 
 
 
@@ -869,13 +869,13 @@ yielding an average gap of approximately \textbf{24 pp} (see \S\ref{subsec:rq1_a
 
 \textbf{Supporting questions:}
 \begin{itemize}[leftmargin=2em]
-  \item \textbf{RQ1a:} \textit{What performance floor do classical (EXP3-based) baselines reach under pure stochastic disruption?} \\
+  \item \textbf{RQ1a:} \textit{What performance floor do baseline MABs reach under pure stochastic disruption?} \\
   In the \small\texttt{CMAB} validated suites under \textsc{Stochastic}, \small\texttt{CThompsonSampling} and \small\texttt{CEXP4} remain in the 62--70\% band, which is below an 85\% deployment target.
 
-  \item \textbf{RQ1b:} \textit{Do topology/channel-aware models outperform classical baselines under the same disruption?} \\
+  \item \textbf{RQ1b:} \textit{Do topology/channel-aware models outperform baselines under the same disruption?} \\
   \emph{Yes}. Pursuit--neural routing reaches 87--93\% under matched conditions, exceeding the classical floor by a wide margin in the validated suites.
 
-  \item \textbf{RQ1c:} \textit{Do viable contextual/neural models remain above an 85\% target across horizons and suites?} \\
+  \item \textbf{RQ1c:} \textit{Do top-tier contextual MABs remain above the 85\% deployment target across horizons and suites?} \\
   \emph{Yes}. In the matched testbed slice ($T_b$, $s{=}2$, non-random allocators, 3- and 5-run suites), pursuit--neural models remain $\ge 85\%$ under \textsc{Stochastic} across the primary horizons used in validated suites.
 \end{itemize}
 
