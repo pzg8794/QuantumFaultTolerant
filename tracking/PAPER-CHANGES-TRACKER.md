@@ -83,6 +83,7 @@
 | C-055 | 2026-02-20 | Related Work | Dan: “You dont need subsesctions for each of these” | Collapse/merge micro-subsubsections in Related Work (e.g., Search Strategy/Time Span) into fewer paragraphs; remove labels/headings where they don’t add structure | Done | TBD | T-2026-007, T-2025-015 | Applied in `sections/02--related_works.tex` (removed micro-subsubsections; merged into label-free methodology prose with a bridge phrase) |
 | C-056 | 2026-02-20 | Related Work | Dan: “Make sure that youre directly comparing/contrasting the work against yours.” | Ensure each Related Work thread includes an explicit 1–2 sentence contrast vs our work (what they do + what we do differently) | Done | TBD | T-2026-007, T-2025-015 | Applied in `sections/02--related_works.tex` (added explicit “In our study/benchmark…” contrast sentences in foundational/contextual/adversarial/predictive subsections; quantum-routing subsection already had paper-to-paper contrasts) |
 | C-057 | 2026-02-28 | Figures (Caption) | Dan: “Too wordy and dont change caption size.” (heatmap caption) | Rewrite heatmap caption to be takeaway-first and remove manual `\tiny` sizing | Done | TBD | T-2026-007, T-2025-011 | Applied in `main.tex` at `\label{fig:heatmap}` (removed `\tiny`; shortened caption; references “Fixed” to match x-axis label) |
+| C-058 | 2026-02-28 | Figures (Caption) | Dan: “Too wordy and dont change caption size.” (framework caption) | Rewrite framework caption to be takeaway-first and remove manual `\tiny` sizing | Done | TBD | T-2026-007, T-2025-011 | Applied in `main.tex` at `\label{fig:framework}` (removed `\tiny`; shortened caption; kept label immediately after caption) |
 
 ---
 
@@ -456,6 +457,16 @@ Quantum entanglement routing differs fundamentally from classical routing becaus
 - **Applied (2026-02-28):**
   - **BEFORE:** `\caption{\tiny Efficiency heatmap for CPursuitNeuralUCB ...}`
   - **AFTER:** `\caption{Efficiency heatmap for \texttt{CPursuitNeuralUCB} ... Fixed allocator ... first-class robustness factor.}`
+
+### C-058 — Figure caption: framework too wordy + don’t change caption size
+- **Ask:** “Too wordy and dont change caption size.” (Dan, 2026-02-20 10:39am).
+- **Meaning:** Captions should lead with the takeaway and avoid manual sizing commands like `\tiny`.
+- **Target:** `main.tex` figure with `\label{fig:framework}` (framework overview figure).
+- **Issue:** The caption used `\caption{\tiny ...}` and enumerated internal layer names in prose.
+- **Proposed fix:** Remove `\tiny` and replace the caption with a short takeaway-first summary (keep `\label{fig:framework}` immediately after `\caption{...}`).
+- **Applied (2026-02-28):**
+  - **BEFORE:** `\caption{\tiny Modular framework for quantum routing evaluation. ...}`
+  - **AFTER:** `\caption{Modular framework for quantum routing evaluation: shared configuration defines ... cross-scenario comparisons.}`
 
 ## C-002 Draft Fix: Introduction — Dan’s “Quantum path determination is unique” paragraph
 

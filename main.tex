@@ -698,7 +698,11 @@ Both are \textbf{always scaled} (even when $s=1$). This separation is critical f
     \end{tikzpicture}
 }
 \vspace{-0.45cm}
-\caption{\tiny Modular framework for quantum routing evaluation. \textsc{Allocator} selects the qubit distribution strategy under test. \textsc{Configuration} is shared by all layers, defining topology, threats, algorithms, capacity, and seeds. The \textsc{Evaluator} builds the environment and orchestrates runs; the \textsc{Runner} executes per-scenario/per-seed batches with the chosen allocator; the \textsc{Model} implements the quantum routing stack (network + bandit); and the \textsc{Visualizer} aggregates configuration-aware results to compare winners across scenarios.}
+\caption{Modular framework for quantum routing evaluation: shared
+configuration defines topology, threat regime, capacity semantics,
+and seeds; allocators and models plug into a common
+evaluator/runner pipeline; the visualizer aggregates
+cross-scenario comparisons.}
 \label{fig:framework}
 \end{figure}
 
