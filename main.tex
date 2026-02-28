@@ -2435,7 +2435,7 @@ In the Hybrid suite, capacity sensitivity is visible even when averaged over all
 Mechanistically, replay capacity expands the learner's ability to reinforce repeated patterns; under reactive interference, this can amplify \emph{predictability} and therefore expand the attack surface. In other words, replay capacity becomes hazardous primarily when paired with allocation policies that induce predictable or poorly matched exploration under adversarial reactivity.
 
 % ----------------------------------------------------------------------------
-\subsubsection{Finding 3 - Algorithm--Allocator Co-Design is the Practical Lever (avoid ``bad'' allocator regimes)}
+\subsubsection{Finding 3 - Algorithm--Allocator Co-Design is the Practical Lever (avoid \texorpdfstring{\textquotedblleft bad\textquotedblright}{bad} allocator regimes)}
 
 Allocator choice is the highest-leverage \emph{deployment} control in the Hybrid suite. When aggregated across scenarios and replay-capacity settings, \small\texttt{ThompsonSampling} and \small\texttt{Fixed} form the top tier for pursuit-based hybrids, while \small\texttt{Random} is consistently worst and most associated with tail-risk collapses. This yields a deployment lesson that is both mechanistic and operational:
 
