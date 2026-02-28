@@ -430,7 +430,7 @@ Quantum entanglement routing differs fundamentally from classical routing becaus
 - **Proposed fix:** Remove the micro-subsubsection headings entirely and express the search strategy + inclusion/exclusion criteria as two plain paragraphs (no labels) under `Literature Selection Methodology`.
 - **In-paper BEFORE (removed headings):** `\subsubsection{Search Strategy and Time Span (2002--2025)}` and `\subsubsection{Inclusion and Exclusion Criteria}`
 - **In-paper AFTER (no labels):** Starts with “We conducted a targeted literature search spanning 2002--2025…” and “We included work that (i) develops stochastic and adversarial bandits…”.
-- **Applied (2026-02-28):** Removed both micro-subsubsection headings and the interim bold lead-ins; rewrote the keyword-query sentence into a single paragraph sentence and retained the verified neural-bandit citation key (`zhang2022neuralts`) in `sections/02--related_works.tex`.
+- **Applied (2026-02-28):** Removed both micro-subsubsection headings and the interim bold lead-ins; rewrote the methodology into plain paragraphs with a bridge phrase (“From this corpus”) and retained the verified neural-bandit citation key (`zhang2022neuralts`) in `sections/02--related_works.tex`.
 
 ## C-002 Draft Fix: Introduction — Dan’s “Quantum path determination is unique” paragraph
 
