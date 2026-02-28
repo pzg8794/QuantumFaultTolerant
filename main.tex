@@ -1041,7 +1041,10 @@ same threat regimes (\small\texttt{CMAB} experiments).
 
 \end{axis}
 \end{tikzpicture}
-\caption{\tiny Efficiency heatmap for CPursuitNeuralUCB across core allocator strategies and threat scenarios. Fixed allocation (Default) values from the Hybrid evaluation corpus; Dynamic/Thompson values maintained from analysis reports. Fixed allocation consistently achieves highest efficiency (89.6--99.7\% across attacks, 94--100\% baseline). Random allocator (37.1--38.7\% efficiency) excluded from core findings; reported separately in supplementary analysis.}
+\caption{Efficiency heatmap for \texttt{CPursuitNeuralUCB} across allocator
+strategies and threat scenarios. In this setting, the Fixed allocator yields
+the highest efficiency across scenarios, reinforcing allocator choice as a
+first-class robustness factor.}
 \label{fig:heatmap}
 \end{figure}
 

@@ -82,6 +82,7 @@
 | C-054 | 2026-02-20 | Related Work | Dan: “write this better and in paragraph form.” (re: Inclusion/Exclusion Criteria) | Rewrite Inclusion/Exclusion Criteria from list form into 1 cohesive paragraph; preserve criteria content while improving readability | Done | TBD | T-2026-007, T-2025-015 | Applied in `sections/02--related_works.tex` (single paragraph replaces nested lists; citations preserved) |
 | C-055 | 2026-02-20 | Related Work | Dan: “You dont need subsesctions for each of these” | Collapse/merge micro-subsubsections in Related Work (e.g., Search Strategy/Time Span) into fewer paragraphs; remove labels/headings where they don’t add structure | Done | TBD | T-2026-007, T-2025-015 | Applied in `sections/02--related_works.tex` (removed micro-subsubsections; merged into label-free methodology prose with a bridge phrase) |
 | C-056 | 2026-02-20 | Related Work | Dan: “Make sure that youre directly comparing/contrasting the work against yours.” | Ensure each Related Work thread includes an explicit 1–2 sentence contrast vs our work (what they do + what we do differently) | Done | TBD | T-2026-007, T-2025-015 | Applied in `sections/02--related_works.tex` (added explicit “In our study/benchmark…” contrast sentences in foundational/contextual/adversarial/predictive subsections; quantum-routing subsection already had paper-to-paper contrasts) |
+| C-057 | 2026-02-28 | Figures (Caption) | Dan: “Too wordy and dont change caption size.” (heatmap caption) | Rewrite heatmap caption to be takeaway-first and remove manual `\tiny` sizing | Done | TBD | T-2026-007, T-2025-011 | Applied in `main.tex` at `\label{fig:heatmap}` (removed `\tiny`; shortened caption; references “Fixed” to match x-axis label) |
 
 ---
 
@@ -445,6 +446,16 @@ Quantum entanglement routing differs fundamentally from classical routing becaus
   - **Contextual/Neural:** “…temporal drift.” → “In our benchmark, we instantiate contextual and neural bandit policies as routing baselines…”.
   - **Adversarial/Hybrid:** “…mixed threats.” → “Accordingly, our evaluation contrasts adversarial-first baselines with hybrid pursuit-based designs…”.
   - **Predictive/Informed:** “…strategic threats.” → “In our study, forecasting-informed context is treated as one component…”.
+
+### C-057 — Figure caption: heatmap too wordy + don’t change caption size
+- **Ask:** “Too wordy and dont change caption size.” (Dan, 2026-02-20 10:39am).
+- **Meaning:** Captions should lead with the takeaway and avoid manual sizing commands like `\tiny`.
+- **Target:** `main.tex` figure with `\label{fig:heatmap}` (heatmap under the RQ3 section).
+- **Issue:** The caption used `\caption{\tiny ...}` and included dense, multi-number detail.
+- **Proposed fix:** Remove `\tiny` and replace the caption with a short takeaway-first sentence that references the x-axis label exactly (“Fixed”).
+- **Applied (2026-02-28):**
+  - **BEFORE:** `\caption{\tiny Efficiency heatmap for CPursuitNeuralUCB ...}`
+  - **AFTER:** `\caption{Efficiency heatmap for \texttt{CPursuitNeuralUCB} ... Fixed allocator ... first-class robustness factor.}`
 
 ## C-002 Draft Fix: Introduction — Dan’s “Quantum path determination is unique” paragraph
 
