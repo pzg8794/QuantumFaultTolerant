@@ -80,8 +80,8 @@
 | C-052 | 2026-02-20 | Research Questions | Dan: “Predicitive 'what' context.” (re: RQ3a) | Clarify what “predictive context” refers to so the question reads standalone (name the mechanism) | Done | TBD | T-2026-007, T-2025-011 | Applied in `main.tex`: “predictive (ARIMA-informed) context” + “routing stability” |
 | C-053 | 2026-02-20 | Research Questions | Dan: “All RQs should largely be written so that they can be understood as standalone questions.” (re: RQ3d) | Rewrite RQs to remove ambiguous “we/this/it” phrasing and add minimal context nouns so each reads standalone | Done | TBD | T-2026-007, T-2025-011 | Applied to RQ2 + RQ3 main + supporting questions (adds “routing/entanglement routing”, clarifies replay-capacity wording) |
 | C-054 | 2026-02-20 | Related Work | Dan: “write this better and in paragraph form.” (re: Inclusion/Exclusion Criteria) | Rewrite Inclusion/Exclusion Criteria from list form into 1 cohesive paragraph; preserve criteria content while improving readability | Done | TBD | T-2026-007, T-2025-015 | Applied in `sections/02--related_works.tex` (single paragraph replaces nested lists; citations preserved) |
-| C-055 | 2026-02-20 | Related Work | Dan: “You dont need subsesctions for each of these” | Collapse/merge micro-subsubsections in Related Work (e.g., Search Strategy/Time Span) into fewer paragraphs/subsections; keep headings only where they add structure | Done | TBD | T-2026-007, T-2025-015 | Applied in `sections/02--related_works.tex` (converted micro-subsubsections to bold in-paragraph leads) |
-| C-056 | 2026-02-20 | Related Work | Dan: “Make sure that youre directly comparing/contrasting the work against yours.” | Ensure each Related Work thread includes an explicit 1–2 sentence contrast vs our work (what they do + what we do differently) | Planned |  | T-2026-007, T-2025-015 | Target: `\\section{Related Work}` (audit for any paragraphs that cite without an explicit compare) |
+| C-055 | 2026-02-20 | Related Work | Dan: “You dont need subsesctions for each of these” | Collapse/merge micro-subsubsections in Related Work (e.g., Search Strategy/Time Span) into fewer paragraphs; remove labels/headings where they don’t add structure | Done | TBD | T-2026-007, T-2025-015 | Applied in `sections/02--related_works.tex` (removed micro-subsubsections; merged into label-free methodology prose with a bridge phrase) |
+| C-056 | 2026-02-20 | Related Work | Dan: “Make sure that youre directly comparing/contrasting the work against yours.” | Ensure each Related Work thread includes an explicit 1–2 sentence contrast vs our work (what they do + what we do differently) | Done | TBD | T-2026-007, T-2025-015 | Applied in `sections/02--related_works.tex` (added explicit “In our study/benchmark…” contrast sentences in foundational/contextual/adversarial/predictive subsections; quantum-routing subsection already had paper-to-paper contrasts) |
 
 ---
 
@@ -434,6 +434,17 @@ Quantum entanglement routing differs fundamentally from classical routing becaus
 - **In-paper BEFORE (removed headings):** `\subsubsection{Search Strategy and Time Span (2002--2025)}` and `\subsubsection{Inclusion and Exclusion Criteria}`
 - **In-paper AFTER (no labels):** A label-free methodology paragraph starting with “We conducted a targeted literature search spanning 2002--2025…” and bridging into selection via “From this corpus, we included work that (i)…”.
 - **Applied (2026-02-28):** Removed both micro-subsubsection headings and the interim bold lead-ins; rewrote the methodology into plain paragraphs with a bridge phrase (“From this corpus”) and retained the verified neural-bandit citation key (`zhang2022neuralts`) in `sections/02--related_works.tex`.
+
+### C-056 — Related Work: explicit compare/contrast vs our work
+- **Ask:** “Make sure that youre directly comparing/contrasting the work against yours.” (Dan, 2026-02-20 10:35am).
+- **Meaning:** For each Related Work thread that cites prior work, state (a) what that work contributes and (b) how our study differs (scope/goal/variables evaluated).
+- **Issue:** The bandit-theory subsections (Foundational, Contextual/Neural, Adversarial/Hybrid, Predictive/Informed) explained prior mechanisms but did not explicitly tie them back to our benchmark choices; the quantum-routing subsection already contained direct paper-to-paper contrasts.
+- **Proposed fix:** Add one concluding sentence per subsection that anchors the cited thread to our benchmark (matched-condition baselines; direct compare vs pursuit--neural hybrids; allocator+replay/capacity semantics as explicit variables; shared experimental grid framing).
+- **Applied (2026-02-28):** Appended one explicit “In our study/benchmark…” contrast sentence to each of the four bandit-theory subsections in `sections/02--related_works.tex`.
+  - **Foundational:** “…depend on the feedback model.” → “In our study, we treat these canonical stochastic and adversarial bandit algorithms as matched-condition baselines…”.
+  - **Contextual/Neural:** “…temporal drift.” → “In our benchmark, we instantiate contextual and neural bandit policies as routing baselines…”.
+  - **Adversarial/Hybrid:** “…mixed threats.” → “Accordingly, our evaluation contrasts adversarial-first baselines with hybrid pursuit-based designs…”.
+  - **Predictive/Informed:** “…strategic threats.” → “In our study, forecasting-informed context is treated as one component…”.
 
 ## C-002 Draft Fix: Introduction — Dan’s “Quantum path determination is unique” paragraph
 

@@ -11,21 +11,25 @@ We conducted a targeted literature search spanning 2002--2025 across arXiv, IEEE
 \subsection{Foundational Bandits and Regret Regimes}
 
 Foundational results formalize the exploration--exploitation trade-off and provide regret guarantees that define the efficiency--robustness envelope. In stochastic i.i.d.\ settings, UCB-style optimism and Thompson-style posterior sampling achieve logarithmic-in-horizon regret under standard gap conditions~\cite{auer2002finite,thompson1933likelihood}. In adversarial settings, EXP3 attains sublinear regret without stochastic assumptions, trading some benign-regime efficiency for worst-case protection~\cite{auer2002nonstochastic}. These regimes motivate why quantum routing evaluations should explicitly separate \emph{natural noise} from \emph{coordinated disruption}: the learning objective and the appropriate safety guarantees depend on the feedback model.
+In our study, we treat these canonical stochastic and adversarial bandit algorithms as matched-condition baselines within a unified threat taxonomy for entanglement routing, rather than introducing new regret guarantees.
 
 \subsection{Contextual and Neural Bandits}
 
 Contextual bandits condition decisions on observable state, enabling structured decision-making when arms are not exchangeable. LinUCB models rewards as linear in context and selects actions via a confidence bonus~\cite{li2010contextual}. NeuralUCB and NeuralTS generalize this principle by learning representations with deep networks while retaining uncertainty-aware action selection through confidence-style bounds or sampling in representation space~\cite{zhou2020neuralucb,zhang2022neuralts}. The shared abstraction is mechanism-level:
 \emph{learn a value predictor, maintain an uncertainty estimate over that predictor, and act optimistically or probabilistically.}
 In quantum routing, the natural context includes topology/hop structure, link-quality indicators, and any measurable signals of load, memory, or temporal drift.
+In our benchmark, we instantiate contextual and neural bandit policies as routing baselines under this notion of context and compare them directly against our hybrid pursuit--neural variants under matched threat regime, allocator policy, and replay/capacity settings.
 
 \subsection{Adversarial and Hybrid Robustness}
 
 Adversarial bandits prioritize worst-case guarantees (e.g., EXP3-style randomization, which can be essential under nonstationarity or strategic manipulation~\cite{auer2002nonstochastic}). Hybrid designs aim to combine robust exploration with structured exploitation---for example, layering pursuit-style updates over context-conditioned value estimation or embedding adversarial weighting within learned reward models~\cite{thathachar2011networks}. Within quantum-routing studies, adversarial-first formulations are often motivated by jamming or targeted disruption; however, comparisons across families are frequently confounded by mismatched assumptions about allocation, memory/replay semantics, and evaluation taxonomies. This motivates treating allocation policies and replay parameterization as first-class experimental factors when assessing robustness under mixed threats.
+Accordingly, our evaluation contrasts adversarial-first baselines with hybrid pursuit-based designs while explicitly varying allocator policy and replay/capacity semantics to isolate which design choices drive robustness.
 
 \subsection{Predictive and Informed Bandits}
 
 Predictive (informed) contextual bandits augment the decision rule with a forecasting or world-model component so that learning can anticipate drift rather than purely react to it. iCMAB exemplifies this direction by coupling contextual decision rules with an explicit predictive model of future context dynamics~\cite{kar2024icmab}. In our setting, we instantiate an informed variant by warming up predictive context with a classical time-series forecaster (ARIMA)~\cite{box2015time}. The core idea is again mechanism-level:
 \emph{forecasting can augment the context signal}, but it does not replace the need for robust exploration and allocation policies under strategic threats.
+In our study, forecasting-informed context is treated as one component in the stack and is evaluated under the same shared experimental grid (threat/allocator/capacity) to quantify when predictive context improves stability versus when adversarial adaptivity dominates.
 
 \subsection{Quantum Network Routing with Bandits}
 
