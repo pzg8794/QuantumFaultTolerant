@@ -5,18 +5,9 @@
 
 We situate multi-armed bandits (MABs) as a family of uncertainty-aware sequential decision rules and use quantum entanglement routing as a stress test where stochastic noise, structured disruption, and resource constraints jointly shape performance. Our scope spans: (i) finite-time regret analyses in stochastic and adversarial regimes, (ii) contextual and neural representations for structured environments, (iii) hybrid constructions that combine mechanisms across regimes, and (iv) predictive (informed) bandits that incorporate explicit forecasts or learned dynamics.
 
-\noindent\textbf{Search strategy and time span (2002--2025).}
+We conducted a targeted literature search spanning 2002--2025 across arXiv, IEEE Xplore, and the ACM Digital Library, using keyword combinations covering quantum routing and entanglement distribution as well as bandit-based online decision-making (stochastic, adversarial, contextual, and predictive variants).
 
-We queried arXiv, IEEE Xplore, and the ACM Digital Library over the 2002--2025 window using combinations of keywords including
-\emph{multi-armed bandits, contextual bandits, adversarial bandits, neural bandits, exploration--exploitation, predictive bandits, online forecasting, informed contextual bandits, quantum routing}.
-We then performed backward/forward snowballing from canonical anchors (\eg UCB/EXP3 foundations; LinUCB and neural contextual bandits; recent bandit-based quantum-routing studies), prioritizing work that either:
-(a) introduced a reusable mechanism (confidence bounds, posterior sampling, adversarial randomization, pursuit-style updates, forecasting/world models), or
-(b) demonstrated cross-domain transfer under materially different constraints (\eg routing, communications, finance, healthcare).
-
-The chosen time span captures the modern finite-time theory for stochastic and adversarial learning, the rise of contextual formulations for structured decision-making, and recent neural, hybrid, and predictive variants designed for complex, partially observed environments.
-
-\noindent\textbf{Inclusion and exclusion criteria.}
-We include (i) canonical stochastic and adversarial MAB algorithms with regret guarantees~\cite{auer2002finite,thompson1933likelihood,auer2002nonstochastic}; (ii) contextual and neural bandits for structured and high-dimensional contexts~\cite{li2010contextual,zhou2020neuralucb,zhang2022neuralts}; (iii) predictive contextual bandits that integrate forecasting or learned dynamics~\cite{kar2024icmab,box2015time}; (iv) hybrid methods that combine mechanisms across regimes~\cite{thathachar2011networks}; and (v) closely related online decision-making settings that reuse these mechanisms under different reward and constraint models. We exclude offline optimization/control approaches without online bandit feedback, single-domain demonstrations that do not generalize algorithmically, and tuning-only studies lacking methodological novelty, clearly stated assumptions, or reproducibility artifacts.
+We included work that (i) develops stochastic and adversarial bandits with regret guarantees~\cite{auer2002finite,thompson1933likelihood,auer2002nonstochastic}; (ii) extends contextual and neural bandits to structured or high-dimensional settings~\cite{li2010contextual,zhou2020neuralucb,zhang2022neuralts}; (iii) incorporates forecasting or learned dynamics~\cite{kar2024icmab,box2015time}; (iv) introduces hybrid mechanisms spanning regimes~\cite{thathachar2011networks}; and (v) covers closely related online decision-making settings that reuse these mechanisms under different reward and constraint models. We excluded offline optimization and control approaches without online bandit feedback, single-domain demonstrations that do not generalize algorithmically, and tuning-only studies lacking methodological novelty, clearly stated assumptions, or reproducibility artifacts.
 
 
 \subsection{Foundational Bandits and Regret Regimes}
