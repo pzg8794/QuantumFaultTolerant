@@ -16,23 +16,7 @@ We then performed backward/forward snowballing from canonical anchors (\eg UCB/E
 The chosen time span captures the modern finite-time theory for stochastic and adversarial learning, the rise of contextual formulations for structured decision-making, and recent neural, hybrid, and predictive variants designed for complex, partially observed environments.
 
 \subsubsection{Inclusion and Exclusion Criteria}
-    \begin{description}[leftmargin=1.5em]
-      \item \textit{Included:}
-        \begin{enumerate}[leftmargin=1.8em]
-          \item Canonical stochastic and adversarial MAB algorithms with regret guarantees~\cite{auer2002finite,thompson1933likelihood,auer2002nonstochastic}.
-          \item Contextual neural bandits that scale action selection to structured/high-dimensional contexts~\cite{li2010contextual,zhou2020neuralucb,zhang2022neuralts}.
-          \item Predictive/informed contextual bandits that integrate forecasting or learned dynamics~\cite{kar2024icmab,box2015time}.
-          \item Hybrid methods that combine mechanisms across regimes~\cite{thathachar2011networks}.
-          \item Cross-domain applications where the same mechanism is instantiated under different reward and constraint models.
-        \end{enumerate}
-    
-      \item \textit{Excluded:}
-        \begin{enumerate}[leftmargin=1.8em]
-          \item Offline optimization/control without online learning under bandit feedback.
-          \item Single-domain demonstrations without reusable algorithmic insight.
-          \item Pure tuning studies without methodological novelty, clearly stated assumptions, or reproducibility artifacts.
-        \end{enumerate}
-    \end{description}
+We include (i) canonical stochastic and adversarial MAB algorithms with regret guarantees~\cite{auer2002finite,thompson1933likelihood,auer2002nonstochastic}; (ii) contextual and neural bandits for structured and high-dimensional contexts~\cite{li2010contextual,zhou2020neuralucb,zhang2022neuralts}; (iii) predictive contextual bandits that integrate forecasting or learned dynamics~\cite{kar2024icmab,box2015time}; (iv) hybrid methods that combine mechanisms across regimes~\cite{thathachar2011networks}; and (v) closely related online decision-making settings that reuse these mechanisms under different reward and constraint models. We exclude offline optimization/control approaches without online bandit feedback, single-domain demonstrations that do not generalize algorithmically, and tuning-only studies lacking methodological novelty, clearly stated assumptions, or reproducibility artifacts.
 
 
 \subsection{Foundational Bandits and Regret Regimes}
