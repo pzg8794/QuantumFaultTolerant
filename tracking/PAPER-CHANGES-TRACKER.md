@@ -430,7 +430,7 @@ Quantum entanglement routing differs fundamentally from classical routing becaus
 - **Proposed fix:** Convert those `\subsubsection{...}` headings to bold in-paragraph lead-ins and keep the paragraph content unchanged.
 - **In-paper BEFORE (removed headings):** `\subsubsection{Search Strategy and Time Span (2002--2025)}` and `\subsubsection{Inclusion and Exclusion Criteria}`
 - **In-paper AFTER (replacement lead-ins):** `\noindent\textbf{Search strategy and time span (2002--2025).}` and `\noindent\textbf{Inclusion and exclusion criteria.}`
-- **Applied (2026-02-28):** Replaced both micro-subsubsection headings with `\noindent\textbf{...}` lead-ins in `sections/02--related_works.tex`.
+- **Applied (2026-02-28):** Replaced both micro-subsubsection headings with `\noindent\textbf{...}` lead-ins in `sections/02--related_works.tex`, and tightened the keyword-query sentence to remove the dangling “using combinations of:” line break (now “using combinations of keywords including …”).
 
 ## C-002 Draft Fix: Introduction — Dan’s “Quantum path determination is unique” paragraph
 
