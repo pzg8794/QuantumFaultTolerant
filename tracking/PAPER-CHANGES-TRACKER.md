@@ -85,6 +85,7 @@
 | C-057 | 2026-02-28 | Figures (Caption) | Dan: “Too wordy and dont change caption size.” (heatmap caption) | Rewrite heatmap caption to be takeaway-first and remove manual `\tiny` sizing | Done | TBD | T-2026-007, T-2025-011 | Applied in `main.tex` at `\label{fig:heatmap}` (removed `\tiny`; shortened caption; references “Fixed” to match x-axis label) |
 | C-058 | 2026-02-28 | Figures (Caption) | Dan: “Too wordy and dont change caption size.” (framework caption) | Rewrite framework caption to be takeaway-first and remove manual `\tiny` sizing | Done | TBD | T-2026-007, T-2025-011 | Applied in `main.tex` at `\label{fig:framework}` (removed `\tiny`; shortened caption; kept label immediately after caption) |
 | C-059 | 2026-02-28 | Figures (Caption) | Dan: “Too wordy and dont change caption size.” (global win share caption) | Rewrite global-win-share caption to be takeaway-first and remove manual `\tiny` sizing | Done | TBD | T-2026-007, T-2025-011 | Applied in `main.tex` at `\label{fig:global_win_share}` (removed `\tiny`; shortened caption; term “default allocator” matches legend text) |
+| C-060 | 2026-02-28 | Figures (Captions) | Dan: “Too wordy and dont change caption size.” (remaining `\caption{\tiny ...}` captions) | Remove remaining `\tiny` caption sizing and rewrite captions to be takeaway-first with minimal numeric density | Done | TBD | T-2026-007, T-2025-011 | Applied in `main.tex` (removed all remaining `\caption{\tiny ...}`; updated: `fig:context_capacity_effects`, `fig:scenario_penalties`, `fig:capacity_all`, `fig:threat_rules`, `fig:convergence_hybrid`, `fig:context_hybrid`) |
 
 ---
 
@@ -478,6 +479,26 @@ Quantum entanglement routing differs fundamentally from classical routing becaus
 - **Applied (2026-02-28):**
   - **BEFORE:** `\caption{\tiny Global win share under the default allocator (all scenarios, horizons, scales, and capacity semantics). ...}`
   - **AFTER:** `\caption{Global win share under the default allocator (aggregated across all configurations). \texttt{iCEpsilonGreedy} ... \texttt{CPursuit} ...}`
+
+### C-060 — Figure captions: remove remaining `\caption{\tiny ...}` (batch sweep)
+- **Ask:** “Too wordy and dont change caption size.” (Dan, 2026-02-20 10:39am).
+- **Meaning:** Remove manual caption sizing and reduce caption verbosity; keep captions takeaway-first.
+- **Targets:** `main.tex` figures with: `\label{fig:context_capacity_effects}`, `\label{fig:scenario_penalties}`, `\label{fig:capacity_all}`, `\label{fig:threat_rules}`, `\label{fig:convergence_hybrid}`, `\label{fig:context_hybrid}`.
+- **Issue:** These figures still used `\caption{\tiny ...}` and embedded dense multi-number analysis inside the caption.
+- **Proposed fix:** Remove `\tiny` and rewrite each caption to (1) state what the figure shows and (2) state one primary takeaway, avoiding multi-number blocks (full numeric detail remains in the Results narrative/tables).
+- **Applied (2026-02-28):**
+  - **BEFORE (`fig:context_capacity_effects`):** `\caption{\tiny Context vs.\ non-context efficiency across threat scenarios ...}`
+  - **AFTER (`fig:context_capacity_effects`):** `\caption{Context vs.\ non-context efficiency across threat scenarios ... higher ... under both $T$ and $T_b$ ...}`
+  - **BEFORE (`fig:scenario_penalties`):** `\caption{\tiny Threat penalties vs baseline ...}`
+  - **AFTER (`fig:scenario_penalties`):** `\caption{Threat penalties relative to the Baseline scenario ... context-aware smaller ... EXP3-family more vulnerable ...}`
+  - **BEFORE (`fig:capacity_all`):** `\caption{\tiny Hybrid evaluation corpus ... capacity–efficiency trade-offs ...}`
+  - **AFTER (`fig:capacity_all`):** `\caption{Capacity--efficiency trade-offs ... improves Baseline/Markov ... reduces robustness under Adaptive ...}`
+  - **BEFORE (`fig:threat_rules`):** `\caption{\tiny Threat-conditioned allocator rules ...}`
+  - **AFTER (`fig:threat_rules`):** `\caption{Threat-conditioned allocator performance ... Thompson strongest ... Random underperforms.}`
+  - **BEFORE (`fig:convergence_hybrid`):** `\caption{\tiny Hybrid learning curves (illustrative) ...}`
+  - **AFTER (`fig:convergence_hybrid`):** `\caption{Hybrid learning curves (illustrative) ... converge to high efficiency ...}`
+  - **BEFORE (`fig:context_hybrid`):** `\caption{\tiny Hybrid evaluation corpus: Pursuit models ...}`
+  - **AFTER (`fig:context_hybrid`):** `\caption{Hybrid evaluation corpus efficiency across threat scenarios ... Pursuit-based hybrids ...}`
 
 ## C-002 Draft Fix: Introduction — Dan’s “Quantum path determination is unique” paragraph
 

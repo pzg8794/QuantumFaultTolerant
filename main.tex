@@ -1614,7 +1614,7 @@ legend style={font=\tiny}
 \end{axis}
 \end{tikzpicture}
 \vspace{-0.5cm}
-\caption{\tiny Context vs.\ non-context efficiency across threat scenarios (evaluation corpus, Default allocator, scales 1.0--2.0). Context models (iCMAB+CMAB) maintain 85.9--93.3\% efficiency (88.6\% avg) with minimal capacity sensitivity (0.6 pp T→Tb drop). Non-context models (EXP3) achieve 77.2--90.5\% (82.1\% avg) with comparable scale robustness. Context advantage: 6.5 pp across both capacity semantics, confirming contextual superiority without catastrophic non-context collapse.}
+\caption{Context vs.\ non-context efficiency across threat scenarios (evaluation corpus, paper-default allocator). Contextual (CMAB/iCMAB) models maintain higher Oracle-normalized efficiency than non-context EXP3 baselines under both $T$ and $T_b$ capacity semantics.}
 \label{fig:context_capacity_effects}
 \end{figure}
 
@@ -1741,7 +1741,7 @@ Within the iCMAB evaluation corpus (considering only iCMAB variants under the sa
 \end{axis}
 \end{tikzpicture}
 \vspace{-0.6cm}
-\caption{\tiny Threat penalties vs baseline (evaluation corpus; Default allocator; aggregated across horizons/scales/capacity semantics). Context-aware methods (iCEpsilonGreedy, CPursuit) incur smaller, more consistent penalties (3.2--7.6 pp range) across all four attack types. EXP3-family methods show larger, more variable penalties (EXPUCB: 7.2--9.8 pp; EXPNeuralUCB: 6.9--13.8 pp), with EXPNeuralUCB exhibiting highest vulnerability under Adaptive attacks (13.8 pp). Markov attacks produce moderate, uniform penalties (6.9--9.8 pp) across all models. Note: EXPNeuralUCB's floor of 18\% efficiency represents rare outlier conditions; typical Adaptive performance is 77.6\% (see \Cref{tab:rq2_adversarial}).}
+\caption{Threat penalties relative to the Baseline scenario (evaluation corpus, paper-default allocator). Context-aware methods incur smaller and more stable penalties, while EXP3-family baselines are more vulnerable under adaptive (Adaptive/OnlineAdaptive) threats.}
 \label{fig:scenario_penalties}
 \end{figure}
 
@@ -1826,7 +1826,7 @@ under reactive attack conditions, despite competitive average efficiency in some
 \end{axis}
 \end{tikzpicture}
 \vspace{-0.5cm}
-\caption{\tiny Hybrid evaluation corpus, averaged across all hybrid models: capacity–efficiency trade-offs. The full spectrum (T $\rightarrow$ 1.5T $\rightarrow$ 2T $\rightarrow$ Tb $\rightarrow$ 1.5Tb $\rightarrow$ 2Tb) confirms the capacity paradox—larger budgets lift \textbf{Baseline} and \textbf{Markov} efficiency but erode resilience in \textbf{Adaptive} scenarios.}
+\caption{Capacity--efficiency trade-offs in the hybrid evaluation corpus. Increasing capacity improves Baseline and Markov efficiency but can reduce robustness under Adaptive threats (capacity paradox).}
 \label{fig:capacity_all}
 \end{figure}
 
@@ -1917,7 +1917,7 @@ Run-level artifacts and aggregation scripts are provided in the Supplement.
 \end{axis}
 \end{tikzpicture}
 \vspace{-0.5cm}
-\caption{\tiny Threat-conditioned allocator rules (Hybrid dataset, all models averaged). Thompson excels in Adaptive regimes, DynamicUCB keeps pace in Adaptive/Online, while Random allocation lags far behind.}
+\caption{Threat-conditioned allocator performance (hybrid corpus, averaged over models). Thompson is strongest in Adaptive regimes, DynamicUCB is competitive under Adaptive/OnlineAdaptive, and Random underperforms.}
 \label{fig:threat_rules}
 \end{figure}
 
@@ -2116,7 +2116,7 @@ effective in specific regimes (\eg Adaptive) but can underperform severely when 
 \end{axis}
 \end{tikzpicture}
 \vspace{-0.5cm}
-\caption{\tiny Hybrid learning curves (illustrative): pursuit-based hybrids converge to $>\!87\%$ efficiency, while neural baselines plateau substantially lower under sparse reward feedback.}
+\caption{Hybrid learning curves (illustrative): pursuit-based hybrids converge to high efficiency, while neural baselines plateau lower under sparse reward feedback.}
 \label{fig:convergence_hybrid}
 \end{figure}
 
@@ -2403,7 +2403,7 @@ Our results across the full evaluation suite---spanning paper baselines (CMAB / 
 \end{axis}
 \end{tikzpicture}
 \vspace{-0.5cm}
-\caption{\tiny Hybrid evaluation corpus: Pursuit models (iCPursuit, CPursuit) maintain high efficiency ($\approx$89--95 \%) across all five scenarios, while neural baselines lag by 5--13 pp and EXP3 trails further.}
+\caption{Hybrid evaluation corpus efficiency across threat scenarios. Pursuit-based hybrids maintain higher efficiency than neural and EXP3 baselines across all five regimes.}
 \label{fig:context_hybrid}
 \end{figure}
 
