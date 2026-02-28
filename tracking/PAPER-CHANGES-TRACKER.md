@@ -49,7 +49,7 @@
 | C-024 | 2026-02-16 | RQ Section Flow | Answers appear in RQ section | Move detailed answers to Results; keep questions in RQ section | TBD |  | T-2026-007, T-2025-011 | Needs Dan approval |
 | C-025 | 2026-02-16 | RQ Scope Clarification | Scope/novelty unclear | Add prior-work citations or clarify novelty statement | TBD |  | T-2026-007, T-2025-011 | Needs advisor input |
 | C-026 | 2026-02-16 | Cleanup | Resolved comment markers remain | Remove resolved comment markers | TBD |  | T-2026-007, T-2025-011 |  |
-| C-027 | 2026-02-16 | Experimental Design | Missing design rationale | Add 1 sentence per major design choice | TBD |  | T-2026-007, T-2025-011 |  |
+| C-027 | 2026-02-16 | Experimental Design | Missing design rationale | Add 1 sentence per major design choice | Done | TBD | T-2026-007, T-2025-011 | Already present in `main.tex` Experimental Design opening (rationale + citations for topology choice, fixed-capacity choice, and allocator axis) |
 | C-028 | 2026-02-16 | Limitations/Future Work | Duplicate sections | Consolidate into one section | TBD |  | T-2025-011 |  |
 | C-029 | 2026-02-16 | Results Narrative | Weak transitions | Add question → finding → evidence transitions | TBD |  | T-2025-011 |  |
 | C-030 | 2026-02-16 | Code/Data Availability | Statement decision needed | Decide availability statement; add or remove | TBD |  | T-2025-011 | Needs advisor input |
