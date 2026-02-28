@@ -421,7 +421,10 @@ Quantum entanglement routing differs fundamentally from classical routing becaus
 - **Meaning:** Preserve the same inclusion/exclusion criteria but present it as readable prose (not nested lists).
 - **Issue:** The current `description` + nested `enumerate` reads like checklist notes and interrupts the Related Work narrative flow.
 - **Proposed fix:** Replace the Included/Excluded list structure with one paragraph using semicolon-separated clauses; keep the same citations/decision boundaries.
-- **Applied (2026-02-28):** Rewrote `\subsubsection{Inclusion and Exclusion Criteria}` in `sections/02--related_works.tex` into a single paragraph; retained the same included/excluded criteria and citations (including `zhang2022neuralts`, confirmed present in `refs.bib`).
+- **In-paper BEFORE (nested-list structure):** `\subsubsection{Inclusion and Exclusion Criteria}` followed by `description` + Included/Excluded list blocks.
+- **In-paper AFTER (paragraph prose):** “…From this corpus, we included work that (i)… We excluded…”, retaining the same included/excluded decision boundaries in sentence form.
+- **Verification (refs.bib):** Confirmed the neural-bandit citation key exists as `zhang2022neuralts` (used in the contextual/neural clause).
+- **Applied (2026-02-28):** Converted Inclusion/Exclusion Criteria into paragraph-form prose in `sections/02--related_works.tex` (removed the nested list structure; kept citations and decision boundaries intact).
 
 ### C-055 — Related Work: avoid micro-subsubsections
 - **Ask:** “You dont need subsesctions for each of these” (Dan, 2026-02-20 10:34am).
@@ -429,7 +432,7 @@ Quantum entanglement routing differs fundamentally from classical routing becaus
 - **Issue:** “Search Strategy and Time Span” and “Inclusion and Exclusion Criteria” were separate `\subsubsection{...}` blocks inside `Literature Selection Methodology`, creating unnecessary heading granularity.
 - **Proposed fix:** Remove the micro-subsubsection headings entirely and express the search strategy + inclusion/exclusion criteria as two plain paragraphs (no labels) under `Literature Selection Methodology`.
 - **In-paper BEFORE (removed headings):** `\subsubsection{Search Strategy and Time Span (2002--2025)}` and `\subsubsection{Inclusion and Exclusion Criteria}`
-- **In-paper AFTER (no labels):** Starts with “We conducted a targeted literature search spanning 2002--2025…” and “We included work that (i) develops stochastic and adversarial bandits…”.
+- **In-paper AFTER (no labels):** A label-free methodology paragraph starting with “We conducted a targeted literature search spanning 2002--2025…” and bridging into selection via “From this corpus, we included work that (i)…”.
 - **Applied (2026-02-28):** Removed both micro-subsubsection headings and the interim bold lead-ins; rewrote the methodology into plain paragraphs with a bridge phrase (“From this corpus”) and retained the verified neural-bandit citation key (`zhang2022neuralts`) in `sections/02--related_works.tex`.
 
 ## C-002 Draft Fix: Introduction — Dan’s “Quantum path determination is unique” paragraph
