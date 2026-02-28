@@ -428,8 +428,9 @@ Quantum entanglement routing differs fundamentally from classical routing becaus
 - **Meaning:** Avoid excessive subsubsection headings in Related Work methodology; use prose unless structure is needed.
 - **Issue:** “Search Strategy and Time Span” and “Inclusion and Exclusion Criteria” were separate `\subsubsection{...}` blocks inside `Literature Selection Methodology`, creating unnecessary heading granularity.
 - **Proposed fix:** Convert those `\subsubsection{...}` headings to bold in-paragraph lead-ins and keep the paragraph content unchanged.
+- **In-paper BEFORE (removed headings):** `\subsubsection{Search Strategy and Time Span (2002--2025)}` and `\subsubsection{Inclusion and Exclusion Criteria}`
+- **In-paper AFTER (replacement lead-ins):** `\noindent\textbf{Search strategy and time span (2002--2025).}` and `\noindent\textbf{Inclusion and exclusion criteria.}`
 - **Applied (2026-02-28):** Replaced both micro-subsubsection headings with `\noindent\textbf{...}` lead-ins in `sections/02--related_works.tex`.
-- **Traceability note:** Left a short `% dan7800 ...` comment with a “BEFORE” snippet (commented-out headings) directly above the new bold lead-ins in `sections/02--related_works.tex`.
 
 ## C-002 Draft Fix: Introduction — Dan’s “Quantum path determination is unique” paragraph
 
