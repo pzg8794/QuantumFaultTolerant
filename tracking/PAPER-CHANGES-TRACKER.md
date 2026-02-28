@@ -80,7 +80,7 @@
 | C-052 | 2026-02-20 | Research Questions | Dan: “Predicitive 'what' context.” (re: RQ3a) | Clarify what “predictive context” refers to so the question reads standalone (name the mechanism) | Done | TBD | T-2026-007, T-2025-011 | Applied in `main.tex`: “predictive (ARIMA-informed) context” + “routing stability” |
 | C-053 | 2026-02-20 | Research Questions | Dan: “All RQs should largely be written so that they can be understood as standalone questions.” (re: RQ3d) | Rewrite RQs to remove ambiguous “we/this/it” phrasing and add minimal context nouns so each reads standalone | Done | TBD | T-2026-007, T-2025-011 | Applied to RQ2 + RQ3 main + supporting questions (adds “routing/entanglement routing”, clarifies replay-capacity wording) |
 | C-054 | 2026-02-20 | Related Work | Dan: “write this better and in paragraph form.” (re: Inclusion/Exclusion Criteria) | Rewrite Inclusion/Exclusion Criteria from list form into 1 cohesive paragraph; preserve criteria content while improving readability | Done | TBD | T-2026-007, T-2025-015 | Applied in `sections/02--related_works.tex` (single paragraph replaces nested lists; citations preserved) |
-| C-055 | 2026-02-20 | Related Work | Dan: “You dont need subsesctions for each of these” | Collapse/merge micro-subsubsections in Related Work (e.g., Search Strategy/Time Span) into fewer paragraphs/subsections; keep headings only where they add structure | Planned |  | T-2026-007, T-2025-015 | Target: `\\subsubsection{Search Strategy and Time Span (2002--2025)}` and adjacent micro-headings |
+| C-055 | 2026-02-20 | Related Work | Dan: “You dont need subsesctions for each of these” | Collapse/merge micro-subsubsections in Related Work (e.g., Search Strategy/Time Span) into fewer paragraphs/subsections; keep headings only where they add structure | Done | TBD | T-2026-007, T-2025-015 | Applied in `sections/02--related_works.tex` (converted micro-subsubsections to bold in-paragraph leads) |
 | C-056 | 2026-02-20 | Related Work | Dan: “Make sure that youre directly comparing/contrasting the work against yours.” | Ensure each Related Work thread includes an explicit 1–2 sentence contrast vs our work (what they do + what we do differently) | Planned |  | T-2026-007, T-2025-015 | Target: `\\section{Related Work}` (audit for any paragraphs that cite without an explicit compare) |
 
 ---
@@ -422,6 +422,13 @@ Quantum entanglement routing differs fundamentally from classical routing becaus
 - **Issue:** The current `description` + nested `enumerate` reads like checklist notes and interrupts the Related Work narrative flow.
 - **Proposed fix:** Replace the Included/Excluded list structure with one paragraph using semicolon-separated clauses; keep the same citations/decision boundaries.
 - **Applied (2026-02-28):** Rewrote `\subsubsection{Inclusion and Exclusion Criteria}` in `sections/02--related_works.tex` into a single paragraph; retained the same included/excluded criteria and citations (including `zhang2022neuralts`, confirmed present in `refs.bib`).
+
+### C-055 — Related Work: avoid micro-subsubsections
+- **Ask:** “You dont need subsesctions for each of these” (Dan, 2026-02-20 10:34am).
+- **Meaning:** Avoid excessive subsubsection headings in Related Work methodology; use prose unless structure is needed.
+- **Issue:** “Search Strategy and Time Span” and “Inclusion and Exclusion Criteria” were separate `\subsubsection{...}` blocks inside `Literature Selection Methodology`, creating unnecessary heading granularity.
+- **Proposed fix:** Convert those `\subsubsection{...}` headings to bold in-paragraph lead-ins and keep the paragraph content unchanged.
+- **Applied (2026-02-28):** Replaced both micro-subsubsection headings with `\noindent\textbf{...}` lead-ins in `sections/02--related_works.tex`.
 
 ## C-002 Draft Fix: Introduction — Dan’s “Quantum path determination is unique” paragraph
 
