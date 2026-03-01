@@ -45,17 +45,12 @@
 | C-020 | 2026-02-16 | Table Citations (Complete Audit) | Devroop: "refer the tables per your findings" | Add missing `\Cref{...}` references for all uncited tables | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` |
 | C-021 | 2026-02-16 | Abstract | Two versions exist | Choose final abstract version | Done |  | T-2026-007, T-2025-011 | Resolved via C-032 (single abstract retained) |
 | C-022 | 2026-02-16 | Introduction Cleanup | Commented blocks remain | Remove commented intro drafts; keep C-### markers | Done | 5990ad2 | T-2026-007, T-2025-011 | Cleaned `main.tex` front-matter/intro planning blocks; rationale retained in tracker |
-| C-023 | 2026-02-16 | Submission Hygiene | Anonymous submission decision | Decide anonymous vs non-anonymous; update authors/acks accordingly | TBD |  | T-2026-007, T-2025-011 | Needs advisor approval |
 | C-024 | 2026-02-16 | RQ Section Flow | Answers appear in RQ section | Move detailed answers to Results; keep questions in RQ section | TBD |  | T-2026-007, T-2025-011 | Needs Dan approval |
-| C-025 | 2026-02-16 | RQ Scope Clarification | Scope/novelty unclear | Add prior-work citations or clarify novelty statement | TBD |  | T-2026-007, T-2025-011 | Needs advisor input |
 | C-026 | 2026-02-16 | Cleanup | Resolved comment markers remain | Remove resolved comment markers | Done | 5990ad2 | T-2026-007, T-2025-011 | Removed resolved in-draft reviewer markers/TODO blocks from `main.tex`; kept active open notes (e.g., Devroop “relay questions…” and “one more paper…”) in-source for later resolution |
 | C-027 | 2026-02-16 | Experimental Design | Missing design rationale | Add 1 sentence per major design choice | Done | TBD | T-2026-007, T-2025-011 | Already present in `main.tex` Experimental Design opening (rationale + citations for topology choice, fixed-capacity choice, and allocator axis) |
 | C-028 | 2026-02-16 | Limitations/Future Work | Duplicate sections | Consolidate into one section | Done | 5990ad2 | T-2025-011 | Removed the duplicated commented Limitations/Future Work block; single section remains |
 | C-029 | 2026-02-16 | Results Narrative | Weak transitions | Replace duplicated Results intro roadmap with a single RQ1/RQ2/RQ3 transition sentence with direct `\S\ref{}` pointers | Done | 1f79a7d | T-2025-011 | Applied at `main.tex` Simulation Results opening (removes back-to-back duplicate “Results are organized…” paragraphs) |
-| C-030 | 2026-02-16 | Code/Data Availability | Statement decision needed | Decide availability statement; add or remove | TBD |  | T-2025-011 | Needs advisor input |
-| C-004 | 2026-02-14 | Results Section | Improve continuity; organize by RQs | Add short “RQ claim → evidence → takeaway” scaffolding per subsection | TBD |  | T-2025-011 |  |
-| C-005 | 2026-02-14 | Limitations/Future Work | Resolve duplication notes in commented blocks | Remove/retire duplicate commented section after confirming nothing unique | TBD |  | T-2025-011 |  |
-| C-006 | 2026-02-14 | Submission Hygiene | Anonymity question + acknowledgments | Decide anonymous vs non-anonymous; adjust authors/acks accordingly | TBD |  | T-2025-011 |  |
+| C-005 | 2026-02-14 | Limitations/Future Work | Resolve duplication notes in commented blocks | Remove/retire duplicate commented section after confirming nothing unique | Done | 5990ad2 | T-2025-011 | Duplicate of C-028; resolved by removing the duplicated Limitations/FW block in `main.tex` |
 | C-031 | 2026-02-17 | Title | Comment: paper focuses on entanglement routing; include in title | Update title to explicitly include “entanglement routing” and clarify evaluation framing | Done |  | T-2026-007, T-2025-011 | DECISION: “Threat-Aware Evaluation of Quantum Entanglement Routing and Qubit Allocation via Hybrid Contextual Bandits” (concise, domain-clear, evaluation-framed) |
 | C-032 | 2026-02-17 | Abstract | Comment: abstract confusing; unclear if evaluation-only vs new contributions; too many numbers; unclear referents (“they”); sentence clarity | Rewrite abstract for clarity: (1) state contribution type carefully, (2) reduce numeric density (keep 1 scale indicator), (3) fix ambiguous referents, (4) remove duplicate/alternate abstract + inline comments from compiled draft, (5) reconcile count consistency with body or avoid counts | Done |  | T-2026-007, T-2025-011 | Approved draft applied in `main.tex` (4-paragraph structure; reduced numeric overload; clarified scope/novelty language) |
 | C-033 | 2026-02-17 | Introduction | Comment: “Yet, reliable end-to-end entanglement…” needs citation | Add a minimal citation to support fragility + probabilistic swapping + decoherence/interference claim (without adding number/citation clutter) | Done |  | T-2026-007, T-2025-015 | Applied in `main.tex`: `~\\cite{briegel1998quantum,dahlberg2021netsquid,zukowski1993event}` at end of the “Yet, …” sentence |
@@ -88,6 +83,22 @@
 | C-060 | 2026-02-28 | Figures (Captions) | Dan: “Too wordy and dont change caption size.” (remaining `\caption{\tiny ...}` captions) | Remove remaining `\tiny` caption sizing and rewrite captions to be takeaway-first with minimal numeric density | Done | TBD | T-2026-007, T-2025-011 | Applied in `main.tex` (removed all remaining `\caption{\tiny ...}`; updated: `fig:context_capacity_effects`, `fig:scenario_penalties`, `fig:capacity_all`, `fig:threat_rules`, `fig:convergence_hybrid`, `fig:context_hybrid`) |
 
 ---
+
+## Parking Lot (Internal / Logistics — not reviewer comments)
+
+These are items that were captured during internal planning or submission logistics. They are kept for completeness but are **not** treated as reviewer-comment tasks.
+
+| ID | Date Added | Location | Comment / Issue | Planned Fix | Status | Commit | Related Canonical Task(s) | Notes |
+|---|---|---|---|---|---|---|---|---|
+| C-023 | 2026-02-16 | Submission Hygiene | Anonymous submission decision | Decide anonymous vs non-anonymous; update authors/acks accordingly | Deferred |  | T-2026-007, T-2025-011 | Decision-only; do not surface as an action item until requested |
+| C-006 | 2026-02-14 | Submission Hygiene | Anonymity question + acknowledgments | Decide anonymous vs non-anonymous; adjust authors/acks accordingly | Deferred |  | T-2025-011 | Duplicate of C-023; decision-only |
+| C-025 | 2026-02-16 | RQ Scope Clarification | Scope/novelty unclear | Add prior-work citations or clarify novelty statement | Deferred |  | T-2026-007, T-2025-011 | Internal note captured during tracker setup (not a direct reviewer quote) |
+| C-030 | 2026-02-16 | Code/Data Availability | Statement decision needed | Decide availability statement; add or remove | Deferred |  | T-2025-011 | Internal hygiene decision |
+| C-004 | 2026-02-14 | Results Section | Improve continuity; organize by RQs | Add short “RQ claim → evidence → takeaway” scaffolding per subsection | Deferred |  | T-2025-011 | Internal narrative polish (not a direct reviewer quote) |
+| D-004 | 2026-02-15 | Submission Logistics | Grant advisor access to the condensed Overleaf view/project | Ensure access is granted (or provide an equivalent local PDF) and record what was shared | Deferred |  | T-2026-009 | Logistics; not a manuscript review comment |
+| D-005 | 2026-02-15 | Whole paper (general) | Get the manuscript into a shareable state and address high-level comments | Address high-level comments; ensure the manuscript is shareable for team review | Deferred |  | T-2026-007, T-2025-011 | Logistics/coordination; not a specific review comment |
+| D-006 | 2026-02-15 | Results + Tables | Add epsilon + NeuralUCB results + extra comparison table (testbed configs) | Add epsilon + NeuralUCB results; add a comparison table contrasting paper config vs our run config | Deferred |  | T-2025-011 | Owner roadmap / R\&D extension; not a reviewer-comment fix |
+| D-008 | 2026-02-15 | Whole paper (general) | Integrate Professor Travis feedback before submission | Apply Travis edits/comments once received; record deltas as atomic C-### items | Deferred |  | T-2026-005, T-2025-011 | Blocked until feedback received |
 
 ## C-031–C-039 Comment Details (Ask → Meaning → Issue → Proposed Fix)
 
