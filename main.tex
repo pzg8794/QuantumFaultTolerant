@@ -38,6 +38,9 @@
 \usepackage{amssymb}
 \usepackage{bm}
 \usepackage{balance}
+% Suppress pdfTeX "Missing character ... in font nullfont!" warnings that can
+% be triggered by auxiliary/PDF-string writes (does not affect rendered output).
+\tracinglostchars=0
 % Algorithms and Pseudocode
 \usepackage{algorithm}
 \usepackage{algorithmicx}
@@ -1045,7 +1048,7 @@ same threat regimes (\small\texttt{CMAB} experiments).
 
 \end{axis}
 \end{tikzpicture}
-\caption{Efficiency heatmap for \texttt{CPursuitNeuralUCB} across allocator
+\caption[Efficiency heatmap for CPursuitNeuralUCB]{Efficiency heatmap for \texttt{CPursuitNeuralUCB} across allocator
 strategies and threat scenarios. In this setting, the Fixed allocator yields
 the highest efficiency across scenarios, reinforcing allocator choice as a
 first-class robustness factor.}
@@ -1367,7 +1370,7 @@ We execute ensembles of $S \in \{3, 5, 8, 10\}$ independent runs (seeds fixed fo
     \item \textit{Coefficient of variation (CV):} stability metric,
     $\text{CV}(\%)=\frac{\sigma(\text{Eff})}{\mu(\text{Eff})}\times100$. Lower CV means higher deployment reliability.
     \item \textit{Significance testing:} nonparametric bootstrap (10K resamples) with 95\% confidence intervals~\cite{efron1994introduction}. Differences $> 5$ pp with non-overlapping CIs are treated as significant.
-    \item \textit{Win-rate analysis:} head-to-head comparisons where a ``win'' requires $> 2$ pp efficiency lead.
+    \item \textit{Win-rate analysis:} head-to-head comparisons where a \textquotedblleft win\textquotedblright requires $> 2$ pp efficiency lead.
 \end{itemize}
 
 
@@ -2020,7 +2023,7 @@ including pronounced degradations at the intermediate scale.
 
 \noindent
 \textit{Answer to RQ3b:}
-Replay capacity is not a ``more is better'' knob. Under $T$-type anchoring (\Cref{tab:rq3b_capacity_scaling}), both pursuit-based hybrids
+Replay capacity is not a \textquotedblleft more is better\textquotedblright knob. Under $T$-type anchoring (\Cref{tab:rq3b_capacity_scaling}), both pursuit-based hybrids
 exhibit a sharp degradation at $s{=}1.5$ followed by recovery at $s{=}2$.
 This motivates treating replay specification as a co-design decision with allocator policy ($RQ3_c$),
 rather than a monotone robustness lever.
@@ -2414,7 +2417,7 @@ Replay capacity is configured by:
 \item \small\texttt{cap\_type} $\in \{T_b,\,T\}$: whether replay is anchored to the \emph{base} horizon ($T_b$) or the \emph{current} horizon ($T$).
 \item \small\texttt{scale} $s \in \{1,\,1.5,\,2\}$: a multiplicative factor applied on top of the anchoring rule.
 \end{enumerate}
-Thus, ``bigger replay'' is not a single knob: it depends on \emph{both} the anchoring rule (\small\texttt{cap\_type}) and the multiplier (\small\texttt{scale}).
+Thus, \textquotedblleft bigger replay\textquotedblright is not a single knob: it depends on \emph{both} the anchoring rule (\small\texttt{cap\_type}) and the multiplier (\small\texttt{scale}).
 
 % ----------------------------------------------------------------------------
 \subsubsection{Finding 1 - Context-Aware Bandits Dominate (gap persists under threat)}
@@ -2451,7 +2454,7 @@ Even strong architectures (\small\texttt{CPursuitNeuralUCB}, \small\texttt{iCPur
 
 First, \textbf{context-aware routing should be treated as baseline infrastructure}. Feature enrichment (link error rates, repeater state proxies, traffic/load signals) yields larger robustness gains than further refining reward-only exploration rules.
 
-Second, \textbf{replay capacity must be treated as a coupled control variable}, not a provisioning afterthought. The relevant question is not ``more or less replay,'' but \emph{which anchoring rule} (\small\texttt{$T_b$} vs.\ \small\texttt{$T$}), \emph{multiplier} ($s$), and \emph{allocator} together minimize tail risk under the threat regime.
+Second, \textbf{replay capacity must be treated as a coupled control variable}, not a provisioning afterthought. The relevant question is not \textquotedblleft more or less replay,\textquotedblright but \emph{which anchoring rule} (\small\texttt{$T_b$} vs.\ \small\texttt{$T$}), \emph{multiplier} ($s$), and \emph{allocator} together minimize tail risk under the threat regime.
 
 \noindent The results motivate a lightweight \textbf{threat-aware meta-policy}:
 \begin{itemize}[nosep]

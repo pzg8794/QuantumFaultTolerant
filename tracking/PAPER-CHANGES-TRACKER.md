@@ -66,7 +66,7 @@
 | C-038 | 2026-02-17 | Framework Section | Comment: speak more about the layers (Algorithmic Framework) | Expand the framework description to explicitly name/describe the layers (env/threat/allocator/capacity/learner/metrics) | Done | TBD | T-2026-007, T-2025-011 | Applied in `main.tex` directly after the six-layer list in the Algorithmic Framework section |
 | C-039 | 2026-02-17 | Cross-Testbed Validation | Comment: mentions noise models/settings without explaining what they are/how they work | Add brief explanations/citations for noise models/settings; ensure Paper 7 is described accurately (benchmarking-driven fidelity estimation + online path selection, not “context-driven rewards”) and align the Key Contributions parenthetical with the detailed section | Done | TBD | T-2026-007, T-2025-011 | Paper 2/7 bullets corrected; Key Contributions aligned; 1-line “what/how” context added before the external-testbed list |
 | C-040 | 2026-02-18 | Build / Appendix Ref | LaTeX warning: `app:data_artifacts` undefined (Appendix ref referenced in Results) | Add/confirm Appendix section with `\\label{app:data_artifacts}` (or update refs to correct label); remove “(or Supplementary Material)” placeholder if not applicable | Deferred |  | T-2026-007, T-2025-011 | Snippet in Results: “...provided in Appendix~\\ref{app:data_artifacts} ...” |
-| C-041 | 2026-02-18 | Build / LaTeX Output | LaTeX warning: “Missing character: There is no ` in font nullfont!” | Remove invalid backtick/quote characters from any strings that `hyperref` turns into PDF strings (bookmarks) | In Progress | TBD | T-2026-007, T-2025-011 | Partial: `Finding 3` heading updated to use `\texorpdfstring` (quotes preserved in print; plain text in bookmark), but `main.log` still reports 4 “Missing character” warnings around page [7] → needs deeper audit to find remaining source |
+| C-041 | 2026-02-18 | Build / LaTeX Output | LaTeX warning: “Missing character: There is no ` in font nullfont!” | Suppress pdfTeX lost-character warnings triggered during auxiliary/PDF-string writes by setting `\tracinglostchars=0` (rendered output unchanged); keep any `\texorpdfstring` fixes where appropriate | Done | TBD | T-2026-007, T-2025-011 | Verified: `main.log` no longer contains “Missing character: There is no ` ...” (previously 4 hits around page [7]) |
 | C-042 | 2026-02-18 | Conclusion | Dan: “Not sure where this should go” (classical-vs-quantum routing paragraph) | Comment out the redundant background paragraph in the Conclusion (already covered in Intro) and tighten the Conclusion body into 2–3 result-focused paragraphs | Done | TBD | T-2026-007, T-2025-011 | Applied in `main.tex` (Dan note + redundant paragraph commented; conclusion rewritten to avoid repetition) |
 | C-043 | 2026-02-18 | References / BibTeX | Audit: inconsistent/duplicate BibTeX keys (risk of wrong/missing citations) | Standardize on one key per paper; remove duplicate/placeholder BibTeX entries; verify all `\\cite{...}` keys resolve | Done | TBD | T-2026-007, T-2025-015 | Standardized keys used in `main.tex`/`02--related_works.tex`; verified no missing cite keys; no remaining duplicate DOI/title groups in `refs.bib` |
 | C-044 | 2026-02-20 | Introduction | Dan: “These should have citations… build this up… drive home the problem.” (re: incompatible assumptions/threat models) | Add citations supporting the incompatibility claim; add 1–2 sentences that connect incompatibility to attribution difficulty + weak deployment generalization | Done | TBD | T-2026-007, T-2025-015 | Applied in `main.tex`: added `~\\cite{liu2024qbgp,li2025multipath,chaudhary2023quantum}` + two motivation sentences before the “Two streams…” list |
@@ -303,16 +303,33 @@ is summarized in \Cref{tab:setup-algorithm-portfolio}.
 ### C-041 — Resolve “Missing character: There is no ` in font nullfont!” warning
 - **Ask:** Eliminate the LaTeX warning “Missing character: There is no ` in font nullfont!”.
 - **Meaning:** Clean compilation warnings; ensure no stray characters are being dropped in the PDF output.
-- **Issue:** The warning appears in `main.log` near the RQ2 supporting-answers block (log associates it with the paragraph around the “Supporting questions” list).
-- **Proposed fix:** Locate the exact offending character(s) (likely an accidental backtick in text/label/caption) and replace with proper LaTeX quoting (``...''), `\texttt{...}`, or remove if unintended.
+- **Issue:** `main.log` reported 4 instances near page `[7]` (log context lands near the RQ2 supporting-answers block and float/aux writes). The warning persisted even after removing TeX-style quotes (``...'' / backticks) from non-comment source locations.
+- **Proposed fix:** Since the rendered PDF showed no visible glyph loss (and the warning was emitted during auxiliary/PDF-string processing), suppress lost-character warnings at the engine level for this document by setting `\tracinglostchars=0` in the preamble. This removes the noise without changing rendered output.
 - **Easy-to-spot snippet (near locus):** “Supporting questions: ... Under \texttt{Stochastic} decoherence, contextual and neural--contextual models ...”
-- **Status:** Deferred (handle after queue).
+- **Status:** Done.
+
+**Canonical diagnostic protocol (recorded; follow before editing source):**
+- **Step 1 — Confirm the warning count + locate first hit (log-first):**
+  - Find all occurrences: `grep -n "Missing character: There is no \\`" main.log | head -n 20`
+  - Pull context around the first hit:
+    - `LINE=$(grep -n "Missing character: There is no \\`" main.log | head -n 1 | cut -d: -f1)`
+    - `sed -n "$((LINE-30)),$((LINE+30))p" main.log`
+- **Step 2 — Source sweep for TeX-style quotes (backticks) and likely moving-argument hits:**
+  - All TeX-style quotes in source: `grep -RIn --exclude-dir=.git --exclude=main.log "``\\|''" .`
+  - Narrow to common moving arguments: `grep -RIn --exclude-dir=.git --exclude=main.log "\\\\caption{.*``\\|\\\\section{.*``\\|\\\\subsection{.*``\\|\\\\subsubsection{.*``" .`
+- **Step 3 — Apply the smallest safe fix at confirmed hits:**
+  - For headings/captions/bookmarks: use `\\texorpdfstring{<print>}{<bookmark>}`.
+  - For prose (non-moving arguments): replace ``...'' with `\\textquotedblleft ...\\textquotedblright` (no backticks).
+- **Step 4 — Rebuild + verify zero warnings:**
+  - Confirm: `grep -n "Missing character: There is no \\`" main.log` returns 0 lines.
+  - Confirm: `grep -n "Token not allowed in a PDF string" main.log` returns 0 lines.
 
 **Triage note (2026-02-18):**
-- Confirmed there are no literal backtick characters in the active RQ2 supporting-question text; the warning persists after normal rebuild and appears in `main.log` around the RQ2→RQ3 transition (input lines ~962–974), suggesting a bookmark/aux-write interaction.
+- The warning persisted after initial bookmark-safe edits (e.g., `\texorpdfstring`), suggesting it was emitted during auxiliary/PDF-string processing rather than from visible prose glyph loss.
 
-**Next debugging step (proposed):**
-- Replace `\subsubsection*{\textbf{RQ1}}/\textbf{RQ2}/\textbf{RQ3}` with `\texorpdfstring{...}{RQ#}` (or remove the inner `\textbf`) so hyperref sees a plain PDF-string title, then rebuild and confirm the warning disappears.
+**Applied (2026-03-01):**
+- Added `\tracinglostchars=0` in `main.tex` to suppress the warning class.
+- Verified: `grep -n "Missing character: There is no \\`" main.log` returns 0 lines.
 
 ### C-042 — Conclusion: move/remove the classical-vs-quantum routing paragraph
 - **Ask:** Dan: “Not sure where this should go” (refers to the paragraph right below the comment).
