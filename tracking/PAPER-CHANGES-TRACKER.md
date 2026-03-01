@@ -44,13 +44,13 @@
 | C-018 | 2026-02-16 | Table III (Algorithm Portfolio) | Overflow to right column | Fit to column width (tabularx + reduced padding) | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` |
 | C-020 | 2026-02-16 | Table Citations (Complete Audit) | Devroop: "refer the tables per your findings" | Add missing `\Cref{...}` references for all uncited tables | Done |  | T-2026-007, T-2025-011 | Applied in `main.tex` |
 | C-021 | 2026-02-16 | Abstract | Two versions exist | Choose final abstract version | Done |  | T-2026-007, T-2025-011 | Resolved via C-032 (single abstract retained) |
-| C-022 | 2026-02-16 | Introduction Cleanup | Commented blocks remain | Remove commented intro drafts; keep C-### markers | TBD |  | T-2026-007, T-2025-011 |  |
+| C-022 | 2026-02-16 | Introduction Cleanup | Commented blocks remain | Remove commented intro drafts; keep C-### markers | Done | TBD | T-2026-007, T-2025-011 | Cleaned `main.tex` front-matter/intro planning blocks; rationale retained in tracker |
 | C-023 | 2026-02-16 | Submission Hygiene | Anonymous submission decision | Decide anonymous vs non-anonymous; update authors/acks accordingly | TBD |  | T-2026-007, T-2025-011 | Needs advisor approval |
 | C-024 | 2026-02-16 | RQ Section Flow | Answers appear in RQ section | Move detailed answers to Results; keep questions in RQ section | TBD |  | T-2026-007, T-2025-011 | Needs Dan approval |
 | C-025 | 2026-02-16 | RQ Scope Clarification | Scope/novelty unclear | Add prior-work citations or clarify novelty statement | TBD |  | T-2026-007, T-2025-011 | Needs advisor input |
-| C-026 | 2026-02-16 | Cleanup | Resolved comment markers remain | Remove resolved comment markers | TBD |  | T-2026-007, T-2025-011 |  |
+| C-026 | 2026-02-16 | Cleanup | Resolved comment markers remain | Remove resolved comment markers | Done | TBD | T-2026-007, T-2025-011 | Removed in-draft reviewer macros (`\\dan{...}`, `\\devroop{...}`) and stray TODO/link dumps from `main.tex` |
 | C-027 | 2026-02-16 | Experimental Design | Missing design rationale | Add 1 sentence per major design choice | Done | TBD | T-2026-007, T-2025-011 | Already present in `main.tex` Experimental Design opening (rationale + citations for topology choice, fixed-capacity choice, and allocator axis) |
-| C-028 | 2026-02-16 | Limitations/Future Work | Duplicate sections | Consolidate into one section | TBD |  | T-2025-011 |  |
+| C-028 | 2026-02-16 | Limitations/Future Work | Duplicate sections | Consolidate into one section | Done | TBD | T-2025-011 | Removed the duplicated commented Limitations/Future Work block; single section remains |
 | C-029 | 2026-02-16 | Results Narrative | Weak transitions | Add question → finding → evidence transitions | TBD |  | T-2025-011 |  |
 | C-030 | 2026-02-16 | Code/Data Availability | Statement decision needed | Decide availability statement; add or remove | TBD |  | T-2025-011 | Needs advisor input |
 | C-004 | 2026-02-14 | Results Section | Improve continuity; organize by RQs | Add short “RQ claim → evidence → takeaway” scaffolding per subsection | TBD |  | T-2025-011 |  |
