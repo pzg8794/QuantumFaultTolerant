@@ -35,6 +35,16 @@ We use categories to avoid mixing **reviewer-comment tasks** with internal plann
 
 Rule of thumb: if it wasn’t explicitly asked by a reviewer (or it’s not required to unblock a reviewer item), it belongs in the **Parking Lot**.
 
+### Workstreams (What We Work On)
+
+In addition to “review vs non-review,” every non-review item must fit one workstream so we can time-box correctly:
+
+- **Review/Submission:** writing, paper structure, citations, LaTeX/layout, and submission prep
+- **Testing/Validation:** running testbeds/models, validating results, generating tables/figures from runs
+- **Technical/Engineering:** adding models/testbeds, framework changes, automation, refactors
+
+Sprint rule: during a submission sprint, we only pull from **Review/Submission** unless a **Testing/Validation** or **Technical/Engineering** task is required to close a reviewer item.
+
 ## Current Queue (From Paper Comments)
 
 | ID | Date Added | Location | Comment / Issue | Planned Fix | Status | Commit | Related Canonical Task(s) | Notes |
@@ -103,21 +113,21 @@ These are reviewer-comment tasks that we will **not** implement until Dan explic
 
 ---
 
-## Parking Lot (Non-review / Internal / Logistics)
+## Parking Lot (Non-review Backlog by Workstream)
 
-These are items that were captured during internal planning or submission logistics. They are kept for completeness but are **not** treated as reviewer-comment tasks and should not be surfaced as “what’s left” for review closure.
+These are items that were captured during internal planning, roadmap, or logistics. They are kept for completeness but are **not** treated as reviewer-comment tasks and should not be surfaced as “what’s left” for review closure.
 
-| Category | ID | Date Added | Location | Comment / Issue | Planned Fix | Status | Commit | Related Canonical Task(s) | Notes |
+| Workstream | ID | Date Added | Location | Comment / Issue | Planned Fix | Status | Commit | Related Canonical Task(s) | Notes |
 |---|---|---|---|---|---|---|---|---|---|
-| Submission | C-023 | 2026-02-16 | Submission Hygiene | Anonymous submission decision | Decide anonymous vs non-anonymous; update authors/acks accordingly | Deferred |  | T-2026-007, T-2025-011 | Decision-only; do not surface as an action item until requested |
-| Submission | C-006 | 2026-02-14 | Submission Hygiene | Anonymity question + acknowledgments | Decide anonymous vs non-anonymous; adjust authors/acks accordingly | Deferred |  | T-2025-011 | Duplicate of C-023; decision-only |
-| Internal | C-025 | 2026-02-16 | RQ Scope Clarification | Scope/novelty unclear | Add prior-work citations or clarify novelty statement | Deferred |  | T-2026-007, T-2025-011 | Internal note captured during tracker setup (not a direct reviewer quote) |
-| Endgame | C-030 | 2026-02-16 | Code/Data Availability | Statement decision needed | Decide availability statement; add or remove | Deferred |  | T-2025-011 | Late-stage hygiene decision; park until final submission sweep |
-| Internal | C-004 | 2026-02-14 | Results Section | Improve continuity; organize by RQs | Add short “RQ claim → evidence → takeaway” scaffolding per subsection | Deferred |  | T-2025-011 | Internal narrative polish (not a direct reviewer quote) |
-| Logistics | D-004 | 2026-02-15 | Submission Logistics | Grant advisor access to the condensed Overleaf view/project | Ensure access is granted (or provide an equivalent local PDF) and record what was shared | Deferred |  | T-2026-009 | Logistics; not a manuscript review comment |
-| Logistics | D-005 | 2026-02-15 | Whole paper (general) | Get the manuscript into a shareable state and address high-level comments | Address high-level comments; ensure the manuscript is shareable for team review | Deferred |  | T-2026-007, T-2025-011 | Logistics/coordination; not a specific review comment |
-| R&D | D-006 | 2026-02-15 | Results + Tables | Add epsilon + NeuralUCB results + extra comparison table (testbed configs) | Add epsilon + NeuralUCB results; add a comparison table contrasting paper config vs our run config | Deferred |  | T-2025-011 | Owner roadmap / extension work; not a reviewer-comment fix |
-| Logistics | D-008 | 2026-02-15 | Whole paper (general) | Integrate Professor Travis feedback before submission | Apply Travis edits/comments once received; record deltas as atomic C-### items | Deferred |  | T-2026-005, T-2025-011 | Blocked until feedback received |
+| Review/Submission | C-023 | 2026-02-16 | Submission Hygiene | Anonymous submission decision | Decide anonymous vs non-anonymous; update authors/acks accordingly | Deferred |  | T-2026-007, T-2025-011 | Decision-only; do not surface as an action item until requested |
+| Review/Submission | C-006 | 2026-02-14 | Submission Hygiene | Anonymity question + acknowledgments | Decide anonymous vs non-anonymous; adjust authors/acks accordingly | Deferred |  | T-2025-011 | Duplicate of C-023; decision-only |
+| Review/Submission | C-025 | 2026-02-16 | RQ Scope Clarification | Scope/novelty unclear | Add prior-work citations or clarify novelty statement | Deferred |  | T-2026-007, T-2025-011 | Internal note captured during tracker setup (not a direct reviewer quote) |
+| Review/Submission | C-030 | 2026-02-16 | Code/Data Availability | Statement decision needed | Decide availability statement; add or remove | Deferred |  | T-2025-011 | Late-stage hygiene decision; park until final submission sweep |
+| Review/Submission | C-004 | 2026-02-14 | Results Section | Improve continuity; organize by RQs | Add short “RQ claim → evidence → takeaway” scaffolding per subsection | Deferred |  | T-2025-011 | Internal narrative polish (not a direct reviewer quote) |
+| Review/Submission | D-004 | 2026-02-15 | Submission Logistics | Grant advisor access to the condensed Overleaf view/project | Ensure access is granted (or provide an equivalent local PDF) and record what was shared | Deferred |  | T-2026-009 | Logistics; not a manuscript review comment |
+| Review/Submission | D-005 | 2026-02-15 | Whole paper (general) | Get the manuscript into a shareable state and address high-level comments | Address high-level comments; ensure the manuscript is shareable for team review | Deferred |  | T-2026-007, T-2025-011 | Logistics/coordination; not a specific review comment |
+| Technical/Engineering | D-006 | 2026-02-15 | Results + Tables | Add epsilon + NeuralUCB results + extra comparison table (testbed configs) | Add epsilon + NeuralUCB results; add a comparison table contrasting paper config vs our run config | Deferred |  | T-2025-011 | Owner roadmap / extension work; requires new runs (Testing/Validation) |
+| Review/Submission | D-008 | 2026-02-15 | Whole paper (general) | Integrate Professor Travis feedback before submission | Apply Travis edits/comments once received; record deltas as atomic C-### items | Deferred |  | T-2026-005, T-2025-011 | Blocked until feedback received |
 
 ## C-031–C-039 Comment Details (Ask → Meaning → Issue → Proposed Fix)
 
