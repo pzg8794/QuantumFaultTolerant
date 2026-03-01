@@ -39,9 +39,9 @@ Rule of thumb: if it wasn’t explicitly asked by a reviewer (or it’s not requ
 
 In addition to “review vs non-review,” every non-review item must fit one workstream so we can time-box correctly:
 
-- **Review/Submission:** writing, paper structure, citations, LaTeX/layout, and submission prep
-- **Testing/Validation:** running testbeds/models, validating results, generating tables/figures from runs
-- **Technical/Engineering:** adding models/testbeds, framework changes, automation, refactors
+- **Review/Submission (Reviewing):** writing, paper structure, citations, LaTeX/layout, and submission prep
+- **Testing/Validation (Testing):** running testbeds/models, validating results, generating tables/figures from runs
+- **Technical/Engineering (Technical):** adding models/testbeds, framework changes, automation, refactors
 
 Sprint rule: during a submission sprint, we only pull from **Review/Submission** unless a **Testing/Validation** or **Technical/Engineering** task is required to close a reviewer item.
 
@@ -119,6 +119,9 @@ These are items that were captured during internal planning, roadmap, or logisti
 
 | Workstream | ID | Date Added | Location | Comment / Issue | Planned Fix | Status | Commit | Related Canonical Task(s) | Notes |
 |---|---|---|---|---|---|---|---|---|---|
+| Testing/Validation | T-001 | 2026-03-01 | Cross-Testbed Validation | Standardized, apples-to-apples reruns (same run configuration across Papers 2/7/12) | Run each external testbed under our standardized run protocol (base: 4K base frames, 2K step, S=3/5 runs; stress: S=8/10 runs) under consistent allocator/capacity semantics where supported; record scenario-aggregated metrics | Planned |  | T-2025-011 | Produces the standardized corpora used for the unified cross-testbed table |
+| Review/Submission | T-002 | 2026-03-01 | Results + Tables | Standardized cross-testbed comparison table | Add a “standardized run protocol” results table (Papers 2/7/12) showing top-tier model performance under identical run settings; replace the current “follow-up campaign” placeholder text once values are available | Planned |  | T-2025-011 | Depends on T-001 |
+| Technical/Engineering | T-003 | 2026-03-01 | Framework / Runner | Add standardized run-config preset | Add a single preset/config helper so Paper2/Paper7/Paper12 can be executed with identical (base_frames, frame_step, runs, seeds) and consistent output naming to support T-001 | Planned |  | T-2025-011 | Implement in the experiment framework repo (not in this paper repo) |
 | Review/Submission | C-023 | 2026-02-16 | Submission Hygiene | Anonymous submission decision | Decide anonymous vs non-anonymous; update authors/acks accordingly | Deferred |  | T-2026-007, T-2025-011 | Decision-only; do not surface as an action item until requested |
 | Review/Submission | C-006 | 2026-02-14 | Submission Hygiene | Anonymity question + acknowledgments | Decide anonymous vs non-anonymous; adjust authors/acks accordingly | Deferred |  | T-2025-011 | Duplicate of C-023; decision-only |
 | Review/Submission | C-025 | 2026-02-16 | RQ Scope Clarification | Scope/novelty unclear | Add prior-work citations or clarify novelty statement | Deferred |  | T-2026-007, T-2025-011 | Internal note captured during tracker setup (not a direct reviewer quote) |
