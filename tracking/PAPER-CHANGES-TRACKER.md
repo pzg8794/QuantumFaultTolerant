@@ -134,6 +134,7 @@ These are items that were captured during internal planning, roadmap, or logisti
 | Review/Submission | D-005 | 2026-02-15 | Whole paper (general) | Get the manuscript into a shareable state and address high-level comments | Address high-level comments; ensure the manuscript is shareable for team review | Deferred |  | T-2026-007, T-2025-011 | Logistics/coordination; not a specific review comment |
 | Technical/Engineering | D-006 | 2026-02-15 | Results + Tables | Add epsilon + NeuralUCB results + extra comparison table (testbed configs) | Add epsilon + NeuralUCB results; add a comparison table contrasting paper config vs our run config | Deferred |  | T-2025-011 | Owner roadmap / extension work; requires new runs (Testing/Validation) |
 | Review/Submission | D-008 | 2026-02-15 | Whole paper (general) | Integrate Professor Travis feedback before submission | Apply Travis edits/comments once received; record deltas as atomic C-### items | Deferred |  | T-2026-005, T-2025-011 | Blocked until feedback received |
+| Technical/Engineering | T-007 | 2026-03-01 | Repo Hygiene | Prevent accidental artifact commits (keep repo lightweight) | Add `.gitignore` rules to exclude local/build backups (e.g., `*.bak*`) and generated setup artifacts (e.g., `setup_files/`) while keeping code/tests/docs tracked for audit | Done | (framework) TBD, (paper) TBD | T-2025-011 | Hygiene-only; does not change experiment results or manuscript content |
 
 ## C-031–C-039 Comment Details (Ask → Meaning → Issue → Proposed Fix)
 

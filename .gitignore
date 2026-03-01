@@ -16,3 +16,7 @@
 
 # Common outputs
 *.pdf
+
+# Editor/aux backups
+*.bak
+*.bak*
