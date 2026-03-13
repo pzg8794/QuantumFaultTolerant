@@ -1466,17 +1466,18 @@ the strongest informed baseline from iCMABs (\texttt{iCEpsilonGreedy}), and two 
 \begin{table}[ht!]
 \caption{RQ2: robustness under adversarial threats (Markov/Adaptive/OnlineAdaptive) computed from the curated evaluation corpus
 under the \texttt{Default} allocator. Results aggregate across horizons present, replay scales $s \in \{1,1.5,2\}$,
-and capacity semantics ($T$, $T_b$), summarized over 3-run and 5-run ensemble suites.}
+and capacity semantics ($T$, $T_b$), summarized over 3-run and 5-run ensemble suites. Win Dominance (\%) reports each model's
+share of aggregated scenario wins among the four displayed representatives under this same adversarial scope.}
 
 \scriptsize
 \centering
 \begin{tabular}{lcccc}
 \toprule
-\textbf{Algorithm} & \textbf{Avg Eff. (\%)} & \textbf{CV (\%)} & \textbf{Floor (\%)} & \textbf{Win Share (\%)} \\
+\textbf{Algorithm} & \textbf{Avg Eff. (\%)} & \textbf{CV (\%)} & \textbf{Floor (\%)} & \textbf{Win Dominance (\%)} \\
 \midrule
-CPursuit         & \textbf{88.1} & 5.3  & 77.4 & 31.5 \\
-iCEpsilonGreedy  & 86.9          & \textbf{3.6}  & \textbf{81.0} & 25.0 \\
-EXPNeuralUCB     & 82.4          & 16.5 & 18.0 & 11.1 \\
+CPursuit         & \textbf{88.1} & 5.3  & 77.4 & 25.6 \\
+iCEpsilonGreedy  & 86.9          & \textbf{3.6}  & \textbf{81.0} & 43.9 \\
+EXPNeuralUCB     & 82.4          & 16.5 & 18.0 & 30.5 \\
 EXPUCB           & 76.3          & 6.0  & 68.8 & 0.0 \\
 \bottomrule
 \end{tabular}
