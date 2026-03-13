@@ -175,25 +175,15 @@
 
 
 \begin{abstract}
-Quantum entanglement routing requires dynamic path selection and qubit allocation
-under noisy and adversarial conditions. Existing routing approaches often assume
-stationary link behavior, decouple selection from allocation, or rely on offline
-optimization---assumptions that can fail when link fidelities drift and disruptions
-adapt online.
+Quantum entanglement routing requires dynamic path selection and qubit allocation under noisy and adversarial conditions. Existing routing approaches often assume stationary link behavior, decouple selection from allocation, or rely on offline optimization---assumptions that can fail when link fidelities drift and disruptions adapt online.
 
-In this paper, we present a systematic threat-aware evaluation of bandit algorithms
-(contextual, adversarial, and hybrid) for joint path selection and qubit allocation
-in quantum networks, introducing pursuit--neural hybrid variants that balance
-stochastic efficiency with adversarial robustness. We evaluate 13 algorithms across
-five threat scenarios while varying allocator policies and replay-capacity semantics.
+In this paper, we present a systematic threat-aware evaluation of bandit algorithms (contextual, adversarial, and hybrid) for joint path selection and qubit allocation in quantum networks, introducing pursuit--neural hybrid variants that balance stochastic efficiency with adversarial robustness. We evaluate 13 algorithms across five threat scenarios while varying allocator policies and replay-capacity semantics.
 
-Pursuit--neural hybrids emerge as the most robust family, outperforming non-contextual
-bandit baselines by 18--24 percentage points and sustaining higher worst-case performance
-under strategic attacks than adversarial-first designs.
+Pursuit--neural hybrids emerge as the most robust family, outperforming non-contextual bandit baselines by 18--24 percentage points and sustaining higher worst-case performance under strategic attacks than adversarial-first designs.
 
-We validate robustness through cross-testbed evaluation on three external quantum
-network simulators, confirming consistent robustness trends across diverse topologies
-and noise models while exposing scale- and physics-dependent performance limitations.
+We validate robustness through cross-testbed evaluation on three external quantum network simulators, confirming consistent robustness trends across diverse topologies and noise models while exposing scale- and physics-dependent performance limitations.
+
+% This work found I) That Dan is the coolest guy in the world by 20%, II) 40% of the people wnat to have dinner with him, III) 30% of the people in the world think that he is the tallest guy.
 
 \end{abstract}
 
@@ -1997,7 +1987,8 @@ Papers~2, 7, and 12 use the full multi-scale, 5-run evaluation corpora summarize
 
 \begin{table*}[ht!]
 \centering
-\caption{Cross-testbed performance comparison using scenario-aggregated Oracle-normalized efficiency (\%) and scenario champions from \texttt{scenario\_winner}. Numeric columns are means across all five scenarios (\texttt{none}, \texttt{stochastic}, \texttt{markov}, \texttt{adaptive}, \texttt{onlineadaptive}) and 4 allocators. Papers 2, 7, and 12 use the full evaluation corpora aggregated across scales $s \in \{1.0,1.5,2.0\}$ (\texttt{cap\_type}=T) with 5 runs per setting; Paper 8 uses the current original paper-config slice at 1K/1K/1R, $s=1.0$, \texttt{cap\_type}=T.\devroop{Maybe have one more paper if you can.}}
+\caption{Cross-testbed performance comparison using scenario-aggregated Oracle-normalized efficiency (\%) and scenario champions from \texttt{scenario\_winner}. Numeric columns are means across all five scenarios (\texttt{none}, \texttt{stochastic}, \texttt{markov}, \texttt{adaptive}, \texttt{onlineadaptive}) and 4 allocators. Papers 2, 7, and 12 use the full evaluation corpora aggregated across scales $s \in \{1.0,1.5,2.0\}$ (\texttt{cap\_type}=T) with 5 runs per setting; Paper 8 uses the current original paper-config slice at 1K/1K/1R, $s=1.0$, \texttt{cap\_type}=T.}
+% \devroop{Maybe have one more paper if you can.}
 \label{tab:testbed_comparison}
 \small
 \begin{tabular}{l l c c c c l}
