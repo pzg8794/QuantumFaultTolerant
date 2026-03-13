@@ -1757,19 +1757,19 @@ in the most deployment-critical adversarial regimes ($RQ3_d$).
 
 \noindent
 We isolate architecture impact under a fixed setting (6K horizon, \small\texttt{Fixed} allocator,
-$T$-type capacity with $s{=}2$), reporting the mean of the 3- and 5-run suite values:
+$T$-type capacity with $s{=}2$), reporting the 3-run suite values:
 
 \begin{table}[ht!]
 \footnotesize
 \caption{Predictive context impact under a fixed deployment: 6K horizon, \small\texttt{Fixed} allocator, $T$-type, $s{=}2$.
-Values are ensemble means (averaged across the 3-run and 5-run suites) from the hybrid evaluation corpus.}
+Values are the 3-run suite means from the hybrid evaluation corpus.}
 \centering
 \begin{tabular}{lccccccc}
 \toprule
 \textbf{Model} & \textbf{Bl} & \textbf{Sh} & \textbf{Mk} & \textbf{Ag} & \textbf{OA} & \textbf{Avg} & \textbf{CV$_{\text{scen}}$} \\
 \midrule
-CPursuitNeuralUCB  & 98.5 & 93.8 & 93.9 & 87.4 & 80.2 & 90.8 & 7.2 \\
-iCPursuitNeuralUCB & 99.1 & 94.0 & 94.1 & 88.0 & 99.1 & 94.9 & 4.9 \\
+CPursuitNeuralUCB  & 99.8 & 94.7 & 93.0 & 92.8 & 81.5 & 92.4 & 6.5 \\
+iCPursuitNeuralUCB & 99.9 & 94.8 & 93.0 & 92.8 & 99.8 & 96.0 & 3.3 \\
 \bottomrule
 \end{tabular}
 {\footnotesize{Bl=Baseline, Sh=Stochastic, Mk=Markov, Ag=Adaptive, OA=OnlineAdaptive.}}
@@ -1780,7 +1780,7 @@ iCPursuitNeuralUCB & 99.1 & 94.0 & 94.1 & 88.0 & 99.1 & 94.9 & 4.9 \\
 \textit{Answer to RQ3a:}
 As shown in \Cref{tab:rq3a_informative}, \textbf{iCPursuitNeuralUCB improves global robustness primarily by lifting OnlineAdaptive performance}
 (+18.3 pp under the same deployment setting), yielding a higher overall average and a tighter
-cross-scenario dispersion. Stochastic/Markov behavior remains essentially unchanged, suggesting that
+cross-scenario dispersion (CV$_{\text{scen}}$: 6.5 $\rightarrow$ 3.3). Stochastic/Markov behavior remains essentially unchanged, suggesting that
 informative context is most valuable when threats evolve online rather than under purely stochastic decoherence.
 
 % ============================================================================
