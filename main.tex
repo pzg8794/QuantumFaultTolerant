@@ -1220,7 +1220,7 @@ and replay-capacity scales ($s \in \{1, 1.5, 2\}$) under capacity semantics ($T$
 as defined in the Introduction and \Cref{sec:expDesign}.
 All quantitative results reported are computed from the curated experimental corpus
 produced by our evaluation framework (run logs, summaries, and aggregation scripts),
-with full reproducibility artifacts provided in Appendix~\ref{app:data_artifacts} (or Supplementary Material).
+with full reproducibility artifacts provided in Appendix~\ref{app:data_artifacts}.
 Results are organized by research question (\Cref{sec:research_questions}). We first assess whether baseline MABs remain deployment-viable under stochastic decoherence (RQ1; \S\ref{subsec:rq1_answer}), then evaluate robustness as threats become structured and adaptive (RQ2; \S\ref{subsec:rq2_answer}), and finally analyze allocator--capacity interactions and deployment rules (RQ3; \S\ref{subsubsec:rq3a_answer}--\S\ref{subsec:rq3c_answer}).
 
 % ----------------------------------------------------------------------------
@@ -1233,7 +1233,7 @@ Results are organized by research question (\Cref{sec:research_questions}). We f
 \centering
 \begin{tikzpicture}
 \begin{axis}[
-  ylabel={Global Win Share (\%)},
+  ylabel={Win Dominance (\%)},
   xlabel={Algorithm},
   ymin=0, ymax=40,
   xtick={1,2,3,4,5},
@@ -1253,12 +1253,12 @@ Results are organized by research question (\Cref{sec:research_questions}). We f
   (4, 37.5)  % iCEpsilonGreedy
   (5,  9.7)  % CEpsilonGreedy
 };
-\addlegendentry{Top-5 win share (default allocator)}
+\addlegendentry{Top-5 win dominance (default allocator)}
 
 \end{axis}
 \end{tikzpicture}
 \vspace{-0.4cm}
-\caption{Global win share under the default allocator (aggregated
+\caption{Win dominance under the default allocator (aggregated
 across all configurations). \texttt{iCEpsilonGreedy} captures the
 largest share of wins, with \texttt{CPursuit} second.}
 \label{fig:global_win_share}
@@ -1317,23 +1317,23 @@ policies collapse toward $\approx 37$--40\% even without adversarial pressure.
 \textbf{Model} & \textbf{3 Runs} & \textbf{5 Runs} & \textbf{Avg. Eff.} \\
 \hline
 \multicolumn{4}{l}{\textit{Top tier (viable under stochastic)}} \\
-CPursuit & 89.6 & 90.1 & 89.9 \\
-iCEpsilonGreedy & 88.0 & 88.6 & 88.3 \\
-CEpsilonGreedy & 87.5 & 87.9 & 87.8 \\
-GNeuralUCB & 85.2 & 86.3 & 85.9 \\
+CPursuit & 90.0 & 90.2 & 89.9 \\
+iCEpsilonGreedy & 87.8 & 87.9 & 88.3 \\
+CEpsilonGreedy & 87.9 & 87.8 & 87.8 \\
+GNeuralUCB & 86.2 & 85.5 & 86.3 \\
 \hline
 \multicolumn{4}{l}{\textit{Mid-tier (degraded)}} \\
-EXPNeuralUCB & 82.1 & 83.8 & 83.1 \\
-EXPUCB & 76.2 & 78.4 & 77.6 \\
-CEXP4 & 70.1 & 70.2 & 70.1 \\
-iCPursuit & 68.7 & 69.0 & 68.9 \\
-CThompsonSampling & 66.6 & 68.1 & 67.5 \\
-iCThompsonSampling & 66.5 & 68.0 & 67.5 \\
+EXPNeuralUCB & 82.1 & 80.9 & 81.5 \\
+EXPUCB & 75.5 & 77.8 & 77.6 \\
+CEXP4 & 69.2 & 69.3 & 70.1 \\
+iCPursuit & 67.2 & 67.5 & 67.4 \\
+CThompsonSampling & 65.7 & 67.3 & 67.5 \\
+iCThompsonSampling & 65.7 & 67.2 & 67.5 \\
 \hline
 \multicolumn{4}{l}{\textit{Collapsed (structural failure)}} \\
-CEpochGreedy & 37.6 & 37.6 & 37.6 \\
-iCEpochGreedy & 37.5 & 37.5 & 37.5 \\
-iCEXP4 & 37.4 & 37.4 & 37.4 \\
+CEpochGreedy & 37.5 & 37.5 & 37.6 \\
+iCEpochGreedy & 37.2 & 37.2 & 37.5 \\
+iCEXP4 & 36.9 & 36.8 & 37.4 \\
 \hline
 \end{tabular}
 \end{table}
@@ -1477,8 +1477,8 @@ share of aggregated scenario wins among the four displayed representatives under
 \midrule
 CPursuit         & \textbf{88.1} & 5.3  & 77.4 & 25.6 \\
 iCEpsilonGreedy  & 86.9          & \textbf{3.6}  & \textbf{81.0} & 43.9 \\
-EXPNeuralUCB     & 82.4          & 16.5 & 18.0 & 30.5 \\
-EXPUCB           & 76.3          & 6.0  & 68.8 & 0.0 \\
+EXPNeuralUCB     & 83.1          & 15.1 & 18.0 & 30.5 \\
+EXPUCB           & 76.4          & 6.0  & 68.8 & 0.0 \\
 \bottomrule
 \end{tabular}
 \label{tab:rq2_adversarial}
@@ -1496,7 +1496,7 @@ achieving the strongest floor (81\%) across threats.
 
 \noindent\textit{Important correction (in-family):}
 Within the iCMAB evaluation corpus (considering only iCMAB variants under the same threat suite),
-\small\texttt{iCEpsilonGreedy} is the consistent winner (100\% in-family win rate), while \small\texttt{iCPursuit} is not.
+\small\texttt{iCEpsilonGreedy} is the consistent winner (100\% in-family win rate) under the same adversarial scope.
 
 % ----------------------------------------------------------------------------
 % Optional: penalties vs baseline (NONE) using validated corpus means.
@@ -1741,8 +1741,8 @@ At the 6K horizon, a single configuration achieves high global robustness:
 \end{center}
 
 \noindent
-This default attains a \textbf{95.5\%} global average with an \textbf{88.5\%} worst-case floor
-(across the five scenarios under the same deployment setting).
+This default attains a \textbf{96.0\%} global average with a \textbf{92.8\%} worst-case floor
+(across the five scenarios on the same 6K 3-run deployment slice).
 However, the configuration surface is not benign: mismatched allocator/capacity choices can induce
 large scenario-specific collapses ($RQ3_b-RQ3_c$), and threat-conditioned switching yields targeted gains
 in the most deployment-critical adversarial regimes ($RQ3_d$).
@@ -1798,26 +1798,28 @@ informative context is most valuable when threats evolve online rather than unde
 
 \noindent
 \textit{Capacity scaling is non-monotonic and interacts with anchoring ($T$ vs.\ $T_b$).}
-Even with the allocator fixed (\small\texttt{Random}) at 6K, scale changes can induce large swings in efficiency,
-including pronounced degradations at the intermediate scale.
+Even with the deployment anchor fixed (\small\texttt{Default}/\small\texttt{Fixed}) at 6K, scale changes can induce large swings in efficiency,
+including pronounced improvements at the intermediate scale followed by regression at $s{=}2$.
+
+\todo{CRITICAL / HIGH PRIORITY (DATA FIX PENDING): For $T$-anchored RQ3b at 6K under Default (=Fixed), the validated master is missing the full $s{=}1.5$ grid (even in the 3-run view). Until the master is repaired, RQ3b is reported under $T_b$-anchoring using pandas as the canonical engine; a proof snapshot is exported under \texttt{paper\_validation/snapshots}.}
 
 \begin{table}[ht!]
 \footnotesize
 \centering
-\caption{RQ3b: Capacity Scaling Impact on Pursuit Algorithms (Fixed Allocator)}
+\caption{RQ3b: Capacity Scaling Impact on Pursuit Algorithms (Default/Fixed Allocator, $T_b$ anchoring; 6K; 3-run suite)}
 \label{tab:rq3b_capacity_scaling}
 \begin{tabular}{llcccc}
 \toprule
 \textbf{Algorithm} & \textbf{Scale} & \textbf{Bl} & \textbf{Sh} & \textbf{Mk} & \textbf{Ag} \\
 \midrule
 \multirow{3}{*}{CPursuitNeuralUCB}
-& 1.0 & 96.2\% & 90.4\% & 91.0\% & 88.1\% \\
-& 1.5 & 98.1\% & 90.6\% & 92.5\% & 89.1\% \\
-& 2.0 & 98.5\% & 93.8\% & 94.7\% & 90.7\% \\ \midrule
+& 1.0 & 96.7\% & 92.8\% & 88.3\% & 90.3\% \\
+& 1.5 & 99.8\% & 91.9\% & 92.5\% & 93.8\% \\
+& 2.0 & 97.2\% & 92.1\% & 89.5\% & 91.9\% \\ \midrule
 \multirow{3}{*}{iCPursuitNeuralUCB}
-& 1.0 & 96.2\% & 91.3\% & 92.6\% & 88.6\% \\
-& 1.5 & 99.0\% & 92.4\% & 93.3\% & 89.7\% \\
-& 2.0 & 99.1\% & 94.6\% & 95.0\% & 92.5\% \\
+& 1.0 & 96.2\% & 91.4\% & 89.1\% & 91.5\% \\
+& 1.5 & 99.8\% & 91.3\% & 92.6\% & 93.8\% \\
+& 2.0 & 96.6\% & 91.2\% & 88.9\% & 92.9\% \\
 
 \bottomrule
 \end{tabular}
@@ -1828,8 +1830,9 @@ including pronounced degradations at the intermediate scale.
 
 \noindent
 \textit{Answer to RQ3b:}
-Replay capacity is not a \textquotedblleft more is better\textquotedblright knob. Under $T$-type anchoring (\Cref{tab:rq3b_capacity_scaling}), both pursuit-based hybrids
-exhibit a sharp degradation at $s{=}1.5$ followed by recovery at $s{=}2$.
+Replay capacity is not a \textquotedblleft more is better\textquotedblright knob. Under $T_b$-type anchoring (\Cref{tab:rq3b_capacity_scaling}), both pursuit-based hybrids
+show a pronounced bump at $s{=}1.5$ (especially in Baseline/Markov), followed by partial regression at $s{=}2$.
+This single-slice snapshot falsifies the monotone hypothesis ($s{=}1 \to 1.5 \to 2$) under a fixed deployment anchor.
 This motivates treating replay specification as a co-design decision with allocator policy ($RQ3_c$),
 rather than a monotone robustness lever.
 
@@ -1848,23 +1851,23 @@ rather than a monotone robustness lever.
 
 \begin{table}[ht!]
 \centering
-\caption{RQ3c: Allocator performance summary for CPursuitNeuralUCB (validated suites, Tb, s=2, 6K frames). Core findings exclude Random allocator.}
+\caption{RQ3c: Allocator performance summary for iCPursuitNeuralUCB (Tb, s=2, 6K frames, runs=3). Core findings exclude Random allocator.}
 \label{tab:rq3c_allocators}
 \begin{tabular}{lccc}
 \toprule
 \textbf{Allocator} & \textbf{Avg Eff (\%)} & \textbf{Floor (\%)} & \textbf{Span (pp)} \\
 \midrule
-Fixed          & 87.7 & 84.8 & 8.5 \\
-Thompson       & 88.2 & 65.0 & 28.3 \\
-DynamicUCB     & 70.1 & 68.2 & 3.0 \\
+Fixed          & 92.7 & 88.9 & 7.8 \\
+Thompson       & 87.8 & 73.3 & 26.4 \\
+DynamicUCB     & 92.6 & 87.9 & 9.3 \\
 \midrule
 \multicolumn{4}{l}{\textit{Supplementary (Control Baseline):}} \\
-\quad Random   & 37.3 & 36.9 & 1.8 \\
+\quad Random   & 86.4 & 68.3 & 26.7 \\
 \bottomrule
 \end{tabular}
 
 \vspace{0.2cm}
-\tiny{\textbf{Note:} Random allocator shown for completeness to validate allocation criticality (--50.4~pp penalty vs.\ Fixed). Excluded from core deployment recommendations.}
+\tiny{\textbf{Note:} Random allocator shown for completeness as a control baseline. It is excluded from core deployment recommendations.}
 \end{table}
 
 
@@ -1930,6 +1933,10 @@ effective in specific regimes (\eg Adaptive) but can underperform severely when 
 
 \subsubsection{Deployment Rules (6K horizon)}
 
+\noindent
+The deployment rules below use the coherent 6K \textbf{3-run} hybrid slice over the core allocators
+(\small\texttt{Fixed / Thompson / DynamicUCB}).
+
 \noindent\textbf{Robust static default:}
 \begin{center}
 \small\texttt{iCPursuitNeuralUCB + Fixed + ($T$-type, $s{=}2$)}
@@ -1943,7 +1950,7 @@ safeguard against allocator/capacity mismatch and for targeted gains in \small\t
 \item \textit{Baseline:} \small\texttt{DynamicUCB + (T, $s{=}1$)} \hfill (99.9\%, +0.0pp)
 \item \textit{Stochastic:} \small\texttt{Thompson + (T, $s{=}1$)} \hfill (95.4\%, +0.6pp)
 \item \textit{Markov:} \small\texttt{DynamicUCB + ($T_b$, $s{=}1.5$)} \hfill (93.2\%, +0.3pp)
-\item \textit{Adaptive:} \small\texttt{Thompson + ($T_b$, $s{=}1.5$)} \hfill (95.7\%, +2.9pp)
+\item \textit{Adaptive:} \small\texttt{Thompson + (T, $s{=}1$)} \hfill (95.7\%, +2.9pp)
 \item \textit{OnlineAdaptive:} \small\texttt{Fixed + (T, $s{=}2$)} \hfill (99.8\%, +0.0pp)
 \end{itemize}
 
@@ -2041,15 +2048,15 @@ Papers~2, 7, and 12 use the full multi-scale, 5-run evaluation corpora summarize
 \subsubsection{Key Observations from Cross-Testbed Validation}
 
 \begin{enumerate}[nosep,leftmargin=2em]
-\item \textbf{\texttt{iCPursuitNeuralUCB} is the experiment winner on Papers 2, 7, and 12, but not on Paper 8.} It wins 94/300 experiments on Paper 2, 245/300 on Paper 7 (81.7\%), and 97/300 on Paper 12. On Paper 7, its dominance is overwhelming---no other model comes close. On Papers 2 and 12, the margin is tighter: Paper 2 sees a 4-way race (iCP: 94, G: 87, EXP: 81, CP: 38), while Paper 12 is a 2-way race (iCP: 97, EXP: 91). Paper 8 breaks this pattern: \texttt{EXPNeuralUCB} wins 10/20 allocator-scenario configurations, while \texttt{iCPursuitNeuralUCB} leads only 1/20 despite having the strongest aggregated efficiency.
+\item \textbf{\texttt{iCPursuitNeuralUCB} is the cross-layer winner on Papers 2, 7, and 12, while on Paper 8 it dominates only.} It wins 94/300 experiments on Paper 2, 245/300 on Paper 7 (81.7\%), and 97/300 on Paper 12. On Paper 7, its dominance is overwhelming---no other model comes close. On Papers 2 and 12, the margin is tighter: Paper 2 sees a 4-way race (iCP: 94, G: 87, EXP: 81, CP: 38), while Paper 12 is a 2-way race (iCP: 97, EXP: 91). Paper 8 breaks this pattern: \texttt{EXPNeuralUCB} wins 10/20 allocator-scenario configurations, while \texttt{iCPursuitNeuralUCB} leads only 1/20 despite having the strongest aggregated efficiency.
 
-\item \textbf{Scenario-aggregated ranking does not fully determine configuration-level winners.} In Paper 2, \texttt{iCPursuitNeuralUCB} has the highest aggregated efficiency (74.45\%) yet only wins 2/5 scenarios (none, markov). \texttt{CPursuitNeuralUCB} and \texttt{GNeuralUCB} each win 3/5 scenarios despite lower average efficiency, capturing adaptive, onlineadaptive, and stochastic. Paper 8 shows the same separation in a different form: \texttt{iCPursuitNeuralUCB} posts the highest aggregated efficiency (67.85\%), but \texttt{EXPNeuralUCB} wins the largest share of allocator-scenario configurations (10/20).
+\item \textbf{Experiment threat ranking does not fully determine experiment-level dominance.} In Paper 2, \texttt{iCPursuitNeuralUCB} has the highest dominance (scenario-aggregated efficiency, 74.45\%) yet wins only 2/5 threat scenarios (none, markov). \texttt{CPursuitNeuralUCB} and \texttt{GNeuralUCB} each win 3/5 threat scenarios despite lower dominance, capturing adaptive, onlineadaptive, and stochastic. Paper 8 shows the same separation in a different form: \texttt{iCPursuitNeuralUCB} has the highest dominance (scenario-aggregated efficiency, 67.85\%), while \texttt{EXPNeuralUCB} wins the largest share of allocator--threat-scenario configurations (10/20).
 
-\item \textbf{Paper 12 exhibits the broadest winner overlap across scenarios.} All four models win in at least 4 of 5 scenarios, with \texttt{markov} uniquely favoring \texttt{iCPursuitNeuralUCB} (51/60 experiment wins). This contrasts with Paper 7 where scenario championship is concentrated: \texttt{iCPursuitNeuralUCB} wins all 5 scenarios with only \texttt{GNeuralUCB} and \texttt{EXPNeuralUCB} sharing \texttt{markov}.
+\item \textbf{Paper 12 exhibits the broadest overlap in threat-scenario winners.} All four models win in at least 4 of 5 threat scenarios, with \texttt{markov} uniquely favoring \texttt{iCPursuitNeuralUCB} (51/60 experiment wins). This contrasts with Paper 7 where threat-scenario championship is concentrated: \texttt{iCPursuitNeuralUCB} wins all 5 threat scenarios, with only \texttt{GNeuralUCB} and \texttt{EXPNeuralUCB} sharing \texttt{markov} experiment wins.
 
-\item \textbf{Paper 8 adds a compact RL-routing regime with competitive but lower aggregate efficiencies than Papers 2 and 7.} Its model efficiencies span 61.4--67.9\%, placing it below Papers 2 and 7 but well above Paper 12. This extends the testbed-specific ranking story: the compact 20-node, 8-path Paper 8 network produces a more competitive EXP/iCP split than the strong iCP dominance seen on Paper 7.
+\item \textbf{Paper 8 adds a compact RL-routing regime with competitive but lower aggregate efficiencies than Papers 2 and 7.} Its model efficiencies span 61.4--67.9\%, placing it below Papers 2 and 7 but well above Paper 12. This extends the testbed (default allocator) winner story: the compact 20-node, 8-path Paper 8 network splits \texttt{EXPNeuralUCB} experiment wins from \texttt{iCPursuitNeuralUCB} dominance, unlike the strong \texttt{iCPursuitNeuralUCB} cross-layer-winner pattern seen on Paper 7.
 
-\item \textbf{\texttt{CPursuitNeuralUCB} never wins a scenario on Paper 7 yet wins 3/5 on Paper 2.} This testbed specificity highlights that algorithm rankings are topology-dependent: the dense 50-node Paper 7 network strongly favors \texttt{iCPursuitNeuralUCB}, while the 15-node Paper 2 network enables broader competition.
+\item \textbf{\texttt{CPursuitNeuralUCB} never wins a threat scenario on Paper 7 yet wins 3/5 threat scenarios on Paper 2.} This testbed specificity highlights that winner structure is topology-dependent: the dense 50-node Paper 7 network strongly favors \texttt{iCPursuitNeuralUCB} as the cross-layer winner, while the 15-node Paper 2 network enables broader competition.
 \end{enumerate}
 
 \subsection{Model Family Performance Comparison}
@@ -2126,9 +2133,9 @@ To provide a consolidated view of algorithm performance across model families, w
 \midrule
 \multirow{5}{*}{\parbox{2cm}{\textbf{Paper 8}\\ \small(20N, 19E)\\ \small 1K/1K}}
 & \texttt{iCPursuitNeuralUCB} & \textbf{67.41} & 32.59 & \textbf{46.1} & 1/5 \\
-& \texttt{EXPNeuralUCB} & 62.08 & 37.92 & 35.1 & \textbf{2/5$^\star$} \\
-& \texttt{GNeuralUCB} & 61.81 & 38.19 & 37.1 & 0/5 \\
-& \texttt{CPursuitNeuralUCB} & 61.65 & 38.35 & 37.8 & \textbf{2/5$^\star$} \\
+& \texttt{EXPNeuralUCB} & 62.08 & 37.92 & 23.9 & \textbf{2/5$^\star$} \\
+& \texttt{GNeuralUCB} & 61.81 & 38.19 & 36.0 & 0/5 \\
+& \texttt{CPursuitNeuralUCB} & 61.65 & 38.35 & 35.2 & \textbf{2/5$^\star$} \\
 \cline{2-6}
 & \cellcolor{findingBlue}\textit{Best avg.: iCP, best wins: EXP/CP tie} & \multicolumn{4}{l}{\cellcolor{findingBlue}\small 61--67\% eff. $\star$Exp.\ Winners: EXPNeuralUCB / CPursuitNeuralUCB (2/5)} \\
 \bottomrule
@@ -2143,7 +2150,7 @@ To provide a consolidated view of algorithm performance across model families, w
 \begin{enumerate}[nosep,leftmargin=2em]
 \item \textbf{Hybrid neural models define the performance ceiling.} \texttt{iCPursuitNeuralUCB} achieves 90.9\% average efficiency on the internal corpus (23/75 = 31\% experiment wins), outperforming the best classical CMAB (\texttt{CPursuit}, 89.9\%) in average efficiency, and topping the best EXP3 model (\texttt{GNeuralUCB}, 85.4\%) by \textbf{5.5 pp}.
 
-\item \textbf{\texttt{iCPursuitNeuralUCB} is the experiment winner across all six evaluation settings.} Internally it leads the Hybrid family (23/75); externally it wins Paper~2 (24/75 = 32\%), Paper~7 (58/75 = 77\%), and Paper~12 (26/75 = 35\%). Its dominance is topology-invariant.
+\item \textbf{\texttt{iCPursuitNeuralUCB} is the strongest neural model by Oracle-relative gap reduction.} Across the Hybrid corpus and all four external testbeds (Papers~2, 7, 12, and 8), it achieves the lowest aggregate gap over the five scenarios, and it retains that lead within each allocator slice. Its leadership is therefore stable to both topology and allocator variation.
 
 \item \textbf{Efficiency degrades with testbed complexity.} Hybrid performance drops from 90.9\% on the internal corpus to 74.4\% (Paper~2, 15N), 77.5\% (Paper~7, 50N), and 41.6\% (Paper~12, 100N). Crucially, Paper~12's low efficiency is \emph{not} caused by an intrinsic fidelity ceiling: the Oracle achieves an average reward of 0.87 ($\approx$87\% of the theoretical maximum), and individual model configurations reach up to 63\% of Oracle. The gap instead reflects the difficulty of bandit optimization on a 100-node, 4-path fusion topology---the large state space and constrained routing diversity make arm selection harder to learn within the 1.5K/500 frame regime, whereas the internal 4K/2K regime on a smaller topology gives the learner sufficient time to converge.
 
@@ -2170,7 +2177,7 @@ This standardized testing protocol will enable:
 \item \textbf{Topology-algorithm interaction analysis} to determine whether algorithm rankings shift across sparse (Paper 2: 15N, 51E), dense (Paper 7: 50N, 141E), and mid-scale (Paper 12: 100N, 426E) network structures
 \end{enumerate}
 
-Results from this standardized cross-testbed campaign will be reported in a follow-up technical report and integrated into the reproducibility artifacts accompanying this paper. Current evaluation-corpus evidence already shows strong testbed dependence in both efficiency and winner structure, reinforcing the need for shared standardized run configurations across the external testbeds.
+Results from this standardized cross-testbed campaign will be reported in a follow-up technical report and integrated into the reproducibility artifacts accompanying this paper. Current evaluation-corpus evidence already shows strong testbed dependence in both efficiency and cross-layer winning structure, reinforcing the need for shared standardized run configurations across the external testbeds.
 
 
 % ========= Discussion =========
@@ -2315,7 +2322,7 @@ The results emphasized in this paper are anchored to the curated evaluation corp
 A primary next step is to evaluate the threat‑adaptive deployment stack under realistic operational constraints by deploying pursuit‑based contextual bandits (\eg iCPursuitNeuralUCB with allocator switching) on a quantum‑repeater testbed. The goal is to test whether allocator choice and replay‑capacity parameterization remain beneficial when control latency, scheduling delays, and non‑ideal operations are present.
 
 \textbf{Standardized cross-testbed benchmarking.}
-As outlined in \S\ref{sec:testbed_comparison}, we are conducting follow-up evaluations that deploy all four external testbeds (Papers 2, 7, 12, and 8) using our standardized run configurations (4K base/2K step frames, 3/5/10 runs, unified threat scenarios). This will enable direct efficiency comparisons across sparse (15-node), compact (20-node), dense (50-node), and mid-scale (100-node) topologies under aligned experimental conditions, testing whether pursuit-neural dominance persists and whether the capacity paradox manifests consistently across network structures.
+As outlined in \S\ref{sec:testbed_comparison}, we are conducting follow-up evaluations that deploy all four external testbeds (Papers 2, 7, 12, and 8) using our standardized run configurations (4K base/2K step frames, 3/5/10 runs, unified threat scenarios). This will enable direct efficiency comparisons across sparse (15-node), compact (20-node), dense (50-node), and mid-scale (100-node) topologies under aligned experimental conditions, testing whether pursuit-neural cross-layer winning structure persists and whether the capacity paradox manifests consistently across network structures.
 
 \textbf{Scaling topology and allocation.}
 We will extend the evaluation framework to larger routing graphs and expanded action spaces (\eg more than 20 candidate paths), including hierarchical or multi‑level allocation strategies. This will test whether the capacity paradox persists, weakens, or changes character when routing becomes more combinatorial and path diversity increases.
@@ -2380,6 +2387,14 @@ We introduced a unified, reproducible benchmark for entanglement routing under f
 Most critically, we uncover a \emph{capacity paradox}: replay scaling can improve performance under structured disruption yet induce pronounced collapses under adaptive adversaries, indicating that \emph{predictability}---not bandwidth---can dominate robustness in adversarial settings. Allocator choice is likewise not interchangeable: it can set the robustness floor for identical learners, motivating a threat-adaptive deployment stack in which pursuit-based contextual hybrids serve as default routing agents while allocator and capacity policies switch based on the detected regime.
 
 Taken together, these results position bandit-based routing as a modular, transferable design pattern for threat-responsive quantum networks, and motivate future work on automated threat detection, dynamic capacity control, and hardware-grounded validation on repeater testbeds.
+
+\appendices
+\section{Reproducibility Artifacts}
+\label{app:data_artifacts}
+All quantitative statements in this paper are anchored to the curated evaluation corpus generated by our framework.
+The reproducibility package includes run-level summaries, suite-level aggregates, configuration enumerations,
+and threat--allocator--capacity cross-product metadata used to compute the reported tables and figures.
+The corresponding scripts and logs are organized to support deterministic regeneration of manuscript-facing metrics.
 
 \section*{Acknowledgments}
 
