@@ -1058,3 +1058,8 @@ Corpus results (\Cref{tab:rq1_master_stochastic}) show a clear separation under 
 **Related tasks:** T-2026-007, T-2025-011
 
 ---
+
+#### C-064 — Applied approved low-priority RQ1/RQ2 rounding-level corrections
+- **Files:** `main.tex`
+- **Scope:** low-priority audit-backed value corrections for `TABLE V` and `TABLE VI`
+- **Notes:** values were aligned to the validated source-backed notebook using paper-facing one-decimal rounding where applicable; notebook synchronization is tracked in the work repo logs.
