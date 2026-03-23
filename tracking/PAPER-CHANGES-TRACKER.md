@@ -105,6 +105,38 @@ Sprint rule: during a submission sprint, we only pull from **Review/Submission**
 
 ---
 
+## Active Review Queue — Dan Comments (March 11--13)
+
+This is the **current working to-do queue** for the next writing pass. It mirrors the frozen `R-01` through `R-13` review tasks so Dan's asks remain visible inside the paper tracker itself.
+
+| Review ID | Dan comment date/time | Location | Short ask | Working note source |
+|---|---|---|---|---|
+| R-01 | 11 March, 8:21 am | Related Work | Be explicit about how existing works differ | `hybrid_variable_framework/docs/guides/MASTER_DATASET_VALIDATION_HUB_PLAN.md` |
+| R-02 | 13 March, 10:29 am | Introduction sentence | Replace awkward `situate` wording | `hybrid_variable_framework/docs/guides/MASTER_DATASET_VALIDATION_HUB_PLAN.md` |
+| R-03 | 11 March, 7:30 am | Abstract | Add 1--2 sentences on why the problem matters | `hybrid_variable_framework/docs/guides/MASTER_DATASET_VALIDATION_HUB_PLAN.md` |
+| R-04 | 13 March, 9:34 am | Early intro framing | State the primary contribution early and why readers should care | `hybrid_variable_framework/docs/guides/MASTER_DATASET_VALIDATION_HUB_PLAN.md` |
+| R-05 | 11 March, 7:33 am | Findings sentence | Rewrite the pursuit--neural result sentence with concrete backing | `hybrid_variable_framework/docs/guides/MASTER_DATASET_VALIDATION_HUB_PLAN.md` |
+| R-06 | 11 March, 8:21 am | Introduction | Cut intro length and move detail elsewhere | `hybrid_variable_framework/docs/guides/MASTER_DATASET_VALIDATION_HUB_PLAN.md` |
+| R-07 | 11 March, 8:20 am | Introduction gap framing | Convert bullet-heavy framing into paragraph form | `hybrid_variable_framework/docs/guides/MASTER_DATASET_VALIDATION_HUB_PLAN.md` |
+| R-08 | 11 March, 8:27 am | Key Contributions | Keep only 2--4 concise contributions | `hybrid_variable_framework/docs/guides/MASTER_DATASET_VALIDATION_HUB_PLAN.md` |
+| R-09 | 12 March, 10:34 am | Intro transition sentence | Replace `these considerations` with explicit context | `hybrid_variable_framework/docs/guides/MASTER_DATASET_VALIDATION_HUB_PLAN.md` |
+| R-10 | 13 March, 8:54 am | Research questions | Use `\emph{}` rather than bold | `hybrid_variable_framework/docs/guides/MASTER_DATASET_VALIDATION_HUB_PLAN.md` |
+| R-11 | 13 March, 9:39 am | Figure captions | Shorten captions and state the main takeaway | `hybrid_variable_framework/docs/guides/MASTER_DATASET_VALIDATION_HUB_PLAN.md` |
+| R-12 | 13 March, 9:55 am | Hypothesis sentence | Review whether the explicit hypothesis should be removed | `hybrid_variable_framework/docs/guides/MASTER_DATASET_VALIDATION_HUB_PLAN.md` |
+| R-13 | 13 March, 9:56 am | Table VI caption | Shorten the caption and foreground the implication | `hybrid_variable_framework/docs/guides/MASTER_DATASET_VALIDATION_HUB_PLAN.md` |
+
+Execution rule:
+- we treat `R-01` through `R-13` as the active review backlog,
+- we work them one by one using the locked format:
+  - `Task`
+  - `Meaning`
+  - `Before`
+  - `After`
+  - `Reasoning`
+- we do not merge these back into engineering backlog items until the review queue is cleared.
+
+---
+
 ## Blocked (Needs Dan Approval)
 
 These are reviewer-comment tasks that we will **not** implement until Dan explicitly approves the structural change.
