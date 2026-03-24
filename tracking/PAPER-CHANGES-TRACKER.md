@@ -141,6 +141,8 @@ Progress note:
 - Remaining `R-01` work is still under review sentence by sentence; do not mark the full item done yet.
 - `2026-03-23` — `R-02` approved in `sections/02--related_works.tex`.
 - Replaced `We situate ... as ...` with `We place ... within the family of ...` so the sentence now reflects the intended meaning instead of only swapping synonyms.
+- `2026-03-24` — `R-03` approved in `main.tex`.
+- Replaced the abstract opening problem statement with a deployment-motivation version that makes the consequence explicit by tying routing reliability to quantum key distribution, distributed quantum computing, and quantum sensing.
 
 ---
 
