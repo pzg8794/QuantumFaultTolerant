@@ -143,6 +143,8 @@ Progress note:
 - Replaced `We situate ... as ...` with `We place ... within the family of ...` so the sentence now reflects the intended meaning instead of only swapping synonyms.
 - `2026-03-24` — `R-03` approved in `main.tex`.
 - Replaced the abstract opening problem statement with a deployment-motivation version that makes the consequence explicit by tying routing reliability to quantum key distribution, distributed quantum computing, and quantum sensing.
+- `2026-03-24` — `R-04` abstract wording refined in `main.tex`.
+- Kept `framework to evaluate` (approved preference over `framework for evaluating`), removed the overloaded repetition around `bandit algorithms ... for joint path selection`, and corrected the spacing in `treats them`.
 
 ---
 
