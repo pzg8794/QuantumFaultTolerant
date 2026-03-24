@@ -145,6 +145,8 @@ Progress note:
 - Replaced the abstract opening problem statement with a deployment-motivation version that makes the consequence explicit by tying routing reliability to quantum key distribution, distributed quantum computing, and quantum sensing.
 - `2026-03-24` — `R-04` abstract wording refined in `main.tex`.
 - Kept `framework to evaluate` (approved preference over `framework for evaluating`), removed the overloaded repetition around `bandit algorithms ... for joint path selection`, and corrected the spacing in `treats them`.
+- `2026-03-24` — Abstract pass wrapped for this version.
+- Current abstract now follows the intended four-part flow: problem, why it matters, primary contribution, validated findings / cross-testbed scope. Treat the abstract feedback pass as closed for now.
 
 ---
 
