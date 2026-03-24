@@ -139,6 +139,8 @@ Progress note:
 - `2026-03-23` — `R-01` (`Related Work`) started in `sections/02--related_works.tex`.
 - Applied approved wording refinement to the `Huang et al.` comparison paragraph so the manuscript now states more explicitly that pursuit--neural hybrids are evaluated alongside `EXPNeuralUCB` under the same threat, allocator, and replay/capacity settings.
 - Remaining `R-01` work is still under review sentence by sentence; do not mark the full item done yet.
+- `2026-03-23` — `R-02` approved in `sections/02--related_works.tex`.
+- Replaced `We situate ... as ...` with `We place ... within the family of ...` so the sentence now reflects the intended meaning instead of only swapping synonyms.
 
 ---
 
