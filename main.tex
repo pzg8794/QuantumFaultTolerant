@@ -204,19 +204,9 @@ However, existing quantum routing research often evaluates algorithms under \emp
 
 \subsection{Our Approach and Evaluation Scope}
 
-To address these matched-threat evaluation gaps, we have developed a \emph{robust routing evaluation framework}
-that compares adversarial-first (EXP3-family), stochastic/contextual-first
-(CMAB/iCMAB-family), and \emph{hybrid pursuit--neural} models
-(including EXPNeuralUCB~\cite{huang2024quantum}) under a unified threat taxonomy.
-The overall decision flow is summarized in Fig.~\ref{fig:framework}.
-\noindent Across the resulting evaluation corpora, we find that context-aware
-pursuit--neural hybrids consistently offer the strongest
-robustness--efficiency tradeoff, and that replay capacity exhibits a
-threat-dependent \emph{capacity paradox} that can amplify vulnerability
-under adaptive disruption.
+To close these evaluation gaps, we introduce a unified framework that systematically compares adversarial-first (EXP3-family), stochastic/contextual-first (CMAB/iCMAB-family), and hybrid pursuit--neural models (including EXPNeuralUCB~\cite{huang2024quantum}) under a shared threat taxonomy. The evaluation pipeline is illustrated in Fig.~\ref{fig:framework}. Our results show that context-aware pursuit--neural hybrids consistently achieve the best balance of robustness and efficiency, while replay capacity reveals a threat-dependent “capacity paradox” that can increase vulnerability under adaptive disruption.
 
-\noindent Section~\ref{sec:studydesign} details the full experimental grid
-(models, threats, allocators, and replay-capacity semantics).
+Section~\ref{sec:studydesign} provides details on the experimental grid, including models, threat scenarios, allocator strategies, and replay-capacity semantics.
 
 \subsection{The Capacity Paradox}
 
