@@ -199,22 +199,7 @@ Quantum entanglement distribution is a foundational primitive of the quantum Int
 
 Quantum routing differs fundamentally from classical packet switching because the underlying resource is \emph{entanglement}, not transferable data. Quantum states cannot be copied or amplified due to the no-cloning theorem~\cite{wootters1982single}, rendering standard store-and-forward buffering impossible. Instead, communication relies on establishing entanglement---a consumable resource constrained by memory coherence times and operation-induced fidelity loss---and then consuming that entanglement to support protocols such as teleportation~\cite{bennett1993teleporting}. Furthermore, entanglement swapping succeeds only with a non-unit probability~\cite{zukowski1993event}, making link availability stochastic rather than deterministic. Consequently, routing must jointly optimize success probability and fidelity under uncertainty that evolves over time~\cite{li2025multipath,wang2025learning,huang2024quantum}.
 
-However, existing quantum routing research often evaluates algorithms under \emph{incompatible assumptions, metrics, or threat models}, complicating direct comparisons and obscuring deployment tradeoffs~\cite{liu2024qbgp,li2025multipath,chaudhary2023quantum}. This heterogeneity makes it difficult to attribute performance differences to the learning rule itself rather than to differences in topology scale, physics/noise modeling, allocation assumptions, or adversary behavior. Consequently, results may not translate into actionable deployment guidance when conditions drift or disruptions adapt. Two streams are especially prominent:
-
-\begin{enumerate}
-\item \textbf{Adversarial-first approaches} (\eg EXP3-family and adversarial-adaptive designs~\cite{auer2002nonstochastic,zimmert2019optimal,huang2024quantum}) assume worst-case link behavior and prioritize robustness under attack, often sacrificing stochastic efficiency.
-\item \textbf{Stochastic/contextual-first approaches} (\eg contextual and informed CMAB/iCMAB variants~\cite{chu2011contextual,wang2025learning,kar2024icmab}) leverage predictive environmental structure for efficiency under natural noise, but offer limited evidence under coordinated adaptive adversaries.
-\end{enumerate}
-
-This divide leaves three deployment-critical matched-threat evaluation gaps insufficiently isolated in prior evaluations:
-\begin{enumerate}
-\item \textbf{Context dependence is under-characterized.}
-Prior work does not clearly identify which threat and noise regimes require topology/channel features for stable routing versus when non-contextual policies suffice.
-\item \textbf{Matched-threat comparisons are missing.}
-Adversarial-first and stochastic/contextual-first methods are rarely evaluated under identical, controlled threat scenarios, limiting causal comparisons across design philosophies.
-\item \textbf{Deployment interactions are not disentangled.}
-Allocator choice and replay/capacity semantics are typically treated as implementation details rather than first-class factors, obscuring interaction effects and counterintuitive performance shifts.
-\end{enumerate}
+However, existing quantum routing research often evaluates algorithms under \emph{incompatible assumptions, metrics, or threat models}, complicating direct comparisons and obscuring deployment tradeoffs~\cite{liu2024qbgp,li2025multipath,chaudhary2023quantum}. Adversarial-first approaches (\eg EXP3-family and adversarial-adaptive designs~\cite{auer2002nonstochastic,zimmert2019optimal,huang2024quantum}) assume worst-case link behavior and prioritize robustness under attack, often sacrificing stochastic efficiency, whereas stochastic/contextual-first approaches (\eg contextual and informed CMAB/iCMAB variants~\cite{chu2011contextual,wang2025learning,kar2024icmab}) leverage predictive environmental structure for efficiency under natural noise but offer limited evidence under coordinated adaptive adversaries. Despite strong progress in both directions, prior evaluations still leave three matched-threat gaps insufficiently isolated: (i) it remains unclear which threat and noise regimes truly require topology/channel context versus when non-contextual policies suffice, (ii) adversarial-first and contextual-first methods are rarely compared under identical controlled threat scenarios, limiting causal conclusions, and (iii) allocator choice and replay/capacity semantics are often treated as implementation details rather than first-class factors, obscuring interaction effects and deployment-relevant tradeoffs.
 
 
 \subsection{Our Approach and Evaluation Scope}
