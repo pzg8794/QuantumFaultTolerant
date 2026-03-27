@@ -1108,3 +1108,8 @@ Corpus results (\Cref{tab:rq1_master_stochastic}) show a clear separation under 
 - **Files:** `main.tex`
 - **Scope:** low-priority audit-backed value corrections for `TABLE V` and `TABLE VI`
 - **Notes:** values were aligned to the validated source-backed notebook using paper-facing one-decimal rounding where applicable; notebook synchronization is tracked in the work repo logs.
+
+#### C-065 — Closed Dan intro/RQ comment pass through research-question wording
+- **Files:** `main.tex`
+- **Scope:** completed the current comment pass through the introduction and research-question wording.
+- **Notes:** the introduction was tightened into a six-paragraph flow, the bullet-heavy gap framing was replaced with concise prose, the approach/evaluation-scope subsection was rewritten around the matched-threat framework, contribution framing was compressed, and the research-question prompts were updated to the approved new wording using emphasis styling instead of bold.
