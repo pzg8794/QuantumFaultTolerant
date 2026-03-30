@@ -147,6 +147,9 @@ Progress note:
 - Kept `framework to evaluate` (approved preference over `framework for evaluating`), removed the overloaded repetition around `bandit algorithms ... for joint path selection`, and corrected the spacing in `treats them`.
 - `2026-03-24` — Abstract pass wrapped for this version.
 - Current abstract now follows the intended four-part flow: problem, why it matters, primary contribution, validated findings / cross-testbed scope. Treat the abstract feedback pass as closed for now.
+- `2026-03-30` — `R-11` figure-caption pass applied in `main.tex`.
+- Rewrote the active figure captions to be shorter and takeaway-first while preserving labels, figure placement, and IEEE default caption sizing.
+- Scope was kept to figures only; table captions remain deferred to the separate `R-13` pass.
 
 ---
 

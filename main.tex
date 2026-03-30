@@ -535,11 +535,7 @@ Both are \textbf{always scaled} (even when $s=1$). This separation is critical f
     \end{tikzpicture}
 }
 \vspace{-0.45cm}
-\caption{Modular framework for quantum routing evaluation: shared
-configuration defines topology, threat regime, capacity semantics,
-and seeds; allocators and models plug into a common
-evaluator/runner pipeline; the visualizer aggregates
-cross-scenario comparisons.}
+\caption{A unified evaluation pipeline enables apples-to-apples routing comparisons across threats, capacity semantics, allocators, and model families.}
 \label{fig:framework}
 \end{figure}
 
@@ -673,10 +669,7 @@ This architecture enables \textbf{systematic ablation} across allocators, algori
 \end{axis}
 \end{tikzpicture}
 \vspace{-0.5cm}
-\caption{Context vs.\ EXP3 (non-hybrid): Contextual (CMAB/iCMAB) methods
-are more scale-robust than EXP3 baselines across scenarios, with higher
-average Oracle-normalized efficiency and a wider gap under
-capacity-constrained ($T_b$) settings across scales $s \in \{1.0,1.5,2.0\}$.}
+\caption{Contextual (CMAB/iCMAB) methods are more scale-robust than EXP3 baselines, with the clearest Oracle-normalized efficiency gap under $T_b$ settings.}
 \label{fig:context_exp3_capacity}
 \end{figure}
 
@@ -759,12 +752,7 @@ yielding an average gap of approximately \textbf{24 pp} (see \S\ref{subsec:rq1_a
 \end{axis}
 \end{tikzpicture}
 \vspace{-0.4cm}
-\caption{Worst-case robustness is best reflected in the floor:
-context-aware models retain substantially higher worst-case performance
-than adversarial-first baselines at the default $2T$--$2T_b$ budget
-(3-run horizons). \texttt{CPursuit} attains a high peak ($96.2\%$)
-but a low floor ($37.2\%$), whereas \texttt{EXPNeuralUCB}'s floor
-is $59.9\%$.}
+\caption{Worst-case robustness separates the model families: context-aware methods retain higher floors than adversarial-first baselines at the default $2T$--$2T_b$ budget.}
 \label{fig:floor}
 \end{figure}
 
@@ -912,9 +900,7 @@ Total physical network capacity is fixed at 35 qubits across all experiments, re
 	\begin{figure}[ht!]
 \centering
 \small
-\caption{4-node quantum network topology with four alternative entanglement paths.
-Paths $P_1$ and $P_2$ use 2 hops; $P_3$ and $P_4$ use 3 hops.
-Total capacity is 35 qubits, allocated per path by strategy (\Cref{tab:setup-allocators}); example splits: Fixed (8,10,8,9), Thompson (9,9,9,8).}
+\caption{The testbed exposes four alternative entanglement paths whose qubit splits vary by allocator strategy.}
 \begin{tikzpicture}[
   node distance=2.5cm and 3.0cm,
   thick,
@@ -1208,9 +1194,7 @@ Results are organized by research question (\Cref{sec:research_questions}). We f
 \end{axis}
 \end{tikzpicture}
 \vspace{-0.4cm}
-\caption{Win dominance under the default allocator (aggregated
-across all configurations). \texttt{iCEpsilonGreedy} captures the
-largest share of wins, with \texttt{CPursuit} second.}
+\caption{\texttt{iCEpsilonGreedy} wins most often under the default allocator, with \texttt{CPursuit} second.}
 \label{fig:global_win_share}
 \end{figure}
 
@@ -1371,7 +1355,7 @@ legend style={font=\tiny}
 \end{axis}
 \end{tikzpicture}
 \vspace{-0.5cm}
-\caption{Context vs.\ non-context efficiency across threat scenarios (evaluation corpus, paper-default allocator). Contextual (CMAB/iCMAB) models maintain higher Oracle-normalized efficiency than non-context EXP3 baselines under both $T$ and $T_b$ capacity semantics.}
+\caption{Contextual (CMAB/iCMAB) models maintain higher Oracle-normalized efficiency than non-context EXP3 baselines across threats under both $T$ and $T_b$.}
 \label{fig:context_capacity_effects}
 \end{figure}
 
@@ -1499,7 +1483,7 @@ Within the iCMAB evaluation corpus (considering only iCMAB variants under the sa
 \end{axis}
 \end{tikzpicture}
 \vspace{-0.6cm}
-\caption{Threat penalties relative to the Baseline scenario (evaluation corpus, paper-default allocator). Context-aware methods incur smaller and more stable penalties, while EXP3-family baselines are more vulnerable under adaptive (Adaptive/OnlineAdaptive) threats.}
+\caption{Context-aware methods absorb smaller, more stable threat penalties, while EXP3-family baselines are most exposed under adaptive threats.}
 \label{fig:scenario_penalties}
 \end{figure}
 
@@ -1584,7 +1568,7 @@ under reactive attack conditions, despite competitive average efficiency in some
 \end{axis}
 \end{tikzpicture}
 \vspace{-0.5cm}
-\caption{Capacity--efficiency trade-offs in the hybrid evaluation corpus. Increasing capacity improves Baseline and Markov efficiency but can reduce robustness under Adaptive threats (capacity paradox).}
+\caption{More capacity helps in Baseline and Markov settings but can hurt under Adaptive threats, revealing the capacity paradox.}
 \label{fig:capacity_all}
 \end{figure}
 
@@ -1675,7 +1659,7 @@ Run-level artifacts and aggregation scripts are provided in the Supplement.
 \end{axis}
 \end{tikzpicture}
 \vspace{-0.5cm}
-\caption{Threat-conditioned allocator performance (hybrid corpus, averaged over models). Thompson is strongest in Adaptive regimes, DynamicUCB is competitive under Adaptive/OnlineAdaptive, and Random underperforms.}
+\caption{Allocator choice is threat-dependent: Thompson leads in Adaptive regimes, DynamicUCB stays competitive, and Random underperforms.}
 \label{fig:threat_rules}
 \end{figure}
 
@@ -1711,8 +1695,7 @@ $T$-type capacity with $s{=}2$), reporting the 3-run suite values:
 
 \begin{table}[ht!]
 \footnotesize
-\caption{Predictive context impact under a fixed deployment: 6K horizon, \small\texttt{Fixed} allocator, $T$-type, $s{=}2$.
-Values are the 3-run suite means from the hybrid evaluation corpus.}
+\caption{Predictive context improves this fixed-deployment slice (6K, \texttt{Fixed}, $T$-type, $s{=}2$).}
 \centering
 \begin{tabular}{lccccccc}
 \toprule
@@ -1877,7 +1860,7 @@ effective in specific regimes (\eg Adaptive) but can underperform severely when 
 \end{axis}
 \end{tikzpicture}
 \vspace{-0.5cm}
-\caption{Hybrid learning curves (illustrative): pursuit-based hybrids converge to high efficiency, while neural baselines plateau lower under sparse reward feedback.}
+\caption{Pursuit-based hybrids converge higher, while neural baselines plateau lower under sparse reward feedback.}
 \label{fig:convergence_hybrid}
 \end{figure}
 
@@ -2191,7 +2174,7 @@ Our results across the full evaluation suite---spanning paper baselines (CMAB / 
 \end{axis}
 \end{tikzpicture}
 \vspace{-0.5cm}
-\caption{Hybrid evaluation corpus efficiency across threat scenarios. Pursuit-based hybrids maintain higher efficiency than neural and EXP3 baselines across all five regimes.}
+\caption{Pursuit-based hybrids maintain higher efficiency than neural and EXP3 baselines across all five threat regimes.}
 \label{fig:context_hybrid}
 \end{figure}
 
