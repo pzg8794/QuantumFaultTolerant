@@ -156,6 +156,9 @@ Progress note:
 - Tightened `\label{fig:heatmap}` so it now also opens with the takeaway rather than the setup.
 - Clarified the earlier “predictive-context figure” planning note as N/A for this pass because the current manuscript presents that slice as a table, not a figure.
 - Table-caption consistency remains parked under the existing table-caption review lane rather than being added as a new task.
+- `2026-03-31` — `R-12` applied as a narrow space-saving structural deletion.
+- Removed only the flagged `RQ2` hypothesis subsection in `main.tex`, so `Experimental Design` now follows the `RQ2` subsection header directly.
+- Scope is intentionally limited to `RQ2`; broader review of the remaining hypothesis subsections remains separate.
 
 ---
 
@@ -187,6 +190,7 @@ These are items that were captured during internal planning, roadmap, or logisti
 | Review/Submission | C-030 | 2026-02-16 | Code/Data Availability | Statement decision needed | Decide availability statement; add or remove | Deferred |  | T-2025-011 | Late-stage hygiene decision; park until final submission sweep |
 | Review/Submission | C-004 | 2026-02-14 | Results Section | Improve continuity; organize by RQs | Add short “RQ claim → evidence → takeaway” scaffolding per subsection | Deferred |  | T-2025-011 | Internal narrative polish (not a direct reviewer quote) |
 | Review/Submission | T-010 | 2026-03-30 | Tables (global consistency pass) | Table captions and table formatting are not yet stylistically uniform across the manuscript | Run one later formatting-only sweep covering table caption tone/length, sizing directives, column-header style, label/title style, and notation consistency (`T` vs `T_b`, scale notation, Oracle-normalized wording); do not broaden this into numerical/result rewrites | Deferred |  | T-2025-011 | Explicitly deferred by user approval; separate from active Dan queue and separate from `R-13` until pulled in later |
+| Review/Submission | T-011 | 2026-03-31 | Hypotheses (remaining audit) | After the flagged `RQ2` hypothesis removal, the remaining hypothesis subsections should be reviewed for possible removal or compression | Audit the non-`RQ2` hypothesis subsections one by one and decide whether each should stay, be shortened, or be removed for space/clarity | Deferred |  | T-2025-011 | Separate from `R-12`; do not activate unless explicitly pulled in |
 | Review/Submission | D-004 | 2026-02-15 | Submission Logistics | Grant advisor access to the condensed Overleaf view/project | Ensure access is granted (or provide an equivalent local PDF) and record what was shared | Deferred |  | T-2026-009 | Logistics; not a manuscript review comment |
 | Review/Submission | D-005 | 2026-02-15 | Whole paper (general) | Get the manuscript into a shareable state and address high-level comments | Address high-level comments; ensure the manuscript is shareable for team review | Deferred |  | T-2026-007, T-2025-011 | Logistics/coordination; not a specific review comment |
 | Technical/Engineering | D-006 | 2026-02-15 | Results + Tables | Add epsilon + NeuralUCB results + extra comparison table (testbed configs) | Add epsilon + NeuralUCB results; add a comparison table contrasting paper config vs our run config | Deferred |  | T-2025-011 | Owner roadmap / extension work; requires new runs (Testing/Validation) |
