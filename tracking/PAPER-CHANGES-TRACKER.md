@@ -134,6 +134,8 @@ Execution rule:
   - `After`
   - `Reasoning`
 - we do not merge these back into engineering backlog items until the review queue is cleared.
+- we do not add new review/backlog tasks unless they are explicitly requested by the user or explicitly proposed and approved first.
+- when a later sweep identifies possible follow-up work, we record it only as a deferred note if explicitly approved; otherwise it stays out of the queue.
 
 Progress note:
 - `2026-03-23` — `R-01` (`Related Work`) started in `sections/02--related_works.tex`.
@@ -150,6 +152,10 @@ Progress note:
 - `2026-03-30` — `R-11` figure-caption pass applied in `main.tex`.
 - Rewrote the active figure captions to be shorter and takeaway-first while preserving labels, figure placement, and IEEE default caption sizing.
 - Scope was kept to figures only; table captions remain deferred to the separate `R-13` pass.
+- `2026-03-30` — `R-11` follow-up sweep completed.
+- Tightened `\label{fig:heatmap}` so it now also opens with the takeaway rather than the setup.
+- Clarified the earlier “predictive-context figure” planning note as N/A for this pass because the current manuscript presents that slice as a table, not a figure.
+- Table-caption consistency remains parked under the existing table-caption review lane rather than being added as a new task.
 
 ---
 
@@ -180,6 +186,7 @@ These are items that were captured during internal planning, roadmap, or logisti
 | Review/Submission | C-025 | 2026-02-16 | RQ Scope Clarification | Scope/novelty unclear | Add prior-work citations or clarify novelty statement | Deferred |  | T-2026-007, T-2025-011 | Internal note captured during tracker setup (not a direct reviewer quote) |
 | Review/Submission | C-030 | 2026-02-16 | Code/Data Availability | Statement decision needed | Decide availability statement; add or remove | Deferred |  | T-2025-011 | Late-stage hygiene decision; park until final submission sweep |
 | Review/Submission | C-004 | 2026-02-14 | Results Section | Improve continuity; organize by RQs | Add short “RQ claim → evidence → takeaway” scaffolding per subsection | Deferred |  | T-2025-011 | Internal narrative polish (not a direct reviewer quote) |
+| Review/Submission | T-010 | 2026-03-30 | Tables (global consistency pass) | Table captions and table formatting are not yet stylistically uniform across the manuscript | Run one later formatting-only sweep covering table caption tone/length, sizing directives, column-header style, label/title style, and notation consistency (`T` vs `T_b`, scale notation, Oracle-normalized wording); do not broaden this into numerical/result rewrites | Deferred |  | T-2025-011 | Explicitly deferred by user approval; separate from active Dan queue and separate from `R-13` until pulled in later |
 | Review/Submission | D-004 | 2026-02-15 | Submission Logistics | Grant advisor access to the condensed Overleaf view/project | Ensure access is granted (or provide an equivalent local PDF) and record what was shared | Deferred |  | T-2026-009 | Logistics; not a manuscript review comment |
 | Review/Submission | D-005 | 2026-02-15 | Whole paper (general) | Get the manuscript into a shareable state and address high-level comments | Address high-level comments; ensure the manuscript is shareable for team review | Deferred |  | T-2026-007, T-2025-011 | Logistics/coordination; not a specific review comment |
 | Technical/Engineering | D-006 | 2026-02-15 | Results + Tables | Add epsilon + NeuralUCB results + extra comparison table (testbed configs) | Add epsilon + NeuralUCB results; add a comparison table contrasting paper config vs our run config | Deferred |  | T-2025-011 | Owner roadmap / extension work; requires new runs (Testing/Validation) |
