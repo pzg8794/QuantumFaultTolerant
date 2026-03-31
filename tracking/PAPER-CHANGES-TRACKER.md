@@ -162,6 +162,13 @@ Progress note:
 - `2026-03-31` — `R-13` applied as a narrow single-table caption fix.
 - Replaced the long `RQ2` adversarial table caption in `main.tex` with the approved implication-first wording: `Contextual and informed baselines remain more robust and stable than adversarial-first baselines under adversarial threats.`
 - Scope is intentionally limited to the flagged `RQ2` table only; no broader table-caption sweep was performed in this pass.
+- `2026-03-31` — validated caption updates applied in `main.tex`.
+- Kept the accepted `fig:heatmap` takeaway-first cleanup and applied the locked table-caption rewrites for Tables 1--4 only:
+  - `Experimental design matrix linking configuration dimensions to the research questions.`
+  - `Hyperparameter settings and literature grounding.`
+  - `Algorithm progression by evaluation phase.`
+  - `Qubit-budget distribution across candidate paths by allocator.`
+- Later table-caption work remains parked until explicitly approved; no new review or backlog items were added in this pass.
 
 ---
 
