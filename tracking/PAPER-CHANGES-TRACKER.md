@@ -159,6 +159,9 @@ Progress note:
 - `2026-03-31` — `R-12` applied as a narrow space-saving structural deletion.
 - Removed only the flagged `RQ2` hypothesis subsection in `main.tex`, so `Experimental Design` now follows the `RQ2` subsection header directly.
 - Scope is intentionally limited to `RQ2`; broader review of the remaining hypothesis subsections remains separate.
+- `2026-03-31` — `R-13` applied as a narrow single-table caption fix.
+- Replaced the long `RQ2` adversarial table caption in `main.tex` with the approved implication-first wording: `Contextual and informed baselines remain more robust and stable than adversarial-first baselines under adversarial threats.`
+- Scope is intentionally limited to the flagged `RQ2` table only; no broader table-caption sweep was performed in this pass.
 
 ---
 
