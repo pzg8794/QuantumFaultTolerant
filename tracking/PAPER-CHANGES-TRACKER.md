@@ -107,7 +107,7 @@ Sprint rule: during a submission sprint, we only pull from **Review/Submission**
 
 ## Active Review Queue — Dan Comments (March 11--13)
 
-This is the **current working to-do queue** for the next writing pass. It mirrors the frozen `R-01` through `R-13` review tasks so Dan's asks remain visible inside the paper tracker itself.
+This is the **frozen Dan review queue** for the current paper pass. It mirrors `R-01` through `R-13` so the original asks remain visible even after implementation progress changes.
 
 | Review ID | Dan comment date/time | Location | Short ask | Working note source |
 |---|---|---|---|---|
@@ -136,6 +136,11 @@ Execution rule:
 - we do not merge these back into engineering backlog items until the review queue is cleared.
 - we do not add new review/backlog tasks unless they are explicitly requested by the user or explicitly proposed and approved first.
 - when a later sweep identifies possible follow-up work, we record it only as a deferred note if explicitly approved; otherwise it stays out of the queue.
+
+Current status summary:
+- `R-01` through `R-12` are now treated as complete in the manuscript.
+- `R-13` is partially complete: the originally flagged table caption was fixed, and Tables 1--4 were later tightened under the same table-caption lane.
+- The only remaining `R-13` work is the broader table-caption consistency sweep for later result tables, which remains parked until explicitly approved.
 
 Progress note:
 - `2026-03-23` — `R-01` (`Related Work`) started in `sections/02--related_works.tex`.
@@ -168,6 +173,8 @@ Progress note:
   - `Hyperparameter settings and literature grounding.`
   - `Algorithm progression by evaluation phase.`
   - `Qubit-budget distribution across candidate paths by allocator.`
+- `2026-03-31` — tracker status reconciled to the manuscript.
+- `R-01` through `R-12` are treated as closed based on the current `main.tex` / related-works source, while `R-13` remains the only partially open Dan item.
 - Later table-caption work remains parked until explicitly approved; no new review or backlog items were added in this pass.
 
 ---
