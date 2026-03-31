@@ -846,9 +846,10 @@ same threat regimes (\small\texttt{CMAB} experiments).
 
 \end{axis}
 \end{tikzpicture}
-\caption[Fixed allocator tops the CPursuitNeuralUCB heatmap]{Fixed allocator yields the highest
-efficiency for \texttt{CPursuitNeuralUCB} across threat scenarios, making allocator choice a first-class
-robustness factor.}
+\caption[Efficiency heatmap for CPursuitNeuralUCB]{Efficiency heatmap for \texttt{CPursuitNeuralUCB} across allocator
+strategies and threat scenarios. In this setting, the Fixed allocator yields
+the highest efficiency across scenarios, reinforcing allocator choice as a
+first-class robustness factor.}
 \label{fig:heatmap}
 \end{figure}
 
@@ -955,7 +956,7 @@ We evaluate 3 horizons---\small\texttt{4K,6K,8K} frames---to capture short-, mid
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{Experimental design matrix linking configuration dimensions to the research questions.}
+\caption{Experimental configuration summary: design dimensions, options, and linkage to research questions (Phase totals sum to 552 configuration units; Phase~2 is executed for both CMAB and iCMAB families at 180 conditions per family). Each configuration is evaluated with up to 10 independent runs.}
 \label{tab:config_summary}
 \begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.32\linewidth} >{\raggedright\arraybackslash}X >{\centering\arraybackslash}c}
 \toprule
@@ -1015,7 +1016,7 @@ We evaluate five scenarios spanning the efficiency--security spectrum: natural s
 \begin{table}[ht!]
 \footnotesize
 \centering
-\caption{Hyperparameter settings and their literature grounding.}
+\caption{Hyperparameter settings and literature justifications.}
 \label{tab:setup-hyperparameters}
 \begin{tabularx}{\linewidth}{l l c l}
 \toprule
@@ -1061,9 +1062,9 @@ Replay ($T_b,T$) & All & $T_b=sF_b,\;T=sF_c$ & \cite{schaul2015prioritized,mnih2
 We evaluate 14 algorithms spanning three generations of MAB development plus an Oracle baseline. Phase progression (\Cref{tab:setup-algorithm-portfolio}) covers classical exploration (Phase~1), adversarial defenses (Phase~1--2), contextual/neural methods (Phase~2), and pursuit-based predictive models (Phase~2--3), enabling systematic comparison across architectural paradigms.
 
 \begin{table}[ht!]
-\footnotesize
+\small
 \centering
-\caption{Algorithm portfolio spans classical, adversarial, contextual, and predictive evaluation phases.}
+\caption{Algorithm portfolio by evaluation phase. Phases progress from classical $\to$ adversarial $\to$ contextual $\to$ predictive.}
 \label{tab:setup-algorithm-portfolio}
 \setlength{\tabcolsep}{4pt}
 \begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.13\linewidth} >{\raggedright\arraybackslash}p{0.28\linewidth} >{\raggedright\arraybackslash}X}
@@ -1105,7 +1106,7 @@ Phase~3 introduces dynamic allocators (\Cref{tab:setup-allocators}) to test allo
 
 \begin{table}[ht!]
 \footnotesize
-\caption{Allocator strategies determine how the fixed qubit budget is distributed across paths.}
+\caption{Qubit allocation strategies and parameterization (Phase~3).}
 \label{tab:setup-allocators}
 \centering
 \setlength{\tabcolsep}{3pt}
@@ -1240,8 +1241,8 @@ deployment-viable ($\gtrsim 85\%$), while several variants degrade into the 60--
 policies collapse toward $\approx 37$--40\% even without adversarial pressure.
 
 \begin{table}[ht!]
-\footnotesize
-\caption{Context-aware baselines stay closest to deployment-viable efficiency under stochastic decoherence.}
+\small  % Reduce font size
+\caption{RQ1 performance under 6.25\% stochastic decoherence, aggregated across horizons, replay scales \(s \in \{1,1.5,2\}\), and both capacity semantics (T and Tb). Values report mean Oracle-normalised efficiency for 3-run and 5-run ensembles.}
 \label{tab:rq1masterstochastic}
 \centering
 \setlength{\tabcolsep}{5pt}  % Reduce column padding
@@ -1397,8 +1398,12 @@ the strongest informed baseline from iCMABs (\texttt{iCEpsilonGreedy}), and two 
 \subsubsection{Key Findings}
 
 \begin{table}[ht!]
-\footnotesize
-\caption{Contextual and informed baselines remain more robust and stable than adversarial-first baselines under adversarial threats.}
+\caption{RQ2: robustness under adversarial threats (Markov/Adaptive/OnlineAdaptive) computed from the curated evaluation corpus
+under the \texttt{Default} allocator. Results aggregate across horizons present, replay scales $s \in \{1,1.5,2\}$,
+and capacity semantics ($T$, $T_b$), summarized over 3-run and 5-run ensemble suites. Win Dominance (\%) reports each model's
+share of aggregated scenario wins among the four displayed representatives under this same adversarial scope.}
+
+\scriptsize
 \centering
 \begin{tabular}{lcccc}
 \toprule
@@ -1690,7 +1695,7 @@ $T$-type capacity with $s{=}2$), reporting the 3-run suite values:
 
 \begin{table}[ht!]
 \footnotesize
-\caption{Predictive context improves robustness in the fixed 6K \texttt{Fixed} $T$-type $s{=}2$ deployment slice.}
+\caption{Predictive context improves this fixed-deployment slice (6K, \texttt{Fixed}, $T$-type, $s{=}2$).}
 \centering
 \begin{tabular}{lccccccc}
 \toprule
@@ -1734,7 +1739,7 @@ including pronounced improvements at the intermediate scale followed by regressi
 \begin{table}[ht!]
 \footnotesize
 \centering
-\caption{Replay capacity is non-monotonic: intermediate scaling helps, but larger scaling can regress under a fixed deployment anchor.}
+\caption{RQ3b: Capacity Scaling Impact on Pursuit Algorithms (Default/Fixed Allocator, $T_b$ anchoring; 6K; 3-run suite)}
 \label{tab:rq3b_capacity_scaling}
 \begin{tabular}{llcccc}
 \toprule
@@ -1751,7 +1756,7 @@ including pronounced improvements at the intermediate scale followed by regressi
 
 \bottomrule
 \end{tabular}
-{\footnotesize{Bl=Baseline, Sh=Stochastic, Mk=Markov, Ag=Adaptive.}}
+{\scriptsize{Bl=Baseline, Sh=Stochastic, Mk=Markov, Ag=Adaptive, OA=OnlineAdaptive.}}
 \end{table}
 
 
@@ -1778,9 +1783,8 @@ rather than a monotone robustness lever.
 \subsubsection{Key Finding}
 
 \begin{table}[ht!]
-\footnotesize
 \centering
-\caption{Allocator choice materially changes robustness for \texttt{iCPursuitNeuralUCB}, with \texttt{Fixed} strongest overall.}
+\caption{RQ3c: Allocator performance summary for iCPursuitNeuralUCB (Tb, s=2, 6K frames, runs=3). Core findings exclude Random allocator.}
 \label{tab:rq3c_allocators}
 \begin{tabular}{lccc}
 \toprule
@@ -1796,7 +1800,7 @@ DynamicUCB     & 92.6 & 87.9 & 9.3 \\
 \end{tabular}
 
 \vspace{0.2cm}
-{\footnotesize \textbf{Note:} Random allocator is shown for completeness as a control baseline and is excluded from core deployment recommendations.}
+\tiny{\textbf{Note:} Random allocator shown for completeness as a control baseline. It is excluded from core deployment recommendations.}
 \end{table}
 
 
@@ -1924,10 +1928,10 @@ Papers~2, 7, and 12 use the full multi-scale, 5-run evaluation corpora summarize
 
 \begin{table*}[ht!]
 \centering
-\caption{Cross-testbed performance is strongly topology-dependent, with \texttt{iCPursuitNeuralUCB} leading most testbeds while Paper~8 splits dominance from experiment wins.}
+\caption{Cross-testbed performance comparison using scenario-aggregated Oracle-normalized efficiency (\%) and scenario champions from \texttt{scenario\_winner}. Numeric columns are means across all five scenarios (\texttt{none}, \texttt{stochastic}, \texttt{markov}, \texttt{adaptive}, \texttt{onlineadaptive}) and 4 allocators. Papers 2, 7, and 12 use the full evaluation corpora aggregated across scales $s \in \{1.0,1.5,2.0\}$ (\texttt{cap\_type}=T) with 5 runs per setting; Paper 8 uses the current original paper-config slice at 1K/1K/1R, $s=1.0$, \texttt{cap\_type}=T.}
 % \devroop{Maybe have one more paper if you can.}
 \label{tab:testbed_comparison}
-\footnotesize
+\small
 \begin{tabular}{l l c c c c l}
 \toprule
 \textbf{Testbed} & \textbf{Algorithm} & \textbf{Avg Reward} & \textbf{Regret} & \textbf{Efficiency (\%)} & \textbf{Gap (\%)} & \textbf{Exp. Winner} \\
@@ -1971,7 +1975,7 @@ Papers~2, 7, and 12 use the full multi-scale, 5-run evaluation corpora summarize
 \end{tabular}
 
 \vspace{0.2cm}
-{\footnotesize \textbf{Legend:} N=Nodes, E=Edges, P=Paths, R=Runs, $s$=scale. Efficiency (\%) = (Model Avg Reward / Oracle Avg Reward) × 100. Gap = 100 - Efficiency. Exp.\ Winner reports experiment-level wins within each testbed corpus; $^\star$\textbf{bold} marks the testbed experiment winner.}
+{\scriptsize \textbf{Legend:} N=Nodes, E=Edges, P=Paths, R=Runs, $s$=scale. Efficiency (\%) = (Model Avg Reward / Oracle Avg Reward) × 100. Gap = 100 - Efficiency. Numeric columns are means across all five scenarios and 4 allocators, using each testbed's corpus listed in the first column. Exp.\ Winner column shows experiment-level win count out of the available configurations for that corpus: 300 for Papers 2/7/12 (5 scenarios $\times$ 4 allocators $\times$ 3 scales $\times$ 5 experiments) and 20 for Paper 8 (5 scenarios $\times$ 4 allocators $\times$ 1 scale $\times$ 1 experiment). $^\star$\textbf{bold} = testbed experiment winner (highest win count). Scenario codes: \texttt{none}=baseline, \texttt{stochastic}=random failures, \texttt{markov}=oblivious adversarial, \texttt{adaptive}=feedback-driven, \texttt{onlineadaptive}=real-time adaptive.}
 \end{table*}
 
 \subsubsection{Key Observations from Cross-Testbed Validation}
@@ -1994,9 +1998,9 @@ To provide a consolidated view of algorithm performance across model families, w
 
 \begin{table*}[ht!]
 \centering
-\caption{Pursuit-based hybrids define the strongest overall efficiency frontier across the internal framework and external testbeds.}
+\caption{Model family performance comparison: Representative algorithms from each bandit family on our internal evaluation framework (4K base/2K step/5 runs, \texttt{cap\_type}=Tb) plus hybrid pursuit-neural results on four external testbeds (\texttt{cap\_type}=T). All results use the \texttt{Default} allocator and aggregate across all five scenarios; Papers 2, 7, and 12 use scales $s\in\{1,1.5,2\}$, while Paper 8 uses its current 1K/1K/1R paper-config slice at $s=1.0$. Best per-family/testbed performance in \textbf{bold}.}
 \label{tab:model_family_comparison}
-\footnotesize
+\small
 \begin{tabular}{l l c c c l}
 \toprule
 \textbf{Family} & \textbf{Algorithm} & \textbf{Avg Eff (\%)} & \textbf{Gap (\%)} & \textbf{Floor (\%)} & \textbf{Exp. Winner} \\
