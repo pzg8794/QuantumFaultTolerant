@@ -20,3 +20,7 @@
 # Editor/aux backups
 *.bak
 *.bak*
+
+# Python cache artifacts (e.g., table-generation tools)
+__pycache__/
+*.py[cod]
