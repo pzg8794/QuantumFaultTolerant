@@ -1925,13 +1925,13 @@ Papers~2, 7, and 12 use the full multi-scale, 5-run evaluation corpora summarize
 \textbf{Testbed} & \textbf{Algorithm} & \textbf{Avg Reward} & \textbf{Regret} & \textbf{Efficiency (\%)} & \textbf{Gap (\%)} & \textbf{Exp. Winner} \\
 \midrule
 \multirow{7}{*}{\parbox{2.2cm}{\textbf{Paper 2}\\ (\small 15N, 51E, 8P)\\ \small 4K/2K/5R\\ \small 4 allocs, $s\in\{1,1.5,2\}$, T}}
-& \texttt{ORACLE} & 0.3927 & 0.0 & --- & --- & --- \\
-& \texttt{CPursuitNeuralUCB} & 0.2888 & 508.7 & 73.24 & 26.76 & 38/300 \\
-& \texttt{GNeuralUCB} & 0.2887 & 515.4 & 73.20 & 26.80 & 87/300 \\
-& \texttt{iCPursuitNeuralUCB} & 0.2934 & 494.4 & \textbf{74.45} & 25.55 & \textbf{94/300$^\star$} \\
-& \texttt{EXPNeuralUCB} & 0.2811 & 581.4 & 71.24 & 28.76 & 81/300 \\
+& \texttt{ORACLE} & 0.3926 & 0.0 & --- & --- & --- \\
+& \texttt{CPursuitNeuralUCB} & 0.2887 & 509.2 & 73.22 & 26.78 & 38/300 \\
+& \texttt{GNeuralUCB} & 0.2886 & 515.9 & 73.19 & 26.81 & 84/300 \\
+& \texttt{iCPursuitNeuralUCB} & 0.2933 & 494.5 & \textbf{74.45} & 25.55 & \textbf{95/300$^\star$} \\
+& \texttt{EXPNeuralUCB} & 0.2810 & 583.2 & 71.25 & 28.75 & 83/300 \\
 \cline{2-7}
-& \cellcolor{findingBlue}\textit{All pursuit hybrids excel} & \multicolumn{5}{l}{\cellcolor{findingBlue}\small 71--74\% eff. $\star$Exp.\ Winner: iCPursuitNeuralUCB (94/300)} \\
+& \cellcolor{findingBlue}\textit{All pursuit hybrids excel} & \multicolumn{5}{l}{\cellcolor{findingBlue}\small 71--74\% eff. $\star$Exp.\ Winner: iCPursuitNeuralUCB (95/300)} \\
 \midrule
 \multirow{7}{*}{\parbox{2.2cm}{\textbf{Paper 7}\\ (\small 50N, 141E, 15P)\\ \small 50/50/5R\\ \small 4 allocs, $s\in\{1,1.5,2\}$, T}}
 & \texttt{ORACLE} & 8.9237 & 0.0 & --- & --- & --- \\
@@ -1969,7 +1969,7 @@ Papers~2, 7, and 12 use the full multi-scale, 5-run evaluation corpora summarize
 \subsubsection{Key Observations from Cross-Testbed Validation}
 
 \begin{enumerate}[nosep,leftmargin=2em]
-\item \textbf{\texttt{iCPursuitNeuralUCB} is the cross-layer winner on Papers 2, 7, and 12, while on Paper 8 it dominates only.} It wins 94/300 experiments on Paper 2, 245/300 on Paper 7 (81.7\%), and 97/300 on Paper 12. On Paper 7, its dominance is overwhelming---no other model comes close. On Papers 2 and 12, the margin is tighter: Paper 2 sees a 4-way race (iCP: 94, G: 87, EXP: 81, CP: 38), while Paper 12 is a 2-way race (iCP: 97, EXP: 91). Paper 8 breaks this pattern: \texttt{EXPNeuralUCB} wins 10/20 allocator-scenario configurations, while \texttt{iCPursuitNeuralUCB} leads only 1/20 despite having the strongest aggregated efficiency.
+\item \textbf{\texttt{iCPursuitNeuralUCB} is the cross-layer winner on Papers 2, 7, and 12, while on Paper 8 it dominates only.} It wins 95/300 experiments on Paper 2, 245/300 on Paper 7 (81.7\%), and 97/300 on Paper 12. On Paper 7, its dominance is overwhelming---no other model comes close. On Papers 2 and 12, the margin is tighter: Paper 2 sees a 4-way race (iCP: 95, G: 84, EXP: 83, CP: 38), while Paper 12 is a 2-way race (iCP: 97, EXP: 91). Paper 8 breaks this pattern: \texttt{EXPNeuralUCB} wins 10/20 allocator-scenario configurations, while \texttt{iCPursuitNeuralUCB} leads only 1/20 despite having the strongest aggregated efficiency.
 
 \item \textbf{Experiment threat ranking does not fully determine experiment-level dominance.} In Paper 2, \texttt{iCPursuitNeuralUCB} has the highest dominance (scenario-aggregated efficiency, 74.45\%) yet wins only 2/5 threat scenarios (none, markov). \texttt{CPursuitNeuralUCB} and \texttt{GNeuralUCB} each win 3/5 threat scenarios despite lower dominance, capturing adaptive, onlineadaptive, and stochastic. Paper 8 shows the same separation in a different form: \texttt{iCPursuitNeuralUCB} has the highest dominance (scenario-aggregated efficiency, 67.85\%), while \texttt{EXPNeuralUCB} wins the largest share of allocator--threat-scenario configurations (10/20).
 
@@ -2029,12 +2029,12 @@ To provide a consolidated view of algorithm performance across model families, w
 \multicolumn{6}{c}{\textit{External Testbed Comparison (\texttt{Default} allocator, \texttt{cap\_type}=T)}} \\
 \midrule
 \multirow{5}{*}{\parbox{2cm}{\textbf{Paper 2}\\ \small(15N, 51E)\\ \small 4K/2K}}
-& \texttt{iCPursuitNeuralUCB} & \textbf{74.43} & 25.57 & 54.4 & \textbf{24/75$^\star$} \\
-& \texttt{CPursuitNeuralUCB} & 73.22 & 26.78 & 48.4 & 8/75 \\
-& \texttt{GNeuralUCB} & 73.21 & 26.79 & 46.7 & 23/75 \\
-& \texttt{EXPNeuralUCB} & 71.28 & 28.72 & 45.3 & 20/75 \\
+& \texttt{iCPursuitNeuralUCB} & \textbf{74.44} & 25.56 & 54.4 & \textbf{25/75$^\star$} \\
+& \texttt{CPursuitNeuralUCB} & 73.15 & 26.85 & 48.3 & 8/75 \\
+& \texttt{GNeuralUCB} & 73.17 & 26.83 & 46.7 & 20/75 \\
+& \texttt{EXPNeuralUCB} & 71.29 & 28.71 & 41.6 & 22/75 \\
 \cline{2-6}
-& \cellcolor{findingBlue}\textit{Best: iCPursuitNeuralUCB} & \multicolumn{4}{l}{\cellcolor{findingBlue}\small 71--74\% eff. $\star$Exp.\ Winner: iCPursuitNeuralUCB (24/75 = 32\%)} \\
+& \cellcolor{findingBlue}\textit{Best: iCPursuitNeuralUCB} & \multicolumn{4}{l}{\cellcolor{findingBlue}\small 71--74\% eff. $\star$Exp.\ Winner: iCPursuitNeuralUCB (25/75 = 33\%)} \\
 \midrule
 \multirow{5}{*}{\parbox{2cm}{\textbf{Paper 7}\\ \small(50N, 141E)\\ \small 50/50}}
 & \texttt{iCPursuitNeuralUCB} & \textbf{77.50} & 22.50 & 28.7 & \textbf{58/75$^\star$} \\
@@ -2053,7 +2053,7 @@ To provide a consolidated view of algorithm performance across model families, w
 & \cellcolor{findingOrange}\textit{Best: iCPursuitNeuralUCB} & \multicolumn{4}{l}{\cellcolor{findingOrange}\small 40--42\% eff. $\star$Exp.\ Winner: iCPursuitNeuralUCB (26/75 = 35\%)} \\
 \midrule
 \multirow{5}{*}{\parbox{2cm}{\textbf{Paper 8}\\ \small(20N, 19E)\\ \small 1K/1K}}
-& \texttt{iCPursuitNeuralUCB} & \textbf{67.41} & 32.59 & \textbf{46.1} & 1/5 \\
+& \texttt{iCPursuitNeuralUCB} & \textbf{67.41} & 32.59 & \textbf{44.1} & 1/5 \\
 & \texttt{EXPNeuralUCB} & 62.08 & 37.92 & 23.9 & \textbf{2/5$^\star$} \\
 & \texttt{GNeuralUCB} & 61.81 & 38.19 & 36.0 & 0/5 \\
 & \texttt{CPursuitNeuralUCB} & 61.65 & 38.35 & 35.2 & \textbf{2/5$^\star$} \\
