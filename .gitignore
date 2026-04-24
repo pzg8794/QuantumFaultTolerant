@@ -24,3 +24,9 @@
 # Python cache artifacts (e.g., table-generation tools)
 __pycache__/
 *.py[cod]
+
+# Local browser/session state for Overleaf crawler
+.auth/
+
+# Generated crawler output
+feedback/overleaf_feedback_raw.json
