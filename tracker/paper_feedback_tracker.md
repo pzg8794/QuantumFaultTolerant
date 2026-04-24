@@ -11,7 +11,7 @@ For each feedback item, we will review the item in this format before changing t
 5. **Evaluation of solution**
 6. **Decision / applied modification**
 
-Once an item is approved, we apply the change where possible, update this tracker, commit/push, and move directly to the next item.
+Once an item is approved, we apply the change where possible, update this tracker, commit/push, and move directly to the next item from the user-provided Dan feedback list only.
 
 ---
 
@@ -37,27 +37,6 @@ Approved by Piter. Tracker updated. Manuscript target is `main.tex`, Abstract pa
 
 ---
 
-## Item 2 — Related Work wording: replace awkward “situate” phrasing
+## Next item
 
-**Feedback**  
-“Replace awkward `situate` wording.”
-
-**Task**  
-Review the Related Work sentence that previously used `situate` and decide whether the replacement better expresses the intended scholarly positioning.
-
-**Content in question**  
-The tracked issue refers to the Related Work sentence that placed multi-armed bandits in relation to uncertainty-aware sequential decision rules.
-
-**Current source text**  
-> We place multi-armed bandits (MABs) within the family of uncertainty-aware sequential decision rules and use quantum entanglement routing as a stress test in which stochastic noise, structured disruption, and resource constraints jointly shape performance.
-
-**Proposed solution / new content**  
-Keep the current wording:
-
-> We place multi-armed bandits (MABs) within the family of uncertainty-aware sequential decision rules and use quantum entanglement routing as a stress test in which stochastic noise, structured disruption, and resource constraints jointly shape performance.
-
-**Evaluation of solution**  
-Recommended. The current wording is already better than `We situate ... as ...` because `place ... within the family of ...` is clearer, less awkward, and academically precise. It states the conceptual relationship without overclaiming that MABs are equivalent to the broader family of uncertainty-aware decision rules.
-
-**Decision / applied modification**  
-Pending approval. If approved, no manuscript change is needed because the source already contains the improved wording in `sections/02--related_works.tex`; we only mark Item 2 as accepted and proceed to Item 3.
+No next item is recorded in this tracker yet. Do not infer the next item from older tracker material or from prior Dan review queues. Continue only from the new Dan feedback list supplied by Piter.
