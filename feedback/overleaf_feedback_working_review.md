@@ -129,7 +129,7 @@ Our goal is to compare lines of work that differ in learning assumptions.
 
 ---
 
-## Item 005 — In review
+## Item 005 — Approved
 
 ### Feedback item
 
@@ -151,11 +151,45 @@ Contrastingly, in our study we use these canonical stochastic and adversarial ba
 
 ### Proposed solution
 
-Use a cleaner transition than `Contrastingly`, which sounds awkward in academic prose. Suggested replacement:
+```tex
+In contrast, our study uses these canonical stochastic and adversarial bandit algorithms as matched-condition baseline families inside a unified threat taxonomy for entanglement routing.
+```
+
+### Decision / status
+
+**Approved.** Use the cleaner `In contrast` version rather than `Contrastingly`.
+
+---
+
+## Item 006 — In review
+
+### Feedback item
+
+**Reviewer:** dan7800  
+**Date/time:** 22 April, 6:27 am  
+**Feedback:**
+
+> Deleted: `,`
+
+### Task
+
+Review the punctuation deletion associated with the same contrast sentence.
+
+### Content in question
+
+```tex
+Contrastingly, in our study we use these canonical stochastic and adversarial bandit algorithms as matched-condition baseline families inside a unified threat taxonomy for entanglement
+```
+
+### Proposed solution
+
+The punctuation issue is resolved by the approved Item 005 rewrite. Use:
 
 ```tex
 In contrast, our study uses these canonical stochastic and adversarial bandit algorithms as matched-condition baseline families inside a unified threat taxonomy for entanglement routing.
 ```
+
+This keeps the comma after `In contrast`, which is grammatically correct and clearer than the tracked deletion applied to `Contrastingly`.
 
 ### Decision / status
 
