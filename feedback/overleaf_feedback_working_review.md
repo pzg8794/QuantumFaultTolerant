@@ -62,3 +62,69 @@ No manuscript edit yet. Revisit during the later reduction pass. The likely dire
 ### Decision / status
 
 **Blocked.** Reduction/removal task deferred until we reach the later cleanup/reduction pass.
+
+---
+
+## Item 003 — Approved
+
+### Feedback item
+
+**Reviewer:** Devroop Kar  
+**Date/time:** 22 April, 7:36 am  
+**Feedback:**
+
+> I dont think you need to mention the exact source libraries. Just focus on the types of works.
+
+### Task
+
+Revise the literature-review methodology sentence so it avoids naming exact source libraries/databases and instead describes the categories of literature reviewed.
+
+### Content in question
+
+```tex
+We conducted a targeted literature search spanning 2002--2025 across arXiv, IEEE Xplore, and the ACM Digital Library, using keyword combinations covering quantum routing, entanglement distribution, and bandit-based online decision-making across stochastic, adversarial, contextual, predictive, and hybrid variants.
+```
+
+### Proposed solution
+
+```tex
+We conducted a targeted literature review spanning 2002--2025 on quantum routing, entanglement distribution, and bandit-based online decision-making, covering stochastic, adversarial, contextual, predictive, and hybrid variants.
+```
+
+### Decision / status
+
+**Approved.** Use Piter's revised wording. Apply during manuscript edit pass.
+
+---
+
+## Item 004 — In review
+
+### Feedback item
+
+**Reviewer:** Devroop Kar  
+**Date/time:** 22 April, 7:37 am  
+**Feedback:**
+
+> No need to mention what we are excluding
+
+### Task
+
+Remove or avoid detailed exclusion criteria from the literature-review methodology prose.
+
+### Content in question
+
+```tex
+We excluded offline optimization and control approaches without online bandit feedback, single-domain demonstrations that do not generalize algorithmically, and tuning-only studies lacking methodological novelty, clearly stated assumptions, or reproducibility artifacts, because our goal is to compare lines of work that differ in learning assumptions, not catalog all quantum-network optimization methods.
+```
+
+### Proposed solution
+
+Delete this exclusion-criteria sentence. If we need to preserve the intent, fold only the positive purpose into the preceding sentence or surrounding prose:
+
+```tex
+Our goal is to compare lines of work that differ in learning assumptions rather than to catalogue all quantum-network optimization methods.
+```
+
+### Decision / status
+
+Pending Piter review.
