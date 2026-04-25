@@ -35,7 +35,7 @@ No manuscript edit yet. Keep this item blocked until Dan completes/clarifies the
 
 ---
 
-## Item 002 — In review
+## Item 002 — Blocked
 
 ### Feedback item
 
@@ -47,7 +47,7 @@ No manuscript edit yet. Keep this item blocked until Dan completes/clarifies the
 
 ### Task
 
-Evaluate whether the referenced subsection should be removed entirely or absorbed into a shorter Related Work opening.
+Evaluate whether the referenced subsection should be removed entirely or absorbed into a shorter Related Work opening. Because this asks for section removal/reduction, defer it until we finish the non-reduction/non-removal items that may affect the same text.
 
 ### Content in question
 
@@ -57,15 +57,8 @@ Evaluate whether the referenced subsection should be removed entirely or absorbe
 
 ### Proposed solution
 
-Remove the standalone `Literature Selection Methodology` subsection heading and fold only the necessary methodological context into the opening Related Work prose. This preserves the useful framing while avoiding a separate methods-style subsection that may be too long or unnecessary for the final submission.
-
-Candidate action:
-
-```diff
-- \subsection{Literature Selection Methodology}
-+ % Removed standalone literature-selection subsection; retained only concise related-work framing in prose.
-```
+No manuscript edit yet. Revisit during the later reduction pass. The likely direction is to remove the standalone `Literature Selection Methodology` subsection heading and retain only necessary methodology context as concise Related Work prose.
 
 ### Decision / status
 
-Pending Piter review.
+**Blocked.** Reduction/removal task deferred until we reach the later cleanup/reduction pass.
