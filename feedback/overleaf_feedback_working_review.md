@@ -97,7 +97,7 @@ We conducted a targeted literature review spanning 2002--2025 on quantum routing
 
 ---
 
-## Item 004 — In review
+## Item 004 — Approved
 
 ### Feedback item
 
@@ -109,7 +109,7 @@ We conducted a targeted literature review spanning 2002--2025 on quantum routing
 
 ### Task
 
-Remove or avoid detailed exclusion criteria from the literature-review methodology prose.
+Remove detailed exclusion criteria from the literature-review methodology prose while preserving the positive purpose of the comparison.
 
 ### Content in question
 
@@ -119,10 +119,42 @@ We excluded offline optimization and control approaches without online bandit fe
 
 ### Proposed solution
 
-Delete this exclusion-criteria sentence. If we need to preserve the intent, fold only the positive purpose into the preceding sentence or surrounding prose:
+```tex
+Our goal is to compare lines of work that differ in learning assumptions.
+```
+
+### Decision / status
+
+**Approved.** Use Piter's shortened purpose sentence. Apply during manuscript edit pass.
+
+---
+
+## Item 005 — In review
+
+### Feedback item
+
+**Reviewer:** dan7800  
+**Date/time:** 22 April, 6:27 am  
+**Feedback:**
+
+> Changed: `I` to `Contrastingly, i`
+
+### Task
+
+Review the tracked wording change at the start of the sentence and decide whether the contrast transition should be accepted, revised, or rejected.
+
+### Content in question
 
 ```tex
-Our goal is to compare lines of work that differ in learning assumptions rather than to catalogue all quantum-network optimization methods.
+Contrastingly, in our study we use these canonical stochastic and adversarial bandit algorithms as matched-condition baseline families inside a unified threat taxonomy for entanglement
+```
+
+### Proposed solution
+
+Use a cleaner transition than `Contrastingly`, which sounds awkward in academic prose. Suggested replacement:
+
+```tex
+In contrast, our study uses these canonical stochastic and adversarial bandit algorithms as matched-condition baseline families inside a unified threat taxonomy for entanglement routing.
 ```
 
 ### Decision / status
