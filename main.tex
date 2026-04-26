@@ -594,23 +594,23 @@ where $Y_t(r,\mathbf{x}) \in \{0,1\}$ denotes the observed outcome (1 = success,
 % $\mathbf{A}_t = (A_t(1), \dots, A_t(4))$ according to distinct disruption semantics.
 We study routing robustness under five escalating threat regimes spanning no-disruption operation, independent stochastic failures, temporally correlated disruption, targeted failures, and adaptive adversarial interference. The regimes are selected to form a controlled escalation from normal operating conditions to increasingly structured and strategic disruptions. The baseline regime isolates routing and allocation behavior without path unavailability, while the stochastic and Markov regimes capture two common non-adversarial uncertainty models: independent random failures and temporally correlated outages. The adaptive and OnlineAdaptive regimes then stress-test whether policies remain robust when path unavailability is coupled to the learner's own routing behavior, which is consistent with adversarial-bandit settings where rewards or losses may be strategically selected rather than drawn from a fixed distribution~\cite{auer2002finite,auer2002nonstochastic,bubeck2012regret,lattimore2020bandit}. This design also reflects quantum-network routing concerns in which entanglement generation is probabilistic, path quality varies over time, and routing policies may need to remain stable under interference or attacker-driven disruption~\cite{wang2025learning,li2025multipath,huang2024quantum}.
 
-\textbf{Baseline (No Disruption).}
+\texttt{Baseline (No Disruption).}
 In the baseline regime, all routes remain available at all times: $A_t(r)=1$ for all $r,t$.
 This setting isolates pure stochastic decoherence and serves as the benign-condition upper bound (Oracle-aligned) for comparisons across all disrupted regimes.
 
-\textbf{Stochastic (6.25\% i.i.d. failures).}
+\texttt{Stochastic (6.25\% i.i.d. failures).}
 Under stochastic disruption, each route is independently available according to $A_t(r)\sim\mathrm{ Bernoulli}(0.9375)$.
 This captures non-adversarial environmental noise without temporal structure or memory.
 
-\textbf{Markov (25\% structured disruption).}
+\texttt{Markov (25\% structured disruption).}
 In the Markov regime, availability is governed by a 4-state Markov chain whose states modulate path-failure probabilities.
 This setting captures bursty, correlated outages, with an average disruption rate of approximately $25\%$.
 
-\textbf{Adaptive (Reactive targeting over sliding window).}
+\texttt{Adaptive (Reactive targeting over sliding window).}
 In the adaptive regime, the adversary observes path selection over a sliding window of $w=50$ frames and targets the most-used path with $100\%$ probability.
 This mechanism exploits predictable allocation patterns and is especially punitive for Fixed allocators and larger replay scaling ($s$).
 
-\textbf{OnlineAdaptive (Real-time policy adaptation).}
+\texttt{OnlineAdaptive (Real-time policy adaptation).}
 In the OnlineAdaptive regime, the adversary maintains exponentially weighted path usage with decay $\gamma=0.97$ and applies softmax targeting with temperature $\tau$:
 \[
 \Pr(\text{attack path } r \mid t) =
@@ -623,10 +623,10 @@ This setting mimics intelligent adversaries that learn and adapt in real time, r
 \label{subsec:mab}
 
 \smallTitle{Hierarchical group-arm structure}
-We cast quantum routing as a \textbf{2-level MAB problem}:
+We cast quantum routing as a \texttt{2-level MAB problem}:
 \begin{itemize}
-\item \textbf{Level 1 (Group selection):} Choose path $r_t \in \{1,2,3,4\}$ at frame $t$ via policy $\pi_g$.
-\item \textbf{Level 2 (Arm selection):} Choose allocation $\mathbf{x}_t \in \mathcal{X}_{r_t}$ via policy $\pi_a$.
+\item \texttt{Level 1 (Group selection):} Choose path $r_t \in \{1,2,3,4\}$ at frame $t$ via policy $\pi_g$.
+\item \texttt{Level 2 (Arm selection):} Choose allocation $\mathbf{x}_t \in \mathcal{X}_{r_t}$ via policy $\pi_a$.
 \end{itemize}
 Each path $P_r$ defines a \textbf{group} $\mathcal{G}_r$ containing $|\mathcal{X}_r|$ allocation arms. For 3-hop paths with budget $T_r$, $|\mathcal{X}_r| \approx \binom{T_r + h_r - 1}{h_r - 1}$ (stars-and-bars), scaling quadratically.
 
@@ -764,12 +764,12 @@ Both are \textbf{always scaled} (even when $s=1$). This separation is critical f
 
 \noindent Our evaluation infrastructure consists of \textbf{six layers} (Figure~\ref{fig:framework}):
 \begin{enumerate}
-\item \textbf{ALLOCATOR:} Top-level policy (\eg DynamicUCB)
-\item \textbf{CONFIGURATION:} Shared experimental setup (topology, scenarios, capacity, seeds)
-\item \textbf{EVALUATOR:} Orchestrates runs, logs, threat models
-\item \textbf{RUNNER:} Batch execution engine with Oracle tracking
-\item \textbf{MODEL:} Quantum routing stack (algorithms + neural)
-\item \textbf{VISUALIZER:} Aggregates results into efficiency curves, tables, and winner summaries
+\item \texttt{ALLOCATOR:} Top-level policy (\eg DynamicUCB)
+\item \texttt{CONFIGURATION:} Shared experimental setup (topology, scenarios, capacity, seeds)
+\item \texttt{EVALUATOR:} Orchestrates runs, logs, threat models
+\item \texttt{RUNNER:} Batch execution engine with Oracle tracking
+\item \texttt{MODEL:} Quantum routing stack (algorithms + neural)
+\item \texttt{VISUALIZER:} Aggregates results into efficiency curves, tables, and winner summaries
 \end{enumerate}
 
 \noindent\textbf{Interface view (how the layers connect).}
@@ -781,10 +781,10 @@ $\rightarrow$ \emph{Capacity semantics} (\eg $T$ vs. $T_b$, replay scale $s$; \c
 $\rightarrow$ \emph{Learner/Policy} (bandit selects paths from feedback/context)
 $\rightarrow$ \emph{Metrics} (oracle-normalized efficiency and robustness summaries).
 
-\noindent In our implementation, \textbf{CONFIGURATION} fixes the shared environment, threat regime, and capacity semantics;
-\textbf{ALLOCATOR} chooses the distribution rule; \textbf{EVALUATOR} instantiates the threat model and logging/oracle tracking;
-\textbf{RUNNER} executes batched runs under fixed seeds and aggregation rules; \textbf{MODEL} implements the bandit policy and routing stack;
-and \textbf{VISUALIZER} aggregates results into scenario rankings, efficiency curves, and summary tables.
+\noindent In our implementation, \texttt{CONFIGURATION} fixes the shared environment, threat regime, and capacity semantics;
+\texttt{ALLOCATOR} chooses the distribution rule; \texttt{EVALUATOR} instantiates the threat model and logging/oracle tracking;
+\texttt{RUNNER} executes batched runs under fixed seeds and aggregation rules; \texttt{MODEL} implements the bandit policy and routing stack;
+and \texttt{VISUALIZER} aggregates results into scenario rankings, efficiency curves, and summary tables.
 
 \noindent Figure~\ref{fig:framework} is illustrative (one representative configuration); the full evaluated model portfolio
 is summarized in \Cref{tab:setup-algorithm-portfolio}.
@@ -805,7 +805,7 @@ This architecture enables \textbf{systematic ablation} across allocators, algori
 
 \noindent We validate on external routing testbeds from prior work to support cross-testbed comparison across differing simulator assumptions~\cite{chaudhary2023quantum,liu2024qbgp,clayton2024quarc}, complementing broader quantum-network benchmarking efforts~\cite{coopmans2021benchmark,kozlowski2022utility}.
 
-\noindent All quantitative results are computed from a curated experimental corpus generated by our evaluation framework. In total, we report \textbf{7,890 model--scenario--configuration evaluations} across \textbf{835 unique scenario--allocator--capacity--horizon settings}.
+\noindent All quantitative results are computed from a curated experimental corpus generated by our evaluation framework. In total, we report \textit{7,890 model--scenario--configuration evaluations} across \textit{835 unique scenario--allocator--capacity--horizon settings}.
 
 \subsection{Research Questions}
 \label{sec:research_questions}
@@ -816,8 +816,10 @@ This architecture enables \textbf{systematic ablation} across allocators, algori
 % \vspace{0.25em}
 \devroop{You should just mention your primary research questions. The answers to your questions should a part of your results and observations.}
 
-\noindent Our study addresses three core questions about stochastic decoherence impact, adversarial robustness, and deployment tradeoffs in algorithm--allocator--capacity selection.
+% \noindent Our study addresses three core questions about stochastic decoherence impact, adversarial robustness, and deployment tradeoffs in algorithm--allocator--capacity selection.
 % BLOCKED (Needs Dan approval; no action until instructed): \devroop{Wont it make more sense to just relay the questions here and answer them in the results and discussion section?}
+
+Our study addresses three core questions about stochastic decoherence impact, adversarial robustness, and deployment tradeoffs in algorithm--allocator--capacity selection:
 
 \subsubsection*{\emph{\textbf{RQ1}}}
 \label{subsubsec:rq1_question}
@@ -2325,10 +2327,10 @@ To provide a consolidated view of algorithm performance across model families, w
 The cross-testbed validation presented in this section uses each testbed's native paper-config regime (Paper 2: 4K/2K, Paper 7: 50/50, Paper 12: 1.5K/500, Paper 8: 1K/1K/1R) while aggregating across allocators and scales. While this validates external generalizability under each testbed's original evaluation setup, it does not yet isolate differences under shared standardized run configurations. To address this, we are conducting a follow-up evaluation campaign that deploys all four external testbeds (Papers 2, 7, 12, and 8) using our \textbf{standardized run configurations}:
 
 \begin{itemize}[nosep]
-\item \textbf{Base configuration:} 4K base frames, 2K frame steps, 3 runs (rapid convergence baseline)
-\item \textbf{Stress testing configurations:} 5-run and 10-run sweeps to evaluate stability under extended learning horizons
-\item \textbf{Fixed allocator:} \texttt{Default} or \texttt{Fixed} allocator across all testbeds to isolate algorithm effects
-\item \textbf{Unified scenarios:} All five threat scenarios (Baseline, Stochastic, Markov, Adaptive, OnlineAdaptive) evaluated consistently
+\item \texttt{Base configuration:} 4K base frames, 2K frame steps, 3 runs (rapid convergence baseline)
+\item \texttt{Stress testing configurations:} 5-run and 10-run sweeps to evaluate stability under extended learning horizons
+\item \texttt{Fixed allocator:} \texttt{Default} or \texttt{Fixed} allocator across all testbeds to isolate algorithm effects
+\item \texttt{Unified scenarios:} All five threat scenarios (Baseline, Stochastic, Markov, Adaptive, OnlineAdaptive) evaluated consistently
 \end{itemize}
 
 This standardized testing protocol will enable:
