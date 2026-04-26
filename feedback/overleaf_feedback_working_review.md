@@ -541,7 +541,7 @@ Accept the tracked wording edit. `Existing work` is clearer and more natural her
 
 ---
 
-## Item 018 — In review
+## Item 018 — Accepted tracked edit
 
 ### Feedback item
 
@@ -564,6 +564,40 @@ We found that neural hybrids outperform non-contextual baselines by 18–24 perc
 ### Proposed solution
 
 Accept Dan's sentence split. It improves readability, removes the uncertainty marker around `evaluated`, and preserves the quantitative claims.
+
+### Decision / status
+
+**Accepted tracked edit.** No separate manuscript action beyond keeping Dan's sentence split.
+
+---
+
+## Item 019 — In review
+
+### Feedback item
+
+**Reviewer:** dan7800  
+**Date/time:** 17 April, 7:17 am  
+**Feedback:**
+
+> I rewrote this, how does it sound?
+
+### Task
+
+Evaluate the rewritten results paragraph for clarity, flow, and precision. This is not just a tracked edit to accept automatically; Dan is asking whether the rewritten wording sounds good.
+
+### Content in question
+
+```tex
+We found that neural hybrids outperform non-contextual baselines by 18–24 percentage points in scenario-aggregated efficiency across thirteen evaluated algorithms and five threat regimes. They also emerge as the most robust family, sustaining worst-case performance floors above 85\% under stochastic threats and remaining more stable under strategic adaptive attacks than adversarial-first EXP3-style designs. We further identified a \emph{capacity paradox}: increasing replay capacity improves efficiency under structured (Markov) disruption yet induces efficiency collapses of 22–30 percentage points under adaptive adversaries, revealing that resource predictability, not bandwidth, is the dominant robustness constraint.
+```
+
+### Proposed solution
+
+The rewrite is strong, but I would make the final sentence slightly cleaner and more precise by using `identify` for present-tense paper voice, changing `yet induces` to `but can induce`, and replacing `bandwidth` with `raw capacity` to better match the paper's replay/capacity framing:
+
+```tex
+We found that neural hybrids outperform non-contextual baselines by 18–24 percentage points in scenario-aggregated efficiency across thirteen evaluated algorithms and five threat regimes. They also emerge as the most robust family, sustaining worst-case performance floors above 85\% under stochastic threats and remaining more stable under strategic adaptive attacks than adversarial-first EXP3-style designs. We further identify a \emph{capacity paradox}: increasing replay capacity improves efficiency under structured Markov disruption but can induce 22–30 percentage-point efficiency collapses under adaptive adversaries, suggesting that resource predictability, not raw capacity, is the dominant robustness constraint.
+```
 
 ### Decision / status
 
