@@ -257,7 +257,7 @@ In contrast, we provide a controlled robustness characterization that isolates w
 
 ---
 
-## Item 009 — In review
+## Item 009 — Duplicate / covered by Item 008
 
 ### Feedback item
 
@@ -269,7 +269,7 @@ In contrast, we provide a controlled robustness characterization that isolates w
 
 ### Task
 
-Strengthen the contrast between this paper and prior work by stating the paper's actual contribution directly.
+This is the substantive explanation behind Item 008 and is already addressed by the approved Item 008 rewrite.
 
 ### Content in question
 
@@ -279,13 +279,47 @@ In contrast, we do not propose a new quantum-network routing protocol or a new b
 
 ### Proposed solution
 
-This item is substantively addressed by the approved Item 008 rewrite:
+No separate action. Use the approved Item 008 rewrite:
 
 ```tex
 In contrast, we provide a controlled robustness characterization that isolates which algorithm--allocator--capacity combinations remain stable when disruption is structured or adaptive.
 ```
 
-This is clearer because it replaces negative differentiation with a direct statement of what the paper contributes.
+### Decision / status
+
+**Duplicate / covered by Item 008.** No independent manuscript edit.
+
+---
+
+## Item 010 — In review
+
+### Feedback item
+
+**Reviewer:** Devroop Kar  
+**Date/time:** 22 April, 7:41 am  
+**Feedback:**
+
+> Changed: `\` to `~\cite{huang2024quantum}`
+
+### Task
+
+Verify Devroop's tracked citation insertion.
+
+### Content in question
+
+```tex
+Further, while Huang et al. ~\cite{huang2024quantum} treat allocation as a fixed component,
+```
+
+### Proposed solution
+
+Accept the tracked citation insertion, but clean spacing/style around the citation:
+
+```tex
+Further, while Huang \etal~\cite{huang2024quantum} treat allocation as a fixed component,
+```
+
+This keeps the citation Devroop added, removes the awkward space before `~\cite`, and aligns `Huang et al.` with the `\etal` macro style.
 
 ### Decision / status
 
