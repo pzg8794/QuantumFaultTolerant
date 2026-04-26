@@ -14,7 +14,7 @@ Reduce excessive bold formatting in the threat taxonomy so the section reads mor
 
 ## Content in question
 
-The threat taxonomy uses bold both for regime labels and explanatory phrases, including:
+The threat taxonomy used bold both for regime labels and explanatory phrases, including:
 
 ```tex
 \textbf{five escalating threat regimes}
@@ -30,12 +30,10 @@ The threat taxonomy uses bold both for regime labels and explanatory phrases, in
 
 Keep bold only for the regime labels and remove bold from explanatory phrases in the body text.
 
-A ready-to-apply patch was added at:
+## Applied manuscript change
 
-```text
-patches/item_046_reduce_threat_taxonomy_bold_text.patch
-```
+Removed bold formatting from the threat-taxonomy body text while keeping the regime headings bold. The public `main` branch includes the manuscript update in commit `9762d51`.
 
 ## Decision / status
 
-**Patch prepared.** Apply the patch to `main.tex` once local repository access is available. The GitHub connector repeatedly truncated `main.tex`, so the manuscript itself was not overwritten to avoid corrupting the paper.
+**Applied / done.** Excessive bold formatting was removed from the threat taxonomy body text.
