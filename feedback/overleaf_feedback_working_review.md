@@ -319,7 +319,7 @@ Accept Devroop's citation insertion to `~\cite{huang2024quantum}`. No separate m
 
 ---
 
-## Item 011 — In review
+## Item 011 — Blocked
 
 ### Feedback item
 
@@ -341,7 +341,51 @@ Evaluate the referenced section for later compression while preserving the conte
 
 ### Proposed solution
 
-Because this is a reduce/cut task, defer it until the later reduction pass after all non-reduction/non-removal items affecting the same section are handled. During that pass, compress the subsection by keeping only: (1) the closest related works, (2) the gap comparisons, and (3) the specific contrast with our algorithm--allocator--capacity evaluation framework.
+No manuscript edit yet. This is a reduce/cut task, so defer it until the later reduction pass after all non-reduction/non-removal items affecting the same section are handled.
+
+During that pass, compress the subsection by keeping only: (1) the closest related works, (2) the gap comparisons, and (3) the specific contrast with our algorithm--allocator--capacity evaluation framework.
+
+### Decision / status
+
+**Blocked.** Reduction/removal task deferred until the later cleanup/reduction pass.
+
+---
+
+## Item 012 — In review
+
+### Feedback item
+
+**Reviewer:** dan7800  
+**Date/time:** 22 April, 12:00 pm  
+**Feedback:**
+
+> Added: `% Piter % Jie % Jie Student % Sheeraja % Travis % Devroop % Dan`
+
+### Task
+
+Verify whether this added author/comment placeholder should remain in the source, be moved into an author-planning note, or be removed from the manuscript source before submission.
+
+### Content in question
+
+```tex
+% Piter
+% Jie
+% Jie Student
+% Sheeraja
+% Travis
+% Devroop
+% Dan
+```
+
+### Proposed solution
+
+Keep this as a temporary internal author-planning comment only if it is useful during drafting, but do not include it near the final `\author{...}` block for submission. Recommended source-safe version:
+
+```tex
+% TODO(author-list): confirm final author order/names before submission.
+```
+
+This preserves the reminder without leaving an informal list of names in the manuscript source.
 
 ### Decision / status
 
