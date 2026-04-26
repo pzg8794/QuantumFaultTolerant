@@ -10,7 +10,7 @@
 
 ## Task
 
-Add a few targeted citations to support the claim that existing quantum-routing studies cover online path selection, benchmarking-driven routing, adversarially robust learning, and related routing/evaluation mechanisms. Avoid citation dumping; each citation should correspond to a specific class of prior work.
+Add a few targeted citations to support the claim that existing quantum-routing studies cover online path selection, benchmarking-driven routing, adaptive route selection, and adversarially robust learning. Avoid citation dumping; each citation should correspond to a specific class of prior work.
 
 ## Content in question
 
@@ -20,12 +20,10 @@ Existing quantum routing studies have proposed important mechanisms for online p
 
 ## Proposed solution
 
-Use a slightly broader but still targeted citation set that already exists in `refs.bib`:
-
 ```tex
-Existing quantum routing studies have proposed important mechanisms for online path selection, benchmarking-driven routing, adaptive route selection, and adversarially robust learning~\cite{wang2025learning,li2025multipath,liu2024qbgp,coopmans2021benchmark,chaudhary2023quantum,huang2024quantum}. However, they are often evaluated under incompatible assumptions about threat processes, topology visibility, allocator policy, or replay/memory semantics, making direct comparisons difficult and weakening deployment guidance.
+Existing quantum routing studies have proposed important mechanisms for online path selection, benchmarking-driven routing, adaptive route selection, and adversarially robust learning~\cite{wang2025learning,coopmans2021benchmark,huang2024quantum}. However, they are often evaluated under incompatible assumptions about threat processes, topology visibility, allocator policy, or replay/memory semantics, making direct comparisons difficult and weakening deployment guidance~\cite{liu2024qbgp,li2025multipath,chaudhary2023quantum}.
 ```
 
 ## Decision / status
 
-Pending Piter review.
+**Approved.** Use Piter-approved citation split: first citation group supports the classes of prior work; second citation group supports the comparison/gap claim.
