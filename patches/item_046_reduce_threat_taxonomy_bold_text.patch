@@ -1,0 +1,21 @@
+diff --git a/main.tex b/main.tex
+--- a/main.tex
++++ b/main.tex
+@@
+-We study routing robustness under \textbf{five escalating threat regimes} spanning no-disruption operation, independent stochastic failures, temporally correlated disruption, targeted failures, and adaptive adversarial interference.
++We study routing robustness under five escalating threat regimes spanning no-disruption operation, independent stochastic failures, temporally correlated disruption, targeted failures, and adaptive adversarial interference.
+@@
+-This setting isolates pure stochastic decoherence and serves as the \textbf{benign-condition upper bound} (Oracle-aligned) for comparisons across all disrupted regimes.
++This setting isolates pure stochastic decoherence and serves as the benign-condition upper bound (Oracle-aligned) for comparisons across all disrupted regimes.
+@@
+-In the Markov regime, availability is governed by a \textbf{4-state Markov chain} whose states modulate path-failure probabilities.
++In the Markov regime, availability is governed by a 4-state Markov chain whose states modulate path-failure probabilities.
+@@
+-In the adaptive regime, the adversary observes path selection over a sliding window of $w=50$ frames and targets the \textbf{most-used path} with $100\%$ probability.
++In the adaptive regime, the adversary observes path selection over a sliding window of $w=50$ frames and targets the most-used path with $100\%$ probability.
+@@
+-In the OnlineAdaptive regime, the adversary maintains \textbf{exponentially weighted path usage} with decay $\gamma=0.97$ and applies \textbf{softmax targeting} with temperature $\tau$:
++In the OnlineAdaptive regime, the adversary maintains exponentially weighted path usage with decay $\gamma=0.97$ and applies softmax targeting with temperature $\tau$:
+@@
+-This setting mimics intelligent adversaries that \textbf{learn and adapt in real time}, representing the hardest realistic threat model in our taxonomy.
++This setting mimics intelligent adversaries that learn and adapt in real time, representing the hardest realistic threat model in our taxonomy.
