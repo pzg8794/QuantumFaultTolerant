@@ -24,4 +24,4 @@ Keep the citation for now because it supports a foundational background claim. D
 
 ## Decision / status
 
-Pending Piter review. Recommended status: **Conditional / revisit during reduction pass**.
+**TBD before submission.** Keep the citation for now. Revisit during the final paper-preparation pass and decide whether to remove it only if space is tight.
