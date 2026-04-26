@@ -257,7 +257,7 @@ In contrast, we provide a controlled robustness characterization that isolates w
 
 ---
 
-## Item 009 — In review
+## Item 009 — Approved
 
 ### Feedback item
 
@@ -269,7 +269,7 @@ In contrast, we provide a controlled robustness characterization that isolates w
 
 ### Task
 
-Clarify how this work differs specifically from Huang et al.'s EXPNeuralUCB paper. The contrast should say that Huang et al. introduce a specific group neural bandit for joint path selection and qubit allocation, while this paper uses that kind of method as part of a broader controlled evaluation across algorithm families, threat regimes, allocator choices, and capacity settings.
+Clarify how this work differs specifically from Huang et al.'s EXPNeuralUCB paper. The contrast should explain that Huang et al. propose a specific group neural bandit, while this paper uses EXPNeuralUCB as one comparator inside a broader controlled robustness study that also varies threat model, allocator choice, and replay/capacity settings.
 
 ### Content in question
 
@@ -280,12 +280,12 @@ In contrast, we provide a controlled robustness characterization that isolates w
 ### Proposed solution
 
 ```tex
-Huang et al.~\cite{huang2024quantum} propose \emph{EXPNeuralUCB}, a group neural bandit that combines EXP3-style adversarial exploration with NeuralUCB-style nonlinear reward modeling for joint path selection and qubit allocation. In contrast, our work treats EXPNeuralUCB as one comparator within a broader controlled robustness study: we evaluate multiple bandit families under a shared threat taxonomy and isolate which algorithm--allocator--capacity combinations remain stable under structured and adaptive disruption.
+Huang et al.~\cite{huang2024quantum} propose \emph{EXPNeuralUCB}, a group neural bandit that combines EXP3-style adversarial exploration with NeuralUCB-style nonlinear reward modeling for joint path selection and qubit allocation. Our work uses EXPNeuralUCB as one comparator within a broader controlled robustness study that evaluates multiple bandit families under a shared threat taxonomy. In addition to EXPNeuralUCB, we evaluate pursuit--neural hybrids (e.g., \texttt{CPursuitNeuralUCB}, \texttt{iCPursuitNeuralUCB}) under matched threat, allocator, and replay/capacity settings. This comparison separates the effect of changing the learning rule from the effect of changing the deployment configuration around it. Whereas Huang et al.~\cite{huang2024quantum} treat allocation as a fixed component, our framework explicitly varies allocator strategy and replay capacity, showing that these factors can be as critical to robustness as the learning rule itself.
 ```
 
 ### Decision / status
 
-Pending Piter review.
+**Approved.** Use Piter-approved improved paragraph.
 
 ---
 
@@ -316,3 +316,33 @@ Accept Devroop's citation insertion to `~\cite{huang2024quantum}`. No separate m
 ### Decision / status
 
 **Accepted tracked edit.** No separate manuscript action beyond keeping Devroop's citation insertion.
+
+---
+
+## Item 011 — In review
+
+### Feedback item
+
+**Reviewer:** Devroop Kar  
+**Date/time:** 22 April, 7:43 am  
+**Feedback:**
+
+> Added: `\devroop{Need to reduce the content while keeping the contextual ideas and gap comparisons. This is too long.}`
+
+### Task
+
+Evaluate the referenced section for later compression while preserving the contextual ideas and gap comparisons.
+
+### Content in question
+
+```tex
+\subsection{Quantum Network Routing with Bandits}
+```
+
+### Proposed solution
+
+Because this is a reduce/cut task, defer it until the later reduction pass after all non-reduction/non-removal items affecting the same section are handled. During that pass, compress the subsection by keeping only: (1) the closest related works, (2) the gap comparisons, and (3) the specific contrast with our algorithm--allocator--capacity evaluation framework.
+
+### Decision / status
+
+Pending Piter review.
