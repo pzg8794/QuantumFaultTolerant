@@ -615,7 +615,7 @@ We found that neural hybrids outperform non-contextual baselines by 18–24 perc
 
 ### Task
 
-Decide how to handle reproducibility artifacts for submission: experiments, data, and code should likely be collected into a public or anonymous GitHub repository, but publication should wait for approval from Jie and anyone else whose code or artifacts are included.
+Document the reproducibility artifact plan accurately. A public repository already exists and is already referenced in the abstract. A shared Google Drive also exists as a datalake-style artifact hub for datasets, notebooks, and reproducibility execution resources, and can be made available upon request.
 
 ### Content in question
 
@@ -625,18 +625,18 @@ All project observations and source code are available on public repository at \
 
 ### Proposed solution
 
-Treat this as an external reproducibility/action item, not only a manuscript wording item. The right solution is to create or use an anonymized public repository for submission, confirm with Jie before publishing any third-party or collaborator code, and then replace the manuscript placeholder with the approved repository URL.
+Use the existing public repository as the primary artifact link and avoid overloading the manuscript with the long Drive URL unless the venue allows/needs it. The shared Drive can be documented in the repository README or appendix as an optional/request-access artifact hub.
 
-Temporary manuscript-safe wording:
+Recommended manuscript wording:
 
 ```tex
-All source code, datasets, and experiment scripts will be released in an anonymized public repository upon approval from all code contributors.
+All source code, datasets, and experiment scripts are available in the public reproducibility repository at \url{https://github.com/pzg8794/quantum_project_hub}. Additional datalake-style artifacts and notebook execution resources are available through a shared Drive hub upon request.
 ```
 
-Final camera-ready wording after approval and repo creation:
+Optional README/artifact-note wording:
 
-```tex
-All source code, datasets, and experiment scripts are available in the public reproducibility repository at \url{<approved-anonymous-repo-url>}.
+```md
+Additional reproducibility artifacts, including datalake-style datasets and notebook execution resources, are available through the shared Drive hub URL provided separately by the authors.
 ```
 
 ### Decision / status
