@@ -195,7 +195,7 @@ In contrast, our study uses these canonical stochastic and adversarial bandit al
 
 ---
 
-## Item 007 — In review
+## Item 007 — Accepted tracked edit
 
 ### Feedback item
 
@@ -207,7 +207,7 @@ In contrast, our study uses these canonical stochastic and adversarial bandit al
 
 ### Task
 
-Standardize the citation phrase to the existing LaTeX macro `\etal`.
+Verify Dan's tracked macro-standardization. This is a tracked edit he already made, not a separate rewrite request.
 
 ### Content in question
 
@@ -217,14 +217,8 @@ Wang \etal~\cite{wang2025learning} focus on learning high-quality paths under st
 
 ### Proposed solution
 
-Accept the tracked macro-standardization and apply it consistently to the full sentence. The immediate local fix is:
-
-```tex
-Wang \etal~\cite{wang2025learning} focus on learning high-quality paths under stochastic dynamics, while Li \etal~\cite{li2025multipath} propose multipath inter-domain routing protocols for quantum networks with online path selection.
-```
-
-This resolves the local `Li et al.` inconsistency and keeps both citations in the same style.
+Accept Dan's tracked edit from `et al.` to `\etal` wherever that specific tracked change was applied. Do not add additional rewrites under this item.
 
 ### Decision / status
 
-Pending Piter review.
+**Accepted tracked edit.** No separate manuscript action beyond accepting/keeping Dan's `\etal` change.
