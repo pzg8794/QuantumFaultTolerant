@@ -419,7 +419,7 @@ Accept the tracked wording edit. `Frequently` is slightly more formal than `ofte
 
 ---
 
-## Item 014 — In review
+## Item 014 — Accepted tracked edit
 
 ### Feedback item
 
@@ -441,7 +441,37 @@ Existing routing approaches frequently assume stationary link behavior, decouple
 
 ### Proposed solution
 
-Accept the tracked deletion of `---` if the current sentence now reads with normal comma-separated phrasing, as shown above. The sentence is clearer without an em-dash/placeholder separator.
+Accept the tracked deletion of `---`. The sentence is clearer without an em-dash/placeholder separator.
+
+### Decision / status
+
+**Accepted tracked edit.** No separate manuscript action beyond keeping Dan's punctuation cleanup.
+
+---
+
+## Item 015 — In review
+
+### Feedback item
+
+**Reviewer:** dan7800  
+**Date/time:** 19 April, 4:44 pm  
+**Feedback:**
+
+> Deleted: `those`
+
+### Task
+
+Verify Dan's tracked word deletion in the same sentence cluster.
+
+### Content in question
+
+```tex
+Existing routing approaches frequently assume stationary link behavior, decouple selection from allocation, or rely on offline optimization assumptions that can fail when link fidelities drift and disruptions adapt online.
+```
+
+### Proposed solution
+
+Accept the tracked deletion of `those`. The current phrase `assumptions that can fail` is concise and grammatical, while the deleted word likely made the sentence heavier without adding meaning.
 
 ### Decision / status
 
