@@ -26,4 +26,4 @@ Quantum routing differs fundamentally from classical packet-switching because th
 
 ## Decision / status
 
-Pending Piter review.
+**Approved.** Replace the highlighted unresolved phrase with the cleaner causal transition and remove the duplicate `routing` wording in the first sentence.
