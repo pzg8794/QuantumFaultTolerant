@@ -161,7 +161,7 @@ In contrast, our study uses these canonical stochastic and adversarial bandit al
 
 ---
 
-## Item 006 — In review
+## Item 006 — Duplicate / covered by Item 005
 
 ### Feedback item
 
@@ -173,7 +173,7 @@ In contrast, our study uses these canonical stochastic and adversarial bandit al
 
 ### Task
 
-Review the punctuation deletion associated with the same contrast sentence.
+This punctuation deletion belongs to the same tracked edit handled in Item 005.
 
 ### Content in question
 
@@ -183,13 +183,47 @@ Contrastingly, in our study we use these canonical stochastic and adversarial ba
 
 ### Proposed solution
 
-The punctuation issue is resolved by the approved Item 005 rewrite. Use:
+No separate action. Use the approved Item 005 rewrite:
 
 ```tex
 In contrast, our study uses these canonical stochastic and adversarial bandit algorithms as matched-condition baseline families inside a unified threat taxonomy for entanglement routing.
 ```
 
-This keeps the comma after `In contrast`, which is grammatically correct and clearer than the tracked deletion applied to `Contrastingly`.
+### Decision / status
+
+**Duplicate / covered by Item 005.** No independent manuscript edit.
+
+---
+
+## Item 007 — In review
+
+### Feedback item
+
+**Reviewer:** dan7800  
+**Date/time:** 22 April, 6:29 am  
+**Feedback:**
+
+> Changed: `et al.` to `\etal`
+
+### Task
+
+Standardize the citation phrase to the existing LaTeX macro `\etal`.
+
+### Content in question
+
+```tex
+Wang \etal~\cite{wang2025learning} focus on learning high-quality paths under stochastic dynamics, while Li et al.
+```
+
+### Proposed solution
+
+Accept the tracked macro-standardization and apply it consistently to the full sentence. The immediate local fix is:
+
+```tex
+Wang \etal~\cite{wang2025learning} focus on learning high-quality paths under stochastic dynamics, while Li \etal~\cite{li2025multipath} propose multipath inter-domain routing protocols for quantum networks with online path selection.
+```
+
+This resolves the local `Li et al.` inconsistency and keeps both citations in the same style.
 
 ### Decision / status
 
