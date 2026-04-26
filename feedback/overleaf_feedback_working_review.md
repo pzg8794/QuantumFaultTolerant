@@ -479,7 +479,7 @@ Accept the tracked deletion of `those`. The current phrase `assumptions that can
 
 ---
 
-## Item 016 — In review
+## Item 016 — Approved
 
 ### Feedback item
 
@@ -501,13 +501,39 @@ This work provides a systematic threat-aware evaluation framework and uses it to
 
 ### Proposed solution
 
-Accept the tracked rewrite direction. The `This work provides...` framing is clearer and more direct than `The primary contribution of this paper is...`.
-
-If we want the sentence to align with the earlier approved Item 1 wording, use:
-
 ```tex
 This work provides a systematic threat-aware framework to evaluate contextual, adversarial, and hybrid bandit algorithms for joint path selection and qubit allocation in quantum networks, together with a family of pursuit--neural hybrid policies that we show outperform both adversarial-first and stochastic-only baselines.
 ```
+
+### Decision / status
+
+**Approved.** Use the Item 1-aligned wording.
+
+---
+
+## Item 017 — In review
+
+### Feedback item
+
+**Reviewer:** dan7800  
+**Date/time:** 19 April, 4:44 pm  
+**Feedback:**
+
+> Changed: `prior` to `existing`
+
+### Task
+
+Verify Dan's tracked wording edit from `prior` to `existing`.
+
+### Content in question
+
+```tex
+Unlike existing work that fixes allocator policy and replay semantics as background constants, our framework treats them as first-class experimental variables, enabling direct attribution of robustness to the algorithm--allocator--capacity triad.
+```
+
+### Proposed solution
+
+Accept the tracked wording edit. `Existing work` is clearer and more natural here than `prior work`, because the sentence is contrasting against the current literature landscape rather than only against older papers.
 
 ### Decision / status
 
