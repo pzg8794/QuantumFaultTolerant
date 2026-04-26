@@ -511,7 +511,7 @@ This work provides a systematic threat-aware framework to evaluate contextual, a
 
 ---
 
-## Item 017 — In review
+## Item 017 — Accepted tracked edit
 
 ### Feedback item
 
@@ -533,7 +533,37 @@ Unlike existing work that fixes allocator policy and replay semantics as backgro
 
 ### Proposed solution
 
-Accept the tracked wording edit. `Existing work` is clearer and more natural here than `prior work`, because the sentence is contrasting against the current literature landscape rather than only against older papers.
+Accept the tracked wording edit. `Existing work` is clearer and more natural here than `prior work`.
+
+### Decision / status
+
+**Accepted tracked edit.** No separate manuscript action beyond keeping Dan's wording change.
+
+---
+
+## Item 018 — In review
+
+### Feedback item
+
+**Reviewer:** dan7800  
+**Date/time:** 19 April, 4:45 pm  
+**Feedback:**
+
+> Changed the long neural-hybrids result sentence into two sentences.
+
+### Task
+
+Verify Dan's rewrite that splits a long results sentence into two clearer sentences and removes the `\hl{?evaluated?}` uncertainty marker.
+
+### Content in question
+
+```tex
+We found that neural hybrids outperform non-contextual baselines by 18–24 percentage points in scenario-aggregated efficiency across thirteen evaluated algorithms and five threat regimes. They also emerge as the most robust family, sustaining worst-case performance floors above 85\% under stochastic threats and remaining more stable under strategic adaptive attacks than adversarial-first EXP3-style designs.
+```
+
+### Proposed solution
+
+Accept Dan's sentence split. It improves readability, removes the uncertainty marker around `evaluated`, and preserves the quantitative claims.
 
 ### Decision / status
 
