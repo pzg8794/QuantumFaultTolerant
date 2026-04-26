@@ -351,7 +351,7 @@ During that pass, compress the subsection by keeping only: (1) the closest relat
 
 ---
 
-## Item 012 — In review
+## Item 012 — Approved
 
 ### Feedback item
 
@@ -379,13 +379,39 @@ Verify whether this added author/comment placeholder should remain in the source
 
 ### Proposed solution
 
-Keep this as a temporary internal author-planning comment only if it is useful during drafting, but do not include it near the final `\author{...}` block for submission. Recommended source-safe version:
-
 ```tex
 % TODO(author-list): confirm final author order/names before submission.
 ```
 
-This preserves the reminder without leaving an informal list of names in the manuscript source.
+### Decision / status
+
+**Approved.** Replace informal name-list comments with the TODO author-list reminder.
+
+---
+
+## Item 013 — In review
+
+### Feedback item
+
+**Reviewer:** dan7800  
+**Date/time:** 19 April, 4:43 pm  
+**Feedback:**
+
+> Changed: `often` to `frequently`
+
+### Task
+
+Verify Dan's tracked wording edit.
+
+### Content in question
+
+```tex
+Existing routing approaches frequently assume stationary link behavior, decouple selection from allocation, or rely on offline optimization assumptions that can fail when link fidelities drift and disruptions adapt online.
+```
+
+### Proposed solution
+
+Accept the tracked wording edit. `Frequently` is slightly more formal than `often` and fits the manuscript tone.
 
 ### Decision / status
 
