@@ -222,3 +222,39 @@ Accept Dan's tracked edit from `et al.` to `\etal` wherever that specific tracke
 ### Decision / status
 
 **Accepted tracked edit.** No separate manuscript action beyond accepting/keeping Dan's `\etal` change.
+
+---
+
+## Item 008 — In review
+
+### Feedback item
+
+**Reviewer:** dan7800  
+**Date/time:** 22 April, 6:30 am  
+**Feedback:**
+
+> Changed: `W` to `In contrast, w`
+
+### Task
+
+Verify Dan's tracked transition edit and decide whether to keep it as-is.
+
+### Content in question
+
+```tex
+In contrast, we do not propose a new quantum-network routing protocol or a new budgeted-control formulation with analytical guarantees;
+```
+
+### Proposed solution
+
+Accept Dan's tracked edit. The transition `In contrast, we...` is appropriate here because the sentence is distinguishing this paper from prior quantum-routing work.
+
+Keep the current wording:
+
+```tex
+In contrast, we do not propose a new quantum-network routing protocol or a new budgeted-control formulation with analytical guarantees;
+```
+
+### Decision / status
+
+Pending Piter review.
