@@ -571,7 +571,7 @@ Accept Dan's sentence split. It improves readability, removes the uncertainty ma
 
 ---
 
-## Item 019 — In review
+## Item 019 — Approved
 
 ### Feedback item
 
@@ -593,10 +593,50 @@ We found that neural hybrids outperform non-contextual baselines by 18–24 perc
 
 ### Proposed solution
 
-The rewrite is strong, but I would make the final sentence slightly cleaner and more precise by using `identify` for present-tense paper voice, changing `yet induces` to `but can induce`, and replacing `bandwidth` with `raw capacity` to better match the paper's replay/capacity framing:
+```tex
+We found that neural hybrids outperform non-contextual baselines by 18–24 percentage points in scenario-aggregated efficiency across thirteen evaluated algorithms and five threat regimes. They also emerge as the most robust family, sustaining worst-case performance floors above 85\% under stochastic threats and remaining more stable under strategic adaptive attacks than adversarial-first EXP3-style designs. We further identify a \emph{capacity paradox}: increasing replay capacity improves efficiency under structured Markov disruption but can induce 22–30 percentage-point efficiency collapses under adaptive adversaries, revealing that resource predictability, not raw capacity, is the dominant robustness constraint.
+```
+
+### Decision / status
+
+**Approved.** Use Piter-approved revised wording.
+
+---
+
+## Item 020 — In review
+
+### Feedback item
+
+**Reviewer:** dan7800  
+**Date/time:** 17 April, 7:09 am  
+**Feedback:**
+
+> Would it make sense to make all experiments, data etc.. into a public github repo? We can anonymouize it for the submission. We can also check with Jie to make sure that they'd be ok with us publishing their code.
+
+### Task
+
+Decide how to handle reproducibility artifacts for submission: experiments, data, and code should likely be collected into a public or anonymous GitHub repository, but publication should wait for approval from Jie and anyone else whose code or artifacts are included.
+
+### Content in question
 
 ```tex
-We found that neural hybrids outperform non-contextual baselines by 18–24 percentage points in scenario-aggregated efficiency across thirteen evaluated algorithms and five threat regimes. They also emerge as the most robust family, sustaining worst-case performance floors above 85\% under stochastic threats and remaining more stable under strategic adaptive attacks than adversarial-first EXP3-style designs. We further identify a \emph{capacity paradox}: increasing replay capacity improves efficiency under structured Markov disruption but can induce 22–30 percentage-point efficiency collapses under adaptive adversaries, suggesting that resource predictability, not raw capacity, is the dominant robustness constraint.
+All project observations and source code are available on public repository at \url{https://github.com/pzg8794/quantum_project_hub}.
+```
+
+### Proposed solution
+
+Treat this as an external reproducibility/action item, not only a manuscript wording item. The right solution is to create or use an anonymized public repository for submission, confirm with Jie before publishing any third-party or collaborator code, and then replace the manuscript placeholder with the approved repository URL.
+
+Temporary manuscript-safe wording:
+
+```tex
+All source code, datasets, and experiment scripts will be released in an anonymized public repository upon approval from all code contributors.
+```
+
+Final camera-ready wording after approval and repo creation:
+
+```tex
+All source code, datasets, and experiment scripts are available in the public reproducibility repository at \url{<approved-anonymous-repo-url>}.
 ```
 
 ### Decision / status
