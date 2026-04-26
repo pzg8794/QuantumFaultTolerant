@@ -257,7 +257,7 @@ In contrast, we provide a controlled robustness characterization that isolates w
 
 ---
 
-## Item 009 — Active clarification item
+## Item 009 — In review
 
 ### Feedback item
 
@@ -269,7 +269,7 @@ In contrast, we provide a controlled robustness characterization that isolates w
 
 ### Task
 
-Confirm that the Item 008 replacement fully addresses the underlying clarity request about how our work differs from prior work.
+Clarify the contrast with prior quantum-routing work by stating not only that our paper is different, but exactly how: prior work typically proposes or studies a specific routing/control method, while this paper evaluates multiple bandit families under a common threat taxonomy and varies allocator/capacity choices as explicit experimental factors.
 
 ### Content in question
 
@@ -279,15 +279,13 @@ In contrast, we do not propose a new quantum-network routing protocol or a new b
 
 ### Proposed solution
 
-Use the approved Item 008 replacement as the direct answer to Dan's clarification request:
-
 ```tex
-In contrast, we provide a controlled robustness characterization that isolates which algorithm--allocator--capacity combinations remain stable when disruption is structured or adaptive.
+In contrast, our work provides a controlled robustness characterization of bandit-based entanglement routing: rather than introducing a single routing protocol or budgeted-control formulation, we evaluate multiple algorithm families under a shared threat taxonomy and identify which algorithm--allocator--capacity combinations remain stable under structured and adaptive disruption.
 ```
 
 ### Decision / status
 
-**Pending final confirmation.** This is not a separate tracked-edit action, but it is the substantive reviewer comment explaining why the Item 008 rewrite is needed.
+Pending Piter review.
 
 ---
 
