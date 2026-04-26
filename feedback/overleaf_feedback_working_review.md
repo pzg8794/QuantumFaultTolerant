@@ -269,18 +269,18 @@ In contrast, we provide a controlled robustness characterization that isolates w
 
 ### Task
 
-Clarify the contrast with prior quantum-routing work by stating not only that our paper is different, but exactly how: prior work typically proposes or studies a specific routing/control method, while this paper evaluates multiple bandit families under a common threat taxonomy and varies allocator/capacity choices as explicit experimental factors.
+Clarify how this work differs specifically from Huang et al.'s EXPNeuralUCB paper. The contrast should say that Huang et al. introduce a specific group neural bandit for joint path selection and qubit allocation, while this paper uses that kind of method as part of a broader controlled evaluation across algorithm families, threat regimes, allocator choices, and capacity settings.
 
 ### Content in question
 
 ```tex
-In contrast, we do not propose a new quantum-network routing protocol or a new budgeted-control formulation with analytical guarantees; 
+In contrast, we provide a controlled robustness characterization that isolates which algorithm--allocator--capacity combinations remain stable when disruption is structured or adaptive. Huang et al.~\cite{huang2024quantum} propose \emph{EXPNeuralUCB}, a group neural bandit that combines EXP3-style adversarial exploration with NeuralUCB-style nonlinear reward modeling for joint path selection and qubit allocation.
 ```
 
 ### Proposed solution
 
 ```tex
-In contrast, our work provides a controlled robustness characterization of bandit-based entanglement routing: rather than introducing a single routing protocol or budgeted-control formulation, we evaluate multiple algorithm families under a shared threat taxonomy and identify which algorithm--allocator--capacity combinations remain stable under structured and adaptive disruption.
+Huang et al.~\cite{huang2024quantum} propose \emph{EXPNeuralUCB}, a group neural bandit that combines EXP3-style adversarial exploration with NeuralUCB-style nonlinear reward modeling for joint path selection and qubit allocation. In contrast, our work treats EXPNeuralUCB as one comparator within a broader controlled robustness study: we evaluate multiple bandit families under a shared threat taxonomy and isolate which algorithm--allocator--capacity combinations remain stable under structured and adaptive disruption.
 ```
 
 ### Decision / status
