@@ -257,8 +257,9 @@ Existing quantum routing studies have proposed important mechanisms for online p
 \begin{figure}[t]
 \centering
 \footnotesize
+\resizebox{\columnwidth}{!}{%
 \begin{tikzpicture}[
-    node distance=0.9cm and 1.2cm,
+    node distance=0.5cm and 0.5cm,
     >=Latex,
     box/.style={
         rectangle,
@@ -321,17 +322,8 @@ Joint path selection + qubit allocation under matched conditions};
 \draw[arrow] (engine) -- (comparison);
 \draw[arrow] (engine) -- (guidance);
 
-% Optional grouping boxes
-\begin{scope}[on background layer]
-    \node[draw, rounded corners=6pt, fit=(topology)(threats)(models), inner sep=8pt,
-          label=above:{\textbf{Experimental Inputs}}] {};
-    \node[draw, rounded corners=6pt, fit=(allocator)(capacity)(engine), inner sep=10pt,
-          label=above:{\textbf{Evaluation Process}}] {};
-    \node[draw, rounded corners=6pt, fit=(metrics)(comparison)(guidance), inner sep=8pt,
-          label=above:{\textbf{Outputs}}] {};
-\end{scope}
-
-\end{tikzpicture}
+\end{tikzpicture}%
+}
 \caption{Threat-aware evaluation framework for quantum entanglement routing. The framework combines network topology, threat regimes, bandit policy families, allocator policy, and replay/capacity semantics under matched conditions to produce Oracle-normalized metrics, cross-model robustness comparisons, and deployment guidance.}
 \label{fig:framework}
 \end{figure}
@@ -360,7 +352,8 @@ To summarize, this work makes the following contributions:
 
     \item \descStep{Joint decision formulation for quantum routing}{We formalize quantum routing as a coupled decision problem over path selection, qubit allocation, and learning under uncertainty, treating learning, allocation, and capacity as interdependent design dimensions rather than independent implementation choices.}
     
-    \item \descStep{Open Source Repository}{All source code and datasets are publicly available to enable reproducibility, validation, and further development by the research community~\cite{}.}
+    % \item \descStep{Open Source Repository}{All source code and datasets are publicly available to enable reproducibility, validation, and further development by the research community~\cite{}.}
+    \item \descStep{Open Source Repository}{All source code, datasets, and experiment scripts are available in the public reproducibility repository at \url{https://github.com/pzg8794/quantum_project_hub}. Additional datalake-style artifacts and notebook execution resources are available through the shared Drive hub at \url{https://drive.google.com/drive/folders/0AK0VchnNyM-xUk9PVA}.}
 
 %    \item \descStep{XX}{X}
 %    \item \descStep{XX}{X}
@@ -482,7 +475,7 @@ In addition to choosing routes, practical quantum routing must manage resource a
 Many learning-based routing implementations also impose finite-memory or replay semantics (\eg bounded histories, windowed updates, or capped experience buffers) that affect stability under nonstationarity and vulnerability under strategic adaptation. These design choices motivate evaluating routing policies jointly with allocator strategy and capacity semantics, rather than treating them as independent knobs.
 
 \subsection{Problem Scope}
-"Motivated by the joint effects of allocator strategy and capacity semantics on routing performance, stability, and predictability, we study how modeling choices (\eg contextual vs.\ adversarial vs.\ predictive), allocator design, and replay-capacity configuration jointly determine routing robustness under diverse threat regimes."
+Motivated by the joint effects of allocator strategy and capacity semantics on routing performance, stability, and predictability, we study how modeling choices (\eg contextual vs.\ adversarial vs.\ predictive), allocator design, and replay-capacity configuration jointly determine routing robustness under diverse threat regimes.
 
 % Motivated by these considerations, we study how modeling choices (\eg contextual vs.\ adversarial vs.\ predictive), allocator strategies, and capacity semantics jointly affect routing robustness under diverse threat regimes. Specifically, we evaluate \textbf{16 models} (15 learned policies + Oracle) across \textbf{5 threat scenarios}, \textbf{4 allocators}, capacity scales $S \in \{1.0, 1.5, 2.0\}$, and 3--5 run ensembles to isolate which design choices matter most and to support actionable deployment guidance.
 
@@ -492,7 +485,56 @@ Many learning-based routing implementations also impose finite-memory or replay 
 
 % We model quantum entanglement routing as a sequential decision problem...
 
-We model quantum entanglement routing as a sequential decision problem where an agent must jointly optimize (1) \textbf{Path selection} among candidate routes, and (2) \textbf{Qubit allocation} across path segments, under uncertain link fidelities and adversarial interference. This section formalizes the network topology, reward structure, threat taxonomy, qubit allocation policies, and the underlying MAB formulation.
+We model quantum entanglement routing as a sequential decision problem where an agent must jointly optimize (1) \textbf{Path selection} among candidate routes, and (2) \textbf{Qubit allocation} across path segments, under uncertain link fidelities and adversarial interference. This section formalizes the network topology, reward structure, threat taxonomy, qubit allocation policies, and the underlying MAB formulation. This joint formulation follows prior quantum-routing work that couples path choice with fidelity estimation, online path selection, or qubit allocation, while making those design dimensions explicit so they can be varied systematically in our evaluation~\cite{wang2025learning,li2025multipath,huang2024quantum}.
+
+% \noindent\textbf{System-model loop.}
+% At each round $t$, the agent observes the candidate path set and available context, selects a route $P_r$, allocates qubits $\mathbf{x}$ across its links subject to budget constraints, and observes reward feedback determined by entanglement success and the threat availability vector $\mathbf{A}_t$. The evaluation then compares policies by repeating this loop across matched threat regimes, allocator policies, and replay-capacity settings.
+\begin{figure}[t]
+\centering
+\footnotesize
+\resizebox{\columnwidth}{!}{%
+\begin{tikzpicture}[
+    >=Latex,
+    node distance=0.55cm and 0.65cm,
+    box/.style={
+        rectangle,
+        draw,
+        rounded corners=4pt,
+        align=center,
+        minimum height=0.8cm,
+        text width=2.0cm,
+        inner sep=3pt
+    },
+    mainbox/.style={
+        rectangle,
+        draw,
+        rounded corners=5pt,
+        align=center,
+        minimum height=0.9cm,
+        text width=2.35cm,
+        inner sep=4pt
+    },
+    arrow/.style={thick,->}
+]
+
+\node[box] (context) {Candidate Paths\\+ Context};
+\node[mainbox, right=of context] (agent) {Routing Agent\\(Bandit Policy)};
+\node[box, right=of agent] (action) {Path Selection\\+ Qubit Allocation};
+
+\node[box, below=1.0cm of action] (env) {Quantum Network\\+ Threat Regime};
+\node[box, left=of env] (reward) {Reward / Feedback\\(success, fidelity, efficiency)};
+
+\draw[arrow] (context) -- (agent);
+\draw[arrow] (agent) -- (action);
+\draw[arrow] (action) -- (env);
+\draw[arrow] (env) -- (reward);
+\draw[arrow] (reward) -- (agent);
+
+\end{tikzpicture}%
+}
+\caption{System model for quantum entanglement routing. At each round, the routing agent observes candidate-path context, selects a path and qubit allocation, interacts with the quantum network under a given threat regime, and updates from the observed reward feedback.}
+\label{fig:system_model}
+\end{figure}
 
 \subsection{Network Topology and Path Structure}
 \label{subsec:topology}
@@ -506,13 +548,14 @@ We study a canonical 4-node quantum network connecting source $S$ (Alice) to des
 Each path $P_r$ has $h_r$ hops ($h_1 = h_2 = 2$, $h_3 = h_4 = 3$), where a \textbf{hop} denotes a single entanglement link between adjacent nodes (\eg source-to-repeater or repeater-to-destination) requiring one entanglement generation operation. Shorter paths reduce swapping overhead but may traverse noisier channels; longer paths enable route diversity but accumulate fidelity loss.
 
 \smallTitle{Qubit budget and allocator policies}
-The network operates under a \textbf{fixed total budget of 35 qubits} distributed across paths. We evaluate \textbf{four allocator strategies} that dynamically or statically assign qubits:
+The network operates under a \textbf{fixed total budget of 35 qubits} distributed across paths. We evaluate \textbf{four allocator strategies} chosen to span complementary allocation behaviors: a static baseline (\textbf{Fixed}), two principled adaptive heuristics based on posterior sampling and optimistic exploration (\textbf{ThompsonSampling} and \textbf{DynamicUCB}), and a non-informative control baseline (\textbf{Random}). This set allows us to compare whether routing robustness is best supported by fixed, uncertainty-aware, or uninformed allocation under the same total resource budget.
 \begin{enumerate}
 \item \textbf{Fixed} ($T_1{=}8, T_2{=}10, T_3{=}8, T_4{=}9$): static baseline
 \item \textbf{ThompsonSampling}: Bayesian posterior sampling over path utilities
 \item \textbf{DynamicUCB}: upper-confidence-bound-driven capacity redistribution
 \item \textbf{Random}: uniform random assignment (control baseline)
 \end{enumerate}
+
 For each path $P_r$ with session budget $T_r$, a \textbf{feasible allocation} $\mathbf{x} = (x_1, \dots, x_{h_r})$ satisfying $\sum_{\ell=1}^{h_r} x_\ell = T_r$ defines the context space $\mathcal{X}_r$. This combinatorial space scales quadratically for 3-hop paths, motivating contextual neural approximation.
 
 \subsection{Reward Model and Link-Level Fidelity}
@@ -540,11 +583,16 @@ Y_t(r,\mathbf{x}) \sim \mathrm{Bernoulli}\!\big(h_r(\mathbf{x}) \cdot A_t(r)\big
 \]
 where $Y_t(r,\mathbf{x}) \in \{0,1\}$ denotes the observed outcome (1 = success, 0 = failure) at frame $t$, and $A_t(r) \in \{0,1\}$ is the \textbf{availability indicator}: $A_t(r)=1$ if path $P_r$ is active (no attack), $A_t(r)=0$ if disrupted. When a path is disrupted at time $t$, we set its indicator to zero (i.e., $A_t(r)=0$ for disrupted paths and $A_t(r')=1$ otherwise), so disruption acts as a path-specific availability gate on otherwise stochastic link success. This formulation cleanly separates \textbf{stochastic decoherence} (encoded in $h_r$) from \textbf{strategic interference} (encoded in $A_t$).
 
+% \subsection{Adversarial Threat Taxonomy}
+% \label{subsec:threats}
+
+% We study routing robustness under \textbf{five escalating threat regimes} spanning benign stochasticity to intelligent reactive attacks. Each scenario modulates the availability vector
+% $\mathbf{A}_t = (A_t(1), \dots, A_t(4))$ according to distinct disruption semantics.
 \subsection{Adversarial Threat Taxonomy}
 \label{subsec:threats}
-
-We study routing robustness under \textbf{five escalating threat regimes} spanning benign stochasticity to intelligent reactive attacks. Each scenario modulates the availability vector
-$\mathbf{A}_t = (A_t(1), \dots, A_t(4))$ according to distinct disruption semantics.
+% We study routing robustness under \textbf{five escalating threat regimes} spanning benign stochasticity, temporally correlated disruption, targeted failures, and adaptive adversarial interference. These regimes are intended to separate routine quantum-network uncertainty from increasingly structured and strategic forms of path unavailability. Each scenario modulates the availability vector
+% $\mathbf{A}_t = (A_t(1), \dots, A_t(4))$ according to distinct disruption semantics.
+We study routing robustness under \textbf{five escalating threat regimes} spanning no-disruption operation, independent stochastic failures, temporally correlated disruption, targeted failures, and adaptive adversarial interference. The regimes are selected to form a controlled escalation from normal operating conditions to increasingly structured and strategic disruptions. The baseline regime isolates routing and allocation behavior without path unavailability, while the stochastic and Markov regimes capture two common non-adversarial uncertainty models: independent random failures and temporally correlated outages. The adaptive and OnlineAdaptive regimes then stress-test whether policies remain robust when path unavailability is coupled to the learner's own routing behavior, which is consistent with adversarial-bandit settings where rewards or losses may be strategically selected rather than drawn from a fixed distribution~\cite{auer2002finite,auer2002nonstochastic,bubeck2012regret,lattimore2020bandit}. This design also reflects quantum-network routing concerns in which entanglement generation is probabilistic, path quality varies over time, and routing policies may need to remain stable under interference or attacker-driven disruption~\cite{wang2025learning,li2025multipath,huang2024quantum}.
 
 \textbf{Baseline (No Disruption).}
 In the baseline regime, all routes remain available at all times: $A_t(r)=1$ for all $r,t$.
@@ -552,7 +600,7 @@ This setting isolates pure stochastic decoherence and serves as the \textbf{beni
 
 \textbf{Stochastic (6.25\% i.i.d. failures).}
 Under stochastic disruption, each route is independently available according to $A_t(r)\sim\mathrm{ Bernoulli}(0.9375)$.
-This captures benign environmental noise without temporal structure or memory.
+This captures non-adversarial environmental noise without temporal structure or memory.
 
 \textbf{Markov (25\% structured disruption).}
 In the Markov regime, availability is governed by a \textbf{4-state Markov chain} whose states modulate path-failure probabilities.
@@ -729,7 +777,7 @@ Each experiment instantiates a consistent decision pipeline:
 \emph{Environment} (topology + link/fidelity model)
 $\rightarrow$ \emph{Threat/Noise process} (how disruptions evolve)
 $\rightarrow$ \emph{Allocator} (maps total capacity to per-path budgets)
-$\rightarrow$ \emph{Capacity semantics} (\eg $T$ vs. $T_b$, replay scale $s$; \S\ref{subsec:capacity})
+$\rightarrow$ \emph{Capacity semantics} (\eg $T$ vs. $T_b$, replay scale $s$; \cref{subsec:capacity})
 $\rightarrow$ \emph{Learner/Policy} (bandit selects paths from feedback/context)
 $\rightarrow$ \emph{Metrics} (oracle-normalized efficiency and robustness summaries).
 
