@@ -225,7 +225,7 @@ Accept Dan's tracked edit from `et al.` to `\etal` wherever that specific tracke
 
 ---
 
-## Item 008 — In review
+## Item 008 — Approved
 
 ### Feedback item
 
@@ -237,7 +237,7 @@ Accept Dan's tracked edit from `et al.` to `\etal` wherever that specific tracke
 
 ### Task
 
-Verify Dan's tracked transition edit and decide whether to keep it as-is.
+Verify Dan's tracked transition edit and decide whether to keep it as-is or improve the sentence.
 
 ### Content in question
 
@@ -247,13 +247,45 @@ In contrast, we do not propose a new quantum-network routing protocol or a new b
 
 ### Proposed solution
 
-Accept Dan's tracked edit. The transition `In contrast, we...` is appropriate here because the sentence is distinguishing this paper from prior quantum-routing work.
+```tex
+In contrast, we provide a controlled robustness characterization that isolates which algorithm--allocator--capacity combinations remain stable when disruption is structured or adaptive.
+```
 
-Keep the current wording:
+### Decision / status
+
+**Approved.** Use Piter's concise positive-framing version.
+
+---
+
+## Item 009 — In review
+
+### Feedback item
+
+**Reviewer:** dan7800  
+**Date/time:** 22 April, 6:30 am  
+**Feedback:**
+
+> Make it a bit more clear how our work differs.
+
+### Task
+
+Strengthen the contrast between this paper and prior work by stating the paper's actual contribution directly.
+
+### Content in question
 
 ```tex
-In contrast, we do not propose a new quantum-network routing protocol or a new budgeted-control formulation with analytical guarantees;
+In contrast, we do not propose a new quantum-network routing protocol or a new budgeted-control formulation with analytical guarantees; 
 ```
+
+### Proposed solution
+
+This item is substantively addressed by the approved Item 008 rewrite:
+
+```tex
+In contrast, we provide a controlled robustness characterization that isolates which algorithm--allocator--capacity combinations remain stable when disruption is structured or adaptive.
+```
+
+This is clearer because it replaces negative differentiation with a direct statement of what the paper contributes.
 
 ### Decision / status
 
