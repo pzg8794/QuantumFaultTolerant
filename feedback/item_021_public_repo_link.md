@@ -28,4 +28,4 @@ All source code, datasets, and experiment scripts are available in the public re
 
 ## Decision / status
 
-Pending Piter review. Recommended status: **Duplicate / covered by Item 020**, unless Piter wants a separate manuscript sentence specifically for the GitHub-only link.
+**Duplicate / covered by Item 020.** Resolved with the existing public repository and shared Drive artifact wording approved under Item 020.
