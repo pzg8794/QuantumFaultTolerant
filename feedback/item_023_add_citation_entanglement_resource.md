@@ -28,4 +28,4 @@ Quantum routing also differs fundamentally from classical packet-switching routi
 
 ## Decision / status
 
-Pending Piter review.
+**Approved.** Add `\cite{kimble2008quantum,wehner2018quantum}` and use `packet-switching` for cleaner compound-modifier style.
