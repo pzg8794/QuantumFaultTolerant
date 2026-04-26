@@ -449,7 +449,7 @@ Accept the tracked deletion of `---`. The sentence is clearer without an em-dash
 
 ---
 
-## Item 015 — In review
+## Item 015 — Accepted tracked edit
 
 ### Feedback item
 
@@ -471,7 +471,43 @@ Existing routing approaches frequently assume stationary link behavior, decouple
 
 ### Proposed solution
 
-Accept the tracked deletion of `those`. The current phrase `assumptions that can fail` is concise and grammatical, while the deleted word likely made the sentence heavier without adding meaning.
+Accept the tracked deletion of `those`. The current phrase `assumptions that can fail` is concise and grammatical.
+
+### Decision / status
+
+**Accepted tracked edit.** No separate manuscript action beyond keeping Dan's word deletion.
+
+---
+
+## Item 016 — In review
+
+### Feedback item
+
+**Reviewer:** dan7800  
+**Date/time:** 19 April, 4:44 pm  
+**Feedback:**
+
+> Changed: `e primary contribution of this paper is` to `is work provides`
+
+### Task
+
+Verify Dan's tracked rewrite from a contribution-framing phrase toward the clearer `This work provides` framing.
+
+### Content in question
+
+```tex
+This work provides a systematic threat-aware evaluation framework and uses it to evaluate contextual, adversarial, and hybrid bandit algorithms for joint path selection and qubit allocation in quantum networks, together with a family of pursuit--neural hybrid policies that we show outperform both adversarial-first and stochastic-only baselines.
+```
+
+### Proposed solution
+
+Accept the tracked rewrite direction. The `This work provides...` framing is clearer and more direct than `The primary contribution of this paper is...`.
+
+If we want the sentence to align with the earlier approved Item 1 wording, use:
+
+```tex
+This work provides a systematic threat-aware framework to evaluate contextual, adversarial, and hybrid bandit algorithms for joint path selection and qubit allocation in quantum networks, together with a family of pursuit--neural hybrid policies that we show outperform both adversarial-first and stochastic-only baselines.
+```
 
 ### Decision / status
 
