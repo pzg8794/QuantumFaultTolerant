@@ -186,18 +186,18 @@
 \begin{abstract}
 Quantum entanglement routing requires dynamic path selection and qubit allocation under noisy and adversarial conditions. Existing routing approaches frequently assume stationary link behavior, decouple selection from allocation, or rely on offline optimization assumptions that can fail when link fidelities drift and disruptions adapt online. This is problematic because when such routing assumptions fail, routing decisions can degrade end-to-end entanglement quality and waste scarce quantum resources, making apparently strong policies unreliable under realistic operating conditions.
 
-This work provides a systematic threat-aware evaluation framework and uses it to evaluate contextual, adversarial, and hybrid bandit algorithms for joint path selection and qubit allocation in quantum networks, together with a family of pursuit--neural hybrid policies that we show outperform both adversarial-first and stochastic-only baselines. Unlike existing work that fixes allocator policy and replay semantics as background constants, our framework treats them as first-class experimental variables, enabling direct attribution of robustness to the algorithm--allocator--capacity triad.
+This work provides a systematic threat-aware framework to evaluate contextual, adversarial, and hybrid bandit algorithms for joint path selection and qubit allocation in quantum networks, together with a family of pursuit--neural hybrid policies that we show outperform both adversarial-first and stochastic-only baselines. Unlike existing work that fixes allocator policy and replay semantics as background constants, our framework treats them as first-class experimental variables, enabling direct attribution of robustness to the algorithm--allocator--capacity triad.
 
 
-We found that neural hybrids outperform non-contextual baselines by 18–24 percentage points in scenario-aggregated efficiency across thirteen evaluated algorithms and five threat regimes. They also emerge as the most robust family, sustaining worst-case performance floors above 85\% under stochastic threats and remaining more stable under strategic adaptive attacks than adversarial-first EXP3-style designs. We further identified a \emph{capacity paradox}: increasing replay capacity improves efficiency under structured (Markov) disruption yet induces efficiency collapses of 22–30 percentage points under adaptive adversaries, revealing that resource predictability, not bandwidth, is the dominant robustness constraint.
+% We found that neural hybrids outperform non-contextual baselines by 18–24 percentage points in scenario-aggregated efficiency across thirteen evaluated algorithms and five threat regimes. They also emerge as the most robust family, sustaining worst-case performance floors above 85\% under stochastic threats and remaining more stable under strategic adaptive attacks than adversarial-first EXP3-style designs. We further identified a \emph{capacity paradox}: increasing replay capacity improves efficiency under structured (Markov) disruption yet induces efficiency collapses of 22–30 percentage points under adaptive adversaries, revealing that resource predictability, not bandwidth, is the dominant robustness constraint.
 
+We found that neural hybrids outperform non-contextual baselines by 18–24 percentage points in scenario-aggregated efficiency across thirteen evaluated algorithms and five threat regimes. They also emerge as the most robust family, sustaining worst-case performance floors above 85\% under stochastic threats and remaining more stable under strategic adaptive attacks than adversarial-first EXP3-style designs. We further identify a \emph{capacity paradox}: increasing replay capacity improves efficiency under structured Markov disruption but can induce 22–30 percentage-point efficiency collapses under adaptive adversaries, revealing that resource predictability, not raw capacity, is the dominant robustness constraint.
 
 %Across 13 algorithms and five threat regimes, pursuit--neural hybrids emerge as the most robust family, outperforming non-contextual baselines by 18--24 percentage points in scenario-aggregated efficiency, sustaining worst-case performance floors above 85\% under stochastic threats, and remaining more stable under strategic adaptive attacks than adversarial-first EXP3-style designs. A key finding is a \emph{capacity paradox}: increasing replay capacity improves efficiency under structured (Markov) disruption yet induces efficiency collapses of 22--30 percentage points under adaptive adversaries, revealing that resource predictability, not bandwidth, is the dominant robustness bottleneck.
 
 We further validate these robustness trends through cross-testbed evaluation on three external quantum network simulators, showing consistent behavior across diverse topologies and noise models while exposing scale- and physics-dependent performance limitations.
 
-All project observations and source code are available on public repository at \url{https://github.com/pzg8794/quantum_project_hub}. 
-
+All source code, datasets, and experiment scripts are available in the public reproducibility repository at \url{https://github.com/pzg8794/quantum_project_hub}. Additional datalake-style artifacts and notebook execution resources are available through the shared Drive hub at \url{https://drive.google.com/drive/folders/0AK0VchnNyM-xUk9PVA}.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -208,9 +208,11 @@ Quantum networks, entanglement routing, multi-armed bandits, adversarial learnin
 
 Quantum entanglement distribution is a foundational primitive of the quantum Internet, enabling applications ranging from quantum key distribution (QKD) to distributed quantum computing and sensing~\cite{kimble2008quantum,wehner2018quantum,pompili2021realization,wootters1982single,bennett1993teleporting}. Yet, reliable end-to-end entanglement is difficult to sustain: quantum states are fragile, entanglement generation and swapping are probabilistic, and performance degrades rapidly under decoherence and interference~\cite{briegel1998quantum,dahlberg2021netsquid,zukowski1993event}. In repeater-based architectures~\cite{briegel1998quantum,pompili2021realization}, these effects compound across multi-hop routes and introduce stochastic waiting-time behavior that can significantly alter path quality over time~\cite{wang2019waiting}. As a result, entanglement routing is naturally a sequential decision problem in which a learner must repeatedly choose among candidate paths under noisy feedback, making multi-armed bandits (MABs) a natural abstraction for online routing and adaptation~\cite{lattimore2020bandit,bubeck2012regret}.
 
-Quantum routing also differs fundamentally from classical packet switching routing because the underlying resource is \emph{entanglement}, not transferable data~\cite{}. Quantum states cannot be copied or amplified due to the no-cloning theorem~\cite{wootters1982single}, so classical store-and-forward buffering does not apply. Instead, routing must establish and consume entanglement under limited memory coherence, probabilistic swapping, and fidelity loss induced by operations and delay~\cite{bennett1993teleporting,zukowski1993event}. This \hl{?creates the problem that?} path selection is inseparable from resource allocation: how qubits are distributed across candidate paths affects both achievable success probability and the feedback the learner receives. In realistic deployments, routing therefore becomes a joint decision problem over \emph{path selection}, \emph{qubit allocation}, and \emph{learning under uncertainty}~\cite{li2025multipath,wang2025learning,huang2024quantum}.
+% Quantum routing also differs fundamentally from classical packet-switching routing because the underlying resource is \emph{entanglement}, not transferable data~\cite{kimble2008quantum,wehner2018quantum}. Quantum states cannot be copied or amplified due to the no-cloning theorem~\cite{wootters1982single}, so classical store-and-forward buffering does not apply. Instead, routing must establish and consume entanglement under limited memory coherence, probabilistic swapping, and fidelity loss induced by operations and delay~\cite{bennett1993teleporting,zukowski1993event}. This \hl{?creates the problem that?} path selection is inseparable from resource allocation: how qubits are distributed across candidate paths affects both achievable success probability and the feedback the learner receives. In realistic deployments, routing therefore becomes a joint decision problem over \emph{path selection}, \emph{qubit allocation}, and \emph{learning under uncertainty}~\cite{li2025multipath,wang2025learning,huang2024quantum}.
 
-Existing quantum routing studies have proposed important mechanisms for online path selection, benchmarking-driven routing, and adversarially robust learning. However, they are often evaluated under incompatible assumptions about threat processes, topology visibility, allocator policy, or replay/memory semantics, making direct comparisons difficult and weakening deployment guidance~\cite{liu2024qbgp,li2025multipath,chaudhary2023quantum}. In some cases, strong results may reflect the surrounding evaluation setup (\eg allocator policy, replay-capacity choices) as much as the learning rule itself. This leaves a \emph{matched-threat evaluation gap}: A lack of a controlled view of when contextual structure is truly necessary, when adversarial robustness dominates, and how allocator policy and replay-capacity semantics alter apparent routing performance. 
+Quantum routing differs fundamentally from classical packet-switching because the routed resource is \emph{entanglement}, not transferable data~\cite{kimble2008quantum,wehner2018quantum}. Quantum states cannot be copied or amplified due to the no-cloning theorem~\cite{wootters1982single}, so classical store-and-forward buffering does not apply. Instead, routing must establish and consume entanglement under limited memory coherence, probabilistic swapping, and fidelity loss induced by operations and delay~\cite{bennett1993teleporting,zukowski1993event}. These constraints make path selection inseparable from resource allocation: how qubits are distributed across candidate paths affects both achievable success probability and the feedback observed by the learner. In realistic deployments, routing therefore becomes a joint decision problem over \emph{path selection}, \emph{qubit allocation}, and \emph{learning under uncertainty}~\cite{li2025multipath,wang2025learning,huang2024quantum}.
+
+Existing quantum routing studies have proposed important mechanisms for online path selection, benchmarking-driven routing, adaptive route selection, and adversarially robust learning~\cite{wang2025learning,coopmans2021benchmark,huang2024quantum}. However, they are often evaluated under incompatible assumptions about threat processes, topology visibility, allocator policy, or replay/memory semantics, making direct comparisons difficult and weakening deployment guidance~\cite{liu2024qbgp,li2025multipath,chaudhary2023quantum}. In some cases, strong results may reflect the surrounding evaluation setup (\eg allocator policy, replay-capacity choices) as much as the learning rule itself. This leaves a \emph{matched-threat evaluation gap}: the lack of a controlled view of when contextual structure is truly necessary, when adversarial robustness dominates, and how allocator policy and replay-capacity semantics alter apparent routing performance. This matters because a routing policy that appears robust may fail when deployed under a different operating regime.
 
 \subsection{Our Approach and Evaluation Scope}
 
@@ -223,31 +225,117 @@ Existing quantum routing studies have proposed important mechanisms for online p
 \tikzstyle{arrow} = [thick,->,>=stealth]
 \tikzstyle{line} = [draw, -latex']
 
-\begin{figure}[h!]
+% \begin{figure}[h!]
+% \footnotesize
+% \scalebox{.86}{
+% \begin{tikzpicture}[node distance = 2.5cm, line width=.5mm]
+
+% \node [rrec] (Background) {Background};
+% \node [rrec, right of=Background] (Encrypt) {Create Encrypted Text};
+% \node [rrec, right of=Encrypt] (Classical) {Observe Classical Breaking};
+% \node [rrec, right of=Classical] (Quantum) {Observe Quantum Breaking};
+
+% % Forward arrows
+% \draw [arrow] (Background) -- (Encrypt);
+% \draw [arrow] (Encrypt) -- (Classical);
+% \draw [arrow] (Classical) -- (Quantum);
+
+
+% % Add the straight feedbakc loop here
+% % Feedback arrow using only straight segments
+% \draw [arrow] (Quantum.south) -- ++(0,-.25) --  node[midway, below] {Iterations for each encryption method (\ie Cesar, Vigenère, RSA)} ($(Encrypt.south)+(0,-.25)$) -- (Encrypt.south);
+
+% \end{tikzpicture}
+% }
+% \caption{Flow of the cryptography learning activity.}
+% \label{fig:LabProcess-Flowchart}
+% \end{figure}
+
+% In preamble if not already included:
+% \usetikzlibrary{positioning,arrows.meta,fit,backgrounds}
+
+\begin{figure}[t]
+\centering
 \footnotesize
-\scalebox{.86}{
-\begin{tikzpicture}[node distance = 2.5cm, line width=.5mm]
+\begin{tikzpicture}[
+    node distance=0.9cm and 1.2cm,
+    >=Latex,
+    box/.style={
+        rectangle,
+        draw,
+        rounded corners=4pt,
+        align=center,
+        minimum height=0.95cm,
+        text width=2.55cm,
+        inner sep=4pt
+    },
+    smallbox/.style={
+        rectangle,
+        draw,
+        rounded corners=4pt,
+        align=center,
+        minimum height=0.85cm,
+        text width=2.3cm,
+        inner sep=3pt
+    },
+    mainbox/.style={
+        rectangle,
+        draw,
+        rounded corners=6pt,
+        align=center,
+        minimum height=1.1cm,
+        text width=3.2cm,
+        inner sep=5pt
+    },
+    arrow/.style={thick,->}
+]
 
-\node [rrec] (Background) {Background};
-\node [rrec, right of=Background] (Encrypt) {Create Encrypted Text};
-\node [rrec, right of=Encrypt] (Classical) {Observe Classical Breaking};
-\node [rrec, right of=Classical] (Quantum) {Observe Quantum Breaking};
+% Top row: experimental inputs
+\node[box] (topology) {Quantum Network\\Topology};
+\node[box, right=of topology] (threats) {Threat\\Regimes};
+\node[box, right=of threats] (models) {Bandit Policy\\Families};
 
-% Forward arrows
-\draw [arrow] (Background) -- (Encrypt);
-\draw [arrow] (Encrypt) -- (Classical);
-\draw [arrow] (Classical) -- (Quantum);
+% Middle row: configuration
+\node[smallbox, below=1.3cm of topology] (allocator) {Allocator\\Policy};
+\node[smallbox, below=1.3cm of models] (capacity) {Replay / Capacity\\Semantics};
 
+% Center engine
+\node[mainbox, below=1.4cm of threats] (engine)
+{Threat-Aware Evaluation Framework\\[0.2em]
+Joint path selection + qubit allocation under matched conditions};
 
-% Add the straight feedbakc loop here
-% Feedback arrow using only straight segments
-\draw [arrow] (Quantum.south) -- ++(0,-.25) --  node[midway, below] {Iterations for each encryption method (\ie Cesar, Vigenère, RSA)} ($(Encrypt.south)+(0,-.25)$) -- (Encrypt.south);
+% Bottom row: outputs
+\node[box, below=1.5cm of allocator] (metrics) {Oracle-Normalized\\Metrics};
+\node[box, below=1.5cm of engine] (comparison) {Cross-Model\\Robustness Comparison};
+\node[box, below=1.5cm of capacity] (guidance) {Deployment\\Guidance};
+
+% Arrows into engine
+\draw[arrow] (topology) -- (engine);
+\draw[arrow] (threats) -- (engine);
+\draw[arrow] (models) -- (engine);
+\draw[arrow] (allocator) -- (engine);
+\draw[arrow] (capacity) -- (engine);
+
+% Arrows out of engine
+\draw[arrow] (engine) -- (metrics);
+\draw[arrow] (engine) -- (comparison);
+\draw[arrow] (engine) -- (guidance);
+
+% Optional grouping boxes
+\begin{scope}[on background layer]
+    \node[draw, rounded corners=6pt, fit=(topology)(threats)(models), inner sep=8pt,
+          label=above:{\textbf{Experimental Inputs}}] {};
+    \node[draw, rounded corners=6pt, fit=(allocator)(capacity)(engine), inner sep=10pt,
+          label=above:{\textbf{Evaluation Process}}] {};
+    \node[draw, rounded corners=6pt, fit=(metrics)(comparison)(guidance), inner sep=8pt,
+          label=above:{\textbf{Outputs}}] {};
+\end{scope}
 
 \end{tikzpicture}
-}
-\caption{Flow of the cryptography learning activity.}
-\label{fig:LabProcess-Flowchart}
+\caption{Threat-aware evaluation framework for quantum entanglement routing. The framework combines network topology, threat regimes, bandit policy families, allocator policy, and replay/capacity semantics under matched conditions to produce Oracle-normalized metrics, cross-model robustness comparisons, and deployment guidance.}
+\label{fig:framework}
 \end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%% End the flow chart %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
