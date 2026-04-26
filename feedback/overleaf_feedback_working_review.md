@@ -389,7 +389,7 @@ Verify whether this added author/comment placeholder should remain in the source
 
 ---
 
-## Item 013 — In review
+## Item 013 — Accepted tracked edit
 
 ### Feedback item
 
@@ -412,6 +412,36 @@ Existing routing approaches frequently assume stationary link behavior, decouple
 ### Proposed solution
 
 Accept the tracked wording edit. `Frequently` is slightly more formal than `often` and fits the manuscript tone.
+
+### Decision / status
+
+**Accepted tracked edit.** No separate manuscript action beyond keeping Dan's wording change.
+
+---
+
+## Item 014 — In review
+
+### Feedback item
+
+**Reviewer:** dan7800  
+**Date/time:** 19 April, 4:43 pm  
+**Feedback:**
+
+> Changed: `---` to empty text
+
+### Task
+
+Verify Dan's tracked punctuation cleanup in the same sentence cluster.
+
+### Content in question
+
+```tex
+Existing routing approaches frequently assume stationary link behavior, decouple selection from allocation, or rely on offline optimization assumptions that can fail when link fidelities drift and disruptions adapt online.
+```
+
+### Proposed solution
+
+Accept the tracked deletion of `---` if the current sentence now reads with normal comma-separated phrasing, as shown above. The sentence is clearer without an em-dash/placeholder separator.
 
 ### Decision / status
 
