@@ -132,6 +132,13 @@
 \newcommand{\Tb}{T_{\text{b}}}
 \newcommand{\TwoT}{2T}
 
+\newcommand{\RQOneText}{RQ1}
+\newcommand{\RQTwoText}{RQ2}
+\newcommand{\RQThreeText}{RQ3}
+\newcommand{\RQOne}{\textbf{\RQOneText}}
+\newcommand{\RQTwo}{\textbf{\RQTwoText}}
+\newcommand{\RQThree}{\textbf{\RQThreeText}}
+
 % Author comments (remove for camera-ready)
 \newcommand{\todo}[1]{\textcolor{cyan}{\textbf{[TODO: #1]}}}
 \newcommand{\dan}[1]{\textcolor{blue}{\textit{[Dan: #1]}}}
@@ -821,7 +828,7 @@ This architecture enables \textbf{systematic ablation} across allocators, algori
 
 Our study addresses three core questions about stochastic decoherence impact, adversarial robustness, and deployment tradeoffs in algorithm--allocator--capacity selection:
 
-\subsubsection*{\emph{\textbf{RQ1}}}
+\subsubsection*{\emph{\RQOne}}
 \label{subsubsec:rq1_question}
 
 \emph{How do classical and context-aware multi-armed bandit (MAB) routing approaches perform under stochastic quantum network conditions?}
@@ -917,7 +924,7 @@ yielding an average gap of approximately \textbf{24 pp} (see \S\ref{subsec:rq1_a
   \emph{Yes}. In the matched testbed slice ($T_b$, $s{=}2$, non-random allocators, 3- and 5-run suites), pursuit--neural models remain $\ge 85\%$ under \textsc{Stochastic} across the primary horizons used in validated suites.
 \end{itemize}
 
-\subsubsection*{\emph{RQ2}}
+\subsubsection*{\emph{\RQTwo}}
 \label{subsubsec:rq2_question}
 
 \emph{How do different bandit-based routing strategies perform as network disruptions evolve from stochastic noise to structured and adaptive adversarial interference?}
@@ -991,7 +998,7 @@ Across \small\texttt{Markov}, \small\texttt{Adaptive}, and \small\texttt{OnlineA
 \begin{itemize}[leftmargin=2em]
   \item \emph{RQ2a: Do context-aware routing policies outperform baseline policies under stochastic disruption, and do they maintain this advantage under structured and adaptive threat regimes?}\\
   \textit{Yes.}
-  Under \small\texttt{Stochastic} decoherence, contextual and neural--contextual models retain the \textit{15--25 pp} gain observed in RQ1 and remain above the 85\% target. Under \small\texttt{Markov}/\small\texttt{Adaptive}/\small\texttt{OnlineAdaptive}, pursuit-based models keep \textit{high averages ($\simeq$89\%)} and floors of \textit{65--73\%}, while adversarial-first methods fall to floors near \textit{52--54\%}.%
+  Under \small\texttt{Stochastic} decoherence, contextual and neural--contextual models retain the \textit{15--25 pp} gain observed in \RQOneText{} and remain above the 85\% target. Under \small\texttt{Markov}/\small\texttt{Adaptive}/\small\texttt{OnlineAdaptive}, pursuit-based models keep \textit{high averages ($\simeq$89\%)} and floors of \textit{65--73\%}, while adversarial-first methods fall to floors near \textit{52--54\%}.%
   \cite{auer2002nonstochastic}
 
   \item \emph{RQ2b: Which model family degrades most gracefully and consistently defines the efficiency frontier across all threat scenarios?}\\
@@ -1012,7 +1019,7 @@ same threat regimes (\small\texttt{CMAB} experiments).
 % RQ3: Deployment Optimization
 % ----------------------------------------------------------------------------
 
-\subsubsection*{\emph{RQ3}}
+\subsubsection*{\emph{\RQThree}}
 \label{subsubsec:rq3_question}
 
 \emph{How does algorithm choice, resource allocation strategy, and replay-capacity semantics interact to affect routing efficiency and stability in quantum entanglement routing?}
@@ -1195,13 +1202,13 @@ Qubit capacity     & 35 total (fixed) qubits       & All \\
 \small\texttt{Allocators} & \textit{Fixed, Thompson,}     & $RQ3_c$ \\
                     & \multicolumn{1}{l}{\textit{DynamicUCB, Random}} & \\
 Replay capacity     & $T_b=sF_b,\;T=sF_c$ & $RQ3_b$ \\
-\small\texttt{Threat models} & \textit{None, Stochastic, Markov,} & $RQ1$ \& \\
-                    & \multicolumn{1}{l}{\textit{Adaptive, OnlineAdaptive}} & $RQ2$ \\
+\small\texttt{Threat models} & \textit{None, Stochastic, Markov,} & \RQOneText \& \\
+                    & \multicolumn{1}{l}{\textit{Adaptive, OnlineAdaptive}} & \RQTwoText \\
 Forecasting         & None, ARIMA ($n=50$),         & $RQ3_a$ \\
                     & \multicolumn{1}{l}{ARIMA ($n=100$)} & \\
 \midrule
-Algorithm families  & Classical (4), Predictive (1) & $RQ1$ \& \\
-                    & Adversarial (3), Context (6) & $RQ2$ \\
+Algorithm families  & Classical (4), Predictive (1) & \RQOneText \& \\
+                    & Adversarial (3), Context (6) & \RQTwoText \\
 \midrule
 \textit{Evaluation phases} & & \\
 \quad Ph 1 (MAB baseline)         & 12 conditions   & $RQ_1$ \\
@@ -1236,7 +1243,7 @@ Scaling applies to replay memory; the 35-qubit physical network capacity remains
 % Threat Taxonomy Intro & Hyperparameter Table
 % ----------------------------------------------------------------------------
 \noindent\textit{Adversarial threat taxonomy.}
-We evaluate five scenarios spanning the efficiency--security spectrum: natural stochastic decoherence, Markovian structure, and three grades of adaptive adversarial attacks (\textbf{RQ2}). This taxonomy enables controlled comparisons under matched interference regimes. Hyperparameter settings are summarized in \Cref{tab:setup-hyperparameters}.%
+We evaluate five scenarios spanning the efficiency--security spectrum: natural stochastic decoherence, Markovian structure, and three grades of adaptive adversarial attacks (\RQTwo). This taxonomy enables controlled comparisons under matched interference regimes. Hyperparameter settings are summarized in \Cref{tab:setup-hyperparameters}.%
 \cite{huang2024quantum}
 
 \begin{table}[ht!]
@@ -1266,9 +1273,9 @@ Replay ($T_b,T$) & All & $T_b=sF_b,\;T=sF_c$ & \cite{schaul2015prioritized,mnih2
 
 \subsubsection{Scenario Specifications}
 \begin{itemize}
-  \item \small\texttt{Baseline} (\textbf{RQ1}): Ideal 0\% failure rate. Sets the efficiency ceiling, isolating exploration costs from threat mitigation.
+  \item \small\texttt{Baseline} (\RQOne): Ideal 0\% failure rate. Sets the efficiency ceiling, isolating exploration costs from threat mitigation.
 
-  \item \small\texttt{Stochastic} (\textbf{RQ1, RQ2a}): 6.25\% i.i.d.\ failure rate. Tests if specialized defenses are required under natural noise.%
+  \item \small\texttt{Stochastic} (\textbf{\RQOneText, RQ2a}): 6.25\% i.i.d.\ failure rate. Tests if specialized defenses are required under natural noise.%
   \cite{huang2024quantum}
 
   \item \small\texttt{Markov} (\textbf{RQ2a--b}): 25\% attack rate using a 4-state transition process. Models state-dependent disruption.%
@@ -1284,7 +1291,7 @@ Replay ($T_b,T$) & All & $T_b=sF_b,\;T=sF_c$ & \cite{schaul2015prioritized,mnih2
 % ----------------------------------------------------------------------------
 % Algorithm Portfolio
 % ----------------------------------------------------------------------------
-\subsubsection{Algorithm portfolio (\textbf{RQ2})}
+\subsubsection{Algorithm portfolio (\RQTwo)}
 We evaluate 14 algorithms spanning three generations of MAB development plus an Oracle baseline. Phase progression (\Cref{tab:setup-algorithm-portfolio}) covers classical exploration (Phase~1), adversarial defenses (Phase~1--2), contextual/neural methods (Phase~2), and pursuit-based predictive models (Phase~2--3), enabling systematic comparison across architectural paradigms.
 
 \begin{table}[ht!]
@@ -1354,7 +1361,7 @@ Random     & Control  & Uniform random allocation subject to $\sum_k c_k = 35$. 
 \subsubsection{Phased evaluation structure}
 We validate contributions across four incremental phases aligned with the RQs:
 \begin{itemize}
-    \item \small\texttt{P1} (MAB baseline): 12 conditions. Classical models under stochastic noise to establish context-free baselines (\textbf{RQ1}).
+    \item \small\texttt{P1} (MAB baseline): 12 conditions. Classical models under stochastic noise to establish context-free baselines (\RQOne).
     \item \small\texttt{P2 (Contextual / adversarial):} 180 conditions per contextual family. Evaluates CMAB and iCMAB variants under adversarial threats (\textbf{RQ2a--b}).
     \item \small\texttt{P3 (Dynamic allocation):} 240 conditions. Cross-product of pursuit models, allocators, and scenarios to test system interactions (\textbf{RQ3c}).
     \item \small\texttt{P4 (Capacity ablation):} 120 conditions. Sweeps replay scaling ($s\in\{1,1.5,2\}$) and the doubled-current stress test ($2T$) to evaluate the Capacity Paradox (\textbf{RQ3b}).
@@ -1383,7 +1390,7 @@ as defined in the Introduction and \Cref{sec:expDesign}.
 All quantitative results reported are computed from the curated experimental corpus
 produced by our evaluation framework (run logs, summaries, and aggregation scripts),
 with full reproducibility artifacts provided in Appendix~\ref{app:data_artifacts}.
-Results are organized by research question (\Cref{sec:research_questions}). We first assess whether baseline MABs remain deployment-viable under stochastic decoherence (RQ1; \S\ref{subsec:rq1_answer}), then evaluate robustness as threats become structured and adaptive (RQ2; \S\ref{subsec:rq2_answer}), and finally analyze allocator--capacity interactions and deployment rules (RQ3; \S\ref{subsubsec:rq3a_answer}--\S\ref{subsec:rq3c_answer}).
+Results are organized by research question (\Cref{sec:research_questions}). We first assess whether baseline MABs remain deployment-viable under stochastic decoherence (\RQOneText; \S\ref{subsec:rq1_answer}), then evaluate robustness as threats become structured and adaptive (\RQTwoText; \S\ref{subsec:rq2_answer}), and finally analyze allocator--capacity interactions and deployment rules (\RQThreeText; \S\ref{subsubsec:rq3a_answer}--\S\ref{subsec:rq3c_answer}).
 
 % ----------------------------------------------------------------------------
 % Optional: Global win-share across the full paper-suite condition grid.
@@ -1431,7 +1438,7 @@ Results are organized by research question (\Cref{sec:research_questions}). We f
 % ============================================================================
 % RQ1: Impact of Stochasticity on Pure (Paper) Models
 % ============================================================================
-\subsection{RQ1: Impact of Stochasticity on Pure (Paper) Models}
+\subsection{\RQOneText: Impact of Stochasticity on Pure (Paper) Models}
 \label{subsec:rq1_answer}
 
 \subsubsection{Hypothesis}
@@ -1439,13 +1446,13 @@ Results are organized by research question (\Cref{sec:research_questions}). We f
 
 Under pure stochastic quantum decoherence (6.25\% i.i.d.\ failure rate), we expect
 contextual/informed baselines and select neural routing agents to remain near deployment-grade
-efficiency, while weaker context-free or mis-specified variants degrade. RQ1 establishes
+efficiency, while weaker context-free or mis-specified variants degrade. \RQOneText{} establishes
 fundamental viability \emph{before} introducing adaptive adversaries.
 
 % ----------------------------------------------------------------------------
 \subsubsection{Experimental Design}
 
-For RQ1, we restrict analysis to the paper-model portfolio (EXP-family, CMAB, and iCMAB baselines)
+For \RQOneText, we restrict analysis to the paper-model portfolio (EXP-family, CMAB, and iCMAB baselines)
 under the \small\texttt{Stochastic} scenario (6.25\% i.i.d.\ failures) using the paper-default deployment setting
 (\small\texttt{Default} allocator in our evaluation corpus).
 Reported statistics aggregate across (i) horizons present in the corpus, (ii) replay-capacity scales
@@ -1470,7 +1477,7 @@ policies collapse toward $\approx 37$--40\% even without adversarial pressure.
 
 \begin{table}[ht!]
 \small  % Reduce font size
-\caption{RQ1 performance under 6.25\% stochastic decoherence, aggregated across horizons, replay scales \(s \in \{1,1.5,2\}\), and both capacity semantics (T and Tb). Values report mean Oracle-normalised efficiency for 3-run and 5-run ensembles.}
+\caption{\RQOneText{} performance under 6.25\% stochastic decoherence, aggregated across horizons, replay scales \(s \in \{1,1.5,2\}\), and both capacity semantics (T and Tb). Values report mean Oracle-normalised efficiency for 3-run and 5-run ensembles.}
 \label{tab:rq1masterstochastic}
 \centering
 \setlength{\tabcolsep}{4pt}  % Reduce column padding
@@ -1512,14 +1519,14 @@ iCEXP4 & 36.9 & 36.8 & 37.4 \\
 \end{itemize}
 
 % ----------------------------------------------------------------------------
-\subsubsection{Answer to \textbf{RQ1}}
+\subsubsection{Answer to \RQOne}
 
 \noindent\textit{Yes—stochastic decoherence alone separates viable baselines from structural failures.}
 Using the curated evaluation corpus for the paper-model portfolio, we observe a stable top tier
 (\texttt{CPursuit} and \texttt{(i)CEpsilonGreedy}) that remains deployment-viable under natural noise,
 while multiple variants degrade substantially and a subset collapses well below practical thresholds.
-Importantly, these RQ1 conclusions already integrate the full replay scale sweep ($s \in \{1, 1.5, 2\}$)
-and both capacity semantics ($T$, $T_b$); RQ3 later disaggregates capacity effects to diagnose the capacity paradox directly.
+Importantly, these \RQOneText{} conclusions already integrate the full replay scale sweep ($s \in \{1, 1.5, 2\}$)
+and both capacity semantics ($T$, $T_b$); \RQThreeText{} later disaggregates capacity effects to diagnose the capacity paradox directly.
 
 \begin{figure}[ht!]
 \scriptsize
@@ -1600,12 +1607,12 @@ legend style={font=\scriptsize}
 % ============================================================================
 % RQ2: Algorithm Robustness Across Threat Sophistication
 % ============================================================================
-\subsection{RQ2: Algorithm Robustness Across Threat Sophistication}
+\subsection{\RQTwoText: Algorithm Robustness Across Threat Sophistication}
 \label{subsec:rq2_answer}
 
 \subsubsection{Experimental Design}
 
-We evaluate the same paper-model portfolio from RQ1 under three escalating threat environments:
+We evaluate the same paper-model portfolio from \RQOneText{} under three escalating threat environments:
 \texttt{Markov} (structured), \texttt{Adaptive} (reactive), and \texttt{OnlineAdaptive} (real-time).
 All reported statistics are computed from the curated evaluation corpus using the paper-default setting
 (\texttt{Fixed} allocator), aggregated across horizons present, replay scales ($s \in \{1,1.5,2\}$),
@@ -1713,7 +1720,7 @@ Within the iCMAB evaluation corpus (considering only iCMAB variants under the sa
 
 
 % ----------------------------------------------------------------------------
-\subsubsection{Answer to \textbf{RQ2}}
+\subsubsection{Answer to \RQTwo}
 
 \noindent\textit{Context-awareness provides superior robustness, refuting the adversarial-first hypothesis.}
 Across Markov, Adaptive, and OnlineAdaptive threats, contextual pursuit baselines maintain the highest overall efficiency
@@ -1723,14 +1730,14 @@ under reactive attack conditions, despite competitive average efficiency in some
 
 \noindent\textit{Supporting Question Answers:}
 \begin{itemize}[nosep]
-\item \small\texttt{\textbf{RQ2a}:} Yes on both counts. Under stochastic decoherence (6.25\% i.i.d.\ disruption), context-aware pursuit--neural models maintain 87--93\% Oracle-normalized efficiency, retaining the 15--25~pp advantage over classical baselines observed in RQ1 and remaining above the 85\% deployment target. This advantage persists under structured and adaptive threats: across Markov, Adaptive, and OnlineAdaptive regimes, pursuit-based models sustain $\sim$89\% average efficiency with robustness floors of 65--73\%, while adversarial-first methods (EXP3-family) degrade to floors near 52--54.5\%, demonstrating that context-awareness provides superior robustness across all threat escalation levels.
+\item \small\texttt{\textbf{RQ2a}:} Yes on both counts. Under stochastic decoherence (6.25\% i.i.d.\ disruption), context-aware pursuit--neural models maintain 87--93\% Oracle-normalized efficiency, retaining the 15--25~pp advantage over classical baselines observed in \RQOneText{} and remaining above the 85\% deployment target. This advantage persists under structured and adaptive threats: across Markov, Adaptive, and OnlineAdaptive regimes, pursuit-based models sustain $\sim$89\% average efficiency with robustness floors of 65--73\%, while adversarial-first methods (EXP3-family) degrade to floors near 52--54.5\%, demonstrating that context-awareness provides superior robustness across all threat escalation levels.
 \item \small\texttt{\textbf{RQ2b}:} Pursuit--neural models degrade most gracefully, preserving high mean efficiency (90.8--93.5\%) with tighter variability as threats escalate from Baseline through OnlineAdaptive, with degradation concentrated in worst-case OnlineAdaptive/Markov slices rather than distributed broadly. Across the validated suites, \small\texttt{iCPursuitNeuralUCB} consistently defines the efficiency frontier, maintaining the highest overall average efficiency while preserving strong robustness floors ($\geq$85\% in static configurations), outperforming classical baselines by 20--30~pp and adversarial-first methods by 6--11~pp in scenario-aggregated comparisons.
 \end{itemize}
 
 % ============================================================================
 % RQ3: Deployment Optimization Strategies
 % ============================================================================
-\subsection{RQ3: Deployment Optimization Strategies}
+\subsection{\RQThreeText: Deployment Optimization Strategies}
 \label{subsec:rq3}
 
 \begin{figure}[ht!]
@@ -1804,7 +1811,7 @@ Beyond algorithm selection, deployment quality depends on the \emph{configuratio
 (i) allocator policy (\small\texttt{Fixed, Thompson, DynamicUCB, Random}),
 (ii) replay-capacity specification via anchoring ($T$ vs.\ $T_b$) and scale ($s\in\{1,1.5,2\}$),
 and (iii) hybrid architecture choices (reactive vs.\ informative/predictive context).
-RQ3 characterizes which combinations are robust under threat escalation and which induce brittle failure modes.
+\RQThreeText{} characterizes which combinations are robust under threat escalation and which induce brittle failure modes.
 
 % ----------------------------------------------------------------------------
 \subsubsection{Hypothesis}
@@ -1820,7 +1827,7 @@ benefit most from this co-design under adaptive and online-adaptive regimes.
 \label{subsubsec:rq3_design}
 
 \noindent
-RQ3 is computed from the \textbf{hybrid evaluation corpus} (curated experimental suite with
+\RQThreeText{} is computed from the \textbf{hybrid evaluation corpus} (curated experimental suite with
 ensemble summaries). We evaluate four hybrid-capable agents:
 \textit{CPursuitNeuralUCB, iCPursuitNeuralUCB, GNeuralUCB, EXPNeuralUCB}
 across five threat scenarios (\small\texttt{Baseline, Stochastic, Markov, Adaptive, OnlineAdaptive}),
@@ -1892,7 +1899,7 @@ Run-level artifacts and aggregation scripts are provided in the Supplement.
 
 
 % ----------------------------------------------------------------------------
-\subsubsection{Answer to \textbf{RQ3}}
+\subsubsection{Answer to \RQThree}
 \noindent
 \textit{Yes—deployment is configuration-sensitive, but the corpus also supports a strong static default.}
 At the 6K horizon, a single configuration achieves high global robustness:
@@ -2522,7 +2529,7 @@ Thus, \textquotedblleft bigger replay\textquotedblright is not a single knob: it
 % ----------------------------------------------------------------------------
 \subsubsection{Finding 1 - Context-Aware Bandits Dominate (gap persists under threat)}
 
-Across the paper baselines ($RQ1-RQ2$) and the Hybrid suite ($RQ3$), \textbf{context-aware policies define the robustness frontier}. Contextual Pursuit models (\small\texttt{CPursuitNeuralUCB}, \small\texttt{iCPursuitNeuralUCB}) consistently outperform non-contextual baselines: under Stochastic noise, they exceed the EXP3-family by $\sim$18--24 pp and separate from neural non-context baselines by $\sim$6--12 pp ($RQ1$). Under Markov/Adaptive/OnlineAdaptive conditions, the gap persists: Pursuit remains near the high-$80\%$ band while EXP3-family baselines exhibit lower floors ($RQ2$), reinforcing that topology/channel features are not an optimization detail but an \emph{architectural requirement} for robust routing.
+Across the paper baselines (\RQOneText-\RQTwoText) and the Hybrid suite (\RQThreeText), \textbf{context-aware policies define the robustness frontier}. Contextual Pursuit models (\small\texttt{CPursuitNeuralUCB}, \small\texttt{iCPursuitNeuralUCB}) consistently outperform non-contextual baselines: under Stochastic noise, they exceed the EXP3-family by $\sim$18--24 pp and separate from neural non-context baselines by $\sim$6--12 pp (\RQOneText). Under Markov/Adaptive/OnlineAdaptive conditions, the gap persists: Pursuit remains near the high-$80\%$ band while EXP3-family baselines exhibit lower floors (\RQTwoText), reinforcing that topology/channel features are not an optimization detail but an \emph{architectural requirement} for robust routing.
 
 % ----------------------------------------------------------------------------
 \subsubsection{Finding 2 - The Capacity Paradox is Real, but Conditional (capacity--allocator)}
