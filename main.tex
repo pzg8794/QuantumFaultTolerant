@@ -677,7 +677,7 @@ Both are \textbf{always scaled} (even when $s=1$). This separation is critical f
 \begin{figure}[ht!]
 \tiny
 \centering
-\resizebox{0.6\columnwidth}{!}{%  % Scale to 80% of column width
+\resizebox{0.8\columnwidth}{!}{%  % Scale to 80% of column width
     \begin{tikzpicture}[
       node distance=0.5cm,
       block/.style={rectangle, draw, fill=white, text width=5.0cm, text centered, rounded corners, minimum height=0.1cm, line width=0.5pt},
@@ -1419,8 +1419,13 @@ Results are organized by research question (\Cref{sec:research_questions}). We f
   height=5.0cm,
   grid=major,
   grid style={line width=.1pt, draw=gray!10},
-  legend style={at={(0.5,-0.22)}, anchor=north},
-  legend columns=-1,
+    legend columns=2,
+    legend style={
+        at={(0.5,-0.24)},
+        anchor=north,
+        font=\scriptsize,
+        cells={anchor=west}
+    },
   % legend pos=south east,
   legend style={font=\scriptsize}
 ]
