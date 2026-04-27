@@ -1,0 +1,9 @@
+diff --git a/main.tex b/main.tex
+--- a/main.tex
++++ b/main.tex
+@@
+-\documentclass[lettersize,journal]{IEEEtran}
++\documentclass[10pt,conference]{IEEEtran}
+@@
+-% or [conference] if you target a conference
++% ICNP submission build: IEEE conference mode.
