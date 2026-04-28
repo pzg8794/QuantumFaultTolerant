@@ -210,12 +210,17 @@ We found that neural hybrids outperform non-contextual baselines by 18–24 perc
 
 We further validate these robustness trends through cross-testbed evaluation on three external quantum network simulators, showing consistent behavior across diverse topologies and noise models while exposing scale- and physics-dependent performance limitations.
 
-All source code, datasets, and experiment scripts are available in the public reproducibility repository at \url{https://github.com/pzg8794/quantum_project_hub}. Additional datalake-style artifacts and notebook execution resources are available through the shared Drive hub at \url{https://drive.google.com/drive/folders/0AK0VchnNyM-xUk9PVA}.
+All source code, datasets, and experiment scripts are available in the public reproducibility repository at \url{https://github.com/pzg8794/quantum_project_hub}. Additional datalake-style artifacts and notebook execution resources are available through the shared Drive hub at \url{https://drive.google.com/drive/folders/0AK0VchnNyM-xUk9PVA}. \shee{Abstract is too long. This paragraph is repeated in the introduction as well.}
 \end{abstract}
 
 \begin{IEEEkeywords}
 Quantum networks, entanglement routing, multi-armed bandits, adversarial learning, qubit allocation, online optimization.
 \end{IEEEkeywords}
+
+\section*{Code Metadata}
+
+All source code, datasets, and experiment scripts are available in the public reproducibility repository at \url{https://github.com/pzg8794/quantum_project_hub}. Additional datalake-style artifacts and notebook execution resources are available through the shared Drive hub at \url{https://drive.google.com/drive/folders/0AK0VchnNyM-xUk9PVA}. \shee{I think the reproducibility info is better as a paragraph of its own instead of as a contribution bullet}
+\devroop{This is better i think}
 
 \section{Introduction}
 
@@ -366,7 +371,7 @@ To summarize, this work makes the following contributions:
     \item \descStep{Joint decision formulation for quantum routing}{We formalize quantum routing as a coupled decision problem over path selection, qubit allocation, and learning under uncertainty, treating learning, allocation, and capacity as interdependent design dimensions rather than independent implementation choices.}
     
     % \item \descStep{Open Source Repository}{All source code and datasets are publicly available to enable reproducibility, validation, and further development by the research community~\cite{}.}
-    \item \descStep{Open Source Repository}{All source code, datasets, and experiment scripts are available in the public reproducibility repository at \url{https://github.com/pzg8794/quantum_project_hub}. Additional datalake-style artifacts and notebook execution resources are available through the shared Drive hub at \url{https://drive.google.com/drive/folders/0AK0VchnNyM-xUk9PVA}.}
+    % \item \descStep{Open Source Repository}{All source code, datasets, and experiment scripts are available in the public reproducibility repository at \url{https://github.com/pzg8794/quantum_project_hub}. Additional datalake-style artifacts and notebook execution resources are available through the shared Drive hub at \url{https://drive.google.com/drive/folders/0AK0VchnNyM-xUk9PVA}.} \shee{I think the reproducibility info is better as a paragraph of its own instead of as a contribution bullet}
 
 %    \item \descStep{XX}{X}
 %    \item \descStep{XX}{X}
@@ -629,6 +634,7 @@ In the OnlineAdaptive regime, the adversary maintains exponentially weighted pat
 \Pr(\text{attack path } r \mid t) =
 \frac{\exp(\text{usage}_r(t) / \tau)}{\sum_{r'} \exp(\text{usage}_{r'}(t) / \tau)}.
 \]
+\shee{Is this supposed to be $P_r$? Define r'}
 This setting mimics intelligent adversaries that learn and adapt in real time, representing the hardest realistic threat model in our taxonomy.
 
 
@@ -776,6 +782,7 @@ Both are \textbf{always scaled} (even when $s=1$). This separation is critical f
 \label{subsec:framework}
 
 \noindent Our evaluation infrastructure consists of \textbf{six layers} (Figure~\ref{fig:framework}):
+\shee{I feel this list might be redundant since the details are present in Fig 3 and explainged in the next paragraph.}
 \begin{enumerate}
 \item \texttt{ALLOCATOR:} Top-level policy (\eg DynamicUCB)
 \item \texttt{CONFIGURATION:} Shared experimental setup (topology, scenarios, capacity, seeds)
@@ -905,7 +912,7 @@ Our study addresses three core questions about stochastic decoherence impact, ad
 \end{axis}
 \end{tikzpicture}
 % \vspace{-0.5cm}
-\caption{Contextual (CMAB/iCMAB) methods are more scale-robust than EXP3 baselines, with the clearest Oracle-normalized efficiency gap under $T_b$ settings.}
+\caption{Contextual (CMAB/iCMAB) methods are more scale-robust than EXP3 baselines, with the clearest Oracle-normalized efficiency gap under $T_b$ settings.\devroop{You may want to zoom in for this figure to show the exact curve variations}}
 \label{fig:context_exp3_capacity}
 \end{figure}
 
@@ -1131,7 +1138,7 @@ This section specifies the experimental design used to evaluate adaptive quantum
 % Network Configuration
 % ----------------------------------------------------------------------------
 \paragraph*{Network configuration}
-We use a 4-node quantum network with four alternative paths connecting source $S$ to destination $D$ via repeater nodes (\Cref{fig:network_topology}). Paths $P_1$ and $P_4$ have two hops, while $P_2$ and $P_3$ have three hops, matching common small-scale quantum-network architectures and demonstrations~\cite{wehner2018quantum,pompili2021realization}. This topology provides sufficient action-space complexity for bandit learning~\cite{huang2024quantum,dai2020quantum} while keeping exhaustive cross-product sweeps tractable (hundreds of algorithm--scenario--allocator configurations; see \Cref{tab:config_summary}).
+We use a 4-node quantum network with four alternative paths connecting source $S$ to destination $D$ via repeater nodes (\Cref{fig:network_topology}). Paths $P_1$ and $P_4$ have two hops, while $P_2$ and $P_3$ have three hops, matching common small-scale quantum-network architectures and demonstrations~\cite{wehner2018quantum,pompili2021realization} \shee{$P_1$ and $P_2$ have 2 hops while $P_3$ and $P_4$ have 3 hops}. This topology provides sufficient action-space complexity for bandit learning~\cite{huang2024quantum,dai2020quantum} while keeping exhaustive cross-product sweeps tractable (hundreds of algorithm--scenario--allocator configurations; see \Cref{tab:config_summary}).
 
 Total physical network capacity is fixed at 35 qubits across all experiments, representing resource-constrained early-stage deployments~\cite{simon2017towards}. This induces non-trivial exploration--exploitation tradeoffs: algorithms cannot over-provision all paths. Per-path allocations are determined by the allocator (\Cref{tab:setup-allocators}), enabling controlled comparison of static versus adaptive resource management.
 	% NOTE: TikZ uses right=of / below=of -> requires \usetikzlibrary{positioning}
@@ -1195,7 +1202,7 @@ We evaluate 3 horizons---\small\texttt{4K,6K,8K} frames---to capture short-, mid
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{Experimental design matrix linking configuration dimensions to the research questions.}
+\caption{Experimental design matrix linking configuration dimensions to the research questions.\shee{The last column (RQ(s)) has inconsistent subscripts and superscripts}}
 \label{tab:config_summary}
 \begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.32\linewidth} >{\raggedright\arraybackslash}X >{\centering\arraybackslash}c}
 \toprule
@@ -1454,7 +1461,7 @@ Results are organized by research question (\Cref{sec:research_questions}). We f
 
 \subsubsection{Hypothesis}
 \noindent\textit{Addresses \Cref{subsubsec:rq1_question}.}
-
+\shee{Instead of referring to Section V, combine sections V and VI into 1 section. These 2 sections are redundant}
 Under pure stochastic quantum decoherence (6.25\% i.i.d.\ failure rate), we expect
 contextual/informed baselines and select neural routing agents to remain near deployment-grade
 efficiency, while weaker context-free or mis-specified variants degrade. \RQOneText{} establishes
@@ -1811,7 +1818,7 @@ under reactive attack conditions, despite competitive average efficiency in some
 \end{axis}
 \end{tikzpicture}
 % \vspace{-0.5cm}
-\caption{More capacity helps in Baseline and Markov settings but can hurt under Adaptive threats, revealing the capacity paradox.}
+\caption{More capacity helps in Baseline and Markov settings but can hurt under Adaptive threats, revealing the capacity paradox.\devroop{You may want to zoom in for this figure to show the exact curve variations}}
 \label{fig:capacity_all}
 \end{figure}
 
@@ -1904,7 +1911,7 @@ Run-level artifacts and aggregation scripts are provided in the Supplement.
 \end{axis}
 \end{tikzpicture}
 % \vspace{-0.5cm}
-\caption{Allocator choice is threat-dependent: Thompson leads in Adaptive regimes, DynamicUCB stays competitive, and Random underperforms.}
+\caption{Allocator choice is threat-dependent: Thompson leads in Adaptive regimes, DynamicUCB stays competitive, and Random underperforms.\devroop{You may want to zoom in for this figure to show the exact curve variations}}
 \label{fig:threat_rules}
 \end{figure}
 
@@ -2009,7 +2016,7 @@ including pronounced improvements at the intermediate scale followed by regressi
 
 \noindent
 \textit{Answer to RQ3b:}
-Replay capacity is not a \textquotedblleft more is better\textquotedblright knob. Under $T_b$-type anchoring (\Cref{tab:rq3b_capacity_scaling}), both pursuit-based hybrids
+Replay capacity is not a \textquotedblleft more is better\textquotedblright\ knob. Under $T_b$-type anchoring (\Cref{tab:rq3b_capacity_scaling}), both pursuit-based hybrids
 show a pronounced bump at $s{=}1.5$ (especially in Baseline/Markov), followed by partial regression at $s{=}2$.
 This single-slice snapshot falsifies the monotone hypothesis ($s{=}1 \to 1.5 \to 2$) under a fixed deployment anchor.
 This motivates treating replay specification as a co-design decision with allocator policy ($RQ3_c$),
@@ -2176,14 +2183,14 @@ We evaluated our algorithms on four established quantum network testbeds, each r
 
 \begin{table*}[ht!]
 \centering
-\caption{Cross-testbed performance comparison using scenario-aggregated Oracle-normalized efficiency (\%) and scenario champions from \texttt{scenario\_winner}. Numeric columns are means across all five scenarios (\texttt{none}, \texttt{stochastic}, \texttt{markov}, \texttt{adaptive}, \texttt{onlineadaptive}) and 4 allocators. \paperTwo, \paperSeven, and \paperTwelve use the full evaluation corpora aggregated across scales $s \in \{1.0,1.5,2.0\}$ (\texttt{cap\_type}=T) with 5 runs per setting; \paperEight uses the current original paper-config slice at 1K/1K/1R, $s=1.0$, \texttt{cap\_type}=T.}
+\caption{Cross-testbed performance comparison using scenario-aggregated Oracle-normalized efficiency (\%) and scenario champions from \texttt{scenario\_winner}. Numeric columns are means across all five scenarios (\texttt{none}, \texttt{stochastic}, \texttt{markov}, \texttt{adaptive}, \texttt{onlineadaptive}) and 4 allocators. \paperTwo, \paperSeven, and \paperTwelve use the full evaluation corpora aggregated across scales $s \in \{1.0,1.5,2.0\}$ (\texttt{cap\_type}=T) with 5 runs per setting; \paperEight uses the current original paper-config slice at 1K/1K/1R, $s=1.0$, \texttt{cap\_type}=T. \devroop{fix the testbed column dimensions. its overflowing.}}
 \label{tab:testbed_comparison}
 \small
 \begin{tabular}{l l c c c c l}
 \toprule
 \textbf{Testbed} & \textbf{Algorithm} & \textbf{Avg Reward} & \textbf{Regret} & \textbf{Efficiency (\%)} & \textbf{Gap (\%)} & \textbf{Exp. Winner} \\
 \midrule
-\multirow{7}{*}{\parbox{2.2cm}{\textbf{\paperTwo}\\ (\small 15N, 51E, 8P)\\ \small 4K/2K/5R\\ \small 4 allocs, $s\in\{1,1.5,2\}$, T}}
+\multirow{7}{*}{\parbox{2.2cm}{\textbf{\paperTwo}\\ (\small 15N, 51E, 8P)\\ \small 4K/2K/5R\\ \small 4 allocs, $s\in\{1,1.5,2\}$,T}}
 & \texttt{ORACLE} & 0.3926 & 0.0 & --- & --- & --- \\
 & \texttt{CPursuitNeuralUCB} & 0.2887 & 509.2 & 73.22 & 26.78 & 38/300 \\
 & \texttt{GNeuralUCB} & 0.2886 & 515.9 & 73.19 & 26.81 & 84/300 \\
@@ -2365,7 +2372,7 @@ We report the initial standardized 4K/2K/5R sweep (config key \texttt{4000\_2000
 % Source: Validated_Logs/Master_Dataset_papers-4000_2000.csv
 \begin{table*}[ht!]
 \centering
-\caption{Cross-testbed performance comparison under standardized 4K/2K/5R run configurations. Numeric columns are means across all five scenarios (\texttt{none}, \texttt{stochastic}, \texttt{markov}, \texttt{adaptive}, \texttt{onlineadaptive}), 4 allocators, and scales $s \in \{1.0,1.5,2.0\}$ (\texttt{cap\_type}=T), computed from the standardized corpus (config key \texttt{4000\_2000}). Exp.\ Winner counts are experiment-level win counts out of the available standardized configurations for each testbed.}
+\caption{Cross-testbed performance comparison under standardized 4K/2K/5R run configurations. Numeric columns are means across all five scenarios (\texttt{none}, \texttt{stochastic}, \texttt{markov}, \texttt{adaptive}, \texttt{onlineadaptive}), 4 allocators, and scales $s \in \{1.0,1.5,2.0\}$ (\texttt{cap\_type}=T), computed from the standardized corpus (config key \texttt{4000\_2000}). Exp.\ Winner counts are experiment-level win counts out of the available standardized configurations for each testbed. \devroop{fix the testbed column dimensions. its overflowing.}}
 \label{tab:testbed_comparison_standard_4000_2000}
 \small
 \begin{tabular}{l l c c c c l}
@@ -2523,7 +2530,7 @@ Our results across the full evaluation suite---spanning paper baselines (CMAB / 
 \end{axis}
 \end{tikzpicture}
 % \vspace{-0.5cm}
-\caption{Pursuit-based hybrids maintain higher efficiency than neural and EXP3 baselines across all five threat regimes.\shee{This legend is not self-explanatory. The graph has 2 colored portions visible, but the legend has 5 entries with no colors}}
+\caption{Pursuit-based hybrids maintain higher efficiency than neural and EXP3 baselines across all five threat regimes.\shee{This legend is not self-explanatory. The graph has 2 colored portions visible, but the legend has 5 entries with no colors. Try a different type of chart. If an area chart is the best way to show this graph, it might be better to show each model in its own graph and arrange them together. Same applies to Fig 10 as well}}
 \label{fig:context_hybrid}
 \end{figure}
 
