@@ -21,21 +21,21 @@ Finally, your repo’s tracker currently **does not yet include C-031..C-039** (
 
 ### Information needs (3–6) required to answer well
 
-- **Exact current Title + Abstract + Intro text** in `main.tex` (to ensure edits match what’s actually written). fileciteturn17file0L163-L168 fileciteturn17file0L226-L228 fileciteturn17file0L302-L306  
-- **Whether C-031..C-039 exist in the tracker**, and if not, whether you need to add them now to preserve workflow traceability. fileciteturn17file1L28-L55  
-- **Whether BibTeX keys exist** for the citations you plan to add/fix (e.g., `liu2024qbgp`, `clayton2024quarc`, `chaudhary2023quantum`, and EXP3 citations). fileciteturn24file0L33-L38 fileciteturn24file0L147-L161 fileciteturn24file0L106-L112  
-- **Cross-testbed naming consistency** (your paper uses “Paper 2/7/12” externally; internal framework docs also use “Paper2” in a different sense). fileciteturn24file2L20-L31 fileciteturn24file1L29-L36  
+- **Exact current Title + Abstract + Intro text** in `main.tex` (to ensure edits match what’s actually written). fileciteturn17file0L163-L168 fileciteturn17file0L226-L228 fileciteturn17file0L302-L306
+- **Whether C-031..C-039 exist in the tracker**, and if not, whether you need to add them now to preserve workflow traceability. fileciteturn17file1L28-L55
+- **Whether BibTeX keys exist** for the citations you plan to add/fix (e.g., `liu2024qbgp`, `clayton2024quarc`, `chaudhary2023quantum`, and EXP3 citations). fileciteturn24file0L33-L38 fileciteturn24file0L147-L161 fileciteturn24file0L106-L112
+- **Cross-testbed naming consistency** (your paper uses “Paper 2/7/12” externally; internal framework docs also use “Paper2” in a different sense). fileciteturn24file2L20-L31 fileciteturn24file1L29-L36
 - **PDF availability / licensing risk** for `references/pdfs` (especially if any PDFs are publisher paywalled vs. arXiv open copies). This needs a follow-up check because the directory listing could not be reliably enumerated via the available connector methods.
 
 ### Sources consulted (repo + drive)
 
 - GitHub repo **pzg8794/QuantumFaultTolerant**:
-  - `main.tex` (title, abstract, introduction; plus later sections for concrete edit targets). fileciteturn17file0L163-L168 fileciteturn17file0L226-L228 fileciteturn17file0L302-L306  
-  - `tracking/PAPER-CHANGES-TRACKER.md` (current queue; confirms C-031..C-039 not yet present). fileciteturn17file1L28-L55  
-  - `refs.bib` (cross-testbed keys + EXP3 key presence). fileciteturn24file0L33-L38 fileciteturn24file0L147-L161 fileciteturn24file0L106-L112  
+  - `main.tex` (title, abstract, introduction; plus later sections for concrete edit targets). fileciteturn17file0L163-L168 fileciteturn17file0L226-L228 fileciteturn17file0L302-L306
+  - `docs/tracking/PAPER-CHANGES-TRACKER.md` (current queue; confirms C-031..C-039 not yet present). fileciteturn17file1L28-L55
+  - `refs.bib` (cross-testbed keys + EXP3 key presence). fileciteturn24file0L33-L38 fileciteturn24file0L147-L161 fileciteturn24file0L106-L112
 - GitHub repo **pzg8794/quantum_project** (for testbed naming/cross-testbed ambiguity check):
-  - `docs/Paper2_Integration_Report.md` (internal “Paper2” meaning and assumptions). fileciteturn24file1L29-L36  
-  - `setup_files/TESTBEDS.md` (framework testbed hub; shows internal numbering conventions differ from paper’s external “Paper N” usage). fileciteturn24file2L20-L31  
+  - `docs/Paper2_Integration_Report.md` (internal “Paper2” meaning and assumptions). fileciteturn24file1L29-L36
+  - `setup_files/TESTBEDS.md` (framework testbed hub; shows internal numbering conventions differ from paper’s external “Paper N” usage). fileciteturn24file2L20-L31
 - Google Drive shared folder `1AvScTeYb_xr4rpIe3FSlaSAuGkTTKEbU` was accessible and contains a compiled `main.pdf` and logs; it was used only as a sanity check of availability, not as the primary source of text.
 
 ## C-031 to C-039 Task Review and Paste-Ready LaTeX Edits
@@ -44,14 +44,14 @@ Below, each task includes (a) focused evaluation and (b) a **paste-ready snippet
 
 ### C-031 — Title: Include “Entanglement Routing” (and avoid misrepresentation)
 
-**What’s in the paper now:**  
+**What’s in the paper now:**
 The title currently foregrounds “Qubit Allocation” and “Stochastic Bandits,” but the paper repeatedly frames the problem as **joint path selection + allocation** under multiple threat regimes. fileciteturn17file0L163-L168
 
-**Why the change makes sense:**  
-Your own keywords already include “entanglement routing.” fileciteturn17file0L232-L234  
+**Why the change makes sense:**
+Your own keywords already include “entanglement routing.” fileciteturn17file0L232-L234
 So the title should match that scope.
 
-**Best practice recommendation:**  
+**Best practice recommendation:**
 Use a title that includes:
 - **Entanglement routing** (what domain readers search)
 - **Joint routing + allocation** (true task)
@@ -68,7 +68,7 @@ Also remove the highlight marker `\hl{...}` for submission hygiene (right now th
 
 ### C-032 — Abstract: Clarity (contribution type), numeric density, ambiguous referents
 
-**What’s in the paper now:**  
+**What’s in the paper now:**
 The abstract is very dense, mixing configuration counts, model counts, performance ranges, and cross-testbed ranges; it also uses “They” with a weak antecedent. fileciteturn17file0L226-L228
 
 **What it should do instead (target behavior):**
@@ -81,7 +81,7 @@ The abstract is very dense, mixing configuration counts, model counts, performan
 ```latex
 % C-032 (Abstract rewrite)
 \begin{abstract}
-Quantum entanglement routing must repeatedly choose paths and allocate scarce qubits while link quality evolves under stochastic noise and potentially adaptive disruption. We present a unified evaluation framework for \emph{joint} path selection and qubit allocation, benchmarking adversarial, contextual, and pursuit--neural hybrid bandit policies under a five-scenario threat taxonomy. Across a large configuration sweep, pursuit--neural hybrids consistently define the robustness frontier, achieving near-Oracle efficiency under benign and stochastic regimes while retaining stronger worst-case behavior than non-contextual baselines under reactive threats. 
+Quantum entanglement routing must repeatedly choose paths and allocate scarce qubits while link quality evolves under stochastic noise and potentially adaptive disruption. We present a unified evaluation framework for \emph{joint} path selection and qubit allocation, benchmarking adversarial, contextual, and pursuit--neural hybrid bandit policies under a five-scenario threat taxonomy. Across a large configuration sweep, pursuit--neural hybrids consistently define the robustness frontier, achieving near-Oracle efficiency under benign and stochastic regimes while retaining stronger worst-case behavior than non-contextual baselines under reactive threats.
 
 Most critically, we uncover a \emph{capacity paradox}: increasing replay capacity can \emph{reduce} efficiency under Adaptive attacks by amplifying behavioral predictability, indicating that predictability---not raw bandwidth---is a primary vulnerability mechanism in adversarial quantum routing. We further show that allocator choice induces large performance swings for identical learning policies, making allocator--algorithm co-design a deployment requirement. Cross-testbed validation on three external simulators spanning 15--100 nodes confirms that algorithm rankings persist but absolute efficiency is strongly topology- and physics-dependent.
 \end{abstract}
@@ -91,10 +91,10 @@ This version explicitly frames the work as **evaluation + framework**, avoids lo
 
 ### C-033 — Intro: Add citations for “reliable end-to-end entanglement is difficult…”
 
-**What’s in the paper now:**  
+**What’s in the paper now:**
 This key factual sentence has no citations. fileciteturn17file0L302-L304
 
-**Why the change is necessary:**  
+**Why the change is necessary:**
 It’s a core factual claim; leaving it uncited makes the intro read like opinion.
 
 **Paste-ready edit (add citations to the end of the sentence):**
@@ -107,10 +107,10 @@ You already cite repeaters and swapping elsewhere in the same region; this ties 
 
 ### C-034 — Intro: Waiting-time citations (add one if you want, or keep as-is)
 
-**What’s in the paper now:**  
+**What’s in the paper now:**
 You cite repeaters and a waiting-time paper; this is already reasonably strong. fileciteturn17file0L302-L303
 
-**Recommendation:**  
+**Recommendation:**
 Keep `wang2019waiting` (it is well-targeted for probabilistic waiting times). If you want one more citation for “compounds along multi-hop routes,” add a multi-hop/route-focused key that you already use elsewhere.
 
 **Paste-ready optional edit (minimal additive citation):**
@@ -123,10 +123,10 @@ If you prefer to avoid extra citations, you can leave C-034 unchanged (this is n
 
 ### C-035 — Intro structure: Remove/merge “Gap in Prior Work” heading
 
-**What’s in the paper now:**  
+**What’s in the paper now:**
 You have a standalone heading `\subsection{Gap in Prior Work}`. fileciteturn17file0L306-L306
 
-**Why your proposal makes sense:**  
+**Why your proposal makes sense:**
 It interrupts narrative flow (it reads like a proposal document rather than a paper intro). The content is good; the *heading* is the issue.
 
 **Paste-ready approach (keep content, remove the “speed bump” heading):**
@@ -146,10 +146,10 @@ This preserves structure while improving flow and keeping the section hierarchy 
 
 ### C-036 — Move evaluation counts out of Introduction
 
-**What’s in the paper now (problem):**  
+**What’s in the paper now (problem):**
 The Intro includes explicit “total evaluations” accounting, which is better suited for Study Design.
 
-**Recommended change:**  
+**Recommended change:**
 - Replace the numeric accounting sentence in the Intro with a pointer to Study Design.
 - Insert the numeric sentence in Study Design where readers expect “how much did you run?”
 
@@ -167,11 +167,11 @@ In total, we report about \textbf{7,890 model--scenario--configuration evaluatio
 
 ### C-037 — Contributions bullet: Rewrite “Unified, reproducible benchmarking…”
 
-**What’s in the paper now:**  
+**What’s in the paper now:**
 The current bullet is accurate but reads like a citation dump and foregrounds taxonomy terms rather than reviewer-facing value. (This is consistent with your observation; the sentence is long and dense.)
 
-**Bib sanity check:**  
-Your bib includes an EXP3 citation entry (`auer2002exp3`). fileciteturn24file0L106-L112  
+**Bib sanity check:**
+Your bib includes an EXP3 citation entry (`auer2002exp3`). fileciteturn24file0L106-L112
 You also cite INFOCOM’24 QBGP and QuARC keys. fileciteturn24file0L33-L38 fileciteturn24file0L147-L153
 
 **Paste-ready rewrite (replace that bullet only):**
@@ -185,7 +185,7 @@ If you prefer to standardize on the “nonstochastic” naming, switch `auer2002
 
 ### C-038 — Framework: Explain the six layers
 
-**What’s in the paper now:**  
+**What’s in the paper now:**
 You list six layers but with minimal explanation. This is a mismatch because the framework is central to your “unified evaluation” claim.
 
 **Paste-ready replacement (replace the 6-item list in `\subsection{Algorithmic Framework}` with this richer version):**
@@ -207,11 +207,11 @@ This modular separation supports systematic ablations across allocators, algorit
 
 ### C-039 — Cross-testbed validation: clarify “noise models/settings” and avoid ambiguous “Paper N” naming
 
-**What’s already good:**  
+**What’s already good:**
 Your cross-testbed section *already* includes concrete parameter examples and topology scale. The main improvement needed is: make the “noise model” phrase more interpretable in one sentence, and reduce ambiguity that comes from “Paper 2/7/12” shorthand.
 
-**Critical ambiguity to address:**  
-Your separate framework docs use “Paper2” as a label for an internal 4-node stochastic testbed. fileciteturn24file1L31-L36  
+**Critical ambiguity to address:**
+Your separate framework docs use “Paper2” as a label for an internal 4-node stochastic testbed. fileciteturn24file1L31-L36
 But the paper’s cross-testbed section uses “Paper 2” for an external 15-node simulator setting. This naming collision increases reviewer confusion and makes it harder to reproduce.
 
 **Paste-ready edits (two small but high-impact changes):**
@@ -233,27 +233,27 @@ We validate our algorithms on three external quantum network testbeds from prior
 \item \textbf{Clayton et al. (QuARC, 2024) testbed}~\cite{clayton2024quarc}: ...
 ```
 
-**Why this is worth doing:**  
-Your bib already contains these external testbed keys. fileciteturn24file0L33-L38 fileciteturn24file0L147-L161  
+**Why this is worth doing:**
+Your bib already contains these external testbed keys. fileciteturn24file0L33-L38 fileciteturn24file0L147-L161
 Renaming reduces cognitive overhead for reviewers and avoids collisions with internal testbed documentation conventions. fileciteturn24file2L20-L31
 
 ## Title Recommendations and Comparison Table
 
 ### Final title recommendations (2–3) with rationale and pros/cons
 
-1) **Recommended (submission-safe, accurately signals evaluation):**  
-**Benchmarking Bandit Algorithms for Entanglement Routing and Qubit Allocation under Stochastic and Adversarial Threats**  
-- **Pros:** Immediately communicates *benchmarking*, *joint routing/allocation*, and the *threat scope*.  
+1) **Recommended (submission-safe, accurately signals evaluation):**
+**Benchmarking Bandit Algorithms for Entanglement Routing and Qubit Allocation under Stochastic and Adversarial Threats**
+- **Pros:** Immediately communicates *benchmarking*, *joint routing/allocation*, and the *threat scope*.
 - **Cons:** Slightly longer; “benchmarking” may undersell that you also propose/implement pursuit–neural hybrids.
 
-2) **Recommended (shorter, emphasizes methods rather than evaluation):**  
-**Entanglement Routing and Qubit Allocation in Quantum Networks using Context-Aware Bandits**  
-- **Pros:** Clear domain match; highlights context-awareness (a core finding).  
+2) **Recommended (shorter, emphasizes methods rather than evaluation):**
+**Entanglement Routing and Qubit Allocation in Quantum Networks using Context-Aware Bandits**
+- **Pros:** Clear domain match; highlights context-awareness (a core finding).
 - **Cons:** Can be read as “we propose one context-aware bandit method,” so you must ensure abstract/intro explicitly state the multi-family benchmark.
 
-3) **Conditional (only if you really want adversarial framing in the title):**  
-**Benchmarking Contextual and Adversarial Bandits for Entanglement Routing and Qubit Allocation**  
-- **Pros:** Captures both design philosophies without over-claiming “robust.”  
+3) **Conditional (only if you really want adversarial framing in the title):**
+**Benchmarking Contextual and Adversarial Bandits for Entanglement Routing and Qubit Allocation**
+- **Pros:** Captures both design philosophies without over-claiming “robust.”
 - **Cons:** Less explicit about threat taxonomy; may sound like narrower method comparison.
 
 ### Title comparison table (3 user-proposed + 2 alternates)
@@ -270,11 +270,11 @@ Renaming reduces cognitive overhead for reviewers and avoids collisions with int
 
 ### Short checklist of follow-ups (bib, PDFs, consistency)
 
-- **Add C-031..C-039 rows into `tracking/PAPER-CHANGES-TRACKER.md`** so the tracker matches the current work plan; the visible queue currently ends earlier. fileciteturn17file1L28-L55  
-- **Submission hygiene:** remove `\hl{...}` highlighting in the title and any remaining author-comment macros for the submission branch. fileciteturn17file0L163-L164  
-- **Citation key consistency:** decide whether you will cite EXP3 via `auer2002exp3` everywhere or standardize on a single canonical key name; the bib includes an EXP3 entry. fileciteturn24file0L106-L112  
-- **Cross-testbed naming:** rename “Paper 2/7/12” labels to author-year in the manuscript to avoid collision with internal testbed numbering in the framework docs. fileciteturn24file1L31-L36 fileciteturn24file2L20-L31  
-- **PDF licensing audit:** if any PDFs in `references/pdfs` originate from paywalled publisher portals (IEEE/ACM/Springer), confirm you are allowed to redistribute them in a (possibly public) GitHub repo; if not, replace with arXiv/preprint links and keep only metadata.  
+- **Add C-031..C-039 rows into `docs/tracking/PAPER-CHANGES-TRACKER.md`** so the tracker matches the current work plan; the visible queue currently ends earlier. fileciteturn17file1L28-L55
+- **Submission hygiene:** remove `\hl{...}` highlighting in the title and any remaining author-comment macros for the submission branch. fileciteturn17file0L163-L164
+- **Citation key consistency:** decide whether you will cite EXP3 via `auer2002exp3` everywhere or standardize on a single canonical key name; the bib includes an EXP3 entry. fileciteturn24file0L106-L112
+- **Cross-testbed naming:** rename “Paper 2/7/12” labels to author-year in the manuscript to avoid collision with internal testbed numbering in the framework docs. fileciteturn24file1L31-L36 fileciteturn24file2L20-L31
+- **PDF licensing audit:** if any PDFs in `references/pdfs` originate from paywalled publisher portals (IEEE/ACM/Springer), confirm you are allowed to redistribute them in a (possibly public) GitHub repo; if not, replace with arXiv/preprint links and keep only metadata.
 - **Cross-testbed “noise model” correctness check:** verify each external testbed summary sentence against the actual source PDFs (especially if any parameters were extracted from code rather than the paper text).
 
 ### Mermaid timeline for implementation steps

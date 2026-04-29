@@ -5,26 +5,26 @@ This repository contains the quantum entanglement routing manuscript, review wor
 ## Current Working State
 
 - `main.tex` is the active ICNP venue-paper working draft.
-- `archive/pre-venue-main-2026-04-28/main.tex` preserves the pre-heavy-edit manuscript checkpoint.
-- `ICNP_VENUE_PREP/` is the primary venue-preparation folder for ICNP 2026.
-- `tracking/PAPER-CHANGES-TRACKER.md` is the canonical paper-change log.
+- `archive/manuscript-checkpoints/pre-venue-main-2026-04-28/main.tex` preserves the pre-heavy-edit manuscript checkpoint.
+- `docs/venue/icnp_2026/` is the primary venue-preparation folder for ICNP 2026.
+- `docs/tracking/PAPER-CHANGES-TRACKER.md` is the canonical paper-change log.
 - `feedback/` stores reviewer-feedback work items and Overleaf crawler review queues.
 
 ## Directory Map
 
-- `archive/` - stable manuscript checkpoints before major editing passes.
+- `archive/` - historical snapshots, old drafts, and applied patch records.
+- `docs/` - venue prep, tracking, templates, and workflow documentation.
 - `feedback/` - review-comment work items, crawler output queues, and mapping notes.
-- `ICNP_VENUE_PREP/` - ICNP deadlines, formatting constraints, checklist, and workflow notes.
-- `JOURNAL_SUBMISSION_PREP/` - journal-submission fallback notes.
+- `references/` - source PDFs used for literature and related-work support.
 - `scripts/` - paper-support scripts, including the read-only Overleaf feedback crawler.
+- `sections/` - manuscript sections split out of `main.tex`.
 - `tools/` - manuscript table/reference utilities.
-- `tracking/` - paper-change tracker, analysis notes, and session summaries.
-- `tracker/` - legacy early feedback-tracker notes kept for provenance.
 
 ## Workflow
 
 1. Pull `origin/main` before starting a paper pass.
 2. Archive `main.tex` before large venue-specific rewrites.
-3. Record reviewer or venue-prep decisions in `tracking/PAPER-CHANGES-TRACKER.md`.
+3. Record reviewer or venue-prep decisions in `docs/tracking/PAPER-CHANGES-TRACKER.md`.
 4. Keep generated browser state and raw crawler output out of Git.
-5. Commit focused changes with a message that names the paper workflow step.
+5. Keep generated PDFs local; `*.pdf` files are ignored unless deliberately restored to Git.
+6. Commit focused changes with a message that names the paper workflow step.

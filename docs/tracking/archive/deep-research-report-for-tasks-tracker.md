@@ -15,7 +15,7 @@ For cross-testbed configuration comparison work (D-006/D-007), the manuscript al
 The work is grounded in two repositories only (per your constraint):
 
 - `pzg8794/QuantumFaultTolerant`
-  - Tracker: `tracking/PAPER-CHANGES-TRACKER-2.md` fileciteturn38file0
+  - Tracker: `docs/tracking/archive/PAPER-CHANGES-TRACKER-2.md` fileciteturn38file0
   - Manuscript: `main.tex` fileciteturn45file0
   - Related work: `sections/02--related_works.tex` fileciteturn36file0turn38file2
 
@@ -36,7 +36,7 @@ Use these commit-stable GitHub links as your “exact references” starting poi
 
 ```text
 QuantumFaultTolerant tracker (PAPER-CHANGES-TRACKER-2.md):
-https://github.com/pzg8794/QuantumFaultTolerant/blob/44e272d191d419952884f944912fa68b076371de/tracking/PAPER-CHANGES-TRACKER-2.md
+https://github.com/pzg8794/QuantumFaultTolerant/blob/44e272d191d419952884f944912fa68b076371de/docs/tracking/archive/PAPER-CHANGES-TRACKER-2.md
 
 QuantumFaultTolerant manuscript (main.tex):
 https://github.com/pzg8794/QuantumFaultTolerant/blob/44e272d191d419952884f944912fa68b076371de/main.tex
@@ -64,7 +64,7 @@ The table below compresses the (1) tracker quote, (2) manuscript mapping, (3) st
 | C-006 | “Anonymity question + acknowledgments” fileciteturn38file0 | `main.tex` author block + acknowledgments section fileciteturn45file0 | **No** (placeholders remain) fileciteturn45file0 | Add `\ifanonymous` toggle; produce anonymous and non-anonymous builds deterministically | Low | High |
 | D-001 | “Add a 2–3 sentence overview of the proposed process (no results)” fileciteturn38file0 | Abstract + “Our Approach and Evaluation Scope” in Intro fileciteturn45file0 | **Partially** (overview exists but abstract contains results and placeholder) fileciteturn45file0 | Insert explicit process paragraph in abstract *before* results; ensure it’s “no results” | Low–Medium | High |
 | D-002 | “Provide a short contrast vs closest MAB routing work(s)” fileciteturn38file0 | Related Work + optionally 1 sentence in Intro signposting closest-work contrast fileciteturn36file0turn45file0 | **Yes in Related Work** fileciteturn36file0 | Add a single early-intro sentence pointing to LinkSelFiE/Huang contrast; keep details in Related Work | Low | Medium |
-| D-003 | “Keep a single ‘source of truth’ manuscript version” (Status Done) fileciteturn38file0 | Repo/process policy; referenced in quantum_project validation hierarchy fileciteturn56file0 | **Yes (documented)** fileciteturn56file0 | Add a short note in `tracking/PAPER-CHANGES-TRACKER-2.md` under Conventions: “QuantumFaultTolerant is canonical; Overleaf is downstream” | Low | Medium |
+| D-003 | “Keep a single ‘source of truth’ manuscript version” (Status Done) fileciteturn38file0 | Repo/process policy; referenced in quantum_project validation hierarchy fileciteturn56file0 | **Yes (documented)** fileciteturn56file0 | Add a short note in `docs/tracking/archive/PAPER-CHANGES-TRACKER-2.md` under Conventions: “QuantumFaultTolerant is canonical; Overleaf is downstream” | Low | Medium |
 | D-004 | “Grant advisor access to condensed Overleaf view/project” fileciteturn38file0 | Not LaTeX; submission logistics | Unknown | Add tracker resolution note: link to Overleaf (or commit hash of shared PDF artifact) | Low | Medium |
 | D-005 | “Get the manuscript into a shareable state…” fileciteturn38file0 | Whole manuscript | **No (blocked by C-001/C-002/C-005/C-006)** fileciteturn45file0 | Bundle: abstract rewrite, remove TODO macros, anonymize toggle, delete dup blocks | Medium | High |
 | D-006 | “Add epsilon + NeuralUCB results + extra comparison table (testbed configs)” fileciteturn38file0 | RQ tables + Cross-testbed section + new “config table” sourced from `quantum_project/docs/testbeds/*` fileciteturn45file0turn55file0turn53file0turn54file0 | **Partially** (epsilon present; NeuralUCB discussed but not consistently reported; configs described in prose) fileciteturn45file0 | Add explicit Testbed-Config comparison table; add NeuralUCB row(s) or state explicitly if excluded from validated corpora | Medium | High |
@@ -75,7 +75,7 @@ The table below compresses the (1) tracker quote, (2) manuscript mapping, (3) st
 
 ### C-001 – Abstract novelty framing
 
-**Tracker quote + location.** In `tracking/PAPER-CHANGES-TRACKER-2.md` row **C-001**: “Clarify whether this is ‘evaluation only’ vs. new contribution” with planned fix “Add explicit novelty framing (benchmark + taxonomy + capacity paradox + deployment rules).” fileciteturn38file0
+**Tracker quote + location.** In `docs/tracking/archive/PAPER-CHANGES-TRACKER-2.md` row **C-001**: “Clarify whether this is ‘evaluation only’ vs. new contribution” with planned fix “Add explicit novelty framing (benchmark + taxonomy + capacity paradox + deployment rules).” fileciteturn38file0
 
 **Manuscript mapping.** `main.tex` → `\begin{abstract} ... \end{abstract}` and the opening of `\section{Introduction}` / “Key Contributions.” fileciteturn45file0
 
@@ -163,7 +163,7 @@ Then, in the intro itself, convert the three enumerated “gaps” into paragrap
 - The tracker file still says “Planned” for C-003, but the manuscript text already reflects the intended P-001/P-002/P-003 style insertions. This is now a tracker hygiene problem, not a manuscript gap. fileciteturn38file0turn36file0
 
 **Precise edit proposal (tracker-only).**
-- Update `tracking/PAPER-CHANGES-TRACKER-2.md`:
+- Update `docs/tracking/archive/PAPER-CHANGES-TRACKER-2.md`:
   - C-003 Status → **Done**
   - Commit → the commit where the text landed (if you don’t know, use the merge commit that introduced it once you identify it)
   - Notes → “LinkSelFiE contrast paragraph present; Huang explicit attribution present.”
@@ -297,7 +297,7 @@ For the closest quantum-routing neighbors, we provide explicit paper-to-paper co
 - `quantum_project`’s validation plan explicitly names the “paper source of truth” as `GA Papers/QuantumFaultTolerant/main.tex` and defines a canonical hierarchy for validation against master datasets. fileciteturn56file0
 
 **Action.**
-- Add one sentence to `tracking/PAPER-CHANGES-TRACKER-2.md` “Conventions” clarifying that Overleaf is downstream and this repo is canonical (to resolve future confusion).
+- Add one sentence to `docs/tracking/archive/PAPER-CHANGES-TRACKER-2.md` “Conventions” clarifying that Overleaf is downstream and this repo is canonical (to resolve future confusion).
 
 **Effort/priority.** **Low**, **Medium**.
 

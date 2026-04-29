@@ -1,6 +1,6 @@
-# ICNP Recent Top Papers Reference Folder
+# ICNP Recent Top Papers
 
-This directory is intended to hold recent ICNP paper PDFs and notes that can be used as style/reference examples while preparing the ICNP submission.
+This directory holds recent ICNP paper references and notes that can be used as style examples while preparing the ICNP submission.
 
 ## Download status
 

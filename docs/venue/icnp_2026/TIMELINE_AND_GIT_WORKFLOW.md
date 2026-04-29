@@ -78,7 +78,7 @@ Recommended workflow:
 git checkout main
 git pull --ff-only origin main
 # edit main.tex or supporting files
-git add main.tex ICNP_VENUE_PREP/
+git add main.tex docs/venue/icnp_2026/
 git commit -m "Prepare ICNP draft section X"
 git push origin main
 ```

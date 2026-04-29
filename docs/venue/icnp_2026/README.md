@@ -36,6 +36,7 @@ Based on the official ICNP 2026 CFP/submission pages and recent ICNP pages:
 - `OFFICIAL_GUIDELINES.md` - deadlines, format rules, anonymity, artifacts, and recent-year comparison.
 - `AUTHOR_KIT_AND_FORMATTING.md` - IEEE class/template guidance and LaTeX conversion notes.
 - `RECENT_PAPERS_AND_EXAMPLES.md` - accepted/best-paper examples relevant to this manuscript.
+- `recent_top_papers/` - local manifest and note template for ICNP style-reference papers.
 - `MAIN_TEX_TO_ICNP_CHECKLIST.md` - concrete conversion checklist for `main.tex`.
 - `PITFALLS_REVIEWER_EXPECTATIONS.md` - likely reviewer expectations and avoidable failure modes.
 - `TIMELINE_AND_GIT_WORKFLOW.md` - sprint timeline and recommended git workflow.
@@ -46,7 +47,7 @@ Based on the official ICNP 2026 CFP/submission pages and recent ICNP pages:
 The pre-heavy-edit manuscript state was archived at:
 
 ```text
-archive/pre-venue-main-2026-04-28/main.tex
+archive/manuscript-checkpoints/pre-venue-main-2026-04-28/main.tex
 ```
 
 Use `main.tex` as the active ICNP working draft after this point.

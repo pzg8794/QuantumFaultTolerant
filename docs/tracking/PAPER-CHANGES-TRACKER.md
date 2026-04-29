@@ -5,11 +5,11 @@
 **Start Date:** 2026-02-14
 **Owner:** Piter Garcia
 
-**Canonical task tracker (project-wide):** [../../GA_Communications/md_files/Task-Tracker-Formal.md](../../GA_Communications/md_files/Task-Tracker-Formal.md)
+**Canonical task tracker (project-wide):** [../../../GA_Communications/md_files/Task-Tracker-Formal.md](../../../GA_Communications/md_files/Task-Tracker-Formal.md)
 
-**Quick links:** [../main.tex](../main.tex) | [../sections/02--related_works.tex](../sections/02--related_works.tex)
+**Quick links:** [../../main.tex](../../main.tex) | [../../sections/02--related_works.tex](../../sections/02--related_works.tex)
 
-**Research communications log (source):** [../../GA_Communications/md_files/Research-Communications.md](../../GA_Communications/md_files/Research-Communications.md)
+**Research communications log (source):** [../../../GA_Communications/md_files/Research-Communications.md](../../../GA_Communications/md_files/Research-Communications.md)
 
 ---
 
@@ -657,7 +657,7 @@ Quantum entanglement routing differs fundamentally from classical routing becaus
 
 **Issue:** The introduction already contrasts quantum and classical routing, highlighting physical constraints (no-cloning, probabilistic links, no store-and-forward). However, it lacks a clear bridge paragraph explaining why our approach—jointly evaluating path selection, allocation, and learning policy under diverse threats—is uniquely needed and how it differs from prior work that uses fixed allocation/replay assumptions.
 
-**Target location:** [../main.tex](../main.tex), Introduction, after the classical-vs-quantum contrast paragraph, before the Gap in Prior Work subsection.
+**Target location:** [../../main.tex](../../main.tex), Introduction, after the classical-vs-quantum contrast paragraph, before the Gap in Prior Work subsection.
 
 **Proposed text (LaTeX):**
 ```tex
@@ -795,7 +795,7 @@ These were drafted for C-003 review and are now **applied to the manuscript** (i
 
 **Issue:** The "Quantum Network Routing with Bandits" subsection cites `huang2024quantum` but doesn't explicitly describe Huang et al.'s contribution—only Wang, Li, and Liu are named.
 
-**Target location:** [../sections/02--related_works.tex](../sections/02--related_works.tex), "Quantum Network Routing with Bandits" subsection, after the current Wang/Li/Liu sentence.
+**Target location:** [../../sections/02--related_works.tex](../../sections/02--related_works.tex), "Quantum Network Routing with Bandits" subsection, after the current Wang/Li/Liu sentence.
 
 **Applied text (LaTeX):**
 
@@ -833,7 +833,7 @@ Huang et al.~\cite{huang2024quantum} propose \emph{EXPNeuralUCB}, a group neural
 
 **How it differs from our work:** LinkSelFiE = link selection + fidelity estimation (single-link problem); Our work = path selection + qubit allocation + algorithm-allocator-capacity interactions across 5 threat regimes (routing-level problem).
 
-**Target location:** [../sections/02--related_works.tex](../sections/02--related_works.tex), "Quantum Network Routing with Bandits" subsection, after the Huang et al. sentence (from P-001).
+**Target location:** [../../sections/02--related_works.tex](../../sections/02--related_works.tex), "Quantum Network Routing with Bandits" subsection, after the Huang et al. sentence (from P-001).
 
 **Applied text (LaTeX):**
 
@@ -855,7 +855,7 @@ Liu et al.~\cite{10621263} propose \emph{LinkSelFiE}, which targets the \emph{li
 
 **Issue:** The quantum routing subsection currently focuses on bandit-based routing papers and does not explicitly position our work relative to adjacent families present in `refs.bib` (learning under noise, RL-based routing, clustering/hierarchical routing, repeater/efficiency constraints, optimization-style routing).
 
-**Target location:** [../sections/02--related_works.tex](../sections/02--related_works.tex), "Quantum Network Routing with Bandits" subsection, after the Wang/Li/Liu sentence (and after P-001/P-002 insertions).
+**Target location:** [../../sections/02--related_works.tex](../../sections/02--related_works.tex), "Quantum Network Routing with Bandits" subsection, after the Wang/Li/Liu sentence (and after P-001/P-002 insertions).
 
 **Applied text (LaTeX):**
 
@@ -876,7 +876,7 @@ Beyond bandit-style path selection, learning-based route selection under noisy q
 
 **Issue:** `wang2024adaptive` is in `refs.bib` but was not previously cited/positioned in Related Work. This is a routing-focused quantum networking paper that should be acknowledged directly, and contrasted against our evaluation-first contribution.
 
-**Target location:** [../sections/02--related_works.tex](../sections/02--related_works.tex), "Quantum Network Routing with Bandits" subsection, after the Wang/Li/Liu sentence (before Huang/LinkSelFiE is fine).
+**Target location:** [../../sections/02--related_works.tex](../../sections/02--related_works.tex), "Quantum Network Routing with Bandits" subsection, after the Wang/Li/Liu sentence (before Huang/LinkSelFiE is fine).
 
 **Applied text (LaTeX):**
 
@@ -901,7 +901,7 @@ Wang et al.~\cite{wang2024adaptive} formulate an adaptive, user-centric entangle
 - `paper7_reference` → `liu2024qbgp`
 - `paper12_reference` → `clayton2024quarc`
 
-**Where applied:** [../main.tex](../main.tex), Cross-Testbed Validation section (external testbed configuration bullets + cross-testbed validation summary).
+**Where applied:** [../../main.tex](../../main.tex), Cross-Testbed Validation section (external testbed configuration bullets + cross-testbed validation summary).
 
 **Verification note (why `clayton2024quarc`):** The PDF tracked for “QuARC / Paper 12” (arXiv:2410.23007) lists authors as **Connor Clayton, Xiaodi Wu, and Bobby Bhattacharjee** (University of Maryland), not “Wang et al.”, so the testbed citation should resolve to `clayton2024quarc`.
 
@@ -913,14 +913,14 @@ These are paper-impacting requests captured in the comms log; this keeps the man
 |---|---|---|---|---|---|---|---|---|
 | D-001 | 2026-02-15 | Add a 2–3 sentence overview of the proposed process (no results) | Abstract + Intro (process description) | Write 2–3 sentence process overview for abstract; expand Intro process description (double/triple length) | Done |  | T-2026-007, T-2025-011 | Reflected in abstract/intro |
 | D-002 | 2026-02-15 | Provide a short contrast vs closest MAB routing work(s) | Related Work | Ensure direct comparison against closest cited work(s) is explicit and easy to find | Done |  | T-2026-007, T-2025-015 | Reflected in Related Work compares |
-| D-003 | 2026-02-15 | Keep a single “source of truth” manuscript version | Submission Hygiene | Confirm single-source workflow in the paper repo (local) and avoid diverging forks; reflect in tracker conventions | Done |  | T-2026-007 | [Research comms log](../../GA_Communications/md_files/Research-Communications.md) |
-| D-004 | 2026-02-15 | Grant advisor access to the condensed Overleaf view/project | Submission Logistics | Ensure access is granted (or provide an equivalent local PDF) and record what was shared | Deferred |  | T-2026-009 | [Research comms log](../../GA_Communications/md_files/Research-Communications.md) |
-| D-005 | 2026-02-15 | Get the manuscript into a shareable state and address high-level comments | Whole paper (general) | Address high-level comments; ensure the manuscript is shareable for team review | Deferred |  | T-2026-007, T-2025-011 | [Email PDF: Qubit Allocation Paper](../../GA_Communications/emails/Rochester%20Institute%20of%20Technology%20Mail%20-%20Qubit%20Allocation%20Paper.pdf) |
-| D-006 | 2026-02-15 | Add epsilon + NeuralUCB results + extra comparison table (testbed configs) | Results + Tables | Add epsilon + NeuralUCB results; add a comparison table contrasting paper config vs our run config | Deferred |  | T-2025-011 | [Email PDF: Sheeraja feedback update](../../GA_Communications/emails/Rochester%20Institute%20of%20Technology%20Mail%20-%20Update_%20Sheeraja%27s%20Feedback%20Items%20-%20All%20Core%20Tasks%20Completed.pdf) |
-| D-007 | 2026-02-15 | Add Paper 7/12 cross-testbed comparison tables once jobs finish | Results + Tables | Integrate comparison tables into the manuscript once jobs complete; keep values source-backed | Done |  | T-2025-011 | [Email PDF: Sheeraja feedback update](../../GA_Communications/emails/Rochester%20Institute%20of%20Technology%20Mail%20-%20Update_%20Sheeraja%27s%20Feedback%20Items%20-%20All%20Core%20Tasks%20Completed.pdf) |
-| D-008 | 2026-02-15 | Integrate Professor Travis feedback before submission | Whole paper (general) | Apply Travis edits/comments once received; record deltas as atomic C-### items | Deferred |  | T-2026-005, T-2025-011 | [Email PDF: Sheeraja feedback update](../../GA_Communications/emails/Rochester%20Institute%20of%20Technology%20Mail%20-%20Update_%20Sheeraja%27s%20Feedback%20Items%20-%20All%20Core%20Tasks%20Completed.pdf) |
+| D-003 | 2026-02-15 | Keep a single “source of truth” manuscript version | Submission Hygiene | Confirm single-source workflow in the paper repo (local) and avoid diverging forks; reflect in tracker conventions | Done |  | T-2026-007 | [Research comms log](../../../GA_Communications/md_files/Research-Communications.md) |
+| D-004 | 2026-02-15 | Grant advisor access to the condensed Overleaf view/project | Submission Logistics | Ensure access is granted (or provide an equivalent local PDF) and record what was shared | Deferred |  | T-2026-009 | [Research comms log](../../../GA_Communications/md_files/Research-Communications.md) |
+| D-005 | 2026-02-15 | Get the manuscript into a shareable state and address high-level comments | Whole paper (general) | Address high-level comments; ensure the manuscript is shareable for team review | Deferred |  | T-2026-007, T-2025-011 | [Email PDF: Qubit Allocation Paper](../../../GA_Communications/emails/Rochester%20Institute%20of%20Technology%20Mail%20-%20Qubit%20Allocation%20Paper.pdf) |
+| D-006 | 2026-02-15 | Add epsilon + NeuralUCB results + extra comparison table (testbed configs) | Results + Tables | Add epsilon + NeuralUCB results; add a comparison table contrasting paper config vs our run config | Deferred |  | T-2025-011 | [Email PDF: Sheeraja feedback update](../../../GA_Communications/emails/Rochester%20Institute%20of%20Technology%20Mail%20-%20Update_%20Sheeraja%27s%20Feedback%20Items%20-%20All%20Core%20Tasks%20Completed.pdf) |
+| D-007 | 2026-02-15 | Add Paper 7/12 cross-testbed comparison tables once jobs finish | Results + Tables | Integrate comparison tables into the manuscript once jobs complete; keep values source-backed | Done |  | T-2025-011 | [Email PDF: Sheeraja feedback update](../../../GA_Communications/emails/Rochester%20Institute%20of%20Technology%20Mail%20-%20Update_%20Sheeraja%27s%20Feedback%20Items%20-%20All%20Core%20Tasks%20Completed.pdf) |
+| D-008 | 2026-02-15 | Integrate Professor Travis feedback before submission | Whole paper (general) | Apply Travis edits/comments once received; record deltas as atomic C-### items | Deferred |  | T-2026-005, T-2025-011 | [Email PDF: Sheeraja feedback update](../../../GA_Communications/emails/Rochester%20Institute%20of%20Technology%20Mail%20-%20Update_%20Sheeraja%27s%20Feedback%20Items%20-%20All%20Core%20Tasks%20Completed.pdf) |
 | D-009 | 2026-02-15 | Add/verify closest-work citation suggestion (e.g., IEEE 10621263) | Related Work | Read + incorporate as closest-work reference; ensure direct comparison is explicit | Done |  | T-2026-007, T-2025-015 | Closest-work compare included |
-| D-010 | 2026-02-15 | Confirm venue strategy + submission sprint plan | Submission Planning | Confirm target venue(s)/track(s) and the 1–2 week sprint plan to get the manuscript submission-ready | Done |  | T-2026-009 | [Email PDF: US venues shortlist](../../GA_Communications/emails/Rochester%20Institute%20of%20Technology%20Mail%20-%20US%20venues%20%28B-rated%20or%20higher%29%20for%20quantum%20networking%20paper.pdf) |
+| D-010 | 2026-02-15 | Confirm venue strategy + submission sprint plan | Submission Planning | Confirm target venue(s)/track(s) and the 1–2 week sprint plan to get the manuscript submission-ready | Done |  | T-2026-009 | [Email PDF: US venues shortlist](../../../GA_Communications/emails/Rochester%20Institute%20of%20Technology%20Mail%20-%20US%20venues%20%28B-rated%20or%20higher%29%20for%20quantum%20networking%20paper.pdf) |
 
 ---
 
@@ -928,11 +928,11 @@ These are paper-impacting requests captured in the comms log; this keeps the man
 
 Use this section when sharing the repo so reviewers can find “where a claim came from” without chasing links.
 
-- Communications history: [../../GA_Communications/md_files/Research-Communications.md](../../GA_Communications/md_files/Research-Communications.md)
+- Communications history: [../../../GA_Communications/md_files/Research-Communications.md](../../../GA_Communications/md_files/Research-Communications.md)
 - Dataset-verified snapshots (master CSVs):
-	- [../../Validated_Logs/Master_Dataset_paper2_4000_2000_5_ST.csv](../../Validated_Logs/Master_Dataset_paper2_4000_2000_5_ST.csv)
-	- [../../Validated_Logs/Master_Dataset_paper7_50_50_5_ST.csv](../../Validated_Logs/Master_Dataset_paper7_50_50_5_ST.csv)
-	- [../../Validated_Logs/Master_Dataset_paper12_1500_500_5_ST.csv](../../Validated_Logs/Master_Dataset_paper12_1500_500_5_ST.csv)
+	- [../../../../Validated_Logs/Master_Dataset_paper2_4000_2000_5_ST.csv](../../../../Validated_Logs/Master_Dataset_paper2_4000_2000_5_ST.csv)
+	- [../../../../Validated_Logs/Master_Dataset_paper7_50_50_5_ST.csv](../../../../Validated_Logs/Master_Dataset_paper7_50_50_5_ST.csv)
+	- [../../../../Validated_Logs/Master_Dataset_paper12_1500_500_5_ST.csv](../../../../Validated_Logs/Master_Dataset_paper12_1500_500_5_ST.csv)
 
 ## Active Canonical Tasks (Paper-Specific)
 
@@ -960,7 +960,7 @@ These mirror the active paper-related items in the canonical tracker so the pape
 
 ## Conventions
 
-- **Location**: use the paper section name or a local file link (e.g., [../main.tex](../main.tex), [../sections/02--related_works.tex](../sections/02--related_works.tex)).
+- **Location**: use the paper section name or a local file link (e.g., [../../main.tex](../../main.tex), [../../sections/02--related_works.tex](../../sections/02--related_works.tex)).
 - **Commit**: short hash (e.g., `a1b2c3d`) once committed.
 - Keep this file free of remote URLs when possible.
 
@@ -1152,6 +1152,11 @@ Corpus results (\Cref{tab:rq1_master_stochastic}) show a clear separation under 
 - **Notes:** the validation contract now treats old/original testbed tables as native-family only and standardized tables as standardized-family only. This pass corrected the Paper 2 native cross-testbed counts/means, aligned the native external model-family slice for Paper 2 to the canonical 5-run corpus, and corrected the Paper 8 native floor value in the external model-family table.
 
 #### C-067 — Archived pre-venue manuscript and organized paper workflow docs
-- **Files:** `README.md`, `archive/README.md`, `archive/pre-venue-main-2026-04-28/main.tex`, `archive/pre-venue-main-2026-04-28/README.md`, `feedback/README.md`, `tracking/README.md`, `ICNP_VENUE_PREP/README.md`, `scripts/README-overleaf-crawler.md`
+- **Files:** `README.md`, `archive/README.md`, `archive/manuscript-checkpoints/pre-venue-main-2026-04-28/main.tex`, `archive/manuscript-checkpoints/pre-venue-main-2026-04-28/README.md`, `feedback/README.md`, `docs/tracking/README.md`, `docs/venue/icnp_2026/README.md`, `scripts/README-overleaf-crawler.md`
 - **Scope:** repository organization checkpoint before heavy ICNP venue-paper edits begin in the root `main.tex`.
-- **Notes:** pulled `main` up to date, archived the current manuscript source as the pre-heavy-edit reference, clarified the role of the feedback/tracking/archive/venue-prep directories, and documented that `.quantum` is the expected environment for running the Overleaf feedback crawler.
+- **Notes:** pulled `main` up to date, archived the current manuscript source as the pre-heavy-edit reference, clarified the role of the feedback, docs, archive, and venue-prep areas, and documented that `.quantum` is the expected environment for running the Overleaf feedback crawler.
+
+#### C-068 — Consolidated paper repository layout and removed duplicate tracker areas
+- **Files:** `README.md`, `main.pdf` (removed from Git tracking only), `archive/README.md`, `archive/historical-patches/README.md`, `archive/legacy-drafts/README.md`, `docs/README.md`, `docs/tracking/README.md`, `docs/tracking/archive/README.md`, `docs/tracking/archive/early-feedback/README.md`, `docs/venue/README.md`, `docs/venue/icnp_2026/recent_top_papers/README.md`, `docs/venue/icnp_2026/recent_top_papers/PAPER_DOWNLOAD_MANIFEST.md`, `docs/venue/icnp_2026/recent_top_papers/PAPER_NOTE_TEMPLATE.md`, `docs/templates/README.md`, `references/README.md`, `sections/README.md`, `tools/README.md`
+- **Scope:** full repository cleanup after the pre-venue archive checkpoint.
+- **Notes:** consolidated the duplicate `tracking/` and `tracker/` top-level directories into `docs/tracking/`, moved superseded tracker material into `docs/tracking/archive/`, moved venue-prep notes and ICNP style-reference material under `docs/venue/`, moved IEEE template material under `docs/templates/`, moved legacy drafts/images and historical patches under `archive/`, stopped tracking the generated `main.pdf` while preserving the local ignored copy, and left the active root focused on `main.tex`, `refs.bib`, `sections/`, `references/`, `feedback/`, `scripts/`, and `tools/`.
