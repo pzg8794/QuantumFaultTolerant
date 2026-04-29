@@ -43,10 +43,10 @@ Based on the official ICNP 2026 CFP/submission pages and recent ICNP pages:
 
 ## Current repo state
 
-The pre-ICNP manuscript state was archived at:
+The pre-heavy-edit manuscript state was archived at:
 
 ```text
-archive/pre-icnp-main-2026-04-27
+archive/pre-venue-main-2026-04-28/main.tex
 ```
 
 Use `main.tex` as the active ICNP working draft after this point.

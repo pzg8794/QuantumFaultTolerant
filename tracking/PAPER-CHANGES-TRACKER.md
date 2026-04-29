@@ -1150,3 +1150,8 @@ Corpus results (\Cref{tab:rq1_master_stochastic}) show a clear separation under 
 - **Files:** `main.tex`
 - **Scope:** source-backed numeric corrections limited to the external native-family tables after separating native paper-config datasets from standardized `4000_2000` datasets.
 - **Notes:** the validation contract now treats old/original testbed tables as native-family only and standardized tables as standardized-family only. This pass corrected the Paper 2 native cross-testbed counts/means, aligned the native external model-family slice for Paper 2 to the canonical 5-run corpus, and corrected the Paper 8 native floor value in the external model-family table.
+
+#### C-067 — Archived pre-venue manuscript and organized paper workflow docs
+- **Files:** `README.md`, `archive/README.md`, `archive/pre-venue-main-2026-04-28/main.tex`, `archive/pre-venue-main-2026-04-28/README.md`, `feedback/README.md`, `tracking/README.md`, `ICNP_VENUE_PREP/README.md`, `scripts/README-overleaf-crawler.md`
+- **Scope:** repository organization checkpoint before heavy ICNP venue-paper edits begin in the root `main.tex`.
+- **Notes:** pulled `main` up to date, archived the current manuscript source as the pre-heavy-edit reference, clarified the role of the feedback/tracking/archive/venue-prep directories, and documented that `.quantum` is the expected environment for running the Overleaf feedback crawler.

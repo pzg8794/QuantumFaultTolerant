@@ -16,14 +16,14 @@ The generated `feedback/overleaf_feedback_raw.json` file and local browser auth 
 ## Setup
 
 ```bash
-python -m pip install -r scripts/requirements-overleaf-crawler.txt
-python -m playwright install chromium
+/Users/pitergarcia/DataScience/Semester4/GA-Work/.quantum/bin/python -m pip install -r scripts/requirements-overleaf-crawler.txt
+/Users/pitergarcia/DataScience/Semester4/GA-Work/.quantum/bin/python -m playwright install chromium
 ```
 
 ## Run
 
 ```bash
-python scripts/crawl_overleaf_feedback.py \
+/Users/pitergarcia/DataScience/Semester4/GA-Work/.quantum/bin/python scripts/crawl_overleaf_feedback.py \
   --project-url https://www.overleaf.com/project/68ea344896594f27b427ca8f \
   --out-json feedback/overleaf_feedback_raw.json \
   --out-md feedback/overleaf_feedback_queue.md \
