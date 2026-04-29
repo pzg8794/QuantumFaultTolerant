@@ -21,9 +21,13 @@
 *.bak
 *.bak*
 
-# Python cache artifacts (e.g., table-generation tools)
+# Python cache artifacts
 __pycache__/
 *.py[cod]
+
+# Local-only helper scripts/tools; keep these off the remote submission branch
+scripts/
+tools/
 
 # Local browser/session state for Overleaf crawler
 .auth/
