@@ -4,15 +4,12 @@ This directory stores manuscript source snapshots taken before major manuscript 
 
 ## Layout
 
-- `manuscript-checkpoints/` - stable manuscript source snapshots.
-- `legacy-drafts/` - legacy draft material that predates the current cleanup pass. Treat this as Dan/legacy-owned material and leave contents untouched unless the owner explicitly asks for changes.
+- `manuscript-checkpoints/` - dated manuscript source snapshots.
 
-## Historical patches and feedback
+## What does not belong here
 
-Historical patches, applied feedback notes, and cleanup provenance should live at the top level in:
+- Dan/legacy-owned planning drafts now live at the top level in `dan-legacy-drafts/`.
+- Historical patches, reviewer-feedback notes, and workflow/tracking provenance now live at the top level in `historical-patches/`.
+- Local helper scripts and tools should remain local-only and are ignored by Git.
 
-```text
-historical-patches/
-```
-
-Do not add new feedback/provenance material under `archive/`. Archive entries here should be manuscript snapshots only. LaTeX build artifacts and PDFs are intentionally ignored by Git.
+Archive entries should be source snapshots only. LaTeX build artifacts and generated PDFs are intentionally ignored by Git.
