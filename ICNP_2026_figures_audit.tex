@@ -1,0 +1,44 @@
+% ICNP 2026 figure audit staging file.
+% This file keeps figure slots visible in the runnable ICNP draft without copying unaudited surrounding prose.
+% Replace each placeholder with the exact audited figure environment when that paper section is reviewed.
+
+\newcommand{\FigureAuditSlot}[3]{%
+\begin{figure}[ht!]
+\centering
+\fbox{%
+\begin{minipage}[c][3.2cm][c]{0.92\columnwidth}
+\centering
+\textbf{#1}\\[0.35em]
+\small #2\\[0.35em]
+\footnotesize Replace with audited figure source from \texttt{main.tex}.
+\end{minipage}}
+\caption{#3}
+\label{#1}
+\end{figure}
+}
+
+\FigureAuditSlot{fig:context_exp3_capacity}{Context vs. EXP3 capacity comparison}{Figure audit placeholder for the context-aware versus EXP3 capacity comparison.}
+
+\FigureAuditSlot{fig:floor}{Robustness frontier / performance floor}{Figure audit placeholder for the robustness frontier and worst-case performance floor comparison.}
+
+\FigureAuditSlot{fig:heatmap}{Allocator--scenario efficiency heatmap}{Figure audit placeholder for the allocator and threat-scenario efficiency heatmap.}
+
+\FigureAuditSlot{fig:network_topology}{Quantum network topology}{Figure audit placeholder for the network topology used in the simulation study.}
+
+\FigureAuditSlot{fig:win_rate}{Algorithm win-rate summary}{Figure audit placeholder for the algorithm win-rate summary across evaluated conditions.}
+
+\FigureAuditSlot{fig:context_capacity_effects}{Context and capacity effects}{Figure audit placeholder for context-aware versus non-context-aware capacity effects.}
+
+\FigureAuditSlot{fig:scenario_trap}{Scenario generalization trap}{Figure audit placeholder for the scenario generalization/adversarial trap visualization.}
+
+\FigureAuditSlot{fig:floor_default_allocator}{Default-allocator robustness frontier}{Figure audit placeholder for the default-allocator robustness frontier. The label is draft-only to avoid colliding with \texttt{fig:floor}.}
+
+\FigureAuditSlot{fig:threat_rules}{Threat-adaptive allocator rules}{Figure audit placeholder for threat-adaptive allocator selection rules.}
+
+\FigureAuditSlot{fig:capacity_all}{Capacity-efficiency tradeoff}{Figure audit placeholder for the capacity-efficiency tradeoff and capacity paradox.}
+
+\FigureAuditSlot{fig:convergence_hybrid}{Hybrid learning curves}{Figure audit placeholder for hybrid-model learning/convergence curves.}
+
+\FigureAuditSlot{fig:context_hybrid}{Hybrid model scenario comparison}{Figure audit placeholder for hybrid model efficiency across threat scenarios.}
+
+\FigureAuditSlot{fig:win_rate_shapes}{Win rates by shape/allocator}{Figure audit placeholder for win-rate-by-shape visualization.}
