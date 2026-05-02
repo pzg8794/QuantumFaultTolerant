@@ -33,7 +33,7 @@ For each Background subsection:
 | Subsection | Status | Draft action |
 |---|---|---|
 | Quantum Networks and Entanglement Routing | Reduced and accepted for draft staging | Added to `ICNP_2026_venue_draft.tex` |
-| The Multi-Armed Bandit Abstraction | Under review | Not yet added to draft |
+| The Multi-Armed Bandit Abstraction | Reduced and accepted for draft staging | Added to `ICNP_2026_venue_draft.tex` |
 | Allocation and Capacity Semantics | Pending | Placeholder only |
 | Problem Scope | Pending | Not yet audited |
 
@@ -64,34 +64,125 @@ Quantum networks distribute entanglement across repeaters and end-nodes to suppo
 
 ## Audit 2: The Multi-Armed Bandit Abstraction
 
-Status: proposed below; not yet accepted into the draft.
-
 ### Original role
 
 This subsection defines the bandit abstraction and explains why different bandit families correspond to different quantum-routing assumptions and threat models.
 
-### Conceptual split
-
-1. MAB formalization: action selection, reward observation, regret minimization.
-2. Exploration--exploitation trade-off.
-3. Stochastic bandits for stationary reward distributions.
-4. Contextual and neural contextual bandits for predictive side information and nonlinear reward structure.
-5. Adversarial bandits for non-stationary or strategic reward sequences.
-6. Predictive/informed bandits for forecast-augmented decisions.
-7. Bridge back to quantum routing: benign stochastic noise motivates contextual modeling; strategic disruption motivates adversarial robustness.
-
-### Reduction guidance
-
-The original list is clear but long. For ICNP, the definitions should be compressed because the paper is not a bandit tutorial. Keep the taxonomy only insofar as it supports why the evaluated model families differ.
-
-### Proposed reduced text
+### Original text from `main.tex`
 
 ```tex
 \subsection{The Multi-Armed Bandit Abstraction}
 
-A multi-armed bandit (MAB) models online routing as repeated action selection under partial feedback: at each round, the learner selects a candidate path or allocation action, observes a reward signal such as entanglement success or routing efficiency, and balances exploration against exploitation~\cite{lattimore2020bandit,bubeck2012regret}. Different bandit families capture different routing assumptions: stochastic methods such as UCB assume stable reward distributions~\cite{auer2002finite}, contextual and neural contextual methods use side information or nonlinear reward models when topology or load features are predictive~\cite{chu2011contextual,zhou2020neuralucb}, adversarial methods such as EXP3 target non-stationary or strategic reward sequences~\cite{auer2002nonstochastic}, and predictive/informed methods incorporate forecasts of future conditions~\cite{kar2024icmab}. This taxonomy is useful for quantum routing because benign noise motivates contextual modeling, while adaptive disruption motivates adversarial robustness~\cite{huang2024quantum}.
+A multi-armed bandit (MAB) formalizes online routing as follows: at each time step $t$, an agent selects one of $K$ candidate actions (\eg paths or allocation decisions), observes a reward signal (\eg entanglement success/failure or efficiency proxy), and aims to minimize regret relative to an oracle policy~\cite{lattimore2020bandit}. The central challenge is the exploration--exploitation trade-off: learning which actions are reliable while maintaining high routing performance~\cite{bubeck2012regret}.
+
+Several bandit variants align with different quantum-network assumptions and threat models:
+\begin{itemize}[leftmargin=2em]
+\item \textbf{Classical (stochastic) bandits} assume stationary reward distributions (\eg UCB-style methods)~\cite{auer2002finite}.
+\item \textbf{Contextual bandits} incorporate observable side information (\eg topology features or load indicators) to improve decisions when context is predictive~\cite{chu2011contextual}.
+\item \textbf{Neural contextual bandits} use function approximation to model nonlinear reward while preserving principled exploration via uncertainty-aware decision rules~\cite{zhou2020neuralucb}.
+\item \textbf{Adversarial bandits} guard against worst-case or non-stochastic reward sequences (\eg EXP3 algorithm)~\cite{auer2002nonstochastic}.
+\item \textbf{Predictive/informed bandits} augment decisions with forecasts of future conditions~\cite{kar2024icmab}.
+\end{itemize}
+
+This taxonomy provides a natural lens for quantum routing: stochastic noise motivates contextual/neural modeling, while strategic disruption motivates adversarial robustness~\cite{huang2024quantum}.
 ```
 
-### Open decision
+### Conceptual split
 
-Decide whether the proposed reduced version should be added to `ICNP_2026_venue_draft.tex`.
+1. Basic MAB setup: repeated action selection under partial feedback.
+2. Exploration/exploitation: the learner must test uncertain paths while using apparently reliable paths.
+3. Stochastic bandits: stationary or benign reward assumptions.
+4. Contextual and neural contextual bandits: side information and nonlinear reward structure.
+5. Adversarial bandits: non-stationary or strategic reward sequences.
+6. Predictive/informed bandits: forecast-augmented decisions.
+7. Bridge back to quantum routing: different quantum-network conditions motivate different learning families.
+
+### Split-level reduction decisions
+
+#### Split 2.1: Basic MAB setup
+
+**Role.** Defines the learning abstraction: the learner repeatedly selects an action and observes feedback.
+
+**Decision.** Keep, but remove the full regret/oracle wording because System Model and Results handle oracle-normalized metrics later.
+
+**Reduced piece.**
+
+```tex
+A multi-armed bandit (MAB) models online routing as repeated action selection under partial feedback, where a learner chooses candidate paths or allocation actions and updates from reward signals such as entanglement success or routing efficiency~\cite{lattimore2020bandit,bubeck2012regret}.
+```
+
+#### Split 2.2: Exploration/exploitation
+
+**Role.** Explains the basic learning tension.
+
+**Decision.** Keep implicitly rather than as a standalone explanation, because ICNP readers do not need a bandit tutorial.
+
+**Reduced piece.** Included in the phrase "updates from reward signals" and in the model-family distinction.
+
+#### Split 2.3: Stochastic bandits
+
+**Role.** Introduces stationary/no-benign-threat baseline assumptions.
+
+**Decision.** Keep as a short clause.
+
+**Reduced piece.**
+
+```tex
+stochastic methods assume stable rewards~\cite{auer2002finite}
+```
+
+#### Split 2.4: Contextual and neural contextual bandits
+
+**Role.** Introduces side-information and nonlinear reward models.
+
+**Decision.** Keep, but merge contextual and neural contextual families into one clause to save space.
+
+**Reduced piece.**
+
+```tex
+contextual and neural methods exploit predictive side information or nonlinear reward structure~\cite{chu2011contextual,zhou2020neuralucb}
+```
+
+#### Split 2.5: Adversarial bandits
+
+**Role.** Connects learning model choice to strategic/non-stationary threat regimes.
+
+**Decision.** Keep because adversarial robustness is central to the paper.
+
+**Reduced piece.**
+
+```tex
+adversarial methods handle non-stationary or strategic rewards~\cite{auer2002nonstochastic}
+```
+
+#### Split 2.6: Predictive/informed bandits
+
+**Role.** Explains forecast-augmented model families.
+
+**Decision.** Keep as a short clause while predictive/informed methods remain in the evaluated family set.
+
+**Reduced piece.**
+
+```tex
+predictive/informed methods incorporate forecasts~\cite{kar2024icmab}
+```
+
+#### Split 2.7: Bridge back to quantum routing
+
+**Role.** Prevents the subsection from feeling like generic bandit background by tying taxonomy to quantum-routing conditions.
+
+**Decision.** Keep and make it the closing sentence.
+
+**Reduced piece.**
+
+```tex
+This distinction matters for quantum routing because benign noise, topology-dependent feedback, and adaptive disruption favor different forms of learning robustness~\cite{huang2024quantum}.
+```
+
+### Accepted aggressive reduced text
+
+```tex
+\subsection{The Multi-Armed Bandit Abstraction}
+
+A multi-armed bandit (MAB) models online routing as repeated action selection under partial feedback, where a learner chooses candidate paths or allocation actions and updates from reward signals such as entanglement success or routing efficiency~\cite{lattimore2020bandit,bubeck2012regret}. We use this taxonomy to distinguish the routing assumptions made by each model family: stochastic methods assume stable rewards~\cite{auer2002finite}, contextual and neural methods exploit predictive side information or nonlinear reward structure~\cite{chu2011contextual,zhou2020neuralucb}, adversarial methods handle non-stationary or strategic rewards~\cite{auer2002nonstochastic}, and predictive/informed methods incorporate forecasts~\cite{kar2024icmab}. This distinction matters for quantum routing because benign noise, topology-dependent feedback, and adaptive disruption favor different forms of learning robustness~\cite{huang2024quantum}.
+```
