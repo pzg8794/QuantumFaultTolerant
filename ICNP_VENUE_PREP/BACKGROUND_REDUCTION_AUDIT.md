@@ -34,7 +34,7 @@ For each Background subsection:
 |---|---|---|
 | Quantum Networks and Entanglement Routing | Reduced and accepted for draft staging | Added to `ICNP_2026_venue_draft.tex` |
 | The Multi-Armed Bandit Abstraction | Reduced and accepted for draft staging | Added to `ICNP_2026_venue_draft.tex` |
-| Allocation and Capacity Semantics | Pending | Placeholder only |
+| Allocation and Capacity Semantics | Reduced and accepted for draft staging | Added to `ICNP_2026_venue_draft.tex` |
 | Problem Scope | Pending | Not yet audited |
 
 ## Audit 1: Quantum Networks and Entanglement Routing
@@ -68,25 +68,6 @@ Quantum networks distribute entanglement across repeaters and end-nodes to suppo
 
 This subsection defines the bandit abstraction and explains why different bandit families correspond to different quantum-routing assumptions and threat models.
 
-### Original text from `main.tex`
-
-```tex
-\subsection{The Multi-Armed Bandit Abstraction}
-
-A multi-armed bandit (MAB) formalizes online routing as follows: at each time step $t$, an agent selects one of $K$ candidate actions (\eg paths or allocation decisions), observes a reward signal (\eg entanglement success/failure or efficiency proxy), and aims to minimize regret relative to an oracle policy~\cite{lattimore2020bandit}. The central challenge is the exploration--exploitation trade-off: learning which actions are reliable while maintaining high routing performance~\cite{bubeck2012regret}.
-
-Several bandit variants align with different quantum-network assumptions and threat models:
-\begin{itemize}[leftmargin=2em]
-\item \textbf{Classical (stochastic) bandits} assume stationary reward distributions (\eg UCB-style methods)~\cite{auer2002finite}.
-\item \textbf{Contextual bandits} incorporate observable side information (\eg topology features or load indicators) to improve decisions when context is predictive~\cite{chu2011contextual}.
-\item \textbf{Neural contextual bandits} use function approximation to model nonlinear reward while preserving principled exploration via uncertainty-aware decision rules~\cite{zhou2020neuralucb}.
-\item \textbf{Adversarial bandits} guard against worst-case or non-stochastic reward sequences (\eg EXP3 algorithm)~\cite{auer2002nonstochastic}.
-\item \textbf{Predictive/informed bandits} augment decisions with forecasts of future conditions~\cite{kar2024icmab}.
-\end{itemize}
-
-This taxonomy provides a natural lens for quantum routing: stochastic noise motivates contextual/neural modeling, while strategic disruption motivates adversarial robustness~\cite{huang2024quantum}.
-```
-
 ### Conceptual split
 
 1. Basic MAB setup: repeated action selection under partial feedback.
@@ -97,87 +78,9 @@ This taxonomy provides a natural lens for quantum routing: stochastic noise moti
 6. Predictive/informed bandits: forecast-augmented decisions.
 7. Bridge back to quantum routing: different quantum-network conditions motivate different learning families.
 
-### Split-level reduction decisions
+### Reduction decision
 
-#### Split 2.1: Basic MAB setup
-
-**Role.** Defines the learning abstraction: the learner repeatedly selects an action and observes feedback.
-
-**Decision.** Keep, but remove the full regret/oracle wording because System Model and Results handle oracle-normalized metrics later.
-
-**Reduced piece.**
-
-```tex
-A multi-armed bandit (MAB) models online routing as repeated action selection under partial feedback, where a learner chooses candidate paths or allocation actions and updates from reward signals such as entanglement success or routing efficiency~\cite{lattimore2020bandit,bubeck2012regret}.
-```
-
-#### Split 2.2: Exploration/exploitation
-
-**Role.** Explains the basic learning tension.
-
-**Decision.** Keep implicitly rather than as a standalone explanation, because ICNP readers do not need a bandit tutorial.
-
-**Reduced piece.** Included in the phrase "updates from reward signals" and in the model-family distinction.
-
-#### Split 2.3: Stochastic bandits
-
-**Role.** Introduces stationary/no-benign-threat baseline assumptions.
-
-**Decision.** Keep as a short clause.
-
-**Reduced piece.**
-
-```tex
-stochastic methods assume stable rewards~\cite{auer2002finite}
-```
-
-#### Split 2.4: Contextual and neural contextual bandits
-
-**Role.** Introduces side-information and nonlinear reward models.
-
-**Decision.** Keep, but merge contextual and neural contextual families into one clause to save space.
-
-**Reduced piece.**
-
-```tex
-contextual and neural methods exploit predictive side information or nonlinear reward structure~\cite{chu2011contextual,zhou2020neuralucb}
-```
-
-#### Split 2.5: Adversarial bandits
-
-**Role.** Connects learning model choice to strategic/non-stationary threat regimes.
-
-**Decision.** Keep because adversarial robustness is central to the paper.
-
-**Reduced piece.**
-
-```tex
-adversarial methods handle non-stationary or strategic rewards~\cite{auer2002nonstochastic}
-```
-
-#### Split 2.6: Predictive/informed bandits
-
-**Role.** Explains forecast-augmented model families.
-
-**Decision.** Keep as a short clause while predictive/informed methods remain in the evaluated family set.
-
-**Reduced piece.**
-
-```tex
-predictive/informed methods incorporate forecasts~\cite{kar2024icmab}
-```
-
-#### Split 2.7: Bridge back to quantum routing
-
-**Role.** Prevents the subsection from feeling like generic bandit background by tying taxonomy to quantum-routing conditions.
-
-**Decision.** Keep and make it the closing sentence.
-
-**Reduced piece.**
-
-```tex
-This distinction matters for quantum routing because benign noise, topology-dependent feedback, and adaptive disruption favor different forms of learning robustness~\cite{huang2024quantum}.
-```
+Keep the taxonomy, but compress it aggressively. ICNP reviewers do not need a bandit tutorial; they need to know why these model families correspond to different routing assumptions.
 
 ### Accepted aggressive reduced text
 
@@ -185,4 +88,61 @@ This distinction matters for quantum routing because benign noise, topology-depe
 \subsection{The Multi-Armed Bandit Abstraction}
 
 A multi-armed bandit (MAB) models online routing as repeated action selection under partial feedback, where a learner chooses candidate paths or allocation actions and updates from reward signals such as entanglement success or routing efficiency~\cite{lattimore2020bandit,bubeck2012regret}. We use this taxonomy to distinguish the routing assumptions made by each model family: stochastic methods assume stable rewards~\cite{auer2002finite}, contextual and neural methods exploit predictive side information or nonlinear reward structure~\cite{chu2011contextual,zhou2020neuralucb}, adversarial methods handle non-stationary or strategic rewards~\cite{auer2002nonstochastic}, and predictive/informed methods incorporate forecasts~\cite{kar2024icmab}. This distinction matters for quantum routing because benign noise, topology-dependent feedback, and adaptive disruption favor different forms of learning robustness~\cite{huang2024quantum}.
+```
+
+## Audit 3: Allocation and Capacity Semantics
+
+### Original role
+
+This subsection explains why the paper treats allocation and replay/capacity semantics as first-class design variables rather than background implementation details.
+
+### Original text from `main.tex`
+
+```tex
+\subsection{Allocation and Capacity Semantics}
+
+In addition to choosing routes, practical quantum routing must manage resource allocation decisions (\eg how many attempts or qubits to allocate across competing paths within a decision epoch). Allocation policies can materially change performance even for the same underlying bandit learner, because they shape both the information collected and the predictability of routing behavior under disruption.
+
+Many learning-based routing implementations also impose finite-memory or replay semantics (\eg bounded histories, windowed updates, or capped experience buffers) that affect stability under nonstationarity and vulnerability under strategic adaptation. These design choices motivate evaluating routing policies jointly with allocator strategy and capacity semantics, rather than treating them as independent knobs.
+```
+
+### Conceptual split
+
+1. Path selection is not enough: routing also involves resource allocation.
+2. Allocator policy changes learner behavior: allocation shapes feedback and predictability.
+3. Replay/capacity semantics affect stability: bounded histories, windows, and buffers matter under nonstationarity.
+4. Joint evaluation motivation: allocator and capacity must be evaluated with the routing policy, not as independent knobs.
+
+### Split-level reduction decisions
+
+#### Split 3.1: Path selection is not enough
+
+**Role.** Establishes that the problem is not only route choice, but route choice plus qubit/attempt allocation.
+
+**Decision.** Keep. This supports the paper's protocol/control framing for ICNP.
+
+#### Split 3.2: Allocator policy changes learner behavior
+
+**Role.** Explains why the same bandit learner can behave differently under different allocators.
+
+**Decision.** Keep. This is a major differentiator of the evaluation framework.
+
+#### Split 3.3: Replay/capacity semantics affect stability
+
+**Role.** Introduces the mechanisms behind the later capacity paradox: finite memory, replay windows, and capped buffers.
+
+**Decision.** Keep, but concise.
+
+#### Split 3.4: Joint evaluation motivation
+
+**Role.** Bridges Background into the experimental design by justifying joint evaluation.
+
+**Decision.** Keep as the payoff sentence.
+
+### Accepted aggressive reduced text
+
+```tex
+\subsection{Allocation and Capacity Semantics}
+
+Quantum routing couples path choice with resource allocation: the learner must decide both which route to use and how many qubits or attempts to assign within each decision epoch. These allocator choices shape the feedback observed by the bandit learner and the predictability of routing behavior under disruption. Replay or capacity semantics, including bounded histories, windowed updates, and capped experience buffers, further affect stability under nonstationarity and vulnerability to adaptive attacks. We therefore evaluate routing policies jointly with allocator strategy and capacity semantics, rather than treating them as independent implementation details.
 ```
