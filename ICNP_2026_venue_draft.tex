@@ -1,0 +1,19 @@
+% ICNP 2026 venue draft audit file
+% Purpose: stage reduced/reworked manuscript sections before replacing main.tex.
+% Source baseline: main.tex on main branch after pre-ICNP archiving.
+% This file intentionally starts small and only contains sections/subsections actively revised for the ICNP draft.
+
+% -----------------------------------------------------------------------------
+% Background reduction pass
+% -----------------------------------------------------------------------------
+
+\section{Background}
+\label{sec:Background}
+
+\subsection{Quantum Networks and Entanglement Routing}
+
+Quantum networks distribute entanglement across repeaters and end-nodes to support long-distance quantum communication, distributed quantum computing, and sensing~\cite{wehner2018quantum,kimble2008quantum}. Unlike classical packet routing, quantum routing must operate with fragile states, probabilistic entanglement generation and swapping, decoherence, and fidelity loss~\cite{briegel1998quantum,dahlberg2021netsquid,bennett1993teleporting,zukowski1993event}. Across multi-hop paths, these effects make routing a repeated decision problem under uncertainty, where path choices must adapt to noisy outcomes and changing link conditions. Prior routing approaches often assume stable topology knowledge or fixed allocation rules, assumptions that weaken under online learning, demand variability, and disruptive or strategic interference~\cite{li2025multipath,wang2025learning,huang2024quantum}.
+
+\subsection{The Multi-Armed Bandit Abstraction}
+
+A multi-armed bandit (MAB) models online routing as repeated action selection under partial feedback: at each round, the learner selects a candidate path or allocation action, observes a reward signal such as entanglement success or routing efficiency, and balances exploration against exploitation~\cite{lattimore2020bandit,bubeck2012regret}. Different bandit families capture different routing assumptions: stochastic methods such as UCB assume stable reward distributions~\cite{auer2002finite}, contextual and neural contextual methods use side information or nonlinear reward models when topology or load features are predictive~\cite{chu2011contextual,zhou2020neuralucb}, and adversarial methods such as EXP3 target non-stationary or strategic reward sequences~\cite{auer2002nonstochastic}. This taxonomy is useful for quantum routing because benign noise motivates contextual modeling, while adaptive disruption motivates adversarial robustness~\cite{huang2024quantum}.
