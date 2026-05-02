@@ -43,6 +43,7 @@
 \newcommand{\etc}{etc.\xspace}
 \newcommand{\etal}{\emph{et~al.}\xspace}
 \newcommand{\descStep}[2]{\noindent\textbf{#1:} #2}
+\newcommand{\shee}[1]{\textcolor{purple}{\textit{[Shee: #1]}}}
 
 \crefname{section}{Section}{Sections}
 \Crefname{section}{Section}{Sections}
@@ -66,7 +67,20 @@
 \maketitle
 
 \begin{abstract}
-Quantum entanglement routing requires dynamic path selection and qubit allocation under noisy and adversarial conditions. This ICNP working draft stages a reduced version of the manuscript so that section-level compression can be reviewed in a compilable IEEE conference layout before changes are copied back into \texttt{main.tex}.
+Quantum entanglement routing requires dynamic path selection and qubit allocation under noisy and adversarial conditions. Existing routing approaches frequently assume stationary link behavior, decouple selection from allocation, or rely on offline optimization assumptions that can fail when link fidelities drift and disruptions adapt online. This is problematic because when such routing assumptions fail, routing decisions can degrade end-to-end entanglement quality and waste scarce quantum resources, making apparently strong policies unreliable under realistic operating conditions.
+
+This work provides a systematic threat-aware framework to evaluate contextual, adversarial, and hybrid bandit algorithms for joint path selection and qubit allocation in quantum networks, together with a family of pursuit--neural hybrid policies that we show outperform both adversarial-first and stochastic-only baselines. Unlike existing work that fixes allocator policy and replay semantics as background constants, our framework treats them as first-class experimental variables, enabling direct attribution of robustness to the algorithm--allocator--capacity triad.
+
+
+% We found that neural hybrids outperform non-contextual baselines by 18–24 percentage points in scenario-aggregated efficiency across thirteen evaluated algorithms and five threat regimes. They also emerge as the most robust family, sustaining worst-case performance floors above 85\% under stochastic threats and remaining more stable under strategic adaptive attacks than adversarial-first EXP3-style designs. We further identified a \emph{capacity paradox}: increasing replay capacity improves efficiency under structured (Markov) disruption yet induces efficiency collapses of 22–30 percentage points under adaptive adversaries, revealing that resource predictability, not bandwidth, is the dominant robustness constraint.
+
+We found that neural hybrids outperform non-contextual baselines by 18–24 percentage points in scenario-aggregated efficiency across thirteen evaluated algorithms and five threat regimes. They also emerge as the most robust family, sustaining worst-case performance floors above 85\% under stochastic threats and remaining more stable under strategic adaptive attacks than adversarial-first EXP3-style designs. We further identify a \emph{capacity paradox}: increasing replay capacity improves efficiency under structured Markov disruption but can induce 22–30 percentage-point efficiency collapses under adaptive adversaries, revealing that resource predictability, not raw capacity, is the dominant robustness constraint.
+
+%Across 13 algorithms and five threat regimes, pursuit--neural hybrids emerge as the most robust family, outperforming non-contextual baselines by 18--24 percentage points in scenario-aggregated efficiency, sustaining worst-case performance floors above 85\% under stochastic threats, and remaining more stable under strategic adaptive attacks than adversarial-first EXP3-style designs. A key finding is a \emph{capacity paradox}: increasing replay capacity improves efficiency under structured (Markov) disruption yet induces efficiency collapses of 22--30 percentage points under adaptive adversaries, revealing that resource predictability, not bandwidth, is the dominant robustness bottleneck.
+
+We further validate these robustness trends through cross-testbed evaluation on three external quantum network simulators, showing consistent behavior across diverse topologies and noise models while exposing scale- and physics-dependent performance limitations.
+
+All source code, datasets, and experiment scripts are available in the public reproducibility repository at \url{https://github.com/pzg8794/quantum_project_hub}. Additional datalake-style artifacts and notebook execution resources are available through the shared Drive hub at \url{https://drive.google.com/drive/folders/0AK0VchnNyM-xUk9PVA}. \shee{Abstract is too long. This paragraph is repeated in the introduction as well.}
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -88,13 +102,12 @@ This file is a runnable ICNP venue draft used to evaluate reductions before repl
 
 Quantum networks distribute entanglement across repeaters and end-nodes to support long-distance quantum communication, distributed quantum computing, and sensing~\cite{wehner2018quantum,kimble2008quantum}. Unlike classical packet routing, quantum routing must operate with fragile states, probabilistic entanglement generation and swapping, decoherence, and fidelity loss~\cite{briegel1998quantum,dahlberg2021netsquid,bennett1993teleporting,zukowski1993event}. Across multi-hop paths, these effects make routing a repeated decision problem under uncertainty, where path choices must adapt to noisy outcomes and changing link conditions. Prior routing approaches often assume stable topology knowledge or fixed allocation rules, assumptions that weaken under online learning, demand variability, and disruptive or strategic interference~\cite{li2025multipath,wang2025learning,huang2024quantum}.
 
-\subsection{The Multi-Armed Bandit Abstraction}
-
-A multi-armed bandit (MAB) models online routing as repeated action selection under partial feedback: at each round, the learner selects a candidate path or allocation action, observes a reward signal such as entanglement success or routing efficiency, and balances exploration against exploitation~\cite{lattimore2020bandit,bubeck2012regret}. Different bandit families capture different routing assumptions: stochastic methods such as UCB assume stable reward distributions~\cite{auer2002finite}, contextual and neural contextual methods use side information or nonlinear reward models when topology or load features are predictive~\cite{chu2011contextual,zhou2020neuralucb}, and adversarial methods such as EXP3 target non-stationary or strategic reward sequences~\cite{auer2002nonstochastic}. This taxonomy is useful for quantum routing because benign noise motivates contextual modeling, while adaptive disruption motivates adversarial robustness~\cite{huang2024quantum}.
+% Next candidate subsection under audit: The Multi-Armed Bandit Abstraction.
+% Do not add it here until the split/reduction has been reviewed and accepted.
 
 \subsection{Allocation and Capacity Semantics}
 
-% Next reduction target. Original content from main.tex will be reduced here.
+% Placeholder. This subsection will be audited after the MAB subsection decision.
 
 \section{System Model}
 \label{sec:SystemModel}
