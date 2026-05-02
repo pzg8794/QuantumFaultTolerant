@@ -29,6 +29,9 @@
 \usepackage{url}
 \usepackage{xspace}
 \usepackage{textcomp}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, backgrounds, calc, decorations.pathreplacing, bending}
+\tikzset{>={Stealth}}
 
 \setlist{nosep}
 \setlist[itemize]{topsep=2pt, partopsep=0pt, itemsep=2pt, parsep=0pt, leftmargin=*}
@@ -92,6 +95,81 @@ Quantum networks, entanglement routing, multi-armed bandits, adversarial learnin
 This file is a runnable ICNP venue draft used to evaluate reductions before replacing the active manuscript. The text below currently focuses on the Background reduction pass. Additional reduced sections should be added here as they are accepted.
 
 % -----------------------------------------------------------------------------
+% Figure audit staging: figures only, no surrounding unrevised manuscript text.
+% -----------------------------------------------------------------------------
+
+\begin{figure}[t]
+\centering
+\footnotesize
+\resizebox{\columnwidth}{!}{%
+\begin{tikzpicture}[
+    node distance=0.5cm and 0.5cm,
+    >=Latex,
+    box/.style={
+        rectangle,
+        draw,
+        rounded corners=4pt,
+        align=center,
+        minimum height=0.95cm,
+        text width=2.55cm,
+        inner sep=4pt
+    },
+    smallbox/.style={
+        rectangle,
+        draw,
+        rounded corners=4pt,
+        align=center,
+        minimum height=0.85cm,
+        text width=2.3cm,
+        inner sep=3pt
+    },
+    mainbox/.style={
+        rectangle,
+        draw,
+        rounded corners=6pt,
+        align=center,
+        minimum height=1.1cm,
+        text width=3.2cm,
+        inner sep=5pt
+    },
+    arrow/.style={thick,->}
+]
+
+\node[box] (topology) {Quantum Network\\Topology};
+\node[box, right=of topology] (threats) {Threat\\Regimes};
+\node[box, right=of threats] (models) {Bandit Policy\\Families};
+
+\node[smallbox, below=1.3cm of topology] (allocator) {Allocator\\Policy};
+\node[smallbox, below=1.3cm of models] (capacity) {Replay / Capacity\\Semantics};
+
+\node[mainbox, below=1.4cm of threats] (engine)
+{Threat-Aware Evaluation Framework\\[0.2em]
+Joint path selection + qubit allocation under matched conditions};
+
+\node[box, below=1.5cm of allocator] (metrics) {Oracle-Normalized\\Metrics};
+\node[box, below=1.5cm of engine] (comparison) {Cross-Model\\Robustness Comparison};
+\node[box, below=1.5cm of capacity] (guidance) {Deployment\\Guidance};
+
+\draw[arrow] (topology) -- (engine);
+\draw[arrow] (threats) -- (engine);
+\draw[arrow] (models) -- (engine);
+\draw[arrow] (allocator) -- (engine);
+\draw[arrow] (capacity) -- (engine);
+
+\draw[arrow] (engine) -- (metrics);
+\draw[arrow] (engine) -- (comparison);
+\draw[arrow] (engine) -- (guidance);
+
+\end{tikzpicture}%
+}
+\caption{Threat-aware evaluation framework for quantum entanglement routing. The framework combines network topology, threat regimes, bandit policy families, allocator policy, and replay/capacity semantics under matched conditions to produce Oracle-normalized metrics, cross-model robustness comparisons, and deployment guidance.}
+\label{fig:framework}
+\end{figure}
+
+% TODO: Add remaining figure environments from main.tex as they are reached in the audit.
+% Keep this draft figure-only for unaudited material; do not copy tables or full sections until accepted.
+
+% -----------------------------------------------------------------------------
 % Background reduction pass
 % -----------------------------------------------------------------------------
 
@@ -102,8 +180,9 @@ This file is a runnable ICNP venue draft used to evaluate reductions before repl
 
 Quantum networks distribute entanglement across repeaters and end-nodes to support long-distance quantum communication, distributed quantum computing, and sensing~\cite{wehner2018quantum,kimble2008quantum}. Unlike classical packet routing, quantum routing must operate with fragile states, probabilistic entanglement generation and swapping, decoherence, and fidelity loss~\cite{briegel1998quantum,dahlberg2021netsquid,bennett1993teleporting,zukowski1993event}. Across multi-hop paths, these effects make routing a repeated decision problem under uncertainty, where path choices must adapt to noisy outcomes and changing link conditions. Prior routing approaches often assume stable topology knowledge or fixed allocation rules, assumptions that weaken under online learning, demand variability, and disruptive or strategic interference~\cite{li2025multipath,wang2025learning,huang2024quantum}.
 
-% Next candidate subsection under audit: The Multi-Armed Bandit Abstraction.
-% Do not add it here until the split/reduction has been reviewed and accepted.
+\subsection{The Multi-Armed Bandit Abstraction}
+
+A multi-armed bandit (MAB) models online routing as repeated action selection under partial feedback, where a learner chooses candidate paths or allocation actions and updates from reward signals such as entanglement success or routing efficiency~\cite{lattimore2020bandit,bubeck2012regret}. We use this taxonomy to distinguish the routing assumptions made by each model family: stochastic methods assume stable rewards~\cite{auer2002finite}, contextual and neural methods exploit predictive side information or nonlinear reward structure~\cite{chu2011contextual,zhou2020neuralucb}, adversarial methods handle non-stationary or strategic rewards~\cite{auer2002nonstochastic}, and predictive/informed methods incorporate forecasts~\cite{kar2024icmab}. This distinction matters for quantum routing because benign noise, topology-dependent feedback, and adaptive disruption favor different forms of learning robustness~\cite{huang2024quantum}.
 
 \subsection{Allocation and Capacity Semantics}
 
@@ -180,6 +259,9 @@ D. Zhou, L. Li, and Q. Gu, ``Neural contextual bandits with UCB-based exploratio
 
 \bibitem{auer2002nonstochastic}
 P. Auer, N. Cesa-Bianchi, Y. Freund, and R. Schapire, ``The nonstochastic multiarmed bandit problem,'' \emph{SIAM Journal on Computing}, 2002.
+
+\bibitem{kar2024icmab}
+Kar \etal, ``Informed contextual multi-armed bandits for adaptive routing,'' 2024.
 
 \end{thebibliography}
 
