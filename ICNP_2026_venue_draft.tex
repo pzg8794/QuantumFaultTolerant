@@ -1,7 +1,81 @@
-% ICNP 2026 venue draft audit file
-% Purpose: stage reduced/reworked manuscript sections before replacing main.tex.
+\documentclass[10pt,conference]{IEEEtran}
+
+% ICNP 2026 venue draft working file.
+% Purpose: keep a runnable draft with the same IEEE conference layout while we
+% stage aggressive reductions before replacing main.tex.
 % Source baseline: main.tex on main branch after pre-ICNP archiving.
-% This file intentionally starts small and only contains sections/subsections actively revised for the ICNP draft.
+
+% ============================================================================
+% CORE PACKAGES (aligned with main.tex where needed)
+% ============================================================================
+
+\usepackage{graphicx}
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{balance}
+\usepackage[table]{xcolor}
+\usepackage{soul}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink]{cleveref}
+\usepackage{url}
+\usepackage{xspace}
+\usepackage{textcomp}
+
+\setlist{nosep}
+\setlist[itemize]{topsep=2pt, partopsep=0pt, itemsep=2pt, parsep=0pt, leftmargin=*}
+\setlist[enumerate]{topsep=2pt, partopsep=0pt, itemsep=2pt, parsep=0pt, leftmargin=*}
+
+% ============================================================================
+% CUSTOM COMMANDS (subset from main.tex)
+% ============================================================================
+
+\newcommand{\ie}{\emph{i.e.,}\xspace}
+\newcommand{\eg}{\emph{e.g.,}\xspace}
+\newcommand{\etc}{etc.\xspace}
+\newcommand{\etal}{\emph{et~al.}\xspace}
+\newcommand{\descStep}[2]{\noindent\textbf{#1:} #2}
+
+\crefname{section}{Section}{Sections}
+\Crefname{section}{Section}{Sections}
+\crefname{figure}{Figure}{Figures}
+\Crefname{figure}{Figure}{Figures}
+\crefname{table}{Table}{Tables}
+\Crefname{table}{Table}{Tables}
+\crefname{equation}{Equation}{Equations}
+\Crefname{equation}{Equation}{Equations}
+
+\widowpenalty=10000
+\clubpenalty=10000
+
+\begin{document}
+
+\title{Threat-Aware Evaluation of Quantum Entanglement Routing and Qubit Allocation via Hybrid Contextual Bandits}
+
+% ICNP is double blind. Keep the venue draft anonymous until camera-ready.
+\author{Anonymous Authors}
+
+\maketitle
+
+\begin{abstract}
+Quantum entanglement routing requires dynamic path selection and qubit allocation under noisy and adversarial conditions. This ICNP working draft stages a reduced version of the manuscript so that section-level compression can be reviewed in a compilable IEEE conference layout before changes are copied back into \texttt{main.tex}.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Quantum networks, entanglement routing, multi-armed bandits, adversarial learning, qubit allocation, online optimization.
+\end{IEEEkeywords}
+
+\section{Introduction}
+
+This file is a runnable ICNP venue draft used to evaluate reductions before replacing the active manuscript. The text below currently focuses on the Background reduction pass. Additional reduced sections should be added here as they are accepted.
 
 % -----------------------------------------------------------------------------
 % Background reduction pass
@@ -17,3 +91,83 @@ Quantum networks distribute entanglement across repeaters and end-nodes to suppo
 \subsection{The Multi-Armed Bandit Abstraction}
 
 A multi-armed bandit (MAB) models online routing as repeated action selection under partial feedback: at each round, the learner selects a candidate path or allocation action, observes a reward signal such as entanglement success or routing efficiency, and balances exploration against exploitation~\cite{lattimore2020bandit,bubeck2012regret}. Different bandit families capture different routing assumptions: stochastic methods such as UCB assume stable reward distributions~\cite{auer2002finite}, contextual and neural contextual methods use side information or nonlinear reward models when topology or load features are predictive~\cite{chu2011contextual,zhou2020neuralucb}, and adversarial methods such as EXP3 target non-stationary or strategic reward sequences~\cite{auer2002nonstochastic}. This taxonomy is useful for quantum routing because benign noise motivates contextual modeling, while adaptive disruption motivates adversarial robustness~\cite{huang2024quantum}.
+
+\subsection{Allocation and Capacity Semantics}
+
+% Next reduction target. Original content from main.tex will be reduced here.
+
+\section{System Model}
+\label{sec:SystemModel}
+
+% Placeholder so the draft preserves the expected paper flow while we revise.
+
+\section{Study Design}
+\label{sec:studydesign}
+
+% Placeholder so the draft preserves the expected paper flow while we revise.
+
+\section{Results}
+\label{sec:results}
+
+% Placeholder so the draft preserves the expected paper flow while we revise.
+
+\section{Discussion}
+\label{sec:discussion}
+
+% Placeholder so the draft preserves the expected paper flow while we revise.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+% Placeholder so the draft preserves the expected paper flow while we revise.
+
+\begin{thebibliography}{99}
+
+\bibitem{wehner2018quantum}
+S. Wehner, D. Elkouss, and R. Hanson, ``Quantum internet: A vision for the road ahead,'' \emph{Science}, 2018.
+
+\bibitem{kimble2008quantum}
+H. J. Kimble, ``The quantum internet,'' \emph{Nature}, 2008.
+
+\bibitem{briegel1998quantum}
+H.-J. Briegel, W. Duer, J. I. Cirac, and P. Zoller, ``Quantum repeaters: The role of imperfect local operations in quantum communication,'' \emph{Physical Review Letters}, 1998.
+
+\bibitem{dahlberg2021netsquid}
+A. Dahlberg \etal, ``A link layer protocol for quantum networks,'' 2021.
+
+\bibitem{bennett1993teleporting}
+C. H. Bennett \etal, ``Teleporting an unknown quantum state via dual classical and Einstein-Podolsky-Rosen channels,'' \emph{Physical Review Letters}, 1993.
+
+\bibitem{zukowski1993event}
+M. Zukowski \etal, ``Event-ready-detectors Bell experiment via entanglement swapping,'' \emph{Physical Review Letters}, 1993.
+
+\bibitem{li2025multipath}
+Li \etal, ``Multipath inter-domain routing protocols for quantum networks with online path selection,'' 2025.
+
+\bibitem{wang2025learning}
+Wang \etal, ``Learning best paths in quantum networks,'' 2025.
+
+\bibitem{huang2024quantum}
+Huang \etal, ``Quantum entanglement path selection and qubit allocation via adversarial group neural bandits,'' 2024.
+
+\bibitem{lattimore2020bandit}
+T. Lattimore and C. Szepesvari, \emph{Bandit Algorithms}. Cambridge University Press, 2020.
+
+\bibitem{bubeck2012regret}
+S. Bubeck and N. Cesa-Bianchi, ``Regret analysis of stochastic and nonstochastic multi-armed bandit problems,'' 2012.
+
+\bibitem{auer2002finite}
+P. Auer, N. Cesa-Bianchi, and P. Fischer, ``Finite-time analysis of the multiarmed bandit problem,'' \emph{Machine Learning}, 2002.
+
+\bibitem{chu2011contextual}
+W. Chu \etal, ``Contextual bandits with linear payoff functions,'' AISTATS, 2011.
+
+\bibitem{zhou2020neuralucb}
+D. Zhou, L. Li, and Q. Gu, ``Neural contextual bandits with UCB-based exploration,'' ICML, 2020.
+
+\bibitem{auer2002nonstochastic}
+P. Auer, N. Cesa-Bianchi, Y. Freund, and R. Schapire, ``The nonstochastic multiarmed bandit problem,'' \emph{SIAM Journal on Computing}, 2002.
+
+\end{thebibliography}
+
+\end{document}
