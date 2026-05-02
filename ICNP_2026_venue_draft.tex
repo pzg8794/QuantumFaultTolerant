@@ -186,7 +186,7 @@ A multi-armed bandit (MAB) models online routing as repeated action selection un
 
 \subsection{Allocation and Capacity Semantics}
 
-% Pending split/reduction review. Do not add reduced text here until approved after the chat-first split process.
+Quantum routing couples path choice with resource allocation: the learner must decide both which route to use and how many qubits or attempts to assign within each decision epoch. These allocator choices shape the feedback observed by the bandit learner and the predictability of routing behavior under disruption. Replay or capacity semantics, including bounded histories, windowed updates, and capped experience buffers, further affect stability under nonstationarity and vulnerability to adaptive attacks. We therefore evaluate routing policies jointly with allocator strategy and capacity semantics, rather than treating them as independent implementation details.
 
 \section{System Model}
 \label{sec:SystemModel}
