@@ -95,7 +95,8 @@ Quantum networks, entanglement routing, multi-armed bandits, adversarial learnin
 This file is a runnable ICNP venue draft used to evaluate reductions before replacing the active manuscript. The text below currently focuses on the Background reduction pass. Additional reduced sections should be added here as they are accepted.
 
 % -----------------------------------------------------------------------------
-% Figure audit staging: figures only, no surrounding unrevised manuscript text.
+% Figure audit staging: include only actual LaTeX figure environments copied
+% from main.tex. Do not add placeholder figure slots.
 % -----------------------------------------------------------------------------
 
 \begin{figure}[t]
@@ -166,7 +167,7 @@ Joint path selection + qubit allocation under matched conditions};
 \label{fig:framework}
 \end{figure}
 
-\input{ICNP_2026_figures_audit}
+% TODO: Add the remaining actual LaTeX architecture/diagram figures from main.tex only after locating their exact figure environments.
 
 % -----------------------------------------------------------------------------
 % Background reduction pass
@@ -185,7 +186,7 @@ A multi-armed bandit (MAB) models online routing as repeated action selection un
 
 \subsection{Allocation and Capacity Semantics}
 
-% Placeholder. This subsection will be audited after the MAB subsection decision.
+Quantum routing must choose not only which path to use, but also how many qubits or attempts to allocate across competing paths within each decision epoch. Allocator policy can change performance for the same bandit learner because it shapes both the feedback collected and the predictability of routing behavior under disruption. Replay or capacity semantics, such as bounded histories, windowed updates, or capped experience buffers, further affect stability under nonstationarity and vulnerability to adaptive attacks. We therefore evaluate routing policies jointly with allocator strategy and capacity semantics, rather than treating these choices as independent implementation knobs.
 
 \section{System Model}
 \label{sec:SystemModel}
