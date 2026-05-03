@@ -102,10 +102,38 @@ The original paragraph explained contextual/neural bandit mechanics in detail. T
 Contextual bandits use observable state to distinguish arms whose rewards depend on topology, link quality, load, or temporal conditions. LinUCB provides a linear contextual baseline~\cite{li2010contextual}, while NeuralUCB and NeuralTS extend this idea with learned nonlinear representations~\cite{zhou2020neuralucb,zhang2022neuralts}. We use these methods to test when contextual information improves routing robustness under matched threat, allocator, and replay/capacity conditions.
 ```
 
+## Adversarial and Hybrid Robustness
+
+### Original role
+
+This subsection explained adversarial and hybrid robustness and argued that prior comparisons are confounded by mismatched allocator, replay, and evaluation assumptions.
+
+### Split-level reduction
+
+- **Adversarial bandits:** keep briefly. Background already introduces adversarial methods, but Related Work needs the EXP3-style robustness positioning.
+- **Hybrid designs:** keep. This supports the paper's pursuit--neural hybrid story.
+- **Quantum-routing adversarial motivation:** keep only the routing-specific part: jamming, targeted disruption, and nonstationary link behavior.
+- **Confounding gap:** keep. This is a true Related Work gap and supports the matched-grid evaluation.
+- **Our contrast:** keep and compress. The venue-facing point is that all model families are evaluated under the same threat, allocator, and replay/capacity grid.
+- **Why this matters:** merge into the final sentence by emphasizing the algorithm--allocator--capacity interaction.
+
+### Removed overlap and rationale
+
+The original text repeated adversarial-bandit motivation and gave extended explanation of allocation/replay as first-class factors. The reduced Background already states that adversarial methods handle non-stationary or strategic rewards and that allocator and replay/capacity semantics shape robustness. The Related Work version therefore removes repeated motivation and keeps the comparison gap: prior adversarial-first and hybrid studies often use mismatched experimental assumptions, making it unclear whether robustness comes from the learning rule or from surrounding allocation/replay choices.
+
+### Accepted reduced text
+
+```tex
+\subsection{Adversarial and Hybrid Robustness}
+
+Adversarial bandits use randomized exploration to protect against nonstationary or strategically manipulated rewards, with EXP3-style methods serving as canonical examples~\cite{auer2002nonstochastic}. Hybrid designs combine robust exploration with structured exploitation, such as pursuit-style updates over context-conditioned value estimates or adversarial weighting inside learned reward models~\cite{thathachar2011networks}. In quantum routing, these designs are motivated by jamming, targeted disruption, and nonstationary link behavior, but prior comparisons are often confounded by mismatched allocator policies, replay semantics, and evaluation taxonomies. We evaluate adversarial-first, hybrid pursuit--neural, contextual, and informed variants in the same controlled grid to expose robustness effects attributable to the algorithm--allocator--capacity interaction rather than to isolated learning rules.
+```
+
 ## Current staged status
 
 - `Background` now appears before `Related Work` in `ICNP_2026_venue_draft.tex`.
 - The former Literature Selection Methodology subsection is collapsed into the compact opening above.
 - `Foundational Bandits and Regret Regimes` is reduced and staged.
 - `Contextual and Neural Bandits` is reduced and staged.
+- `Adversarial and Hybrid Robustness` is reduced and staged.
 - Remaining Related Work subsections are pending paragraph-level audit.
