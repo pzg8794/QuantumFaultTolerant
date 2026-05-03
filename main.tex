@@ -217,6 +217,10 @@ All source code, datasets, and experiment scripts are available in the public re
 Quantum networks, entanglement routing, multi-armed bandits, adversarial learning, qubit allocation, online optimization.
 \end{IEEEkeywords}
 
+\section*{Code Metadata}
+
+All source code, datasets, and experiment scripts are available in the public reproducibility repository at \url{https://github.com/pzg8794/quantum_project_hub}. Additional datalake-style artifacts and notebook execution resources are available through the shared Drive hub at \url{https://drive.google.com/drive/folders/0AK0VchnNyM-xUk9PVA}. \shee{I think the reproducibility info is better as a paragraph of its own instead of as a contribution bullet}
+\devroop{This is better i think}
 
 \section{Introduction}
 
@@ -388,6 +392,7 @@ A multi-armed bandit (MAB) models online routing as repeated action selection un
 Quantum routing couples path choice with resource allocation: the learner must decide both which route to use and how many qubits or attempts to assign within each decision epoch. These allocator choices shape the feedback observed by the bandit learner and the predictability of routing behavior under disruption. Replay or capacity semantics, including bounded histories, windowed updates, and capped experience buffers, further affect stability under nonstationarity and vulnerability to adaptive attacks. We therefore evaluate routing policies jointly with allocator strategy and capacity semantics, rather than treating them as independent implementation details.
 
 We study routing robustness as a joint function of learning model, allocator design, replay-capacity configuration, and threat regime, rather than as a property of the bandit policy alone.
+
 
 
 \section{System Model}
