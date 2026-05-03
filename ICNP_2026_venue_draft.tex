@@ -200,6 +200,10 @@ We study routing robustness as a joint function of learning model, allocator des
 
 We organize prior work by the assumptions that shape routing robustness: stochastic and adversarial regret regimes, contextual and neural structure, hybrid robust designs, predictive context, and quantum-routing applications. Our targeted review spans quantum routing, entanglement distribution, and bandit-based online decision-making, emphasizing work that defines robustness assumptions, exploits structured context, adds forecasting, combines mechanisms across regimes, or adapts online decisions to resource-constrained settings. This framing lets us compare routing methods by deployment role, threat model, and resource-control assumptions rather than by algorithm family alone.
 
+\subsection{Foundational Bandits and Regret Regimes}
+
+Foundational bandit results motivate the stochastic and adversarial baselines used in our evaluation. UCB-style optimism and Thompson-style posterior sampling provide canonical baselines under i.i.d. reward assumptions~\cite{auer2002finite,thompson1933likelihood}, while EXP3 provides an adversarial baseline without stochastic assumptions~\cite{auer2002nonstochastic}. Rather than deriving new regret guarantees, our study evaluates these families under the same quantum-routing threat taxonomy, allocator policies, and replay/capacity settings.
+
 \section{System Model}
 \label{sec:SystemModel}
 
@@ -286,6 +290,9 @@ P. Auer, N. Cesa-Bianchi, Y. Freund, and R. Schapire, ``The nonstochastic multia
 
 \bibitem{kar2024icmab}
 Kar \etal, ``Informed contextual multi-armed bandits for adaptive routing,'' 2024.
+
+\bibitem{thompson1933likelihood}
+W. R. Thompson, ``On the likelihood that one unknown probability exceeds another in view of the evidence of two samples,'' \emph{Biometrika}, 1933.
 
 \end{thebibliography}
 
