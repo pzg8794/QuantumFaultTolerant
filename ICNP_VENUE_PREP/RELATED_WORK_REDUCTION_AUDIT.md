@@ -155,6 +155,38 @@ The original text explained predictive methods and proactive routing motivation 
 Predictive or informed bandits incorporate forecasts, exogenous signals, or learned dynamics into online decisions. ICMAB-style methods bias exploration using side information~\cite{kar2024icmab}, while time-series models such as ARIMA capture temporal reward or load patterns~\cite{box2015time}. In routing, these policies can proactively adapt to congestion, link degradation, or demand shifts, but they can also become fragile when forecasts are biased, delayed, or adversarially influenced. We therefore evaluate predictive variants as threat-dependent policies rather than oracle baselines.
 ```
 
+## Quantum Network Routing with Bandits
+
+### Original role
+
+This subsection is the venue-facing core of Related Work. It positions the paper against quantum-network routing, online path selection, EXPNeuralUCB, LinkSelFiE, adaptive routing, structural routing, and cost-vector multipath routing.
+
+### Audit type
+
+For this subsection, we used a sentence-construction audit rather than a heavy conceptual split. The content is important for ICNP because it connects the paper to networking and quantum-routing work. The goal was to keep the same comparisons while shortening repeated phrasing.
+
+### Main sentence-level reductions
+
+- Consolidated repeated uses of `shared threat taxonomy`, `matched threat, allocator, replay/capacity settings`, and `algorithm--allocator--capacity triad`.
+- Kept the field-facing comparison to Wang et al., Li et al., Liu et al., Wang et al. adaptive routing, Huang et al. EXPNeuralUCB, LinkSelFiE, RL-based routing, QuARC, hierarchical routing, repeater-aware routing, and cost-vector routing.
+- Preserved the LinkSelFiE contrast because it directly addresses closest-work positioning: LinkSelFiE is link-level selection/fidelity estimation, while this work targets end-to-end path selection and qubit allocation under multiple threat regimes.
+- Removed repeated explanation of the controlled cross-product design where the same idea had already been stated in adjacent paragraphs.
+
+### Accepted reduced text
+
+```tex
+\subsection{Quantum Network Routing with Bandits}
+
+Recent quantum-network work applies bandits and related online-learning methods to path selection under stochastic decoherence, online benchmarking signals, and structured disruption~\cite{wehner2018quantum,huang2024quantum,wang2025learning,li2025multipath,liu2024qbgp}. Wang \etal~\cite{wang2025learning} study learning high-quality paths under stochastic dynamics, Li \etal~\cite{li2025multipath} propose multipath inter-domain routing with online path selection, and Liu \etal~\cite{liu2024qbgp} use benchmarking signals to support adaptive routing. Wang \etal~\cite{wang2024adaptive} further formulate user-centric entanglement routing with long-term budget constraints and online per-slot routing and allocation. Our contribution is complementary: we benchmark multiple decision-rule and allocator families under a shared threat taxonomy while treating allocator policy and replay/capacity semantics as explicit experimental factors.
+
+Huang \etal~\cite{huang2024quantum} propose \emph{EXPNeuralUCB}, a group neural bandit that combines EXP3-style adversarial exploration with NeuralUCB-style nonlinear reward modeling for joint path selection and qubit allocation. We use EXPNeuralUCB as one comparator within a broader robustness study that also evaluates pursuit--neural hybrids such as \texttt{CPursuitNeuralUCB} and \texttt{iCPursuitNeuralUCB}. This matched comparison separates changes in the learning rule from changes in allocator strategy and replay capacity, which prior adversarial-first routing studies typically treat as fixed.
+
+\paragraph{Closest-work contrast (LinkSelFiE).}
+Liu \etal~\cite{10621263} propose \emph{LinkSelFiE}, which addresses the \emph{link-level} problem of selecting and estimating a high-fidelity entanglement link when link qualities are unknown \emph{a priori}. They cast link selection as best-arm identification and use benchmarking-driven estimation to reduce quantum resource consumption while identifying high-quality links with high confidence. In contrast, we target the \emph{end-to-end routing} problem: joint \emph{path selection and qubit allocation} over time under five threat regimes. LinkSelFiE-style fidelity estimates can be incorporated into our reward model, but our primary focus is routing-layer robustness under structured and adaptive disruption.
+
+Beyond bandit-style path selection, prior work studies learning-based route selection under noisy quantum-network conditions~\cite{chaudhary2023quantum}, RL-based adaptive routing with deep Q-networks~\cite{jallowkhan2025adaptive}, structural decomposition through QuARC adaptive clustering~\cite{clayton2024quarc}, hierarchical routing for scalability~\cite{cicconetti2024scalable}, repeater/efficiency-aware routing~\cite{kumar2024routing}, and cost-vector multipath optimization~\cite{leone2021costvector}. These studies differ materially in allocator assumptions, memory/replay parameterization, and threat models. Our benchmark addresses this comparability gap by evaluating multiple algorithm classes under the same threat, allocator, and replay/capacity grid, enabling direct attribution of robustness to the algorithm--allocator--capacity triad.
+```
+
 ## Current staged status
 
 - `Background` now appears before `Related Work` in `ICNP_2026_venue_draft.tex`.
@@ -163,4 +195,5 @@ Predictive or informed bandits incorporate forecasts, exogenous signals, or lear
 - `Contextual and Neural Bandits` is reduced and staged.
 - `Adversarial and Hybrid Robustness` is reduced and staged.
 - `Predictive and Informed Bandits` is reduced and staged.
-- Remaining Related Work subsections are pending paragraph-level audit.
+- `Quantum Network Routing with Bandits` is sentence-tightened and staged.
+- Remaining Related Work subsection pending audit: `Toward a Modular, Universal Bandit Stack`.
