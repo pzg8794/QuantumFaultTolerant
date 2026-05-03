@@ -105,14 +105,14 @@ Quantum entanglement distribution is a core primitive for the quantum Internet, 
 
 Unlike classical packet routing, quantum routing must establish and consume entanglement under limited memory coherence, probabilistic operations, and fidelity loss~\cite{bennett1993teleporting,zukowski1993event}. These constraints couple path selection with qubit allocation, since resource placement affects both success probability and learner feedback~\cite{li2025multipath,wang2025learning,huang2024quantum}.
 
-Existing quantum-routing studies propose online path selection, benchmarking-driven routing, adaptive route selection, and adversarially robust learning~\cite{wang2025learning,coopmans2021benchmark,huang2024quantum}, but they are often evaluated under different threat, topology, allocator, and replay assumptions~\cite{liu2024qbgp,li2025multipath,chaudhary2023quantum}. This creates a matched-threat evaluation gap: it is unclear when contextual structure is necessary, when adversarial robustness dominates, and how allocator and capacity choices alter apparent routing performance.
+Existing quantum-routing studies propose online path selection, benchmarking-driven routing, adaptive route selection, and adversarially robust learning~\cite{wang2025learning,coopmans2021benchmark,huang2024quantum}, but they are often evaluated under different threat, topology, allocator, and replay assumptions~\cite{liu2024qbgp,li2025multipath,chaudhary2023quantum}. This creates a matched-threat evaluation gap: it is unclear when contextual structure is necessary, when adversarial robustness dominates, and how allocator and capacity choices alter routing performance.
 
 \subsection{Our Approach and Evaluation Scope}
 
 \begin{figure}[t]
 \centering
 \footnotesize
-\resizebox{0.92\columnwidth}{!}{%
+\resizebox{0.80\columnwidth}{!}{%
 \begin{tikzpicture}[
     node distance=0.5cm and 0.5cm,
     >=Latex,
