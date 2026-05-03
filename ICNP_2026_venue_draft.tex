@@ -109,12 +109,10 @@ Existing quantum-routing studies propose online path selection, benchmarking-dri
 
 \subsection{Our Approach and Evaluation Scope}
 
-To address this gap, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks.
-
 \begin{figure}[t]
 \centering
 \footnotesize
-\resizebox{\columnwidth}{!}{%
+\resizebox{0.92\columnwidth}{!}{%
 \begin{tikzpicture}[
     node distance=0.5cm and 0.5cm,
     >=Latex,
@@ -174,9 +172,11 @@ Joint path selection + qubit allocation under matched conditions};
 
 \end{tikzpicture}%
 }
-\caption{Threat-aware evaluation framework for quantum entanglement routing. The framework combines network topology, threat regimes, bandit policy families, allocator policy, and replay/capacity semantics under matched conditions to produce Oracle-normalized metrics, cross-model robustness comparisons, and deployment guidance.}
+\caption{Threat-aware evaluation framework. Topology, threat regimes, policy families, allocator choices, and replay/capacity semantics are matched before computing oracle-normalized robustness metrics and deployment guidance.}
 \label{fig:framework}
 \end{figure}
+
+To address this gap, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks.
 
 This work makes three contributions. First, we introduce a unified threat-aware routing evaluation framework for comparing stochastic, contextual, adversarial, predictive, and hybrid bandit policies for joint entanglement path selection and qubit allocation under matched threat conditions. Second, we show that routing robustness depends on the interaction among learning model, allocator policy, and replay-capacity semantics, identifying a threat-dependent capacity paradox in which added capacity helps under structured disruption but hurts under adaptive attacks. Third, we validate the main trends across external quantum-network testbeds and derive deployment guidance for selecting model--allocator--capacity combinations under different threat regimes.
 
