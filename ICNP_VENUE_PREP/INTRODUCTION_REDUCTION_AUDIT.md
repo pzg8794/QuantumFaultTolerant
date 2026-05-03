@@ -163,16 +163,48 @@ To summarize, this work makes three contributions:
 This work makes three contributions. First, we introduce a unified threat-aware routing evaluation framework for comparing stochastic, contextual, adversarial, predictive, and hybrid bandit policies for joint entanglement path selection and qubit allocation under matched threat conditions. Second, we show that routing robustness depends on the interaction among learning model, allocator policy, and replay-capacity semantics, identifying a threat-dependent capacity paradox in which added capacity helps under structured disruption but hurts under adaptive attacks. Third, we validate the main trends across external quantum-network testbeds and derive deployment guidance for selecting model--allocator--capacity combinations under different threat regimes.
 ```
 
-## Figure-color decision
+## Figure audit decision
 
-The framework figure in `ICNP_2026_venue_draft.tex` was updated to use the same color coding as the System Model figure language defined in `main.tex`:
+The framework figure in `ICNP_2026_venue_draft.tex` was updated to support the Introduction rather than sit as a disconnected draft artifact.
+
+### Placement
+
+The figure is placed immediately after `\subsection{Our Approach and Evaluation Scope}` and before the approach paragraph. This puts the architecture overview at the point where the paper first introduces the evaluation framework.
+
+### Size
+
+The figure was reduced from full column width to:
+
+```tex
+\resizebox{0.92\columnwidth}{!}{...}
+```
+
+This saves space while keeping the figure readable.
+
+### Color coding
+
+The figure uses the same color coding as the System Model figure language defined in `main.tex`:
 
 - `networkblue` for network topology;
 - `envgreen` for threat/environment regimes;
 - `algorange` for bandit policy/model families;
 - `allocpurple` for allocator and replay/capacity semantics.
 
-This keeps the architecture figure visually aligned with the rest of the manuscript.
+### Caption audit
+
+The original caption was descriptive but too long for an Introduction figure. It repeated details already present in the surrounding prose.
+
+Original caption:
+
+```tex
+\caption{Threat-aware evaluation framework for quantum entanglement routing. The framework combines network topology, threat regimes, bandit policy families, allocator policy, and replay/capacity semantics under matched conditions to produce Oracle-normalized metrics, cross-model robustness comparisons, and deployment guidance.}
+```
+
+Accepted shorter caption:
+
+```tex
+\caption{Threat-aware evaluation framework. Topology, threat regimes, policy families, allocator choices, and replay/capacity semantics are matched before computing oracle-normalized robustness metrics and deployment guidance.}
+```
 
 ## Status
 
