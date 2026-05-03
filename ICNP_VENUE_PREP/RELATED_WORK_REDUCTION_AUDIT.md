@@ -187,6 +187,34 @@ Liu \etal~\cite{10621263} propose \emph{LinkSelFiE}, which addresses the \emph{l
 Beyond bandit-style path selection, prior work studies learning-based route selection under noisy quantum-network conditions~\cite{chaudhary2023quantum}, RL-based adaptive routing with deep Q-networks~\cite{jallowkhan2025adaptive}, structural decomposition through QuARC adaptive clustering~\cite{clayton2024quarc}, hierarchical routing for scalability~\cite{cicconetti2024scalable}, repeater/efficiency-aware routing~\cite{kumar2024routing}, and cost-vector multipath optimization~\cite{leone2021costvector}. These studies differ materially in allocator assumptions, memory/replay parameterization, and threat models. Our benchmark addresses this comparability gap by evaluating multiple algorithm classes under the same threat, allocator, and replay/capacity grid, enabling direct attribution of robustness to the algorithm--allocator--capacity triad.
 ```
 
+## Toward a Modular Bandit Evaluation Stack
+
+### Original role
+
+This subsection closed Related Work by framing the paper as a modular evaluation stack and connecting quantum-network benchmarking, best-of-both-worlds bandit theory, allocator configuration, replay semantics, and mixed-regime stress testing.
+
+### Split-level reduction
+
+- **Cross-domain meta-problem:** remove as tutorial repetition. Background already defines MABs as repeated routing decisions under partial feedback.
+- **Adapter layer/domain variation:** keep only by reference to Background. The idea is useful, but the detailed context/reward/constraint explanation belongs in System Model or Study Design.
+- **Enumerated modular stack:** remove from Related Work. The allocator/decision rule, forecasting layer, and domain adapter list introduces our architecture rather than comparing prior work.
+- **Quantum-network benchmarking frameworks:** keep. This supports the ICNP-facing evaluation-methodology framing.
+- **Best-of-both-worlds bandit theory:** keep briefly and connect to benchmarking frameworks to justify mixed-regime evaluation.
+- **Empirical operationalization:** keep as a bridge from prior-work motivation to our evaluation design.
+- **Final contribution summary:** keep and broaden so the ending closes the whole Related Work section, not only the final subsection.
+
+### Removed overlap and rationale
+
+The original subsection repeated the modular stack that should be introduced later in System Model or Study Design. It also restated the general bandit problem already covered by the reduced Background. The accepted version instead references Background directly, keeps the benchmarking/theory citations, and uses the final sentence to synthesize the full Related Work section into the paper's central comparison.
+
+### Accepted reduced text
+
+```tex
+\subsection{Toward a Modular Bandit Evaluation Stack}
+
+Building on the Background framing of routing robustness as an interaction among context, reward, allocator, and replay/capacity semantics, we treat these elements as an evaluation interface rather than reintroducing the full modular stack here. Quantum-network benchmarking frameworks motivate separating network behavior from policy behavior~\cite{coopmans2021benchmark,kozlowski2022utility}, while best-of-both-worlds bandit theory motivates evaluation across stochastic and adversarial regimes~\cite{zimmert2019optimal}. Taken together, the reviewed work motivates our central comparison: evaluating classical, contextual/neural, adversarial, hybrid, and informed routing policies under common threat, allocator, and replay/capacity conditions to determine when robustness comes from the decision rule and when it comes from deployment configuration.
+```
+
 ## Current staged status
 
 - `Background` now appears before `Related Work` in `ICNP_2026_venue_draft.tex`.
@@ -196,4 +224,5 @@ Beyond bandit-style path selection, prior work studies learning-based route sele
 - `Adversarial and Hybrid Robustness` is reduced and staged.
 - `Predictive and Informed Bandits` is reduced and staged.
 - `Quantum Network Routing with Bandits` is sentence-tightened and staged.
-- Remaining Related Work subsection pending audit: `Toward a Modular, Universal Bandit Stack`.
+- `Toward a Modular Bandit Evaluation Stack` is reduced and staged.
+- Related Work audit is complete for this pass.
