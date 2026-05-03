@@ -101,11 +101,11 @@ Quantum networks, entanglement routing, multi-armed bandits, adversarial learnin
 
 \section{Introduction}
 
-Quantum entanglement distribution is a core primitive for the quantum Internet, supporting quantum key distribution, distributed quantum computing, and sensing~\cite{kimble2008quantum,wehner2018quantum,pompili2021realization}. Reliable end-to-end entanglement remains difficult because generation and swapping are probabilistic, quantum states are fragile, and decoherence causes path quality to vary over time~\cite{briegel1998quantum,dahlberg2021netsquid,zukowski1993event}.
+Quantum entanglement distribution is a core primitive for the quantum Internet, supporting quantum key distribution, distributed quantum computing, and sensing~\cite{kimble2008quantum,wehner2018quantum,pompili2021realization}. Reliable end-to-end entanglement is difficult because generation and swapping are probabilistic, quantum states are fragile, and decoherence makes path quality time-varying~\cite{briegel1998quantum,dahlberg2021netsquid,zukowski1993event}.
 
-Unlike classical packet routing, quantum routing must establish and consume entanglement under limited memory coherence, probabilistic operations, and fidelity loss~\cite{bennett1993teleporting,zukowski1993event}. These constraints couple path selection with qubit allocation: how resources are distributed across candidate paths affects both success probability and the feedback observed by the learner~\cite{li2025multipath,wang2025learning,huang2024quantum}.
+Unlike classical packet routing, quantum routing must establish and consume entanglement under limited memory coherence, probabilistic operations, and fidelity loss~\cite{bennett1993teleporting,zukowski1993event}. These constraints couple path selection with qubit allocation, since resource placement affects both success probability and learner feedback~\cite{li2025multipath,wang2025learning,huang2024quantum}.
 
-Existing quantum-routing studies propose online path selection, benchmarking-driven routing, adaptive route selection, and adversarially robust learning~\cite{wang2025learning,coopmans2021benchmark,huang2024quantum}, but they are often evaluated under different assumptions about threat processes, topology visibility, allocator policy, and replay or memory semantics~\cite{liu2024qbgp,li2025multipath,chaudhary2023quantum}. This creates a matched-threat evaluation gap: it is unclear when contextual structure is necessary, when adversarial robustness dominates, and how allocator and capacity choices alter apparent routing performance.
+Existing quantum-routing studies propose online path selection, benchmarking-driven routing, adaptive route selection, and adversarially robust learning~\cite{wang2025learning,coopmans2021benchmark,huang2024quantum}, but they are often evaluated under different threat, topology, allocator, and replay assumptions~\cite{liu2024qbgp,li2025multipath,chaudhary2023quantum}. This creates a matched-threat evaluation gap: it is unclear when contextual structure is necessary, when adversarial robustness dominates, and how allocator and capacity choices alter apparent routing performance.
 
 \subsection{Our Approach and Evaluation Scope}
 
@@ -178,14 +178,7 @@ Joint path selection + qubit allocation under matched conditions};
 \label{fig:framework}
 \end{figure}
 
-To summarize, this work makes three contributions:
-\begin{itemize}
-    \item \descStep{Threat-aware routing evaluation}{We introduce a unified framework for comparing stochastic, contextual, adversarial, predictive, and hybrid bandit policies for joint entanglement path selection and qubit allocation under matched threat conditions.}
-
-    \item \descStep{Allocator--capacity robustness analysis}{We show that routing robustness depends on the interaction among learning model, allocator policy, and replay-capacity semantics, and identify a threat-dependent capacity paradox in which added capacity helps under structured disruption but hurts under adaptive attacks.}
-
-    \item \descStep{Cross-testbed validation}{We validate the main trends across external quantum-network testbeds and derive deployment guidance for selecting model--allocator--capacity combinations under different threat regimes.}
-\end{itemize}
+This work makes three contributions. First, we introduce a unified threat-aware routing evaluation framework for comparing stochastic, contextual, adversarial, predictive, and hybrid bandit policies for joint entanglement path selection and qubit allocation under matched threat conditions. Second, we show that routing robustness depends on the interaction among learning model, allocator policy, and replay-capacity semantics, identifying a threat-dependent capacity paradox in which added capacity helps under structured disruption but hurts under adaptive attacks. Third, we validate the main trends across external quantum-network testbeds and derive deployment guidance for selecting model--allocator--capacity combinations under different threat regimes.
 
 % -----------------------------------------------------------------------------
 % Background reduction pass
