@@ -455,47 +455,13 @@ To summarize, this work makes the following contributions:
 \section{Background}
 \label{sec:Background}
 
-\devroop{I feel like this should be within your related works section. And you can refactor your multi-armed bandit subsection into system model.}
+Quantum networks distribute entanglement across repeaters and end-nodes to support long-distance quantum communication, distributed quantum computing, and sensing~\cite{wehner2018quantum,kimble2008quantum}. Unlike classical packet routing, quantum routing must operate with fragile states, probabilistic entanglement generation and swapping, decoherence, and fidelity loss~\cite{briegel1998quantum,dahlberg2021netsquid,bennett1993teleporting,zukowski1993event}. Across multi-hop paths, these effects make routing a repeated decision problem under uncertainty, where path choices must adapt to noisy outcomes and changing link conditions. Prior routing approaches often assume stable topology knowledge or fixed allocation rules, assumptions that weaken under online learning, demand variability, and disruptive or strategic interference~\cite{li2025multipath,wang2025learning,huang2024quantum}.
 
-% \subsection{Quantum Networks and Entanglement Routing}
+A multi-armed bandit (MAB) models online routing as repeated action selection under partial feedback, where a learner chooses candidate paths or allocation actions and updates from reward signals such as entanglement success or routing efficiency~\cite{lattimore2020bandit,bubeck2012regret}. We use this taxonomy to distinguish the routing assumptions made by each model family: stochastic methods assume stable rewards~\cite{auer2002finite}, contextual and neural methods exploit predictive side information or nonlinear reward structure~\cite{chu2011contextual,zhou2020neuralucb}, adversarial methods handle non-stationary or strategic rewards~\cite{auer2002nonstochastic}, and predictive/informed methods incorporate forecasts~\cite{kar2024icmab}. This distinction matters for quantum routing because benign noise, topology-dependent feedback, and adaptive disruption favor different forms of learning robustness~\cite{huang2024quantum}.
 
-% Quantum networks rely on entanglement distribution across quantum repeaters and end-nodes to enable long-distance quantum communication, sensing, and computing applications. Unlike classical networks where packets are routed along fixed paths with deterministic delays, quantum entanglement swapping is probabilistic: each link has a success rate (fidelity) that depends on hardware quality, decoherence, and environmental noise~\cite{}. Path selection in quantum networks therefore becomes a sequential decision problem under uncertainty—a multi-armed bandit problem.
+Quantum routing couples path choice with resource allocation: the learner must decide both which route to use and how many qubits or attempts to assign within each decision epoch. These allocator choices shape the feedback observed by the bandit learner and the predictability of routing behavior under disruption. Replay or capacity semantics, including bounded histories, windowed updates, and capped experience buffers, further affect stability under nonstationarity and vulnerability to adaptive attacks. We therefore evaluate routing policies jointly with allocator strategy and capacity semantics, rather than treating them as independent implementation details.
 
-% Traditional quantum routing assumes either complete topology knowledge (enabling offline optimization) or fixed, heuristically tuned capacity allocations. Both assumptions fail in realistic deployments where link fidelities are unknown a priori and must be learned online, and where capacity must adapt to variable demand, repeater availability, and adversarial link failures. The core challenge is that routing algorithms observe stochastic success/failure signals, must quickly learn which paths are reliable, and simultaneously must allocate limited quantum resources (qubits, time slots) across those paths—all while remaining robust to intelligent adversaries that can observe allocation patterns and adapt their attacks accordingly.
-
-\subsection{Quantum Networks and Entanglement Routing}
-
-Quantum networks rely on entanglement distribution across repeaters and end-nodes to enable long-distance quantum communication, distributed quantum computing, and sensing applications~\cite{wehner2018quantum,kimble2008quantum}. Unlike classical networks where packets can be buffered and forwarded with near-deterministic behavior, quantum networking operates under fundamental constraints: quantum states are fragile, entanglement generation and swapping are probabilistic, and the \emph{quality} of distributed entanglement (\eg fidelity) degrades under decoherence and imperfect operations~\cite{briegel1998quantum,dahlberg2021netsquid}.
-
-Quantum teleportation~\cite{bennett1993teleporting} enables qubit transmission by consuming shared entanglement between nodes, while entanglement swapping~\cite{zukowski1993event} at repeaters extends entanglement over long distances by stitching together shorter entangled segments. Because routing decisions must be made repeatedly from noisy outcomes and time-varying link conditions, quantum path selection naturally becomes a \emph{sequential decision problem under uncertainty}, for which multi-armed bandits (MABs) provide a principled abstraction~\cite{lattimore2020bandit,bubeck2012regret}.
-
-Traditional quantum routing often assumes either (i) complete topology and stable link characterization enabling offline optimization, or (ii) fixed, heuristically tuned allocation rules. These assumptions can break in realistic deployments where link conditions must be learned online and routing must adapt to demand variability and disruptive events, including strategic interference~\cite{li2025multipath,wang2025learning,huang2024quantum}.
-
-\subsection{The Multi-Armed Bandit Abstraction}
-
-A multi-armed bandit (MAB) formalizes online routing as follows: at each time step $t$, an agent selects one of $K$ candidate actions (\eg paths or allocation decisions), observes a reward signal (\eg entanglement success/failure or efficiency proxy), and aims to minimize regret relative to an oracle policy~\cite{lattimore2020bandit}. The central challenge is the exploration--exploitation trade-off: learning which actions are reliable while maintaining high routing performance~\cite{bubeck2012regret}.
-
-Several bandit variants align with different quantum-network assumptions and threat models:
-\begin{itemize}[leftmargin=2em]
-\item \textbf{Classical (stochastic) bandits} assume stationary reward distributions (\eg UCB-style methods)~\cite{auer2002finite}.
-\item \textbf{Contextual bandits} incorporate observable side information (\eg topology features or load indicators) to improve decisions when context is predictive~\cite{chu2011contextual}.
-\item \textbf{Neural contextual bandits} use function approximation to model nonlinear reward while preserving principled exploration via uncertainty-aware decision rules~\cite{zhou2020neuralucb}.
-\item \textbf{Adversarial bandits} guard against worst-case or non-stochastic reward sequences (\eg EXP3 algorithm)~\cite{auer2002nonstochastic}.
-\item \textbf{Predictive/informed bandits} augment decisions with forecasts of future conditions~\cite{kar2024icmab}.
-\end{itemize}
-
-This taxonomy provides a natural lens for quantum routing: stochastic noise motivates contextual/neural modeling, while strategic disruption motivates adversarial robustness~\cite{huang2024quantum}.
-
-\subsection{Allocation and Capacity Semantics}
-
-In addition to choosing routes, practical quantum routing must manage resource allocation decisions (\eg how many attempts or qubits to allocate across competing paths within a decision epoch). Allocation policies can materially change performance even for the same underlying bandit learner, because they shape both the information collected and the predictability of routing behavior under disruption.
-
-Many learning-based routing implementations also impose finite-memory or replay semantics (\eg bounded histories, windowed updates, or capped experience buffers) that affect stability under nonstationarity and vulnerability under strategic adaptation. These design choices motivate evaluating routing policies jointly with allocator strategy and capacity semantics, rather than treating them as independent knobs.
-
-\subsection{Problem Scope}
-Motivated by the joint effects of allocator strategy and capacity semantics on routing performance, stability, and predictability, we study how modeling choices (\eg contextual vs.\ adversarial vs.\ predictive), allocator design, and replay-capacity configuration jointly determine routing robustness under diverse threat regimes.
-
-% Motivated by these considerations, we study how modeling choices (\eg contextual vs.\ adversarial vs.\ predictive), allocator strategies, and capacity semantics jointly affect routing robustness under diverse threat regimes. Specifically, we evaluate \textbf{16 models} (15 learned policies + Oracle) across \textbf{5 threat scenarios}, \textbf{4 allocators}, capacity scales $S \in \{1.0, 1.5, 2.0\}$, and 3--5 run ensembles to isolate which design choices matter most and to support actionable deployment guidance.
+We study routing robustness as a joint function of learning model, allocator design, replay-capacity configuration, and threat regime, rather than as a property of the bandit policy alone.
 
 
 \section{System Model}
