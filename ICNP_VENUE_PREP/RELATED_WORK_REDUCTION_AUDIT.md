@@ -77,9 +77,35 @@ The original paragraph explained the exploration--exploitation tradeoff, regret 
 Foundational bandit results motivate the stochastic and adversarial baselines used in our evaluation. UCB-style optimism and Thompson-style posterior sampling provide canonical baselines under i.i.d. reward assumptions~\cite{auer2002finite,thompson1933likelihood}, while EXP3 provides an adversarial baseline without stochastic assumptions~\cite{auer2002nonstochastic}. Rather than deriving new regret guarantees, our study evaluates these families under the same quantum-routing threat taxonomy, allocator policies, and replay/capacity settings.
 ```
 
+## Contextual and Neural Bandits
+
+### Original role
+
+This subsection explained how contextual and neural bandits use observable structure and positioned LinUCB, NeuralUCB, and NeuralTS as structure-aware baselines.
+
+### Split-level reduction
+
+- **Contextual bandit idea:** keep briefly. Background already says contextual/neural methods exploit side information or nonlinear reward structure, so Related Work only needs the routing-relevant form of that idea.
+- **Representative methods:** keep. LinUCB, NeuralUCB, and NeuralTS are important comparison families and need citations for baseline credibility.
+- **Mechanism abstraction:** remove. The original mechanism sentence about learning a value predictor, maintaining uncertainty, and acting optimistically/probabilistically is tutorial material already implied by Background and not necessary for ICNP Related Work.
+- **Our contrast:** keep. The important venue-facing point is that we test when contextual information improves robustness under matched threat, allocator, and replay/capacity conditions.
+
+### Removed overlap and rationale
+
+The original paragraph explained contextual/neural bandit mechanics in detail. The reduced Background already introduces contextual and neural methods as models that exploit predictive side information or nonlinear reward structure. Related Work therefore removes the tutorial mechanism sentence and keeps only the prior-work positioning and the contrast to fixed-assumption routing evaluations.
+
+### Accepted reduced text
+
+```tex
+\subsection{Contextual and Neural Bandits}
+
+Contextual bandits use observable state to distinguish arms whose rewards depend on topology, link quality, load, or temporal conditions. LinUCB provides a linear contextual baseline~\cite{li2010contextual}, while NeuralUCB and NeuralTS extend this idea with learned nonlinear representations~\cite{zhou2020neuralucb,zhang2022neuralts}. We use these methods to test when contextual information improves routing robustness under matched threat, allocator, and replay/capacity conditions.
+```
+
 ## Current staged status
 
 - `Background` now appears before `Related Work` in `ICNP_2026_venue_draft.tex`.
 - The former Literature Selection Methodology subsection is collapsed into the compact opening above.
 - `Foundational Bandits and Regret Regimes` is reduced and staged.
+- `Contextual and Neural Bandits` is reduced and staged.
 - Remaining Related Work subsections are pending paragraph-level audit.
