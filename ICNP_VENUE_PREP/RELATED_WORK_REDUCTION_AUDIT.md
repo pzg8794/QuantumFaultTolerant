@@ -129,6 +129,32 @@ The original text repeated adversarial-bandit motivation and gave extended expla
 Adversarial bandits use randomized exploration to protect against nonstationary or strategically manipulated rewards, with EXP3-style methods serving as canonical examples~\cite{auer2002nonstochastic}. Hybrid designs combine robust exploration with structured exploitation, such as pursuit-style updates over context-conditioned value estimates or adversarial weighting inside learned reward models~\cite{thathachar2011networks}. In quantum routing, these designs are motivated by jamming, targeted disruption, and nonstationary link behavior, but prior comparisons are often confounded by mismatched allocator policies, replay semantics, and evaluation taxonomies. We evaluate adversarial-first, hybrid pursuit--neural, contextual, and informed variants in the same controlled grid to expose robustness effects attributable to the algorithm--allocator--capacity interaction rather than to isolated learning rules.
 ```
 
+## Predictive and Informed Bandits
+
+### Original role
+
+This subsection positioned predictive/informed bandits as forecast-using policies and explained why forecast quality matters under threats.
+
+### Split-level reduction
+
+- **Predictive/informed idea:** keep briefly. Background already states that predictive/informed methods incorporate forecasts, so Related Work only needs a compact positioning sentence.
+- **Representative methods:** keep. ICMAB and ARIMA are cited to anchor the predictive family and time-series baseline.
+- **Routing appeal:** keep. Proactive adaptation to congestion, link degradation, and demand shifts is the networking-relevant motivation.
+- **Predictive fragility:** keep. Forecasts can be biased, delayed, or adversarially influenced; this strengthens the threat-aware evaluation motivation.
+- **Our contrast:** keep. Predictive variants are evaluated as threat-dependent policies rather than oracle baselines.
+
+### Removed overlap and rationale
+
+The original text explained predictive methods and proactive routing motivation in more detail than needed. The reduced Background already states that predictive/informed methods incorporate forecasts. Related Work therefore keeps the prior-work anchors and the threat-aware limitation, while removing repeated explanation of the decision loop.
+
+### Accepted reduced text
+
+```tex
+\subsection{Predictive and Informed Bandits}
+
+Predictive or informed bandits incorporate forecasts, exogenous signals, or learned dynamics into online decisions. ICMAB-style methods bias exploration using side information~\cite{kar2024icmab}, while time-series models such as ARIMA capture temporal reward or load patterns~\cite{box2015time}. In routing, these policies can proactively adapt to congestion, link degradation, or demand shifts, but they can also become fragile when forecasts are biased, delayed, or adversarially influenced. We therefore evaluate predictive variants as threat-dependent policies rather than oracle baselines.
+```
+
 ## Current staged status
 
 - `Background` now appears before `Related Work` in `ICNP_2026_venue_draft.tex`.
@@ -136,4 +162,5 @@ Adversarial bandits use randomized exploration to protect against nonstationary 
 - `Foundational Bandits and Regret Regimes` is reduced and staged.
 - `Contextual and Neural Bandits` is reduced and staged.
 - `Adversarial and Hybrid Robustness` is reduced and staged.
+- `Predictive and Informed Bandits` is reduced and staged.
 - Remaining Related Work subsections are pending paragraph-level audit.
