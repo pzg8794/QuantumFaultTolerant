@@ -204,6 +204,10 @@ We organize prior work by the assumptions that shape routing robustness: stochas
 
 Foundational bandit results motivate the stochastic and adversarial baselines used in our evaluation. UCB-style optimism and Thompson-style posterior sampling provide canonical baselines under i.i.d. reward assumptions~\cite{auer2002finite,thompson1933likelihood}, while EXP3 provides an adversarial baseline without stochastic assumptions~\cite{auer2002nonstochastic}. Rather than deriving new regret guarantees, our study evaluates these families under the same quantum-routing threat taxonomy, allocator policies, and replay/capacity settings.
 
+\subsection{Contextual and Neural Bandits}
+
+Contextual bandits use observable state to distinguish arms whose rewards depend on topology, link quality, load, or temporal conditions. LinUCB provides a linear contextual baseline~\cite{li2010contextual}, while NeuralUCB and NeuralTS extend this idea with learned nonlinear representations~\cite{zhou2020neuralucb,zhang2022neuralts}. We use these methods to test when contextual information improves routing robustness under matched threat, allocator, and replay/capacity conditions.
+
 \section{System Model}
 \label{sec:SystemModel}
 
@@ -279,11 +283,17 @@ S. Bubeck and N. Cesa-Bianchi, ``Regret analysis of stochastic and nonstochastic
 \bibitem{auer2002finite}
 P. Auer, N. Cesa-Bianchi, and P. Fischer, ``Finite-time analysis of the multiarmed bandit problem,'' \emph{Machine Learning}, 2002.
 
+\bibitem{li2010contextual}
+L. Li, W. Chu, J. Langford, and R. E. Schapire, ``A contextual-bandit approach to personalized news article recommendation,'' WWW, 2010.
+
 \bibitem{chu2011contextual}
 W. Chu \etal, ``Contextual bandits with linear payoff functions,'' AISTATS, 2011.
 
 \bibitem{zhou2020neuralucb}
 D. Zhou, L. Li, and Q. Gu, ``Neural contextual bandits with UCB-based exploration,'' ICML, 2020.
+
+\bibitem{zhang2022neuralts}
+W. Zhang, D. Zhou, L. Li, and Q. Gu, ``Neural Thompson Sampling,'' ICLR, 2022.
 
 \bibitem{auer2002nonstochastic}
 P. Auer, N. Cesa-Bianchi, Y. Freund, and R. Schapire, ``The nonstochastic multiarmed bandit problem,'' \emph{SIAM Journal on Computing}, 2002.
