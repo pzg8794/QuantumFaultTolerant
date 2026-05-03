@@ -38,6 +38,15 @@
 \setlist[enumerate]{topsep=2pt, partopsep=0pt, itemsep=2pt, parsep=0pt, leftmargin=*}
 
 % ============================================================================
+% COLOR DEFINITIONS (aligned with main.tex/System Model figure language)
+% ============================================================================
+
+\definecolor{networkblue}{RGB}{52,152,219}
+\definecolor{envgreen}{RGB}{46,204,113}
+\definecolor{algorange}{RGB}{230,126,34}
+\definecolor{allocpurple}{RGB}{155,89,182}
+
+% ============================================================================
 % CUSTOM COMMANDS (subset from main.tex)
 % ============================================================================
 
@@ -92,12 +101,15 @@ Quantum networks, entanglement routing, multi-armed bandits, adversarial learnin
 
 \section{Introduction}
 
-This file is a runnable ICNP venue draft used to evaluate reductions before replacing the active manuscript. The text below currently focuses on the Background reduction pass. Additional reduced sections should be added here as they are accepted.
+Quantum entanglement distribution is a core primitive for the quantum Internet, supporting quantum key distribution, distributed quantum computing, and sensing~\cite{kimble2008quantum,wehner2018quantum,pompili2021realization}. Reliable end-to-end entanglement remains difficult because generation and swapping are probabilistic, quantum states are fragile, and decoherence causes path quality to vary over time~\cite{briegel1998quantum,dahlberg2021netsquid,zukowski1993event}.
 
-% -----------------------------------------------------------------------------
-% Figure audit staging: include only actual LaTeX figure environments copied
-% from main.tex. Do not add placeholder figure slots.
-% -----------------------------------------------------------------------------
+Unlike classical packet routing, quantum routing must establish and consume entanglement under limited memory coherence, probabilistic operations, and fidelity loss~\cite{bennett1993teleporting,zukowski1993event}. These constraints couple path selection with qubit allocation: how resources are distributed across candidate paths affects both success probability and the feedback observed by the learner~\cite{li2025multipath,wang2025learning,huang2024quantum}.
+
+Existing quantum-routing studies propose online path selection, benchmarking-driven routing, adaptive route selection, and adversarially robust learning~\cite{wang2025learning,coopmans2021benchmark,huang2024quantum}, but they are often evaluated under different assumptions about threat processes, topology visibility, allocator policy, and replay or memory semantics~\cite{liu2024qbgp,li2025multipath,chaudhary2023quantum}. This creates a matched-threat evaluation gap: it is unclear when contextual structure is necessary, when adversarial robustness dominates, and how allocator and capacity choices alter apparent routing performance.
+
+\subsection{Our Approach and Evaluation Scope}
+
+To address this gap, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks.
 
 \begin{figure}[t]
 \centering
@@ -106,56 +118,55 @@ This file is a runnable ICNP venue draft used to evaluate reductions before repl
 \begin{tikzpicture}[
     node distance=0.5cm and 0.5cm,
     >=Latex,
-    box/.style={
+    basebox/.style={
         rectangle,
         draw,
         rounded corners=4pt,
         align=center,
         minimum height=0.95cm,
         text width=2.55cm,
-        inner sep=4pt
+        inner sep=4pt,
+        font=\bfseries
     },
-    smallbox/.style={
-        rectangle,
-        draw,
-        rounded corners=4pt,
-        align=center,
-        minimum height=0.85cm,
-        text width=2.3cm,
-        inner sep=3pt
-    },
+    topologybox/.style={basebox, draw=networkblue!80!black, fill=networkblue!15},
+    threatbox/.style={basebox, draw=envgreen!70!black, fill=envgreen!18},
+    modelbox/.style={basebox, draw=algorange!85!black, fill=algorange!18},
+    allocbox/.style={basebox, draw=allocpurple!80!black, fill=allocpurple!15},
+    outbox/.style={basebox, draw=black!60, fill=black!6, font=\bfseries},
     mainbox/.style={
         rectangle,
-        draw,
+        draw=black!70,
+        fill=black!4,
         rounded corners=6pt,
         align=center,
         minimum height=1.1cm,
         text width=3.2cm,
-        inner sep=5pt
+        inner sep=5pt,
+        font=\bfseries
     },
     arrow/.style={thick,->}
 ]
 
-\node[box] (topology) {Quantum Network\\Topology};
-\node[box, right=of topology] (threats) {Threat\\Regimes};
-\node[box, right=of threats] (models) {Bandit Policy\\Families};
+\node[topologybox] (topology) {Quantum Network\\Topology};
+\node[threatbox, right=of topology] (threats) {Threat\\Regimes};
+\node[modelbox, right=of threats] (models) {Bandit Policy\\Families};
 
-\node[smallbox, below=1.3cm of topology] (allocator) {Allocator\\Policy};
-\node[smallbox, below=1.3cm of models] (capacity) {Replay / Capacity\\Semantics};
+\node[allocbox, below=1.3cm of topology] (allocator) {Allocator\\Policy};
+\node[allocbox, below=1.3cm of models] (capacity) {Replay / Capacity\\Semantics};
 
 \node[mainbox, below=1.4cm of threats] (engine)
 {Threat-Aware Evaluation Framework\\[0.2em]
 Joint path selection + qubit allocation under matched conditions};
 
-\node[box, below=1.5cm of allocator] (metrics) {Oracle-Normalized\\Metrics};
-\node[box, below=1.5cm of engine] (comparison) {Cross-Model\\Robustness Comparison};
-\node[box, below=1.5cm of capacity] (guidance) {Deployment\\Guidance};
+\node[outbox, below=1.5cm of allocator] (metrics) {Oracle-Normalized\\Metrics};
+\node[outbox, below=1.5cm of engine] (comparison) {Cross-Model\\Robustness Comparison};
+\node[outbox, below=1.5cm of capacity] (guidance) {Deployment\\Guidance};
 
-\draw[arrow] (topology) -- (engine);
-\draw[arrow] (threats) -- (engine);
-\draw[arrow] (models) -- (engine);
-\draw[arrow] (allocator) -- (engine);
-\draw[arrow] (capacity) -- (engine);
+\draw[arrow, draw=networkblue!80!black] (topology) -- (engine);
+\draw[arrow, draw=envgreen!70!black] (threats) -- (engine);
+\draw[arrow, draw=algorange!85!black] (models) -- (engine);
+\draw[arrow, draw=allocpurple!80!black] (allocator) -- (engine);
+\draw[arrow, draw=allocpurple!80!black] (capacity) -- (engine);
 
 \draw[arrow] (engine) -- (metrics);
 \draw[arrow] (engine) -- (comparison);
@@ -167,7 +178,14 @@ Joint path selection + qubit allocation under matched conditions};
 \label{fig:framework}
 \end{figure}
 
-% TODO: Add the remaining actual LaTeX architecture/diagram figures from main.tex only after locating their exact figure environments.
+To summarize, this work makes three contributions:
+\begin{itemize}
+    \item \descStep{Threat-aware routing evaluation}{We introduce a unified framework for comparing stochastic, contextual, adversarial, predictive, and hybrid bandit policies for joint entanglement path selection and qubit allocation under matched threat conditions.}
+
+    \item \descStep{Allocator--capacity robustness analysis}{We show that routing robustness depends on the interaction among learning model, allocator policy, and replay-capacity semantics, and identify a threat-dependent capacity paradox in which added capacity helps under structured disruption but hurts under adaptive attacks.}
+
+    \item \descStep{Cross-testbed validation}{We validate the main trends across external quantum-network testbeds and derive deployment guidance for selecting model--allocator--capacity combinations under different threat regimes.}
+\end{itemize}
 
 % -----------------------------------------------------------------------------
 % Background reduction pass
@@ -217,6 +235,9 @@ S. Wehner, D. Elkouss, and R. Hanson, ``Quantum internet: A vision for the road 
 \bibitem{kimble2008quantum}
 H. J. Kimble, ``The quantum internet,'' \emph{Nature}, 2008.
 
+\bibitem{pompili2021realization}
+M. Pompili \etal, ``Realization of a multinode quantum network of remote solid-state qubits,'' \emph{Science}, 2021.
+
 \bibitem{briegel1998quantum}
 H.-J. Briegel, W. Duer, J. I. Cirac, and P. Zoller, ``Quantum repeaters: The role of imperfect local operations in quantum communication,'' \emph{Physical Review Letters}, 1998.
 
@@ -237,6 +258,15 @@ Wang \etal, ``Learning best paths in quantum networks,'' 2025.
 
 \bibitem{huang2024quantum}
 Huang \etal, ``Quantum entanglement path selection and qubit allocation via adversarial group neural bandits,'' 2024.
+
+\bibitem{coopmans2021benchmark}
+T. Coopmans \etal, ``NetSquid, a NETwork Simulator for QUantum Information using Discrete events,'' \emph{Communications Physics}, 2021.
+
+\bibitem{liu2024qbgp}
+Liu \etal, ``QBGP: A quantum border gateway protocol,'' 2024.
+
+\bibitem{chaudhary2023quantum}
+Chaudhary \etal, ``Quantum network routing and entanglement distribution,'' 2023.
 
 \bibitem{lattimore2020bandit}
 T. Lattimore and C. Szepesvari, \emph{Bandit Algorithms}. Cambridge University Press, 2020.
