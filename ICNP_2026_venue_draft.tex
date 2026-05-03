@@ -212,6 +212,10 @@ Contextual bandits use observable state to distinguish arms whose rewards depend
 
 Adversarial bandits use randomized exploration to protect against nonstationary or strategically manipulated rewards, with EXP3-style methods serving as canonical examples~\cite{auer2002nonstochastic}. Hybrid designs combine robust exploration with structured exploitation, such as pursuit-style updates over context-conditioned value estimates or adversarial weighting inside learned reward models~\cite{thathachar2011networks}. In quantum routing, these designs are motivated by jamming, targeted disruption, and nonstationary link behavior, but prior comparisons are often confounded by mismatched allocator policies, replay semantics, and evaluation taxonomies. We evaluate adversarial-first, hybrid pursuit--neural, contextual, and informed variants in the same controlled grid to expose robustness effects attributable to the algorithm--allocator--capacity interaction rather than to isolated learning rules.
 
+\subsection{Predictive and Informed Bandits}
+
+Predictive or informed bandits incorporate forecasts, exogenous signals, or learned dynamics into online decisions. ICMAB-style methods bias exploration using side information~\cite{kar2024icmab}, while time-series models such as ARIMA capture temporal reward or load patterns~\cite{box2015time}. In routing, these policies can proactively adapt to congestion, link degradation, or demand shifts, but they can also become fragile when forecasts are biased, delayed, or adversarially influenced. We therefore evaluate predictive variants as threat-dependent policies rather than oracle baselines.
+
 \section{System Model}
 \label{sec:SystemModel}
 
@@ -233,7 +237,6 @@ Adversarial bandits use randomized exploration to protect against nonstationary 
 % Placeholder so the draft preserves the expected paper flow while we revise.
 
 \section{Conclusion}
-\label{sec:conclusion}
 
 % Placeholder so the draft preserves the expected paper flow while we revise.
 
@@ -304,6 +307,9 @@ P. Auer, N. Cesa-Bianchi, Y. Freund, and R. Schapire, ``The nonstochastic multia
 
 \bibitem{kar2024icmab}
 Kar \etal, ``Informed contextual multi-armed bandits for adaptive routing,'' 2024.
+
+\bibitem{box2015time}
+G. E. P. Box, G. M. Jenkins, G. C. Reinsel, and G. M. Ljung, \emph{Time Series Analysis: Forecasting and Control}. Wiley, 2015.
 
 \bibitem{thompson1933likelihood}
 W. R. Thompson, ``On the likelihood that one unknown probability exceeds another in view of the evidence of two samples,'' \emph{Biometrika}, 1933.
