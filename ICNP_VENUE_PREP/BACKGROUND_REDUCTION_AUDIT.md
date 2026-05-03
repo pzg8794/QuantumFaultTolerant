@@ -35,7 +35,7 @@ For each Background subsection:
 | Quantum Networks and Entanglement Routing | Reduced and accepted for draft staging | Added to `ICNP_2026_venue_draft.tex` |
 | The Multi-Armed Bandit Abstraction | Reduced and accepted for draft staging | Added to `ICNP_2026_venue_draft.tex` |
 | Allocation and Capacity Semantics | Reduced and accepted for draft staging | Added to `ICNP_2026_venue_draft.tex` |
-| Problem Scope | Pending | Not yet audited |
+| Problem Scope | Reduced and accepted for draft staging | Added to `ICNP_2026_venue_draft.tex` |
 
 ## Audit 1: Quantum Networks and Entanglement Routing
 
@@ -145,4 +145,36 @@ Many learning-based routing implementations also impose finite-memory or replay 
 \subsection{Allocation and Capacity Semantics}
 
 Quantum routing couples path choice with resource allocation: the learner must decide both which route to use and how many qubits or attempts to assign within each decision epoch. These allocator choices shape the feedback observed by the bandit learner and the predictability of routing behavior under disruption. Replay or capacity semantics, including bounded histories, windowed updates, and capped experience buffers, further affect stability under nonstationarity and vulnerability to adaptive attacks. We therefore evaluate routing policies jointly with allocator strategy and capacity semantics, rather than treating them as independent implementation details.
+```
+
+## Audit 4: Problem Scope
+
+### Original role
+
+This subsection closes the Background section by stating the paper's scope: robustness is determined jointly by learning model, allocator design, replay-capacity configuration, and threat regime.
+
+### Original text from `main.tex`
+
+```tex
+\subsection{Problem Scope}
+Motivated by the joint effects of allocator strategy and capacity semantics on routing performance, stability, and predictability, we study how modeling choices (\eg contextual vs.\ adversarial vs.\ predictive), allocator design, and replay-capacity configuration jointly determine routing robustness under diverse threat regimes.
+```
+
+### Conceptual split
+
+1. Motivation from allocator/capacity effects.
+2. Modeling choices: contextual, adversarial, and predictive learning.
+3. Threat-regime dependence.
+4. Core scope claim: robustness is not only a property of the bandit policy.
+
+### Reduction decision
+
+The preceding subsection already motivates allocator/capacity effects, so the scope sentence can be reduced to the core claim. This makes the Background section close with a crisp thesis rather than repeating details.
+
+### Accepted aggressive reduced text
+
+```tex
+\subsection{Problem Scope}
+
+We study routing robustness as a joint function of learning model, allocator design, replay-capacity configuration, and threat regime, rather than as a property of the bandit policy alone.
 ```
