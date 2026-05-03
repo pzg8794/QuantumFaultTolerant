@@ -208,6 +208,10 @@ Foundational bandit results motivate the stochastic and adversarial baselines us
 
 Contextual bandits use observable state to distinguish arms whose rewards depend on topology, link quality, load, or temporal conditions. LinUCB provides a linear contextual baseline~\cite{li2010contextual}, while NeuralUCB and NeuralTS extend this idea with learned nonlinear representations~\cite{zhou2020neuralucb,zhang2022neuralts}. We use these methods to test when contextual information improves routing robustness under matched threat, allocator, and replay/capacity conditions.
 
+\subsection{Adversarial and Hybrid Robustness}
+
+Adversarial bandits use randomized exploration to protect against nonstationary or strategically manipulated rewards, with EXP3-style methods serving as canonical examples~\cite{auer2002nonstochastic}. Hybrid designs combine robust exploration with structured exploitation, such as pursuit-style updates over context-conditioned value estimates or adversarial weighting inside learned reward models~\cite{thathachar2011networks}. In quantum routing, these designs are motivated by jamming, targeted disruption, and nonstationary link behavior, but prior comparisons are often confounded by mismatched allocator policies, replay semantics, and evaluation taxonomies. We evaluate adversarial-first, hybrid pursuit--neural, contextual, and informed variants in the same controlled grid to expose robustness effects attributable to the algorithm--allocator--capacity interaction rather than to isolated learning rules.
+
 \section{System Model}
 \label{sec:SystemModel}
 
@@ -303,6 +307,9 @@ Kar \etal, ``Informed contextual multi-armed bandits for adaptive routing,'' 202
 
 \bibitem{thompson1933likelihood}
 W. R. Thompson, ``On the likelihood that one unknown probability exceeds another in view of the evidence of two samples,'' \emph{Biometrika}, 1933.
+
+\bibitem{thathachar2011networks}
+M. A. L. Thathachar and P. S. Sastry, \emph{Networks of Learning Automata}. Springer, 2011.
 
 \end{thebibliography}
 
