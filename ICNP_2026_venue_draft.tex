@@ -48,7 +48,7 @@
 \crefname{section}{Section}{Sections}
 \Crefname{section}{Section}{Sections}
 \crefname{figure}{Figure}{Figures}
-\Crefname{figure}{Figures}{Figures}
+\Crefname{figure}{Figure}{Figures}
 \crefname{table}{Table}{Tables}
 \Crefname{table}{Table}{Tables}
 \crefname{equation}{Equation}{Equations}
@@ -223,6 +223,29 @@ We use a four-node diamond topology with source $S$, destination $D$, and two in
 The network uses a fixed total budget of 35 qubits distributed across paths. We evaluate four allocator policies---Fixed, ThompsonSampling, DynamicUCB, and Random---spanning static, uncertainty-aware, optimistic, and uninformed allocation behavior. Fixed uses $(T_1,T_2,T_3,T_4)=(8,10,8,9)$; ThompsonSampling samples path utilities from posterior estimates; DynamicUCB redistributes capacity using upper-confidence estimates; and Random assigns capacity uniformly as a control. These allocator choices instantiate the deployment-configuration dimension identified in \cref{sec:RelatedWork}.
 
 For path $P_r$ with budget $T_r$, a feasible allocation is $\mathbf{x}=(x_1,\ldots,x_{h_r})$ with $\sum_{\ell=1}^{h_r}x_\ell=T_r$, defining context space $\mathcal{X}_r$. For three-hop paths this space grows combinatorially, motivating structure-aware approximation.
+
+\subsection{Reward Model and Link Success}
+\label{subsec:reward}
+
+\smallTitle{Probabilistic entanglement generation}
+For path $P_r$ with $h_r$ links, let $p_e^{(\ell)}\in[10^{-4},2{\times}10^{-4}]$ denote the per-attempt entanglement success probability of link $\ell$, and let $x_\ell$ be the number of allocated qubits/attempts on that link during a frame. Assuming independent attempts within a frame, the link-level success probability is
+\[
+p_\ell(x_\ell)=1-(1-p_e^{(\ell)})^{x_\ell}.
+\]
+
+\smallTitle{Path-level success}
+Consistent with the multi-hop constraint summarized in \cref{sec:Background}, path success requires all links on $P_r$ to succeed. We define path success probability as
+\[
+q_r(\mathbf{x})=\prod_{\ell=1}^{h_r}p_\ell(x_\ell).
+\]
+Thus, longer paths incur a multiplicative success penalty, while purification effects remain outside this routing model.
+
+\smallTitle{Bernoulli rewards under adversarial availability}
+At frame $t$, selecting path $P_r$ with allocation $\mathbf{x}$ yields
+\[
+Y_t(r,\mathbf{x})\sim\mathrm{Bernoulli}\!\big(q_r(\mathbf{x})A_t(r)\big).
+\]
+Here $Y_t(r,\mathbf{x})\in\{0,1\}$ is the observed success indicator, and the availability gate $A_t(r)\in\{0,1\}$ equals 1 when path $P_r$ is available and 0 when it is disrupted. The threat regimes in \cref{subsec:threats} specify how $\mathbf{A}_t=(A_t(1),\ldots,A_t(4))$ evolves over time. This equation formalizes the noise-versus-disruption distinction used throughout \cref{sec:Background,sec:RelatedWork}: stochastic link success enters through $q_r(\mathbf{x})$, while path disruption enters through $A_t(r)$.
 
 \section{Study Design}
 \label{sec:studydesign}
