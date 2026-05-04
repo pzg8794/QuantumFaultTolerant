@@ -247,6 +247,13 @@ Y_t(r,\mathbf{x})\sim\mathrm{Bernoulli}\!\big(q_r(\mathbf{x})A_t(r)\big).
 \]
 Here $Y_t(r,\mathbf{x})\in\{0,1\}$ is the observed success indicator, and the availability gate $A_t(r)\in\{0,1\}$ equals 1 when path $P_r$ is available and 0 when it is disrupted. The threat regimes in \cref{subsec:threats} specify how $\mathbf{A}_t=(A_t(1),\ldots,A_t(4))$ evolves over time. This equation formalizes the noise-versus-disruption distinction used throughout \cref{sec:Background,sec:RelatedWork}: stochastic link success enters through $q_r(\mathbf{x})$, while path disruption enters through $A_t(r)$.
 
+\subsection{Adversarial Threat Taxonomy}
+\label{subsec:threats}
+
+We evaluate five threat regimes that specify the availability vector $\mathbf{A}_t$ introduced in \cref{subsec:reward}: no disruption, independent stochastic failures, temporally correlated disruption, targeted failures, and adaptive interference. Together, they form a controlled escalation from normal operation to increasingly structured and strategic path unavailability. The adaptive regimes instantiate the adversarial-feedback setting discussed in \cref{sec:Background,sec:RelatedWork} by coupling path unavailability to routing behavior.
+
+Concretely, Baseline keeps all paths available; Stochastic independently disrupts paths with fixed probability; Markov introduces temporally correlated on/off availability; Targeted disrupts selected paths according to fixed attack preference; and OnlineAdaptive updates disruptions online in response to recent or current routing behavior.
+
 \section{Study Design}
 \label{sec:studydesign}
 
