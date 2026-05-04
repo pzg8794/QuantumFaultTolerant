@@ -274,6 +274,21 @@ The learner seeks to maximize cumulative expected success,
 \]
 under the threat process and allocator semantics fixed for that evaluation run. We use this objective as the common empirical decision interface; regret analysis is not the contribution of this work.
 
+\subsection{Policy Implementation Interface}
+\label{subsec:framework}
+
+The evaluated policies share the joint action/reward interface in \cref{subsec:mab} but differ in how they score paths, allocate qubits, and update from feedback. Hybrid policies instantiate this interface with a path-level selection rule, such as adversarial weighting or pursuit, and an allocation-level contextual scorer.
+
+Adversarial variants maintain path weights or probabilities over $r\in\{1,\ldots,R\}$, then sample or select $r_t$ from these scores before choosing an allocation. This briefly connects the update mechanism to the adversarial-feedback setting in \cref{subsec:threats}, without repeating the adversarial-bandit rationale from \cref{sec:Background,sec:RelatedWork}.
+
+Given $r_t$, contextual or neural policies score feasible allocations $\mathbf{x}\in\mathcal{X}_{r_t}$ using reward estimates and uncertainty, e.g.,
+\[
+\mathbf{x}_t \in \arg\max_{\mathbf{x}\in\mathcal{X}_{r_t}}
+\left[\widehat{q}_{r_t}(\mathbf{x})+\beta_t U_{r_t}(\mathbf{x})\right].
+\]
+
+Informed variants augment the context vector from \cref{subsec:mab} with history-derived predictive features while leaving the environment, action space, and allocator interface unchanged.
+
 \section{Study Design}
 \label{sec:studydesign}
 
