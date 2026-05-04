@@ -89,28 +89,28 @@ Existing quantum-routing studies propose online path selection, benchmarking-dri
 \begin{figure}[t]
 \centering
 \footnotesize
-\resizebox{0.80\columnwidth}{!}{%
+\resizebox{1.00\columnwidth}{!}{%
 \begin{tikzpicture}[
     node distance=0.5cm and 0.5cm,
     >=Latex,
-    basebox/.style={rectangle, draw, rounded corners=4pt, align=center, minimum height=0.95cm, text width=2.55cm, inner sep=4pt, font=\bfseries},
+    basebox/.style={rectangle, draw, rounded corners=4pt, align=center, minimum height=0.95cm, text width=5.00cm, inner sep=4pt, font=\bfseries},
     topologybox/.style={basebox, draw=networkblue!80!black, fill=networkblue!15},
     threatbox/.style={basebox, draw=envgreen!70!black, fill=envgreen!18},
     modelbox/.style={basebox, draw=algorange!85!black, fill=algorange!18},
     allocbox/.style={basebox, draw=allocpurple!80!black, fill=allocpurple!15},
     outbox/.style={basebox, draw=black!60, fill=black!6, font=\bfseries},
-    mainbox/.style={rectangle, draw=black!70, fill=black!4, rounded corners=6pt, align=center, minimum height=1.1cm, text width=3.2cm, inner sep=5pt, font=\bfseries},
+    mainbox/.style={rectangle, draw=black!70, fill=black!4, rounded corners=6pt, align=center, minimum height=1.1cm, text width=5.0cm, inner sep=5pt, font=\bfseries},
     arrow/.style={thick,->}
 ]
-\node[topologybox] (topology) {Quantum Network\\Topology};
-\node[threatbox, right=of topology] (threats) {Threat\\Regimes};
-\node[modelbox, right=of threats] (models) {Bandit Policy\\Families};
-\node[allocbox, below=1.3cm of topology] (allocator) {Allocator\\Policy};
-\node[allocbox, below=1.3cm of models] (capacity) {Replay / Capacity\\Semantics};
-\node[mainbox, below=1.4cm of threats] (engine) {Threat-Aware Evaluation Framework\\[0.2em] Joint path selection + qubit allocation under matched conditions};
-\node[outbox, below=1.5cm of allocator] (metrics) {Oracle-Normalized\\Metrics};
-\node[outbox, below=1.5cm of engine] (comparison) {Cross-Model\\Robustness Comparison};
-\node[outbox, below=1.5cm of capacity] (guidance) {Deployment\\Guidance};
+\node[topologybox] (topology) {Quantum Network Topology};
+\node[threatbox, right=of topology] (threats) {Threat Regimes};
+\node[modelbox, right=of threats] (models) {Bandit Policy Families};
+\node[allocbox, below=1.3cm of topology] (allocator) {Allocator Policy};
+\node[allocbox, below=1.3cm of models] (capacity) {Replay / Capacity Semantics};
+\node[mainbox, below=1.4cm of threats] (engine) {Threat-Aware Evaluation Framework [0.2em] Joint path selection + qubit allocation under matched conditions};
+\node[outbox, below=1.5cm of allocator] (metrics) {Oracle-Normalized Metrics};
+\node[outbox, below=1.5cm of engine] (comparison) {Cross-Model Robustness Comparison};
+\node[outbox, below=1.5cm of capacity] (guidance) {Deployment Guidance};
 \draw[arrow, draw=networkblue!80!black] (topology) -- (engine);
 \draw[arrow, draw=envgreen!70!black] (threats) -- (engine);
 \draw[arrow, draw=algorange!85!black] (models) -- (engine);
