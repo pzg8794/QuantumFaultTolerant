@@ -63,3 +63,36 @@ Across all experiments, the total physical budget remains fixed at 35 qubits, ma
 \caption{Four-path quantum-network testbed used for routing evaluation. Paths $P_1$ and $P_2$ have two hops, while $P_3$ and $P_4$ have three hops; per-path qubit budgets are varied by allocator policy.}
 \label{fig:network_topology}
 \end{figure}
+
+\noindent\textit{Time horizons.}
+We evaluate \texttt{4K}, \texttt{6K}, and \texttt{8K}-frame horizons to capture short-, mid-, and long-episode learning dynamics. Primary results use \texttt{6K} unless noted; \texttt{4K}/\texttt{8K} comparisons support the RQ3 sample-efficiency analysis.
+
+\begin{table}[ht!]
+\footnotesize
+\centering
+\setlength{\tabcolsep}{4pt}
+\caption{Experimental design matrix linking configuration dimensions, tested options, and research-question coverage.}
+\label{tab:config_summary}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.32\linewidth} >{\raggedright\arraybackslash}X >{\centering\arraybackslash}c}
+\toprule
+\textbf{Configuration Dimension} & \textbf{Options Tested} & \textbf{RQ(s)} \\
+\midrule
+Network topology & 4-node, 4-path diamond & All \\
+Time horizons & \texttt{4K}, \texttt{6K}, \texttt{8K} frames & RQ3 \\
+Qubit capacity & 35 total qubits, fixed & All \\
+\midrule
+Allocators & Fixed, ThompsonSampling, DynamicUCB, Random & RQ3 \\
+Replay capacity & $T_b=sF_b$, $T=sF_c$ & RQ3 \\
+Threat models & Baseline, Stochastic, Markov, Adaptive, OnlineAdaptive & RQ1, RQ2 \\
+Forecasting & None, ARIMA ($n=50$), ARIMA ($n=100$) & RQ3 \\
+\midrule
+Algorithm families & Classical, Predictive, Adversarial, Contextual/Neural & RQ1, RQ2 \\
+\midrule
+\multicolumn{3}{l}{\textit{Evaluation phases}} \\
+\quad Ph 1 (MAB baseline) & 12 conditions & RQ1 \\
+\quad Ph 2 (CMAB/iCMAB) & 180 conditions per family & RQ2 \\
+\quad Ph 3 (Dynamic allocation) & 240 conditions & RQ3 \\
+\quad Ph 4 (Capacity ablation) & 120 conditions & RQ3 \\
+\bottomrule
+\end{tabularx}
+\end{table}
