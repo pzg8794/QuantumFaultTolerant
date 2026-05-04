@@ -3,7 +3,8 @@
 % \section{Study Design}
 % \label{sec:studydesign}
 %
-% This file contains only owner-validated reductions.
+% This file contains only owner-validated reductions and uses only packages
+% already loaded by ICNP_2026_venue_draft.tex.
 
 \subsection{Experimental Design}
 \label{sec:expDesign}
@@ -73,7 +74,7 @@ We evaluate \texttt{4K}, \texttt{6K}, and \texttt{8K}-frame horizons to capture 
 \setlength{\tabcolsep}{4pt}
 \caption{Experimental design matrix linking configuration dimensions, tested options, and research-question coverage.}
 \label{tab:config_summary}
-\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.32\linewidth} >{\raggedright\arraybackslash}X >{\centering\arraybackslash}c}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.28\linewidth} >{\raggedright\arraybackslash}p{0.50\linewidth} >{\centering\arraybackslash}p{0.12\linewidth}}
 \toprule
 \textbf{Configuration Dimension} & \textbf{Options Tested} & \textbf{RQ(s)} \\
 \midrule
@@ -94,5 +95,5 @@ Algorithm families & Classical, Predictive, Adversarial, Contextual/Neural & RQ1
 \quad Ph 3 (Dynamic allocation) & 240 conditions & RQ3 \\
 \quad Ph 4 (Capacity ablation) & 120 conditions & RQ3 \\
 \bottomrule
-\end{tabularx}
+\end{tabular}
 \end{table}
