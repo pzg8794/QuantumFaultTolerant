@@ -254,6 +254,26 @@ We evaluate five threat regimes that specify the availability vector $\mathbf{A}
 
 Concretely, Baseline keeps all paths available; Stochastic independently disrupts paths with fixed probability; Markov introduces temporally correlated on/off availability; Targeted disrupts selected paths according to fixed attack preference; and OnlineAdaptive updates disruptions online in response to recent or current routing behavior.
 
+\subsection{Multi-Armed Bandit Formulation}
+\label{subsec:mab}
+
+\smallTitle{Joint action space}
+Using the topology and reward definitions above, each bandit action is a joint routing-allocation pair:
+\[
+\mathcal{A}=\{(r,\mathbf{x}) : P_r\in\mathcal{P},\ \mathbf{x}\in\mathcal{X}_r\}.
+\]
+At frame $t$, the policy selects $a_t=(r_t,\mathbf{x}_t)\in\mathcal{A}$ and observes only the realized reward $Y_t(r_t,\mathbf{x}_t)$ from \cref{subsec:reward}.
+
+\smallTitle{Policy interface}
+This interface instantiates the policy-family taxonomy introduced in \cref{sec:Background,sec:RelatedWork}: algorithms differ in how they estimate or sample action value, not in the underlying routing task. For contextual or neural policies, the context vector is derived from path identity, hop count, allocation vector, recent reward history, and threat/availability state when available. Non-contextual, adversarial, predictive, and hybrid variants consume the same action/reward stream but apply different scoring, exploration, or update rules.
+
+\smallTitle{Objective}
+The learner seeks to maximize cumulative expected success,
+\[
+\max_{\pi}\ \mathbb{E}_{\pi}\!\left[\sum_{t=1}^{T}Y_t(r_t,\mathbf{x}_t)\right],
+\]
+under the threat process and allocator semantics fixed for that evaluation run. We use this objective as the common empirical decision interface; regret analysis is not the contribution of this work.
+
 \section{Study Design}
 \label{sec:studydesign}
 
@@ -367,7 +387,7 @@ P. Auer, N. Cesa-Bianchi, Y. Freund, and R. Schapire, ``The nonstochastic multia
 Kar \etal, ``Informed contextual multi-armed bandits for adaptive routing,'' 2024.
 
 \bibitem{box2015time}
-G. E. P. Box, G. M. Jenkins, G. C. Reinsel, and G. M. Ljung, \emph{Time Series Analysis: Forecasting and Control}. Wiley, 2015.
+G. E. P. Box, G. M. Jenkins, C. Reinsel, and G. M. Ljung, \emph{Time Series Analysis: Forecasting and Control}. Wiley, 2015.
 
 \bibitem{thompson1933likelihood}
 W. R. Thompson, ``On the likelihood that one unknown probability exceeds another in view of the evidence of two samples,'' \emph{Biometrika}, 1933.
