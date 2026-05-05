@@ -86,3 +86,20 @@ EXP3/UCB & 76.3 & 6.0 & 68.8 & 0.0 \\
 \Cref{tab:rq2_adversarial} refutes the adversarial-first hypothesis: CPursuit leads average efficiency, iCEpsilonGreedy provides the strongest stability floor, and EXPNeuralUCB remains fragile despite adversarial exploration. Thus, RQ2 is answered affirmatively: structured and adaptive threats expose stability gaps not visible in RQ1, and adversarial-first EXP-family baselines do not dominate the locked adversarial scope.
 
 % Second-look candidates before final venue cleanup: robustness frontier figure (fig:floor) and explicit RQ2a/RQ2b/RQ2c supporting-answer bullets.
+
+% ============================================================================
+% RQ3: Deployment Optimization
+% ============================================================================
+\subsection{RQ3: Deployment Optimization}
+\label{subsec:rq3}
+
+\noindent\textbf{Takeaway.}
+RQ3 evaluates whether algorithm, allocator, and replay-capacity choices should change with the threat regime. Deployment is configuration-sensitive, but the hybrid dataset also reveals a strong static configuration that exceeds the 85\% robustness target across all five scenarios.
+
+\smallTitle{RQ3 evidence slice}
+RQ3 uses the validated Hybrid master dataset for CPursuitNeuralUCB, iCPursuitNeuralUCB, GNeuralUCB, and EXPNeuralUCB across all scenarios, allocators, replay anchoring types, scales $s\in\{1,1.5,2\}$, and 4K--8K horizons. Point estimates average the 3- and 5-run suites; RQ3 CV values are computed across scenario means as a deployment-volatility proxy because per-run variance is not available in the master table.
+
+\smallTitle{Validated RQ3 answer}
+Deployment is configuration-sensitive, but the Hybrid master dataset also reveals a strong static configuration. At the 6K horizon, \texttt{iCPursuitNeuralUCB + Fixed + ($T$-type, $s=2$)} achieves a 96.0\% global average and a 92.8\% worst-case floor across scenarios, using the validated mean over 3- and 5-run suites. Scenario-specific optima still differ, so later RQ3 analyses disaggregate allocator and replay-capacity effects.
+
+% Keep for second-look before final venue cleanup: threat-adaptive allocator figure (fig:threat_rules) and capacity--efficiency figure (fig:capacity_all). The latter likely belongs with RQ3b.
