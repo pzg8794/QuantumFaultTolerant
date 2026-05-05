@@ -78,8 +78,6 @@ Unlike classical packet routing, quantum routing must establish and consume enta
 
 Existing quantum-routing studies propose online path selection, benchmarking-driven routing, adaptive route selection, and adversarially robust learning~\cite{wang2025learning,coopmans2021benchmark,huang2024quantum}, but they are often evaluated under different threat, topology, allocator, and replay assumptions~\cite{liu2024qbgp,li2025multipath,chaudhary2023quantum}. This creates a matched-threat evaluation gap: it is unclear when contextual structure is necessary, when adversarial robustness dominates, and how allocator and capacity choices alter routing performance.
 
-% \subsection{Our Approach and Evaluation Scope}
-
 \begin{figure}[t]
 \centering
 \footnotesize
@@ -157,7 +155,6 @@ Recent quantum-network work applies bandits and related online-learning methods 
 
 Huang \etal~\cite{huang2024quantum} propose \emph{EXPNeuralUCB}, a group neural bandit that combines EXP3-style adversarial exploration with NeuralUCB-style nonlinear reward modeling for joint path selection and qubit allocation. We use EXPNeuralUCB as one comparator within a broader robustness study that also evaluates pursuit--neural hybrids such as \texttt{CPursuitNeuralUCB} and \texttt{iCPursuitNeuralUCB}. This matched comparison separates changes in the learning rule from changes in allocator strategy and replay capacity, which prior adversarial-first routing studies typically treat as fixed.
 
-% \smallTitle{Closest-work contrast (LinkSelFiE)}
 Liu \etal~\cite{10621263} propose \emph{LinkSelFiE}, which addresses the \emph{link-level} problem of selecting and estimating a high-fidelity entanglement link when link qualities are unknown \emph{a priori}. They cast link selection as best-arm identification and use benchmarking-driven estimation to reduce quantum resource consumption while identifying high-quality links with high confidence. In contrast, we target the \emph{end-to-end routing} problem: joint \emph{path selection and qubit allocation} over time under five threat regimes. LinkSelFiE-style fidelity estimates can be incorporated into our reward model, but our primary focus is routing-layer robustness under structured and adaptive disruption.
 
 Beyond bandit-style path selection, prior work studies learning-based route selection under noisy quantum-network conditions~\cite{chaudhary2023quantum}, RL-based adaptive routing with deep Q-networks~\cite{jallowkhan2025adaptive}, structural decomposition through QuARC adaptive clustering~\cite{clayton2024quarc}, hierarchical routing for scalability~\cite{cicconetti2024scalable}, repeater/efficiency-aware routing~\cite{kumar2024routing}, and cost-vector multipath optimization~\cite{leone2021costvector}. These studies differ materially in allocator assumptions, memory/replay parameterization, and threat models. Our benchmark addresses this comparability gap by evaluating multiple algorithm classes under the same threat, allocator, and replay/capacity grid, enabling direct attribution of robustness to the algorithm--allocator--capacity triad.
@@ -286,208 +283,9 @@ Informed variants augment the context vector from \cref{subsec:mab} with history
 
 Using the matched interface defined in \cref{sec:SystemModel}, we organize the evaluation around three questions: \textbf{RQ1:} How do bandit policies differ under stochastic link success and no-disruption or benign-failure regimes? \textbf{RQ2:} How does routing performance change as disruption evolves from stochastic noise to structured and adaptive interference? \textbf{RQ3:} How do allocator policy and replay/capacity semantics change the best model choice under each threat regime?
 
-\subsection{Experimental Design}
-\label{sec:expDesign}
+\input{ICNP_VENUE_PREP/STUDY_DESIGN_VALIDATED_STAGING.tex}
 
-Using the interface in \cref{sec:SystemModel}, this section defines the configuration axes used to answer \cref{sec:research_questions}. \Cref{tab:config_summary} summarizes the design dimensions, tested options, and RQ coverage.
-
-\smallTitle{Network configuration}
-We use the four-path diamond topology shown in \cref{fig:network_topology} and defined in \cref{subsec:topology}, with two-hop paths $P_1$ and $P_2$ and three-hop paths $P_3$ and $P_4$. This topology keeps the routing action space nontrivial while preserving tractable cross-product sweeps across \cref{tab:config_summary}.
-
-Across all experiments, the total physical budget remains fixed at 35 qubits, matching the resource constraint in \cref{subsec:topology}; this prevents over-provisioning and creates the intended exploration--exploitation pressure. Per-path budgets are set by the allocator policies defined in \cref{subsec:topology}, enabling controlled comparison of static and adaptive resource management.
-
-\begin{figure}[ht!]
-\centering
-\small
-\begin{tikzpicture}[
-  node distance=2.5cm and 3.0cm,
-  thick,
-  main/.style={circle,draw,minimum size=0.6cm,font=\small},
-  link/.style={line width=0.8pt, draw=gray!55},
-  path/.style={->,>=stealth,line width=1.1pt}
-]
-  \node[main] (S) {$S$};
-  \node[main, right=of S] (R1) {$R_1$};
-  \node[main, below=of R1] (R2) {$R_2$};
-  \node[main, right=of R1] (D) {$D$};
-  \draw[link] (S) -- (R1);
-  \draw[link] (S) -- (R2);
-  \draw[link] (R1) -- (D);
-  \draw[link] (R2) -- (D);
-  \draw[link] (R1) -- (R2);
-  \draw[path] (S) to[bend left=15] node[above, font=\scriptsize] {$P_1$ (2-hop)} (R1) to[bend left=15] (D);
-  \draw[path, dashed] (S) to[bend right=15] node[left, font=\scriptsize] {$P_2$ (2-hop)} (R2) to[bend right=15] (D);
-  \draw[path, dotted] (S) to[bend left=10] (R1) to[bend left=10] node[right, font=\scriptsize] {$P_3$ (3-hop)} (R2) to[bend left=10] (D);
-  \draw[path, dash dot] (S) to[bend right=10] (R2) to[bend right=10] node[left, font=\scriptsize] {$P_4$ (3-hop)} (R1) to[bend right=10] (D);
-\end{tikzpicture}
-\caption{Four-path quantum-network testbed used for routing evaluation. Paths $P_1$ and $P_2$ have two hops, while $P_3$ and $P_4$ have three hops; per-path qubit budgets are varied by allocator policy.}
-\label{fig:network_topology}
-\end{figure}
-
-\smallTitle{Time horizons}
-We evaluate \texttt{4K}, \texttt{6K}, and \texttt{8K}-frame horizons to capture short-, mid-, and long-episode learning dynamics. Primary results use \texttt{6K} unless noted; \texttt{4K}/\texttt{8K} comparisons support the RQ3 sample-efficiency analysis.
-
-\begin{table}[ht!]
-\footnotesize
-\centering
-\setlength{\tabcolsep}{4pt}
-\caption{Experimental design matrix linking configuration dimensions, tested options, and research-question coverage.}
-\label{tab:config_summary}
-\begin{tabular}{>{\raggedright\arraybackslash}p{0.25\linewidth} >{\raggedright\arraybackslash}p{0.60\linewidth} >{\centering\arraybackslash}p{0.07\linewidth}}
-\toprule
-\textbf{Configuration Dimension} & \textbf{Options Tested} & \textbf{RQ(s)} \\
-\midrule
-Network topology & 4-node, 4-path diamond & All \\
-Time horizons & \texttt{4K}, \texttt{6K}, \texttt{8K} frames & RQ3 \\
-Qubit capacity & 35 total qubits, fixed & All \\
-\midrule
-Allocators & Fixed, ThompsonSampling, DynamicUCB, Random & RQ3 \\
-Replay capacity & $T_b=sF_b$, $T=sF_c$ & RQ3 \\
-Threat models & Baseline, Stochastic, Markov, Adaptive, OnlineAdaptive & RQ1, RQ2 \\
-Forecasting & None, ARIMA ($n=50$), ARIMA ($n=100$) & RQ3 \\
-\midrule
-Algorithm families & Classical, Predictive, Adversarial, Contextual/Neural & RQ1, RQ2 \\
-\midrule
-\multicolumn{3}{l}{\textit{Evaluation phases}} \\
-\quad Ph 1 & 12 conditions (for MAB baseline) & RQ1 \\
-\quad Ph 2 & 180 conditions per family (CMAB/iCMAB) & RQ2 \\
-\quad Ph 3 & 240 conditions (for Dynamic allocation)& RQ3 \\
-\quad Ph 4 & 120 conditions (for Capacity ablation)& RQ3 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-% ----------------------------------------------------------------------------
-% Memory Architecture
-% ----------------------------------------------------------------------------
-\smallTitle{Replay configurations (capacity scaling)}
-We distinguish the base horizon $F_b\in\{4\mathrm{K},6\mathrm{K},8\mathrm{K}\}$ from the current horizon $F_c$ used after frame scaling, and evaluate $S\in\{3,5,8,10\}$ independent runs per configuration. Replay memory is scaled by $s\in\{1,1.5,2\}$, with default $s=2$, under two semantics:
-\[
-T_b=sF_b,\qquad T=sF_c.
-\]
-The $s$ sweep, intermediate sensitivity checks, and doubled-current stress test probe the RQ3 capacity-paradox question: when added replay memory helps estimation versus when it increases adversarial predictability~\cite{schaul2015prioritized,mnih2015human}.
-
-\smallTitle{Resource separation}
-Replay scaling changes only classical memory: the physical network budget remains fixed at 35 qubits as defined in \cref{subsec:topology} and summarized in \cref{tab:config_summary}. This separates learning-system memory effects from quantum hardware limits.
-
-% ----------------------------------------------------------------------------
-% Threat Taxonomy Intro & Hyperparameter Table
-% ----------------------------------------------------------------------------
-\smallTitle{Adversarial threat taxonomy}
-The five threat settings follow \cref{subsec:threats} and \cref{tab:config_summary}; the scenario-specific parameters below instantiate the matched-interference comparison~\cite{huang2024quantum}.
-
-\begin{table}[ht!]
-\footnotesize
-\centering
-\setlength{\tabcolsep}{4pt}
-\caption{Hyperparameter settings and literature justifications.}
-\label{tab:setup-hyperparameters}
-\begin{tabular}{p{0.22\linewidth} p{0.25\linewidth} p{0.18\linewidth} p{0.20\linewidth}}
-\toprule
-\textbf{Parameter} & \textbf{Algorithm} & \textbf{Value} & \textbf{Ref.} \\
-\midrule
-Neural LR & EXPNeuralUCB & 0.01 & \cite{huang2024quantum} \\
-          & GNeuralUCB   & 0.2  & \cite{zhou2020neuralucb} \\
-\addlinespace[2pt]
-Exp. Weight & EXPNeuralUCB & 0.05  & \cite{huang2024quantum} \\
-            & EXPUCB       & 0.005 & Tuned \\
-\addlinespace[2pt]
-Pursuit LR & Pursuit family & 0.2 & \cite{thathachar2011networks} \\
-\addlinespace[2pt]
-UCB Explore & DynamicUCB & 2.0 & \cite{auer2002finite} \\
-\addlinespace[2pt]
-ARIMA ($n$) & iCPursuit & 50, 100 & \cite{box2015time} \\
-\addlinespace[2pt]
-Replay semantics & All & $T_b=sF_b$, $T=sF_c$ & \cite{schaul2015prioritized,mnih2015human} \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\smallTitle{Scenario specifications}
-\Cref{tab:scenario_specs} instantiates the five threat settings defined in \cref{subsec:threats} for the matched evaluation grid.
-
-\begin{table}[ht!]
-\footnotesize
-\centering
-\setlength{\tabcolsep}{4pt}
-\caption{Scenario specifications used for matched threat evaluation.}
-\label{tab:scenario_specs}
-\begin{tabular}{p{0.22\linewidth} p{0.62\linewidth} p{0.08\linewidth}}
-\toprule
-\textbf{Scenario} & \textbf{Specification} & \textbf{RQ(s)} \\
-\midrule
-Baseline & 0\% disruption; benign-operation reference & RQ1 \\
-Stochastic & 6.25\% i.i.d. disruption~\cite{huang2024quantum} & RQ1, RQ2 \\
-Markov & 25\% four-state structured disruption~\cite{huang2024quantum} & RQ2 \\
-Adaptive & 25\% high-usage targeting over $w=50$ frames~\cite{huang2024quantum} & RQ2 \\
-OnlineAdaptive & 25\% adaptive targeting with $\gamma=0.97$ and softmax selection~\cite{huang2024quantum} & RQ2 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\smallTitle{Algorithm portfolio}
-The evaluated portfolio spans classical, adversarial, contextual/neural, pursuit-based, predictive, and Oracle policies, enabling matched comparisons across architectural paradigms.
-
-\begin{table}[ht!]
-\footnotesize
-\centering
-\setlength{\tabcolsep}{4pt}
-\caption{Algorithm portfolio by evaluation phase.}
-\label{tab:setup-algorithm-portfolio}
-\begin{tabular}{p{0.18\linewidth} p{0.24\linewidth} p{0.48\linewidth}}
-\toprule
-\textbf{Phase} & \textbf{Category} & \textbf{Algorithms} \\
-\midrule
-Phase 1 & Classical MAB & LinUCB~\cite{li2010contextual}, LinTS~\cite{agrawal2013thompson}, UCB1~\cite{auer2002finite}, Thompson Sampling~\cite{thompson1933likelihood} \\
-Phase 1--2 & Adversarial & EXP3~\cite{auer2002nonstochastic}, EXPUCB~\cite{huang2024quantum}, EXPNeuralUCB~\cite{huang2024quantum} \\
-Phase 2 & Contextual/Neural & GNeuralUCB, NeuralUCB~\cite{zhou2020neuralucb}, NeuralTS~\cite{zhang2022neuralts}, CEpsilonGreedy, CThompsonSampling \\
-Phase 2--3 & Pursuit-based & CPursuitNeuralUCB \\
-Phase 3 & Predictive & iCPursuitNeuralUCB \\
-Baseline & Oracle & Perfect-information reference \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\smallTitle{Key algorithm features}
-CPursuitNeuralUCB adds topology/channel-quality context to pursuit learning, while iCPursuitNeuralUCB adds ARIMA$(1,0,1)$ forecasts with $n\in\{50,100\}$ warmup~\cite{box2015time}. The Oracle normalizes efficiency to a perfect-information reference.
-
-\smallTitle{Qubit allocation strategies}
-Phase 3 varies the allocator policies defined in \cref{subsec:topology} and summarized in \cref{tab:config_summary} while keeping the physical budget fixed at 35 qubits.
-
-\begin{table}[ht!]
-\footnotesize
-\centering
-\setlength{\tabcolsep}{4pt}
-\caption{Qubit allocation strategies and average efficiency across scenarios.}
-\label{tab:setup-allocators}
-\begin{tabular}{p{0.20\linewidth} p{0.42\linewidth} p{0.14\linewidth} p{0.14\linewidth}}
-\toprule
-\textbf{Allocator} & \textbf{Mechanism} & \textbf{Avg Eff.} & \textbf{Overhead} \\
-\midrule
-Fixed & Static distribution $(8,10,8,9)$ & 87.7\% & 1.0$\times$ \\
-Thompson & Bayesian posterior sampling~\cite{thompson1933likelihood,agrawal2013thompson} & \textbf{88.2\%} & 0.3$\times$ \\
-DynamicUCB & Adaptive UCB, $\lambda=2.0$~\cite{auer2002finite} & 85.3\% & 1.0$\times$ \\
-Random & Uniform sampling, $\epsilon=1.0$ & 77.3\% & 1.0$\times$ \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\smallTitle{Experimental scope and statistical protocol}
-The four phases in \cref{tab:config_summary} progress from MAB baselines to contextual/adversarial models, allocator interactions, and replay-capacity ablations. Overall, the design covers 552 unique configurations with up to 10 runs each, targeting roughly 5{,}520 episodes and about 380 A100 GPU-hours. Runs use fixed seeds with $S\in\{3,5,8,10\}$; primary results report 3- and 5-run averages.
-
-We report Oracle-normalized efficiency,
-\[
-\mathrm{Eff}(\%)=\frac{\sum_{t=1}^{T} r_t}{T\theta^*}\times100,
-\]
-and coefficient of variation,
-\[
-\mathrm{CV}(\%)=\frac{\sigma(\mathrm{Eff})}{\mu(\mathrm{Eff})}\times100.
-\]
-Significance uses 10{,}000-sample nonparametric bootstrap confidence intervals~\cite{efron1994introduction}; differences above 5 pp with non-overlapping intervals are practically significant, and head-to-head wins require more than a 2 pp efficiency lead.
-
-\section{Results}
-\label{sec:results}
-Results section pending audit.
+\input{ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex}
 
 \section{Discussion}
 \label{sec:discussion}
