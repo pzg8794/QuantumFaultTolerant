@@ -1,8 +1,7 @@
 \documentclass[10pt,conference]{IEEEtran}
 
 % ICNP 2026 venue draft working file.
-% Purpose: keep a runnable draft with the same IEEE conference layout while we
-% stage aggressive reductions before replacing main.tex.
+% Rebuilt from validated audit/staging material in ICNP_VENUE_PREP.
 
 \usepackage{graphicx}
 \usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
@@ -43,7 +42,6 @@
 \newcommand{\etal}{\emph{et~al.}\xspace}
 \newcommand{\descStep}[2]{\noindent\textbf{#1:} #2}
 \newcommand{\smallTitle}[1]{\vspace{1mm}\noindent\textit{#1:}}
-\newcommand{\shee}[1]{\textcolor{purple}{\textit{[Shee: #1]}}}
 
 \crefname{section}{Section}{Sections}
 \Crefname{section}{Section}{Sections}
@@ -108,7 +106,7 @@ Existing quantum-routing studies propose online path selection, benchmarking-dri
 \node[modelbox, right=of threats] (models) {Bandit Policy Families};
 \node[allocbox, below=1.3cm of topology] (allocator) {Allocator Policy};
 \node[allocbox, below=1.3cm of models] (capacity) {Replay / Capacity Semantics};
-\node[mainbox, below=1.4cm of threats] (engine) {Threat-Aware Evaluation Framework [0.2em] Joint path selection + qubit allocation under matched conditions};
+\node[mainbox, below=1.4cm of threats] (engine) {Threat-Aware Evaluation Framework\\Joint path selection + qubit allocation under matched conditions};
 \node[outbox, below=1.5cm of allocator] (metrics) {Oracle-Normalized Metrics};
 \node[outbox, below=1.5cm of engine] (comparison) {Cross-Model Robustness Comparison};
 \node[outbox, below=1.5cm of capacity] (guidance) {Deployment Guidance};
@@ -297,13 +295,6 @@ Informed variants augment the context vector from \cref{subsec:mab} with history
 
 Using the matched interface defined in \cref{sec:SystemModel}, we organize the evaluation around three questions: \textbf{RQ1:} How do bandit policies differ under stochastic link success and no-disruption or benign-failure regimes? \textbf{RQ2:} How does routing performance change as disruption evolves from stochastic noise to structured and adaptive interference? \textbf{RQ3:} How do allocator policy and replay/capacity semantics change the best model choice under each threat regime?
 
-% Validated Study Design staging fragment for ICNP 2026 venue draft.
-% Paste or \input{} this fragment after:
-% \section{Study Design}
-% \label{sec:studydesign}
-%
-% This file contains only owner-validated reductions.
-
 \subsection{Experimental Design}
 \label{sec:expDesign}
 
@@ -324,164 +315,67 @@ Across all experiments, the total physical budget remains fixed at 35 qubits, ma
   link/.style={line width=0.8pt, draw=gray!55},
   path/.style={->,>=stealth,line width=1.1pt}
 ]
-  % Nodes
   \node[main] (S) {$S$};
   \node[main, right=of S] (R1) {$R_1$};
   \node[main, below=of R1] (R2) {$R_2$};
   \node[main, right=of R1] (D) {$D$};
-
-  % Physical links
   \draw[link] (S) -- (R1);
   \draw[link] (S) -- (R2);
   \draw[link] (R1) -- (D);
   \draw[link] (R2) -- (D);
   \draw[link] (R1) -- (R2);
-
-  % P1: S -> R1 -> D (2-hop)
-  \draw[path, blue]
-    (S) to[bend left=15] node[above, font=\scriptsize] {$P_1$ (2-hop)} (R1)
-        to[bend left=15] (D);
-
-  % P2: S -> R2 -> D (2-hop)
-  \draw[path, red]
-    (S) to[bend right=15] node[left, font=\scriptsize] {$P_2$ (2-hop)} (R2)
-        to[bend right=15] (D);
-
-  % P3: S -> R1 -> R2 -> D (3-hop)
-  \draw[path, green!60!black]
-    (S) to[bend left=10] (R1)
-        to[bend left=10] node[right, font=\scriptsize] {$P_3$ (3-hop)} (R2)
-        to[bend left=10] (D);
-
-  % P4: S -> R2 -> R1 -> D (3-hop)
-  \draw[path, orange]
-    (S) to[bend right=10] (R2)
-        to[bend right=10] node[left, font=\scriptsize] {$P_4$ (3-hop)} (R1)
-        to[bend right=10] (D);
+  \draw[path, blue] (S) to[bend left=15] node[above, font=\scriptsize] {$P_1$ (2-hop)} (R1) to[bend left=15] (D);
+  \draw[path, red] (S) to[bend right=15] node[left, font=\scriptsize] {$P_2$ (2-hop)} (R2) to[bend right=15] (D);
+  \draw[path, green!60!black] (S) to[bend left=10] (R1) to[bend left=10] node[right, font=\scriptsize] {$P_3$ (3-hop)} (R2) to[bend left=10] (D);
+  \draw[path, orange] (S) to[bend right=10] (R2) to[bend right=10] node[left, font=\scriptsize] {$P_4$ (3-hop)} (R1) to[bend right=10] (D);
 \end{tikzpicture}
 \caption{Four-path quantum-network testbed used for routing evaluation. Paths $P_1$ and $P_2$ have two hops, while $P_3$ and $P_4$ have three hops; per-path qubit budgets are varied by allocator policy.}
 \label{fig:network_topology}
 \end{figure}
 
-\section{Results}
-\label{sec:results}
+\noindent\textit{Time horizons.}
+We evaluate \texttt{4K}, \texttt{6K}, and \texttt{8K}-frame horizons to capture short-, mid-, and long-episode learning dynamics. Primary results use \texttt{6K} unless noted; \texttt{4K}/\texttt{8K} comparisons support the RQ3 sample-efficiency analysis.
 
-% Placeholder so the draft preserves the expected paper flow while we revise.
+\begin{table}[ht!]
+\footnotesize
+\centering
+\setlength{\tabcolsep}{4pt}
+\caption{Experimental design matrix linking configuration dimensions, tested options, and research-question coverage.}
+\label{tab:config_summary}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.28\linewidth} >{\raggedright\arraybackslash}p{0.50\linewidth} >{\centering\arraybackslash}p{0.12\linewidth}}
+\toprule
+\textbf{Configuration Dimension} & \textbf{Options Tested} & \textbf{RQ(s)} \\
+\midrule
+Network topology & 4-node, 4-path diamond & All \\
+Time horizons & \texttt{4K}, \texttt{6K}, \texttt{8K} frames & RQ3 \\
+Qubit capacity & 35 total qubits, fixed & All \\
+\midrule
+Allocators & Fixed, ThompsonSampling, DynamicUCB, Random & RQ3 \\
+Replay capacity & $T_b=sF_b$, $T=sF_c$ & RQ3 \\
+Threat models & Baseline, Stochastic, Markov, Adaptive, OnlineAdaptive & RQ1, RQ2 \\
+Forecasting & None, ARIMA ($n=50$), ARIMA ($n=100$) & RQ3 \\
+\midrule
+Algorithm families & Classical, Predictive, Adversarial, Contextual/Neural & RQ1, RQ2 \\
+\midrule
+\multicolumn{3}{l}{\textit{Evaluation phases}} \\
+\quad Ph 1 (MAB baseline) & 12 conditions & RQ1 \\
+\quad Ph 2 (CMAB/iCMAB) & 180 conditions per family & RQ2 \\
+\quad Ph 3 (Dynamic allocation) & 240 conditions & RQ3 \\
+\quad Ph 4 (Capacity ablation) & 120 conditions & RQ3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Results}
+Results section pending audit.
 
 \section{Discussion}
-\label{sec:discussion}
-
-% Placeholder so the draft preserves the expected paper flow while we revise.
+Discussion section pending audit.
 
 \section{Conclusion}
-\label{sec:conclusion}
+Conclusion section pending audit.
 
-% Placeholder so the draft preserves the expected paper flow while we revise.
-
-\begin{thebibliography}{99}
-
-\bibitem{wehner2018quantum}
-S. Wehner, D. Elkouss, and R. Hanson, ``Quantum internet: A vision for the road ahead,'' \emph{Science}, 2018.
-
-\bibitem{kimble2008quantum}
-H. J. Kimble, ``The quantum internet,'' \emph{Nature}, 2008.
-
-\bibitem{pompili2021realization}
-M. Pompili \etal, ``Realization of a multinode quantum network of remote solid-state qubits,'' \emph{Science}, 2021.
-
-\bibitem{briegel1998quantum}
-H.-J. Briegel, W. Duer, J. I. Cirac, and P. Zoller, ``Quantum repeaters: The role of imperfect local operations in quantum communication,'' \emph{Physical Review Letters}, 1998.
-
-\bibitem{dahlberg2021netsquid}
-A. Dahlberg \etal, ``A link layer protocol for quantum networks,'' 2021.
-
-\bibitem{bennett1993teleporting}
-C. H. Bennett \etal, ``Teleporting an unknown quantum state via dual classical and Einstein-Podolsky-Rosen channels,'' \emph{Physical Review Letters}, 1993.
-
-\bibitem{zukowski1993event}
-M. Zukowski \etal, ``Event-ready-detectors Bell experiment via entanglement swapping,'' \emph{Physical Review Letters}, 1993.
-
-\bibitem{li2025multipath}
-Li \etal, ``Multipath inter-domain routing protocols for quantum networks with online path selection,'' 2025.
-
-\bibitem{wang2025learning}
-Wang \etal, ``Learning best paths in quantum networks,'' 2025.
-
-\bibitem{wang2024adaptive}
-L. Wang, J. Bian, and J. Xu, ``Adaptive user-centric entanglement routing in quantum data networks,'' IEEE ICDCS, 2024.
-
-\bibitem{huang2024quantum}
-Huang \etal, ``Quantum entanglement path selection and qubit allocation via adversarial group neural bandits,'' 2024.
-
-\bibitem{coopmans2021benchmark}
-T. Coopmans \etal, ``A benchmarking procedure for quantum networks,'' 2021.
-
-\bibitem{kozlowski2022utility}
-W. Kozlowski, A. Dahlberg, and S. Wehner, ``Quantum network utility: A framework for benchmarking quantum networks,'' 2022.
-
-\bibitem{liu2024qbgp}
-Liu \etal, ``QBGP: A quantum border gateway protocol,'' 2024.
-
-\bibitem{10621263}
-M. Liu, Z. Li, X. Wang, and J. C. S. Lui, ``LinkSelFiE: Link selection and fidelity estimation in quantum networks,'' IEEE INFOCOM, 2024.
-
-\bibitem{chaudhary2023quantum}
-Chaudhary \etal, ``Quantum network routing and entanglement distribution,'' 2023.
-
-\bibitem{jallowkhan2025adaptive}
-L. Jallow and M. I. Khan, ``Adaptive entanglement routing with deep Q-networks,'' 2025.
-
-\bibitem{clayton2024quarc}
-C. Clayton, X. Wu, and B. Bhattacharjee, ``Efficient routing on quantum networks using adaptive clustering,'' 2024.
-
-\bibitem{cicconetti2024scalable}
-C. Cicconetti \etal, ``Scalable quantum networks: Hierarchical entanglement routing,'' 2023.
-
-\bibitem{kumar2024routing}
-V. Kumar \etal, ``Routing in quantum repeater networks with mixed efficiency,'' 2024.
-
-\bibitem{leone2021costvector}
-H. Leone, N. R. Miller, D. Singh, N. K. Langford, and P. P. Rohde, ``Cost vector analysis and multi-path entanglement routing in quantum networks,'' 2021.
-
-\bibitem{lattimore2020bandit}
-T. Lattimore and C. Szepesvari, \emph{Bandit Algorithms}. Cambridge University Press, 2020.
-
-\bibitem{bubeck2012regret}
-S. Bubeck and N. Cesa-Bianchi, ``Regret analysis of stochastic and nonstochastic multi-armed bandit problems,'' 2012.
-
-\bibitem{auer2002finite}
-P. Auer, N. Cesa-Bianchi, and P. Fischer, ``Finite-time analysis of the multiarmed bandit problem,'' \emph{Machine Learning}, 2002.
-
-\bibitem{li2010contextual}
-L. Li, W. Chu, J. Langford, and R. E. Schapire, ``A contextual-bandit approach to personalized news article recommendation,'' WWW, 2010.
-
-\bibitem{chu2011contextual}
-W. Chu \etal, ``Contextual bandits with linear payoff functions,'' AISTATS, 2011.
-
-\bibitem{zhou2020neuralucb}
-D. Zhou, L. Li, and Q. Gu, ``Neural contextual bandits with UCB-based exploration,'' ICML, 2020.
-
-\bibitem{zhang2022neuralts}
-W. Zhang, D. Zhou, L. Li, and Q. Gu, ``Neural Thompson Sampling,'' ICLR, 2022.
-
-\bibitem{auer2002nonstochastic}
-P. Auer, N. Cesa-Bianchi, Y. Freund, and R. Schapire, ``The nonstochastic multiarmed bandit problem,'' \emph{SIAM Journal on Computing}, 2002.
-
-\bibitem{kar2024icmab}
-Kar \etal, ``Informed contextual multi-armed bandits for adaptive routing,'' 2024.
-
-\bibitem{box2015time}
-G. E. P. Box, G. M. Jenkins, G. C. Reinsel, and G. M. Ljung, \emph{Time Series Analysis: Forecasting and Control}. Wiley, 2015.
-
-\bibitem{thompson1933likelihood}
-W. R. Thompson, ``On the likelihood that one unknown probability exceeds another in view of the evidence of two samples,'' \emph{Biometrika}, 1933.
-
-\bibitem{thathachar2011networks}
-M. A. L. Thathachar and P. S. Sastry, \emph{Networks of Learning Automata}. Springer, 2011.
-
-\bibitem{zimmert2019optimal}
-J. Zimmert and Y. Seldin, ``An optimal algorithm for stochastic and adversarial bandits,'' AISTATS, 2019.
-
-\end{thebibliography}
+\bibliographystyle{IEEEtranN}
+\bibliography{references}
 
 \end{document}
