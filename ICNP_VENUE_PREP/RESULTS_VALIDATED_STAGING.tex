@@ -174,3 +174,37 @@ iCPursuitNeuralUCB & 1.0 & 92.1 & 93.6 & 88.7 & 88.5 & 70.8 & 86.7 \\
 \Cref{tab:rq3b_master_capacity_scaling} shows that replay scale is not a monotonic ``more is better'' knob. Under fixed \texttt{Random} allocation and $T$-type anchoring, both pursuit-based hybrids degrade sharply at $s=1.5$ and recover at $s=2$, confirming that replay capacity must be tuned jointly with allocator and anchoring type. Extended GA ablations remain supporting evidence, but the master-dataset trend is the validated RQ3b conclusion.
 
 % Keep for second-look before final venue cleanup: capacity--efficiency figure (fig:capacity_all), likely with RQ3b if a visual capacity-paradox artifact is needed.
+
+% ============================================================================
+% RQ3c: Algorithm-Allocator Co-Design
+% ============================================================================
+\subsection{RQ3c: Algorithm-Allocator Co-Design}
+\label{subsec:rq3c_answer}
+
+\noindent\textbf{Focus.}
+RQ3c tests whether allocator choice is independent of algorithm architecture or instead acts as a first-class deployment decision.
+
+\smallTitle{RQ3c evidence slice}
+RQ3c fixes the model to iCPursuitNeuralUCB, the horizon to 6K, and capacity to $T$-type with $s=2$, then varies allocator policy. This isolates allocator effects after RQ3b isolates replay-scale behavior.
+
+\begin{table}[ht!]
+\footnotesize
+\centering
+\setlength{\tabcolsep}{3pt}
+\caption{RQ3c allocator interaction for iCPursuitNeuralUCB under the fixed 6K, $T$-type, $s=2$ deployment. Values are Hybrid master-dataset means over the 3- and 5-run suites.}
+\label{tab:rq3c_master_allocators}
+\begin{tabular}{lccccccc}
+\toprule
+\textbf{Allocator} & \textbf{Bl} & \textbf{Sh} & \textbf{Mk} & \textbf{Ag} & \textbf{OA} & \textbf{Avg.} & \textbf{Floor} \\
+\midrule
+Fixed      & 99.9 & 94.6 & 94.7 & 88.5 & 99.8 & 95.5 & 88.5 \\
+DynamicUCB & 85.0 & 89.5 & 88.9 & 88.5 & 97.1 & 89.8 & 85.0 \\
+Random     & 95.1 & 94.5 & 96.3 & 88.5 & 83.5 & 91.6 & 83.5 \\
+Thompson   & 58.4 & 65.4 & 87.8 & 91.7 & 65.2 & 73.7 & 58.4 \\
+\bottomrule
+\end{tabular}
+
+{\footnotesize Bl=Baseline, Sh=Stochastic, Mk=Markov, Ag=Adaptive, OA=OnlineAdaptive.}
+\end{table}
+
+\Cref{tab:rq3c_master_allocators} shows that allocator effects are deployment-critical: Fixed gives iCPursuitNeuralUCB the best average and floor, while Thompson is strong under Adaptive but fragile under Baseline/Stochastic mismatch. Thus, allocator selection is a first-class deployment decision.
