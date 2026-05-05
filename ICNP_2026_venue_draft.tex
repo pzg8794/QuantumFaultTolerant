@@ -89,7 +89,7 @@ Existing quantum-routing studies propose online path selection, benchmarking-dri
   node distance=0.45cm and 0.35cm,
   stage/.style={rectangle, draw=black, rounded corners=3pt, align=center, minimum height=0.72cm, text width=2.35cm, inner sep=2.5pt, fill=black!4, font=\bfseries},
   factor/.style={rectangle, draw=black!70, align=center, minimum height=0.55cm, text width=1.70cm, inner sep=2pt, fill=black!2},
-  out/.style={rectangle, draw=black, rounded corners=3pt, align=center, minimum height=0.58cm, text width=1.86cm, inner sep=2pt, fill=black!8},
+  outputbox/.style={rectangle, draw=black, rounded corners=3pt, align=center, minimum height=0.58cm, text width=1.86cm, inner sep=2pt, fill=black!8},
   arrow/.style={thick,->,draw=black}
 ]
 \node[factor] (topology) {Topology};
@@ -98,9 +98,9 @@ Existing quantum-routing studies propose online path selection, benchmarking-dri
 \node[factor, right=of models] (alloc) {Allocator};
 \node[factor, right=of alloc] (capacity) {Replay};
 \node[stage, below=0.55cm of models] (grid) {Matched evaluation grid};
-\node[out, below=0.55cm of grid, xshift=-2.00cm] (metrics) {Metrics};
-\node[out, below=0.55cm of grid] (robust) {Robustness};
-\node[out, below=0.55cm of grid, xshift=2.00cm] (guidance) {Guidance};
+\node[outputbox, below=0.55cm of grid, xshift=-2.00cm] (metrics) {Metrics};
+\node[outputbox, below=0.55cm of grid] (robust) {Robustness};
+\node[outputbox, below=0.55cm of grid, xshift=2.00cm] (guidance) {Guidance};
 \draw[arrow] (topology) |- (grid);
 \draw[arrow] (threats) -- (grid);
 \draw[arrow] (models) -- (grid);
