@@ -31,11 +31,6 @@
 \setlist[itemize]{topsep=2pt, partopsep=0pt, itemsep=2pt, parsep=0pt, leftmargin=*}
 \setlist[enumerate]{topsep=2pt, partopsep=0pt, itemsep=2pt, parsep=0pt, leftmargin=*}
 
-\definecolor{networkblue}{RGB}{52,152,219}
-\definecolor{envgreen}{RGB}{46,204,113}
-\definecolor{algorange}{RGB}{230,126,34}
-\definecolor{allocpurple}{RGB}{155,89,182}
-
 \newcommand{\ie}{\emph{i.e.,}\xspace}
 \newcommand{\eg}{\emph{e.g.,}\xspace}
 \newcommand{\etc}{etc.\xspace}
@@ -88,39 +83,35 @@ Existing quantum-routing studies propose online path selection, benchmarking-dri
 \begin{figure}[t]
 \centering
 \footnotesize
-\resizebox{1.00\columnwidth}{!}{%
+\resizebox{0.96\columnwidth}{!}{%
 \begin{tikzpicture}[
-    node distance=0.5cm and 0.5cm,
-    >=Latex,
-    basebox/.style={rectangle, draw, rounded corners=4pt, align=center, minimum height=0.95cm, text width=5.00cm, inner sep=4pt, font=\bfseries},
-    topologybox/.style={basebox, draw=networkblue!80!black, fill=networkblue!15},
-    threatbox/.style={basebox, draw=envgreen!70!black, fill=envgreen!18},
-    modelbox/.style={basebox, draw=algorange!85!black, fill=algorange!18},
-    allocbox/.style={basebox, draw=allocpurple!80!black, fill=allocpurple!15},
-    outbox/.style={basebox, draw=black!60, fill=black!6, font=\bfseries},
-    mainbox/.style={rectangle, draw=black!70, fill=black!4, rounded corners=6pt, align=center, minimum height=1.1cm, text width=5.0cm, inner sep=5pt, font=\bfseries},
-    arrow/.style={thick,->}
+  >=Latex,
+  node distance=0.45cm and 0.35cm,
+  stage/.style={rectangle, draw=black, rounded corners=3pt, align=center, minimum height=0.72cm, text width=2.35cm, inner sep=2.5pt, fill=black!4, font=\bfseries},
+  factor/.style={rectangle, draw=black!70, align=center, minimum height=0.55cm, text width=1.70cm, inner sep=2pt, fill=black!2},
+  out/.style={rectangle, draw=black, rounded corners=3pt, align=center, minimum height=0.58cm, text width=1.86cm, inner sep=2pt, fill=black!8},
+  arrow/.style={thick,->,draw=black}
 ]
-\node[topologybox] (topology) {Quantum Network Topology};
-\node[threatbox, right=of topology] (threats) {Threat Regimes};
-\node[modelbox, right=of threats] (models) {Bandit Policy Families};
-\node[allocbox, below=1.3cm of topology] (allocator) {Allocator Policy};
-\node[allocbox, below=1.3cm of models] (capacity) {Replay / Capacity Semantics};
-\node[mainbox, below=1.4cm of threats] (engine) {Threat-Aware Evaluation Framework\\Joint path selection + qubit allocation under matched conditions};
-\node[outbox, below=1.5cm of allocator] (metrics) {Oracle-Normalized Metrics};
-\node[outbox, below=1.5cm of engine] (comparison) {Cross-Model Robustness Comparison};
-\node[outbox, below=1.5cm of capacity] (guidance) {Deployment Guidance};
-\draw[arrow, draw=networkblue!80!black] (topology) -- (engine);
-\draw[arrow, draw=envgreen!70!black] (threats) -- (engine);
-\draw[arrow, draw=algorange!85!black] (models) -- (engine);
-\draw[arrow, draw=allocpurple!80!black] (allocator) -- (engine);
-\draw[arrow, draw=allocpurple!80!black] (capacity) -- (engine);
-\draw[arrow] (engine) -- (metrics);
-\draw[arrow] (engine) -- (comparison);
-\draw[arrow] (engine) -- (guidance);
+\node[factor] (topology) {Topology};
+\node[factor, right=of topology] (threats) {Threats};
+\node[factor, right=of threats] (models) {Policies};
+\node[factor, right=of models] (alloc) {Allocator};
+\node[factor, right=of alloc] (capacity) {Replay};
+\node[stage, below=0.55cm of models] (grid) {Matched evaluation grid};
+\node[out, below=0.55cm of grid, xshift=-2.00cm] (metrics) {Metrics};
+\node[out, below=0.55cm of grid] (robust) {Robustness};
+\node[out, below=0.55cm of grid, xshift=2.00cm] (guidance) {Guidance};
+\draw[arrow] (topology) |- (grid);
+\draw[arrow] (threats) -- (grid);
+\draw[arrow] (models) -- (grid);
+\draw[arrow] (alloc) -- (grid);
+\draw[arrow] (capacity) |- (grid);
+\draw[arrow] (grid) -- (metrics);
+\draw[arrow] (grid) -- (robust);
+\draw[arrow] (grid) -- (guidance);
 \end{tikzpicture}%
 }
-\caption{Threat-aware evaluation framework. Topology, threat regimes, policy families, allocator choices, and replay/capacity semantics are matched before computing oracle-normalized robustness metrics and deployment guidance.}
+\caption{Venue-draft evaluation framework. Topology, threat model, policy family, allocator, and replay semantics are matched before reporting metrics, robustness comparisons, and deployment guidance.}
 \label{fig:framework}
 \end{figure}
 
@@ -188,22 +179,22 @@ At each decision frame $t$, a routing agent selects a candidate path $P_r$ and q
     >=Latex,
     node distance=0.55cm and 0.65cm,
     basebox/.style={rectangle, draw, rounded corners=4pt, align=center, minimum height=0.8cm, text width=2.0cm, inner sep=3pt, font=\bfseries},
-    contextbox/.style={basebox, draw=networkblue!80!black, fill=networkblue!15},
-    agentbox/.style={basebox, draw=algorange!85!black, fill=algorange!18},
-    actionbox/.style={basebox, draw=allocpurple!80!black, fill=allocpurple!15},
-    envbox/.style={basebox, draw=envgreen!70!black, fill=envgreen!18},
-    feedbackbox/.style={basebox, draw=black!60, fill=black!6},
-    arrow/.style={thick,->}
+    contextbox/.style={basebox, draw=black!80, fill=black!5},
+    agentbox/.style={basebox, draw=black!80, fill=black!8},
+    actionbox/.style={basebox, draw=black!80, fill=black!5},
+    envbox/.style={basebox, draw=black!80, fill=black!8},
+    feedbackbox/.style={basebox, draw=black!60, fill=black!4},
+    arrow/.style={thick,->,draw=black}
 ]
 \node[contextbox] (context) {Candidate Paths\\+ Context};
 \node[agentbox, right=of context] (agent) {Routing Agent\\(Bandit Policy)};
 \node[actionbox, right=of agent] (action) {Path Selection\\+ Qubit Allocation};
 \node[envbox, below=1.0cm of action] (env) {Quantum Network\\+ Threat Regime};
 \node[feedbackbox, left=of env] (reward) {Reward / Feedback\\(success, fidelity, efficiency)};
-\draw[arrow, draw=networkblue!80!black] (context) -- (agent);
-\draw[arrow, draw=algorange!85!black] (agent) -- (action);
-\draw[arrow, draw=allocpurple!80!black] (action) -- (env);
-\draw[arrow, draw=envgreen!70!black] (env) -- (reward);
+\draw[arrow] (context) -- (agent);
+\draw[arrow] (agent) -- (action);
+\draw[arrow] (action) -- (env);
+\draw[arrow] (env) -- (reward);
 \draw[arrow] (reward) -- (agent);
 \end{tikzpicture}%
 }
@@ -303,7 +294,7 @@ Using the interface in \cref{sec:SystemModel}, this section defines the configur
 \paragraph*{Network configuration}
 We use the four-path diamond topology shown in \cref{fig:network_topology} and defined in \cref{subsec:topology}, with two-hop paths $P_1$ and $P_2$ and three-hop paths $P_3$ and $P_4$. This topology keeps the routing action space nontrivial while preserving tractable cross-product sweeps across \cref{tab:config_summary}.
 
-Across all experiments, the total physical budget remains fixed at 35 qubits, matching the resource constraint in \cref{subsec:topology}; this prevents over-provisioning and creates the intended exploration--exploitation pressure. Per-path budgets are set by allocator policies in \cref{tab:setup-allocators}, enabling controlled comparison of static and adaptive resource management.
+Across all experiments, the total physical budget remains fixed at 35 qubits, matching the resource constraint in \cref{subsec:topology}; this prevents over-provisioning and creates the intended exploration--exploitation pressure. Per-path budgets are set by the allocator policies defined in \cref{subsec:topology}, enabling controlled comparison of static and adaptive resource management.
 
 \begin{figure}[ht!]
 \centering
@@ -324,10 +315,10 @@ Across all experiments, the total physical budget remains fixed at 35 qubits, ma
   \draw[link] (R1) -- (D);
   \draw[link] (R2) -- (D);
   \draw[link] (R1) -- (R2);
-  \draw[path, blue] (S) to[bend left=15] node[above, font=\scriptsize] {$P_1$ (2-hop)} (R1) to[bend left=15] (D);
-  \draw[path, red] (S) to[bend right=15] node[left, font=\scriptsize] {$P_2$ (2-hop)} (R2) to[bend right=15] (D);
-  \draw[path, green!60!black] (S) to[bend left=10] (R1) to[bend left=10] node[right, font=\scriptsize] {$P_3$ (3-hop)} (R2) to[bend left=10] (D);
-  \draw[path, orange] (S) to[bend right=10] (R2) to[bend right=10] node[left, font=\scriptsize] {$P_4$ (3-hop)} (R1) to[bend right=10] (D);
+  \draw[path] (S) to[bend left=15] node[above, font=\scriptsize] {$P_1$ (2-hop)} (R1) to[bend left=15] (D);
+  \draw[path, dashed] (S) to[bend right=15] node[left, font=\scriptsize] {$P_2$ (2-hop)} (R2) to[bend right=15] (D);
+  \draw[path, dotted] (S) to[bend left=10] (R1) to[bend left=10] node[right, font=\scriptsize] {$P_3$ (3-hop)} (R2) to[bend left=10] (D);
+  \draw[path, dash dot] (S) to[bend right=10] (R2) to[bend right=10] node[left, font=\scriptsize] {$P_4$ (3-hop)} (R1) to[bend right=10] (D);
 \end{tikzpicture}
 \caption{Four-path quantum-network testbed used for routing evaluation. Paths $P_1$ and $P_2$ have two hops, while $P_3$ and $P_4$ have three hops; per-path qubit budgets are varied by allocator policy.}
 \label{fig:network_topology}
@@ -367,15 +358,18 @@ Algorithm families & Classical, Predictive, Adversarial, Contextual/Neural & RQ1
 \end{table}
 
 \section{Results}
+\label{sec:results}
 Results section pending audit.
 
 \section{Discussion}
+\label{sec:discussion}
 Discussion section pending audit.
 
 \section{Conclusion}
+\label{sec:conclusion}
 Conclusion section pending audit.
 
-\bibliographystyle{IEEEtranN}
-\bibliography{references}
+\bibliographystyle{IEEEtran}
+\bibliography{refs}
 
 \end{document}
