@@ -97,9 +97,41 @@ EXP3/UCB & 76.3 & 6.0 & 68.8 & 0.0 \\
 RQ3 evaluates whether algorithm, allocator, and replay-capacity choices should change with the threat regime. Deployment is configuration-sensitive, but the hybrid dataset also reveals a strong static configuration that exceeds the 85\% robustness target across all five scenarios.
 
 \smallTitle{RQ3 evidence slice}
-RQ3 uses the validated Hybrid master dataset for CPursuitNeuralUCB, iCPursuitNeuralUCB, GNeuralUCB, and EXPNeuralUCB across all scenarios, allocators, replay anchoring types, scales $s\in\{1,1.5,2\}$, and 4K--8K horizons. Point estimates average the 3- and 5-run suites; RQ3 CV values are computed across scenario means as a deployment-volatility proxy because per-run variance is not available in the master table.
+RQ3 uses the validated Hybrid master dataset for CPursuitNeuralUCB, iCPursuitNeuralUCB, GNeuralUCB, and EXPNeuralUCB across all scenarios, allocators, replay anchoring types, scales $s\in\{1,1.5,2\}$, and 4K--8K horizons. Unless otherwise noted, point estimates average the 3- and 5-run suites; RQ3 CV values are computed across scenario means as a deployment-volatility proxy because per-run variance is not available in the master table.
 
 \smallTitle{Validated RQ3 answer}
 Deployment is configuration-sensitive, but the Hybrid master dataset also reveals a strong static configuration. At the 6K horizon, \texttt{iCPursuitNeuralUCB + Fixed + ($T$-type, $s=2$)} achieves a 96.0\% global average and a 92.8\% worst-case floor across scenarios, using the validated mean over 3- and 5-run suites. Scenario-specific optima still differ, so later RQ3 analyses disaggregate allocator and replay-capacity effects.
 
 % Keep for second-look before final venue cleanup: threat-adaptive allocator figure (fig:threat_rules) and capacity--efficiency figure (fig:capacity_all). The latter likely belongs with RQ3b.
+
+% ============================================================================
+% RQ3a: Predictive Context Modeling Impact
+% ============================================================================
+\subsubsection{RQ3a: Predictive Context Modeling Impact}
+\label{subsubsec:rq3a_answer}
+
+\noindent\textbf{Focus.}
+RQ3a isolates whether the informative/predictive variant, iCPursuitNeuralUCB, improves deployment robustness over reactive CPursuitNeuralUCB.
+
+\smallTitle{RQ3a evidence slice}
+To isolate architecture impact, we hold deployment fixed at 6K horizon, \texttt{Fixed} allocator, $T$-type anchoring, and $s=2$, then use the validated 3-run suite from the Hybrid master dataset.
+
+\begin{table}[ht!]
+\footnotesize
+\centering
+\setlength{\tabcolsep}{3pt}
+\caption{RQ3a informative-context impact under the fixed deployment setting. Values are from the validated 3-run Hybrid master-dataset provenance branch.}
+\label{tab:rq3a_master_informative}
+\begin{tabular}{p{0.30\linewidth} c c c c c c c}
+\toprule
+\textbf{Model} & \textbf{Bl} & \textbf{Sh} & \textbf{Mk} & \textbf{Ag} & \textbf{OA} & \textbf{Avg.} & \textbf{CV} \\
+\midrule
+CPursuitNeuralUCB & 99.8 & 94.7 & 93.0 & 92.8 & 81.5 & 92.4 & 6.5 \\
+iCPursuitNeuralUCB & 99.9 & 94.8 & 93.0 & 92.8 & 99.8 & 96.0 & 3.3 \\
+\bottomrule
+\end{tabular}
+
+{\footnotesize Bl=Baseline, Sh=Stochastic, Mk=Markov, Ag=Adaptive, OA=OnlineAdaptive; CV is computed across scenario means.}
+\end{table}
+
+\Cref{tab:rq3a_master_informative} shows that iCPursuitNeuralUCB improves global robustness mainly by lifting OnlineAdaptive efficiency from 81.5\% to 99.8\% (+18.3 pp) while keeping Stochastic, Markov, and Adaptive performance effectively unchanged. It also reduces scenario-level dispersion from 6.5 to 3.3 CV. Thus, informative context is most valuable when the threat adapts online.
