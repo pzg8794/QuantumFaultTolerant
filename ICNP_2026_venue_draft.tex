@@ -78,7 +78,7 @@ Unlike classical packet routing, quantum routing must establish and consume enta
 
 Existing quantum-routing studies propose online path selection, benchmarking-driven routing, adaptive route selection, and adversarially robust learning~\cite{wang2025learning,coopmans2021benchmark,huang2024quantum}, but they are often evaluated under different threat, topology, allocator, and replay assumptions~\cite{liu2024qbgp,li2025multipath,chaudhary2023quantum}. This creates a matched-threat evaluation gap: it is unclear when contextual structure is necessary, when adversarial robustness dominates, and how allocator and capacity choices alter routing performance.
 
-\subsection{Our Approach and Evaluation Scope}
+% \subsection{Our Approach and Evaluation Scope}
 
 \begin{figure}[t]
 \centering
@@ -157,7 +157,7 @@ Recent quantum-network work applies bandits and related online-learning methods 
 
 Huang \etal~\cite{huang2024quantum} propose \emph{EXPNeuralUCB}, a group neural bandit that combines EXP3-style adversarial exploration with NeuralUCB-style nonlinear reward modeling for joint path selection and qubit allocation. We use EXPNeuralUCB as one comparator within a broader robustness study that also evaluates pursuit--neural hybrids such as \texttt{CPursuitNeuralUCB} and \texttt{iCPursuitNeuralUCB}. This matched comparison separates changes in the learning rule from changes in allocator strategy and replay capacity, which prior adversarial-first routing studies typically treat as fixed.
 
-\paragraph{Closest-work contrast (LinkSelFiE).}
+% \smallTitle{Closest-work contrast (LinkSelFiE)}
 Liu \etal~\cite{10621263} propose \emph{LinkSelFiE}, which addresses the \emph{link-level} problem of selecting and estimating a high-fidelity entanglement link when link qualities are unknown \emph{a priori}. They cast link selection as best-arm identification and use benchmarking-driven estimation to reduce quantum resource consumption while identifying high-quality links with high confidence. In contrast, we target the \emph{end-to-end routing} problem: joint \emph{path selection and qubit allocation} over time under five threat regimes. LinkSelFiE-style fidelity estimates can be incorporated into our reward model, but our primary focus is routing-layer robustness under structured and adaptive disruption.
 
 Beyond bandit-style path selection, prior work studies learning-based route selection under noisy quantum-network conditions~\cite{chaudhary2023quantum}, RL-based adaptive routing with deep Q-networks~\cite{jallowkhan2025adaptive}, structural decomposition through QuARC adaptive clustering~\cite{clayton2024quarc}, hierarchical routing for scalability~\cite{cicconetti2024scalable}, repeater/efficiency-aware routing~\cite{kumar2024routing}, and cost-vector multipath optimization~\cite{leone2021costvector}. These studies differ materially in allocator assumptions, memory/replay parameterization, and threat models. Our benchmark addresses this comparability gap by evaluating multiple algorithm classes under the same threat, allocator, and replay/capacity grid, enabling direct attribution of robustness to the algorithm--allocator--capacity triad.
@@ -291,7 +291,7 @@ Using the matched interface defined in \cref{sec:SystemModel}, we organize the e
 
 Using the interface in \cref{sec:SystemModel}, this section defines the configuration axes used to answer \cref{sec:research_questions}. \Cref{tab:config_summary} summarizes the design dimensions, tested options, and RQ coverage.
 
-\paragraph*{Network configuration}
+\smallTitle{Network configuration}
 We use the four-path diamond topology shown in \cref{fig:network_topology} and defined in \cref{subsec:topology}, with two-hop paths $P_1$ and $P_2$ and three-hop paths $P_3$ and $P_4$. This topology keeps the routing action space nontrivial while preserving tractable cross-product sweeps across \cref{tab:config_summary}.
 
 Across all experiments, the total physical budget remains fixed at 35 qubits, matching the resource constraint in \cref{subsec:topology}; this prevents over-provisioning and creates the intended exploration--exploitation pressure. Per-path budgets are set by the allocator policies defined in \cref{subsec:topology}, enabling controlled comparison of static and adaptive resource management.
@@ -324,7 +324,7 @@ Across all experiments, the total physical budget remains fixed at 35 qubits, ma
 \label{fig:network_topology}
 \end{figure}
 
-\noindent\textit{Time horizons.}
+\smallTitle{Time horizons}
 We evaluate \texttt{4K}, \texttt{6K}, and \texttt{8K}-frame horizons to capture short-, mid-, and long-episode learning dynamics. Primary results use \texttt{6K} unless noted; \texttt{4K}/\texttt{8K} comparisons support the RQ3 sample-efficiency analysis.
 
 \begin{table}[ht!]
@@ -333,7 +333,7 @@ We evaluate \texttt{4K}, \texttt{6K}, and \texttt{8K}-frame horizons to capture 
 \setlength{\tabcolsep}{4pt}
 \caption{Experimental design matrix linking configuration dimensions, tested options, and research-question coverage.}
 \label{tab:config_summary}
-\begin{tabular}{>{\raggedright\arraybackslash}p{0.28\linewidth} >{\raggedright\arraybackslash}p{0.50\linewidth} >{\centering\arraybackslash}p{0.12\linewidth}}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.25\linewidth} >{\raggedright\arraybackslash}p{0.60\linewidth} >{\centering\arraybackslash}p{0.07\linewidth}}
 \toprule
 \textbf{Configuration Dimension} & \textbf{Options Tested} & \textbf{RQ(s)} \\
 \midrule
@@ -349,10 +349,10 @@ Forecasting & None, ARIMA ($n=50$), ARIMA ($n=100$) & RQ3 \\
 Algorithm families & Classical, Predictive, Adversarial, Contextual/Neural & RQ1, RQ2 \\
 \midrule
 \multicolumn{3}{l}{\textit{Evaluation phases}} \\
-\quad Ph 1 (MAB baseline) & 12 conditions & RQ1 \\
-\quad Ph 2 (CMAB/iCMAB) & 180 conditions per family & RQ2 \\
-\quad Ph 3 (Dynamic allocation) & 240 conditions & RQ3 \\
-\quad Ph 4 (Capacity ablation) & 120 conditions & RQ3 \\
+\quad Ph 1 & 12 conditions (for MAB baseline) & RQ1 \\
+\quad Ph 2 & 180 conditions per family (CMAB/iCMAB) & RQ2 \\
+\quad Ph 3 & 240 conditions (for Dynamic allocation)& RQ3 \\
+\quad Ph 4 & 120 conditions (for Capacity ablation)& RQ3 \\
 \bottomrule
 \end{tabular}
 \end{table}
