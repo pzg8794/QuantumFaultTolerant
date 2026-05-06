@@ -1,0 +1,9 @@
+\section{Conclusion}
+\label{sec:conclusion}
+\textcolor{red}{Conclusion section pending audit.}
+
+We introduced a unified, reproducible benchmark for entanglement routing under five threat regimes and showed that robust deployment is jointly determined by model architecture, allocator policy, and replay-capacity semantics. Across the curated evaluation corpus and accompanying reproducibility artifacts, context-aware pursuit--neural hybrids (\eg \small\texttt{CPursuitNeuralUCB}, \small\texttt{iCPursuitNeuralUCB}) consistently define the efficiency--stability frontier, achieving near-Oracle behavior under stochastic noise while avoiding brittle failure modes observed in adversarial-first EXP3-style designs under reactive threats.
+
+Most critically, we uncover a \emph{capacity paradox}: replay scaling can improve performance under structured disruption yet induce pronounced collapses under adaptive adversaries, indicating that \emph{predictability}---not bandwidth---can dominate robustness in adversarial settings. Allocator choice is likewise not interchangeable: it can set the robustness floor for identical learners, motivating a threat-adaptive deployment stack in which pursuit-based contextual hybrids serve as default routing agents while allocator and capacity policies switch based on the detected regime.
+
+Taken together, these results position bandit-based routing as a modular, transferable design pattern for threat-responsive quantum networks, and motivate future work on automated threat detection, dynamic capacity control, and hardware-grounded validation on repeater testbeds.

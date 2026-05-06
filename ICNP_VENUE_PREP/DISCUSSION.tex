@@ -1,0 +1,43 @@
+\section{Discussion}
+\label{sec:discussion}
+Discussion section pending audit.
+\devroop{go over this and rewrite as needed}
+
+Our results across the full evaluation suite---spanning paper baselines (CMAB / iCMAB / EXP3-family) and the Hybrid suite (allocators and replay-capacity controls)---show that routing robustness under compound uncertainty is jointly determined by \emph{(i) context in the policy}, \emph{(ii) allocator choice}, and \emph{(iii) replay-capacity parameterization}. Across both the internal corpus and external testbeds, pursuit-based contextual hybrids consistently define the robustness frontier.
+
+% ----------------------------------------------------------------------------
+\subsubsection{Finding 1 - Context-Aware Bandits Dominate}
+
+Across both the paper baselines (\RQOneText-\RQTwoText) and the Hybrid suite (\RQThreeText), \textbf{context-aware policies consistently outperform non-contextual and purely adversarial baselines}. Pursuit-based contextual hybrids (\small\texttt{CPursuitNeuralUCB}, \small\texttt{iCPursuitNeuralUCB}) maintain strong efficiency across all five threat regimes, while EXP3-family baselines exhibit lower robustness floors under Markov, Adaptive, and OnlineAdaptive disruption. The results reinforce that topology and channel-state information are not optional optimization features but an \emph{architectural requirement} for robust routing.
+
+% ----------------------------------------------------------------------------
+\subsubsection{Finding 2 - The Capacity Paradox is Conditional}
+
+Replay capacity exhibits \textbf{non-monotone behavior} under adversarial conditions. Increasing replay can improve stability in structured regimes while amplifying vulnerability under reactive threats. This effect emerges through the interaction between replay capacity and allocator-driven exploration predictability.
+
+Capacity sensitivity becomes most severe under allocator stress, particularly with \small\texttt{Random}. In the Hybrid suite, efficiency swings exceed \textbf{20--38 pp} across replay-capacity settings under Adaptive and Markov threats. Mechanistically, larger replay buffers reinforce recurring patterns; under reactive adversaries, this increases predictability and expands the attack surface. Replay capacity therefore cannot be treated as an isolated tuning parameter.
+
+% ----------------------------------------------------------------------------
+\subsubsection{Finding 3 - Allocator Choice is the Practical Lever}
+
+Allocator choice is the highest-leverage deployment control in the Hybrid suite. Aggregated across scenarios and replay-capacity settings, \small\texttt{ThompsonSampling} and \small\texttt{Fixed}/\small\texttt{Default} consistently form the top performance tier, while \small\texttt{Random} is strongly associated with catastrophic efficiency collapses.
+
+\begin{quote}
+\emph{Allocator choice functions as a safety mechanism, not a tuning step.}
+\end{quote}
+
+Even strong pursuit-neural architectures can be pulled into the capacity paradox under allocator mismatch, while robust allocators substantially suppress replay sensitivity.
+
+% ----------------------------------------------------------------------------
+\subsection{Implications for Adversarial Quantum Network Design}
+
+First, \textbf{context-aware routing should be treated as baseline infrastructure}. Feature enrichment through topology, link-state, and traffic information yields larger robustness gains than refining reward-only exploration rules.
+
+Second, \textbf{replay capacity must be treated as a coupled control variable}. The relevant deployment question is not simply \textquotedblleft more or less replay,\textquotedblright but which anchoring rule (\small\texttt{Tb} vs.\ \small\texttt{T}), scale ($s$), and allocator jointly minimize tail risk under the active threat regime.
+
+Finally, the results motivate lightweight \textbf{threat-aware meta-policies}:
+\begin{itemize}[nosep]
+\item Use \small\texttt{ThompsonSampling} or \small\texttt{Fixed}/\small\texttt{Default} allocators as safe deployment defaults.
+\item Treat replay-capacity settings as \emph{scenario-coupled} rather than static.
+\item Dynamically adapt allocator and replay configurations using efficiency and variability signals observed during operation.
+\end{itemize}

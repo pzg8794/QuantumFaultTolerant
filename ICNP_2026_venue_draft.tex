@@ -27,6 +27,11 @@
 \usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, backgrounds, calc, decorations.pathreplacing, bending}
 \tikzset{>={Stealth}}
 
+\usepackage{float}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usetikzlibrary{shapes, arrows, positioning, calc, shapes.geometric, arrows.meta, fit, backgrounds, decorations.pathreplacing, bending}
+
 \setlist{nosep}
 \setlist[itemize]{topsep=2pt, partopsep=0pt, itemsep=2pt, parsep=0pt, leftmargin=*}
 \setlist[enumerate]{topsep=2pt, partopsep=0pt, itemsep=2pt, parsep=0pt, leftmargin=*}
@@ -38,6 +43,9 @@
 \newcommand{\descStep}[2]{\noindent\textbf{#1:} #2}
 \newcommand{\smallTitle}[1]{\vspace{1mm}\noindent\textit{#1:}}
 
+\newcommand{\devroop}[1]{\textcolor{magenta}{\textit{[Devroop: #1]}}}
+\newcommand{\shee}[1]{\textcolor{purple}{\textit{[Shee: #1]}}}
+
 \crefname{section}{Section}{Sections}
 \Crefname{section}{Section}{Sections}
 \crefname{figure}{Figure}{Figures}
@@ -46,6 +54,28 @@
 \Crefname{table}{Table}{Tables}
 \crefname{equation}{Equation}{Equations}
 \Crefname{equation}{Equation}{Equations}
+
+\newcommand{\paperTwo}{Chaudhary \etal~\cite{chaudhary2023quantum}\xspace}
+\newcommand{\paperSeven}{Liu \etal~\cite{liu2024qbgp}\xspace}
+\newcommand{\paperTwelve}{Clayton \etal~\cite{clayton2024quarc}\xspace}
+\newcommand{\paperEight}{Jallow and Khan~\cite{jallowkhan2025adaptive}\xspace}
+
+\definecolor{networkblue}{RGB}{52,152,219}
+\definecolor{envgreen}{RGB}{46,204,113}
+\definecolor{algorange}{RGB}{230,126,34}
+\definecolor{allocpurple}{RGB}{155,89,182}
+
+\definecolor{findingBlue}{RGB}{230,240,255}
+\definecolor{findingRed}{RGB}{255,230,230}
+\definecolor{findingOrange}{RGB}{255,245,230}
+\definecolor{findingGreen}{RGB}{230,255,240}
+
+\newcommand{\RQOneText}{RQ1}
+\newcommand{\RQTwoText}{RQ2}
+\newcommand{\RQThreeText}{RQ3}
+\newcommand{\RQOne}{\textbf{\RQOneText}}
+\newcommand{\RQTwo}{\textbf{\RQTwoText}}
+\newcommand{\RQThree}{\textbf{\RQThreeText}}
 
 \widowpenalty=10000
 \clubpenalty=10000
@@ -57,20 +87,14 @@
 \maketitle
 
 \begin{abstract}
-Quantum entanglement routing requires joint path selection and qubit allocation under noisy, nonstationary, and adversarial conditions. Existing approaches often assume stationary links, fixed allocation rules, or offline optimization assumptions. When these assumptions fail, routing can degrade end-to-end entanglement quality and waste scarce quantum resources.
-
-We introduce a threat-aware evaluation framework for comparing stochastic, contextual/neural, adversarial, predictive, and hybrid bandit policies for joint quantum path selection and qubit allocation. Unlike work that fixes allocator policy and replay semantics, we vary threat regime, allocator policy, and replay capacity as first-class factors, enabling attribution of robustness to the algorithm--allocator--capacity interaction.
-
-Across thirteen algorithms and five threat regimes, neural hybrids outperform non-contextual baselines by 18--24 percentage points in scenario-aggregated efficiency, sustain worst-case efficiency above 85\% under stochastic threats, and remain more stable than adversarial-first EXP3-style designs under adaptive attacks. We also identify a threat-dependent capacity paradox: increasing replay capacity improves efficiency under structured Markov disruption but can induce 22--30 percentage-point efficiency drops under adaptive adversaries. This shows that resource predictability, not raw capacity, can dominate robustness.
-
-Cross-testbed evaluation on three external quantum-network simulators confirms the main robustness trends while exposing scale- and physics-dependent limits.
+Quantum entanglement routing requires joint path selection and qubit allocation under noisy, nonstationary, and adversarial conditions. Existing approaches often assume stationary links, fixed allocation rules, or offline optimization assumptions. When these assumptions fail, routing can degrade end-to-end entanglement quality and waste scarce quantum resources. We introduce a threat-aware evaluation framework for comparing stochastic, contextual/neural, adversarial, predictive, and hybrid bandit policies for joint quantum path selection and qubit allocation. Unlike work that fixes allocator policy and replay semantics, we vary threat regime, allocator policy, and replay capacity as first-class factors, enabling attribution of robustness to the algorithm--allocator--capacity interaction. Across thirteen algorithms and five threat regimes, neural hybrids outperform non-contextual baselines by 18--24 percentage points in scenario-aggregated efficiency, sustain worst-case efficiency above 85\% under stochastic threats, and remain more stable than adversarial-first EXP3-style designs under adaptive attacks. We also identify a threat-dependent capacity paradox: increasing replay capacity improves efficiency under structured Markov disruption but can induce 22--30 percentage-point efficiency drops under adaptive adversaries. This shows that resource predictability, not raw capacity, can dominate robustness. Cross-testbed evaluation on three external quantum-network simulators confirms the main robustness trends while exposing scale- and physics-dependent limits.
 \end{abstract}
 
 \begin{IEEEkeywords}
 Quantum networks, entanglement routing, multi-armed bandits, adversarial learning, qubit allocation, online optimization.
 \end{IEEEkeywords}
 
-\section{Introduction}
+\section{Introduction}\label{sec:Introduction}
 
 Quantum entanglement distribution is a core primitive for the quantum Internet, supporting quantum key distribution, distributed quantum computing, and sensing~\cite{kimble2008quantum,wehner2018quantum,pompili2021realization}. Reliable end-to-end entanglement is difficult because generation and swapping are probabilistic, quantum states are fragile, and decoherence makes path quality time-varying~\cite{briegel1998quantum,dahlberg2021netsquid,zukowski1993event}.
 
@@ -113,60 +137,68 @@ Existing quantum-routing studies propose online path selection, benchmarking-dri
 \label{fig:framework}
 \end{figure}
 
-To address this gap, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks.
+To address this gap, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks. The proposed work focuses on three main research questions, listed as follows,
 
-This work makes three contributions. First, we introduce a unified threat-aware routing evaluation framework for comparing stochastic, contextual, adversarial, predictive, and hybrid bandit policies for joint entanglement path selection and qubit allocation under matched threat conditions. Second, we show that routing robustness depends on the interaction among learning model, allocator policy, and replay-capacity semantics, identifying a threat-dependent capacity paradox in which added capacity helps under structured disruption but hurts under adaptive attacks. Third, we validate the main trends across external quantum-network testbeds and derive deployment guidance for selecting model--allocator--capacity combinations under different threat regimes.
+\noindent \textbf{RQ1.} \emph{How do classical and context-aware multi-armed bandit (MAB) routing approaches perform under stochastic quantum network conditions?}
 
-\section{Background}
-\label{sec:Background}
+\noindent \textbf{RQ2.} \emph{How does the performance of bandit-based routing strategies change as network disruptions evolve from stochastic noise to structured, adaptive adversarial interference?}
 
-Quantum networks distribute entanglement across repeaters and end-nodes to support long-distance quantum communication, distributed quantum computing, and sensing~\cite{wehner2018quantum,kimble2008quantum}. Unlike classical packet routing, quantum routing must operate with fragile states, probabilistic entanglement generation and swapping, decoherence, and fidelity loss~\cite{briegel1998quantum,dahlberg2021netsquid,bennett1993teleporting,zukowski1993event}. Across multi-hop paths, these effects make routing a repeated decision problem under uncertainty, where path choices must adapt to noisy outcomes and changing link conditions. Prior routing approaches often assume stable topology knowledge or fixed allocation rules, assumptions that weaken under online learning, demand variability, and disruptive or strategic interference~\cite{li2025multipath,wang2025learning,huang2024quantum}.
+\noindent \textbf{RQ3.} \emph{How does algorithm choice, resource allocation strategy, and replay-capacity semantics interact to affect routing efficiency and stability in quantum entanglement routing?}
 
-A multi-armed bandit (MAB) models online routing as repeated action selection under partial feedback, where a learner chooses candidate paths or allocation actions and updates from reward signals such as entanglement success or routing efficiency~\cite{lattimore2020bandit,bubeck2012regret}. We use this taxonomy to distinguish the routing assumptions made by each model family: stochastic methods assume stable rewards~\cite{auer2002finite}, contextual and neural methods exploit predictive side information or nonlinear reward structure~\cite{chu2011contextual,zhou2020neuralucb}, adversarial methods handle non-stationary or strategic rewards~\cite{auer2002nonstochastic}, and predictive/informed methods incorporate forecasts~\cite{kar2024icmab}. This distinction matters for quantum routing because benign noise, topology-dependent feedback, and adaptive disruption favor different forms of learning robustness~\cite{huang2024quantum}.
+While addressing these questions, the work makes three contributions. First, we introduce a unified threat-aware routing evaluation framework for comparing stochastic, contextual, adversarial, predictive, and hybrid bandit policies for joint entanglement path selection and qubit allocation under matched threat conditions. Second, we show that routing robustness depends on the interaction among learning model, allocator policy, and replay-capacity semantics, identifying a threat-dependent capacity paradox in which added capacity helps under structured disruption but hurts under adaptive attacks. Third, we validate the main trends across external quantum-network testbeds and derive deployment guidance for selecting model--allocator--capacity combinations under different threat regimes.
 
-Quantum routing couples path choice with resource allocation: the learner must decide both which route to use and how many qubits or attempts to assign within each decision epoch. These allocator choices shape the feedback observed by the bandit learner and the predictability of routing behavior under disruption. Replay or capacity semantics, including bounded histories, windowed updates, and capped experience buffers, further affect stability under nonstationarity and vulnerability to adaptive attacks. We therefore evaluate routing policies jointly with allocator strategy and capacity semantics, rather than treating them as independent implementation details.
+\input{02--related_works}
 
-We study routing robustness as a joint function of learning model, allocator design, replay-capacity configuration, and threat regime, rather than as a property of the bandit policy alone.
+% \section{Background}
+% \label{sec:Background}
 
-\section{Related Work}
-\label{sec:RelatedWork}
+% Quantum networks distribute entanglement across repeaters and end-nodes to support long-distance quantum communication, distributed quantum computing, and sensing~\cite{wehner2018quantum,kimble2008quantum}. Unlike classical packet routing, quantum routing must operate with fragile states, probabilistic entanglement generation and swapping, decoherence, and fidelity loss~\cite{briegel1998quantum,dahlberg2021netsquid,bennett1993teleporting,zukowski1993event}. Across multi-hop paths, these effects make routing a repeated decision problem under uncertainty, where path choices must adapt to noisy outcomes and changing link conditions. Prior routing approaches often assume stable topology knowledge or fixed allocation rules, assumptions that weaken under online learning, demand variability, and disruptive or strategic interference~\cite{li2025multipath,wang2025learning,huang2024quantum}.
 
-We organize prior work by the assumptions that shape routing robustness: stochastic and adversarial regret regimes, contextual and neural structure, hybrid robust designs, predictive context, and quantum-routing applications. Our targeted review spans quantum routing, entanglement distribution, and bandit-based online decision-making, emphasizing work that defines robustness assumptions, exploits structured context, adds forecasting, combines mechanisms across regimes, or adapts online decisions to resource-constrained settings. This framing lets us compare routing methods by deployment role, threat model, and resource-control assumptions rather than by algorithm family alone.
+% A multi-armed bandit (MAB) models online routing as repeated action selection under partial feedback, where a learner chooses candidate paths or allocation actions and updates from reward signals such as entanglement success or routing efficiency~\cite{lattimore2020bandit,bubeck2012regret}. We use this taxonomy to distinguish the routing assumptions made by each model family: stochastic methods assume stable rewards~\cite{auer2002finite}, contextual and neural methods exploit predictive side information or nonlinear reward structure~\cite{chu2011contextual,zhou2020neuralucb}, adversarial methods handle non-stationary or strategic rewards~\cite{auer2002nonstochastic}, and predictive/informed methods incorporate forecasts~\cite{kar2024icmab}. This distinction matters for quantum routing because benign noise, topology-dependent feedback, and adaptive disruption favor different forms of learning robustness~\cite{huang2024quantum}.
 
-\subsection{Foundational Bandits and Regret Regimes}
+% Quantum routing couples path choice with resource allocation: the learner must decide both which route to use and how many qubits or attempts to assign within each decision epoch. These allocator choices shape the feedback observed by the bandit learner and the predictability of routing behavior under disruption. Replay or capacity semantics, including bounded histories, windowed updates, and capped experience buffers, further affect stability under nonstationarity and vulnerability to adaptive attacks. We therefore evaluate routing policies jointly with allocator strategy and capacity semantics, rather than treating them as independent implementation details.
 
-Foundational bandit results motivate the stochastic and adversarial baselines used in our evaluation. UCB-style optimism and Thompson-style posterior sampling provide canonical baselines under i.i.d. reward assumptions~\cite{auer2002finite,thompson1933likelihood}, while EXP3 provides an adversarial baseline without stochastic assumptions~\cite{auer2002nonstochastic}. Rather than deriving new regret guarantees, our study evaluates these families under the same quantum-routing threat taxonomy, allocator policies, and replay/capacity settings.
+% We study routing robustness as a joint function of learning model, allocator design, replay-capacity configuration, and threat regime, rather than as a property of the bandit policy alone.
 
-\subsection{Contextual and Neural Bandits}
+% \section{Related Work}
+% \label{sec:RelatedWork}
 
-Contextual bandits use observable state to distinguish arms whose rewards depend on topology, link quality, load, or temporal conditions. LinUCB provides a linear contextual baseline~\cite{li2010contextual}, while NeuralUCB and NeuralTS extend this idea with learned nonlinear representations~\cite{zhou2020neuralucb,zhang2022neuralts}. We use these methods to test when contextual information improves routing robustness under matched threat, allocator, and replay/capacity conditions.
+% We organize prior work by the assumptions that shape routing robustness: stochastic and adversarial regret regimes, contextual and neural structure, hybrid robust designs, predictive context, and quantum-routing applications. Our targeted review spans quantum routing, entanglement distribution, and bandit-based online decision-making, emphasizing work that defines robustness assumptions, exploits structured context, adds forecasting, combines mechanisms across regimes, or adapts online decisions to resource-constrained settings. This framing lets us compare routing methods by deployment role, threat model, and resource-control assumptions rather than by algorithm family alone.
 
-\subsection{Adversarial and Hybrid Robustness}
+% \subsection{Foundational Bandits and Regret Regimes}
 
-Adversarial bandits use randomized exploration to protect against nonstationary or strategically manipulated rewards, with EXP3-style methods serving as canonical examples~\cite{auer2002nonstochastic}. Hybrid designs combine robust exploration with structured exploitation, such as pursuit-style updates over context-conditioned value estimates or adversarial weighting inside learned reward models~\cite{thathachar2011networks}. In quantum routing, these designs are motivated by jamming, targeted disruption, and nonstationary link behavior, but prior comparisons are often confounded by mismatched allocator policies, replay semantics, and evaluation taxonomies. We evaluate adversarial-first, hybrid pursuit--neural, contextual, and informed variants in the same controlled grid to expose robustness effects attributable to the algorithm--allocator--capacity interaction rather than to isolated learning rules.
+% Foundational bandit results motivate the stochastic and adversarial baselines used in our evaluation. UCB-style optimism and Thompson-style posterior sampling provide canonical baselines under i.i.d. reward assumptions~\cite{auer2002finite,thompson1933likelihood}, while EXP3 provides an adversarial baseline without stochastic assumptions~\cite{auer2002nonstochastic}. Rather than deriving new regret guarantees, our study evaluates these families under the same quantum-routing threat taxonomy, allocator policies, and replay/capacity settings.
 
-\subsection{Predictive and Informed Bandits}
+% \subsection{Contextual and Neural Bandits}
 
-Predictive or informed bandits incorporate forecasts, exogenous signals, or learned dynamics into online decisions. ICMAB-style methods bias exploration using side information~\cite{kar2024icmab}, while time-series models such as ARIMA capture temporal reward or load patterns~\cite{box2015time}. In routing, these policies can proactively adapt to congestion, link degradation, or demand shifts, but they can also become fragile when forecasts are biased, delayed, or adversarially influenced. We therefore evaluate predictive variants as threat-dependent policies rather than oracle baselines.
+% Contextual bandits use observable state to distinguish arms whose rewards depend on topology, link quality, load, or temporal conditions. LinUCB provides a linear contextual baseline~\cite{li2010contextual}, while NeuralUCB and NeuralTS extend this idea with learned nonlinear representations~\cite{zhou2020neuralucb,zhang2022neuralts}. We use these methods to test when contextual information improves routing robustness under matched threat, allocator, and replay/capacity conditions.
 
-\subsection{Quantum Network Routing with Bandits}
+% \subsection{Adversarial and Hybrid Robustness}
 
-Recent quantum-network work applies bandits and related online-learning methods to path selection under stochastic decoherence, online benchmarking signals, and structured disruption~\cite{wehner2018quantum,huang2024quantum,wang2025learning,li2025multipath,liu2024qbgp}. Wang \etal~\cite{wang2025learning} study learning high-quality paths under stochastic dynamics, Li \etal~\cite{li2025multipath} propose multipath inter-domain routing with online path selection, and Liu \etal~\cite{liu2024qbgp} use benchmarking signals to support adaptive routing. Wang \etal~\cite{wang2024adaptive} further formulate user-centric entanglement routing with long-term budget constraints and online per-slot routing and allocation. Our contribution is complementary: we benchmark multiple decision-rule and allocator families under a shared threat taxonomy while treating allocator policy and replay/capacity semantics as explicit experimental factors.
+% Adversarial bandits use randomized exploration to protect against nonstationary or strategically manipulated rewards, with EXP3-style methods serving as canonical examples~\cite{auer2002nonstochastic}. Hybrid designs combine robust exploration with structured exploitation, such as pursuit-style updates over context-conditioned value estimates or adversarial weighting inside learned reward models~\cite{thathachar2011networks}. In quantum routing, these designs are motivated by jamming, targeted disruption, and nonstationary link behavior, but prior comparisons are often confounded by mismatched allocator policies, replay semantics, and evaluation taxonomies. We evaluate adversarial-first, hybrid pursuit--neural, contextual, and informed variants in the same controlled grid to expose robustness effects attributable to the algorithm--allocator--capacity interaction rather than to isolated learning rules.
 
-Huang \etal~\cite{huang2024quantum} propose \emph{EXPNeuralUCB}, a group neural bandit that combines EXP3-style adversarial exploration with NeuralUCB-style nonlinear reward modeling for joint path selection and qubit allocation. We use EXPNeuralUCB as one comparator within a broader robustness study that also evaluates pursuit--neural hybrids such as \texttt{CPursuitNeuralUCB} and \texttt{iCPursuitNeuralUCB}. This matched comparison separates changes in the learning rule from changes in allocator strategy and replay capacity, which prior adversarial-first routing studies typically treat as fixed.
+% \subsection{Predictive and Informed Bandits}
 
-Liu \etal~\cite{10621263} propose \emph{LinkSelFiE}, which addresses the \emph{link-level} problem of selecting and estimating a high-fidelity entanglement link when link qualities are unknown \emph{a priori}. They cast link selection as best-arm identification and use benchmarking-driven estimation to reduce quantum resource consumption while identifying high-quality links with high confidence. In contrast, we target the \emph{end-to-end routing} problem: joint \emph{path selection and qubit allocation} over time under five threat regimes. LinkSelFiE-style fidelity estimates can be incorporated into our reward model, but our primary focus is routing-layer robustness under structured and adaptive disruption.
+% Predictive or informed bandits incorporate forecasts, exogenous signals, or learned dynamics into online decisions. ICMAB-style methods bias exploration using side information~\cite{kar2024icmab}, while time-series models such as ARIMA capture temporal reward or load patterns~\cite{box2015time}. In routing, these policies can proactively adapt to congestion, link degradation, or demand shifts, but they can also become fragile when forecasts are biased, delayed, or adversarially influenced. We therefore evaluate predictive variants as threat-dependent policies rather than oracle baselines.
 
-Beyond bandit-style path selection, prior work studies learning-based route selection under noisy quantum-network conditions~\cite{chaudhary2023quantum}, RL-based adaptive routing with deep Q-networks~\cite{jallowkhan2025adaptive}, structural decomposition through QuARC adaptive clustering~\cite{clayton2024quarc}, hierarchical routing for scalability~\cite{cicconetti2024scalable}, repeater/efficiency-aware routing~\cite{kumar2024routing}, and cost-vector multipath optimization~\cite{leone2021costvector}. These studies differ materially in allocator assumptions, memory/replay parameterization, and threat models. Our benchmark addresses this comparability gap by evaluating multiple algorithm classes under the same threat, allocator, and replay/capacity grid, enabling direct attribution of robustness to the algorithm--allocator--capacity triad.
+% \subsection{Quantum Network Routing with Bandits}
 
-\subsection{Toward a Modular Bandit Evaluation Stack}
+% Recent quantum-network work applies bandits and related online-learning methods to path selection under stochastic decoherence, online benchmarking signals, and structured disruption~\cite{wehner2018quantum,huang2024quantum,wang2025learning,li2025multipath,liu2024qbgp}. Wang \etal~\cite{wang2025learning} study learning high-quality paths under stochastic dynamics, Li \etal~\cite{li2025multipath} propose multipath inter-domain routing with online path selection, and Liu \etal~\cite{liu2024qbgp} use benchmarking signals to support adaptive routing. Wang \etal~\cite{wang2024adaptive} further formulate user-centric entanglement routing with long-term budget constraints and online per-slot routing and allocation. Our contribution is complementary: we benchmark multiple decision-rule and allocator families under a shared threat taxonomy while treating allocator policy and replay/capacity semantics as explicit experimental factors.
 
-Building on the Background framing of routing robustness as an interaction among context, reward, allocator, and replay/capacity semantics, we treat these elements as an evaluation interface rather than reintroducing the full modular stack here. Quantum-network benchmarking frameworks motivate separating network behavior from policy behavior~\cite{coopmans2021benchmark,kozlowski2022utility}, while best-of-both-worlds bandit theory motivates evaluation across stochastic and adversarial regimes~\cite{zimmert2019optimal}. Taken together, the reviewed work motivates our central comparison: evaluating classical, contextual/neural, adversarial, hybrid, and informed routing policies under common threat, allocator, and replay/capacity conditions to determine when robustness comes from the decision rule and when it comes from deployment configuration.
+% Huang \etal~\cite{huang2024quantum} propose \emph{EXPNeuralUCB}, a group neural bandit that combines EXP3-style adversarial exploration with NeuralUCB-style nonlinear reward modeling for joint path selection and qubit allocation. We use EXPNeuralUCB as one comparator within a broader robustness study that also evaluates pursuit--neural hybrids such as \texttt{CPursuitNeuralUCB} and \texttt{iCPursuitNeuralUCB}. This matched comparison separates changes in the learning rule from changes in allocator strategy and replay capacity, which prior adversarial-first routing studies typically treat as fixed.
+
+% Liu \etal~\cite{10621263} propose \emph{LinkSelFiE}, which addresses the \emph{link-level} problem of selecting and estimating a high-fidelity entanglement link when link qualities are unknown \emph{a priori}. They cast link selection as best-arm identification and use benchmarking-driven estimation to reduce quantum resource consumption while identifying high-quality links with high confidence. In contrast, we target the \emph{end-to-end routing} problem: joint \emph{path selection and qubit allocation} over time under five threat regimes. LinkSelFiE-style fidelity estimates can be incorporated into our reward model, but our primary focus is routing-layer robustness under structured and adaptive disruption.
+
+% Beyond bandit-style path selection, prior work studies learning-based route selection under noisy quantum-network conditions~\cite{chaudhary2023quantum}, RL-based adaptive routing with deep Q-networks~\cite{jallowkhan2025adaptive}, structural decomposition through QuARC adaptive clustering~\cite{clayton2024quarc}, hierarchical routing for scalability~\cite{cicconetti2024scalable}, repeater/efficiency-aware routing~\cite{kumar2024routing}, and cost-vector multipath optimization~\cite{leone2021costvector}. These studies differ materially in allocator assumptions, memory/replay parameterization, and threat models. Our benchmark addresses this comparability gap by evaluating multiple algorithm classes under the same threat, allocator, and replay/capacity grid, enabling direct attribution of robustness to the algorithm--allocator--capacity triad.
+
+% \subsection{Toward a Modular Bandit Evaluation Stack}
+
+% Building on the Background framing of routing robustness as an interaction among context, reward, allocator, and replay/capacity semantics, we treat these elements as an evaluation interface rather than reintroducing the full modular stack here. Quantum-network benchmarking frameworks motivate separating network behavior from policy behavior~\cite{coopmans2021benchmark,kozlowski2022utility}, while best-of-both-worlds bandit theory motivates evaluation across stochastic and adversarial regimes~\cite{zimmert2019optimal}. Taken together, the reviewed work motivates our central comparison: evaluating classical, contextual/neural, adversarial, hybrid, and informed routing policies under common threat, allocator, and replay/capacity conditions to determine when robustness comes from the decision rule and when it comes from deployment configuration.
 
 \section{System Model}
 \label{sec:SystemModel}
 
-At each decision frame $t$, a routing agent selects a candidate path $P_r$ and qubit-allocation vector $\mathbf{x}$ under uncertain link success and path availability. The model defines the topology, reward and availability process, threat regimes, allocator policies, and bandit interface used in the evaluation. These variables instantiate the routing, allocation, and threat dimensions discussed in \cref{sec:Background,sec:RelatedWork}, turning those dimensions into a concrete evaluation interface.
+At each decision frame $t$, a routing agent selects a candidate path $P_r$ and qubit-allocation vector $\mathbf{x}$ under uncertain link success and path availability. The model defines the topology, reward and availability process, threat regimes, allocator policies, and bandit interface used in the evaluation. These variables instantiate the routing, allocation, and threat dimensions discussed in \cref{sec:RelatedWork}, turning those dimensions into a concrete evaluation interface.
 
 \begin{figure}[t]
 \centering
@@ -203,7 +235,7 @@ At each decision frame $t$, a routing agent selects a candidate path $P_r$ and q
 \label{subsec:topology}
 
 \smallTitle{4-node diamond topology}
-We use a four-node diamond topology with source $S$, destination $D$, and two intermediate repeaters. It yields four candidate paths $\mathcal{P}=\{P_1,P_2,P_3,P_4\}$ with two- and three-hop alternatives: $P_1=S{\to}B{\to}D$, $P_2=S{\to}C{\to}D$, $P_3=S{\to}B{\to}C{\to}D$, and $P_4=S{\to}C{\to}B{\to}D$. Each path $P_r$ has hop count $h_r$, with $h_1=h_2=2$ and $h_3=h_4=3$; each hop denotes one adjacent entanglement link. This topology instantiates the path-length and routing-allocation tradeoffs introduced in \cref{sec:Background}, while keeping the path set small enough for controlled matched-regime evaluation.
+We use a four-node diamond topology with source $S$, destination $D$, and two intermediate repeaters. It yields four candidate paths $\mathcal{P}=\{P_1,P_2,P_3,P_4\}$ with two- and three-hop alternatives: $P_1=S{\to}B{\to}D$, $P_2=S{\to}C{\to}D$, $P_3=S{\to}B{\to}C{\to}D$, and $P_4=S{\to}C{\to}B{\to}D$. Each path $P_r$ has hop count $h_r$, with $h_1=h_2=2$ and $h_3=h_4=3$; each hop denotes one adjacent entanglement link. This topology instantiates the path-length and routing-allocation tradeoffs introduced in \cref{sec:RelatedWork}, while keeping the path set small enough for controlled matched-regime evaluation.
 
 \smallTitle{Qubit budget and allocator policies}
 The network uses a fixed total budget of 35 qubits distributed across paths. We evaluate four allocator policies---Fixed, ThompsonSampling, DynamicUCB, and Random---spanning static, uncertainty-aware, optimistic, and uninformed allocation behavior. Fixed uses $(T_1,T_2,T_3,T_4)=(8,10,8,9)$; ThompsonSampling samples path utilities from posterior estimates; DynamicUCB redistributes capacity using upper-confidence estimates; and Random assigns capacity uniformly as a control. These allocator choices instantiate the deployment-configuration dimension identified in \cref{sec:RelatedWork}.
@@ -220,7 +252,7 @@ p_\ell(x_\ell)=1-(1-p_e^{(\ell)})^{x_\ell}.
 \]
 
 \smallTitle{Path-level success}
-Consistent with the multi-hop constraint summarized in \cref{sec:Background}, path success requires all links on $P_r$ to succeed. We define path success probability as
+Consistent with the multi-hop constraint summarized in \cref{sec:RelatedWork}, \devroop{cite} path success requires all links on $P_r$ to succeed. We define path success probability as
 \[
 q_r(\mathbf{x})=\prod_{\ell=1}^{h_r}p_\ell(x_\ell).
 \]
@@ -231,12 +263,12 @@ At frame $t$, selecting path $P_r$ with allocation $\mathbf{x}$ yields
 \[
 Y_t(r,\mathbf{x})\sim\mathrm{Bernoulli}\!\big(q_r(\mathbf{x})A_t(r)\big).
 \]
-Here $Y_t(r,\mathbf{x})\in\{0,1\}$ is the observed success indicator, and the availability gate $A_t(r)\in\{0,1\}$ equals 1 when path $P_r$ is available and 0 when it is disrupted. The threat regimes in \cref{subsec:threats} specify how $\mathbf{A}_t=(A_t(1),\ldots,A_t(4))$ evolves over time. This equation formalizes the noise-versus-disruption distinction used throughout \cref{sec:Background,sec:RelatedWork}: stochastic link success enters through $q_r(\mathbf{x})$, while path disruption enters through $A_t(r)$.
+Here $Y_t(r,\mathbf{x})\in\{0,1\}$ is the observed success indicator, and the availability gate $A_t(r)\in\{0,1\}$ equals 1 when path $P_r$ is available and 0 when it is disrupted. The threat regimes in \cref{subsec:threats} specify how $\mathbf{A}_t=(A_t(1),\ldots,A_t(4))$ evolves over time. This equation formalizes the noise-versus-disruption distinction used throughout \cref{sec:RelatedWork}: stochastic link success enters through $q_r(\mathbf{x})$, while path disruption enters through $A_t(r)$. \devroop{define r}
 
 \subsection{Adversarial Threat Taxonomy}
 \label{subsec:threats}
 
-We evaluate five threat regimes that specify the availability vector $\mathbf{A}_t$ introduced in \cref{subsec:reward}: no disruption, independent stochastic failures, temporally correlated disruption, targeted failures, and adaptive interference. Together, they form a controlled escalation from normal operation to increasingly structured and strategic path unavailability. The adaptive regimes instantiate the adversarial-feedback setting discussed in \cref{sec:Background,sec:RelatedWork} by coupling path unavailability to routing behavior.
+We evaluate five threat regimes that specify the availability vector $\mathbf{A}_t$ introduced in \cref{subsec:reward}: no disruption, independent stochastic failures, temporally correlated disruption, targeted failures, and adaptive interference. Together, they form a controlled escalation from normal operation to increasingly structured and strategic path unavailability. The adaptive regimes instantiate the adversarial-feedback setting discussed in \cref{sec:RelatedWork} by coupling path unavailability to routing behavior.
 
 Concretely, Baseline keeps all paths available; Stochastic independently disrupts paths with fixed probability; Markov introduces temporally correlated on/off availability; Targeted disrupts selected paths according to fixed attack preference; and OnlineAdaptive updates disruptions online in response to recent or current routing behavior.
 
@@ -251,7 +283,7 @@ Using the topology and reward definitions above, each bandit action is a joint r
 At frame $t$, the policy selects $a_t=(r_t,\mathbf{x}_t)\in\mathcal{A}$ and observes only the realized reward $Y_t(r_t,\mathbf{x}_t)$ from \cref{subsec:reward}.
 
 \smallTitle{Policy interface}
-This interface instantiates the policy-family taxonomy introduced in \cref{sec:Background,sec:RelatedWork}: algorithms differ in how they estimate or sample action value, not in the underlying routing task. For contextual or neural policies, the context vector is derived from path identity, hop count, allocation vector, recent reward history, and threat/availability state when available. Non-contextual, adversarial, predictive, and hybrid variants consume the same action/reward stream but apply different scoring, exploration, or update rules.
+This interface instantiates the policy-family taxonomy introduced in \cref{sec:RelatedWork}: algorithms differ in how they estimate or sample action value, not in the underlying routing task. For contextual or neural policies, the context vector is derived from path identity, hop count, allocation vector, recent reward history, and threat/availability state when available. Non-contextual, adversarial, predictive, and hybrid variants consume the same action/reward stream but apply different scoring, exploration, or update rules.
 
 \smallTitle{Objective}
 The learner seeks to maximize cumulative expected success,
@@ -265,7 +297,7 @@ under the threat process and allocator semantics fixed for that evaluation run. 
 
 The evaluated policies share the joint action/reward interface in \cref{subsec:mab} but differ in how they score paths, allocate qubits, and update from feedback. Hybrid policies instantiate this interface with a path-level selection rule, such as adversarial weighting or pursuit, and an allocation-level contextual scorer.
 
-Adversarial variants maintain path weights or probabilities over $r\in\{1,\ldots,R\}$, then sample or select $r_t$ from these scores before choosing an allocation. This briefly connects the update mechanism to the adversarial-feedback setting in \cref{subsec:threats}, without repeating the adversarial-bandit rationale from \cref{sec:Background,sec:RelatedWork}.
+Adversarial variants maintain path weights or probabilities over $r\in\{1,\ldots,R\}$, then sample or select $r_t$ from these scores before choosing an allocation. This briefly connects the update mechanism to the adversarial-feedback setting in \cref{subsec:threats}, without repeating the adversarial-bandit rationale from \cref{sec:RelatedWork}.
 
 Given $r_t$, contextual or neural policies score feasible allocations $\mathbf{x}\in\mathcal{X}_{r_t}$ using reward estimates and uncertainty, e.g.,
 \[
@@ -281,20 +313,41 @@ Informed variants augment the context vector from \cref{subsec:mab} with history
 \subsection{Research Questions}
 \label{sec:research_questions}
 
-Using the matched interface defined in \cref{sec:SystemModel}, we organize the evaluation around three questions: \textbf{RQ1:} How do bandit policies differ under stochastic link success and no-disruption or benign-failure regimes? \textbf{RQ2:} How does routing performance change as disruption evolves from stochastic noise to structured and adaptive interference? \textbf{RQ3:} How do allocator policy and replay/capacity semantics change the best model choice under each threat regime?
+As mentioned in \cref{sec:Introduction} the proposed model aims to address 3 main research questions. We further divide \textbf{RQ2} and \textbf{RQ3} into subproblems to provide a detailed exploration.
+
+\emph{\textbf{RQ2a}: Do context-aware routing policies outperform baseline policies under stochastic disruption, and do they maintain this advantage under structured and adaptive threat regimes?}
+
+\emph{\textbf{RQ2b}: Which model family degrades most gracefully and consistently defines the efficiency frontier across all threat scenarios?}
+
+\emph{\textbf{RQ3a}: Does predictive (ARIMA-informed) context improve routing stability?}
+
+\emph{\textbf{RQ3b}: Do larger replay-capacity scales ($T_b \rightarrow T$) improve routing robustness?}
+
+\emph{\textbf{RQ3c}: Is there a universal allocator strategy for entanglement routing under threat variation?}
+
+\emph{\textbf{RQ3d}: Can we map threat characteristics to stable deployment rules for entanglement routing?}
+
+% Using the matched interface defined in \cref{sec:SystemModel}, we organize the evaluation around three questions: \textbf{RQ1:} How do bandit policies differ under stochastic link success and no-disruption or benign-failure regimes? \textbf{RQ2:} How does routing performance change as disruption evolves from stochastic noise to structured and adaptive interference? \textbf{RQ3:} How do allocator policy and replay/capacity semantics change the best model choice under each threat regime?
 
 \input{ICNP_VENUE_PREP/STUDY_DESIGN_VALIDATED_STAGING.tex}
 
 \input{ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex}
 
-\section{Discussion}
-\label{sec:discussion}
-Discussion section pending audit.
+\input{ICNP_VENUE_PREP/RESULTS_VALIDATED_CROSS_TESTBED}
 
-\section{Conclusion}
-\label{sec:conclusion}
-Conclusion section pending audit.
+\input{ICNP_VENUE_PREP/DISCUSSION}
+\input{ICNP_VENUE_PREP/FUTURE_WORK}
+\input{ICNP_VENUE_PREP/CONCLUSION}
 
+\section*{Acknowledgments}
+
+This material is based upon work supported by [Hidden] under grants [Hidden].%\#XXXX.
+%This material is based upon work supported by the United States National Science Foundation under grant \#XXXXX ; 2225354
+
+\section*{Declaration of Conflicts}
+The authors declare that they have no conflicts.
+
+\newpage
 \bibliographystyle{IEEEtran}
 \bibliography{refs}
 

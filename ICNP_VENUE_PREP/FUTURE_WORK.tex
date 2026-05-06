@@ -1,0 +1,30 @@
+\section{Limitations and Future Work}
+\label{sec:limitations_future_work}
+
+\subsection{Limitations}
+
+\textbf{Topology and scale.}
+All experiments are conducted on a controlled 4-node, 4-path topology with mid-range horizons. While this enables clean attribution of algorithm, allocator, and replay-capacity effects, larger and more heterogeneous quantum networks may alter both absolute efficiency and allocator--capacity interactions.
+
+\textbf{Simulation fidelity and hardware constraints.}
+The current evaluation framework is simulation-driven and does not yet incorporate hardware-grounded constraints such as control-plane latency, scheduling delays, memory contention, or timing-dependent resource effects. Deployment-level conclusions therefore require validation on realistic quantum-network infrastructure.
+
+\textbf{Replay-capacity coverage.}
+Replay capacity is evaluated using two anchoring rules (\small\texttt{Tb}, \small\texttt{T}) and three scale factors ($s \in \{1,1.5,2\}$). While sufficient to expose the capacity paradox, broader sweeps across larger horizons and topologies are needed to fully characterize long-term tail-risk behavior.
+
+\textbf{Forecasting scope.}
+Predictive context currently relies on ARIMA-based forecasting. More expressive temporal models (\eg RNNs or Transformers) and calibrated uncertainty mechanisms remain unexplored.
+
+\subsection{Future Work}
+
+\textbf{Hardware-grounded validation.}
+A primary next step is evaluating pursuit-based contextual bandits on realistic quantum-repeater testbeds under operational constraints such as latency, scheduling delays, and imperfect physical operations.
+
+\textbf{Standardized cross-testbed benchmarking.}
+We are conducting follow-up evaluations across sparse, compact, dense, and mid-scale external testbeds using standardized run configurations to determine whether pursuit-neural robustness and the capacity paradox generalize across network structures.
+
+\textbf{Scaling topology and allocation.}
+Future work will extend the framework to larger routing graphs, expanded action spaces, and hierarchical allocation strategies to study allocator--capacity interactions under increasingly combinatorial routing conditions.
+
+\textbf{Automated threat-aware adaptation.}
+We also plan to replace the current heuristic meta-policy with a learned threat detector and automated configuration selector capable of dynamically adapting allocator and replay-capacity settings under changing attack conditions.

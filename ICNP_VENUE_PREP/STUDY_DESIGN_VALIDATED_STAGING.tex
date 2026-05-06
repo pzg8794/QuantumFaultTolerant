@@ -36,7 +36,7 @@ Across all experiments, the total physical budget remains fixed at 35 qubits, ma
   \draw[path, dotted] (S) to[bend left=10] (R1) to[bend left=10] node[right, font=\scriptsize] {$P_3$ (3-hop)} (R2) to[bend left=10] (D);
   \draw[path, dash dot] (S) to[bend right=10] (R2) to[bend right=10] node[left, font=\scriptsize] {$P_4$ (3-hop)} (R1) to[bend right=10] (D);
 \end{tikzpicture}
-\caption{Four-path quantum-network testbed used for routing evaluation. Paths $P_1$ and $P_2$ have two hops, while $P_3$ and $P_4$ have three hops; per-path qubit budgets are varied by allocator policy.}
+\caption{Four-path quantum-network testbed used for routing evaluation. Paths $P_1$ and $P_2$ have two hops, while $P_3$ and $P_4$ have three hops; per-path qubit budgets are varied by allocator policy.\shee{I think the colors in main.tex was easier to distinguish the paths. }}
 \label{fig:network_topology}
 \end{figure}
 
@@ -135,7 +135,7 @@ Replay semantics & All & $T_b=sF_b$, $T=sF_c$ & \cite{schaul2015prioritized,mnih
 Baseline & 0\% disruption; benign-operation reference & RQ1 \\
 Stochastic & 6.25\% i.i.d. disruption~\cite{huang2024quantum} & RQ1, RQ2 \\
 Markov & 25\% four-state structured disruption~\cite{huang2024quantum} & RQ2 \\
-Adaptive & 25\% high-usage targeting over $w=50$ frames~\cite{huang2024quantum} & RQ2 \\
+Adaptive & 25\% high-usage, targeting over $w=50$ frames~\cite{huang2024quantum} & RQ2 \\
 OnlineAdaptive & 25\% adaptive targeting with $\gamma=0.97$ and softmax selection~\cite{huang2024quantum} & RQ2 \\
 \bottomrule
 \end{tabular}

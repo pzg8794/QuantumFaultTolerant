@@ -166,9 +166,9 @@ iCPursuitNeuralUCB & 1.0 & 92.1 & 93.6 & 88.7 & 88.5 & 70.8 & 86.7 \\
                    & 1.5 & 56.1 & 73.2 & 42.2 & 88.5 & 83.5 & 68.7 \\
                    & 2.0 & 95.1 & 94.5 & 96.3 & 88.5 & 83.5 & 91.6 \\
 \bottomrule
+% \vspace{-30cm}
 \end{tabular}
-
-{\footnotesize Bl=Baseline, Sh=Stochastic, Mk=Markov, Ag=Adaptive, OA=OnlineAdaptive.}
+{\footnotesize{Bl=Baseline, Sh=Stochastic, Mk=Markov, Ag=Adaptive, OA=OnlineAdaptive.}\shee{define s}}
 \end{table}
 
 \Cref{tab:rq3b_master_capacity_scaling} shows that replay scale is not a monotonic ``more is better'' knob. Under fixed \texttt{Random} allocation and $T$-type anchoring, both pursuit-based hybrids degrade sharply at $s=1.5$ and recover at $s=2$, confirming that replay capacity must be tuned jointly with allocator and anchoring type. Extended GA ablations remain supporting evidence, but the master-dataset trend is the validated RQ3b conclusion.
@@ -240,3 +240,5 @@ OnlineAdaptive & Fixed + ($T$, $s=2$) & 99.8 & +0.0 \\
 \Cref{tab:rq3d_deployment_rules} answers RQ3d affirmatively: clear deployment rules emerge, but the static default remains strong enough to keep all scenarios above the 85\% target at 6K. Threat-adaptive switching is most useful as a safeguard against the allocator/capacity mismatch diagnosed in RQ3b--RQ3c, with the largest validated gain under Adaptive disruption.
 
 % Keep for second-look before final venue cleanup: hybrid convergence figure (fig:convergence_hybrid), if a visual learning-curve artifact is needed in Results.
+
+
