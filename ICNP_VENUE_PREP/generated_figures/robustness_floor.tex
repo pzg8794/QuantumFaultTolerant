@@ -1,0 +1,22 @@
+% Generated from master-dataset verification workflow.
+% Source notebook: https://github.com/pzg8794/quantum_project/blob/gcp-main/Dynamic_Routing_Eval_Framework/notebooks/H-MABs_MasterDataset_VerificationHub.ipynb
+\begin{tikzpicture}
+\begin{axis}[
+    xbar,
+    width=0.98\columnwidth,
+    height=3.2cm,
+    xmin=0,
+    xmax=100,
+    xlabel={Worst-case efficiency floor (\%)},
+    symbolic y coords={EXPNeuralUCB,EXP3/UCB,CPursuit,iCEpsilonGreedy},
+    ytick=data,
+    ymajorgrids=false,
+    xmajorgrids=true,
+    grid style={draw=gray!20},
+    bar width=7pt,
+]
+\addplot coordinates {(18.0,EXPNeuralUCB) (68.8,EXP3/UCB) (77.4,CPursuit) (81.0,iCEpsilonGreedy)};
+\addplot[sharp plot, dashed, mark=none] coordinates {(85,EXPNeuralUCB) (85,iCEpsilonGreedy)};
+\node[font=\scriptsize, anchor=south west] at (axis cs:85,EXPNeuralUCB) {85\% target};
+\end{axis}
+\end{tikzpicture}
