@@ -23,75 +23,34 @@ deployment guidance graph
 cross-testbed confirmation graph
 ```
 
+## Inserted placeholders
+
+The following actual LaTeX placeholder figure blocks are inserted into the active compiled ICNP path.
+
+| Placeholder | Label | File | Placement |
+|---|---|---|---|
+| Framework / evaluation pipeline | `fig:framework` | `ICNP_2026_venue_draft.tex` | Already present as the real framework figure in the Introduction |
+| Main performance summary | `fig:main_performance_summary_placeholder` | `ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex` | RQ1, after the evidence-slice paragraph and before the RQ1 table |
+| Robustness floor | `fig:robustness_floor_placeholder` | `ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex` | RQ2, after the evidence-slice paragraph and before the RQ2 table |
+| Capacity paradox | `fig:capacity_paradox_placeholder` | `ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex` | RQ3b, after the replay-scaling setup and before the RQ3b table |
+| Deployment guidance | `fig:deployment_guidance_placeholder` | `ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex` | RQ3d, after the deployment-rules setup and before the RQ3d table |
+| Optional cross-testbed confirmation | `fig:cross_testbed_confirmation_placeholder` | `ICNP_VENUE_PREP/RESULTS_VALIDATED_CROSS_TESTBED.tex` | Cross-Testbed Validation, immediately after the subsection heading and before the first cross-testbed table |
+
 ## Candidate graph set
 
 The graph set should strengthen the paper's central claims without turning the venue draft into a figure dump:
 
-1. Framework / evaluation pipeline
-2. Main performance summary
-3. Robustness floor
-4. Capacity paradox
-5. Deployment guidance
-6. Optional cross-testbed confirmation
-
-## First inserted placeholder
-
-### Capacity paradox
-
-Inserted in:
-
-```tex
-ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex
-```
-
-Location:
-
-```tex
-\subsection{RQ3b: Replay Capacity Scaling \& Paradox}
-```
-
-Placement decision:
-
-The placeholder is inserted immediately after the paragraph that introduces the replay-scaling isolation setup and before the capacity-scaling table/result explanation. This reserves page space before final graph generation and lets the Results section reveal whether the paper can absorb the most important empirical figure.
-
-Inserted label:
-
-```tex
-\label{fig:capacity_paradox_placeholder}
-```
-
-Placeholder intent:
-
-```text
-Diverging bar chart by threat scenario
-Y-axis: replay-capacity effect in percentage points
-Zero baseline included
-Positive = added replay capacity helps
-Negative = added replay capacity hurts
-```
+1. Framework / evaluation pipeline -- already represented by `fig:framework` in the Introduction
+2. Main performance summary -- placeholder inserted
+3. Robustness floor -- placeholder inserted
+4. Capacity paradox -- placeholder inserted
+5. Deployment guidance -- placeholder inserted
+6. Optional cross-testbed confirmation -- placeholder inserted
 
 ## Rationale
 
-The capacity paradox is the most memorable RQ3 empirical claim: replay capacity is not a monotonic good. It can improve efficiency in some threat settings while reducing robustness under adaptive disruption. Reserving this space now helps evaluate final ICNP page pressure before final plot polishing.
-
-## Next placeholder
-
-Next recommended insertion:
-
-```tex
-\label{fig:robustness_floor_placeholder}
-```
-
-Likely location:
-
-```tex
-\subsection{RQ2: Robustness Under Adaptive Threats}
-```
-
-Candidate placement: after the RQ2 evidence-slice paragraph and before the RQ2 adversarial-scope table, unless later layout checks show it fits better after the table.
+The placeholders reserve realistic page space before final graph generation. They allow the team to judge page pressure and decide which final graphs are worth keeping without pretending the final graph design has been chosen.
 
 ## Status
 
-Capacity-paradox placeholder inserted into the active compiled venue path through `ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex`, which is included by `ICNP_2026_venue_draft.tex`.
-
-Related Work consolidation is the next unblocked graph-preparation task because it frees space while final graph choices remain blocked.
+Placeholder insertion is complete for the currently discussed graph set. Final graph creation/replacement remains blocked until graph forms are selected.

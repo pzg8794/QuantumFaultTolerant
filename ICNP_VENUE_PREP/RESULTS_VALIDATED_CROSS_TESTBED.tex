@@ -1,6 +1,21 @@
 \subsection{Cross-Testbed Validation}
 \label{subsec:cross_test_bed}
 
+\begin{figure*}[t]
+\centering
+\fbox{%
+  \begin{minipage}[c][1.55in][c]{0.94\textwidth}
+  \centering
+  \textit{Placeholder: cross-testbed confirmation graph}\\[0.4em]
+  Compact comparison across external testbeds\\
+  y-axis: Oracle-normalized efficiency (\%) or robustness floor\\
+  show pursuit-neural hybrids versus EXP/neural baselines by testbed
+  \end{minipage}
+}
+\caption{Cross-testbed confirmation placeholder. The final graph should summarize whether the main robustness trends persist across external quantum-network testbeds while exposing scale- and topology-dependent limits.}
+\label{fig:cross_testbed_confirmation_placeholder}
+\end{figure*}
+
 \begin{table*}[ht!]
 \centering
 \caption{Cross-testbed performance comparison using scenario-aggregated Oracle-normalized efficiency (\%) and scenario champions from \texttt{scenario\_winner}. Numeric columns are means across all five scenarios (\texttt{none}, \texttt{stochastic}, \texttt{markov}, \texttt{adaptive}, \texttt{onlineadaptive}) and 4 allocators. \paperTwo, \paperSeven, and \paperTwelve use the full evaluation corpora aggregated across scales $s \in \{1.0,1.5,2.0\}$ (\texttt{cap\_type}=T) with 5 runs per setting; \paperEight uses the current original paper-config slice at 1K/1K/1R, $s=1.0$, \texttt{cap\_type}=T. \devroop{fix the testbed column dimensions. its overflowing.}}
