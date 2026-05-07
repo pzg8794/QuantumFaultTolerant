@@ -13,10 +13,17 @@
 \maketitle
 
 \begin{abstract}
-This standalone plot pack collects the six ICNP candidate result figures generated from the local tools directory. It is a review artifact only and is not automatically included by \texttt{main.tex}.
+This standalone plot pack collects the seven ICNP candidate result figures generated from the validated result artifacts. It is a review artifact only and is not automatically included by \texttt{main.tex}.
 \end{abstract}
 
 \section{Candidate Result Figures}
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{G7_advanced_synthesis.png}
+    \caption{A four-panel synthesis links the paper's main claims: hybrid policies reduce Oracle gap, replay scaling has threat-dependent effects, allocator choice controls tail risk, and standardized testbeds expose topology-dependent efficiency spread.}
+    \label{fig:plotpack_advanced_synthesis}
+\end{figure*}
 
 \begin{figure}[t]
     \centering
@@ -63,6 +70,8 @@ This standalone plot pack collects the six ICNP candidate result figures generat
 \section{Validation Notes}
 
 The figures were generated from the local script under \texttt{tools/exported-assets-2/icnp\_graphs.py} using the \texttt{.quantum} environment. The local \texttt{tools/} directory is ignored by Git, so the tracked Overleaf-facing artifacts are the PNG files under \texttt{figures/icnp\_graphs/} and this standalone \texttt{.tex} file.
+
+Figure~\ref{fig:plotpack_advanced_synthesis} is generated from the tracked G7 source script and summary CSV under \texttt{figures/icnp\_graphs/}; the inputs are the validated internal master datasets and the standardized \texttt{4000\_2000} external-testbed master dataset.
 
 \textcolor{red}{Important:} Figure~\ref{fig:plotpack_convergence} keeps the original tool warning that the \texttt{GNeuralUCB} convergence series must be replaced with validated simulation output before it is used in the submission manuscript.
 

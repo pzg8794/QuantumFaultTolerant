@@ -2361,64 +2361,12 @@ We report the initial standardized 4K/2K/5R sweep (config key \texttt{4000\_2000
 
 Our results across the full evaluation suite---spanning paper baselines (CMAB / iCMAB / EXP3-family) and the Hybrid suite (allocators and replay-capacity controls)---show that routing robustness under compound uncertainty is jointly determined by \emph{(i) context in the policy}, \emph{(ii) allocator choice}, and \emph{(iii) replay-capacity parameterization}. All quantitative statements in this section are drawn from the curated evaluation corpora used throughout the paper; the corresponding run-level and suite-level artifacts are organized in the reproducible archive described in the Appendix.
 
-\begin{figure}[ht!]
-\scriptsize
+\begin{figure*}[t]
 \centering
-\begin{tikzpicture}
-\begin{axis}[
-  ylabel={Efficiency (\%)},
-  xlabel={Algorithm},
-  ymin=20, ymax=95,
-  xtick={1,2,3,4,5},
-  xticklabels={iCPursuit, CPursuit, EXPNeuralUCB, GNeuralUCB, EXP3},
-  legend style={at={(0.45,-0.22)}, anchor=north},
-  legend columns=-1,
-  % legend pos=south east,
-  % legend columns=5,
-  legend style={font=\scriptsize},
-  bar width=0.12cm,
-  width=0.5\textwidth,
-  height=5cm,
-  grid=major,
-  grid style={line width=.1pt, draw=gray!10}
-]
-
-% ----- Stochastic -----
-\addplot[fill=teal!70, opacity=0.85] coordinates {
-  (1,67.4)  (2,89.9)  (3,80.6)  (4,85.5)  (5,77.0)
-};
-\addlegendentry{Stochastic}
-
-% ----- Markov -----
-\addplot[fill=orange!70, opacity=0.85] coordinates {
-  (1,68.1)  (2,85.8)  (3,84.6)  (4,82.6)  (5,75.1)
-};
-\addlegendentry{Markov}
-
-% ----- Adaptive -----
-\addplot[fill=red!70, opacity=0.85] coordinates {
-  (1,70.0)  (2,89.4)  (3,76.1)  (4,87.0)  (5,76.8)
-};
-\addlegendentry{Adaptive}
-
-% ----- OnlineAdaptive -----
-\addplot[fill=purple!60, opacity=0.85] coordinates {
-  (1,67.3)  (2,89.1)  (3,86.4)  (4,84.2)  (5,77.1)
-};
-\addlegendentry{OnlineAdaptive}
-
-% ----- Baseline -----
-\addplot[fill=green!60, opacity=0.85] coordinates {
-  (1,72.0)  (2,95.3)  (3,88.0)  (4,89.9)  (5,81.9)
-};
-\addlegendentry{Baseline}
-
-\end{axis}
-\end{tikzpicture}
-% \vspace{-0.5cm}
-\caption{Pursuit-based hybrids maintain higher efficiency than neural and EXP3 baselines across all five threat regimes.\shee{This legend is not self-explanatory. The graph has 2 colored portions visible, but the legend has 5 entries with no colors. Try a different type of chart. If an area chart is the best way to show this graph, it might be better to show each model in its own graph and arrange them together. Same applies to Fig 10 as well}}
-\label{fig:context_hybrid}
-\end{figure}
+\includegraphics[width=\textwidth]{figures/icnp_graphs/G7_advanced_synthesis.png}
+\caption{A four-panel synthesis shows the paper's core mechanism: hybrid policies shrink Oracle gaps, replay scaling has threat-dependent effects, allocator choice controls tail risk, and standardized testbeds expose topology-dependent efficiency spread.}
+\label{fig:advanced_synthesis}
+\end{figure*}
 
 
 \noindent\textbf{Capacity terminology.}
