@@ -1,0 +1,137 @@
+\section{Detailed Cross-Testbed and Model-Family Results}
+\label{app:cross_testbed_full_tables}
+
+This appendix preserves the full cross-testbed and model-family tables that support the concise Results summaries in \Cref{tab:testbed_comparison_summary,tab:model_family_comparison_summary}. These tables are retained for auditability but moved out of the main Results flow so the paper body can focus on the central claims and final graph slots.
+
+\begin{table*}[ht!]
+\centering
+\caption{Full cross-testbed performance comparison using scenario-aggregated Oracle-normalized efficiency (\%) and scenario champions from \texttt{scenario\_winner}. Numeric columns are means across all five scenarios (\texttt{none}, \texttt{stochastic}, \texttt{markov}, \texttt{adaptive}, \texttt{onlineadaptive}) and 4 allocators. \paperTwo, \paperSeven, and \paperTwelve use the full evaluation corpora aggregated across scales $s \in \{1.0,1.5,2.0\}$ (\texttt{cap\_type}=T) with 5 runs per setting; \paperEight uses the current original paper-config slice at 1K/1K/1R, $s=1.0$, \texttt{cap\_type}=T. \devroop{fix the testbed column dimensions. its overflowing.}}
+\label{tab:testbed_comparison_full}
+\small
+\begin{tabular}{l l c c c c c}
+\toprule
+\textbf{Testbed} & \textbf{Algorithm} & \textbf{Avg Reward} & \textbf{Regret} & \textbf{Efficiency (\%)} & \textbf{Gap (\%)} & \textbf{Exp. Winner} \\
+\midrule
+\multirow{7}{*}{\parbox{2.2cm}{\textbf{\paperTwo}\\ (\small 15N, 51E, 8P)\\ \small 4K/2K/5R\\ \small 4 allocs, $s\in\{1,1.5,2\}$,T}}
+& \texttt{ORACLE} & 0.3926 & 0.0 & --- & --- & --- \\
+& \texttt{CPursuitNeuralUCB} & 0.2887 & 509.2 & 73.22 & 26.78 & 38/300 \\
+& \texttt{GNeuralUCB} & 0.2886 & 515.9 & 73.19 & 26.81 & 84/300 \\
+& \texttt{iCPursuitNeuralUCB} & 0.2933 & 494.5 & \textbf{74.45} & 25.55 & \textbf{95/300$^\star$} \\
+& \texttt{EXPNeuralUCB} & 0.2810 & 583.2 & 71.25 & 28.75 & 83/300 \\
+\cline{2-7}
+& \cellcolor{findingBlue}\textit{All pursuit hybrids excel} & \multicolumn{5}{l}{\cellcolor{findingBlue}\small 71--74\% eff. $\star$Exp.\ Winner: iCPursuitNeuralUCB (95/300)} \\
+\midrule
+\multirow{7}{*}{\parbox{2.2cm}{\textbf{\paperSeven}\\ (\small 50N, 141E, 15P)\\ \small 50/50/5R\\ \small 4 allocs, $s\in\{1,1.5,2\}$, T}}
+& \texttt{ORACLE} & 8.9237 & 0.0 & --- & --- & --- \\
+& \texttt{iCPursuitNeuralUCB} & 6.9793 & 42.8 & \textbf{78.03} & 21.97 & \textbf{245/300$^\star$} \\
+& \texttt{EXPNeuralUCB} & 6.2227 & 272.3 & 69.57 & 30.43 & 16/300 \\
+& \texttt{CPursuitNeuralUCB} & 6.3314 & 269.1 & 70.82 & 29.18 & 0/300 \\
+& \texttt{GNeuralUCB} & 6.3314 & 269.1 & 70.82 & 29.18 & 39/300 \\
+\cline{2-7}
+& \cellcolor{findingGreen}\textit{iCP dominates} & \multicolumn{5}{l}{\cellcolor{findingGreen}\small 69.6--78.0\% eff. $\star$Exp.\ Winner: iCPursuitNeuralUCB (245/300)} \\
+\midrule
+\multirow{7}{*}{\parbox{2.2cm}{\textbf{\paperTwelve}\\ (\small 100N, 426E, 4P)\\ \small 1.5K/500/5R\\ \small 4 allocs, $s\in\{1,1.5,2\}$, T}}
+& \texttt{ORACLE} & 0.8724 & 0.0 & --- & --- & --- \\
+& \texttt{GNeuralUCB} & 0.3833 & 864.1 & 43.72 & 56.28 & 53/300 \\
+& \texttt{EXPNeuralUCB} & 0.3730 & 892.2 & 42.54 & 57.46 & 91/300 \\
+& \texttt{iCPursuitNeuralUCB} & 0.3869 & 858.3 & \textbf{44.14} & 55.86 & \textbf{97/300$^\star$} \\
+& \texttt{CPursuitNeuralUCB} & 0.3842 & 861.2 & 43.81 & 56.19 & 59/300 \\
+\cline{2-7}
+& \cellcolor{findingOrange}\textit{Mid-scale challenges all} & \multicolumn{5}{l}{\cellcolor{findingOrange}\small 42.5--44.1\% eff. $\star$Exp.\ Winner: iCPursuitNeuralUCB (97/300)} \\
+\midrule
+\multirow{7}{*}{\parbox{2.2cm}{\textbf{\paperEight}\\ (\small 20N, 19E, 8P)\\ \small 1K/1K/1R\\ \small 4 allocs, $s=1$, T}}
+& \texttt{ORACLE} & 300540.1887 & 0.0 & --- & --- & --- \\
+& \texttt{iCPursuitNeuralUCB} & 210418.9742 & 60833.4 & \textbf{67.85} & 32.15 & 1/20 \\
+& \texttt{EXPNeuralUCB} & 186656.1295 & 82175.2 & 61.93 & 38.07 & \textbf{10/20$^\star$} \\
+& \texttt{GNeuralUCB} & 183038.7972 & 83361.0 & 61.65 & 38.35 & 4/20 \\
+& \texttt{CPursuitNeuralUCB} & 182011.6324 & 84024.2 & 61.42 & 38.58 & 5/20 \\
+\cline{2-7}
+& \cellcolor{findingBlue}\textit{iCP leads avg., EXP wins most} & \multicolumn{5}{l}{\cellcolor{findingBlue}\small 61.4--67.9\% eff. $\star$Exp.\ Winner: EXPNeuralUCB (10/20)} \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.2cm}
+{\scriptsize \textbf{Legend:} N=Nodes, E=Edges, P=Paths, R=Runs, $s$=scale. Efficiency (\%) = (Model Avg Reward / Oracle Avg Reward) $\times$ 100. Gap = 100 - Efficiency. Numeric columns are means across all five scenarios and 4 allocators, using each testbed's corpus listed in the first column. Exp.\ Winner column shows experiment-level win count out of the available configurations for that corpus: 300 for \paperTwo/\paperSeven/\paperTwelve (5 scenarios $\times$ 4 allocators $\times$ 3 scales $\times$ 5 experiments) and 20 for \paperEight (5 scenarios $\times$ 4 allocators $\times$ 1 scale $\times$ 1 experiment). $^\star$\textbf{bold} = testbed experiment winner (highest win count). Scenario codes: \texttt{none}=baseline, \texttt{stochastic}=random failures, \texttt{markov}=oblivious adversarial, \texttt{adaptive}=feedback-driven, \texttt{onlineadaptive}=real-time adaptive.}
+\end{table*}
+
+\begin{table*}[ht!]
+\centering
+\caption{Full model family performance comparison: representative algorithms from each bandit family on our internal evaluation framework (4K base/2K step/5 runs, \texttt{cap\_type}=Tb) plus hybrid pursuit-neural results on four external testbeds (\texttt{cap\_type}=T). All results use the \texttt{Default} allocator and aggregate across all five scenarios; \paperTwo, \paperSeven, and \paperTwelve use scales $s\in\{1,1.5,2\}$, while \paperEight uses its current 1K/1K/1R paper-config slice at $s=1.0$. Best per-family/testbed performance in \textbf{bold}.}
+\label{tab:model_family_comparison_full}
+\small
+\begin{tabular}{l l c c c c}
+\toprule
+\textbf{Bandit Family} & \textbf{Algorithm} & \textbf{Avg Eff (\%)} & \textbf{Gap (\%)} & \textbf{Floor (\%)} & \textbf{Exp. Winner} \\
+\midrule
+\multirow{5}{*}{\textbf{CMABs}}
+& \texttt{CPursuit} & \textbf{89.90} & 10.10 & 77.4 & \textbf{54/75$^\star$} \\
+& \texttt{CEpsilonGreedy} & 88.08 & 11.92 & 79.4 & 21/75 \\
+& \texttt{CEXP4} & 70.06 & 29.94 & 67.4 & 0/75 \\
+& \texttt{CThompsonSampling} & 68.16 & 31.84 & 62.5 & 0/75 \\
+& \texttt{CEpochGreedy} & 37.65 & 62.35 & 36.3 & 0/75 \\
+\cline{2-6}
+& \cellcolor{findingBlue}\textit{Best: CPursuit} & \multicolumn{4}{l}{\cellcolor{findingBlue}\small 88--90\% eff. $\star$Exp.\ Winner: CPursuit (54/75 = 72\%)} \\
+\midrule
+\multirow{5}{*}{\textbf{iCMABs}}
+& \texttt{iCEpsilonGreedy} & \textbf{88.56} & 11.44 & 81.0 & \textbf{75/75$^\star$} \\
+& \texttt{iCPursuit} & 68.69 & 31.31 & 56.9 & 0/75 \\
+& \texttt{iCThompsonSampling} & 68.01 & 31.99 & 62.8 & 0/75 \\
+& \texttt{iCEXP4} & 37.50 & 62.50 & 36.1 & 0/75 \\
+& \texttt{iCEpochGreedy} & 37.57 & 62.43 & 36.1 & 0/75 \\
+\cline{2-6}
+& \cellcolor{findingBlue}\textit{Best: iCEpsilonGreedy} & \multicolumn{4}{l}{\cellcolor{findingBlue}\small $\star$Exp.\ Winner: iCEpsilonGreedy (75/75 = 100\%)} \\
+\midrule
+\multirow{3}{*}{\textbf{EXP3-based}}
+& \texttt{GNeuralUCB} & \textbf{85.37} & 14.63 & 61.6 & \textbf{41/75$^\star$} \\
+& \texttt{EXPNeuralUCB} & 80.86 & 19.14 & 18.0 & 28/75 \\
+& \texttt{EXPUCB} & 78.06 & 21.94 & 68.8 & 6/75 \\
+\cline{2-6}
+& \cellcolor{findingOrange}\textit{Best: GNeuralUCB} & \multicolumn{4}{l}{\cellcolor{findingOrange}\small $\star$Exp.\ Winner: GNeuralUCB (41/75 = 55\%)} \\
+\midrule
+\multirow{5}{*}{\parbox{2cm}{\textbf{Hybrid}\\ \textbf{Neural}}}
+& \texttt{iCPursuitNeuralUCB} & \textbf{90.86} & 9.14 & 76.4 & \textbf{23/75$^\star$} \\
+& \texttt{CPursuitNeuralUCB} & 89.00 & 11.00 & 45.0 & 17/75 \\
+& \texttt{GNeuralUCB} & 88.99 & 11.01 & 62.2 & 21/75 \\
+& \texttt{EXPNeuralUCB} & 88.37 & 11.63 & 63.9 & 14/75 \\
+\cline{2-6}
+& \cellcolor{findingGreen}\textit{Best: iCPursuitNeuralUCB} & \multicolumn{4}{l}{\cellcolor{findingGreen}\small 89--91\% eff. $\star$Exp.\ Winner: iCPursuitNeuralUCB (23/75 = 31\%)} \\
+\midrule\midrule
+\multicolumn{6}{c}{\textit{External Testbed Comparison (\texttt{Default} allocator, \texttt{cap\_type}=T)}} \\
+\midrule
+\multirow{5}{*}{\parbox{2cm}{\textbf{\paperTwo}\\ \small(15N, 51E)\\ \small 4K/2K}}
+& \texttt{iCPursuitNeuralUCB} & \textbf{74.44} & 25.56 & 54.4 & \textbf{25/75$^\star$} \\
+& \texttt{CPursuitNeuralUCB} & 73.15 & 26.85 & 48.3 & 8/75 \\
+& \texttt{GNeuralUCB} & 73.17 & 26.83 & 46.7 & 20/75 \\
+& \texttt{EXPNeuralUCB} & 71.29 & 28.71 & 41.6 & 22/75 \\
+\cline{2-6}
+& \cellcolor{findingBlue}\textit{Best: iCPursuitNeuralUCB} & \multicolumn{4}{l}{\cellcolor{findingBlue}\small 71--74\% eff. $\star$Exp.\ Winner: iCPursuitNeuralUCB (25/75 = 33\%)} \\
+\midrule
+\multirow{5}{*}{\parbox{2cm}{\textbf{\paperSeven}\\ \small(50N, 141E)\\ \small 50/50}}
+& \texttt{iCPursuitNeuralUCB} & \textbf{77.50} & 22.50 & 28.7 & \textbf{58/75$^\star$} \\
+& \texttt{GNeuralUCB} & 70.89 & 29.11 & 41.5 & 10/75 \\
+& \texttt{CPursuitNeuralUCB} & 70.89 & 29.11 & 41.5 & 0/75 \\
+& \texttt{EXPNeuralUCB} & 69.54 & 30.46 & 33.0 & 7/75 \\
+\cline{2-6}
+& \cellcolor{findingGreen}\textit{Best: iCPursuitNeuralUCB} & \multicolumn{4}{l}{\cellcolor{findingGreen}\small 70--78\% eff. $\star$Exp.\ Winner: iCPursuitNeuralUCB (58/75 = 77\%)} \\
+\midrule
+\multirow{5}{*}{\parbox{2cm}{\textbf{\paperTwelve}\\ \small(100N, 426E)\\ \small 1.5K/500}}
+& \texttt{iCPursuitNeuralUCB} & \textbf{41.55} & 58.45 & 23.9 & \textbf{26/75$^\star$} \\
+& \texttt{CPursuitNeuralUCB} & 41.19 & 58.81 & 22.6 & 13/75 \\
+& \texttt{GNeuralUCB} & 41.13 & 58.87 & 22.8 & 14/75 \\
+& \texttt{EXPNeuralUCB} & 40.18 & 59.82 & 21.7 & 22/75 \\
+\cline{2-6}
+& \cellcolor{findingOrange}\textit{Best: iCPursuitNeuralUCB} & \multicolumn{4}{l}{\cellcolor{findingOrange}\small 40--42\% eff. $\star$Exp.\ Winner: iCPursuitNeuralUCB (26/75 = 35\%)} \\
+\midrule
+\multirow{5}{*}{\parbox{2cm}{\textbf{\paperEight}\\ \small(20N, 19E)\\ \small 1K/1K}}
+& \texttt{iCPursuitNeuralUCB} & \textbf{67.41} & 32.59 & \textbf{44.1} & 1/5 \\
+& \texttt{EXPNeuralUCB} & 62.08 & 37.92 & 23.9 & \textbf{2/5$^\star$} \\
+& \texttt{GNeuralUCB} & 61.81 & 38.19 & 36.0 & 0/5 \\
+& \texttt{CPursuitNeuralUCB} & 61.65 & 38.35 & 35.2 & \textbf{2/5$^\star$} \\
+\cline{2-6}
+& \cellcolor{findingBlue}\textit{Best avg.: iCP, best wins: EXP/CP tie} & \multicolumn{4}{l}{\cellcolor{findingBlue}\small 61--67\% eff. $\star$Exp.\ Winners: EXPNeuralUCB / CPursuitNeuralUCB (2/5)} \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.2cm}
+{\scriptsize \textbf{Note:} Top section: internal evaluation corpora (CMABs, iCMABs, EXP3, Hybrid; runs=5, \texttt{cap\_type}=Tb, \texttt{Default} allocator, scales $s\in\{1,1.5,2\}$). Bottom section: external testbeds (\paperTwo, \paperSeven, \paperTwelve, \paperEight; \texttt{cap\_type}=T, \texttt{Default} allocator). \paperTwo, \paperSeven, and \paperTwelve use runs=5 and scales $s\in\{1,1.5,2\}$; \paperEight uses its current 1K/1K/1R paper-config slice at $s=1.0$. All results are aggregated across five scenarios. Gap = 100 - Efficiency. Floor = worst-case efficiency. Exp.\ Winner = experiment-level win count out of the available configurations for that corpus: 75 for \paperTwo/\paperSeven/\paperTwelve and 5 for \paperEight. $^\star$\textbf{bold} = family/testbed winner; ties are shown when win counts are equal.}
+\end{table*}
