@@ -1,0 +1,20 @@
+% Generated from master-dataset verification workflow.
+% Source notebook: https://github.com/pzg8794/quantum_project/blob/gcp-main/Dynamic_Routing_Eval_Framework/notebooks/H-MABs_MasterDataset_VerificationHub.ipynb
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    width=0.98\columnwidth,
+    height=3.9cm,
+    ylabel={Effect of $s:1.0\rightarrow1.5$ (pp)},
+    symbolic x coords={Baseline,Stochastic,Markov,Adaptive,OnlineAdaptive},
+    xtick=data,
+    x tick label style={rotate=25,anchor=east,font=\scriptsize},
+    ymajorgrids=true,
+    grid style={draw=gray!20},
+    enlarge x limits=0.13,
+    bar width=12pt,
+]
+\addplot coordinates {(Baseline,-42.5) (Stochastic,-18.5) (Markov,-42.2) (Adaptive,0.0) (OnlineAdaptive,0.1)};
+\addplot[sharp plot, mark=none] coordinates {(Baseline,0) (OnlineAdaptive,0)};
+\end{axis}
+\end{tikzpicture}
