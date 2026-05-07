@@ -19,6 +19,21 @@ Under the Stochastic scenario in \cref{tab:scenario_specs}, contextual pursuit a
 \smallTitle{RQ1 evidence slice}
 RQ1 uses the EXP-family, CMAB, and iCMAB master datasets, filtered to Stochastic runs under the default allocator. Results aggregate across 4K--8K horizons, $s\in\{1,1.5,2\}$, both $T$/$T_b$ replay semantics, and the 3- and 5-run suites.
 
+\begin{figure}[t]
+\centering
+\fbox{%
+  \begin{minipage}[c][1.35in][c]{0.94\columnwidth}
+  \centering
+  \textit{Placeholder: main performance summary graph}\\[0.4em]
+  Compact grouped/stacked summary of representative bandit policies\\
+  y-axis: Oracle-normalized efficiency (\%)\\
+  highlight viable, degraded, and collapsed policy tiers
+  \end{minipage}
+}
+\caption{Main stochastic-regime performance summary. The final graph should show which bandit policies remain viable under stochastic disruption and which collapse, complementing the RQ1 evidence table.}
+\label{fig:main_performance_summary_placeholder}
+\end{figure}
+
 \begin{table}[ht!]
 \footnotesize
 \centering
@@ -64,6 +79,21 @@ Under Markov, Adaptive, and OnlineAdaptive threats, contextual and informed poli
 
 \smallTitle{RQ2 evidence slice}
 RQ2 uses the Markov, Adaptive, and OnlineAdaptive threat slice from \cref{tab:scenario_specs}, restricted to the default allocator and aggregated across 4K--8K horizons, $s\in\{1,1.5,2\}$, both $T$/$T_b$ replay semantics, and the 3- and 5-run suites. The table reports the strongest CMAB and iCMAB representatives together with two EXP-family adversarial baselines.
+
+\begin{figure}[t]
+\centering
+\fbox{%
+  \begin{minipage}[c][1.40in][c]{0.94\columnwidth}
+  \centering
+  \textit{Placeholder: robustness floor graph}\\[0.4em]
+  Bar or lollipop chart by representative bandit policy\\
+  y-axis: worst-case efficiency floor (\%)\\
+  include 85\% target reference line and adaptive-threat scope
+  \end{minipage}
+}
+\caption{Robustness floor under structured and adaptive threats. The final graph should show which bandit policies maintain stable worst-case performance and which become fragile under adaptive disruption.}
+\label{fig:robustness_floor_placeholder}
+\end{figure}
 
 \begin{table}[ht!]
 \footnotesize
@@ -232,6 +262,21 @@ Thompson   & 58.4 & 65.4 & 87.8 & 91.7 & 65.2 & 73.7 & 58.4 \\
 
 \smallTitle{RQ3d evidence slice}
 RQ3d converts the RQ3a--RQ3c findings into 6K deployment rules for iCPursuitNeuralUCB. Under the Hybrid master-dataset 3/5-suite mean used for switching analysis, the strong static default is \texttt{iCPursuitNeuralUCB + Fixed + ($T$-type, $s=2$)}, with 95.5\% average efficiency and an 88.5\% floor across scenarios. Scenario-specific switching provides modest gains, with the largest validated improvement under Adaptive disruption.
+
+\begin{figure}[t]
+\centering
+\fbox{%
+  \begin{minipage}[c][1.40in][c]{0.94\columnwidth}
+  \centering
+  \textit{Placeholder: deployment guidance graph}\\[0.4em]
+  Scenario-to-configuration rule map or compact decision table\\
+  show static default plus threat-adaptive switching gains\\
+  emphasize Adaptive as largest switching benefit
+  \end{minipage}
+}
+\caption{Scenario-based deployment guidance. The final graph should summarize when the strong static default is sufficient and when threat-adaptive switching improves robustness.}
+\label{fig:deployment_guidance_placeholder}
+\end{figure}
 
 \begin{table}[ht!]
 \footnotesize
