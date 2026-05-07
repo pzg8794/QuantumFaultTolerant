@@ -8,7 +8,7 @@ The mini-section was treated as its own section. Each idea was checked against c
 
 ## Mini-section role
 
-The Research Questions mini-section should state the questions that organize Study Design and Results. It should not answer the questions, preview all findings again, repeat the abstract, repeat the introduction contribution bullets, or use long subsubsection blocks when a compact paragraph is sufficient.
+The Research Questions mini-section should state the questions that organize Study Design and Results. It should not answer each question in place, preview all findings again, repeat the abstract, repeat the introduction contribution bullets, or use long subsubsection blocks when a compact paragraph is sufficient.
 
 ## Split-level decisions
 
@@ -23,48 +23,34 @@ Accepted text:
 \label{sec:research_questions}
 ```
 
-### Split 2: Author comments and validation notes
+### Split 2: Opening role sentence
 
-Internal comments and validation notes were removed. They are not paper content and should not appear in a venue draft.
-
-### Split 3: Opening sentence
-
-The original opening said the study addresses three core questions about stochastic decoherence impact, adversarial robustness, and deployment tradeoffs in algorithm--allocator--capacity selection. This overlapped strongly with the Abstract, Introduction, Background, and System Model. The accepted version turns the idea into a concise cross-reference to the formal interface already defined in System Model.
+The older version introduced the RQs as a list and then split RQ2/RQ3 into subproblems. That made the section read like a checklist and created pressure to answer each RQ locally. The accepted version makes the section flow as a compact paragraph.
 
 Accepted reduction:
 
 ```tex
-Using the matched interface defined in \cref{sec:SystemModel}, we organize the evaluation around three questions:
+We organize the evaluation around three research questions that connect routing performance, threat progression, and deployment configuration.
 ```
 
-### Split 4: RQ1
+### Split 3: RQ statement paragraph
 
-RQ1 should ask about stochastic/no-disruption behavior without previewing results.
+The RQ statement keeps the section question-focused while avoiding answer bullets under each RQ. It also avoids the nested bold/italic style addressed in `FORMATTING_BOLD_TEXT_REDUCTION.md`.
 
 Accepted reduction:
 
 ```tex
-\textbf{RQ1:} How do bandit policies differ under stochastic link success and no-disruption or benign-failure regimes?
+\textit{RQ1 asks how classical and context-aware multi-armed bandit routing approaches perform under stochastic quantum-network conditions. RQ2 asks how bandit-based routing strategies change as network disruptions evolve from stochastic noise to structured, adaptive adversarial interference. RQ3 asks how algorithm choice, resource allocation strategy, and replay-capacity semantics interact to affect routing efficiency and stability in quantum entanglement routing.}
 ```
 
-### Split 5: RQ2
+### Split 4: Collective roadmap sentence
 
-The original RQ2 asked how different bandit-based routing strategies perform as disruptions evolve from stochastic noise to structured and adaptive adversarial interference. Dan's accepted feedback reworded this toward how performance changes as disruption evolves. The accepted version keeps that idea while compressing it for inline flow.
-
-Accepted reduction:
-
-```tex
-\textbf{RQ2:} How does routing performance change as disruption evolves from stochastic noise to structured and adaptive interference?
-```
-
-### Split 6: RQ3
-
-RQ3 should ask about deployment tradeoffs in algorithm--allocator--capacity selection without answering with the capacity paradox.
+Devroop's feedback pushed against answering each RQ in the Research Questions section. The accepted compromise adds one synthesis/roadmap sentence, not separate answers.
 
 Accepted reduction:
 
 ```tex
-\textbf{RQ3:} How do allocator policy and replay/capacity semantics change the best model choice under each threat regime?
+Together, the findings support a threat-aware view of entanglement routing: robustness depends not only on the learning rule, but also on how allocator policy and replay-capacity semantics interact with the disruption regime.
 ```
 
 ## Accepted reduced mini-section
@@ -73,9 +59,18 @@ Accepted reduction:
 \subsection{Research Questions}
 \label{sec:research_questions}
 
-Using the matched interface defined in \cref{sec:SystemModel}, we organize the evaluation around three questions: \textbf{RQ1:} How do bandit policies differ under stochastic link success and no-disruption or benign-failure regimes? \textbf{RQ2:} How does routing performance change as disruption evolves from stochastic noise to structured and adaptive interference? \textbf{RQ3:} How do allocator policy and replay/capacity semantics change the best model choice under each threat regime?
+We organize the evaluation around three research questions that connect routing performance, threat progression, and deployment configuration. \textit{RQ1 asks how classical and context-aware multi-armed bandit routing approaches perform under stochastic quantum-network conditions. RQ2 asks how bandit-based routing strategies change as network disruptions evolve from stochastic noise to structured, adaptive adversarial interference. RQ3 asks how algorithm choice, resource allocation strategy, and replay-capacity semantics interact to affect routing efficiency and stability in quantum entanglement routing.} Together, the findings support a threat-aware view of entanglement routing: robustness depends not only on the learning rule, but also on how allocator policy and replay-capacity semantics interact with the disruption regime.
+% \devroop{Research questions should not be answered here.} -- SOLVED: Converted the RQ section into a compact paragraph that states the primary questions and gives one collective findings-oriented roadmap sentence, while leaving detailed answers for Results and Discussion.
+```
+
+## Feedback-marker handling
+
+If Devroop's original marker appears in the source, retain it as a LaTeX source comment and add:
+
+```tex
+% SOLVED: Converted the RQ section into a compact paragraph that states the primary questions and gives one collective findings-oriented roadmap sentence, while leaving detailed answers for Results and Discussion.
 ```
 
 ## Status
 
-Accepted by audit discussion. The intended staging point is immediately after `\section{Study Design}` in `ICNP_2026_venue_draft.tex`.
+Accepted by audit discussion and applied to `ICNP_2026_venue_draft.tex` immediately after `\section{Study Design}`.
