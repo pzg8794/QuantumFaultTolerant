@@ -62,7 +62,7 @@ Replay capacity & $T_b=sF_b$, $T=sF_c$ & RQ3 \\
 Threat models & Baseline, Stochastic, Markov, Adaptive, OnlineAdaptive & RQ1, RQ2 \\
 Forecasting & None, ARIMA ($n=50$), ARIMA ($n=100$) & RQ3 \\
 \midrule
-Algorithm families & Classical, Predictive, Adversarial, Contextual/Neural & RQ1, RQ2 \\
+Bandit-policy families & Classical, Predictive, Adversarial, Contextual/Neural & RQ1, RQ2 \\
 \midrule
 \multicolumn{3}{l}{\textit{Evaluation phases}} \\
 \quad Ph 1 & 12 conditions (for MAB baseline) & RQ1 \\
@@ -141,18 +141,18 @@ OnlineAdaptive & 25\% adaptive targeting with $\gamma=0.97$ and softmax selectio
 \end{tabular}
 \end{table}
 
-\smallTitle{Algorithm portfolio}
-The evaluated portfolio spans classical, adversarial, contextual/neural, pursuit-based, predictive, and Oracle policies, enabling matched comparisons across architectural paradigms.
+\smallTitle{Bandit-policy portfolio}
+The evaluated bandit-policy portfolio spans classical, adversarial, contextual/neural, pursuit-based, and predictive policies, with an Oracle reference enabling matched comparisons across policy families.
 
 \begin{table}[ht!]
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{Algorithm portfolio by evaluation phase.}
+\caption{Bandit-policy portfolio by evaluation phase.}
 \label{tab:setup-algorithm-portfolio}
 \begin{tabular}{p{0.18\linewidth} p{0.24\linewidth} p{0.48\linewidth}}
 \toprule
-\textbf{Phase} & \textbf{Category} & \textbf{Algorithms} \\
+\textbf{Phase} & \textbf{Category} & \textbf{Bandit policies / reference} \\
 \midrule
 Phase 1 & Classical MAB & LinUCB~\cite{li2010contextual}, LinTS~\cite{agrawal2013thompson}, UCB1~\cite{auer2002finite}, Thompson Sampling~\cite{thompson1933likelihood} \\
 Phase 1--2 & Adversarial & EXP3~\cite{auer2002nonstochastic}, EXPUCB~\cite{huang2024quantum}, EXPNeuralUCB~\cite{huang2024quantum} \\
@@ -164,7 +164,7 @@ Baseline & Oracle & Perfect-information reference \\
 \end{tabular}
 \end{table}
 
-\smallTitle{Key algorithm features}
+\smallTitle{Key bandit-policy features}
 CPursuitNeuralUCB adds topology/channel-quality context to pursuit learning, while iCPursuitNeuralUCB adds ARIMA$(1,0,1)$ forecasts with $n\in\{50,100\}$ warmup~\cite{box2015time}. The Oracle normalizes efficiency to a perfect-information reference.
 
 \smallTitle{Qubit allocation strategies}
@@ -189,7 +189,7 @@ Random & Uniform sampling, $\epsilon=1.0$ & 77.3\% & 1.0$\times$ \\
 \end{table}
 
 \smallTitle{Experimental scope and statistical protocol}
-The four phases in \cref{tab:config_summary} progress from MAB baselines to contextual/adversarial models, allocator interactions, and replay-capacity ablations. Overall, the design covers 552 unique configurations with up to 10 runs each, targeting roughly 5{,}520 episodes and about 380 A100 GPU-hours. Runs use fixed seeds with $S\in\{3,5,8,10\}$; primary results report 3- and 5-run averages.
+The four phases in \cref{tab:config_summary} progress from MAB baselines to contextual/adversarial bandit policies, allocator interactions, and replay-capacity ablations. Overall, the design covers 552 unique configurations with up to 10 runs each, targeting roughly 5{,}520 episodes and about 380 A100 GPU-hours. Runs use fixed seeds with $S\in\{3,5,8,10\}$; primary results report 3- and 5-run averages.
 
 We report Oracle-normalized efficiency,
 \[

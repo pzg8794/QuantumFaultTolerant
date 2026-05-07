@@ -35,12 +35,12 @@ We organize the evaluation around three research questions that connect routing 
 
 ### Split 3: RQ statement paragraph
 
-The RQ statement keeps the section question-focused while avoiding answer bullets under each RQ. It also avoids the nested bold/italic style addressed in `FORMATTING_BOLD_TEXT_REDUCTION.md`.
+The RQ statement keeps the section question-focused while avoiding answer bullets under each RQ. It also avoids the nested bold/italic style addressed in `FORMATTING_BOLD_TEXT_REDUCTION.md` and follows the terminology rule documented in `BANDIT_TERMINOLOGY_CONSISTENCY.md`.
 
 Accepted reduction:
 
 ```tex
-\textit{RQ1 asks how classical and context-aware multi-armed bandit routing approaches perform under stochastic quantum-network conditions. RQ2 asks how bandit-based routing strategies change as network disruptions evolve from stochastic noise to structured, adaptive adversarial interference. RQ3 asks how algorithm choice, resource allocation strategy, and replay-capacity semantics interact to affect routing efficiency and stability in quantum entanglement routing.}
+\textit{RQ1 asks how classical and context-aware bandit policies perform under stochastic quantum-network conditions. RQ2 asks how bandit-based routing strategies change as network disruptions evolve from stochastic noise to structured, adaptive adversarial interference. RQ3 asks how choices in bandit policy, resource allocation strategy, and replay-capacity semantics interact to affect routing efficiency and stability in quantum entanglement routing.}
 ```
 
 ### Split 4: Collective roadmap sentence
@@ -59,7 +59,7 @@ Together, the findings support a threat-aware view of entanglement routing: robu
 \subsection{Research Questions}
 \label{sec:research_questions}
 
-We organize the evaluation around three research questions that connect routing performance, threat progression, and deployment configuration. \textit{RQ1 asks how classical and context-aware multi-armed bandit routing approaches perform under stochastic quantum-network conditions. RQ2 asks how bandit-based routing strategies change as network disruptions evolve from stochastic noise to structured, adaptive adversarial interference. RQ3 asks how algorithm choice, resource allocation strategy, and replay-capacity semantics interact to affect routing efficiency and stability in quantum entanglement routing.} Together, the findings support a threat-aware view of entanglement routing: robustness depends not only on the learning rule, but also on how allocator policy and replay-capacity semantics interact with the disruption regime.
+We organize the evaluation around three research questions that connect routing performance, threat progression, and deployment configuration. \textit{RQ1 asks how classical and context-aware bandit policies perform under stochastic quantum-network conditions. RQ2 asks how bandit-based routing strategies change as network disruptions evolve from stochastic noise to structured, adaptive adversarial interference. RQ3 asks how choices in bandit policy, resource allocation strategy, and replay-capacity semantics interact to affect routing efficiency and stability in quantum entanglement routing.} Together, the findings support a threat-aware view of entanglement routing: robustness depends not only on the learning rule, but also on how allocator policy and replay-capacity semantics interact with the disruption regime.
 % \devroop{Research questions should not be answered here.} -- SOLVED: Converted the RQ section into a compact paragraph that states the primary questions and gives one collective findings-oriented roadmap sentence, while leaving detailed answers for Results and Discussion.
 ```
 
