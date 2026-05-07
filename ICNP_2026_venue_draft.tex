@@ -189,7 +189,10 @@ At each decision frame $t$, a routing agent selects a candidate path $P_r$ and q
 \label{subsec:topology}
 
 \smallTitle{4-node diamond topology}
-We use a four-node diamond topology with source $S$, destination $D$, and two intermediate repeaters. It yields four candidate paths $\mathcal{P}=\{P_1,P_2,P_3,P_4\}$ with two- and three-hop alternatives: $P_1=S{\to}B{\to}D$, $P_2=S{\to}C{\to}D$, $P_3=S{\to}B{\to}C{\to}D$, and $P_4=S{\to}C{\to}B{\to}D$. Each path $P_r$ has hop count $h_r$, with $h_1=h_2=2$ and $h_3=h_4=3$; each hop denotes one adjacent entanglement link. This topology instantiates the path-length and routing-allocation tradeoffs introduced in \cref{sec:RelatedWork}, while keeping the path set small enough for controlled matched-regime evaluation.
+We use a four-node diamond topology with source $S$, destination $D$, and two intermediate repeaters. It yields four candidate paths $\mathcal{P}=\{P_1,P_2,P_3,P_4\}$ with two- and three-hop alternatives: $P_1=S{\to}B{\to}D$, $P_2=S{\to}C{\to}D$, $P_3=S{\to}B{\to}C{\to}D$, and $P_4=S{\to}C{\to}B{\to}D$. We use $r \in \{1,\ldots,|\mathcal{P}|\}$ to index candidate paths, where $P_r$ denotes the $r$th path in $\mathcal{P}$. When needed, $r'$ denotes a dummy path index used for summations or comparisons over $\mathcal{P}$.
+% \devroop{define r} -- SOLVED: Defined $r$ in the topology/path notation as the candidate-path index, with $P_r$ denoting the selected path.
+% \shee{Is this supposed to be $P_r$? Define r'} -- SOLVED: Clarified that $r'$ is a dummy path index used in comparisons/summations over candidate paths; $P_r$ remains the selected path indexed by $r$.
+Each path $P_r$ has hop count $h_r$, with $h_1=h_2=2$ and $h_3=h_4=3$; each hop denotes one adjacent entanglement link. This topology instantiates the path-length and routing-allocation tradeoffs introduced in \cref{sec:RelatedWork}, while keeping the path set small enough for controlled matched-regime evaluation.
 
 \smallTitle{Qubit budget and allocator policies}
 The network uses a fixed total budget of 35 qubits distributed across paths. We evaluate four allocator policies---Fixed, ThompsonSampling, DynamicUCB, and Random---spanning static, uncertainty-aware, optimistic, and uninformed allocation behavior. Fixed uses $(T_1,T_2,T_3,T_4)=(8,10,8,9)$; ThompsonSampling samples path utilities from posterior estimates; DynamicUCB redistributes capacity using upper-confidence estimates; and Random assigns capacity uniformly as a control. These allocator choices instantiate the deployment-configuration dimension identified in \cref{sec:RelatedWork}.
@@ -213,8 +216,7 @@ q_r(\mathbf{x})=\prod_{\ell=1}^{h_r}p_\ell(x_\ell).
 Thus, longer paths incur a multiplicative success penalty, while purification effects remain outside this routing model.
 
 \smallTitle{Bernoulli rewards under adversarial availability}
-At frame $t$, let $r \in \{1,\ldots,|\mathcal{P}|\}$ index the selected candidate path $P_r$. Selecting path $P_r$ with allocation $\mathbf{x}$ yields
-% \devroop{define r} -- SOLVED: defined $r$ as the selected candidate path index before the Bernoulli reward equation.
+At frame $t$, selecting path $P_r$ with allocation $\mathbf{x}$ yields
 \[
 Y_t(r,\mathbf{x})\sim\mathrm{Bernoulli}\!\big(q_r(\mathbf{x})A_t(r)\big).
 \]
@@ -252,7 +254,7 @@ under the threat process and allocator semantics fixed for that evaluation run. 
 
 The evaluated policies share the joint action/reward interface in \cref{subsec:mab} but differ in how they score paths, allocate qubits, and update from feedback. Hybrid policies instantiate this interface with a path-level selection rule, such as adversarial weighting or pursuit, and an allocation-level contextual scorer.
 
-Adversarial variants maintain path weights or probabilities over $r\in\{1,\ldots,R\}$, then sample or select $r_t$ from these scores before choosing an allocation. This briefly connects the update mechanism to the adversarial-feedback setting in \cref{subsec:threats}, without repeating the adversarial-bandit rationale from \cref{sec:RelatedWork}.
+Adversarial variants maintain path weights or probabilities over $r\in\{1,\ldots,|\mathcal{P}|\}$, then sample or select $r_t$ from these scores before choosing an allocation. This briefly connects the update mechanism to the adversarial-feedback setting in \cref{subsec:threats}, without repeating the adversarial-bandit rationale from \cref{sec:RelatedWork}.
 
 Given $r_t$, contextual or neural policies score feasible allocations $\mathbf{x}\in\mathcal{X}_{r_t}$ using reward estimates and uncertainty, e.g.,
 \[
