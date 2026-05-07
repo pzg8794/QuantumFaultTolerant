@@ -18,11 +18,12 @@ and referred to the selected path `P_r`, but the local reward-model paragraph di
 
 ## Accepted solution
 
-Define `r` immediately before the Bernoulli reward equation:
+Define `r` immediately before the Bernoulli reward equation and preserve the original feedback marker as a LaTeX source comment with the resolution next to it:
 
 ```tex
 At frame $t$, let $r \in \{1,\ldots,|\mathcal{P}|\}$ index the selected candidate path $P_r$.
 Selecting path $P_r$ with allocation $\mathbf{x}$ yields
+% \devroop{define r} -- SOLVED: defined $r$ as the selected candidate path index before the Bernoulli reward equation.
 \[
 Y_t(r,\mathbf{x})\sim\mathrm{Bernoulli}\!\big(q_r(\mathbf{x})A_t(r)\big).
 \]
@@ -44,7 +45,7 @@ Applied to `ICNP_2026_venue_draft.tex` under:
 \subsection{Reward Model and Link Success}
 ```
 
-The inline feedback marker `\devroop{define r}` has been removed from the ICNP venue draft.
+The feedback marker `\devroop{define r}` is retained in the ICNP venue draft as a LaTeX source comment, with a nearby `SOLVED` explanation. It is not rendered in the paper body, but remains traceable in the source.
 
 The older `main.tex` marker may still remain until a separate safe manuscript-sync pass, because the ICNP venue draft is the active submission working draft.
 
@@ -53,4 +54,5 @@ The older `main.tex` marker may still remain until a separate safe manuscript-sy
 - [x] `r` is defined before `Y_t(r,\mathbf{x})` is introduced.
 - [x] The definition refers to the existing candidate path set `\mathcal{P}`.
 - [x] The reward equation remains unchanged mathematically.
-- [x] The inline `\devroop{define r}` marker is removed from the ICNP venue draft.
+- [x] The original `\devroop{define r}` marker is preserved as a LaTeX source comment.
+- [x] The source comment states what solved the feedback.
