@@ -197,7 +197,7 @@ Each path $P_r$ has hop count $h_r$, with $h_1=h_2=2$ and $h_3=h_4=3$; each hop 
 \smallTitle{Qubit budget and allocator policies}
 The network uses a fixed total budget of 35 qubits distributed across paths. We evaluate four allocator policies---Fixed, ThompsonSampling, DynamicUCB, and Random---spanning static, uncertainty-aware, optimistic, and uninformed allocation behavior. Fixed uses $(T_1,T_2,T_3,T_4)=(8,10,8,9)$; ThompsonSampling samples path utilities from posterior estimates; DynamicUCB redistributes capacity using upper-confidence estimates; and Random assigns capacity uniformly as a control. These allocator choices instantiate the deployment-configuration dimension identified in \cref{sec:RelatedWork}.
 
-For path $P_r$ with budget $T_r$, a feasible allocation is $\mathbf{x}=(x_1,\ldots,x_{h_r})$ with $\sum_{\ell=1}^{h_r}x_\ell=T_r$, defining context space $\mathcal{X}_r$. For three-hop paths this space grows combinatorially, motivating structure-aware approximation.
+For path $P_r$ with budget $T_r$, a feasible allocation is $\mathbf{x}=(x_1,\ldots,x_{h_r})$ with $\sum_{\ell=1}^{h_r}x_\ell=T_r$, defining context space $\mathcal{X}_r$. For three-hop paths, this space grows combinatorially, motivating structure-aware approximation.
 
 \subsection{Reward Model and Link Success}
 \label{subsec:reward}
