@@ -148,6 +148,21 @@ RQ3b tests whether larger replay scale improves robustness or creates a threat-d
 \smallTitle{RQ3b evidence slice}
 RQ3b fixes the allocator to \texttt{Random}, the horizon to 6K, and the replay anchoring to $T$-type, then varies $s\in\{1,1.5,2\}$ using Hybrid master-dataset means over the 3- and 5-run suites. This isolates replay-scale behavior before allocator co-design is analyzed in RQ3c.
 
+\begin{figure}[t]
+\centering
+\fbox{%
+  \begin{minipage}[c][1.55in][c]{0.94\columnwidth}
+  \centering
+  \textit{Placeholder: capacity paradox graph}\\[0.4em]
+  Diverging bar chart by threat scenario\\
+  y-axis: replay-capacity effect in percentage points\\
+  include zero baseline; positive = helps, negative = hurts
+  \end{minipage}
+}
+\caption{Replay capacity has threat-dependent effects. The final graph should show where additional capacity improves efficiency and where it reduces robustness under adaptive disruption.}
+\label{fig:capacity_paradox_placeholder}
+\end{figure}
+
 \begin{table}[ht!]
 \footnotesize
 \centering
