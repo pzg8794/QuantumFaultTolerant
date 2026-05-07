@@ -49,12 +49,13 @@ They isolate distinct routing difficulties: Baseline separates routing and alloc
 The original text explained that the regimes form a controlled escalation from normal operation to structured and strategic disruption.
 
 - **Overlap:** medium with earlier motivation.
-- **Decision:** keep one compact sentence tying the escalation to attribution under matched evaluation conditions.
+- **Feedback check:** Devroop's Item 045 flagged the word `benign` because Baseline already names the no-disruption condition. Using both `Baseline` and `benign` locally can make readers wonder whether `benign` is a separate regime or a synonym.
+- **Decision:** keep one compact sentence tying the escalation to attribution under matched evaluation conditions, but use `no-disruption operation` instead of `benign operation` so Baseline remains the only local term for the no-attack regime.
 
 Accepted reduction:
 
 ```tex
-Together, they form a controlled escalation from benign operation to structured and reactive disruption, helping attribute robustness differences to the policy--allocator--capacity interaction.
+Together, they form a controlled escalation from no-disruption operation to structured and reactive disruption, helping attribute robustness differences to the policy--allocator--capacity interaction.
 ```
 
 ### Split 4: Concrete regime semantics
@@ -76,7 +77,7 @@ Concretely, Baseline keeps all paths available; Stochastic independently disrupt
 \subsection{Adversarial Threat Taxonomy}
 \label{subsec:threats}
 
-We evaluate five threat regimes that specify the availability vector $\mathbf{A}_t$ introduced in \cref{subsec:reward}. They isolate distinct routing difficulties: Baseline separates routing and allocation from path unavailability; Stochastic captures independent random failures; Markov captures temporally correlated outages; Targeted tests fixed or localized disruption; and Adaptive/OnlineAdaptive test whether policies remain stable when disruption responds to recent or current routing behavior~\cite{auer2002nonstochastic,bubeck2012regret,lattimore2020bandit}. Together, they form a controlled escalation from benign operation to structured and reactive disruption, helping attribute robustness differences to the policy--allocator--capacity interaction.
+We evaluate five threat regimes that specify the availability vector $\mathbf{A}_t$ introduced in \cref{subsec:reward}. They isolate distinct routing difficulties: Baseline separates routing and allocation from path unavailability; Stochastic captures independent random failures; Markov captures temporally correlated outages; Targeted tests fixed or localized disruption; and Adaptive/OnlineAdaptive test whether policies remain stable when disruption responds to recent or current routing behavior~\cite{auer2002nonstochastic,bubeck2012regret,lattimore2020bandit}. Together, they form a controlled escalation from no-disruption operation to structured and reactive disruption, helping attribute robustness differences to the policy--allocator--capacity interaction.
 
 Concretely, Baseline keeps all paths available; Stochastic independently disrupts paths with fixed probability; Markov introduces temporally correlated on/off availability; Targeted disrupts selected paths according to fixed attack preference; Adaptive reacts to recent routing behavior; and OnlineAdaptive updates disruptions online in response to current routing behavior.
 ```
@@ -93,6 +94,18 @@ keep the marker during the working-review pass and place the following traceabil
 
 ```tex
 % SOLVED: Added a compact regime-selection rationale that maps each threat class to the routing difficulty it isolates, with adversarial-bandit citations supporting adaptive/reactive disruption.
+```
+
+If the original source contains Devroop's Item 045 marker:
+
+```tex
+\devroop{choose a different word since you have mentioned benign in the basline}
+```
+
+keep the marker during the working-review pass and place the following traceability marker next to it:
+
+```tex
+% SOLVED: Replaced "benign operation" with "no-disruption operation" so Baseline remains the only local term for the no-attack regime.
 ```
 
 ## Status
