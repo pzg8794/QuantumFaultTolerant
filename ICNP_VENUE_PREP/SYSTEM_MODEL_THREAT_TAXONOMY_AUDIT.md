@@ -28,33 +28,33 @@ The original text introduced five escalating regimes: no-disruption operation, i
 Accepted reduction:
 
 ```tex
-We evaluate five threat regimes that specify the availability vector $\mathbf{A}_t$ introduced in \cref{subsec:reward}: no disruption, independent stochastic failures, temporally correlated disruption, targeted failures, and adaptive interference.
+We evaluate five threat regimes that specify the availability vector $\mathbf{A}_t$ introduced in \cref{subsec:reward}.
 ```
 
-### Split 2: Escalation rationale
+### Split 2: Regime-selection rationale
+
+Dan's feedback asked why these regimes were selected and requested clearer rationale/citation support. The previous wording said only that the regimes form a controlled escalation, which is correct but can still look under-motivated.
+
+- **Overlap:** medium with earlier motivation, but the rationale is useful here to prevent the taxonomy from looking arbitrary.
+- **Decision:** keep the rationale, but make it shorter than the earlier proposed wording and remove the phrase "rather than to exhaustively model every quantum-network failure mode" because it reads defensive and costs space.
+
+Accepted reduction:
+
+```tex
+They isolate distinct routing difficulties: Baseline separates routing and allocation from path unavailability; Stochastic captures independent random failures; Markov captures temporally correlated outages; Targeted tests fixed or localized disruption; and Adaptive/OnlineAdaptive test whether policies remain stable when disruption responds to recent or current routing behavior~\cite{auer2002nonstochastic,bubeck2012regret,lattimore2020bandit}.
+```
+
+### Split 3: Escalation and attribution rationale
 
 The original text explained that the regimes form a controlled escalation from normal operation to structured and strategic disruption.
 
-- **Overlap:** medium with earlier motivation, but the rationale is useful here to prevent the taxonomy from looking arbitrary.
-- **Decision:** keep and tighten.
+- **Overlap:** medium with earlier motivation.
+- **Decision:** keep one compact sentence tying the escalation to attribution under matched evaluation conditions.
 
 Accepted reduction:
 
 ```tex
-Together, they form a controlled escalation from normal operation to increasingly structured and strategic path unavailability.
-```
-
-### Split 3: Adaptive/adversarial rationale
-
-The original rationale connected adaptive regimes to adversarial-bandit settings where rewards or losses may be strategically selected.
-
-- **Overlap:** high with Background and Related Work.
-- **Decision:** convert to a cross-reference rather than repeating adversarial-bandit tutorial content.
-
-Accepted reduction:
-
-```tex
-The adaptive regimes instantiate the adversarial-feedback setting discussed in \cref{sec:Background,sec:RelatedWork} by coupling path unavailability to routing behavior.
+Together, they form a controlled escalation from benign operation to structured and reactive disruption, helping attribute robustness differences to the policy--allocator--capacity interaction.
 ```
 
 ### Split 4: Concrete regime semantics
@@ -67,7 +67,7 @@ The original text used longer prose to explain how each regime affects availabil
 Accepted reduction:
 
 ```tex
-Concretely, Baseline keeps all paths available; Stochastic independently disrupts paths with fixed probability; Markov introduces temporally correlated on/off availability; Targeted disrupts selected paths according to fixed attack preference; and OnlineAdaptive updates disruptions online in response to recent or current routing behavior.
+Concretely, Baseline keeps all paths available; Stochastic independently disrupts paths with fixed probability; Markov introduces temporally correlated on/off availability; Targeted disrupts selected paths according to fixed attack preference; Adaptive reacts to recent routing behavior; and OnlineAdaptive updates disruptions online in response to current routing behavior.
 ```
 
 ## Accepted reduced mini-section
@@ -76,9 +76,23 @@ Concretely, Baseline keeps all paths available; Stochastic independently disrupt
 \subsection{Adversarial Threat Taxonomy}
 \label{subsec:threats}
 
-We evaluate five threat regimes that specify the availability vector $\mathbf{A}_t$ introduced in \cref{subsec:reward}: no disruption, independent stochastic failures, temporally correlated disruption, targeted failures, and adaptive interference. Together, they form a controlled escalation from normal operation to increasingly structured and strategic path unavailability. The adaptive regimes instantiate the adversarial-feedback setting discussed in \cref{sec:Background,sec:RelatedWork} by coupling path unavailability to routing behavior.
+We evaluate five threat regimes that specify the availability vector $\mathbf{A}_t$ introduced in \cref{subsec:reward}. They isolate distinct routing difficulties: Baseline separates routing and allocation from path unavailability; Stochastic captures independent random failures; Markov captures temporally correlated outages; Targeted tests fixed or localized disruption; and Adaptive/OnlineAdaptive test whether policies remain stable when disruption responds to recent or current routing behavior~\cite{auer2002nonstochastic,bubeck2012regret,lattimore2020bandit}. Together, they form a controlled escalation from benign operation to structured and reactive disruption, helping attribute robustness differences to the policy--allocator--capacity interaction.
 
-Concretely, Baseline keeps all paths available; Stochastic independently disrupts paths with fixed probability; Markov introduces temporally correlated on/off availability; Targeted disrupts selected paths according to fixed attack preference; and OnlineAdaptive updates disruptions online in response to recent or current routing behavior.
+Concretely, Baseline keeps all paths available; Stochastic independently disrupts paths with fixed probability; Markov introduces temporally correlated on/off availability; Targeted disrupts selected paths according to fixed attack preference; Adaptive reacts to recent routing behavior; and OnlineAdaptive updates disruptions online in response to current routing behavior.
+```
+
+## Feedback-marker requirement
+
+If the original source contains Dan's feedback marker:
+
+```tex
+\dan{Why were these regimes selected? Give a rationale, citations etc...}
+```
+
+keep the marker during the working-review pass and place the following traceability marker next to it:
+
+```tex
+% SOLVED: Added a compact regime-selection rationale that maps each threat class to the routing difficulty it isolates, with adversarial-bandit citations supporting adaptive/reactive disruption.
 ```
 
 ## Status
