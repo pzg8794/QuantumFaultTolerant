@@ -2,6 +2,27 @@
 
 This note records the staged placeholder plan for reserving realistic graph space before final graph polishing.
 
+## Current graph status
+
+Final graph creation and final graph replacement are blocked until Piter decides which graph forms to use. Placeholder insertion and text-space preparation may continue.
+
+Blocked item:
+
+```text
+H / Blocked -- Create or replace final result graphs
+Reason: Piter is deciding which graph forms to use first.
+```
+
+Blocked final graph choices include:
+
+```text
+capacity paradox graph
+robustness floor graph
+main performance summary graph
+deployment guidance graph
+cross-testbed confirmation graph
+```
+
 ## Candidate graph set
 
 The graph set should strengthen the paper's central claims without turning the venue draft into a figure dump:
@@ -72,3 +93,5 @@ Candidate placement: after the RQ2 evidence-slice paragraph and before the RQ2 a
 ## Status
 
 Capacity-paradox placeholder inserted into the active compiled venue path through `ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex`, which is included by `ICNP_2026_venue_draft.tex`.
+
+Related Work consolidation is the next unblocked graph-preparation task because it frees space while final graph choices remain blocked.
