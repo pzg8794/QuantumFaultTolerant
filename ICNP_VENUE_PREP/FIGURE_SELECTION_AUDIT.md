@@ -1,0 +1,90 @@
+# ICNP Figure Selection Audit
+
+This note documents the figure-selection pass that replaced temporary PGFPlots placeholders with exported notebook-validated images from:
+
+```text
+figures/icnp/
+```
+
+The exported images are generated from the verification workflow connected to:
+
+```text
+https://github.com/pzg8794/quantum_project/blob/gcp-main/Dynamic_Routing_Eval_Framework/notebooks/H-MABs_MasterDataset_VerificationHub.ipynb
+```
+
+and validated against the master-dataset logs in:
+
+```text
+https://github.com/pzg8794/GA-Work/tree/main/Validated_Logs
+```
+
+## Selection rule
+
+Main paper figures should carry one central claim each. Appendix figures should preserve denser synthesis, diagnostics, and supporting evidence without interrupting the Results narrative.
+
+Figures marked as convergence/regret/TBD in the verification workflow are excluded from the main paper until they are explicitly accepted as source-backed manuscript evidence.
+
+## Main-body selections
+
+| Claim slot | Selected image | Paper placement | Rationale |
+|---|---|---|---|
+| Main performance summary | `figures/icnp/ICNP-CODE-033_g9_network_gap_analysis_panel_d_rq1_algorithm_tier_separation_stochastic.png` | RQ1 | Shows algorithm-tier separation under stochastic decoherence, matching the RQ1 claim. |
+| Robustness floor | `figures/icnp/ICNP-CODE-040_g2_robustness_floor.png` | RQ2 | Directly supports worst-case floor and robustness-under-threat claims. |
+| Capacity paradox | `figures/icnp/ICNP-CODE-039_g1_capacity_paradox.png` | RQ3b | Gives the cleanest main-body visual for replay-capacity paradox behavior. |
+| Deployment guidance | `figures/icnp/ICNP-CODE-042_g4_deployment_rules.png` | RQ3d | Matches scenario-to-configuration deployment guidance. |
+| Cross-testbed confirmation | `figures/icnp/ICNP-CODE-038_g9_network_gap_analysis_panel_i_cross_testbed_efficiency_oracle_gap_std.png` | Cross-Testbed Validation | Confirms cross-testbed efficiency/gap trends in a compact one-column figure. |
+
+## Appendix selections
+
+| Appendix image | Rationale |
+|---|---|
+| `figures/icnp/ICNP-CODE-024_g8_advanced_4panel_grouped_full_figure.png` | Dense synthesis of oracle gaps, capacity effects, allocator efficiency, and cross-testbed behavior. |
+| `figures/icnp/ICNP-CODE-029_g9_network_gap_analysis_grouped_full_figure.png` | Broad diagnostic suite for path/fidelity, allocator budgets, threat escalation, capacity sensitivity, scenario penalties, allocator risk, and cross-testbed behavior. |
+| `figures/icnp/ICNP-CODE-035_g9_network_gap_analysis_panel_f_capacity_paradox_all_6_replay_configs_sc.png` | Detailed support for the capacity-paradox claim beyond the compact main figure. |
+| `figures/icnp/ICNP-CODE-036_g9_network_gap_analysis_panel_g_scenario_penalty_vs_baseline_by_algorith.png` | Detailed support for threat penalty and robustness-floor analysis. |
+| `figures/icnp/ICNP-CODE-037_g9_network_gap_analysis_panel_h_allocator_risk_floor_mean_peak_icpursuit.png` | Detailed support for allocator risk and deployment guidance. |
+| `figures/icnp/ICNP-CODE-034_g9_network_gap_analysis_panel_e_threat_escalation_heatmap_algo_scenario.png` | Diagnostic heatmap behind threat-escalation claims. |
+
+## Excluded from main paper for now
+
+The following figure families are intentionally excluded from the main paper until explicitly accepted as final source-backed evidence:
+
+```text
+convergence figures
+regret trajectories
+figures marked TBD/deferred in the verification workflow
+```
+
+Examples include:
+
+```text
+ICNP-CODE-043_g5_convergence.png
+ICNP-CODE-057_fig13_convergence.png
+ICNP-CODE-009_g14_regret_trajectory.png
+ICNP-CODE-023_g14_regret.png
+```
+
+## Applied code changes
+
+Main-body temporary figure inputs were replaced in:
+
+```text
+ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex
+ICNP_VENUE_PREP/RESULTS_VALIDATED_CROSS_TESTBED.tex
+```
+
+Appendix diagnostics were added in:
+
+```text
+ICNP_VENUE_PREP/APPENDIX_DIAGNOSTIC_FIGURES.tex
+```
+
+and included from:
+
+```text
+ICNP_2026_venue_draft.tex
+```
+
+## Current caveat
+
+This pass is meant to test readability and page flow. If page pressure becomes severe, appendix diagnostics should be the first removable items; main-body claim figures should be kept unless they duplicate a stronger table or final graph selected later.
