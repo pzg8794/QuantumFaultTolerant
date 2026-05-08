@@ -1,5 +1,6 @@
 % Generated from master-dataset verification workflow.
 % Source notebook: https://github.com/pzg8794/quantum_project/blob/gcp-main/Dynamic_Routing_Eval_Framework/notebooks/H-MABs_MasterDataset_VerificationHub.ipynb
+% ICNP-safe visual encoding: paired color families plus grouped bars and legend labels so the plot remains readable in black-and-white printing.
 \begin{tikzpicture}
 \begin{axis}[
     ybar,
@@ -18,8 +19,8 @@
     legend style={at={(0.5,-0.24)},anchor=north,legend columns=2,font=\footnotesize},
     bar width=9pt,
 ]
-\addplot coordinates {(Chaudhary,74.45) (Liu,78.03) (Clayton,44.14) (Jallow--Khan,67.85)};
-\addplot coordinates {(Chaudhary,31.7) (Liu,81.7) (Clayton,32.3) (Jallow--Khan,5.0)};
+\addplot+[ybar, draw=networkblue!80!black, fill=networkblue!60] coordinates {(Chaudhary,74.45) (Liu,78.03) (Clayton,44.14) (Jallow--Khan,67.85)};
+\addplot+[ybar, draw=allocpurple!80!black, fill=allocpurple!50] coordinates {(Chaudhary,31.7) (Liu,81.7) (Clayton,32.3) (Jallow--Khan,5.0)};
 \legend{iCP avg. efficiency,iCP experiment-win share}
 \end{axis}
 \end{tikzpicture}
