@@ -20,7 +20,11 @@ Across all experiments, the total physical budget remains fixed at 35 qubits, ma
   thick,
   main/.style={circle,draw,minimum size=0.6cm,font=\small},
   link/.style={line width=0.8pt, draw=gray!55},
-  path/.style={->,>=stealth,line width=1.1pt}
+  path/.style={->,>=stealth,line width=1.25pt},
+  pathPone/.style={path, draw=blue!80!black, solid},
+  pathPtwo/.style={path, draw=red!80!black, densely dashed},
+  pathPthree/.style={path, draw=green!45!black, dotted},
+  pathPfour/.style={path, draw=orange!90!black, dash dot}
 ]
   \node[main] (S) {$S$};
   \node[main, right=of S] (R1) {$R_1$};
@@ -31,12 +35,13 @@ Across all experiments, the total physical budget remains fixed at 35 qubits, ma
   \draw[link] (R1) -- (D);
   \draw[link] (R2) -- (D);
   \draw[link] (R1) -- (R2);
-  \draw[path] (S) to[bend left=15] node[above, font=\scriptsize] {$P_1$ (2-hop)} (R1) to[bend left=15] (D);
-  \draw[path, dashed] (S) to[bend right=15] node[left, font=\scriptsize] {$P_2$ (2-hop)} (R2) to[bend right=15] (D);
-  \draw[path, dotted] (S) to[bend left=10] (R1) to[bend left=10] node[right, font=\scriptsize] {$P_3$ (3-hop)} (R2) to[bend left=10] (D);
-  \draw[path, dash dot] (S) to[bend right=10] (R2) to[bend right=10] node[left, font=\scriptsize] {$P_4$ (3-hop)} (R1) to[bend right=10] (D);
+  \draw[pathPone] (S) to[bend left=15] node[above, font=\scriptsize] {$P_1$ (2-hop)} (R1) to[bend left=15] (D);
+  \draw[pathPtwo] (S) to[bend right=15] node[left, font=\scriptsize] {$P_2$ (2-hop)} (R2) to[bend right=15] (D);
+  \draw[pathPthree] (S) to[bend left=10] (R1) to[bend left=10] node[right, font=\scriptsize] {$P_3$ (3-hop)} (R2) to[bend left=10] (D);
+  \draw[pathPfour] (S) to[bend right=10] (R2) to[bend right=10] node[left, font=\scriptsize] {$P_4$ (3-hop)} (R1) to[bend right=10] (D);
 \end{tikzpicture}
-\caption{Four-path quantum-network testbed used for routing evaluation. Paths $P_1$ and $P_2$ have two hops, while $P_3$ and $P_4$ have three hops; per-path qubit budgets are varied by allocator policy.\shee{I think the colors in main.tex were easier to distinguish the paths. }}
+\caption{Four-path quantum-network testbed used for routing evaluation. Color and line style distinguish paths: $P_1$ is solid, $P_2$ dashed, $P_3$ dotted, and $P_4$ dash-dotted. Paths $P_1$ and $P_2$ have two hops, while $P_3$ and $P_4$ have three hops; per-path qubit budgets are varied by allocator policy.}
+% \shee{I think the colors in main.tex were easier to distinguish the paths. } -- SOLVED: Restored color coding while retaining distinct line styles so the topology remains readable in grayscale.
 \label{fig:network_topology}
 \end{figure}
 
