@@ -16,15 +16,18 @@ This checklist ties the content-reduction audit to the ICNP venue-preparation re
 ## ICNP compliance checks to handle during audit
 
 - [ ] Abstract under 250 words.
-- [ ] Double-blind author block.
+- [ ] Double-blind author block; remove names, affiliations, acknowledgments that identify authors, and other identifying metadata for the review version.
 - [ ] Remove or anonymize public GitHub/Drive artifact links from the blind submission draft.
 - [ ] Remove rendered author/reviewer comments such as `\shee{}`, `\todo{}`, `\dan{}`, `\devroop{}`, and `\piter{}` before submission.
 - [ ] Ensure IEEE conference mode remains active.
+- [ ] Use US Letter page size with the required IEEE conference style.
 - [ ] Keep main body within 10 pages excluding references.
 - [ ] Keep core claims in the main body, not only in appendix/supplement.
+- [ ] Ensure all fonts are embedded in the PDF.
+- [ ] Ensure the PDF displays and prints correctly with standard tools and printers.
 - [ ] Ensure all figures are readable in one-column/two-column ICNP layout.
 - [ ] Ensure all figure captions are concise and takeaway-oriented.
-- [ ] Check grayscale/black-and-white readability of figures.
+- [ ] Use color when helpful, but never rely on color alone; plots and graphs must remain distinguishable when printed on black-and-white printers.
 - [ ] Check no overfull figure/table content crosses columns.
 
 ## Background audit status
@@ -37,7 +40,9 @@ This checklist ties the content-reduction audit to the ICNP venue-preparation re
 ## Figure audit status
 
 - [x] `fig:framework` — copied to draft for visual review.
-- [ ] Remaining figures — identify and copy when their surrounding sections are audited.
+- [x] `fig:network_topology` — restored color coding plus line-style redundancy for black-and-white readability.
+- [x] Result placeholder figures — color restored with redundant encodings in generated PGFPlots files.
+- [ ] Replace temporary generated PGFPlots with final notebook-exported image plots once graph choices are finalized.
 
 ## Notes
 
@@ -45,4 +50,4 @@ Use this tracker alongside:
 
 - `ICNP_VENUE_PREP/BACKGROUND_REDUCTION_AUDIT.md`
 - `ICNP_VENUE_PREP/MAIN_TEX_TO_ICNP_CHECKLIST.md`
-- `ICNP_VENUE_PREP/OFFICIAL_GUIDELINES.md`
+- `ICNP_VENUE_PREP/FIGURE_COLOR_ACCESSIBILITY_NOTE.md`
