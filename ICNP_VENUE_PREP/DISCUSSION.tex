@@ -8,14 +8,14 @@ Our results across the full evaluation suite---spanning paper baselines (CMAB / 
 % ----------------------------------------------------------------------------
 \subsubsection{Finding 1 - Context-Aware Bandits Dominate}
 
-Across both the paper baselines (\RQOneText-\RQTwoText) and the Hybrid suite (\RQThreeText), \textbf{context-aware policies consistently outperform non-contextual and purely adversarial baselines}. Pursuit-based contextual hybrids (\small\texttt{CPursuitNeuralUCB}, \small\texttt{iCPursuitNeuralUCB}) maintain strong efficiency across all five threat regimes, while EXP3-family baselines exhibit lower robustness floors under Markov, Adaptive, and OnlineAdaptive disruption. The results reinforce that topology and channel-state information are not optional optimization features but an \emph{architectural requirement} for robust routing.
+Across both the paper baselines (\RQOneText-\RQTwoText) and the Hybrid suite (\RQThreeText), context-aware policies consistently outperform non-contextual and purely adversarial baselines. Pursuit-based contextual hybrids (\small\texttt{CPursuitNeuralUCB}, \small\texttt{iCPursuitNeuralUCB}) maintain strong efficiency across all five threat regimes, while EXP3-family baselines exhibit lower robustness floors under Markov, Adaptive, and OnlineAdaptive disruption. The results reinforce that topology and channel-state information are not optional optimization features but an \emph{architectural requirement} for robust routing.
 
 % ----------------------------------------------------------------------------
 \subsubsection{Finding 2 - The Capacity Paradox is Conditional}
 
-Replay capacity exhibits \textbf{non-monotone behavior} under adversarial conditions. Increasing replay can improve stability in structured regimes while amplifying vulnerability under reactive threats. This effect emerges through the interaction between replay capacity and allocator-driven exploration predictability.
+Replay capacity exhibits non-monotone behavior under adversarial conditions. Increasing replay can improve stability in structured regimes while amplifying vulnerability under reactive threats. This effect emerges through the interaction between replay capacity and allocator-driven exploration predictability.
 
-Capacity sensitivity becomes most severe under allocator stress, particularly with \small\texttt{Random}. In the Hybrid suite, efficiency swings exceed \textbf{20--38 pp} across replay-capacity settings under Adaptive and Markov threats. Mechanistically, larger replay buffers reinforce recurring patterns; under reactive adversaries, this increases predictability and expands the attack surface. Replay capacity therefore cannot be treated as an isolated tuning parameter.
+Capacity sensitivity becomes most severe under allocator stress, particularly with \small\texttt{Random}. In the Hybrid suite, efficiency swings exceed 20--38 pp across replay-capacity settings under Adaptive and Markov threats. Mechanistically, larger replay buffers reinforce recurring patterns; under reactive adversaries, this increases predictability and expands the attack surface. Replay capacity therefore cannot be treated as an isolated tuning parameter.
 
 % ----------------------------------------------------------------------------
 \subsubsection{Finding 3 - Allocator Choice is the Practical Lever}
@@ -31,11 +31,11 @@ Even strong pursuit-neural architectures can be pulled into the capacity paradox
 % ----------------------------------------------------------------------------
 \subsection{Implications for Adversarial Quantum Network Design}
 
-First, \textbf{context-aware routing should be treated as baseline infrastructure}. Feature enrichment through topology, link-state, and traffic information yields larger robustness gains than refining reward-only exploration rules.
+First, context-aware routing should be treated as baseline infrastructure. Feature enrichment through topology, link-state, and traffic information yields larger robustness gains than refining reward-only exploration rules.
 
-Second, \textbf{replay capacity must be treated as a coupled control variable}. The relevant deployment question is not simply \textquotedblleft more or less replay,\textquotedblright but which anchoring rule (\small\texttt{Tb} vs.\ \small\texttt{T}), scale ($s$), and allocator jointly minimize tail risk under the active threat regime.
+Second, replay capacity must be treated as a coupled control variable. The relevant deployment question is not simply \textquotedblleft more or less replay,\textquotedblright but which anchoring rule (\small\texttt{Tb} vs.\ \small\texttt{T}), scale ($s$), and allocator jointly minimize tail risk under the active threat regime.
 
-Finally, the results motivate lightweight \textbf{threat-aware meta-policies}:
+Finally, the results motivate lightweight threat-aware meta-policies:
 \begin{itemize}[nosep]
 \item Use \small\texttt{ThompsonSampling} or \small\texttt{Fixed}/\small\texttt{Default} allocators as safe deployment defaults.
 \item Treat replay-capacity settings as \emph{scenario-coupled} rather than static.
