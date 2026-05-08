@@ -1,5 +1,6 @@
 % Generated from master-dataset verification workflow.
 % Source notebook: https://github.com/pzg8794/quantum_project/blob/gcp-main/Dynamic_Routing_Eval_Framework/notebooks/H-MABs_MasterDataset_VerificationHub.ipynb
+% ICNP-safe visual encoding: color plus threshold line and direct labels so the plot remains readable in black-and-white printing.
 \begin{tikzpicture}
 \begin{axis}[
     xbar,
@@ -19,8 +20,11 @@
     grid style={draw=gray!20},
     bar width=7pt,
 ]
-\addplot coordinates {(18.0,EXPNeuralUCB) (68.8,EXP3/UCB) (77.4,CPursuit) (81.0,iCEpsilonGreedy)};
-\addplot[sharp plot, dashed, mark=none] coordinates {(85,EXPNeuralUCB) (85,iCEpsilonGreedy)};
+\addplot+[xbar, draw=findingRed!80!black, fill=findingRed!95!black!25] coordinates {(18.0,EXPNeuralUCB)};
+\addplot+[xbar, draw=algorange!80!black, fill=algorange!60] coordinates {(68.8,EXP3/UCB)};
+\addplot+[xbar, draw=networkblue!80!black, fill=networkblue!55] coordinates {(77.4,CPursuit)};
+\addplot+[xbar, draw=envgreen!55!black, fill=envgreen!65] coordinates {(81.0,iCEpsilonGreedy)};
+\addplot[sharp plot, dashed, thick, draw=black, mark=none] coordinates {(85,EXPNeuralUCB) (85,iCEpsilonGreedy)};
 \node[font=\footnotesize, anchor=south west] at (axis cs:85,EXPNeuralUCB) {85\% target};
 \end{axis}
 \end{tikzpicture}
