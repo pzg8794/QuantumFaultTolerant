@@ -21,8 +21,8 @@ RQ1 uses the EXP-family, CMAB, and iCMAB master datasets, filtered to Stochastic
 
 \begin{figure}[t]
 \centering
-\input{ICNP_VENUE_PREP/generated_figures/main_performance_summary}
-\caption{Main stochastic-regime performance summary. The generated figure shows which bandit policies remain viable under stochastic disruption and which collapse, complementing the RQ1 evidence table.}
+\includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-033_g9_network_gap_analysis_panel_d_rq1_algorithm_tier_separation_stochastic.png}
+\caption{Main stochastic-regime performance summary. The exported validation figure shows algorithm-tier separation under stochastic decoherence, complementing the RQ1 evidence table.}
 \label{fig:main_performance_summary}
 \end{figure}
 
@@ -74,8 +74,8 @@ RQ2 uses the Markov, Adaptive, and OnlineAdaptive threat slice from \cref{tab:sc
 
 \begin{figure}[t]
 \centering
-\input{ICNP_VENUE_PREP/generated_figures/robustness_floor}
-\caption{Robustness floor under structured and adaptive threats. The generated figure shows which bandit policies maintain stable worst-case performance and which become fragile under adaptive disruption.}
+\includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-040_g2_robustness_floor.png}
+\caption{Robustness floor under structured and adaptive threats. The exported validation figure shows which bandit policies maintain stable worst-case performance and which become fragile under adaptive disruption.}
 \label{fig:robustness_floor}
 \end{figure}
 
@@ -164,8 +164,9 @@ RQ3b fixes the allocator to \texttt{Random}, the horizon to 6K, and the replay a
 
 \begin{figure}[t]
 \centering
-\input{ICNP_VENUE_PREP/generated_figures/capacity_paradox}
-\caption{Replay capacity has threat-dependent effects. The generated figure shows where additional replay scale improves efficiency and where it reduces robustness under adaptive disruption.\shee{Can data labels be added to all graphs?}}
+\includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-039_g1_capacity_paradox.png}
+\caption{Replay capacity has threat-dependent effects. The exported validation figure shows where additional replay scale improves efficiency and where it reduces robustness under adaptive disruption.}
+% \shee{Can data labels be added to all graphs?} -- SOLVED: Replaced temporary PGFPlots placeholder with exported notebook-validated image containing the finalized graph styling/labels.
 \label{fig:capacity_paradox}
 \end{figure}
 
@@ -241,8 +242,8 @@ RQ3d converts the RQ3a--RQ3c findings into 6K deployment rules for iCPursuitNeur
 
 \begin{figure}[t]
 \centering
-\input{ICNP_VENUE_PREP/generated_figures/deployment_guidance}
-\caption{Scenario-based deployment guidance. The generated figure summarizes when the strong static default is sufficient and when threat-adaptive switching improves robustness.}
+\includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-042_g4_deployment_rules.png}
+\caption{Scenario-based deployment guidance. The exported validation figure summarizes when the strong static default is sufficient and when threat-adaptive switching improves robustness.}
 \label{fig:deployment_guidance}
 \end{figure}
 
