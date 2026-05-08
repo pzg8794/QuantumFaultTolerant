@@ -11,12 +11,17 @@
     enlarge x limits={0.25, upper},
     xlabel={Gain over strong static default (pp)},
     symbolic y coords={Baseline,Stochastic,Markov,Adaptive,OnlineAdaptive},
-    ytick=data,
+    ytick={Baseline,Stochastic,Markov,Adaptive,OnlineAdaptive},
+    % ytick=data,
     ytick pos=left,
     xtick pos=bottom,
     xmajorgrids=true,
     grid style={draw=gray!20},
+    legend style={at={(0.4,-0.55)}, anchor=north},
+    legend columns=-1,
+    legend style={font=\scriptsize},
     bar width=7pt,
+    bar shift=0pt,
     tick label style={font=\footnotesize},
 ]
 \addplot+[xbar, draw=black!65, fill=black!18] coordinates {(0.0,Baseline) (0.0,OnlineAdaptive)};
