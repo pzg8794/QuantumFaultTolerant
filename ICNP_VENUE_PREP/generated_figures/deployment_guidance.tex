@@ -3,18 +3,24 @@
 \begin{tikzpicture}
 \begin{axis}[
     xbar,
-    width=0.98\columnwidth,
+    width=0.9\columnwidth,
     height=3.5cm,
     xmin=0,
-    xmax=3.4,
+    xmax=3.7,
+    enlarge x limits={0.25, upper},
     xlabel={Gain over strong static default (pp)},
     symbolic y coords={Baseline,Stochastic,Markov,Adaptive,OnlineAdaptive},
     ytick=data,
+    ytick pos=left,
+    xtick pos=bottom,
     xmajorgrids=true,
     grid style={draw=gray!20},
     bar width=7pt,
+    tick label style={font=\footnotesize},
+    % nodes near coords, % Enables labels
+    % nodes near coords style={font=\footnotesize, /pgf/number format/precision=2}, % Optional styling
 ]
 \addplot coordinates {(0.0,Baseline) (0.6,Stochastic) (0.3,Markov) (2.9,Adaptive) (0.0,OnlineAdaptive)};
-\node[font=\scriptsize, anchor=west] at (axis cs:2.95,Adaptive) {largest switch gain};
+\node[font=\footnotesize, anchor=west] at (axis cs:2.9,Adaptive) {largest switch gain};
 \end{axis}
 \end{tikzpicture}

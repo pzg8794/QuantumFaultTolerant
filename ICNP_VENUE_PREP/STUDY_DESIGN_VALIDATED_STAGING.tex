@@ -36,7 +36,7 @@ Across all experiments, the total physical budget remains fixed at 35 qubits, ma
   \draw[path, dotted] (S) to[bend left=10] (R1) to[bend left=10] node[right, font=\scriptsize] {$P_3$ (3-hop)} (R2) to[bend left=10] (D);
   \draw[path, dash dot] (S) to[bend right=10] (R2) to[bend right=10] node[left, font=\scriptsize] {$P_4$ (3-hop)} (R1) to[bend right=10] (D);
 \end{tikzpicture}
-\caption{Four-path quantum-network testbed used for routing evaluation. Paths $P_1$ and $P_2$ have two hops, while $P_3$ and $P_4$ have three hops; per-path qubit budgets are varied by allocator policy.\shee{I think the colors in main.tex was easier to distinguish the paths. }}
+\caption{Four-path quantum-network testbed used for routing evaluation. Paths $P_1$ and $P_2$ have two hops, while $P_3$ and $P_4$ have three hops; per-path qubit budgets are varied by allocator policy.\shee{I think the colors in main.tex were easier to distinguish the paths. }}
 \label{fig:network_topology}
 \end{figure}
 
@@ -150,7 +150,8 @@ The evaluated bandit-policy portfolio spans classical, adversarial, contextual/n
 \setlength{\tabcolsep}{4pt}
 \caption{Bandit-policy portfolio by evaluation phase.}
 \label{tab:setup-algorithm-portfolio}
-\begin{tabular}{p{0.18\linewidth} p{0.24\linewidth} p{0.48\linewidth}}
+% \begin{tabular}{p{0.18\linewidth} p{0.24\linewidth} p{0.48\linewidth}}
+\begin{tabular}{@{}m{0.17\linewidth}>{\raggedright\arraybackslash}m{0.24\linewidth}>{\raggedright\arraybackslash}m{0.5\linewidth}@{}}
 \toprule
 \textbf{Phase} & \textbf{Category} & \textbf{Bandit policies / reference} \\
 \midrule
@@ -176,7 +177,8 @@ Phase 3 varies the allocator policies defined in \cref{subsec:topology} and summ
 \setlength{\tabcolsep}{4pt}
 \caption{Qubit allocation strategies and average efficiency across scenarios.}
 \label{tab:setup-allocators}
-\begin{tabular}{p{0.20\linewidth} p{0.42\linewidth} p{0.14\linewidth} p{0.14\linewidth}}
+% \begin{tabular}{p{0.20\linewidth} p{0.42\linewidth} p{0.14\linewidth} p{0.14\linewidth}}
+\begin{tabular}{@{}p{0.2\linewidth}>{\centering\arraybackslash}p{0.42\linewidth}>{\centering\arraybackslash}p{0.14\linewidth}>{\centering\arraybackslash}p{0.14\linewidth}@{}}
 \toprule
 \textbf{Allocator} & \textbf{Mechanism} & \textbf{Avg Eff.} & \textbf{Overhead} \\
 \midrule
