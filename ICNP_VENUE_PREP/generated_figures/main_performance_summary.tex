@@ -1,5 +1,6 @@
 % Generated from master-dataset verification workflow.
 % Source notebook: https://github.com/pzg8794/quantum_project/blob/gcp-main/Dynamic_Routing_Eval_Framework/notebooks/H-MABs_MasterDataset_VerificationHub.ipynb
+% ICNP-safe visual encoding: color plus distinct fill opacity/outline so the plot remains readable in black-and-white printing.
 \begin{tikzpicture}
 \begin{axis}[
     ybar,
@@ -18,10 +19,11 @@
     enlarge x limits=0.03,
     bar width=4pt,
 ]
-\addplot coordinates {
-(CPursuit,89.9) (CEps,87.8) (iCEps,87.8) (GNeural,85.5) (EXPNeural,80.6) (EXPUCB,74.5) (CThompson,66.7) (iCPursuit,67.4) (iCThompson,61.1) (CEXP4,39.6) (CEpoch,37.0) (iCEpoch,37.0) (iCEXP4,37.0)
-};
-\addplot[sharp plot, dashed, mark=none] coordinates {(CPursuit,85) (iCEXP4,85)};
+\addplot+[ybar, draw=envgreen!55!black, fill=envgreen!65] coordinates {(CPursuit,89.9) (CEps,87.8) (iCEps,87.8) (GNeural,85.5)};
+\addplot+[ybar, draw=algorange!80!black, fill=algorange!60] coordinates {(EXPNeural,80.6) (EXPUCB,74.5) (CThompson,66.7) (iCPursuit,67.4) (iCThompson,61.1)};
+\addplot+[ybar, draw=findingRed!70!black, fill=findingRed!95!black!25] coordinates {(CEXP4,39.6) (CEpoch,37.0) (iCEpoch,37.0) (iCEXP4,37.0)};
+\addplot[sharp plot, dashed, thick, draw=black, mark=none] coordinates {(CPursuit,85) (iCEXP4,85)};
 \node[font=\footnotesize, anchor=west] at (axis cs:EXPNeural,90.5) {85\% target};
+\legend{Viable,Degraded,Collapsed}
 \end{axis}
 \end{tikzpicture}
