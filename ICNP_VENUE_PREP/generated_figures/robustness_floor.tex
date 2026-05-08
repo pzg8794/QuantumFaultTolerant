@@ -3,13 +3,17 @@
 \begin{tikzpicture}
 \begin{axis}[
     xbar,
-    width=0.98\columnwidth,
+    width=0.89\columnwidth,
     height=3.2cm,
     xmin=0,
     xmax=100,
+    enlarge x limits={0.1, upper},
     xlabel={Worst-case efficiency floor (\%)},
     symbolic y coords={EXPNeuralUCB,EXP3/UCB,CPursuit,iCEpsilonGreedy},
     ytick=data,
+    ytick pos=left,
+    xtick pos=bottom,
+    tick label style={font=\footnotesize},
     ymajorgrids=false,
     xmajorgrids=true,
     grid style={draw=gray!20},
@@ -17,6 +21,6 @@
 ]
 \addplot coordinates {(18.0,EXPNeuralUCB) (68.8,EXP3/UCB) (77.4,CPursuit) (81.0,iCEpsilonGreedy)};
 \addplot[sharp plot, dashed, mark=none] coordinates {(85,EXPNeuralUCB) (85,iCEpsilonGreedy)};
-\node[font=\scriptsize, anchor=south west] at (axis cs:85,EXPNeuralUCB) {85\% target};
+\node[font=\footnotesize, anchor=south west] at (axis cs:85,EXPNeuralUCB) {85\% target};
 \end{axis}
 \end{tikzpicture}
