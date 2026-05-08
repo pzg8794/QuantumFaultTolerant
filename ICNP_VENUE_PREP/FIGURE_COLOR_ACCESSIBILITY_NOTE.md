@@ -1,12 +1,21 @@
 # Figure Color Accessibility Decision
 
-## Venue check status
+## Confirmed venue requirement
 
-The ICNP submission URL was requested for checking whether figures must be grayscale-only. The page could not be reached from this environment due DNS resolution failure, so no definitive venue-specific grayscale prohibition was confirmed here.
+The ICNP 2026 submission page does not prohibit color figures. It requires papers to display and print correctly with standard tools and printers, and it specifically says to make sure papers print well on black-and-white printers, especially plots and graphs.
+
+Practical interpretation:
+
+```text
+Color is allowed, but color must not be the only visual cue.
+Figures should remain distinguishable in grayscale / black-and-white printing.
+```
 
 ## Applied decision
 
-The topology figure was restored to color because no confirmed grayscale-only rule was available. To remain safe for print and accessibility, each route also keeps a distinct line style:
+Figures should use color for readability and accessibility, while also using redundant cues such as line style, fill shade, direct labels, legends, threshold lines, and grouping.
+
+For the network-topology figure, the active encoding is:
 
 ```text
 P1: blue + solid
@@ -15,16 +24,28 @@ P3: green + dotted
 P4: orange + dash-dot
 ```
 
+For generated result plots, the active encoding uses named palette colors already present in the draft:
+
+```text
+networkblue
+envgreen
+algorange
+allocpurple
+findingRed / findingOrange / findingGreen / findingBlue
+```
+
 This supports:
 
 - easier visual distinction in color;
 - fallback readability in grayscale or black-and-white printing;
 - accessibility for readers who benefit from redundant visual cues.
 
-## Active file changed
+## Active files changed
 
 ```tex
+ICNP_2026_venue_draft.tex
 ICNP_VENUE_PREP/STUDY_DESIGN_VALIDATED_STAGING.tex
+ICNP_VENUE_PREP/generated_figures/*.tex
 ```
 
 ## Feedback marker handling
