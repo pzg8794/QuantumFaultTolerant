@@ -5,26 +5,32 @@
 \begin{axis}[
     xbar,
     width=0.89\columnwidth,
-    height=3.2cm,
+    height=4cm,
     xmin=0,
     xmax=100,
     enlarge x limits={0.1, upper},
+    enlarge y limits={0.1},
     xlabel={Worst-case efficiency floor (\%)},
     symbolic y coords={EXPNeuralUCB,EXP3/UCB,CPursuit,iCEpsilonGreedy},
-    ytick=data,
+    ytick={EXPNeuralUCB,EXP3/UCB,CPursuit,iCEpsilonGreedy},
+    % ytick=data,
+    % xbar=-12pt, % 2pt gap between the 3 bars in the cluster
     ytick pos=left,
     xtick pos=bottom,
     tick label style={font=\footnotesize},
+    % nodes near coords={\pgfmathprintnumber\pgfplotspointmeta\%}, % <--- Adds labels to ALL bars
+    % nodes near coords style={color=black,font=\footnotesize,/pgf/number format/.cd,fixed,fixed zerofill,precision=0,}, % Adjust size so they don't overlap
     ymajorgrids=false,
     xmajorgrids=true,
     grid style={draw=gray!20},
     bar width=7pt,
+    bar shift=0pt
 ]
 \addplot+[xbar, draw=findingRed!80!black, fill=findingRed!95!black!25] coordinates {(18.0,EXPNeuralUCB)};
 \addplot+[xbar, draw=algorange!80!black, fill=algorange!60] coordinates {(68.8,EXP3/UCB)};
 \addplot+[xbar, draw=networkblue!80!black, fill=networkblue!55] coordinates {(77.4,CPursuit)};
 \addplot+[xbar, draw=envgreen!55!black, fill=envgreen!65] coordinates {(81.0,iCEpsilonGreedy)};
-\addplot[sharp plot, dashed, thick, draw=black, mark=none] coordinates {(85,EXPNeuralUCB) (85,iCEpsilonGreedy)};
+\addplot[sharp plot, dashed, thick, draw=black, mark=none, nodes near coords={}] coordinates {(85,EXPNeuralUCB) (85,iCEpsilonGreedy)};
 \node[font=\footnotesize, anchor=south west] at (axis cs:85,EXPNeuralUCB) {85\% target};
 \end{axis}
 \end{tikzpicture}

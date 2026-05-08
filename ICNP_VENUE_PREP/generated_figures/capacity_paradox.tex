@@ -8,14 +8,19 @@
     height=3.9cm,
     ylabel={Effect of $s:1.0\rightarrow1.5$ (pp)},
     symbolic x coords={Baseline,Stochastic,Markov,Adaptive,OnlineAdaptive},
-    xtick=data,
-    x tick label style={rotate=25,anchor=east,font=\footnotesize},
+    xtick={Baseline,Stochastic,Markov,Adaptive,OnlineAdaptive},
+    % xtick=data,
+    x tick label style={rotate=45,anchor=east,font=\footnotesize},
     ytick pos=left,
     xtick pos=bottom,
     ymajorgrids=true,
     grid style={draw=gray!20},
+    legend style={at={(0.4,-0.55)}, anchor=north},
+    legend columns=-1,
+    legend style={font=\scriptsize},
     enlarge x limits=0.13,
     bar width=12pt,
+    bar shift=0pt
 ]
 \addplot+[ybar, draw=findingRed!80!black, fill=findingRed!95!black!35] coordinates {(Baseline,-42.5) (Stochastic,-18.5) (Markov,-42.2)};
 \addplot+[ybar, draw=envgreen!55!black, fill=envgreen!65] coordinates {(Adaptive,0.0) (OnlineAdaptive,0.1)};
