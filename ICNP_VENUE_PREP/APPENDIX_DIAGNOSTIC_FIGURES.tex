@@ -1,7 +1,38 @@
 \section{Additional Diagnostic Figures}
 \label{app:diagnostic_figures}
 
-This appendix collects validated diagnostic figures that support the main Results figures without interrupting the paper body. The main paper keeps one figure per central claim; the appendix preserves denser synthesis and secondary evidence for auditability.
+This appendix collects validated diagnostic figures that support the main Results figures without interrupting the paper body. The main paper keeps one figure per central claim; the appendix preserves denser synthesis, second-checkpoint evidence, and secondary diagnostics for auditability.
+
+\subsection{Second-Checkpoint Claim Support}
+\label{app:checkpoint_claim_support}
+
+The following figures were retained from the second-checkpoint review because they strengthen claims that are central to the paper but too detailed for the main Results flow.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-032_g9_network_gap_analysis_panel_c_oracle_gap_context_vs_exp3_by_scenario_c.png}
+\caption{Contextual versus EXP3-style oracle-gap diagnostic by scenario and capacity setting. This figure supports the claim that context-aware policies are more robust than adversarial-first baselines under matched threat and capacity variation.}
+\label{fig:appendix_context_vs_exp3_gap}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-053_fig6_context_capacity.png}
+\caption{Context-capacity interaction diagnostic. This figure supports the capacity-sensitivity analysis by showing how context-aware policy performance changes with capacity configuration.}
+\label{fig:appendix_context_capacity_effects}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-056_fig10_threat_rules.png}
+\caption{Threat-rule diagnostic from the second-checkpoint artifact set. This figure provides additional support for the scenario-conditioned deployment rules summarized in \Cref{fig:deployment_guidance}.}
+\label{fig:appendix_threat_rules}
+\end{figure}
+
+\subsection{Grouped Synthesis Diagnostics}
+\label{app:grouped_synthesis_diagnostics}
+
+The grouped figures below provide broad visual summaries. They are useful for auditability and reviewer inspection, but they are kept out of the main body because they are denser than the claim-level figures in \cref{sec:SimulationResults}.
 
 \begin{figure*}[t]
 \centering
@@ -16,6 +47,11 @@ This appendix collects validated diagnostic figures that support the main Result
 \caption{Network-gap diagnostic suite. This grouped figure provides additional detail on path/fidelity structure, allocator budgets, threat escalation, capacity sensitivity, scenario penalties, allocator risk, and cross-testbed behavior.}
 \label{fig:appendix_g9_network_gap_analysis}
 \end{figure*}
+
+\subsection{Detailed Supporting Diagnostics}
+\label{app:detailed_supporting_diagnostics}
+
+The remaining figures isolate specific mechanisms behind the main claims: capacity paradox behavior, scenario penalties, allocator risk, and threat escalation.
 
 \begin{figure}[t]
 \centering
