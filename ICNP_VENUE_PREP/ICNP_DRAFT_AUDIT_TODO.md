@@ -28,7 +28,8 @@ This checklist ties the content-reduction audit to the ICNP venue-preparation re
 - [ ] Ensure all figures are readable in one-column/two-column ICNP layout.
 - [ ] Ensure all figure captions are concise and takeaway-oriented.
 - [ ] Use color when helpful, but never rely on color alone; plots and graphs must remain distinguishable when printed on black-and-white printers.
-- [ ] Check no overfull figure/table content crosses columns.
+- [x] Check no overfull appendix table content crosses columns; full cross-testbed/model-family tables were reformatted with fixed-width columns and concise descriptors.
+- [ ] Check no remaining overfull figure/table content crosses columns after the next compile.
 
 ## Background audit status
 
@@ -41,8 +42,17 @@ This checklist ties the content-reduction audit to the ICNP venue-preparation re
 
 - [x] `fig:framework` — copied to draft for visual review.
 - [x] `fig:network_topology` — restored color coding plus line-style redundancy for black-and-white readability.
-- [x] Result placeholder figures — color restored with redundant encodings in generated PGFPlots files.
-- [ ] Replace temporary generated PGFPlots with final notebook-exported image plots once graph choices are finalized.
+- [x] Main Results figures — replaced temporary PGFPlots with exported notebook-validated image plots.
+- [x] Appendix diagnostic figures — organized into second-checkpoint claim support, grouped synthesis diagnostics, and detailed supporting diagnostics.
+- [ ] Replace or remove any image that fails readability/page-flow review after compile.
+
+## Appendix audit status
+
+- [x] Full cross-testbed and model-family tables moved to appendix.
+- [x] Full appendix tables reformatted to reduce overflow and improve readability.
+- [x] Second-checkpoint claim-support figures added to appendix.
+- [x] Appendix diagnostic figures organized into presentable subsections.
+- [ ] Review compiled appendix layout for float order and page breaks.
 
 ## Notes
 
@@ -51,3 +61,4 @@ Use this tracker alongside:
 - `ICNP_VENUE_PREP/BACKGROUND_REDUCTION_AUDIT.md`
 - `ICNP_VENUE_PREP/MAIN_TEX_TO_ICNP_CHECKLIST.md`
 - `ICNP_VENUE_PREP/FIGURE_COLOR_ACCESSIBILITY_NOTE.md`
+- `ICNP_VENUE_PREP/FIGURE_SELECTION_AUDIT.md`
