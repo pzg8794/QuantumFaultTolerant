@@ -36,6 +36,18 @@ Figures marked as convergence/regret/TBD in the verification workflow are exclud
 
 ## Appendix selections
 
+### Second-checkpoint claim support
+
+These figures were added after checking the second-checkpoint archive for appendix-worthy support that strengthens the paper's main claims without bloating the main body.
+
+| Appendix image | Rationale |
+|---|---|
+| `figures/icnp/ICNP-CODE-032_g9_network_gap_analysis_panel_c_oracle_gap_context_vs_exp3_by_scenario_c.png` | Supports the contextual-versus-EXP3 robustness contrast under matched threat/capacity variation. |
+| `figures/icnp/ICNP-CODE-053_fig6_context_capacity.png` | Supports the context-capacity interaction and capacity-sensitivity claims. |
+| `figures/icnp/ICNP-CODE-056_fig10_threat_rules.png` | Supports scenario-conditioned deployment guidance and threat-rule interpretation. |
+
+### Grouped synthesis and diagnostics
+
 | Appendix image | Rationale |
 |---|---|
 | `figures/icnp/ICNP-CODE-024_g8_advanced_4panel_grouped_full_figure.png` | Dense synthesis of oracle gaps, capacity effects, allocator efficiency, and cross-testbed behavior. |
@@ -44,6 +56,22 @@ Figures marked as convergence/regret/TBD in the verification workflow are exclud
 | `figures/icnp/ICNP-CODE-036_g9_network_gap_analysis_panel_g_scenario_penalty_vs_baseline_by_algorith.png` | Detailed support for threat penalty and robustness-floor analysis. |
 | `figures/icnp/ICNP-CODE-037_g9_network_gap_analysis_panel_h_allocator_risk_floor_mean_peak_icpursuit.png` | Detailed support for allocator risk and deployment guidance. |
 | `figures/icnp/ICNP-CODE-034_g9_network_gap_analysis_panel_e_threat_escalation_heatmap_algo_scenario.png` | Diagnostic heatmap behind threat-escalation claims. |
+
+## Appendix presentation cleanup
+
+The appendix is organized as follows:
+
+```text
+Detailed Cross-Testbed and Model-Family Results
+  - Full Cross-Testbed Results
+  - Full Model-Family Results
+Additional Diagnostic Figures
+  - Second-Checkpoint Claim Support
+  - Grouped Synthesis Diagnostics
+  - Detailed Supporting Diagnostics
+```
+
+The full result tables were reformatted with fixed-width columns, tighter spacing, concise testbed descriptors, and takeaway rows to prevent overflow and make the appendix presentable under IEEE layout.
 
 ## Excluded from main paper for now
 
@@ -73,13 +101,19 @@ ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex
 ICNP_VENUE_PREP/RESULTS_VALIDATED_CROSS_TESTBED.tex
 ```
 
-Appendix diagnostics were added in:
+Appendix diagnostics are in:
 
 ```text
 ICNP_VENUE_PREP/APPENDIX_DIAGNOSTIC_FIGURES.tex
 ```
 
-and included from:
+Detailed appendix tables are in:
+
+```text
+ICNP_VENUE_PREP/APPENDIX_CROSS_TESTBED_TABLES.tex
+```
+
+Both appendix files are included from:
 
 ```text
 ICNP_2026_venue_draft.tex
