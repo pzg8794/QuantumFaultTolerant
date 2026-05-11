@@ -64,6 +64,26 @@ This log records feedback-resolution batches applied to the active ICNP venue dr
 - [x] No figure/table assets were changed.
 - [ ] Full LaTeX compile/page-count validation still pending.
 
+## Batch: Blind-review acknowledgments cleanup
+
+- **Commit:** `ac5ceb609842cc6220639fb73ce5883ac822b6d4`
+- **Owning file changed:** `ICNP_2026_venue_draft.tex`
+- **Reason for batching:** The active draft rendered an Acknowledgments section with hidden funding placeholders. For double-blind review, the acknowledgment section should not appear in the submitted PDF.
+
+### Resolved compliance item
+
+1. **Acknowledgments/funding anonymity**
+   - **Issue:** The draft rendered an Acknowledgments section even though funding and grants are identifying information in a double-blind review version.
+   - **Change:** Removed the rendered section and left a source comment: `Acknowledgments omitted from the double-blind review version. Restore camera-ready acknowledgments only after acceptance.`
+   - **Traceability marker:** The camera-ready restoration instruction is preserved as a source comment.
+
+### Validation status
+
+- [x] No rendered Acknowledgments section remains in the active venue draft source.
+- [x] No grant/funding placeholders remain rendered in the active venue draft source.
+- [ ] PDF metadata/build validation still pending.
+- [ ] Full LaTeX compile/page-count validation still pending.
+
 ## Remaining feedback-work policy
 
 Simple feedback items can be batched when all of the following are true:
