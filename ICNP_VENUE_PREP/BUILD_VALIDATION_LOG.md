@@ -46,6 +46,71 @@ Important limitation:
 
 - This is not a replacement for the Overleaf warning panel. LaTeX can still report unresolved references/citations because of aux-file state, package behavior, duplicate labels, or generated-output issues. Any warning from Overleaf should override this source-level preflight.
 
+### Figure-resolution refresh for manuscript-facing PNG assets
+
+- **Date:** 2026-05-11
+- **Scope:** Active ICNP draft figure assets under `figures/icnp/` that were still being exported from Plotly at the default `700x500` size.
+- **Root cause:** Several paper-facing Plotly figures were being written with Plotly's default raster export size, which left them at roughly `200 dpi` when placed at `\columnwidth` or `0.48\textwidth` in the draft.
+- **Fix applied:** Updated the owning Plotly exporters to route all PNG writes through a shared `EXPORT_SCALE` setting (`ICNP_PLOT_SCALE`, default `3`) so the same figure layout is exported at higher pixel density without changing the visual design.
+
+Owning source files updated:
+
+- `figures/icnp_figures/icnp_graphs.py`
+- `figures/icnp_graphs/code_and_plots/script.py`
+
+Manuscript-facing assets refreshed from regenerated source outputs:
+
+- `figures/icnp/ICNP-CODE-039_g1_capacity_paradox.png`
+- `figures/icnp/ICNP-CODE-040_g2_robustness_floor.png`
+- `figures/icnp/ICNP-CODE-041_g3_family_summary.png`
+- `figures/icnp/ICNP-CODE-042_g4_deployment_rules.png`
+- `figures/icnp/ICNP-CODE-053_fig6_context_capacity.png`
+- `figures/icnp/ICNP-CODE-056_fig10_threat_rules.png`
+
+Measured result:
+
+- Previous raster size for each affected asset: `700x500`
+- New raster size for each affected asset: `2100x1500`
+- Effective print density after refresh:
+  - about `600 dpi` at `\columnwidth`
+  - about `611 dpi` at `0.48\textwidth`
+
+Validation performed:
+
+- [x] Regenerated the owning Plotly outputs after the exporter change.
+- [x] Confirmed regenerated outputs are `2100x1500`.
+- [x] Replaced the active draft asset files at the same paths so no LaTeX include path changes were required.
+
+Remaining recommended check:
+
+- [ ] Recompile the active Overleaf project and visually inspect the PDF to confirm the refreshed raster assets render sharply in the manuscript.
+
+### Full-paper source/PDF spot-check after image refresh
+
+- **Date:** 2026-05-11
+- **Active draft:** `ICNP_2026_venue_draft.tex`
+- **Purpose:** Confirm that the full draft still compiles after the image refresh, remove any still-rendered feedback markers from the active draft path, and visually spot-check the compiled PDF pages that contain refreshed figures.
+
+What was checked:
+
+- [x] The active draft compiled locally via `latexmk -pdf`.
+- [x] The generated PDF remained at 15 pages.
+- [x] No missing-graphics warnings were reported for the active draft build.
+- [x] The refreshed manuscript-facing PNGs were present in the compiled PDF.
+- [x] A rendered feedback-marker leak in the cross-testbed caption was removed from the active draft path.
+- [x] Additional uncommented reviewer markers in the active appendix/Results fragments were converted to source comments or resolved prose so they no longer render in the PDF.
+- [x] Rendered PDF spot-check pages containing refreshed figures were reviewed after recompilation.
+
+Observed outcome:
+
+- The refreshed figures render sharply in the compiled PDF pages spot-checked from the active draft.
+- The previously visible red reviewer note in the cross-testbed figure caption no longer appears in the PDF.
+- The remaining compile noise is from pre-existing layout/reference behavior, including duplicate PDF destination warnings, underfull/overfull box warnings, and `h` to `ht` float adjustments; no new image-pipeline regression was introduced by this pass.
+
+Follow-up still expected outside this local validation pass:
+
+- [ ] Recompile/sync in Overleaf and confirm the same clean PDF state there before any external submission handoff.
+
 ### Standing tracked metrics
 
 These are not standalone tasks. They are constraints/metrics to keep tracking as the draft changes:

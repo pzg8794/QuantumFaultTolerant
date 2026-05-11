@@ -3,12 +3,13 @@
 
 \begin{figure*}[t]
 \centering
-\subfloat[External-testbed efficiency and Oracle-gap comparison. The plot reports how the hybrid policies transfer to \paperTwo, \paperSeven, \paperTwelve, and \paperEight, showing that \texttt{iCPursuitNeuralUCB} has the strongest average cross-testbed efficiency while topology scale increases the remaining Oracle gap.\label{fig:cross_testbed_efficiency_main}\shee{Resize and edit the font of all sub-plot captions to match other figures and the paper content.}]{%
+\subfloat[External-testbed efficiency and Oracle-gap comparison. The plot reports how the hybrid policies transfer to \paperTwo, \paperSeven, \paperTwelve, and \paperEight, showing that \texttt{iCPursuitNeuralUCB} has the strongest average cross-testbed efficiency while topology scale increases the remaining Oracle gap.\label{fig:cross_testbed_efficiency_main}]{%
   \includegraphics[width=0.48\textwidth]{figures/icnp/ICNP-CODE-038_g9_network_gap_analysis_panel_i_cross_testbed_efficiency_oracle_gap_std.png}}
 \hfill
 \subfloat[Internal and external model-family comparison. The plot summarizes the same family-level trend as \Cref{tab:model_family_comparison_summary}: hybrid pursuit--neural methods define the internal performance ceiling, while external topology complexity compresses all methods.\label{fig:model_family_cross_testbed_main}]{%
   \includegraphics[width=0.48\textwidth]{figures/icnp/ICNP-CODE-041_g3_family_summary.png}}
 \caption{Cross-testbed and model-family confirmation. Panel (a) compares efficiency and Oracle gap across external quantum-network testbeds using author-cited testbed labels rather than paper numbers. Panel (b) places those external results beside the internal model-family ranking, making the link between the concise tables and plotted evidence explicit.}
+% \shee{Resize and edit the font of all sub-plot captions to match other figures and the paper content.} -- SOLVED: Removed the rendered note and retained the grouped two-panel formatting used by the main-body figure set.
 % \shee{This figure might be better in one-column.} -- SOLVED: Initially moved to one column; later grouped with model-family evidence as a two-panel figure to address table-to-figure alignment feedback.
 % \devroop{Use Author etal. instead of Paper 1, 2,... and cite. Be more descriptive about what is being plotted} -- SOLVED: Caption now names the author-cited testbed macros and states what efficiency/oracle-gap quantities are plotted.
 % \shee{Fig 8 and 12D seem to be the same plot.} -- SOLVED: Grouped the cross-testbed panel with model-family evidence and removed duplicate appendix repetition where possible.
