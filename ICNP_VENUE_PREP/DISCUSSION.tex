@@ -1,30 +1,25 @@
 \section{Discussion}
 \label{sec:discussion}
-Discussion section pending audit.
-\devroop{go over this and rewrite as needed}
+% \devroop{go over this and rewrite as needed} -- SOLVED: Rewrote the Discussion as a concise synthesis of the validated Results claims and removed rendered audit text.
 
-Our results across the full evaluation suite---spanning paper baselines (CMAB / iCMAB / EXP3-family) and the Hybrid suite (allocators and replay-capacity controls)---show that routing robustness under compound uncertainty is jointly determined by \emph{(i) context in the policy}, \emph{(ii) allocator choice}, and \emph{(iii) replay-capacity parameterization}. Across both the internal corpus and external testbeds, pursuit-based contextual hybrids consistently define the robustness frontier.
+The Results show that routing robustness under compound uncertainty is jointly determined by \emph{policy context}, \emph{allocator choice}, and \emph{replay-capacity semantics}. Across the internal corpus and external testbeds, pursuit-based contextual hybrids consistently define the strongest efficiency--stability frontier, while adversarial-first baselines and poorly matched allocators expose lower robustness floors under structured and adaptive disruption.
 
 % ----------------------------------------------------------------------------
-\subsubsection{Finding 1 - Context-Aware Bandits Dominate}
+\subsubsection{Finding 1 - Context-Aware Bandit Policies Define the Robustness Frontier}
 
-Across both the paper baselines (\RQOneText-\RQTwoText) and the Hybrid suite (\RQThreeText), context-aware policies consistently outperform non-contextual and purely adversarial baselines. Pursuit-based contextual hybrids (\small\texttt{CPursuitNeuralUCB}, \small\texttt{iCPursuitNeuralUCB}) maintain strong efficiency across all five threat regimes, while EXP3-family baselines exhibit lower robustness floors under Markov, Adaptive, and OnlineAdaptive disruption. The results reinforce that topology and channel-state information are not optional optimization features but an \emph{architectural requirement} for robust routing.
+Across the paper baselines (\RQOneText--\RQTwoText) and the Hybrid suite (\RQThreeText), context-aware policies outperform non-contextual and purely adversarial baselines in the settings that matter most for deployment. Pursuit-based contextual hybrids (\small\texttt{CPursuitNeuralUCB}, \small\texttt{iCPursuitNeuralUCB}) maintain strong efficiency across the five threat regimes, while EXP3-family baselines show weaker robustness floors under Markov, Adaptive, and OnlineAdaptive disruption. This suggests that topology and channel-state context are not optional refinements; they are part of the routing architecture needed for robust quantum-network operation.
 
 % ----------------------------------------------------------------------------
 \subsubsection{Finding 2 - The Capacity Paradox is Conditional}
 
-Replay capacity exhibits non-monotone behavior under adversarial conditions. Increasing replay can improve stability in structured regimes while amplifying vulnerability under reactive threats. This effect emerges through the interaction between replay capacity and allocator-driven exploration predictability.
+Replay capacity is not a monotonic improvement knob. Increasing replay can improve stability in structured regimes while amplifying vulnerability under reactive threats. The effect emerges from the interaction between replay capacity and allocator-driven exploration predictability: larger replay buffers can reinforce recurring patterns, and reactive adversaries can exploit those patterns.
 
-Capacity sensitivity becomes most severe under allocator stress, particularly with \small\texttt{Random}. In the Hybrid suite, efficiency swings exceed 20--38 pp across replay-capacity settings under Adaptive and Markov threats. Mechanistically, larger replay buffers reinforce recurring patterns; under reactive adversaries, this increases predictability and expands the attack surface. Replay capacity therefore cannot be treated as an isolated tuning parameter.
+Capacity sensitivity is most severe under allocator stress, particularly with \small\texttt{Random}. In the Hybrid suite, efficiency swings exceed 20--38 percentage points across replay-capacity settings under Adaptive and Markov threats. Replay capacity therefore cannot be tuned independently of allocator policy or threat regime.
 
 % ----------------------------------------------------------------------------
-\subsubsection{Finding 3 - Allocator Choice is the Practical Lever}
+\subsubsection{Finding 3 - Allocator Choice is the Practical Deployment Lever}
 
-Allocator choice is the highest-leverage deployment control in the Hybrid suite. Aggregated across scenarios and replay-capacity settings, \small\texttt{ThompsonSampling} and \small\texttt{Fixed}/\small\texttt{Default} consistently form the top performance tier, while \small\texttt{Random} is strongly associated with catastrophic efficiency collapses.
-
-\begin{quote}
-\emph{Allocator choice functions as a safety mechanism, not a tuning step.}
-\end{quote}
+Allocator choice is the highest-leverage deployment control in the Hybrid suite. Aggregated across scenarios and replay-capacity settings, \small\texttt{ThompsonSampling} and \small\texttt{Fixed}/\small\texttt{Default} form the top performance tier, while \small\texttt{Random} is strongly associated with catastrophic efficiency collapses. Allocator choice therefore functions as a safety mechanism, not merely as a tuning step.
 
 Even strong pursuit-neural architectures can be pulled into the capacity paradox under allocator mismatch, while robust allocators substantially suppress replay sensitivity.
 
@@ -33,7 +28,7 @@ Even strong pursuit-neural architectures can be pulled into the capacity paradox
 
 First, context-aware routing should be treated as baseline infrastructure. Feature enrichment through topology, link-state, and traffic information yields larger robustness gains than refining reward-only exploration rules.
 
-Second, replay capacity must be treated as a coupled control variable. The relevant deployment question is not simply \textquotedblleft more or less replay,\textquotedblright but which anchoring rule (\small\texttt{Tb} vs.\ \small\texttt{T}), scale ($s$), and allocator jointly minimize tail risk under the active threat regime.
+Second, replay capacity must be treated as a coupled control variable. The relevant deployment question is not simply \textquotedblleft more or less replay,\textquotedblright but which anchoring rule (\small\texttt{$T_b$} vs.\ \small\texttt{$T$}), scale ($s$), and allocator jointly minimize tail risk under the active threat regime.
 
 Finally, the results motivate lightweight threat-aware meta-policies:
 \begin{itemize}[nosep]
