@@ -1,7 +1,7 @@
 \section{Additional Diagnostic Figures}
 \label{app:diagnostic_figures}
 
-This appendix collects validated diagnostic figures that support the main Results figures without interrupting the paper body. The main paper keeps one figure per central claim; the appendix preserves denser synthesis, second-checkpoint evidence, and secondary diagnostics for auditability.
+This appendix collects validated diagnostic figures that support the main Results figures without duplicating plots already moved into the paper body. The main paper keeps the claim-level figures; the appendix preserves second-checkpoint evidence and broader synthesis views for auditability.
 
 \subsection{Second-Checkpoint Claim Support}
 \label{app:checkpoint_claim_support}
@@ -11,72 +11,37 @@ The following figures were retained from the second-checkpoint review because th
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-032_g9_network_gap_analysis_panel_c_oracle_gap_context_vs_exp3_by_scenario_c.png}
-\caption{Contextual versus EXP3-style oracle-gap diagnostic by scenario and capacity setting. This figure supports the claim that context-aware policies are more robust than adversarial-first baselines under matched threat and capacity variation.}
+\caption{Contextual versus EXP3-style Oracle-gap diagnostic by scenario and capacity setting. The Oracle gap is the percentage-point distance between a policy's achieved efficiency and the perfect-information Oracle. Smaller gaps indicate policies that track the best available routing/allocation choice more closely; the plotted comparison shows where context-aware policies reduce this gap relative to EXP3-style baselines.}
+% \devroop{dont use "supports the claim". simply showcase what observations we can derive from this and mention what you mean by oracle gap} -- SOLVED: Caption now defines Oracle gap and states the observable comparison directly.
 \label{fig:appendix_context_vs_exp3_gap}
 \end{figure}
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-053_fig6_context_capacity.png}
-\caption{Context-capacity interaction diagnostic. This figure supports the capacity-sensitivity analysis by showing how context-aware policy performance changes with capacity configuration.}
+\caption{Context-capacity interaction diagnostic. The plot shows how context-aware policy efficiency changes as replay/capacity settings vary, illustrating that capacity affects policy families differently rather than acting as a uniform improvement knob.}
 \label{fig:appendix_context_capacity_effects}
 \end{figure}
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-056_fig10_threat_rules.png}
-\caption{Threat-rule diagnostic from the second-checkpoint artifact set. This figure provides additional support for the scenario-conditioned deployment rules summarized in \Cref{fig:deployment_guidance}.}
+\caption{Threat-rule diagnostic from the second-checkpoint artifact set. The plot shows which scenario-conditioned deployment choices dominate under each threat regime, reinforcing the main-body observation that adaptive disruption benefits most from threat-aware allocator/capacity selection rather than a single universal rule.}
+% \shee{What is the additional support provided? All captions need to be more descriptive and explicitly mention the results that are shown. Don't just mention what the graph shows, also mention what is being observed.} -- SOLVED: Caption now states the observed deployment consequence.
 \label{fig:appendix_threat_rules}
 \end{figure}
 
 \subsection{Grouped Synthesis Diagnostics}
 \label{app:grouped_synthesis_diagnostics}
 
-The grouped figures below provide broad visual summaries. They are useful for auditability and reviewer inspection, but they are kept out of the main body because they are denser than the claim-level figures in \cref{sec:SimulationResults}.
+The grouped synthesis figure below remains in the appendix because it combines multiple diagnostic views without repeating the specific G9 panels now used in the main body.
 
 \begin{figure*}[t]
 \centering
 \includegraphics[width=0.98\textwidth]{figures/icnp/ICNP-CODE-024_g8_advanced_4panel_grouped_full_figure.png}
-\caption{Advanced synthesis diagnostic. This grouped figure summarizes oracle-gap distributions, capacity-paradox behavior, allocator efficiency, and cross-testbed efficiency/oracle-gap trends.}
+\caption{Advanced synthesis diagnostic. The grouped figure combines Oracle-gap distributions, capacity-paradox behavior, allocator efficiency, and cross-testbed efficiency/oracle-gap trends. It is retained as a compact audit view of how the main claims interact across model family, replay/capacity setting, allocator choice, and external testbed.}
 \label{fig:appendix_g8_advanced_synthesis}
 \end{figure*}
 
-\begin{figure*}[t]
-\centering
-\includegraphics[width=0.98\textwidth]{figures/icnp/ICNP-CODE-029_g9_network_gap_analysis_grouped_full_figure.png}
-\caption{Network-gap diagnostic suite. This grouped figure provides additional detail on path/fidelity structure, allocator budgets, threat escalation, capacity sensitivity, scenario penalties, allocator risk, and cross-testbed behavior.}
-\label{fig:appendix_g9_network_gap_analysis}
-\end{figure*}
+% \shee{Fig 13 can be removed since the sub plots are already included in the main paper and in the appendix.} -- SOLVED: Removed the duplicated G9 grouped/full figure and standalone G9 panels that are now represented in the main-body grouped figures.
 
-\subsection{Detailed Supporting Diagnostics}
-\label{app:detailed_supporting_diagnostics}
-
-The remaining figures isolate specific mechanisms behind the main claims: capacity paradox behavior, scenario penalties, allocator risk, and threat escalation.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-035_g9_network_gap_analysis_panel_f_capacity_paradox_all_6_replay_configs_sc.png}
-\caption{Detailed capacity-paradox diagnostic across replay configurations and scenarios. This figure supports the compact main-body capacity-paradox result in \Cref{fig:capacity_paradox}.}
-\label{fig:appendix_capacity_paradox_all_configs}
-\end{figure}
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-036_g9_network_gap_analysis_panel_g_scenario_penalty_vs_baseline_by_algorith.png}
-\caption{Scenario-penalty diagnostic by algorithm and threat. This figure provides additional support for the robustness-floor analysis in \Cref{fig:robustness_floor}.}
-\label{fig:appendix_scenario_penalty}
-\end{figure}
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-037_g9_network_gap_analysis_panel_h_allocator_risk_floor_mean_peak_icpursuit.png}
-\caption{Allocator-risk diagnostic for the pursuit-neural family. This figure supports the deployment guidance and allocator-risk conclusions in \Cref{fig:deployment_guidance}.}
-\label{fig:appendix_allocator_risk}
-\end{figure}
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-034_g9_network_gap_analysis_panel_e_threat_escalation_heatmap_algo_scenario.png}
-\caption{Threat-escalation heatmap diagnostic. This figure shows algorithm-by-scenario structure behind the compact main-body threat-robustness claims.}
-\label{fig:appendix_threat_escalation_heatmap}
-\end{figure}
