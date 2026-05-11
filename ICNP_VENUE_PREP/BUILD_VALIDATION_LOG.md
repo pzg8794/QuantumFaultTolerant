@@ -1,6 +1,6 @@
 # ICNP Build Validation Log
 
-This log records non-destructive build and submission-readiness validation for `ICNP_2026_venue_draft.tex`.
+This log records non-destructive Overleaf/PDF validation for `ICNP_2026_venue_draft.tex`.
 
 ## Validation pass: source-level preflight after feedback cleanup
 
@@ -9,9 +9,9 @@ This log records non-destructive build and submission-readiness validation for `
 - **Relevant recent commits:**
   - `ac5ceb609842cc6220639fb73ce5883ac822b6d4` — omitted rendered acknowledgments for double-blind review.
   - `bde8c9b99ae15a87b6b06b4309f3ed1cd7ec1b88` — documented blind-review acknowledgment cleanup.
-- **Validation type:** Source-level preflight only. A full LaTeX compile was not completed in this pass.
+- **Validation type:** Source-level preflight plus Overleaf/PDF validation checklist. Overleaf is the expected compile environment.
 
-### What was checked
+### What was checked from source
 
 - [x] Active draft uses IEEE conference mode: `\documentclass[10pt,conference]{IEEEtran}`.
 - [x] Active draft uses anonymous author block: `\author{Anonymous Authors}`.
@@ -27,39 +27,34 @@ This log records non-destructive build and submission-readiness validation for `
   - `ICNP_VENUE_PREP/FUTURE_WORK`
   - `ICNP_VENUE_PREP/CONCLUSION`
   - appendix files under `ICNP_VENUE_PREP/`.
-- [x] No GitHub Actions workflow run was found for commit `bde8c9b99ae15a87b6b06b4309f3ed1cd7ec1b88`.
 
-### What could not be validated in this pass
+### What remains to check in Overleaf/PDF output
 
-The local execution environment could not clone the GitHub repository because DNS resolution for `github.com` failed. Therefore, the following items remain open until Overleaf, CI, or a local repo-aware LaTeX environment runs the build:
+The active draft is expected to compile in Overleaf. The remaining task is not "make LaTeX compile"; it is to inspect the Overleaf output and exported PDF for submission risks:
 
-- [ ] Full LaTeX compile of `ICNP_2026_venue_draft.tex`.
 - [ ] Main-body page count.
-- [ ] Unresolved references and citations from the `.log`/`.blg` output.
-- [ ] Overfull/underfull box review.
-- [ ] Missing figure-file detection.
-- [ ] Figure/table float ordering and page-flow review.
-- [ ] Appendix float order and page breaks.
-- [ ] PDF font embedding check.
-- [ ] PDF metadata/anonymity check.
+- [ ] Overleaf warnings for undefined references/citations.
+- [ ] Overleaf warnings for missing figure files.
+- [ ] Significant overfull boxes that visibly affect layout.
+- [ ] Figure/table float order and page-flow issues in the generated PDF.
+- [ ] Appendix float order and page breaks in the generated PDF.
+- [ ] PDF font embedding check, if available from the exported PDF.
+- [ ] PDF metadata/anonymity check, after the final source sweep.
 
-### How to validate next
+### Practical Overleaf validation procedure
 
-Use Overleaf or a local checkout with a LaTeX toolchain. Recommended command sequence from a full repository checkout:
-
-```bash
-latexmk -pdf -interaction=nonstopmode -halt-on-error ICNP_2026_venue_draft.tex
-```
-
-Then inspect:
-
-```bash
-grep -n "undefined references\|Citation.*undefined\|Overfull \\hbox\|LaTeX Warning\|Package.*Warning" ICNP_2026_venue_draft.log
-pdfinfo ICNP_2026_venue_draft.pdf
-pdffonts ICNP_2026_venue_draft.pdf
-```
-
-Record the page count, unresolved refs/cites, overfull boxes, and any figure/table layout issues in this file after the build.
+1. Open the active Overleaf project and confirm it is synced to the current GitHub state.
+2. Recompile.
+3. Check the Overleaf warning panel for:
+   - undefined references;
+   - undefined citations;
+   - missing graphics;
+   - serious overfull boxes.
+4. Open the generated PDF and record:
+   - main-body page count before references/appendices;
+   - whether figures/tables land near the claims they support;
+   - whether appendix tables/figures overflow or appear in a confusing order.
+5. Record the findings in this file.
 
 ## Final-gate blocker
 
