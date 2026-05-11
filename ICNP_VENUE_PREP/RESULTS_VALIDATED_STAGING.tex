@@ -22,7 +22,7 @@ RQ1 uses the EXP-family, CMAB, and iCMAB master datasets, filtered to Stochastic
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-033_g9_network_gap_analysis_panel_d_rq1_algorithm_tier_separation_stochastic.png}
-\caption{Main stochastic-regime performance summary. The exported validation figure shows algorithm-tier separation under stochastic decoherence, complementing the RQ1 evidence table.}
+\caption{Stochastic-regime algorithm separation. The figure compares Oracle-normalized efficiency under stochastic decoherence and separates the evaluated bandit policies into viable, degraded, and collapsed tiers. This visual supports the RQ1 claim that contextual pursuit and epsilon-greedy baselines remain viable while several structurally mismatched policies fail.}
 \label{fig:main_performance_summary}
 \end{figure}
 
@@ -75,9 +75,20 @@ RQ2 uses the Markov, Adaptive, and OnlineAdaptive threat slice from \cref{tab:sc
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-040_g2_robustness_floor.png}
-\caption{Robustness floor under structured and adaptive threats. The exported validation figure shows which bandit policies maintain stable worst-case performance and which become fragile under adaptive disruption.}
+\caption{Worst-case robustness floor under structured and adaptive threats. The figure reports each representative policy's lowest Oracle-normalized efficiency across the locked adversarial scope. Higher floors indicate policies that avoid catastrophic collapse; the EXPNeuralUCB floor highlights that adversarial-style exploration alone is not sufficient for stable quantum-routing performance.}
 \label{fig:robustness_floor}
 \end{figure}
+
+\begin{figure*}[t]
+\centering
+\subfloat[Scenario penalties relative to the baseline condition. Larger penalties indicate greater threat-induced degradation for a given algorithm family.\label{fig:scenario_penalty_main}]{%
+  \includegraphics[width=0.48\textwidth]{figures/icnp/ICNP-CODE-036_g9_network_gap_analysis_panel_g_scenario_penalty_vs_baseline_by_algorith.png}}
+\hfill
+\subfloat[Threat-escalation heatmap across algorithms and scenarios. The heatmap shows how performance changes as disruption progresses from stochastic noise to structured and adaptive interference.\label{fig:threat_escalation_heatmap_main}]{%
+  \includegraphics[width=0.48\textwidth]{figures/icnp/ICNP-CODE-034_g9_network_gap_analysis_panel_e_threat_escalation_heatmap_algo_scenario.png}}
+\caption{Main-body threat diagnostics for RQ2. Panel (a) quantifies how much efficiency is lost when moving from the baseline condition to each threat regime; Panel (b) shows the same escalation as an algorithm-by-scenario heatmap. Together with \Cref{fig:robustness_floor}, these figures show that contextual and informed policies preserve stronger stability than EXP-family baselines as the threat model becomes more structured and adaptive.}
+\label{fig:threat_penalty_escalation}
+\end{figure*}
 
 \begin{table}[ht!]
 \footnotesize
@@ -97,9 +108,7 @@ EXP3/UCB & 76.3 & 6.0 & 68.8 & 0.0 \\
 \end{tabular}
 \end{table}
 
-\Cref{tab:rq2_adversarial} refutes the adversarial-first hypothesis: CPursuit leads average efficiency, iCEpsilonGreedy provides the strongest stability floor, and EXPNeuralUCB remains fragile despite adversarial exploration. Thus, RQ2 is answered affirmatively: structured and adaptive threats expose stability gaps not visible in RQ1, and adversarial-first EXP-family baselines do not dominate the locked adversarial scope.
-
-% Second-look candidates before final venue cleanup: robustness frontier figure (fig:floor) and explicit RQ2a/RQ2b/RQ2c supporting-answer bullets.
+\Cref{tab:rq2_adversarial,fig:robustness_floor,fig:threat_penalty_escalation} refute the adversarial-first hypothesis: CPursuit leads average efficiency, iCEpsilonGreedy provides the strongest stability floor, and EXPNeuralUCB remains fragile despite adversarial exploration. Thus, RQ2 is answered affirmatively: structured and adaptive threats expose stability gaps not visible in RQ1, and adversarial-first EXP-family baselines do not dominate the locked adversarial scope.
 
 % ============================================================================
 % RQ3: Deployment Optimization
@@ -115,8 +124,6 @@ RQ3 uses the validated Hybrid master dataset for CPursuitNeuralUCB, iCPursuitNeu
 
 \smallTitle{Validated RQ3 answer}
 Deployment is configuration-sensitive, but the Hybrid master dataset also reveals a strong static configuration. At the 6K horizon, \texttt{iCPursuitNeuralUCB + Fixed + ($T$-type, $s=2$)} achieves a 96.0\% global average and a 92.8\% worst-case floor across scenarios, using the validated mean over 3- and 5-run suites. Scenario-specific optima still differ, so later RQ3 analyses disaggregate allocator and replay-capacity effects.
-
-% Keep for second-look before final venue cleanup: threat-adaptive allocator figure (fig:threat_rules) and capacity--efficiency figure (fig:capacity_all). The latter likely belongs with RQ3b.
 
 % ============================================================================
 % RQ3a: Predictive Context Modeling Impact
@@ -162,13 +169,18 @@ RQ3b tests whether larger replay scale improves robustness or creates a threat-d
 \smallTitle{RQ3b evidence slice}
 RQ3b fixes the allocator to \texttt{Random}, the horizon to 6K, and the replay anchoring to $T$-type, then varies $s\in\{1,1.5,2\}$ using Hybrid master-dataset means over the 3- and 5-run suites. This isolates replay-scale behavior before allocator co-design is analyzed in RQ3c.
 
-\begin{figure}[t]
+\begin{figure*}[t]
 \centering
-\includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-039_g1_capacity_paradox.png}
-\caption{Replay capacity has threat-dependent effects. The exported validation figure shows where additional replay scale improves efficiency and where it reduces robustness under adaptive disruption.}
-% \shee{Can data labels be added to all graphs?} -- SOLVED: Replaced temporary PGFPlots placeholder with exported notebook-validated image containing the finalized graph styling/labels.
+\subfloat[Compact capacity-paradox summary. Bars show the replay-scale effect by threat regime, emphasizing that added replay can help or hurt depending on the disruption process.\label{fig:capacity_paradox_summary}]{%
+  \includegraphics[width=0.48\textwidth]{figures/icnp/ICNP-CODE-039_g1_capacity_paradox.png}}
+\hfill
+\subfloat[Detailed replay-configuration sensitivity. The panel expands the same claim across all six replay configurations and scenarios, exposing where the non-monotonic capacity effect is strongest.\label{fig:capacity_paradox_all_configs_main}]{%
+  \includegraphics[width=0.48\textwidth]{figures/icnp/ICNP-CODE-035_g9_network_gap_analysis_panel_f_capacity_paradox_all_6_replay_configs_sc.png}}
+\caption{Replay capacity has threat-dependent effects. Panel (a) gives the compact main finding: replay scale is not a monotonic improvement knob. Panel (b) expands that finding across replay semantics and scenarios, showing that the capacity paradox depends jointly on threat regime and replay configuration.}
+% \shee{Can data labels be added to all graphs?} -- SOLVED: Replaced temporary PGFPlots placeholder with exported notebook-validated images containing finalized graph styling/labels.
+% \devroop{Group capacity figures that support the same point.} -- SOLVED: Grouped the compact capacity-paradox figure and detailed replay-configuration panel into one two-panel Results figure.
 \label{fig:capacity_paradox}
-\end{figure}
+\end{figure*}
 
 \begin{table}[ht!]
 \footnotesize
@@ -193,9 +205,7 @@ iCPursuitNeuralUCB & 1.0 & 92.1 & 93.6 & 88.7 & 88.5 & 70.8 & 86.7 \\
 {\footnotesize{Bl=Baseline, Sh=Stochastic, Mk=Markov, Ag=Adaptive, OA=OnlineAdaptive.}\shee{define s}}
 \end{table}
 
-\Cref{tab:rq3b_master_capacity_scaling} shows that replay scale is not a monotonic ``more is better'' knob. Under fixed \texttt{Random} allocation and $T$-type anchoring, both pursuit-based hybrids degrade sharply at $s=1.5$ and recover at $s=2$, confirming that replay capacity must be tuned jointly with allocator and anchoring type. Extended GA ablations remain supporting evidence, but the master-dataset trend is the validated RQ3b conclusion.
-
-% Keep for second-look before final venue cleanup: capacity--efficiency figure (fig:capacity_all), likely with RQ3b if a visual capacity-paradox artifact is needed.
+\Cref{tab:rq3b_master_capacity_scaling,fig:capacity_paradox} show that replay scale is not a monotonic ``more is better'' knob. Under fixed \texttt{Random} allocation and $T$-type anchoring, both pursuit-based hybrids degrade sharply at $s=1.5$ and recover at $s=2$, confirming that replay capacity must be tuned jointly with allocator and anchoring type. Extended GA ablations remain supporting evidence, but the master-dataset trend is the validated RQ3b conclusion.
 
 % ============================================================================
 % RQ3c: Algorithm-Allocator Co-Design
@@ -243,7 +253,7 @@ RQ3d converts the RQ3a--RQ3c findings into 6K deployment rules for iCPursuitNeur
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-042_g4_deployment_rules.png}
-\caption{Scenario-based deployment guidance. The exported validation figure summarizes when the strong static default is sufficient and when threat-adaptive switching improves robustness.}
+\caption{Scenario-based deployment guidance for iCPursuitNeuralUCB. The figure compares the strong static default against scenario-specific switching rules, showing that switching yields modest gains overall but is most useful under adaptive disruption, where allocator/capacity mismatch has the highest risk.}
 \label{fig:deployment_guidance}
 \end{figure}
 
@@ -267,7 +277,5 @@ OnlineAdaptive & Fixed + ($T$, $s=2$) & 99.8 & +0.0 \\
 \end{table}
 
 \Cref{tab:rq3d_deployment_rules} answers RQ3d affirmatively: clear deployment rules emerge, but the static default remains strong enough to keep all scenarios above the 85\% target at 6K. Threat-adaptive switching is most useful as a safeguard against the allocator/capacity mismatch diagnosed in RQ3b--RQ3c, with the largest validated gain under Adaptive disruption.
-
-% Keep for second-look before final venue cleanup: hybrid convergence figure (fig:convergence_hybrid), if a visual learning-curve artifact is needed in Results.
 
 
