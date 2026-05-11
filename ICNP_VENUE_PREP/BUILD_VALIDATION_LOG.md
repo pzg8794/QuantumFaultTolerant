@@ -1,4 +1,4 @@
-# ICNP Build Validation Log
+# ICNP Overleaf/PDF Validation Log
 
 This log records non-destructive Overleaf/PDF validation for `ICNP_2026_venue_draft.tex`.
 
@@ -28,33 +28,41 @@ This log records non-destructive Overleaf/PDF validation for `ICNP_2026_venue_dr
   - `ICNP_VENUE_PREP/CONCLUSION`
   - appendix files under `ICNP_VENUE_PREP/`.
 
-### What remains to check in Overleaf/PDF output
+### Standing tracked metrics
 
-The active draft is expected to compile in Overleaf. The remaining task is not "make LaTeX compile"; it is to inspect the Overleaf output and exported PDF for submission risks:
+These are not standalone tasks. They are constraints/metrics to keep tracking as the draft changes:
 
-- [ ] Main-body page count.
-- [ ] Overleaf warnings for undefined references/citations.
-- [ ] Overleaf warnings for missing figure files.
+- **Page budget:** main paper must remain within the ICNP main-body limit.
+- **Commenting state:** final rendered-marker/source sweep remains blocked until advisors/reviewers are done commenting.
+- **Double-blind state:** identifying acknowledgments, public artifact links, and PDF metadata must remain absent from the review submission.
+
+### Current actionable validation checks
+
+The active draft is expected to compile in Overleaf. The useful work now is to inspect the Overleaf warning panel and generated PDF for issues introduced by recent edits:
+
+- [ ] Undefined references/citations in Overleaf warnings.
+- [ ] Missing figure-file warnings.
 - [ ] Significant overfull boxes that visibly affect layout.
 - [ ] Figure/table float order and page-flow issues in the generated PDF.
 - [ ] Appendix float order and page breaks in the generated PDF.
+- [ ] Page-budget regression, if recent edits pushed the main body over the tracked limit.
 - [ ] PDF font embedding check, if available from the exported PDF.
 - [ ] PDF metadata/anonymity check, after the final source sweep.
 
 ### Practical Overleaf validation procedure
 
 1. Open the active Overleaf project and confirm it is synced to the current GitHub state.
-2. Recompile.
+2. Recompile in Overleaf.
 3. Check the Overleaf warning panel for:
    - undefined references;
    - undefined citations;
    - missing graphics;
    - serious overfull boxes.
 4. Open the generated PDF and record:
-   - main-body page count before references/appendices;
+   - whether the main body remains within the already tracked page budget;
    - whether figures/tables land near the claims they support;
    - whether appendix tables/figures overflow or appear in a confusing order.
-5. Record the findings in this file.
+5. Record findings here only when there is a change, regression, or issue worth tracking.
 
 ## Final-gate blocker
 
