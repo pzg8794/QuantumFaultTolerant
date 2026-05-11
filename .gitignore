@@ -29,6 +29,12 @@ __pycache__/
 scripts/
 tools/
 
+# Local figure-generation workspaces; manuscript-facing assets live in figures/icnp/
+figures/icnp-exported-assets/
+figures/icnp-exported-assets2/
+figures/icnp_figures/
+figures/icnp_graphs/code_and_plots/
+
 # Local browser/session state for Overleaf crawler
 .auth/
 
