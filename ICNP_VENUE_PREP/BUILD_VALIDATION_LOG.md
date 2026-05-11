@@ -28,6 +28,24 @@ This log records non-destructive Overleaf/PDF validation for `ICNP_2026_venue_dr
   - `ICNP_VENUE_PREP/CONCLUSION`
   - appendix files under `ICNP_VENUE_PREP/`.
 
+### Source-level reference/citation pass
+
+- **Date:** 2026-05-11
+- **Scope:** Active venue draft path only: `ICNP_2026_venue_draft.tex`, `02--related_works.tex`, included ICNP staging files, and included appendix files.
+- **Purpose:** Catch obvious undefined-reference or missing-bibliography issues before relying on the Overleaf warning panel.
+
+Checked:
+
+- [x] Empty citation placeholders such as `\cite{}` were not found in the active draft path.
+- [x] Historical `\Cref{sec:testbed_comparison}` / `\ref{sec:testbed_comparison}` hits were confined to old/reference material, not the active venue draft path.
+- [x] Active `\cite{...}` keys inspected during the pass are present in `refs.bib`.
+- [x] Active cross-testbed references use the current labels/macros, including `\paperTwo`, `\paperSeven`, `\paperTwelve`, `\paperEight`, `tab:testbed_comparison_full`, and `tab:model_family_comparison_full`.
+- [x] No source-level undefined-reference fix was applied in this pass.
+
+Important limitation:
+
+- This is not a replacement for the Overleaf warning panel. LaTeX can still report unresolved references/citations because of aux-file state, package behavior, duplicate labels, or generated-output issues. Any warning from Overleaf should override this source-level preflight.
+
 ### Standing tracked metrics
 
 These are not standalone tasks. They are constraints/metrics to keep tracking as the draft changes:
@@ -40,7 +58,8 @@ These are not standalone tasks. They are constraints/metrics to keep tracking as
 
 The active draft is expected to compile in Overleaf. The useful work now is to inspect the Overleaf warning panel and generated PDF for issues introduced by recent edits:
 
-- [ ] Undefined references/citations in Overleaf warnings.
+- [x] Source-level undefined-reference/citation preflight completed; no active-path fix required.
+- [ ] Overleaf warning-panel review for undefined references/citations.
 - [ ] Missing figure-file warnings.
 - [ ] Significant overfull boxes that visibly affect layout.
 - [ ] Figure/table float order and page-flow issues in the generated PDF.
