@@ -7,8 +7,9 @@ This appendix collects diagnostic figures that complement the main Results figur
 \label{app:checkpoint_claim_support}
 
 The following figures provide supporting views for claims that are central to the paper but too detailed for the main Results flow.
+\shee{Add a bit more description and add references to the figures.}
 
-\begin{figure}[t]
+\begin{figure}[h]
 \centering
 \includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-032_g9_network_gap_analysis_panel_c_oracle_gap_context_vs_exp3_by_scenario_c.png}
 \caption{Contextual versus EXP3-style Oracle-gap diagnostic by scenario and capacity setting. The Oracle gap is the percentage-point distance between a policy's achieved efficiency and the perfect-information Oracle. Smaller gaps indicate policies that track the best available routing/allocation choice more closely; the plotted comparison shows where context-aware policies reduce this gap relative to EXP3-style baselines.}
@@ -16,14 +17,14 @@ The following figures provide supporting views for claims that are central to th
 \label{fig:appendix_context_vs_exp3_gap}
 \end{figure}
 
-\begin{figure}[t]
+\begin{figure}[h]
 \centering
 \includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-053_fig6_context_capacity.png}
 \caption{Context-capacity interaction diagnostic. The plot shows how context-aware policy efficiency changes as replay/capacity settings vary, illustrating that capacity affects policy families differently rather than acting as a uniform improvement knob.}
 \label{fig:appendix_context_capacity_effects}
 \end{figure}
 
-\begin{figure}[t]
+\begin{figure}[h]
 \centering
 \includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-056_fig10_threat_rules.png}
 \caption{Threat-rule diagnostic. The plot shows which scenario-conditioned deployment choices dominate under each threat regime, reinforcing the main-body observation that adaptive disruption benefits most from threat-aware allocator/capacity selection rather than a single universal rule.}
@@ -35,11 +36,12 @@ The following figures provide supporting views for claims that are central to th
 \label{app:grouped_synthesis_diagnostics}
 
 The grouped synthesis figure below remains in the appendix because it combines multiple diagnostic views without repeating the specific G9 panels now used in the main body.
+\shee{Add a reference to the figure since it is placed in a different location}
 
 \begin{figure*}[t]
 \centering
 \includegraphics[width=0.98\textwidth]{figures/icnp/ICNP-CODE-024_g8_advanced_4panel_grouped_full_figure.png}
-\caption{Advanced synthesis diagnostic. The grouped figure combines Oracle-gap distributions, capacity-paradox behavior, allocator efficiency, and cross-testbed efficiency/oracle-gap trends. It provides a compact view of how the main claims interact across model family, replay/capacity setting, allocator choice, and external testbed.}
+\caption{Advanced synthesis diagnostic. The grouped figure combines Oracle-gap distributions, capacity-paradox behavior, allocator efficiency, and cross-testbed efficiency/oracle-gap trends. It provides a compact view of how the main claims interact across model family, replay/capacity setting, allocator choice, and external testbed.\shee{Legend for figure C overlaps the bars. Move legends so that they don't overlap the graph}}
 \label{fig:appendix_g8_advanced_synthesis}
 \end{figure*}
 
