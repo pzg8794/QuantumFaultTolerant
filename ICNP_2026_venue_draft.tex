@@ -140,11 +140,11 @@ Existing quantum-routing studies propose online path selection, benchmarking-dri
 \draw[arrow, draw=black!75, dotted] (grid) -- (guidance);
 \end{tikzpicture}%
 }
-\caption{Venue-draft evaluation framework. Color, fill, and arrow style distinguish topology, threat, policy, allocator, and replay/capacity inputs while preserving black-and-white readability. These dimensions are matched before reporting metrics, robustness comparisons, and deployment guidance.}
+\caption{Threat-aware evaluation framework. Color, fill, and arrow style distinguish topology, threat, policy, allocator, and replay/capacity inputs while preserving black-and-white readability. These dimensions are matched before reporting metrics, robustness comparisons, and deployment guidance.}
 \label{fig:framework}
 \end{figure}
 
-To address this gap, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks. The proposed work focuses on three main research questions, listed as follows,
+To address this gap, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks. We address three research questions:
 
 \noindent \textbf{RQ1.} \emph{How do classical and context-aware multi-armed bandit (MAB) policies perform under stochastic quantum network conditions?}
 
