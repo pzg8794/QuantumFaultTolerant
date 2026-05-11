@@ -37,6 +37,33 @@ This log records feedback-resolution batches applied to the active ICNP venue dr
 - [x] The changes match the prior threat-taxonomy audit decision.
 - [ ] Full LaTeX compile/page-count validation still pending.
 
+## Batch: Discussion and Conclusion rendered-marker cleanup
+
+- **Discussion commit:** `8880cb3e55b5832722c3c51e9aa7d06aedfe69f6`
+- **Conclusion commit:** `c341cfdb5bcfa1c9f61ecbb557b3a95c0b81ed60`
+- **Owning files changed:** `ICNP_VENUE_PREP/DISCUSSION.tex`, `ICNP_VENUE_PREP/CONCLUSION.tex`
+- **Reason for batching:** Both files contained visible audit/feedback placeholders in active manuscript sections. The changes removed rendered draft-review text and tightened prose without changing data values, figure assets, or the validated Results claims.
+
+### Resolved feedback / cleanup
+
+1. **Devroop: `go over this and rewrite as needed` in Discussion**
+   - **Issue:** The active Discussion rendered both `Discussion section pending audit.` and a `\devroop{...}` feedback macro.
+   - **Change:** Rewrote the Discussion as a concise synthesis of the validated Results claims: contextual policy robustness, conditional capacity paradox, and allocator choice as a deployment lever.
+   - **Traceability marker:** Preserved the original feedback as a LaTeX source comment with a `SOLVED` explanation.
+
+2. **Rendered pending-audit marker in Conclusion**
+   - **Issue:** The active Conclusion rendered `Conclusion section pending audit.` in red text.
+   - **Change:** Removed the rendered audit marker and kept the conclusion focused on the validated claims: threat-aware benchmark, contextual hybrid frontier, capacity paradox, allocator dependence, and future validation.
+   - **Traceability marker:** Added a source comment noting the cleanup.
+
+### Validation status
+
+- [x] No reviewer/audit placeholder is rendered in Discussion.
+- [x] No red pending-audit marker is rendered in Conclusion.
+- [x] No validated result numbers were changed.
+- [x] No figure/table assets were changed.
+- [ ] Full LaTeX compile/page-count validation still pending.
+
 ## Remaining feedback-work policy
 
 Simple feedback items can be batched when all of the following are true:
