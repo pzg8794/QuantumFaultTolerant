@@ -129,6 +129,19 @@ def add_panel_label(ax: Axes, label: str, title: str) -> None:
     ax.text(-0.09, 1.08, label, transform=ax.transAxes, fontsize=15, fontweight="bold")
 
 
+def color_boxplot_lines(ax: Axes) -> None:
+    boxes = [patch for patch in ax.patches if hasattr(patch, "get_facecolor")]
+    for index, patch in enumerate(boxes):
+        color = patch.get_facecolor()
+        patch.set_edgecolor(color)
+        patch.set_linewidth(1.4)
+        for line in ax.lines[index * 6 : (index + 1) * 6]:
+            line.set_color(color)
+            line.set_markeredgecolor(color)
+            line.set_markerfacecolor(color)
+            line.set_linewidth(1.5)
+
+
 def main() -> None:
     panel_a = build_panel_a()
     panel_b = build_panel_b()
@@ -173,6 +186,7 @@ def main() -> None:
         legend=False,
         ax=ax,
     )
+    color_boxplot_lines(ax)
     sns.stripplot(
         data=panel_a.sample(min(len(panel_a), 420), random_state=7),
         x="family",
@@ -204,6 +218,7 @@ def main() -> None:
         fliersize=2.4,
         ax=ax,
     )
+    color_boxplot_lines(ax)
     ax.axhline(0, color="black", linewidth=1.1)
     add_panel_label(ax, "B", "Capacity paradox as paired $s=2$ vs. $s=1$ delta")
     ax.set_xlabel("")
@@ -227,6 +242,7 @@ def main() -> None:
         legend=False,
         ax=ax,
     )
+    color_boxplot_lines(ax)
     add_panel_label(ax, "C", "Allocator-induced tail risk for hybrid policies")
     ax.set_xlabel("")
     ax.set_ylabel("Oracle gap (percentage points)")
@@ -254,6 +270,7 @@ def main() -> None:
         legend=False,
         ax=ax,
     )
+    color_boxplot_lines(ax)
     add_panel_label(ax, "D", "Standardized external-testbed efficiency spread")
     ax.set_xlabel("")
     ax.set_ylabel("Oracle-normalized efficiency (%)")
