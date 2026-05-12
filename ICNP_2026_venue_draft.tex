@@ -148,21 +148,13 @@ Existing quantum-routing studies propose online path selection, benchmarking-dri
 
 To address this gap, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks. 
 
-While addressing these questions, the work makes three contributions. First, we introduce a unified threat-aware routing evaluation framework for comparing stochastic, contextual, adversarial, predictive, and hybrid bandit policies for joint entanglement path selection and qubit allocation under matched threat conditions. Second, we show that routing robustness depends on the interaction among bandit policy, allocator policy, and replay-capacity semantics, identifying a threat-dependent capacity paradox in which added capacity helps under structured disruption but hurts under adaptive attacks. Third, we validate the main trends across external quantum-network testbeds and derive deployment guidance for selecting model--allocator--capacity combinations under different threat regimes.
-
-
 To summarize, this work makes the following contributions:
 \begin{itemize}
-
-    \item \descStep{XXXX}{XXXX}
-    \item \descStep{XXXX}{XXXX}
-    \item \descStep{XXXX}{XXXX}
-    \item \descStep{Experimental findings}{}    
-%     \item \descStep{XXX}{XXXXX}
-
+    \item \descStep{Threat-aware evaluation framework}{We introduce a unified framework for comparing stochastic, contextual, adversarial, predictive, and hybrid bandit policies for joint entanglement path selection and qubit allocation under matched threat conditions.}
+    \item \descStep{Matched allocator and replay analysis}{We evaluate threat regime, allocator policy, and replay-capacity semantics as first-class factors instead of fixing allocator and replay assumptions, enabling attribution of robustness to the bandit-policy--allocator--capacity interaction.}
+    \item \descStep{Capacity-paradox characterization}{We show that routing robustness depends on the interaction among policy, allocator, and replay semantics, identifying a threat-dependent capacity paradox in which added replay capacity can help under structured disruption but hurt under adaptive attacks.}
+    \item \descStep{Experimental findings}{Across thirteen bandit policies, five threat regimes, and three external quantum-network testbeds, we find that pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff and derive deployment guidance for selecting model--allocator--capacity configurations under different threat regimes.}
 \end{itemize}
-
-
 
 \input{02--related_works}
 
