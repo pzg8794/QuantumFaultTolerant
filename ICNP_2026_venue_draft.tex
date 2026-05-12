@@ -297,14 +297,31 @@ Informed variants augment the context vector from \cref{subsec:mab} with history
 
 Our work addresses three research questions:
 
-\noindent \textbf{RQ1.} \emph{How do classical and context-aware multi-armed bandit (MAB) policies perform under stochastic quantum network conditions?} \hl{We found that....}
+\noindent \textbf{RQ1.} \emph{How do classical and context-aware multi-armed bandit (MAB) policies perform under stochastic quantum network conditions?} 
+% \hl{We found that....}
 
 \noindent \textbf{RQ2.} \emph{How does the performance of bandit-based routing strategies change as network disruptions evolve from stochastic noise to structured, adaptive adversarial interference?}
 
 \noindent \textbf{RQ3.} \emph{How do choices in bandit policy, resource allocation strategy, and replay-capacity semantics interact to affect routing efficiency and stability in quantum entanglement routing?}
 
+% Dan, grouped the RQ findings into one paragraph to show the through-line across all three: stochastic decoherence separates viable from failing policies (RQ1), context-awareness holds that advantage under escalation (RQ2), and the real lever is the algorithm–allocator–capacity interaction including the capacity paradox (RQ3). Let me know if you'd prefer them split
+\textbf{RQ1} showed that stochastic decoherence alone separates viable from
+failing policies: \texttt{CPursuit} and \texttt{(i)CEpsilonGreedy} hold above
+85\%, while epoch-greedy designs collapse to $\approx$37\% without any
+adversarial pressure. \textbf{RQ2} showed that context-aware routing sustains
+this advantage under escalation: pursuit--neural hybrids maintain 87--93\%
+efficiency and 65--73\% worst-case floors across all adversarial regimes, while
+\texttt{EXPNeuralUCB} collapses to an 18\% floor under reactive attacks.
+\textbf{RQ3} showed that robustness is a joint function of algorithm, allocator,
+and capacity: switching allocators alone shifts the worst-case floor by up to
+20~pp, and scaling replay from $s{=}1$ to $s{=}2$ can lift Markov efficiency
+by 3.5~pp while simultaneously dropping Adaptive efficiency by 22--38~pp ---
+the capacity paradox.
+
 %We organize the evaluation around three research questions that connect routing performance, threat progression, and deployment configuration. \textit{RQ1 asks how classical and context-aware bandit policies perform under stochastic quantum-network conditions. RQ2 asks how bandit-based routing strategies change as network disruptions evolve from stochastic noise to structured, adaptive adversarial interference. RQ3 asks how choices in bandit policy, resource allocation strategy, and replay-capacity semantics interact to affect routing efficiency and stability in quantum entanglement routing.} Together, the findings support a threat-aware view of entanglement routing: robustness depends not only on the learning rule, but also on how allocator policy and replay-capacity semantics interact with the disruption regime.
 % \devroop{Research questions should not be answered here.} -- SOLVED: Converted the RQ section into a compact paragraph that states the primary questions and gives one collective findings-oriented roadmap sentence, while leaving detailed answers for Results and Discussion.
+
+
 
 \input{ICNP_VENUE_PREP/STUDY_DESIGN_VALIDATED_STAGING.tex}
 \input{ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex}
