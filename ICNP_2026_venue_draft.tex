@@ -18,6 +18,7 @@
 \usepackage{soul}
 \usepackage{tcolorbox}
 \usepackage{enumitem}
+\usepackage{cite} % Also help to cite this in order
 \usepackage[hidelinks]{hyperref}
 \usepackage[nameinlink]{cleveref}
 \usepackage{url}
@@ -45,6 +46,7 @@
 
 \newcommand{\devroop}[1]{\textcolor{magenta}{\textit{[Devroop: #1]}}}
 \newcommand{\shee}[1]{\textcolor{purple}{\textit{[Shee: #1]}}}
+\newcommand{\dan}[1]{\textcolor{blue}{\textit{[Dan: #1]}}}
 
 \crefname{section}{Section}{Sections}
 \Crefname{section}{Section}{Sections}
@@ -87,18 +89,18 @@
 \maketitle
 
 \begin{abstract}
-Quantum entanglement routing requires joint path selection and qubit allocation under noisy, nonstationary, and adversarial conditions. Existing approaches often assume stationary links, fixed allocation rules, or offline optimization assumptions. When these assumptions fail, routing can degrade end-to-end entanglement quality and waste scarce quantum resources. We introduce a threat-aware evaluation framework for comparing stochastic, contextual/neural, adversarial, predictive, and hybrid bandit policies for joint quantum path selection and qubit allocation. Unlike work that fixes allocator policy and replay semantics, we vary threat regime, allocator policy, and replay capacity as first-class factors, enabling attribution of robustness to the bandit-policy--allocator--capacity interaction. Across thirteen bandit policies and five threat regimes, neural hybrids outperform non-contextual baselines by 18--24 percentage points in scenario-aggregated efficiency, sustain worst-case efficiency above 85\% under stochastic threats, and remain more stable than adversarial-first EXP3-style designs under adaptive attacks. We also identify a threat-dependent capacity paradox: increasing replay capacity improves efficiency under structured Markov disruption but can induce 22--30 percentage-point efficiency drops under adaptive adversaries. This shows that resource predictability, not raw capacity, can dominate robustness. Cross-testbed evaluation on three external quantum-network simulators confirms the main robustness trends while exposing scale- and physics-dependent limits.
+Quantum entanglement routing requires joint path selection and qubit allocation under noisy, nonstationary, and adversarial conditions. Existing approaches often assume stationary links, fixed allocation rules, or offline optimization assumptions. When these assumptions fail, routing can degrade end-to-end entanglement quality and waste scarce quantum resources. 
+
+\hl{To address limitations in XYZ,} we introduce a threat-aware evaluation framework for comparing stochastic, contextual/neural, adversarial, predictive, and hybrid bandit policies for joint quantum path selection and qubit allocation. Unlike work that fixes allocator policy and replay semantics, we vary threat regime, allocator policy, and replay capacity as first-class factors, enabling attribution of robustness to the bandit-policy--allocator--capacity interaction. Across thirteen bandit policies and five threat regimes, neural hybrids outperform non-contextual baselines by 18--24 percentage points in scenario-aggregated efficiency, sustain worst-case efficiency above 85\% under stochastic threats, and remain more stable than adversarial-first EXP3-style designs under adaptive attacks. We also identify a threat-dependent capacity paradox: increasing replay capacity improves efficiency under structured Markov disruption but can induce 22--30 percentage-point efficiency drops under adaptive adversaries. This shows that resource predictability, not raw capacity, can dominate robustness. Cross-testbed evaluation on three external quantum-network simulators confirms the main robustness trends while exposing scale- and physics-dependent limits.
 \end{abstract}
 
 \begin{IEEEkeywords}
 Quantum networks, entanglement routing, multi-armed bandits, adversarial learning, qubit allocation, online optimization.
 \end{IEEEkeywords}
-
+\dan{add the code repo here}
 \section{Introduction}\label{sec:Introduction}
 
-Quantum entanglement distribution is a core primitive for the quantum Internet, supporting quantum key distribution, distributed quantum computing, and sensing~\cite{kimble2008quantum,wehner2018quantum,pompili2021realization}. Reliable end-to-end entanglement is difficult because generation and swapping are probabilistic, quantum states are fragile, and decoherence makes path quality time-varying~\cite{briegel1998quantum,dahlberg2021netsquid,zukowski1993event}.
-
-Unlike classical packet routing, quantum routing must establish and consume entanglement under limited memory coherence, probabilistic operations, and fidelity loss~\cite{bennett1993teleporting,zukowski1993event}. These constraints couple path selection with qubit allocation, since resource placement affects both success probability and learner feedback~\cite{li2025multipath,wang2025learning,huang2024quantum}.
+Quantum entanglement distribution is a core primitive for the quantum Internet, supporting quantum key distribution, distributed quantum computing, and sensing~\cite{kimble2008quantum,wehner2018quantum,pompili2021realization}. Reliable end-to-end entanglement is difficult because generation and swapping are probabilistic, quantum states are fragile, and decoherence makes path quality time-varying~\cite{briegel1998quantum,dahlberg2021netsquid,zukowski1993event}. Unlike classical packet routing, quantum routing must establish and consume entanglement under limited memory coherence, probabilistic operations, and fidelity loss~\cite{bennett1993teleporting,zukowski1993event}. These constraints couple path selection with qubit allocation, since resource placement affects both success probability and learner feedback~\cite{li2025multipath,wang2025learning,huang2024quantum}.
 
 Existing quantum-routing studies propose online path selection, benchmarking-driven routing, adaptive route selection, and adversarially robust learning~\cite{wang2025learning,coopmans2021benchmark,huang2024quantum}, but they are often evaluated under different threat, topology, allocator, and replay assumptions~\cite{liu2024qbgp,li2025multipath,chaudhary2023quantum}. This creates a matched-threat evaluation gap: it is unclear when contextual structure is necessary, when adversarial robustness dominates, and how allocator and capacity choices alter routing performance.
 
@@ -144,15 +146,23 @@ Existing quantum-routing studies propose online path selection, benchmarking-dri
 \label{fig:framework}
 \end{figure}
 
-To address this gap, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks. We address three research questions:
-
-\noindent \textbf{RQ1.} \emph{How do classical and context-aware multi-armed bandit (MAB) policies perform under stochastic quantum network conditions?}
-
-\noindent \textbf{RQ2.} \emph{How does the performance of bandit-based routing strategies change as network disruptions evolve from stochastic noise to structured, adaptive adversarial interference?}
-
-\noindent \textbf{RQ3.} \emph{How do choices in bandit policy, resource allocation strategy, and replay-capacity semantics interact to affect routing efficiency and stability in quantum entanglement routing?}
+To address this gap, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks. 
 
 While addressing these questions, the work makes three contributions. First, we introduce a unified threat-aware routing evaluation framework for comparing stochastic, contextual, adversarial, predictive, and hybrid bandit policies for joint entanglement path selection and qubit allocation under matched threat conditions. Second, we show that routing robustness depends on the interaction among bandit policy, allocator policy, and replay-capacity semantics, identifying a threat-dependent capacity paradox in which added capacity helps under structured disruption but hurts under adaptive attacks. Third, we validate the main trends across external quantum-network testbeds and derive deployment guidance for selecting model--allocator--capacity combinations under different threat regimes.
+
+
+To summarize, this work makes the following contributions:
+\begin{itemize}
+
+    \item \descStep{XXXX}{XXXX}
+    \item \descStep{XXXX}{XXXX}
+    \item \descStep{XXXX}{XXXX}
+    \item \descStep{Experimental findings}{}    
+%     \item \descStep{XXX}{XXXXX}
+
+\end{itemize}
+
+
 
 \input{02--related_works}
 
@@ -284,7 +294,16 @@ Informed variants augment the context vector from \cref{subsec:mab} with history
 \subsection{Research Questions}
 \label{sec:research_questions}
 
-We organize the evaluation around three research questions that connect routing performance, threat progression, and deployment configuration. \textit{RQ1 asks how classical and context-aware bandit policies perform under stochastic quantum-network conditions. RQ2 asks how bandit-based routing strategies change as network disruptions evolve from stochastic noise to structured, adaptive adversarial interference. RQ3 asks how choices in bandit policy, resource allocation strategy, and replay-capacity semantics interact to affect routing efficiency and stability in quantum entanglement routing.} Together, the findings support a threat-aware view of entanglement routing: robustness depends not only on the learning rule, but also on how allocator policy and replay-capacity semantics interact with the disruption regime.
+
+Our work addresses three research questions:
+
+\noindent \textbf{RQ1.} \emph{How do classical and context-aware multi-armed bandit (MAB) policies perform under stochastic quantum network conditions?} \hl{We found that....}
+
+\noindent \textbf{RQ2.} \emph{How does the performance of bandit-based routing strategies change as network disruptions evolve from stochastic noise to structured, adaptive adversarial interference?}
+
+\noindent \textbf{RQ3.} \emph{How do choices in bandit policy, resource allocation strategy, and replay-capacity semantics interact to affect routing efficiency and stability in quantum entanglement routing?}
+
+%We organize the evaluation around three research questions that connect routing performance, threat progression, and deployment configuration. \textit{RQ1 asks how classical and context-aware bandit policies perform under stochastic quantum-network conditions. RQ2 asks how bandit-based routing strategies change as network disruptions evolve from stochastic noise to structured, adaptive adversarial interference. RQ3 asks how choices in bandit policy, resource allocation strategy, and replay-capacity semantics interact to affect routing efficiency and stability in quantum entanglement routing.} Together, the findings support a threat-aware view of entanglement routing: robustness depends not only on the learning rule, but also on how allocator policy and replay-capacity semantics interact with the disruption regime.
 % \devroop{Research questions should not be answered here.} -- SOLVED: Converted the RQ section into a compact paragraph that states the primary questions and gives one collective findings-oriented roadmap sentence, while leaving detailed answers for Results and Discussion.
 
 \input{ICNP_VENUE_PREP/STUDY_DESIGN_VALIDATED_STAGING.tex}
