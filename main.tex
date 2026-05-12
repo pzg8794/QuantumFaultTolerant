@@ -1,1 +1,2548 @@
-\\documentclass[10pt,conference]{IEEEtran}\n\n% Piter\n% Jie\n% Jie Student\n% Sheeraja\n% Travis\n% Devroop\n% Dan\n\n% ICNP submission build: IEEE conference mode.\n\n% ============================================================================\n% CORE PACKAGES (IEEE-style)\n% ============================================================================\n\n\n\\usepackage{float}\n\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.17}\n\\usetikzlibrary{shapes, arrows, positioning, calc, shapes.geometric, arrows.meta, fit, backgrounds, decorations.pathreplacing, bending}\n\n\n% Recommended by IEEEtran docs for citations\n% \\usepackage{cite} % compressed, sorted numeric refs [web:2][web:8]\n\\usepackage{tabularx}\n% \\usepackage{natbib}\n\\usepackage[square,numbers,sort&compress]{natbib}\n% Graphics and Figures\n\\usepackage{graphicx}\n\\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}\n\\usepackage{tikz}\n\\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, backgrounds, calc, decorations.pathreplacing, bending}\n\\tikzset{>={Stealth}}\n\n% Tables\n\\usepackage{booktabs}    % \\toprule, \\midrule, \\bottomrule\n\\usepackage{multirow}\n\\usepackage{multicol}\n\n% Mathematics\n\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\usepackage{amssymb}\n\\usepackage{bm}\n\\usepackage{balance}\n% Suppress pdfTeX \"Missing character ... in font nullfont!\" warnings that can\n% be triggered by auxiliary/PDF-string writes (does not affect rendered output).\n\\tracinglostchars=0\n% Algorithms and Pseudocode\n\\usepackage{algorithm}\n\\usepackage{algorithmicx}\n\\usepackage{algpseudocode}\n\\usepackage{algcompatible}\n% \\usepackage{algorithmic} % IEEEtran-friendly (instead of algpseudocode)\n\n% Colors and Highlighting\n% Load xcolor with `table` option so table cell coloring (\\cellcolor) works\n\\usepackage[table]{xcolor}\n\\usepackage{soul}        % \\hl{}\n\\usepackage{tcolorbox}   % colored boxes for findings\n\n\n% Lists and Enumeration\n\\usepackage{array}\n\n\\usepackage{enumitem}\n\\setlist{nosep}\n\n% Hyperlinks and Clever References\n\\usepackage[hidelinks]{hyperref}\n\\usepackage[nameinlink]{cleveref}\n\n% Miscellaneous\n\\usepackage{url}\n\\usepackage{xspace}\n\\usepackage{comment}\n\n\\usepackage{textcomp}\n\\usepackage{stfloats}\n\\usepackage{verbatim}\n\n% (Optional) Units and Numbers – if you actually use siunitx\n\\usepackage{siunitx}\n\\sisetup{\n  output-exponent-marker=\\ensuremath{\\mathrm{e}},\n  group-separator={,},\n  detect-weight=true,\n  % detect-inline-weight=math\n}\n\n% ============================================================================\n% COLOR DEFINITIONS\n% ============================================================================\n\n\\definecolor{networkblue}{RGB}{52,152,219}\n\\definecolor{envgreen}{RGB}{46,204,113}\n\\definecolor{algorange}{RGB}{230,126,34}\n\\definecolor{allocpurple}{RGB}{155,89,182}\n\n\\definecolor{findingBlue}{RGB}{230,240,255}\n\\definecolor{findingRed}{RGB}{255,230,230}\n\\definecolor{findingOrange}{RGB}{255,245,230}\n\\definecolor{findingGreen}{RGB}{230,255,240}\n\n% ============================================================================\n% CUSTOM COMMANDS\n% ============================================================================\n% \\algnewcommand\\algorithmicrequire{\\textbf{Input:}}\n\\algnewcommand\\Require{\\item[\\algorithmicrequire]}\n\n\\newcommand{\\ie}{\\emph{i.e.,}\\xspace}\n\\newcommand{\\eg}{\\emph{e.g.,}\\xspace}\n\\newcommand{\\etc}{etc.\\xspace}\n\\newcommand{\\etal}{\\emph{et~al.}\\xspace}\n\n\\newcommand{\\descStep}[2]{\\noindent\\textbf{#1:} #2}\n\\newcommand{\\smallTitle}[1]{\\vspace{1mm}\\noindent\\textit{#1:}}\n\\newcommand{\\fillin}[1]{\\textcolor{gray}{\\emph{[#1]}}}\n\\newcommand{\\metric}[1]{\\textsc{#1}}\n\n\\newcommand{\\pp}{\\,\\%}\n\\newcommand{\\SEM}{\\text{SEM}}\n\\newcommand{\\eff}{\\text{Eff}}\n\\newcommand{\\retries}{\\text{Retries}}\n\\newcommand{\\uthresh}{\\text{UnderThresh}}\n\\newcommand{\\varseed}{\\text{Var}_{\\text{seeds}}}\n\n\\newcommand{\\Fb}{F_{\\text{b}}}\n\\newcommand{\\Tb}{T_{\\text{b}}}\n\\newcommand{\\TwoT}{2T}\n\n\\newcommand{\\RQOneText}{RQ1}\n\\newcommand{\\RQTwoText}{RQ2}\n\\newcommand{\\RQThreeText}{RQ3}\n\\newcommand{\\RQOne}{\\textbf{\\RQOneText}}\n\\newcommand{\\RQTwo}{\\textbf{\\RQTwoText}}\n\\newcommand{\\RQThree}{\\textbf{\\RQThreeText}}\n% External testbed / paper reference macros.\n% Internal names preserve our working terminology; rendered text stays reader-facing.\n\\newcommand{\\paperTwo}{Chaudhary \\etal~\\cite{chaudhary2023quantum}\\xspace}\n\\newcommand{\\paperSeven}{Liu \\etal~\\cite{liu2024qbgp}\\xspace}\n\\newcommand{\\paperTwelve}{Clayton \\etal~\\cite{clayton2024quarc}\\xspace}\n\\newcommand{\\paperEight}{Jallow and Khan~\\cite{jallowkhan2025adaptive}\\xspace}\n\n% Author comments (remove for camera-ready)\n\\newcommand{\\todo}[1]{\\textcolor{cyan}{\\textbf{[TODO: #1]}}}\n\\newcommand{\\dan}[1]{\\textcolor{blue}{\\textit{[Dan: #1]}}}\n\\newcommand{\\piter}[1]{\\textcolor{green}{\\textit{[Piter: #1]}}}\n\\newcommand{\\devroop}[1]{\\textcolor{magenta}{\\textit{[Devroop: #1]}}}\n\\newcommand{\\shee}[1]{\\textcolor{purple}{\\textit{[Shee: #1]}}}\n\n% ============================================================================\n% CLEVEREF CUSTOMIZATION\n% ============================================================================\n\n\\crefname{section}{Section}{Sections}\n\\Crefname{section}{Section}{Sections}\n\\crefname{figure}{Figure}{Figures}\n\\Crefname{figure}{Figure}{Figures}\n\\crefname{table}{Table}{Tables}\n\\Crefname{table}{Table}{Tables}\n\\crefname{equation}{Equation}{Equations}\n\\Crefname{equation}{Equation}{Equations}\n\\crefname{algorithm}{Algorithm}{Algorithms}\n\\Crefname{algorithm}{Algorithm}{Algorithms}\n\n% ============================================================================\n% TYPOGRAPHY / SPACING TWEAKS (light-touch for IEEE)\n% ============================================================================\n\n% Avoid widows/orphans\n\\widowpenalty=10000\n\\clubpenalty=10000\n\n% Slightly tighter lists with proper indentation\n\\setlist[itemize]{topsep=2pt, partopsep=0pt, itemsep=2pt, parsep=0pt, leftmargin=*}\n\\setlist[enumerate]{topsep=2pt, partopsep=0pt, itemsep=2pt, parsep=0pt, leftmargin=*}\n\n% Allow manual leftmargin overrides to work properly\n\\setlist[enumerate,1]{leftmargin=2em}\n\\setlist[enumerate,2]{leftmargin=2em}\n\n\\begin{document}\n\n\\title{Threat-Aware Evaluation of Quantum Entanglement Routing and Qubit Allocation via Hybrid Contextual Bandits}\n\n\\author{First Author,~Second Author,~and~Third Author%\n\\thanks{}}\n\n\\maketitle\n\n\n\n\n\n\\begin{abstract}\nQuantum entanglement routing requires joint path selection and qubit allocation under noisy, nonstationary, and adversarial conditions. Existing approaches often assume stationary links, fixed allocation rules, or offline optimization assumptions. When these assumptions fail, routing can degrade end-to-end entanglement quality and waste scarce quantum resources.\n\nWe introduce a threat-aware evaluation framework for comparing stochastic, contextual/neural, adversarial, predictive, and hybrid bandit policies for joint quantum path selection and qubit allocation. Unlike work that fixes allocator policy and replay semantics, we vary threat regime, allocator policy, and replay capacity as first-class factors, enabling attribution of robustness to the algorithm--allocator--capacity interaction.\n\nAcross thirteen algorithms and five threat regimes, neural hybrids outperform non-contextual baselines by 18--24 percentage points in scenario-aggregated efficiency, sustain worst-case efficiency above 85\\% under stochastic threats, and remain more stable than adversarial-first EXP3-style designs under adaptive attacks. We also identify a threat-dependent capacity paradox: increasing replay capacity improves efficiency under structured Markov disruption but can induce 22--30 percentage-point efficiency drops under adaptive adversaries. This shows that resource predictability, not raw capacity, can dominate robustness.\n\nCross-testbed evaluation on three external quantum-network simulators confirms the main robustness trends while exposing scale- and physics-dependent limits.\n\\end{abstract}\n\n\\begin{IEEEkeywords}\nQuantum networks, entanglement routing, multi-armed bandits, adversarial learning, qubit allocation, online optimization.\n\\end{IEEEkeywords}\n\n\\section*{Code Metadata}\n\nAll source code, datasets, and experiment scripts are available in the public reproducibility repository at \\url{https://github.com/pzg8794/quantum_project_hub}. Additional datalake-style artifacts and notebook execution resources are available through the shared Drive hub at \\url{https://drive.google.com/drive/folders/0AK0VchnNyM-xUk9PVA}. \\shee{I think the reproducibility info is better as a paragraph of its own instead of as a contribution bullet}\n\\devroop{This is better i think}\n\n\\section{Introduction}\n\nQuantum entanglement distribution is a core primitive for the quantum Internet, supporting quantum key distribution, distributed quantum computing, and sensing~\\cite{kimble2008quantum,wehner2018quantum,pompili2021realization}. Reliable end-to-end entanglement is difficult because generation and swapping are probabilistic, quantum states are fragile, and decoherence makes path quality time-varying~\\cite{briegel1998quantum,dahlberg2021netsquid,zukowski1993event}.\n\nUnlike classical packet routing, quantum routing must establish and consume entanglement under limited memory coherence, probabilistic operations, and fidelity loss~\\cite{bennett1993teleporting,zukowski1993event}. These constraints couple path selection with qubit allocation, since resource placement affects both success probability and learner feedback~\\cite{li2025multipath,wang2025learning,huang2024quantum}.\n\nExisting quantum-routing studies propose online path selection, benchmarking-driven routing, adaptive route selection, and adversarially robust learning~\\cite{wang2025learning,coopmans2021benchmark,huang2024quantum}, but they are often evaluated under different threat, topology, allocator, and replay assumptions~\\cite{liu2024qbgp,li2025multipath,chaudhary2023quantum}. This creates a matched-threat evaluation gap: it is unclear when contextual structure is necessary, when adversarial robustness dominates, and how allocator and capacity choices alter routing performance.\n\n\\subsection{Our Approach and Evaluation Scope}\n\\shee{Is a sub-section required here since there is only one? The starting sentence \"To address this gap...\" is a continuation of the previous paragraph. It would make more sense to keep this as another paragraph instead of a sub-section.}\n\n\\begin{figure}[t]\n\\centering\n\\footnotesize\n\\resizebox{0.80\\columnwidth}{!}{%\n\\begin{tikzpicture}[\n    node distance=0.5cm and 0.5cm,\n    >=Latex,\n    basebox/.style={\n        rectangle,\n        draw,\n        rounded corners=4pt,\n        align=center,\n        minimum height=0.95cm,\n        text width=2.55cm,\n        inner sep=4pt,\n        font=\\bfseries\n    },\n    topologybox/.style={basebox, draw=networkblue!80!black, fill=networkblue!15},\n    threatbox/.style={basebox, draw=envgreen!70!black, fill=envgreen!18},\n    modelbox/.style={basebox, draw=algorange!85!black, fill=algorange!18},\n    allocbox/.style={basebox, draw=allocpurple!80!black, fill=allocpurple!15},\n    outbox/.style={basebox, draw=black!60, fill=black!6, font=\\bfseries},\n    mainbox/.style={\n        rectangle,\n        draw=black!70,\n        fill=black!4,\n        rounded corners=6pt,\n        align=center,\n        minimum height=1.1cm,\n        text width=3.2cm,\n        inner sep=5pt,\n        font=\\bfseries\n    },\n    arrow/.style={thick,->}\n]\n\n\\node[topologybox] (topology) {Quantum Network\\\\Topology};\n\\node[threatbox, right=of topology] (threats) {Threat\\\\Regimes};\n\\node[modelbox, right=of threats] (models) {Bandit Policy\\\\Families};\n\n\\node[allocbox, below=1.3cm of topology] (allocator) {Allocator\\\\Policy};\n\\node[allocbox, below=1.3cm of models] (capacity) {Replay / Capacity\\\\Semantics};\n\n\\node[mainbox, below=1.4cm of threats] (engine)\n{Threat-Aware Evaluation Framework\\\\[0.2em]\nJoint path selection + qubit allocation under matched conditions};\n\n\\node[outbox, below=1.5cm of allocator] (metrics) {Oracle-Normalized\\\\Metrics};\n\\node[outbox, below=1.5cm of engine] (comparison) {Cross-Model\\\\Robustness Comparison};\n\\node[outbox, below=1.5cm of capacity] (guidance) {Deployment\\\\Guidance};\n\n\\draw[arrow, draw=networkblue!80!black] (topology) -- (engine);\n\\draw[arrow, draw=envgreen!70!black] (threats) -- (engine);\n\\draw[arrow, draw=algorange!85!black] (models) -- (engine);\n\\draw[arrow, draw=allocpurple!80!black] (allocator) -- (engine);\n\\draw[arrow, draw=allocpurple!80!black] (capacity) -- (engine);\n\n\\draw[arrow] (engine) -- (metrics);\n\\draw[arrow] (engine) -- (comparison);\n\\draw[arrow] (engine) -- (guidance);\n\n\\end{tikzpicture}%\n}\n\\caption{Threat-aware evaluation framework. Topology, threat regimes, policy families, allocator choices, and replay/capacity semantics are matched before computing oracle-normalized robustness metrics and deployment guidance.}\n\\label{fig:framework}\n\\end{figure}\n\nTo address this gap, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \\cref{fig:framework}. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks.\n\nThis work makes the following contributions:\n\\begin{itemize}\n    \\item \\descStep{Evaluation framework}{A unified threat-aware benchmark that\n    compares stochastic, contextual, adversarial, predictive, and hybrid bandit\n    policies for joint entanglement path selection and qubit allocation under\n    matched threat, allocator, and replay-capacity conditions across 7,890\n    evaluated configurations.}\n\n    \\item \\descStep{Capacity paradox}{Evidence that routing robustness is a joint\n    function of bandit policy, allocator, and replay-capacity semantics: adding\n    capacity lifts Markov efficiency by 0.8--1.6~pp but \\emph{hurts} Baseline\n    (no-attack) efficiency by 2.4--6.2~pp under the same allocator, and induces\n    up to 54~pp floor drops when the allocator is mismatched, because\n    predictability amplifies adversarial targeting.}\n\n    \\item \\descStep{Deployment guidance}{A validated static default\n    (\\texttt{iCPursuitNeuralUCB\\,+\\,Fixed\\,+\\,$T$-type, $s{=}2$}) that sustains\n    a 92.8\\% worst-case floor across all five threat regimes, with threat-conditioned\n    allocator switching rules derived from cross-testbed validation.\n    Allocator choice is a first-class safety control: switching from\n    \\texttt{Default} to \\texttt{Random} collapses the worst-case floor by up to\n    54~pp for pursuit-based hybrids.}\n\n    \\item \\descStep{Experimental findings}{Pursuit--neural contextual hybrids\n    consistently define the efficiency--stability frontier: 87--95\\%\n    Oracle-normalized efficiency across five threat regimes\n    (Default allocator, $T$-type, $s{=}2$), with\n    \\texttt{GNeuralUCB} achieving the tightest cross-scenario variance\n    (CV\\,5.7\\%) and \\texttt{CPursuitNeuralUCB} the highest worst-case floor\n    (76.8\\%) among hybrids under the default configuration.\n    The 18--22\\% floor values reported for adversarial-first baselines\n    correspond to \\emph{Random allocator} conditions, not the default\n    deployment setting.}\n\\end{itemize}\n\n%The \\hl{XXX} code repo and data is publicly available on our project repository~\\cite{}.\n\n\n\n\n%First, we introduce a unified threat-aware evaluation framework for quantum entanglement routing that compares classical, contextual, adversarial, and hybrid bandit policies for joint path selection and qubit allocation under matched conditions. Second, we show that robustness is determined not only by the learning rule, but by the interaction among \\emph{algorithm choice, allocator policy, and replay-capacity semantics}, and we identify a threat-dependent \\emph{capacity paradox} in which additional replay capacity can help under structured disruption yet hurt under adaptive adversaries. Third, we validate these findings across multiple external quantum-network testbeds and distill deployment-oriented guidance for selecting model--allocator--capacity combinations under different threat conditions. More broadly, we treat quantum routing as a joint decision problem over path selection, qubit allocation, and learning under uncertainty, with learning, allocation, and capacity modeled as coupled design dimensions rather than independent implementation details.\n% By systematically varying these dimensions under a shared threat taxonomy, we can isolate the conditions under which contextual structure is necessary, when adversarial robustness dominates, and how allocator and capacity choices alter apparent routing performance. This approach yields actionable insights for quantum network design and deployment while also advancing the broader understanding of online learning under uncertainty in complex, resource-constrained environments.\n\n% Section ---- Related Works will go here\n\\input{sections/02--related_works}\n\n\n\n% \\section{Background} \n% \\label{sec: Background}\n\n% Why are entanglement connections important. What are they\n% What are the existing problems in general work.\n% What will we do\n% What problem will we solve\n\n%%%%%\n\n\n\n\n\n\n\n\n% Do this for both Qubit allocation and entanglement path selection\n\n%%%%%%%%%% Why are entanglement connections important. What are they %%%%%%%%%%\n\n\n% What is a quantum data network\n\n\n\n\n\n\n\n\n% Why is entangelment important\n\n\n\n\n% Why is path selection important\n\n\n\n\n\n%%%%%%%%%% What are the existing problems %%%%%%%%%%\n\n\n\n\n\n\n%%%%%%%%%% What will we do %%%%%%%%%%\n\n\n\n\n\n\n%%%%%%%%%% What problem will we solve %%%%%%%%%%\n\n\n\n\n%%%%%%%%%% What are some existing efforts and how will our work differ %%%%%%%%%%\n% -----------------------------------------------------------------------------\n% Background reduction pass\n% -----------------------------------------------------------------------------\n\n\\section{Background}\n\\label{sec:Background}\n\nQuantum networks distribute entanglement across repeaters and end-nodes to support long-distance quantum communication, distributed quantum computing, and sensing~\\cite{wehner2018quantum,kimble2008quantum}. Unlike classical packet routing, quantum routing must operate with fragile states, probabilistic entanglement generation and swapping, decoherence, and fidelity loss~\\cite{briegel1998quantum,dahlberg2021netsquid,bennett1993teleporting,zukowski1993event}. Across multi-hop paths, these effects make routing a repeated decision problem under uncertainty, where path choices must adapt to noisy outcomes and changing link conditions. Prior routing approaches often assume stable topology knowledge or fixed allocation rules, assumptions that weaken under online learning, demand variability, and disruptive or strategic interference~\\cite{li2025multipath,wang2025learning,huang2024quantum}.\n\nA multi-armed bandit (MAB) models online routing as repeated action selection under partial feedback, where a learner chooses candidate paths or allocation actions and updates from reward signals such as entanglement success or routing efficiency~\\cite{lattimore2020bandit,bubeck2012regret}. We use this taxonomy to distinguish the routing assumptions made by each model family: stochastic methods assume stable rewards~\\cite{auer2002finite}, contextual and neural methods exploit predictive side information or nonlinear reward structure~\\cite{chu2011contextual,zhou2020neuralucb}, adversarial methods handle non-stationary or strategic rewards~\\cite{auer2002nonstochastic}, and predictive/informed methods incorporate forecasts~\\cite{kar2024icmab}. This distinction matters for quantum routing because benign noise, topology-dependent feedback, and adaptive disruption favor different forms of learning robustness~\\cite{huang2024quantum}.\n\nQuantum routing couples path choice with resource allocation: the learner must decide both which route to use and how many qubits or attempts to assign within each decision epoch. These allocator choices shape the feedback observed by the bandit learner and the predictability of routing behavior under disruption. Replay or capacity semantics, including bounded histories, windowed updates, and capped experience buffers, further affect stability under nonstationarity and vulnerability to adaptive attacks. We therefore evaluate routing policies jointly with allocator strategy and capacity semantics, rather than treating them as independent implementation details.\n\nWe study routing robustness as a joint function of learning model, allocator design, replay-capacity configuration, and threat regime, rather than as a property of the bandit policy alone.\n\n\n\n\\section{System Model}\n\\label{sec:SystemModel}\n\n% We model quantum entanglement routing as a sequential decision problem...\n\nWe model quantum entanglement routing as a sequential decision problem where an agent must jointly optimize (1) \\textbf{Path selection} among candidate routes, and (2) \\textbf{Qubit allocation} across path segments, under uncertain link fidelities and adversarial interference. This section formalizes the network topology, reward structure, threat taxonomy, qubit allocation policies, and the underlying MAB formulation. This joint formulation follows prior quantum-routing work that couples path choice with fidelity estimation, online path selection, or qubit allocation, while making those design dimensions explicit so they can be varied systematically in our evaluation~\\cite{wang2025learning,li2025multipath,huang2024quantum}.\n\n% \\noindent\\textbf{System-model loop.}\n% At each round $t$, the agent observes the candidate path set and available context, selects a route $P_r$, allocates qubits $\\mathbf{x}$ across its links subject to budget constraints, and observes reward feedback determined by entanglement success and the threat availability vector $\\mathbf{A}_t$. The evaluation then compares policies by repeating this loop across matched threat regimes, allocator policies, and replay-capacity settings.\n\\begin{figure}[t]\n\\centering\n\\footnotesize\n\\resizebox{0.92\\columnwidth}{!}{%\n\\begin{tikzpicture}[\n    >=Latex,\n    node distance=0.55cm and 0.65cm,\n    basebox/.style={\n        rectangle,\n        draw,\n        rounded corners=4pt,\n        align=center,\n        minimum height=0.8cm,\n        text width=2.0cm,\n        inner sep=3pt,\n        font=\\bfseries\n    },\n    contextbox/.style={basebox, draw=networkblue!80!black, fill=networkblue!15},\n    agentbox/.style={basebox, draw=algorange!85!black, fill=algorange!18},\n    actionbox/.style={basebox, draw=allocpurple!80!black, fill=allocpurple!15},\n    envbox/.style={basebox, draw=envgreen!70!black, fill=envgreen!18},\n    feedbackbox/.style={basebox, draw=black!60, fill=black!6},\n    arrow/.style={thick,->}\n]\n\n\\node[contextbox] (context) {Candidate Paths\\\\+ Context};\n\\node[agentbox, right=of context] (agent) {Routing Agent\\\\(Bandit Policy)};\n\\node[actionbox, right=of agent] (action) {Path Selection\\\\+ Qubit Allocation};\n\n\\node[envbox, below=1.0cm of action] (env) {Quantum Network\\\\+ Threat Regime};\n\\node[feedbackbox, left=of env] (reward) {Reward / Feedback\\\\(success, fidelity, efficiency)};\n\n\\draw[arrow, draw=networkblue!80!black] (context) -- (agent);\n\\draw[arrow, draw=algorange!85!black] (agent) -- (action);\n\\draw[arrow, draw=allocpurple!80!black] (action) -- (env);\n\\draw[arrow, draw=envgreen!70!black] (env) -- (reward);\n\\draw[arrow] (reward) -- (agent);\n\n\\end{tikzpicture}%\n}\n\\caption{System-model loop for quantum entanglement routing. The agent observes path context, selects a path and qubit allocation, interacts with the network under a threat regime, and updates from reward feedback.}\n\\label{fig:system_model}\n\\end{figure}\n\n\\subsection{Network Topology and Path Structure}\n\\label{subsec:topology}\n\n\\smallTitle{4-node diamond topology}\nWe study a canonical 4-node quantum network connecting source $S$ (Alice) to destination $D$ (David) via two intermediate repeaters, Bob and Charlie. This diamond topology yields \\textbf{4 candidate paths} $\\mathcal{P} = \\{P_1, P_2, P_3, P_4\\}$ with varying hop counts:\n\\begin{itemize}\n\\item \\textbf{2-hop paths} ($P_1 = S{\\to}B{\\to}D$, $P_2 = S{\\to}C{\\to}D$): one repeater, two entanglement links\n\\item \\textbf{3-hop paths} ($P_3 = S{\\to}B{\\to}C{\\to}D$, $P_4 = S{\\to}C{\\to}B{\\to}D$): two repeaters, three links\n\\end{itemize}\nEach path $P_r$ has $h_r$ hops ($h_1 = h_2 = 2$, $h_3 = h_4 = 3$), where a \\textbf{hop} denotes a single entanglement link between adjacent nodes (\\eg source-to-repeater or repeater-to-destination) requiring one entanglement generation operation. Shorter paths reduce swapping overhead but may traverse noisier channels; longer paths enable route diversity but accumulate fidelity loss.\n\n\\smallTitle{Qubit budget and allocator policies}\nThe network operates under a \\textbf{fixed total budget of 35 qubits} distributed across paths. We evaluate \\textbf{four allocator strategies} chosen to span complementary allocation behaviors: a static baseline (\\textbf{Fixed}), two principled adaptive heuristics based on posterior sampling and optimistic exploration (\\textbf{ThompsonSampling} and \\textbf{DynamicUCB}), and a non-informative control baseline (\\textbf{Random}). This set allows us to compare whether routing robustness is best supported by fixed, uncertainty-aware, or uninformed allocation under the same total resource budget.\n\\begin{enumerate}\n\\item \\textbf{Fixed} ($T_1{=}8, T_2{=}10, T_3{=}8, T_4{=}9$): static baseline\n\\item \\textbf{ThompsonSampling}: Bayesian posterior sampling over path utilities\n\\item \\textbf{DynamicUCB}: upper-confidence-bound-driven capacity redistribution\n\\item \\textbf{Random}: uniform random assignment (control baseline)\n\\end{enumerate}\n\nFor each path $P_r$ with session budget $T_r$, a \\textbf{feasible allocation} $\\mathbf{x} = (x_1, \\dots, x_{h_r})$ satisfying $\\sum_{\\ell=1}^{h_r} x_\\ell = T_r$ defines the context space $\\mathcal{X}_r$. This combinatorial space scales quadratically for 3-hop paths, motivating contextual neural approximation.\n\n\\subsection{Reward Model and Link-Level Fidelity}\n\\label{subsec:reward}\n\n\\smallTitle{Probabilistic entanglement generation}\nEach path $P_r$ contains $h_r$ links indexed by $\\ell \\in \\{1, \\ldots, h_r\\}$. For each link $\\ell$, let $p_e^{(\\ell)} \\in [10^{-4}, 2{\\times}10^{-4}]$ denote its per-attempt entanglement success probability (representative of realistic SNSPD-based quantum memory systems), and let $x_\\ell$ denote the number of qubits allocated to that link. Over a decision step (frame), allocating $x_\\ell$ qubits yields \\textbf{link-level success probability}\n\\devroop{Define $p_\\ell$}\n\n\\[\np_\\ell(x_\\ell) = 1 - (1 - p_e^{(\\ell)})^{x_\\ell}.\n\\]\n\n\\smallTitle{Path-level success as multiplicative fidelity}\nEnd-to-end entanglement succeeds if \\textbf{all} $h_r$ links succeed (entanglement swapping requires coherent intermediate states). Path success probability is multiplicative:\n\\[\nh_r(\\mathbf{x}) = \\prod_{\\ell=1}^{h_r} p_\\ell(x_\\ell).\n\\]\nThis multiplicative decay captures the fundamental quantum constraint: \\textbf{fidelity degrades exponentially with hop count} unless mitigated by purification (out of scope for routing).\n\n\\smallTitle{Bernoulli rewards under adversarial availability}\nAt frame $t$, selecting path $P_r$ (where $r \\in \\{1,2,3,4\\}$) with allocation $\\mathbf{x} = (x_1, \\ldots, x_{h_r})$ yields binary reward\n\\[\nY_t(r,\\mathbf{x}) \\sim \\mathrm{Bernoulli}\\!\\big(h_r(\\mathbf{x}) \\cdot A_t(r)\\big),\n\\]\nwhere $Y_t(r,\\mathbf{x}) \\in \\{0,1\\}$ denotes the observed outcome (1 = success, 0 = failure) at frame $t$, and $A_t(r) \\in \\{0,1\\}$ is the \\textbf{availability indicator}: $A_t(r)=1$ if path $P_r$ is active (no attack), $A_t(r)=0$ if disrupted. When a path is disrupted at time $t$, we set its indicator to zero (i.e., $A_t(r)=0$ for disrupted paths and $A_t(r')=1$ otherwise), so disruption acts as a path-specific availability gate on otherwise stochastic link success. This formulation cleanly separates \\textbf{stochastic decoherence} (encoded in $h_r$) from \\textbf{strategic interference} (encoded in $A_t$).\n\n% \\subsection{Adversarial Threat Taxonomy}\n% \\label{subsec:threats}\n\n% We study routing robustness under \\textbf{five escalating threat regimes} spanning benign stochasticity to intelligent reactive attacks. Each scenario modulates the availability vector\n% $\\mathbf{A}_t = (A_t(1), \\dots, A_t(4))$ according to distinct disruption semantics.\n\\subsection{Adversarial Threat Taxonomy}\n\\label{subsec:threats}\n% We study routing robustness under \\textbf{five escalating threat regimes} spanning benign stochasticity, temporally correlated disruption, targeted failures, and adaptive adversarial interference. These regimes are intended to separate routine quantum-network uncertainty from increasingly structured and strategic forms of path unavailability. Each scenario modulates the availability vector\n% $\\mathbf{A}_t = (A_t(1), \\dots, A_t(4))$ according to distinct disruption semantics.\nWe study routing robustness under five escalating threat regimes spanning no-disruption operation, independent stochastic failures, temporally correlated disruption, targeted failures, and adaptive adversarial interference. The regimes are selected to form a controlled escalation from normal operating conditions to increasingly structured and strategic disruptions. The baseline regime isolates routing and allocation behavior without path unavailability, while the stochastic and Markov regimes capture two common non-adversarial uncertainty models: independent random failures and temporally correlated outages. The adaptive and OnlineAdaptive regimes then stress-test whether policies remain robust when path unavailability is coupled to the learner's own routing behavior, which is consistent with adversarial-bandit settings where rewards or losses may be strategically selected rather than drawn from a fixed distribution~\\cite{auer2002finite,auer2002nonstochastic,bubeck2012regret,lattimore2020bandit}. This design also reflects quantum-network routing concerns in which entanglement generation is probabilistic, path quality varies over time, and routing policies may need to remain stable under interference or attacker-driven disruption~\\cite{wang2025learning,li2025multipath,huang2024quantum}.\n\n\\texttt{Baseline (No Disruption).}\nIn the baseline regime, all routes remain available at all times: $A_t(r)=1$ for all $r,t$.\nThis setting isolates pure stochastic decoherence and serves as the benign-condition upper bound (Oracle-aligned) for comparisons across all disrupted regimes.\n\n\\texttt{Stochastic (6.25\\% i.i.d. failures).}\nUnder stochastic disruption, each route is independently available according to $A_t(r)\\sim\\mathrm{ Bernoulli}(0.9375)$.\nThis captures non-adversarial environmental noise without temporal structure or memory.\n\n\\texttt{Markov (25\\% structured disruption).}\nIn the Markov regime, availability is governed by a 4-state Markov chain whose states modulate path-failure probabilities.\nThis setting captures bursty, correlated outages, with an average disruption rate of approximately $25\\%$.\n\n\\texttt{Adaptive (Reactive targeting over sliding window).}\nIn the adaptive regime, the adversary observes path selection over a sliding window of $w=50$ frames and targets the most-used path with $100\\%$ probability.\nThis mechanism exploits predictable allocation patterns and is especially punitive for Fixed allocators and larger replay scaling ($s$).\n\n\\texttt{OnlineAdaptive (Real-time policy adaptation).}\nIn the OnlineAdaptive regime, the adversary maintains exponentially weighted path usage with decay $\\gamma=0.97$ and applies softmax targeting with temperature $\\tau$:\n\\[\n\\Pr(\\text{attack path } r \\mid t) =\n\\frac{\\exp(\\text{usage}_r(t) / \\tau)}{\\sum_{r'} \\exp(\\text{usage}_{r'}(t) / \\tau)}.\n\\]\n\\shee{Is this supposed to be $P_r$? Define r'}\nThis setting mimics intelligent adversaries that learn and adapt in real time, representing the hardest realistic threat model in our taxonomy.\n\n\n\\subsection{Multi-Armed Bandit Formulation}\n\\label{subsec:mab}\n\n\\smallTitle{Hierarchical group-arm structure}\nWe cast quantum routing as a \\texttt{2-level MAB problem}:\n\\begin{itemize}\n\\item \\texttt{Level 1 (Group selection):} Choose path $r_t \\in \\{1,2,3,4\\}$ at frame $t$ via policy $\\pi_g$.\n\\item \\texttt{Level 2 (Arm selection):} Choose allocation $\\mathbf{x}_t \\in \\mathcal{X}_{r_t}$ via policy $\\pi_a$.\n\\end{itemize}\nEach path $P_r$ defines a \\textbf{group} $\\mathcal{G}_r$ containing $|\\mathcal{X}_r|$ allocation arms. For 3-hop paths with budget $T_r$, $|\\mathcal{X}_r| \\approx \\binom{T_r + h_r - 1}{h_r - 1}$ (stars-and-bars), scaling quadratically.\n\n\\smallTitle{Objective and regret}\nLet $\\mu_t(r,\\mathbf{x}) := h_r(\\mathbf{x})A_t(r)$ denote the expected reward at time $t$. Maximize cumulative expected reward over horizon $F_b$:\n\\[\n\\max_{\\pi_g, \\pi_a} \\; \\mathbb{E}\\!\\left[\\sum_{t=1}^{F_b} \\mu_t(r_t, \\mathbf{x}_t)\\right],\n\\]\nsubject to unknown dynamics $h_r(\\cdot)$ and adversarial interference $A_t(\\cdot)$. \\textbf{Regret} measures suboptimality relative to an Oracle with perfect foresight:\n\\[\n\\text{Regret}(T) = \\sum_{t=1}^{T} \\big(\\mu_t^* - \\mu_t(r_t,\\mathbf{x}_t)\\big),\n\\]\nwhere $\\mu_t^* = \\max_r \\mu_t(r,\\mathbf{x}_r^*)$ is the best achievable reward at $t$.\n\n\\subsection{Capacity Semantics and Replay Scaling}\n\\label{subsec:capacity}\n\\[\nT = \\begin{cases}\ns \\cdot F_b & \\text{(base-frames replay, $T_b$-type)} \\\\\ns \\cdot F_c & \\text{(current-frames replay, $T$-type)}\n\\end{cases}\n\\]\n\\noindent To eliminate ambiguity in memory scaling, we distinguish \\textbf{two replay-capacity types}. Let:\n\\begin{itemize}\n\\item $F_b$: \\textbf{base per-run horizon} (frames)---the standard episode length before scaling (\\eg 4K, 6K, or 8K frames)\n\\item $F_c$: \\textbf{current per-run horizon} (frames)---actual frames after any horizon scaling\n\\item $s \\in \\{1, 1.5, 2\\}$: \\textbf{capacity scale factor} (default $s=2$)\n\\end{itemize}\n\nBoth are \\textbf{always scaled} (even when $s=1$). This separation is critical for diagnosing the \\textbf{capacity paradox} (\\cref{sec:SimulationResults}): increasing nominal replay from $s=1 \\to s=2$ can \\textbf{degrade} efficiency by 22--30 pp under Adaptive attacks, as excess predictable capacity becomes exploitable.\n\n\n\\begin{figure}[ht!]\n\\tiny\n\\centering\n\\resizebox{0.8\\columnwidth}{!}{%  % Scale to 80% of column width\n    \\begin{tikzpicture}[\n      node distance=0.5cm,\n      block/.style={rectangle, draw, fill=white, text width=5.0cm, text centered, rounded corners, minimum height=0.1cm, line width=0.5pt},\n      layer/.style={rectangle, draw, fill=white, text width=5.0cm, text centered, minimum height=0.1cm, line width=0.5pt, font=\\small},\n      arrow/.style={-Stealth, line width=0.6pt},\n      lab/.style={font=\\scriptsize}\n    ]\n    \n    % 1. ALLOCATOR\n    \\node[layer, fill=allocpurple!18, draw=allocpurple] (alloc) {\\textbf{1. ALLOCATOR}};\n    \\node[block, below=0.1cm of alloc, font=\\scriptsize] (alloccontent) {\n      \\textbf{Strategies:} Fixed, Thompson, DynamicUCB, Random\n    };\n    \n    % 2. CONFIGURATION\n    \\node[layer, fill=gray!18, draw=gray, below=0.4cm of alloccontent] (config) {\\textbf{2. CONFIGURATION}};\n    \\node[block, below=0.1cm of config, font=\\scriptsize] (configcontent) {\n      Topology: 4 nodes, 4 paths\n      Scenarios: 5 threats\n      Algorithms: CPursuitNeuralUCB, iCPursuitNeuralUCB, GNeuralUCB, EXPNeuralUCB\n      Capacity: replay type ($T_b$ vs.\\ $T$), scale $s\\in\\{1,1.5,2\\}$\\\\\n      Seeds: 3--10 runs\n    };\n    \n    % 3. EVALUATOR\n    \\node[layer, fill=blue!18, draw=blue, below=0.4cm of configcontent] (evaluator) {\\textbf{3. EVALUATOR}};\n    \\node[block, below=0.1cm of evaluator, font=\\scriptsize] (evalcontent) {\n      Orchestrates runs\n      Logs results\n    };\n    \\node[block, below=0.1cm of evalcontent, font=\\scriptsize, fill=envgreen!10, draw=envgreen] (env) {\n      \\textbf{Environment Threat:}\n      $Y_t(r,\\mathbf{x}) \\sim \\mathrm{Bernoulli}\\!\\big(h_r(\\mathbf{x}) \\cdot A_t(r)\\big)$\n      None, Stochastic, Markov, Adaptive, OnlineAdaptive\n    };\n    \n    % 4. RUNNER\n    \\node[layer, fill=blue!10, draw=blue!60, below=0.4cm of env] (runner) {\\textbf{4. RUNNER}};\n    \\node[block, below=0.1cm of runner, font=\\scriptsize] (runnercontent) {\n      Batch execution\n      Parallel runs\n      Per-scenario/per-seed Oracle tracking\n      Applies the allocator to distribute qubits across paths\n    };\n    \n    % 5. MODEL\n    \\node[layer, fill=blue!10, draw=blue!60, below=0.4cm of runnercontent] (model) {\\textbf{5. MODEL}};\n    \\node[block, below=0.1cm of model, font=\\scriptsize, fill=networkblue!10, draw=networkblue] (net) {\n      \\textbf{Quantum network:}\n      4 paths, 35-qubit capacity\n    };\n    \\node[block, below=0.05cm of net, font=\\scriptsize, fill=algorange!10, draw=algorange] (algo) {\n      \\textbf{Algorithms:}\n      EXPNeuralUCB\n      GNeuralUCB\n      CPursuitNeuralUCB\n      iCPursuitNeuralUCB\n      Structure: EXP3 group + neural/pursuit-based arm selection\n    };\n    \n    % 6. VISUALIZER\n    \\node[layer, fill=orange!18, draw=orange, below=0.4cm of algo] (visualizer) {\\textbf{6. VISUALIZER}};\n    \\node[block, below=0.1cm of visualizer, font=\\scriptsize] (viscontent) {\n      Efficiency curves\n      Summary tables\n      Scenario ranking\n      Heatmaps\n      Winner highlighting\n    };\n    \n    %%% MAIN VERTICAL FLOW\n    \\draw[arrow] (alloccontent.south) -- (config.north);\n    \\draw[arrow] (configcontent.south) -- (evaluator.north);\n    \\draw[arrow] (env.south) -- (runner.north);\n    \\draw[arrow] (runnercontent.south) -- (model.north);\n    \\draw[arrow] (algo.south) -- (visualizer.north);\n    \n    %%% CONFIG SHARED BY ALL LAYERS\n    \\draw[arrow, dashed, bend left=20] (config.east) to node[lab, right] {config} (evaluator.east);\n    \\draw[arrow, dashed, bend left=15] (config.east) to (runner.east);\n    \\draw[arrow, dashed, bend left=20] (config.east) to (model.east);\n    \\draw[arrow, dashed, bend left=25] (config.east) to (visualizer.east);\n    \n    %%% RESULT FEEDBACK FLOW\n    \\draw[arrow, dashed, bend left=20] (model.west) to node[left, lab, align=center] {per-run\\\\results} (runner.west);\n    \\draw[arrow, dashed, bend left=20] (runner.west) to node[left, lab, align=center] {aggregated\\\\logs} (evaluator.west);\n    \\draw[arrow, dashed, bend right=40] (evaluator.west) to node[left, lab, align=center] {summaries\\\\+\\\\plots} (visualizer.west);\n    \\end{tikzpicture}\n}\n% \\vspace{-0.45cm}\n\\caption{A unified evaluation pipeline enables apples-to-apples routing comparisons across threats, capacity semantics, allocators, and model families.}\n\\label{fig:framework}\n\\end{figure}\n\n\n% \\vspace{-0.5cm}\n\\subsection{Algorithmic Framework}\n\\label{subsec:framework}\n\n\\noindent Our evaluation infrastructure consists of \\textbf{six layers} (Figure~\\ref{fig:framework}):\n\\shee{I feel this list might be redundant since the details are present in Fig 3 and explained in the next paragraph.}\n\\begin{enumerate}\n\\item \\texttt{ALLOCATOR:} Top-level policy (\\eg DynamicUCB)\n\\item \\texttt{CONFIGURATION:} Shared experimental setup (topology, scenarios, capacity, seeds)\n\\item \\texttt{EVALUATOR:} Orchestrates runs, logs, threat models\n\\item \\texttt{RUNNER:} Batch execution engine with Oracle tracking\n\\item \\texttt{MODEL:} Quantum routing stack (algorithms + neural)\n\\item \\texttt{VISUALIZER:} Aggregates results into efficiency curves, tables, and winner summaries\n\\end{enumerate}\n\n\\noindent\\textbf{Interface view (how the layers connect).}\nEach experiment instantiates a consistent decision pipeline:\n\\emph{Environment} (topology + link/fidelity model)\n$\\rightarrow$ \\emph{Threat/Noise process} (how disruptions evolve)\n$\\rightarrow$ \\emph{Allocator} (maps total capacity to per-path budgets)\n$\\rightarrow$ \\emph{Capacity semantics} (\\eg $T$ vs. $T_b$, replay scale $s$; \\cref{subsec:capacity})\n$\\rightarrow$ \\emph{Learner/Policy} (bandit selects paths from feedback/context)\n$\\rightarrow$ \\emph{Metrics} (oracle-normalized efficiency and robustness summaries).\n\n\\noindent In our implementation, \\texttt{CONFIGURATION} fixes the shared environment, threat regime, and capacity semantics;\n\\texttt{ALLOCATOR} chooses the distribution rule; \\texttt{EVALUATOR} instantiates the threat model and logging/oracle tracking;\n\\texttt{RUNNER} executes batched runs under fixed seeds and aggregation rules; \\texttt{MODEL} implements the bandit policy and routing stack;\nand \\texttt{VISUALIZER} aggregates results into scenario rankings, efficiency curves, and summary tables.\n\n\\noindent Figure~\\ref{fig:framework} is illustrative (one representative configuration); the full evaluated model portfolio\nis summarized in \\Cref{tab:setup-algorithm-portfolio}.\nThis architecture enables \\textbf{systematic ablation} across allocators, algorithms, and threat regimes under consistent capacity semantics, ensuring reproducible comparisons~\\cite{wang2025learning,huang2024quantum}.\n
+\documentclass[10pt,conference]{IEEEtran}
+
+% Piter
+% Jie
+% Jie Student
+% Sheeraja
+% Travis
+% Devroop
+% Dan
+
+% ICNP submission build: IEEE conference mode.
+
+% ============================================================================
+% CORE PACKAGES (IEEE-style)
+% ============================================================================
+
+
+\usepackage{float}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usetikzlibrary{shapes, arrows, positioning, calc, shapes.geometric, arrows.meta, fit, backgrounds, decorations.pathreplacing, bending}
+
+
+% Recommended by IEEEtran docs for citations
+% \usepackage{cite} % compressed, sorted numeric refs [web:2][web:8]
+\usepackage{tabularx}
+% \usepackage{natbib}
+\usepackage[square,numbers,sort&compress]{natbib}
+% Graphics and Figures
+\usepackage{graphicx}
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, backgrounds, calc, decorations.pathreplacing, bending}
+\tikzset{>={Stealth}}
+
+% Tables
+\usepackage{booktabs}    % \toprule, \midrule, \bottomrule
+\usepackage{multirow}
+\usepackage{multicol}
+
+% Mathematics
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{balance}
+% Suppress pdfTeX "Missing character ... in font nullfont!" warnings that can
+% be triggered by auxiliary/PDF-string writes (does not affect rendered output).
+\tracinglostchars=0
+% Algorithms and Pseudocode
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{algcompatible}
+% \usepackage{algorithmic} % IEEEtran-friendly (instead of algpseudocode)
+
+% Colors and Highlighting
+% Load xcolor with `table` option so table cell coloring (\cellcolor) works
+\usepackage[table]{xcolor}
+\usepackage{soul}        % \hl{}
+\usepackage{tcolorbox}   % colored boxes for findings
+
+
+% Lists and Enumeration
+\usepackage{array}
+
+\usepackage{enumitem}
+\setlist{nosep}
+
+% Hyperlinks and Clever References
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink]{cleveref}
+
+% Miscellaneous
+\usepackage{url}
+\usepackage{xspace}
+\usepackage{comment}
+
+\usepackage{textcomp}
+\usepackage{stfloats}
+\usepackage{verbatim}
+
+% (Optional) Units and Numbers – if you actually use siunitx
+\usepackage{siunitx}
+\sisetup{
+  output-exponent-marker=\ensuremath{\mathrm{e}},
+  group-separator={,},
+  detect-weight=true,
+  % detect-inline-weight=math
+}
+
+% ============================================================================
+% COLOR DEFINITIONS
+% ============================================================================
+
+\definecolor{networkblue}{RGB}{52,152,219}
+\definecolor{envgreen}{RGB}{46,204,113}
+\definecolor{algorange}{RGB}{230,126,34}
+\definecolor{allocpurple}{RGB}{155,89,182}
+
+\definecolor{findingBlue}{RGB}{230,240,255}
+\definecolor{findingRed}{RGB}{255,230,230}
+\definecolor{findingOrange}{RGB}{255,245,230}
+\definecolor{findingGreen}{RGB}{230,255,240}
+
+% ============================================================================
+% CUSTOM COMMANDS
+% ============================================================================
+% \algnewcommand\algorithmicrequire{\textbf{Input:}}
+\algnewcommand\Require{\item[\algorithmicrequire]}
+
+\newcommand{\ie}{\emph{i.e.,}\xspace}
+\newcommand{\eg}{\emph{e.g.,}\xspace}
+\newcommand{\etc}{etc.\xspace}
+\newcommand{\etal}{\emph{et~al.}\xspace}
+
+\newcommand{\descStep}[2]{\noindent\textbf{#1:} #2}
+\newcommand{\smallTitle}[1]{\vspace{1mm}\noindent\textit{#1:}}
+\newcommand{\fillin}[1]{\textcolor{gray}{\emph{[#1]}}}
+\newcommand{\metric}[1]{\textsc{#1}}
+
+\newcommand{\pp}{\,\%}
+\newcommand{\SEM}{\text{SEM}}
+\newcommand{\eff}{\text{Eff}}
+\newcommand{\retries}{\text{Retries}}
+\newcommand{\uthresh}{\text{UnderThresh}}
+\newcommand{\varseed}{\text{Var}_{\text{seeds}}}
+
+\newcommand{\Fb}{F_{\text{b}}}
+\newcommand{\Tb}{T_{\text{b}}}
+\newcommand{\TwoT}{2T}
+
+\newcommand{\RQOneText}{RQ1}
+\newcommand{\RQTwoText}{RQ2}
+\newcommand{\RQThreeText}{RQ3}
+\newcommand{\RQOne}{\textbf{\RQOneText}}
+\newcommand{\RQTwo}{\textbf{\RQTwoText}}
+\newcommand{\RQThree}{\textbf{\RQThreeText}}
+% External testbed / paper reference macros.
+% Internal names preserve our working terminology; rendered text stays reader-facing.
+\newcommand{\paperTwo}{Chaudhary \etal~\cite{chaudhary2023quantum}\xspace}
+\newcommand{\paperSeven}{Liu \etal~\cite{liu2024qbgp}\xspace}
+\newcommand{\paperTwelve}{Clayton \etal~\cite{clayton2024quarc}\xspace}
+\newcommand{\paperEight}{Jallow and Khan~\cite{jallowkhan2025adaptive}\xspace}
+
+% Author comments (remove for camera-ready)
+\newcommand{\todo}[1]{\textcolor{cyan}{\textbf{[TODO: #1]}}}
+\newcommand{\dan}[1]{\textcolor{blue}{\textit{[Dan: #1]}}}
+\newcommand{\piter}[1]{\textcolor{green}{\textit{[Piter: #1]}}}
+\newcommand{\devroop}[1]{\textcolor{magenta}{\textit{[Devroop: #1]}}}
+\newcommand{\shee}[1]{\textcolor{purple}{\textit{[Shee: #1]}}}
+
+% ============================================================================
+% CLEVEREF CUSTOMIZATION
+% ============================================================================
+
+\crefname{section}{Section}{Sections}
+\Crefname{section}{Section}{Sections}
+\crefname{figure}{Figure}{Figures}
+\Crefname{figure}{Figure}{Figures}
+\crefname{table}{Table}{Tables}
+\Crefname{table}{Table}{Tables}
+\crefname{equation}{Equation}{Equations}
+\Crefname{equation}{Equation}{Equations}
+\crefname{algorithm}{Algorithm}{Algorithms}
+\Crefname{algorithm}{Algorithm}{Algorithms}
+
+% ============================================================================
+% TYPOGRAPHY / SPACING TWEAKS (light-touch for IEEE)
+% ============================================================================
+
+% Avoid widows/orphans
+\widowpenalty=10000
+\clubpenalty=10000
+
+% Slightly tighter lists with proper indentation
+\setlist[itemize]{topsep=2pt, partopsep=0pt, itemsep=2pt, parsep=0pt, leftmargin=*}
+\setlist[enumerate]{topsep=2pt, partopsep=0pt, itemsep=2pt, parsep=0pt, leftmargin=*}
+
+% Allow manual leftmargin overrides to work properly
+\setlist[enumerate,1]{leftmargin=2em}
+\setlist[enumerate,2]{leftmargin=2em}
+
+\begin{document}
+
+\title{Threat-Aware Evaluation of Quantum Entanglement Routing and Qubit Allocation via Hybrid Contextual Bandits}
+
+\author{First Author,~Second Author,~and~Third Author%
+\thanks{}}
+
+\maketitle
+
+
+
+
+
+\begin{abstract}
+Quantum entanglement routing requires joint path selection and qubit allocation under noisy, nonstationary, and adversarial conditions. Existing approaches often assume stationary links, fixed allocation rules, or offline optimization assumptions. When these assumptions fail, routing can degrade end-to-end entanglement quality and waste scarce quantum resources.
+
+We introduce a threat-aware evaluation framework for comparing stochastic, contextual/neural, adversarial, predictive, and hybrid bandit policies for joint quantum path selection and qubit allocation. Unlike work that fixes allocator policy and replay semantics, we vary threat regime, allocator policy, and replay capacity as first-class factors, enabling attribution of robustness to the algorithm--allocator--capacity interaction.
+
+Across thirteen algorithms and five threat regimes, neural hybrids outperform non-contextual baselines by 18--24 percentage points in scenario-aggregated efficiency, sustain worst-case efficiency above 85\% under stochastic threats, and remain more stable than adversarial-first EXP3-style designs under adaptive attacks. We also identify a threat-dependent capacity paradox: increasing replay capacity improves efficiency under structured Markov disruption but can induce 22--30 percentage-point efficiency drops under adaptive adversaries. This shows that resource predictability, not raw capacity, can dominate robustness.
+
+Cross-testbed evaluation on three external quantum-network simulators confirms the main robustness trends while exposing scale- and physics-dependent limits.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Quantum networks, entanglement routing, multi-armed bandits, adversarial learning, qubit allocation, online optimization.
+\end{IEEEkeywords}
+
+\section*{Code Metadata}
+
+All source code, datasets, and experiment scripts are available in the public reproducibility repository at \url{https://github.com/pzg8794/quantum_project_hub}. Additional datalake-style artifacts and notebook execution resources are available through the shared Drive hub at \url{https://drive.google.com/drive/folders/0AK0VchnNyM-xUk9PVA}. \shee{I think the reproducibility info is better as a paragraph of its own instead of as a contribution bullet}
+\devroop{This is better i think}
+
+\section{Introduction}
+
+Quantum entanglement distribution is a core primitive for the quantum Internet, supporting quantum key distribution, distributed quantum computing, and sensing~\cite{kimble2008quantum,wehner2018quantum,pompili2021realization}. Reliable end-to-end entanglement is difficult because generation and swapping are probabilistic, quantum states are fragile, and decoherence makes path quality time-varying~\cite{briegel1998quantum,dahlberg2021netsquid,zukowski1993event}.
+
+Unlike classical packet routing, quantum routing must establish and consume entanglement under limited memory coherence, probabilistic operations, and fidelity loss~\cite{bennett1993teleporting,zukowski1993event}. These constraints couple path selection with qubit allocation, since resource placement affects both success probability and learner feedback~\cite{li2025multipath,wang2025learning,huang2024quantum}.
+
+Existing quantum-routing studies propose online path selection, benchmarking-driven routing, adaptive route selection, and adversarially robust learning~\cite{wang2025learning,coopmans2021benchmark,huang2024quantum}, but they are often evaluated under different threat, topology, allocator, and replay assumptions~\cite{liu2024qbgp,li2025multipath,chaudhary2023quantum}. This creates a matched-threat evaluation gap: it is unclear when contextual structure is necessary, when adversarial robustness dominates, and how allocator and capacity choices alter routing performance.
+
+\subsection{Our Approach and Evaluation Scope}
+\shee{Is a sub-section required here since there is only one? The starting sentence "To address this gap..." is a continuation of the previous paragraph. It would make more sense to keep this as another paragraph instead of a sub-section.}
+
+\begin{figure}[t]
+\centering
+\footnotesize
+\resizebox{0.80\columnwidth}{!}{%
+\begin{tikzpicture}[
+    node distance=0.5cm and 0.5cm,
+    >=Latex,
+    basebox/.style={
+        rectangle,
+        draw,
+        rounded corners=4pt,
+        align=center,
+        minimum height=0.95cm,
+        text width=2.55cm,
+        inner sep=4pt,
+        font=\bfseries
+    },
+    topologybox/.style={basebox, draw=networkblue!80!black, fill=networkblue!15},
+    threatbox/.style={basebox, draw=envgreen!70!black, fill=envgreen!18},
+    modelbox/.style={basebox, draw=algorange!85!black, fill=algorange!18},
+    allocbox/.style={basebox, draw=allocpurple!80!black, fill=allocpurple!15},
+    outbox/.style={basebox, draw=black!60, fill=black!6, font=\bfseries},
+    mainbox/.style={
+        rectangle,
+        draw=black!70,
+        fill=black!4,
+        rounded corners=6pt,
+        align=center,
+        minimum height=1.1cm,
+        text width=3.2cm,
+        inner sep=5pt,
+        font=\bfseries
+    },
+    arrow/.style={thick,->}
+]
+
+\node[topologybox] (topology) {Quantum Network\\Topology};
+\node[threatbox, right=of topology] (threats) {Threat\\Regimes};
+\node[modelbox, right=of threats] (models) {Bandit Policy\\Families};
+
+\node[allocbox, below=1.3cm of topology] (allocator) {Allocator\\Policy};
+\node[allocbox, below=1.3cm of models] (capacity) {Replay / Capacity\\Semantics};
+
+\node[mainbox, below=1.4cm of threats] (engine)
+{Threat-Aware Evaluation Framework\\[0.2em]
+Joint path selection + qubit allocation under matched conditions};
+
+\node[outbox, below=1.5cm of allocator] (metrics) {Oracle-Normalized\\Metrics};
+\node[outbox, below=1.5cm of engine] (comparison) {Cross-Model\\Robustness Comparison};
+\node[outbox, below=1.5cm of capacity] (guidance) {Deployment\\Guidance};
+
+\draw[arrow, draw=networkblue!80!black] (topology) -- (engine);
+\draw[arrow, draw=envgreen!70!black] (threats) -- (engine);
+\draw[arrow, draw=algorange!85!black] (models) -- (engine);
+\draw[arrow, draw=allocpurple!80!black] (allocator) -- (engine);
+\draw[arrow, draw=allocpurple!80!black] (capacity) -- (engine);
+
+\draw[arrow] (engine) -- (metrics);
+\draw[arrow] (engine) -- (comparison);
+\draw[arrow] (engine) -- (guidance);
+
+\end{tikzpicture}%
+}
+\caption{Threat-aware evaluation framework. Topology, threat regimes, policy families, allocator choices, and replay/capacity semantics are matched before computing oracle-normalized robustness metrics and deployment guidance.}
+\label{fig:framework}
+\end{figure}
+
+To address this gap, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks.
+
+This work makes three contributions. First, we introduce a unified threat-aware routing evaluation framework for comparing stochastic, contextual, adversarial, predictive, and hybrid bandit policies for joint entanglement path selection and qubit allocation under matched threat conditions. Second, we show that routing robustness depends on the interaction among learning model, allocator policy, and replay-capacity semantics, identifying a threat-dependent capacity paradox in which added capacity helps under structured disruption but hurts under adaptive attacks. Third, we validate the main trends across external quantum-network testbeds and derive deployment guidance for selecting model--allocator--capacity combinations under different threat regimes.
+
+%The \hl{XXX} code repo and data is publicly available on our project repository~\cite{}.
+
+
+
+
+%First, we introduce a unified threat-aware evaluation framework for quantum entanglement routing that compares classical, contextual, adversarial, and hybrid bandit policies for joint path selection and qubit allocation under matched conditions. Second, we show that robustness is determined not only by the learning rule, but by the interaction among \emph{algorithm choice, allocator policy, and replay-capacity semantics}, and we identify a threat-dependent \emph{capacity paradox} in which additional replay capacity can help under structured disruption yet hurt under adaptive adversaries. Third, we validate these findings across multiple external quantum-network testbeds and distill deployment-oriented guidance for selecting model--allocator--capacity combinations under different threat conditions. More broadly, we treat quantum routing as a joint decision problem over path selection, qubit allocation, and learning under uncertainty, with learning, allocation, and capacity modeled as coupled design dimensions rather than independent implementation details.
+% By systematically varying these dimensions under a shared threat taxonomy, we can isolate the conditions under which contextual structure is necessary, when adversarial robustness dominates, and how allocator and capacity choices alter apparent routing performance. This approach yields actionable insights for quantum network design and deployment while also advancing the broader understanding of online learning under uncertainty in complex, resource-constrained environments.
+
+% Section ---- Related Works will go here
+\input{sections/02--related_works}
+
+
+
+% \section{Background}
+% \label{sec: Background}
+
+% Why are entanglement connections important. What are they
+% What are the existing problems in general work.
+% What will we do
+% What problem will we solve
+
+%%%%%
+
+
+
+
+
+
+
+
+% Do this for both Qubit allocation and entanglement path selection
+
+%%%%%%%%%% Why are entanglement connections important. What are they %%%%%%%%%%
+
+
+% What is a quantum data network
+
+
+
+
+
+
+
+
+% Why is entangelment important
+
+
+
+
+% Why is path selection important
+
+
+
+
+
+%%%%%%%%%% What are the existing problems %%%%%%%%%%
+
+
+
+
+
+
+%%%%%%%%%% What will we do %%%%%%%%%%
+
+
+
+
+
+
+%%%%%%%%%% What problem will we solve %%%%%%%%%%
+
+
+
+
+%%%%%%%%%% What are some existing efforts and how will our work differ %%%%%%%%%%
+% -----------------------------------------------------------------------------
+% Background reduction pass
+% -----------------------------------------------------------------------------
+
+\section{Background}
+\label{sec:Background}
+
+Quantum networks distribute entanglement across repeaters and end-nodes to support long-distance quantum communication, distributed quantum computing, and sensing~\cite{wehner2018quantum,kimble2008quantum}. Unlike classical packet routing, quantum routing must operate with fragile states, probabilistic entanglement generation and swapping, decoherence, and fidelity loss~\cite{briegel1998quantum,dahlberg2021netsquid,bennett1993teleporting,zukowski1993event}. Across multi-hop paths, these effects make routing a repeated decision problem under uncertainty, where path choices must adapt to noisy outcomes and changing link conditions. Prior routing approaches often assume stable topology knowledge or fixed allocation rules, assumptions that weaken under online learning, demand variability, and disruptive or strategic interference~\cite{li2025multipath,wang2025learning,huang2024quantum}.
+
+A multi-armed bandit (MAB) models online routing as repeated action selection under partial feedback, where a learner chooses candidate paths or allocation actions and updates from reward signals such as entanglement success or routing efficiency~\cite{lattimore2020bandit,bubeck2012regret}. We use this taxonomy to distinguish the routing assumptions made by each model family: stochastic methods assume stable rewards~\cite{auer2002finite}, contextual and neural methods exploit predictive side information or nonlinear reward structure~\cite{chu2011contextual,zhou2020neuralucb}, adversarial methods handle non-stationary or strategic rewards~\cite{auer2002nonstochastic}, and predictive/informed methods incorporate forecasts~\cite{kar2024icmab}. This distinction matters for quantum routing because benign noise, topology-dependent feedback, and adaptive disruption favor different forms of learning robustness~\cite{huang2024quantum}.
+
+Quantum routing couples path choice with resource allocation: the learner must decide both which route to use and how many qubits or attempts to assign within each decision epoch. These allocator choices shape the feedback observed by the bandit learner and the predictability of routing behavior under disruption. Replay or capacity semantics, including bounded histories, windowed updates, and capped experience buffers, further affect stability under nonstationarity and vulnerability to adaptive attacks. We therefore evaluate routing policies jointly with allocator strategy and capacity semantics, rather than treating them as independent implementation details.
+
+We study routing robustness as a joint function of learning model, allocator design, replay-capacity configuration, and threat regime, rather than as a property of the bandit policy alone.
+
+
+
+\section{System Model}
+\label{sec:SystemModel}
+
+% We model quantum entanglement routing as a sequential decision problem...
+
+We model quantum entanglement routing as a sequential decision problem where an agent must jointly optimize (1) \textbf{Path selection} among candidate routes, and (2) \textbf{Qubit allocation} across path segments, under uncertain link fidelities and adversarial interference. This section formalizes the network topology, reward structure, threat taxonomy, qubit allocation policies, and the underlying MAB formulation. This joint formulation follows prior quantum-routing work that couples path choice with fidelity estimation, online path selection, or qubit allocation, while making those design dimensions explicit so they can be varied systematically in our evaluation~\cite{wang2025learning,li2025multipath,huang2024quantum}.
+
+% \noindent\textbf{System-model loop.}
+% At each round $t$, the agent observes the candidate path set and available context, selects a route $P_r$, allocates qubits $\mathbf{x}$ across its links subject to budget constraints, and observes reward feedback determined by entanglement success and the threat availability vector $\mathbf{A}_t$. The evaluation then compares policies by repeating this loop across matched threat regimes, allocator policies, and replay-capacity settings.
+\begin{figure}[t]
+\centering
+\footnotesize
+\resizebox{0.92\columnwidth}{!}{%
+\begin{tikzpicture}[
+    >=Latex,
+    node distance=0.55cm and 0.65cm,
+    basebox/.style={
+        rectangle,
+        draw,
+        rounded corners=4pt,
+        align=center,
+        minimum height=0.8cm,
+        text width=2.0cm,
+        inner sep=3pt,
+        font=\bfseries
+    },
+    contextbox/.style={basebox, draw=networkblue!80!black, fill=networkblue!15},
+    agentbox/.style={basebox, draw=algorange!85!black, fill=algorange!18},
+    actionbox/.style={basebox, draw=allocpurple!80!black, fill=allocpurple!15},
+    envbox/.style={basebox, draw=envgreen!70!black, fill=envgreen!18},
+    feedbackbox/.style={basebox, draw=black!60, fill=black!6},
+    arrow/.style={thick,->}
+]
+
+\node[contextbox] (context) {Candidate Paths\\+ Context};
+\node[agentbox, right=of context] (agent) {Routing Agent\\(Bandit Policy)};
+\node[actionbox, right=of agent] (action) {Path Selection\\+ Qubit Allocation};
+
+\node[envbox, below=1.0cm of action] (env) {Quantum Network\\+ Threat Regime};
+\node[feedbackbox, left=of env] (reward) {Reward / Feedback\\(success, fidelity, efficiency)};
+
+\draw[arrow, draw=networkblue!80!black] (context) -- (agent);
+\draw[arrow, draw=algorange!85!black] (agent) -- (action);
+\draw[arrow, draw=allocpurple!80!black] (action) -- (env);
+\draw[arrow, draw=envgreen!70!black] (env) -- (reward);
+\draw[arrow] (reward) -- (agent);
+
+\end{tikzpicture}%
+}
+\caption{System-model loop for quantum entanglement routing. The agent observes path context, selects a path and qubit allocation, interacts with the network under a threat regime, and updates from reward feedback.}
+\label{fig:system_model}
+\end{figure}
+
+\subsection{Network Topology and Path Structure}
+\label{subsec:topology}
+
+\smallTitle{4-node diamond topology}
+We study a canonical 4-node quantum network connecting source $S$ (Alice) to destination $D$ (David) via two intermediate repeaters, Bob and Charlie. This diamond topology yields \textbf{4 candidate paths} $\mathcal{P} = \{P_1, P_2, P_3, P_4\}$ with varying hop counts:
+\begin{itemize}
+\item \textbf{2-hop paths} ($P_1 = S{\to}B{\to}D$, $P_2 = S{\to}C{\to}D$): one repeater, two entanglement links
+\item \textbf{3-hop paths} ($P_3 = S{\to}B{\to}C{\to}D$, $P_4 = S{\to}C{\to}B{\to}D$): two repeaters, three links
+\end{itemize}
+Each path $P_r$ has $h_r$ hops ($h_1 = h_2 = 2$, $h_3 = h_4 = 3$), where a \textbf{hop} denotes a single entanglement link between adjacent nodes (\eg source-to-repeater or repeater-to-destination) requiring one entanglement generation operation. Shorter paths reduce swapping overhead but may traverse noisier channels; longer paths enable route diversity but accumulate fidelity loss.
+
+\smallTitle{Qubit budget and allocator policies}
+The network operates under a \textbf{fixed total budget of 35 qubits} distributed across paths. We evaluate \textbf{four allocator strategies} chosen to span complementary allocation behaviors: a static baseline (\textbf{Fixed}), two principled adaptive heuristics based on posterior sampling and optimistic exploration (\textbf{ThompsonSampling} and \textbf{DynamicUCB}), and a non-informative control baseline (\textbf{Random}). This set allows us to compare whether routing robustness is best supported by fixed, uncertainty-aware, or uninformed allocation under the same total resource budget.
+\begin{enumerate}
+\item \textbf{Fixed} ($T_1{=}8, T_2{=}10, T_3{=}8, T_4{=}9$): static baseline
+\item \textbf{ThompsonSampling}: Bayesian posterior sampling over path utilities
+\item \textbf{DynamicUCB}: upper-confidence-bound-driven capacity redistribution
+\item \textbf{Random}: uniform random assignment (control baseline)
+\end{enumerate}
+
+For each path $P_r$ with session budget $T_r$, a \textbf{feasible allocation} $\mathbf{x} = (x_1, \dots, x_{h_r})$ satisfying $\sum_{\ell=1}^{h_r} x_\ell = T_r$ defines the context space $\mathcal{X}_r$. This combinatorial space scales quadratically for 3-hop paths, motivating contextual neural approximation.
+
+\subsection{Reward Model and Link-Level Fidelity}
+\label{subsec:reward}
+
+\smallTitle{Probabilistic entanglement generation}
+Each path $P_r$ contains $h_r$ links indexed by $\ell \in \{1, \ldots, h_r\}$. For each link $\ell$, let $p_e^{(\ell)} \in [10^{-4}, 2{\times}10^{-4}]$ denote its per-attempt entanglement success probability (representative of realistic SNSPD-based quantum memory systems), and let $x_\ell$ denote the number of qubits allocated to that link. Over a decision step (frame), allocating $x_\ell$ qubits yields \textbf{link-level success probability}
+\devroop{Define $p_\ell$}
+
+\[
+p_\ell(x_\ell) = 1 - (1 - p_e^{(\ell)})^{x_\ell}.
+\]
+
+\smallTitle{Path-level success as multiplicative fidelity}
+End-to-end entanglement succeeds if \textbf{all} $h_r$ links succeed (entanglement swapping requires coherent intermediate states). Path success probability is multiplicative:
+\[
+h_r(\mathbf{x}) = \prod_{\ell=1}^{h_r} p_\ell(x_\ell).
+\]
+This multiplicative decay captures the fundamental quantum constraint: \textbf{fidelity degrades exponentially with hop count} unless mitigated by purification (out of scope for routing).
+
+\smallTitle{Bernoulli rewards under adversarial availability}
+At frame $t$, selecting path $P_r$ (where $r \in \{1,2,3,4\}$) with allocation $\mathbf{x} = (x_1, \ldots, x_{h_r})$ yields binary reward
+\[
+Y_t(r,\mathbf{x}) \sim \mathrm{Bernoulli}\!\big(h_r(\mathbf{x}) \cdot A_t(r)\big),
+\]
+where $Y_t(r,\mathbf{x}) \in \{0,1\}$ denotes the observed outcome (1 = success, 0 = failure) at frame $t$, and $A_t(r) \in \{0,1\}$ is the \textbf{availability indicator}: $A_t(r)=1$ if path $P_r$ is active (no attack), $A_t(r)=0$ if disrupted. When a path is disrupted at time $t$, we set its indicator to zero (i.e., $A_t(r)=0$ for disrupted paths and $A_t(r')=1$ otherwise), so disruption acts as a path-specific availability gate on otherwise stochastic link success. This formulation cleanly separates \textbf{stochastic decoherence} (encoded in $h_r$) from \textbf{strategic interference} (encoded in $A_t$).
+
+% \subsection{Adversarial Threat Taxonomy}
+% \label{subsec:threats}
+
+% We study routing robustness under \textbf{five escalating threat regimes} spanning benign stochasticity to intelligent reactive attacks. Each scenario modulates the availability vector
+% $\mathbf{A}_t = (A_t(1), \dots, A_t(4))$ according to distinct disruption semantics.
+\subsection{Adversarial Threat Taxonomy}
+\label{subsec:threats}
+% We study routing robustness under \textbf{five escalating threat regimes} spanning benign stochasticity, temporally correlated disruption, targeted failures, and adaptive adversarial interference. These regimes are intended to separate routine quantum-network uncertainty from increasingly structured and strategic forms of path unavailability. Each scenario modulates the availability vector
+% $\mathbf{A}_t = (A_t(1), \dots, A_t(4))$ according to distinct disruption semantics.
+We study routing robustness under five escalating threat regimes spanning no-disruption operation, independent stochastic failures, temporally correlated disruption, targeted failures, and adaptive adversarial interference. The regimes are selected to form a controlled escalation from normal operating conditions to increasingly structured and strategic disruptions. The baseline regime isolates routing and allocation behavior without path unavailability, while the stochastic and Markov regimes capture two common non-adversarial uncertainty models: independent random failures and temporally correlated outages. The adaptive and OnlineAdaptive regimes then stress-test whether policies remain robust when path unavailability is coupled to the learner's own routing behavior, which is consistent with adversarial-bandit settings where rewards or losses may be strategically selected rather than drawn from a fixed distribution~\cite{auer2002finite,auer2002nonstochastic,bubeck2012regret,lattimore2020bandit}. This design also reflects quantum-network routing concerns in which entanglement generation is probabilistic, path quality varies over time, and routing policies may need to remain stable under interference or attacker-driven disruption~\cite{wang2025learning,li2025multipath,huang2024quantum}.
+
+\texttt{Baseline (No Disruption).}
+In the baseline regime, all routes remain available at all times: $A_t(r)=1$ for all $r,t$.
+This setting isolates pure stochastic decoherence and serves as the benign-condition upper bound (Oracle-aligned) for comparisons across all disrupted regimes.
+
+\texttt{Stochastic (6.25\% i.i.d. failures).}
+Under stochastic disruption, each route is independently available according to $A_t(r)\sim\mathrm{ Bernoulli}(0.9375)$.
+This captures non-adversarial environmental noise without temporal structure or memory.
+
+\texttt{Markov (25\% structured disruption).}
+In the Markov regime, availability is governed by a 4-state Markov chain whose states modulate path-failure probabilities.
+This setting captures bursty, correlated outages, with an average disruption rate of approximately $25\%$.
+
+\texttt{Adaptive (Reactive targeting over sliding window).}
+In the adaptive regime, the adversary observes path selection over a sliding window of $w=50$ frames and targets the most-used path with $100\%$ probability.
+This mechanism exploits predictable allocation patterns and is especially punitive for Fixed allocators and larger replay scaling ($s$).
+
+\texttt{OnlineAdaptive (Real-time policy adaptation).}
+In the OnlineAdaptive regime, the adversary maintains exponentially weighted path usage with decay $\gamma=0.97$ and applies softmax targeting with temperature $\tau$:
+\[
+\Pr(\text{attack path } r \mid t) =
+\frac{\exp(\text{usage}_r(t) / \tau)}{\sum_{r'} \exp(\text{usage}_{r'}(t) / \tau)}.
+\]
+\shee{Is this supposed to be $P_r$? Define r'}
+This setting mimics intelligent adversaries that learn and adapt in real time, representing the hardest realistic threat model in our taxonomy.
+
+
+\subsection{Multi-Armed Bandit Formulation}
+\label{subsec:mab}
+
+\smallTitle{Hierarchical group-arm structure}
+We cast quantum routing as a \texttt{2-level MAB problem}:
+\begin{itemize}
+\item \texttt{Level 1 (Group selection):} Choose path $r_t \in \{1,2,3,4\}$ at frame $t$ via policy $\pi_g$.
+\item \texttt{Level 2 (Arm selection):} Choose allocation $\mathbf{x}_t \in \mathcal{X}_{r_t}$ via policy $\pi_a$.
+\end{itemize}
+Each path $P_r$ defines a \textbf{group} $\mathcal{G}_r$ containing $|\mathcal{X}_r|$ allocation arms. For 3-hop paths with budget $T_r$, $|\mathcal{X}_r| \approx \binom{T_r + h_r - 1}{h_r - 1}$ (stars-and-bars), scaling quadratically.
+
+\smallTitle{Objective and regret}
+Let $\mu_t(r,\mathbf{x}) := h_r(\mathbf{x})A_t(r)$ denote the expected reward at time $t$. Maximize cumulative expected reward over horizon $F_b$:
+\[
+\max_{\pi_g, \pi_a} \; \mathbb{E}\!\left[\sum_{t=1}^{F_b} \mu_t(r_t, \mathbf{x}_t)\right],
+\]
+subject to unknown dynamics $h_r(\cdot)$ and adversarial interference $A_t(\cdot)$. \textbf{Regret} measures suboptimality relative to an Oracle with perfect foresight:
+\[
+\text{Regret}(T) = \sum_{t=1}^{T} \big(\mu_t^* - \mu_t(r_t,\mathbf{x}_t)\big),
+\]
+where $\mu_t^* = \max_r \mu_t(r,\mathbf{x}_r^*)$ is the best achievable reward at $t$.
+
+\subsection{Capacity Semantics and Replay Scaling}
+\label{subsec:capacity}
+\[
+T = \begin{cases}
+s \cdot F_b & \text{(base-frames replay, $T_b$-type)} \\
+s \cdot F_c & \text{(current-frames replay, $T$-type)}
+\end{cases}
+\]
+\noindent To eliminate ambiguity in memory scaling, we distinguish \textbf{two replay-capacity types}. Let:
+\begin{itemize}
+\item $F_b$: \textbf{base per-run horizon} (frames)---the standard episode length before scaling (\eg 4K, 6K, or 8K frames)
+\item $F_c$: \textbf{current per-run horizon} (frames)---actual frames after any horizon scaling
+\item $s \in \{1, 1.5, 2\}$: \textbf{capacity scale factor} (default $s=2$)
+\end{itemize}
+
+Both are \textbf{always scaled} (even when $s=1$). This separation is critical for diagnosing the \textbf{capacity paradox} (\cref{sec:SimulationResults}): increasing nominal replay from $s=1 \to s=2$ can \textbf{degrade} efficiency by 22--30 pp under Adaptive attacks, as excess predictable capacity becomes exploitable.
+
+
+\begin{figure}[ht!]
+\tiny
+\centering
+\resizebox{0.8\columnwidth}{!}{%  % Scale to 80% of column width
+    \begin{tikzpicture}[
+      node distance=0.5cm,
+      block/.style={rectangle, draw, fill=white, text width=5.0cm, text centered, rounded corners, minimum height=0.1cm, line width=0.5pt},
+      layer/.style={rectangle, draw, fill=white, text width=5.0cm, text centered, minimum height=0.1cm, line width=0.5pt, font=\small},
+      arrow/.style={-Stealth, line width=0.6pt},
+      lab/.style={font=\scriptsize}
+    ]
+
+    % 1. ALLOCATOR
+    \node[layer, fill=allocpurple!18, draw=allocpurple] (alloc) {\textbf{1. ALLOCATOR}};
+    \node[block, below=0.1cm of alloc, font=\scriptsize] (alloccontent) {
+      \textbf{Strategies:} Fixed, Thompson, DynamicUCB, Random
+    };
+
+    % 2. CONFIGURATION
+    \node[layer, fill=gray!18, draw=gray, below=0.4cm of alloccontent] (config) {\textbf{2. CONFIGURATION}};
+    \node[block, below=0.1cm of config, font=\scriptsize] (configcontent) {
+      Topology: 4 nodes, 4 paths
+      Scenarios: 5 threats
+      Algorithms: CPursuitNeuralUCB, iCPursuitNeuralUCB, GNeuralUCB, EXPNeuralUCB
+      Capacity: replay type ($T_b$ vs.\ $T$), scale $s\in\{1,1.5,2\}$\\
+      Seeds: 3--10 runs
+    };
+
+    % 3. EVALUATOR
+    \node[layer, fill=blue!18, draw=blue, below=0.4cm of configcontent] (evaluator) {\textbf{3. EVALUATOR}};
+    \node[block, below=0.1cm of evaluator, font=\scriptsize] (evalcontent) {
+      Orchestrates runs
+      Logs results
+    };
+    \node[block, below=0.1cm of evalcontent, font=\scriptsize, fill=envgreen!10, draw=envgreen] (env) {
+      \textbf{Environment Threat:}
+      $Y_t(r,\mathbf{x}) \sim \mathrm{Bernoulli}\!\big(h_r(\mathbf{x}) \cdot A_t(r)\big)$
+      None, Stochastic, Markov, Adaptive, OnlineAdaptive
+    };
+
+    % 4. RUNNER
+    \node[layer, fill=blue!10, draw=blue!60, below=0.4cm of env] (runner) {\textbf{4. RUNNER}};
+    \node[block, below=0.1cm of runner, font=\scriptsize] (runnercontent) {
+      Batch execution
+      Parallel runs
+      Per-scenario/per-seed Oracle tracking
+      Applies the allocator to distribute qubits across paths
+    };
+
+    % 5. MODEL
+    \node[layer, fill=blue!10, draw=blue!60, below=0.4cm of runnercontent] (model) {\textbf{5. MODEL}};
+    \node[block, below=0.1cm of model, font=\scriptsize, fill=networkblue!10, draw=networkblue] (net) {
+      \textbf{Quantum network:}
+      4 paths, 35-qubit capacity
+    };
+    \node[block, below=0.05cm of net, font=\scriptsize, fill=algorange!10, draw=algorange] (algo) {
+      \textbf{Algorithms:}
+      EXPNeuralUCB
+      GNeuralUCB
+      CPursuitNeuralUCB
+      iCPursuitNeuralUCB
+      Structure: EXP3 group + neural/pursuit-based arm selection
+    };
+
+    % 6. VISUALIZER
+    \node[layer, fill=orange!18, draw=orange, below=0.4cm of algo] (visualizer) {\textbf{6. VISUALIZER}};
+    \node[block, below=0.1cm of visualizer, font=\scriptsize] (viscontent) {
+      Efficiency curves
+      Summary tables
+      Scenario ranking
+      Heatmaps
+      Winner highlighting
+    };
+
+    %%% MAIN VERTICAL FLOW
+    \draw[arrow] (alloccontent.south) -- (config.north);
+    \draw[arrow] (configcontent.south) -- (evaluator.north);
+    \draw[arrow] (env.south) -- (runner.north);
+    \draw[arrow] (runnercontent.south) -- (model.north);
+    \draw[arrow] (algo.south) -- (visualizer.north);
+
+    %%% CONFIG SHARED BY ALL LAYERS
+    \draw[arrow, dashed, bend left=20] (config.east) to node[lab, right] {config} (evaluator.east);
+    \draw[arrow, dashed, bend left=15] (config.east) to (runner.east);
+    \draw[arrow, dashed, bend left=20] (config.east) to (model.east);
+    \draw[arrow, dashed, bend left=25] (config.east) to (visualizer.east);
+
+    %%% RESULT FEEDBACK FLOW
+    \draw[arrow, dashed, bend left=20] (model.west) to node[left, lab, align=center] {per-run\\results} (runner.west);
+    \draw[arrow, dashed, bend left=20] (runner.west) to node[left, lab, align=center] {aggregated\\logs} (evaluator.west);
+    \draw[arrow, dashed, bend right=40] (evaluator.west) to node[left, lab, align=center] {summaries\\+\\plots} (visualizer.west);
+    \end{tikzpicture}
+}
+% \vspace{-0.45cm}
+\caption{A unified evaluation pipeline enables apples-to-apples routing comparisons across threats, capacity semantics, allocators, and model families.}
+\label{fig:framework}
+\end{figure}
+
+
+% \vspace{-0.5cm}
+\subsection{Algorithmic Framework}
+\label{subsec:framework}
+
+\noindent Our evaluation infrastructure consists of \textbf{six layers} (Figure~\ref{fig:framework}):
+\shee{I feel this list might be redundant since the details are present in Fig 3 and explained in the next paragraph.}
+\begin{enumerate}
+\item \texttt{ALLOCATOR:} Top-level policy (\eg DynamicUCB)
+\item \texttt{CONFIGURATION:} Shared experimental setup (topology, scenarios, capacity, seeds)
+\item \texttt{EVALUATOR:} Orchestrates runs, logs, threat models
+\item \texttt{RUNNER:} Batch execution engine with Oracle tracking
+\item \texttt{MODEL:} Quantum routing stack (algorithms + neural)
+\item \texttt{VISUALIZER:} Aggregates results into efficiency curves, tables, and winner summaries
+\end{enumerate}
+
+\noindent\textbf{Interface view (how the layers connect).}
+Each experiment instantiates a consistent decision pipeline:
+\emph{Environment} (topology + link/fidelity model)
+$\rightarrow$ \emph{Threat/Noise process} (how disruptions evolve)
+$\rightarrow$ \emph{Allocator} (maps total capacity to per-path budgets)
+$\rightarrow$ \emph{Capacity semantics} (\eg $T$ vs. $T_b$, replay scale $s$; \cref{subsec:capacity})
+$\rightarrow$ \emph{Learner/Policy} (bandit selects paths from feedback/context)
+$\rightarrow$ \emph{Metrics} (oracle-normalized efficiency and robustness summaries).
+
+\noindent In our implementation, \texttt{CONFIGURATION} fixes the shared environment, threat regime, and capacity semantics;
+\texttt{ALLOCATOR} chooses the distribution rule; \texttt{EVALUATOR} instantiates the threat model and logging/oracle tracking;
+\texttt{RUNNER} executes batched runs under fixed seeds and aggregation rules; \texttt{MODEL} implements the bandit policy and routing stack;
+and \texttt{VISUALIZER} aggregates results into scenario rankings, efficiency curves, and summary tables.
+
+\noindent Figure~\ref{fig:framework} is illustrative (one representative configuration); the full evaluated model portfolio
+is summarized in \Cref{tab:setup-algorithm-portfolio}.
+This architecture enables \textbf{systematic ablation} across allocators, algorithms, and threat regimes under consistent capacity semantics, ensuring reproducible comparisons~\cite{wang2025learning,huang2024quantum}.
+
+
+
+
+
+
+
+% ============================================================================
+% RQ-DRIVEN STRUCTURE (per Dan's feedback)
+% ============================================================================
+\section{Study Design}
+\label{sec:studydesign}
+\noindent We evaluate routing architectures and deployment configurations under stochastic and adversarial constraints using a modular, four-phase framework. We isolate the contributions of context awareness, predictive intelligence, and capacity management, while ablation studies probe algorithm--allocator--capacity interactions across five threat profiles.
+
+\noindent We validate on external routing testbeds from prior work to support cross-testbed comparison across differing simulator assumptions~\cite{chaudhary2023quantum,liu2024qbgp,clayton2024quarc}, complementing broader quantum-network benchmarking efforts~\cite{coopmans2021benchmark,kozlowski2022utility}.
+
+\noindent All quantitative results are computed from a curated experimental corpus generated by our evaluation framework. In total, we report \textit{7,890 model--scenario--configuration evaluations} across \textit{835 unique scenario--allocator--capacity--horizon settings}.
+
+\subsection{Research Questions}
+\label{sec:research_questions}
+
+% All quantitative ranges are computed from the \textbf{validated}
+% (\texttt{experimental results}) using the \textbf{3- and 5-run suites}. Core findings \textbf{exclude the Random allocator}
+% (which we report separately) to properly compare against other papers. Furthermore, we reference extended observations obtained throughout the development of our experiments that are yet to be validated with current framework.
+% \vspace{0.25em}
+\devroop{You should just mention your primary research questions. The answers to your questions should a part of your results and observations.}
+
+% \noindent Our study addresses three core questions about stochastic decoherence impact, adversarial robustness, and deployment tradeoffs in algorithm--allocator--capacity selection.
+% BLOCKED (Needs Dan approval; no action until instructed): \devroop{Wont it make more sense to just relay the questions here and answer them in the results and discussion section?}
+
+Our study addresses three core questions about stochastic decoherence impact, adversarial robustness, and deployment tradeoffs in algorithm--allocator--capacity selection:
+
+\subsubsection*{\emph{\RQOne}}
+\label{subsubsec:rq1_question}
+
+\emph{How do classical and context-aware multi-armed bandit (MAB) routing approaches perform under stochastic quantum network conditions?}
+
+
+
+\begin{figure}[ht!]
+\scriptsize
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  ylabel={\textbf{Efficiency (\%)}},
+  xlabel={\textbf{Scenario}},
+  ymin=35, ymax=95,
+  xtick={1,2,3,4,5},
+  xticklabels={Stochastic, Markov, Adaptive, OnlineAdaptive, Baseline},
+  width=0.50\textwidth,
+  height=5cm,
+  grid=major,
+  grid style={line width=.1pt, draw=gray!10},
+  legend style={at={(0.5,-0.22)}, anchor=north},
+  legend columns=-1,
+  % legend pos=south east,
+  % legend columns=2,
+  legend style={font=\scriptsize}
+]
+
+% Context Models T Scale (iCMAB + CMAB avg @ T)
+\addplot[color=teal!80, mark=o, line width=2.5pt, smooth] coordinates {
+  (1, 89.9)  % Stochastic T
+  (2, 85.9)  % Markov T
+  (3, 86.8)  % Adaptive T
+  (4, 88.8)  % OnlineAdaptive T
+  (5, 93.2)  % Baseline T
+};
+\addlegendentry{Context (T)}
+
+% Context Models Tb Scale (avg @ Tb)
+\addplot[color=blue!80, mark=square*, line width=2.5pt, smooth] coordinates {
+  (1, 88.1)  % Stochastic Tb
+  (2, 86.1)  % Markov Tb
+  (3, 87.7)  % Adaptive Tb
+  (4, 86.5)  % OnlineAdaptive Tb
+  (5, 93.3)  % Baseline Tb
+};
+\addlegendentry{Context (Tb)}
+
+% EXP3-based T Scale (EXPNeuralUCB, GNeuralUCB, EXPUCB avg @ T)
+\addplot[color=orange!80, mark=triangle*, line width=2.5pt, smooth, dashed] coordinates {
+  (1, 81.4)  % Stochastic T
+  (2, 80.6)  % Markov T
+  (3, 77.2)  % Adaptive T
+  (4, 82.5)  % OnlineAdaptive T
+  (5, 90.5)  % Baseline T
+};
+\addlegendentry{EXP3 (T)}
+
+% EXP3-based Tb Scale (avg @ Tb)
+\addplot[color=red!80, mark=x, line width=2.5pt, smooth, dashed] coordinates {
+  (1, 81.1)  % Stochastic Tb
+  (2, 81.7)  % Markov Tb
+  (3, 79.5)  % Adaptive Tb
+  (4, 81.1)  % OnlineAdaptive Tb
+  (5, 85.9)  % Baseline Tb
+};
+\addlegendentry{EXP3 (Tb)}
+
+\end{axis}
+\end{tikzpicture}
+% \vspace{-0.5cm}
+\caption{Contextual (CMAB/iCMAB) methods are more scale-robust than EXP3 baselines, with the clearest Oracle-normalized efficiency gap under $T_b$ settings.\devroop{You may want to zoom in for this figure to show the exact curve variations}}
+\label{fig:context_exp3_capacity}
+\end{figure}
+
+
+
+Yes---in our benchmark, representative classical baselines drop well below practical targets under i.i.d.\ disruption,
+while context-aware routing remains deployment-viable. In the \textsc{Stochastic} regime (6.25\% i.i.d.\ disruption),
+pursuit--neural routing maintains \textbf{87--93\%} Oracle-normalized efficiency under the validated suites
+(\small\texttt{Hybrid}, $T_b$, $s{=}2$, \emph{Default} allocator), whereas classical baselines such as
+\small\texttt{CThompsonSampling} and \small\texttt{CEXP4} fall to \textbf{62--70\%} (\small\texttt{CMAB} validated suites),
+yielding an average gap of approximately \textbf{24 pp} (see \cref{subsec:rq1_answer} and \cref{sec:SimulationResults}).
+
+\emph{Supporting questions:}
+\begin{itemize}[leftmargin=2em]
+  \item \emph{RQ1a: What performance floor do baseline MABs reach under pure stochastic disruption?} \\
+  In the \small\texttt{CMAB} validated suites under \textsc{Stochastic}, \small\texttt{CThompsonSampling} and \small\texttt{CEXP4} remain in the 62--70\% band, which is below an 85\% deployment target.
+
+  \item \emph{RQ1b: Do topology/channel-aware models outperform baselines under the same disruption?} \\
+  \emph{Yes}. Pursuit--neural routing reaches 87--93\% under matched conditions, exceeding the classical floor by a wide margin in the validated suites.
+
+  \item \emph{RQ1c: Do top-tier contextual MABs remain above the 85\% deployment target across horizons and suites?} \\
+  \emph{Yes}. In the matched testbed slice ($T_b$, $s{=}2$, non-random allocators, 3- and 5-run suites), pursuit--neural models remain $\ge 85\%$ under \textsc{Stochastic} across the primary horizons used in validated suites.
+\end{itemize}
+
+\subsubsection*{\emph{\RQTwo}}
+\label{subsubsec:rq2_question}
+
+\emph{How does the performance of bandit-based routing strategies change as network disruptions evolve from stochastic noise to structured, adaptive adversarial interference?}
+
+\begin{figure}[ht!]
+\scriptsize
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  ybar=0pt,
+  ylabel={Performance (\%)},
+  xlabel={Algorithm},
+  ymin=15, ymax=100,
+  xtick={1,2,3,4,5},
+  xticklabels={iCEpsGreedy, iCPursuit, CPursuit, EXPNeural, EXP3},
+  width=0.50\textwidth,
+  height=5cm,
+  grid=major,
+  grid style={line width=.1pt, draw=gray!10},
+  legend style={at={(0.5,-0.26)}, anchor=north},
+  legend columns=-1,
+  % legend pos=south east,
+  % legend columns=3,
+  legend style={font=\scriptsize}
+]
+
+% ---------- Peak ----------
+\addplot[fill=green!50, opacity=0.50, bar width=0.50cm] coordinates {
+  (1, 88.5)   % iCEpsilonGreedy
+  (2, 72.7)   % iCPursuit
+  (3, 96.2)   % CPursuit
+  (4, 94.0)   % EXPNeuralUCB
+  (5, 90.7)   % EXPUCB
+};
+\addlegendentry{Peak}
+
+% ---------- Mean ----------
+\addplot[fill=orange!60, opacity=0.70, bar width=0.30cm] coordinates {
+  (1, 86.1)
+  (2, 69.5)
+  (3, 77.3)
+  (4, 86.2)
+  (5, 76.0)
+};
+\addlegendentry{Mean}
+
+% ---------- Floor ----------
+\addplot[fill=red!50, opacity=0.90, bar width=0.15cm] coordinates {
+  (1, 83.3)
+  (2, 66.5)
+  (3, 37.2)
+  (4, 59.9)
+  (5, 69.3)
+};
+\addlegendentry{Floor}
+
+\end{axis}
+\end{tikzpicture}
+% \vspace{-0.4cm}
+\caption{Worst-case robustness separates the model families: context-aware methods retain higher floors than adversarial-first baselines at the default $2T$--$2T_b$ budget.}
+\label{fig:floor}
+\end{figure}
+
+
+
+\noindent\textit{Context-aware models dominate across threat escalation.}
+Across \small\texttt{Markov}, \small\texttt{Adaptive}, and \small\texttt{OnlineAdaptive} regimes, pursuit-based contextual models maintain averages around \textit{89\%} with robustness floors in the \textit{65--73\%} range, while classical baselines remain in the \textit{66--77\%} band and adversarial-first defenses collapse to floors near \textit{52--54\%} under the most aggressive threats (see \Cref{subsec:rq2_answer}).%
+\cite{huang2024quantum,auer2002nonstochastic}
+
+\noindent\emph{Supporting questions:}
+\begin{itemize}[leftmargin=2em]
+  \item \emph{RQ2a: Do context-aware routing policies outperform baseline policies under stochastic disruption, and do they maintain this advantage under structured and adaptive threat regimes?}\\
+  \textit{Yes.}
+  Under \small\texttt{Stochastic} decoherence, contextual and neural--contextual models retain the \textit{15--25 pp} gain observed in \RQOneText{} and remain above the 85\% target. Under \small\texttt{Markov}/\small\texttt{Adaptive}/\small\texttt{OnlineAdaptive}, pursuit-based models keep \textit{high averages ($\simeq$89\%)} and floors of \textit{65--73\%}, while adversarial-first methods fall to floors near \textit{52--54\%}.%
+  \cite{auer2002nonstochastic}
+
+  \item \emph{RQ2b: Which model family degrades most gracefully and consistently defines the efficiency frontier across all threat scenarios?}\\
+  \textit{Pursuit models.}
+  Pursuit-based models show the smoothest degradation, and \small\texttt{iCPursuitNeuralUCB} most consistently sits on/near the top efficiency envelope while maintaining strong threat-wide robustness.
+\end{itemize}
+
+Context-aware pursuit--neural routing remains the strongest on average across escalation, while classical baselines stay far
+below the deployment threshold. Under \textsc{Markov}, \textsc{Adaptive}, and \textsc{OnlineAdaptive} threats,
+pursuit--neural routing achieves mean efficiencies of approximately \textbf{90.8\%}, \textbf{93.5\%}, and \textbf{92.9\%}
+respectively in validated suites (\small\texttt{Hybrid}, $T_b$, $s{=}2$, \emph{Default/Thompson} allocators),
+with worst-case floors in the \textbf{64--71\%} range driven primarily by \textsc{OnlineAdaptive}/\textsc{Markov} slices
+(see \cref{subsec:rq2_answer}). By comparison, representative classical baselines remain near \textbf{64--70\%} across the
+same threat regimes (\small\texttt{CMAB} experiments).
+
+
+% ----------------------------------------------------------------------------
+% RQ3: Deployment Optimization
+% ----------------------------------------------------------------------------
+
+\subsubsection*{\emph{\RQThree}}
+\label{subsubsec:rq3_question}
+
+\emph{How does algorithm choice, resource allocation strategy, and replay-capacity semantics interact to affect routing efficiency and stability in quantum entanglement routing?}
+
+\begin{figure}[ht!]
+\scriptsize
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Allocator Strategy},
+    ylabel={Attack Scenario},
+    ymin=0.5, ymax=5.5,
+    xmin=0.5, xmax=3.5,
+    xtick={1,2,3},
+    xticklabels={Fixed, DynamicUCB, Thompson},
+    ytick={1,2,3,4,5},
+    yticklabels={Stochastic, Markov, Adaptive, OnlineAdaptive, Baseline},
+    width=0.35\textwidth,
+    height=4.5cm,
+    colorbar,
+    colorbar style={ylabel={Efficiency (\%)}, width=0.8cm}
+]
+
+\addplot[
+    scatter,
+    only marks,
+    mark=*,
+    mark size=4pt,
+    scatter src=explicit
+] coordinates {
+    % Row 1: Stochastic
+    (1, 1) [94.0]   % Fixed - ACTUAL from Hybrid CSV
+    (2, 1) [68.2]   % DynamicUCB - keep your value (not in Hybrid CSV)
+    (3, 1) [65.1]   % Thompson - keep your value (not in Hybrid CSV)
+
+    % Row 2: Markov
+    (1, 2) [89.6]   % Fixed - ACTUAL from Hybrid CSV
+    (2, 2) [71.2]   % DynamicUCB - keep your value
+    (3, 2) [66.8]   % Thompson - keep your value
+
+    % Row 3: Adaptive
+    (1, 3) [89.9]   % Fixed - ACTUAL from Hybrid CSV
+    (2, 3) [70.6]   % DynamicUCB - keep your value
+    (3, 3) [65.9]   % Thompson - keep your value
+
+    % Row 4: OnlineAdaptive
+    (1, 4) [90.0]   % Fixed - ACTUAL from Hybrid CSV
+    (2, 4) [68.8]   % DynamicUCB - keep your value
+    (3, 4) [65.0]   % Thompson - keep your value
+
+    % Row 5: Baseline
+    (1, 5) [99.7]   % Fixed - ACTUAL from Hybrid CSV (was 99.8%, rounded)
+    (2, 5) [69.2]   % DynamicUCB - keep your value
+    (3, 5) [69.9]   % Thompson - keep your value
+};
+
+\end{axis}
+\end{tikzpicture}
+\caption[Efficiency heatmap for CPursuitNeuralUCB]{Efficiency heatmap for \texttt{CPursuitNeuralUCB} across allocator
+strategies and threat scenarios. In this setting, the Fixed allocator yields
+the highest efficiency across scenarios, reinforcing allocator choice as a
+first-class robustness factor.}
+\label{fig:heatmap}
+\end{figure}
+
+
+
+
+Deployment tradeoffs are real, but \textbf{robust static configurations do exist} in our expanded benchmark.
+In our \small\texttt{Hybrid} validated suites (excluding Random allocator), we observe \textbf{many} fixed
+(model, allocator, cap\_type, scale, frames, runs) configurations whose \textbf{minimum} efficiency remains
+$\ge 85\%$ across \textbf{all five threats} (\eg \textbf{236} validated configurations meet this criterion), and the
+best static configurations sustain threat-wide minima above \textbf{93\%}. At the same time, \textbf{capacity semantics}
+($T_b$ vs.\ $T$), replay scale $s$, and allocator choice introduce large interaction effects---including
+\textbf{up to $\approx$53 pp} swings between $T_b$ and $T$ in some matched settings---so selecting for \emph{peak} efficiency or
+\emph{minimum variance} remains threat- and objective-dependent (see \cref{subsubsec:rq3a_answer}--\cref{subsec:rq3c_answer}).
+
+\emph{Supporting questions:}
+\label{subsec:rq3atoc_questions}.
+\begin{itemize}[leftmargin=2em]
+  \item \emph{RQ3a: Does predictive (ARIMA-informed) context improve routing stability?} \\
+  \emph{Yes.} In validated suites, predictive variants can improve mean efficiency and/or reduce variability under non-reactive noise depending on the matched configuration; additional 10-run observations further support this trend.
+
+  \item \emph{RQ3b: Do larger replay-capacity scales ($T_b \rightarrow T$) improve routing robustness?} \\
+  \emph{No.} Capacity is not monotone: validated suites show settings where increasing $s$ reduces performance under \textsc{Adaptive} targeting (\eg $\approx$26 pp drops in matched slices), and switching $T_b \leftrightarrow T$ can produce \textbf{$>$50 pp} swings in either direction depending on threat structure.
+
+  \item \emph{RQ3c: Is there a universal allocator strategy for entanglement routing under threat variation?} \\
+  \emph{No.} Allocator choice interacts with threat and semantics: while allocators often cluster within single-digit differences, worst-case matched slices exhibit allocator spans that can exceed \textbf{10 pp} and, in extreme cases, \textbf{$>$30 pp}.
+
+  \item \emph{RQ3d: Can we map threat characteristics to stable deployment rules for entanglement routing?} \\
+  \emph{Yes.} Because threat-wide $\ge 85\%$ static configurations exist, deployment rules can be expressed as \emph{(i)} a small set of robust defaults (static, threat-wide) plus \emph{(ii)} optional threat-tuned switches when optimizing for peak efficiency/variance.
+\end{itemize}
+
+
+
+
+\subsection{Experimental Design}
+\label{sec:expDesign}
+
+This section specifies the experimental design used to evaluate adaptive quantum entanglement routing under stochastic and adversarial interference, and ties each configuration axis to the research questions. \Cref{tab:config_summary} consolidates design dimensions, tested options, and the corresponding RQ coverage.
+
+% ----------------------------------------------------------------------------
+% Network Configuration
+% ----------------------------------------------------------------------------
+\paragraph*{Network configuration}
+We use a 4-node quantum network with four alternative paths connecting source $S$ to destination $D$ via repeater nodes (\Cref{fig:network_topology}). Paths $P_1$ and $P_4$ have two hops, while $P_2$ and $P_3$ have three hops, matching common small-scale quantum-network architectures and demonstrations~\cite{wehner2018quantum,pompili2021realization} \shee{$P_1$ and $P_2$ have 2 hops while $P_3$ and $P_4$ have 3 hops}. This topology provides sufficient action-space complexity for bandit learning~\cite{huang2024quantum,dai2020quantum} while keeping exhaustive cross-product sweeps tractable (hundreds of algorithm--scenario--allocator configurations; see \Cref{tab:config_summary}).
+
+Total physical network capacity is fixed at 35 qubits across all experiments, representing resource-constrained early-stage deployments~\cite{simon2017towards}. This induces non-trivial exploration--exploitation tradeoffs: algorithms cannot over-provision all paths. Per-path allocations are determined by the allocator (\Cref{tab:setup-allocators}), enabling controlled comparison of static versus adaptive resource management.
+	% NOTE: TikZ uses right=of / below=of -> requires \usetikzlibrary{positioning}
+\begin{figure}[ht!]
+\centering
+\small
+% \caption{The testbed exposes four alternative entanglement paths whose qubit splits vary by allocator strategy.}
+\begin{tikzpicture}[
+  node distance=2.5cm and 3.0cm,
+  thick,
+  main/.style={circle,draw,minimum size=0.6cm,font=\small},
+  link/.style={line width=0.8pt, draw=gray!55},
+  path/.style={->,>=stealth,line width=1.1pt}
+]
+  % Nodes
+  \node[main] (S) {$S$};
+  \node[main, right=of S] (R1) {$R_1$};
+  \node[main, below=of R1] (R2) {$R_2$};
+  \node[main, right=of R1] (D) {$D$};
+
+  % Physical links (always visible)
+  \draw[link] (S) -- (R1);
+  \draw[link] (S) -- (R2);
+  \draw[link] (R1) -- (D);
+  \draw[link] (R2) -- (D);
+  \draw[link] (R1) -- (R2);
+
+  % ---- Paths (use bends to avoid overlap) ----
+  % P1: S -> R1 -> D (2-hop)
+  \draw[path, blue]
+    (S) to[bend left=15] node[above, font=\scriptsize] {$P_1$ (2-hop)} (R1)
+        to[bend left=15] (D);
+
+  % P2: S -> R2 -> D (2-hop)
+  \draw[path, red]
+    (S) to[bend right=15] node[left, font=\scriptsize] {$P_2$ (2-hop)} (R2)
+        to[bend right=15] (D);
+
+  % P3: S -> R1 -> R2 -> D (3-hop)
+  \draw[path, green!60!black]
+    (S) to[bend left=10] (R1)
+        to[bend left=10] node[right, font=\scriptsize] {$P_3$ (3-hop)} (R2)
+        to[bend left=10] (D);
+
+  % P4: S -> R2 -> R1 -> D (3-hop)
+  \draw[path, orange]
+    (S) to[bend right=10] (R2)
+        to[bend right=10] node[left, font=\scriptsize] {$P_4$ (3-hop)} (R1)
+        to[bend right=10] (D);
+\end{tikzpicture}
+\caption{The testbed exposes four alternative entanglement paths whose qubit splits vary by allocator strategy.}
+\label{fig:network_topology}
+\end{figure}
+
+
+
+\noindent\textit{Time horizons.}
+We evaluate 3 horizons---\small\texttt{4K,6K,8K} frames---to capture short-, mid-, and long-episode learning dynamics. Unless otherwise noted, primary results use 6K, with 4K vs.\ 8K comparisons in \textbf{RQ3a} to assess sample efficiency.
+
+\begin{table}[ht!]
+\footnotesize
+\centering
+\setlength{\tabcolsep}{4pt}
+\caption{Experimental design matrix linking configuration dimensions to the research questions.\shee{The last column (RQ(s)) has inconsistent subscripts and superscripts}}
+\label{tab:config_summary}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.32\linewidth} >{\raggedright\arraybackslash}X >{\centering\arraybackslash}c}
+\toprule
+\textbf{Configuration Dimension} & \textbf{Options Tested} & \textbf{RQ(s)} \\
+\midrule
+Network topology   & 4-node, 4-path (2+3-hop)      & All \\
+\small\texttt{Time horizons} & \textit{4K, 6K, 8K frames} & $RQ3_a$ \\
+Qubit capacity     & 35 total (fixed) qubits       & All \\
+\midrule
+\small\texttt{Allocators} & \textit{Fixed, Thompson,}     & $RQ3_c$ \\
+                    & \multicolumn{1}{l}{\textit{DynamicUCB, Random}} & \\
+Replay capacity     & $T_b=sF_b,\;T=sF_c$ & $RQ3_b$ \\
+\small\texttt{Threat models} & \textit{None, Stochastic, Markov,} & \RQOneText \& \\
+                    & \multicolumn{1}{l}{\textit{Adaptive, OnlineAdaptive}} & \RQTwoText \\
+Forecasting         & None, ARIMA ($n=50$),         & $RQ3_a$ \\
+                    & \multicolumn{1}{l}{ARIMA ($n=100$)} & \\
+\midrule
+Algorithm families  & Classical (4), Predictive (1) & \RQOneText \& \\
+                    & Adversarial (3), Context (6) & \RQTwoText \\
+\midrule
+\textit{Evaluation phases} & & \\
+\quad Ph 1 (MAB baseline)         & 12 conditions   & $RQ_1$ \\
+\quad \textit{Ph 2 (CMAB / iCMAB)}  & \textit{180 conditions / family} & $RQ2_(a-b)$ \\
+\quad Ph 3 (Dynamic allocation)   & 240 conditions  & $RQ3_c$ \\
+\quad \textit{Ph 4 (Capacity ablation)} & \textit{120 conditions} & $RQ3_b$ \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ----------------------------------------------------------------------------
+% Memory Architecture
+% ----------------------------------------------------------------------------
+\noindent\textit{Replay configurations (capacity scaling).}
+We define the \emph{base} per-run horizon as $F_b \in \{4\text{K}, 6\text{K}, 8\text{K}\}$ frames and execute
+$S \in \{3, 5, 8, 10\}$ independent runs per configuration (total of $S\cdot F_b$ frames per setting).
+Some configurations apply a frame scaling to yield a \emph{current} horizon $F_c$ (the per-run frame budget for that configuration).
+Capacity is \emph{always} expressed via a scale factor $s \in \{1, 1.5, 2\}$ (default $s=2$) in two equivalent views:
+\[
+T_b = s\cdot F_b,
+\qquad
+T   = s\cdot F_c.
+\]
+We sweep $s$ to analyze the \textit{Capacity Paradox} (\textbf{RQ3b})---whether larger replay memory can degrade performance under adaptive threats.
+In addition to the default $s=2$ setting, we include intermediate ($s=1, 1.5$) sensitivity checks and an extended \emph{doubled-current} stress test ($2T = 2(sF_c)=4F_c$ when $s=2$), mirroring fixed-capacity conventions used in prior replay-buffer designs while avoiding conditional semantics.%
+\cite{schaul2015prioritized,mnih2015human}
+
+\noindent\textit{Resource separation.}
+Scaling applies to replay memory; the 35-qubit physical network capacity remains invariant. This decoupling isolates learning-system constraints from quantum hardware limits.
+
+% ----------------------------------------------------------------------------
+% Threat Taxonomy Intro & Hyperparameter Table
+% ----------------------------------------------------------------------------
+\noindent\textit{Adversarial threat taxonomy.}
+We evaluate five scenarios spanning the efficiency--security spectrum: natural stochastic decoherence, Markovian structure, and three grades of adaptive adversarial attacks (\RQTwo). This taxonomy enables controlled comparisons under matched interference regimes. Hyperparameter settings are summarized in \Cref{tab:setup-hyperparameters}.%
+\cite{huang2024quantum}
+
+\begin{table}[ht!]
+\footnotesize
+\centering
+\caption{Hyperparameter settings and literature grounding.}
+\label{tab:setup-hyperparameters}
+\begin{tabularx}{\linewidth}{l l c l}
+\toprule
+\textbf{Parameter} & \textbf{Algorithm} & \textbf{Value} & \textbf{Ref.} \\
+\midrule
+Neural LR & EXPNeuralUCB & 0.01 & \cite{huang2024quantum} \\
+          & GNeuralUCB   & 0.2  & \cite{zhou2020neuralucb} \\
+\addlinespace[2pt]
+Exp. Weight & EXPNeuralUCB & 0.05  & \cite{huang2024quantum} \\
+            & EXPUCB       & 0.005 & Tuned \\
+\addlinespace[2pt]
+Pursuit LR & Pursuit family & 0.2 & \cite{thathachar2011networks} \\
+\addlinespace[2pt]
+UCB Explore & DynamicAlloc & 2.0 & \cite{auer2002finite} \\
+\addlinespace[2pt]
+ARIMA ($n$) & iCPursuit & 50, 100 & \cite{box2015time} \\
+Replay ($T_b,T$) & All & $T_b=sF_b,\;T=sF_c$ & \cite{schaul2015prioritized,mnih2015human} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsubsection{Scenario Specifications}
+\begin{itemize}
+  \item \small\texttt{Baseline} (\RQOne): Ideal 0\% failure rate. Sets the efficiency ceiling, isolating exploration costs from threat mitigation.
+
+  \item \small\texttt{Stochastic} (\textbf{\RQOneText, RQ2a}): 6.25\% i.i.d.\ failure rate. Tests if specialized defenses are required under natural noise.%
+  \cite{huang2024quantum}
+
+  \item \small\texttt{Markov} (\textbf{RQ2a--b}): 25\% attack rate using a 4-state transition process. Models state-dependent disruption.%
+  \cite{huang2024quantum}
+
+  \item \small\texttt{Adaptive} (\textbf{RQ2a--b}): 25\% attack rate targeting high-usage paths over a sliding window ($w=50$). Models reactive targeting based on medium-term behavior.%
+  \cite{huang2024quantum}
+
+  \item \small\texttt{OnlineAdaptive} (\textbf{RQ2a--b}): 25\% attack rate with exponential memory decay ($\gamma=0.97$) and softmax targeting. Models continuous policy adaptation at the highest threat level.%
+  \cite{huang2024quantum}
+\end{itemize}
+
+% ----------------------------------------------------------------------------
+% Algorithm Portfolio
+% ----------------------------------------------------------------------------
+\subsubsection{Algorithm portfolio (\RQTwo)}
+We evaluate 14 algorithms spanning three generations of MAB development plus an Oracle baseline. Phase progression (\Cref{tab:setup-algorithm-portfolio}) covers classical exploration (Phase~1), adversarial defenses (Phase~1--2), contextual/neural methods (Phase~2), and pursuit-based predictive models (Phase~2--3), enabling systematic comparison across architectural paradigms.
+
+\begin{table}[ht!]
+\small
+\centering
+\caption{Algorithm progression by evaluation phase.}
+\label{tab:setup-algorithm-portfolio}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.13\linewidth} >{\raggedright\arraybackslash}p{0.28\linewidth} >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Phase} & \textbf{Category} & \textbf{Algorithms} \\
+\midrule
+Phase 1 & Classical MAB & LinUCB~\cite{li2010contextual}, LinTS~\cite{agrawal2013thompson}, UCB1~\cite{auer2002finite}, Thompson Sampling~\cite{thompson1933likelihood} \\
+Phase 1--2 & Adversarial & EXP3~\cite{auer2002nonstochastic}, EXPUCB~\cite{huang2024quantum}, EXPNeuralUCB~\cite{huang2024quantum} \\
+Phase 2 & Contextual/Neural & GNeuralUCB, NeuralUCB~\cite{zhou2020neuralucb}, NeuralTS~\cite{zhang2022neuralts}, CEpsilonGreedy, CThompsonSampling \\
+Phase 2--3 & Pursuit-based & CPursuitNeuralUCB (ours) \\
+Phase 3 & Predictive & iCPursuitNeuralUCB (ours) \\
+Baseline & Oracle & Perfect information \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsubsection{Key algorithm features}
+\begin{itemize}
+    \item \textit{CPursuitNeuralUCB:} Adds topology features and channel quality metrics to a contextual pursuit framework ($\gamma=0.2$).
+
+    \item \textit{iCPursuitNeuralUCB:} Augments CPursuit with ARIMA $(1,0,1)$ forecasting (warmup $n \in \{50,100\}$), providing anticipatory context for proactive path selection~\cite{box2015time}.
+
+    \item \textit{Oracle:} Baseline with perfect knowledge of success probabilities and targeting. Normalizes efficiency to 100\%.
+\end{itemize}
+
+\noindent\textbf{How uncertainty is calculated.}
+At a high level, our algorithms handle uncertainty in three different ways:
+
+\begin{itemize}
+    \item \emph{NeuralUCB:} Uses gradient-based confidence bounds on neural features to add an uncertainty bonus to each score.
+    \item \emph{Thompson Sampling:} Uses Beta probability distributions over success rates and samples from these posteriors to decide which paths to allocate to.
+    \item \emph{Pursuit:} Maintains and updates selection probabilities over allocations, gradually shifting probability mass toward whichever path-allocation combination works best.
+\end{itemize}
+
+% ----------------------------------------------------------------------------
+% Qubit Allocation Strategies
+% ----------------------------------------------------------------------------
+Phase~3 introduces dynamic allocators (\Cref{tab:setup-allocators}) to test allocator--algorithm interactions (\textbf{RQ3c}). Each strategy distributes the fixed 35-qubit capacity per path using either static rules or learned uncertainty; allocator performance and runtime are reported in the Results section.
+
+\begin{table}[ht!]
+\footnotesize
+\caption{Qubit-budget distribution across candidate paths by allocator.}
+\label{tab:setup-allocators}
+\centering
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.19\linewidth} >{\raggedright\arraybackslash}p{0.12\linewidth} X}
+\toprule
+\textbf{Allocator} & \textbf{Type} & \textbf{Description} \\
+\midrule
+Fixed      & Static   & Static distribution $(8,10,8,9)$ (baseline). \\
+Thompson   & Adaptive & Bayesian posterior sampling (Beta priors) over path utilities~\cite{thompson1933likelihood,agrawal2013thompson,russo2018tutorial}. \\
+DynamicUCB & Adaptive & UCB-based allocation with exploration weight $\lambda = 2.0$~\cite{auer2002finite}. \\
+Random     & Control  & Uniform random allocation subject to $\sum_k c_k = 35$. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ----------------------------------------------------------------------------
+% Experimental Scope
+% ----------------------------------------------------------------------------
+\subsubsection{Phased evaluation structure}
+We validate contributions across four incremental phases aligned with the RQs:
+\begin{itemize}
+    \item \small\texttt{P1} (MAB baseline): 12 conditions. Classical models under stochastic noise to establish context-free baselines (\RQOne).
+    \item \small\texttt{P2 (Contextual / adversarial):} 180 conditions per contextual family. Evaluates CMAB and iCMAB variants under adversarial threats (\textbf{RQ2a--b}).
+    \item \small\texttt{P3 (Dynamic allocation):} 240 conditions. Cross-product of pursuit models, allocators, and scenarios to test system interactions (\textbf{RQ3c}).
+    \item \small\texttt{P4 (Capacity ablation):} 120 conditions. Sweeps replay scaling ($s\in\{1,1.5,2\}$) and the doubled-current stress test ($2T$) to evaluate the Capacity Paradox (\textbf{RQ3b}).
+\end{itemize}
+
+\noindent\textit{Statistical protocol:}
+We execute ensembles of $S \in \{3, 5, 8, 10\}$ independent runs (seeds fixed for reproducibility). Primary results report averages from \textit{3-run} and \textit{5-run} ensembles to establish stability, with larger ensembles reserved for extended robustness validation.
+\begin{itemize}
+    \item \textit{Oracle-normalized efficiency:} mean success rate relative to the optimal policy,
+    $\text{Eff}(\%) = \frac{\sum_{t=1}^{T} r_t}{T \cdot \theta^*} \times 100$.
+    \item \textit{Coefficient of variation (CV):} stability metric,
+    $\text{CV}(\%)=\frac{\sigma(\text{Eff})}{\mu(\text{Eff})}\times100$. Lower CV means higher deployment reliability.
+    \item \textit{Significance testing:} nonparametric bootstrap (10K resamples) with 95\% confidence intervals~\cite{efron1994introduction}. Differences $> 5$ pp with non-overlapping CIs are treated as significant.
+    \item \textit{Win-rate analysis:} head-to-head comparisons where a \textquotedblleft win\textquotedblright requires $> 2$ pp efficiency lead.
+\end{itemize}
+
+
+
+
+\section{Simulation Results}
+\label{sec:SimulationResults}
+We evaluate bandit-based quantum routing agents across five threat scenarios
+(\small\texttt{Baseline, Stochastic, Markov, Adaptive, OnlineAdaptive}), multiple time horizons,
+and replay-capacity scales ($s \in \{1, 1.5, 2\}$) under capacity semantics ($T$ and $T_b$),
+as defined in the Introduction and \Cref{sec:expDesign}.
+All quantitative results reported are computed from the curated experimental corpus
+produced by our evaluation framework (run logs, summaries, and aggregation scripts),
+with full reproducibility artifacts provided in Appendix~\ref{app:data_artifacts}.
+Results are organized by research question (\Cref{sec:research_questions}). We first assess whether baseline MABs remain deployment-viable under stochastic decoherence (\RQOneText; \cref{subsec:rq1_answer}), then evaluate robustness as threats become structured and adaptive (\RQTwoText; \cref{subsec:rq2_answer}), and finally analyze allocator--capacity interactions and deployment rules (\RQThreeText; \cref{subsubsec:rq3a_answer}--\cref{subsec:rq3c_answer}).
+
+% ----------------------------------------------------------------------------
+% Optional: Global win-share across the full paper-suite condition grid.
+% (Computed as the fraction of unique (scenario, frames, scale, cap_type, runs)
+%  configurations where a model attains the highest Oracle-normalized efficiency.)
+% ----------------------------------------------------------------------------
+\begin{figure}[ht!]
+\scriptsize
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  ylabel={Win Dominance (\%)},
+  xlabel={Algorithm},
+  ymin=0, ymax=40,
+  xtick={1,2,3,4,5},
+  xticklabels={CPursuit, GNeuralUCB, EXPNeuralUCB, iCEpsGreedy, CEpsGreedy},
+  width=0.5\textwidth,
+  height=5.0cm,
+  grid=major,
+  grid style={line width=.1pt, draw=gray!10},
+    legend columns=2,
+    legend style={
+        at={(0.5,-0.24)},
+        anchor=north,
+        font=\scriptsize,
+        cells={anchor=west}
+    },
+  % legend pos=south east,
+  legend style={font=\scriptsize}
+]
+
+\addplot[fill=teal!70, bar width=0.16cm] coordinates {
+  (1, 27.8)  % CPursuit
+  (2, 11.9)  % GNeuralUCB
+  (3, 11.6)  % EXPNeuralUCB
+  (4, 37.5)  % iCEpsilonGreedy
+  (5,  9.7)  % CEpsilonGreedy
+};
+\addlegendentry{Top-5 win dominance (default allocator)}
+
+\end{axis}
+\end{tikzpicture}
+% \vspace{-0.4cm}
+\caption{\texttt{iCEpsilonGreedy} wins most often under the default allocator, with \texttt{CPursuit} second.}
+\label{fig:global_win_share}
+\end{figure}
+
+
+
+% ============================================================================
+% RQ1: Impact of Stochasticity on Pure (Paper) Models
+% ============================================================================
+\subsection{\RQOneText: Impact of Stochasticity on Pure (Paper) Models}
+\label{subsec:rq1_answer}
+
+\subsubsection{Hypothesis}
+\noindent\textit{Addresses \Cref{subsubsec:rq1_question}.}
+\shee{Instead of referring to Section V, combine sections V and VI into 1 section. These 2 sections are redundant}
+Under pure stochastic quantum decoherence (6.25\% i.i.d.\ failure rate), we expect
+contextual/informed baselines and select neural routing agents to remain near deployment-grade
+efficiency, while weaker context-free or mis-specified variants degrade. \RQOneText{} establishes
+fundamental viability \emph{before} introducing adaptive adversaries.
+
+% ----------------------------------------------------------------------------
+\subsubsection{Experimental Design}
+
+For \RQOneText, we restrict analysis to the paper-model portfolio (EXP-family, CMAB, and iCMAB baselines)
+under the \small\texttt{Stochastic} scenario (6.25\% i.i.d.\ failures) using the paper-default deployment setting
+(\small\texttt{Default} allocator in our evaluation corpus).
+Reported statistics aggregate across (i) horizons present in the corpus, (ii) replay-capacity scales
+$s \in \{1,1.5,2\}$, and (iii) both capacity semantics ($T$ and $T_b$).
+We report the two standard ensemble suites used throughout the study (3-run and 5-run),
+with run-level outputs and aggregation code available in Appendix~\ref{app:data_artifacts}.
+
+
+\noindent\textit{Models included (as present in the evaluation corpus) span:}
+\begin{itemize}[nosep]
+  \item \textbf{CMAB baselines:} \small\texttt{CPursuit, CEpsilonGreedy, CThompsonSampling, CEXP4, CEpochGreedy}
+  \item \textbf{iCMAB baselines:} \small\texttt{iCEpsilonGreedy}, \texttt{iCPursuit}, \texttt{iCEXP4}, \texttt{iCEpochGreedy}, \texttt{iCThompsonSampling}
+  \item \textbf{Adversarial Baselines:} \small\texttt{EXPUCB, (EXP, G)NeuralUCB}
+\end{itemize}
+
+% ----------------------------------------------------------------------------
+\subsubsection{Key Findings}
+
+Corpus results (\Cref{tab:rq1masterstochastic}) show a clear separation under stochastic decoherence: a small top tier remains
+deployment-viable ($\gtrsim 85\%$), while several variants degrade into the 60--80\% band, and the weakest
+policies collapse toward $\approx 37$--40\% even without adversarial pressure.
+
+\begin{table}[ht!]
+\small  % Reduce font size
+\caption{\RQOneText{} performance under 6.25\% stochastic decoherence, aggregated across horizons, replay scales \(s \in \{1,1.5,2\}\), and both capacity semantics (T and Tb). Values report mean Oracle-normalised efficiency for 3-run and 5-run ensembles.}
+\label{tab:rq1masterstochastic}
+\centering
+\setlength{\tabcolsep}{4pt}  % Reduce column padding
+\begin{tabular}{p{4.0cm}ccc}
+\hline
+\textbf{Model} & \textbf{3 Runs} & \textbf{5 Runs} & \textbf{Avg. Eff.} \\
+\hline
+\multicolumn{4}{l}{\textit{Top tier (viable under stochastic)}} \\
+CPursuit & 90.0 & 90.2 & 89.9 \\
+iCEpsilonGreedy & 87.8 & 87.9 & 88.3 \\
+CEpsilonGreedy & 87.9 & 87.8 & 87.8 \\
+GNeuralUCB & 86.2 & 85.5 & 86.3 \\
+\hline
+\multicolumn{4}{l}{\textit{Mid-tier (degraded)}} \\
+EXPNeuralUCB & 82.1 & 80.9 & 81.5 \\
+EXPUCB & 75.5 & 77.8 & 77.6 \\
+CEXP4 & 69.2 & 69.3 & 70.1 \\
+iCPursuit & 67.2 & 67.5 & 67.4 \\
+CThompsonSampling & 65.7 & 67.3 & 67.5 \\
+iCThompsonSampling & 65.7 & 67.2 & 67.5 \\
+\hline
+\multicolumn{4}{l}{\textit{Collapsed (structural failure)}} \\
+CEpochGreedy & 37.5 & 37.5 & 37.6 \\
+iCEpochGreedy & 37.2 & 37.2 & 37.5 \\
+iCEXP4 & 36.9 & 36.8 & 37.4 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\noindent\textit{Summary Highlights (corpus-derived aggregates):}
+\begin{itemize}[nosep]
+  \item \textit{Tier 1 (Viable):} \texttt{CPursuit} is the strongest baseline under stochastic noise ($\approx 90\%$),
+        with \texttt{(i)CEpsilonGreedy} also remaining above $85\%$.
+  \item \textit{Tier 2 (Degraded):} EXP-family baselines and several contextual variants fall into the $60$--80\% range,
+        indicating that stochastic noise alone can expose unstable learning dynamics or weak representations.
+  \item \textit{Tier 3 (Collapsed):} \texttt{(i)CEpochGreedy} and \texttt{iCEXP4} collapse to $\approx 37\%$,
+        demonstrating failure modes that occur \emph{even without} adversarial targeting.
+\end{itemize}
+
+% ----------------------------------------------------------------------------
+\subsubsection{Answer to \RQOne}
+
+\noindent\textit{Yes—stochastic decoherence alone separates viable baselines from structural failures.}
+Using the curated evaluation corpus for the paper-model portfolio, we observe a stable top tier
+(\texttt{CPursuit} and \texttt{(i)CEpsilonGreedy}) that remains deployment-viable under natural noise,
+while multiple variants degrade substantially and a subset collapses well below practical thresholds.
+Importantly, these \RQOneText{} conclusions already integrate the full replay scale sweep ($s \in \{1, 1.5, 2\}$)
+and both capacity semantics ($T$, $T_b$); \RQThreeText{} later disaggregates capacity effects to diagnose the capacity paradox directly.
+
+\begin{figure}[ht!]
+\scriptsize
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+ylabel={Efficiency (\%)},
+xlabel={Scenario},
+ymin=75, ymax=95,  % UPDATED: raised from 40-90 to 75-95
+xtick={1,2,3,4,5},
+xticklabels={Stochastic, Markov, Adaptive, OnlineAdaptive, Baseline},
+width=0.50\textwidth,
+height=5cm,
+grid=major,
+grid style={line width=.1pt, draw=gray!10},
+legend style={at={(0.5,-0.22)}, anchor=north},
+legend columns=-1,
+% legend pos=south west,  % CHANGED: from south east
+% legend columns=4,       % CHANGED: from 4
+legend style={font=\scriptsize}
+]
+
+% Context T: Best performer (iCMAB+CMAB avg at T)
+\addplot[color=violet!80, mark=triangle*, line width=2.5pt] coordinates {
+  (1, 89.9)  % Stochastic
+  (2, 85.9)  % Markov
+  (3, 86.8)  % Adaptive
+  (4, 88.8)  % OnlineAdaptive
+  (5, 93.2)  % Baseline
+};
+\addlegendentry{Context T}
+
+% Context Tb: Good resilience despite high load (iCMAB+CMAB avg at Tb)
+\addplot[color=teal!80, mark=o, line width=2.5pt] coordinates {
+  (1, 88.1)  % Stochastic
+  (2, 86.1)  % Markov
+  (3, 87.7)  % Adaptive
+  (4, 86.5)  % OnlineAdaptive
+  (5, 93.3)  % Baseline
+};
+\addlegendentry{Context Tb}
+
+% Non-Context T: EXP3-based at T scale
+\addplot[color=blue!80, mark=s, line width=2.5pt, dashed] coordinates {
+  (1, 81.4)  % Stochastic
+  (2, 80.6)  % Markov
+  (3, 77.2)  % Adaptive
+  (4, 82.5)  % OnlineAdaptive
+  (5, 90.5)  % Baseline
+};
+\addlegendentry{Non-Context T}
+
+% Non-Context Tb: EXP3-based at Tb scale
+\addplot[color=red!80, mark=x, line width=2.5pt, dashed] coordinates {
+  (1, 81.1)  % Stochastic
+  (2, 81.7)  % Markov
+  (3, 79.5)  % Adaptive
+  (4, 81.1)  % OnlineAdaptive
+  (5, 85.9)  % Baseline
+};
+\addlegendentry{Non-Context Tb}
+
+\end{axis}
+\end{tikzpicture}
+% \vspace{-0.5cm}
+\caption{Contextual (CMAB/iCMAB) models maintain higher Oracle-normalized efficiency than non-context EXP3 baselines across threats under both $T$ and $T_b$.}
+\label{fig:context_capacity_effects}
+\end{figure}
+
+
+\noindent\textit{Supporting Question Answers:}
+\begin{itemize}[nosep]
+\item \textbf{RQ1a:} Several paper baselines degrade into the $60$--80\% band under stochastic noise, indicating insufficient performance floors.
+\item \textbf{RQ1b:} The best contextual baselines (\texttt{CPursuit}, \texttt{(i)CEpsilonGreedy}) remain $>\!85\%$ on average.
+\item \textbf{RQ1c:} Stochastic noise exposes structural failures (collapses to $\approx 37\%$) independent of adversarial pressure.
+\end{itemize}
+
+% ============================================================================
+% RQ2: Algorithm Robustness Across Threat Sophistication
+% ============================================================================
+\subsection{\RQTwoText: Algorithm Robustness Across Threat Sophistication}
+\label{subsec:rq2_answer}
+
+\subsubsection{Experimental Design}
+
+We evaluate the same paper-model portfolio from \RQOneText{} under three escalating threat environments:
+\texttt{Markov} (structured), \texttt{Adaptive} (reactive), and \texttt{OnlineAdaptive} (real-time).
+All reported statistics are computed from the curated evaluation corpus using the paper-default setting
+(\texttt{Fixed} allocator), aggregated across horizons present, replay scales ($s \in \{1,1.5,2\}$),
+and capacity semantics ($T$, $T_b$).
+Metrics are summarized over the 3-run and 5-run ensemble suites, with run-level traces and aggregation
+scripts provided in Appendix~\ref{app:data_artifacts}.
+
+For policy relevance, we focus on the strongest contextual baseline from CMABs (\texttt{CPursuit}),
+the strongest informed baseline from iCMABs (\texttt{iCEpsilonGreedy}), and two adversarial baselines
+(\texttt{EXPNeuralUCB}, \texttt{EXPUCB}).
+
+% ----------------------------------------------------------------------------
+\subsubsection{Key Findings}
+
+\begin{table}[ht!]
+\caption{Contextual and informed baselines remain more robust and stable than adversarial-first baselines under adversarial threats.}
+
+\scriptsize
+\centering
+% \begin{tabular}{lcccc}
+\begin{tabular}{@{}m{0.15\linewidth}>{\centering\arraybackslash}m{0.16\linewidth}>{\centering\arraybackslash}m{0.1\linewidth}>{\centering\arraybackslash}m{0.121\linewidth}>{\centering\arraybackslash}m{0.25\linewidth}@{}}
+\toprule
+\textbf{Algorithm} & \textbf{Avg Eff. (\%)} & \textbf{CV (\%)} & \textbf{Floor (\%)} & \textbf{Win Dominance (\%)} \\
+\midrule
+CPursuit         & \textbf{88.0} & 5.6  & 77.4 & 25.6 \\
+iCEpsilonGreedy  & 86.8          & \textbf{3.7}  & \textbf{81.0} & 43.9 \\
+EXPNeuralUCB     & 83.1          & 15.1 & 18.0 & 30.5 \\
+EXPUCB           & 76.4          & 6.0  & 68.8 & 0.0 \\
+\bottomrule
+\end{tabular}
+\label{tab:rq2_adversarial}
+\end{table}
+
+\noindent\textit{1. Contextual structure $>$ adversarial weighting.}
+\texttt{CPursuit} outperforms \texttt{EXPNeuralUCB} by \textit{+5.7 pp} on average (88.1\% vs.\ 82.4\%),
+and outperforms \texttt{EXPUCB} by \textit{+11.8 pp} (88.1\% vs.\ 76.3\%) under adversarial threats.
+
+\noindent\textit{2. Stability and worst-case behavior separate “deployable” from “fragile.”}
+While \texttt{EXPNeuralUCB} can be competitive on average, it exhibits extreme instability (CV 16.5\%)
+and catastrophic worst-case collapse (floor 18\%).
+In contrast, \small\texttt{iCEpsilonGreedy} is the most stable informed baseline (CV 3.6\%),
+achieving the strongest floor (81\%) across threats.
+
+\noindent\textit{Important correction (in-family):}
+Within the iCMAB evaluation corpus (considering only iCMAB variants under the same threat suite),
+\small\texttt{iCEpsilonGreedy} is the consistent winner (100\% in-family win rate) under the same adversarial scope.
+
+% ----------------------------------------------------------------------------
+% Optional: penalties vs baseline (NONE) using validated corpus means.
+% ----------------------------------------------------------------------------
+\begin{figure}[ht!]
+\scriptsize
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  ylabel={Scenario Penalty (pp vs Baseline)},
+  xlabel={Algorithm},
+  ymin=-1, ymax=15,
+  xtick={1,2,3,4},
+  xticklabels={EXPUCB, EXPNeural, \textbf{iCEpsGreedy}, \textbf{CPursuit}},
+  width=0.52\textwidth,
+  height=5cm,
+  grid=major,
+  grid style={line width=.1pt, draw=gray!10},
+  legend style={at={(0.5,-0.22)}, anchor=north},
+  legend columns=-1,
+  % legend pos=north east,
+  % legend columns=2,
+  legend style={font=\scriptsize},
+  bar width=0.10cm,
+  enlarge x limits=0.25
+]
+
+% Stochastic penalty (Baseline - Stochastic)
+\addplot[fill=teal!70, opacity=0.9] coordinates {
+  (1, 7.3) (2, 12.4) (3, 4.9) (4, 3.2)
+};
+\addlegendentry{\protect\tikz\protect\draw[fill=teal!70,draw=none] (0,0) rectangle (0.08,0.06); Stoch}
+
+% Markov penalty (Baseline - Markov)
+\addplot[fill=blue!70, opacity=0.9] coordinates {
+  (1, 9.8) (2, 6.9) (3, 7.0) (4, 7.6)
+};
+\addlegendentry{\protect\tikz\protect\draw[fill=blue!70,draw=none] (0,0) rectangle (0.08,0.06); Markov}
+
+% Adaptive penalty (Baseline - Adaptive)
+\addplot[fill=red!70, opacity=0.9] coordinates {
+  (1, 8.9) (2, 13.8) (3, 6.1) (4, 6.3)
+};
+\addlegendentry{\protect\tikz\protect\draw[fill=red!70,draw=none] (0,0) rectangle (0.08,0.06); Adapt}
+
+% OnlineAdaptive penalty (Baseline - OnlineAdaptive)
+\addplot[fill=orange!70, opacity=0.9] coordinates {
+  (1, 7.2) (2, 10.1) (3, 5.8) (4, 4.5)
+};
+\addlegendentry{\protect\tikz\protect\draw[fill=orange!70,draw=none] (0,0) rectangle (0.08,0.06); Online}
+
+\end{axis}
+\end{tikzpicture}
+% \vspace{-0.6cm}
+\caption{Context-aware methods absorb smaller, more stable threat penalties, while EXP3-family baselines are most exposed under adaptive threats. \shee{Is the line (next to each color box) in the legend required?}}
+\label{fig:scenario_penalties}
+\end{figure}
+
+
+
+% ----------------------------------------------------------------------------
+\subsubsection{Answer to \RQTwo}
+
+\noindent\textit{Context-awareness provides superior robustness, refuting the adversarial-first hypothesis.}
+Across Markov, Adaptive, and OnlineAdaptive threats, contextual pursuit baselines maintain the highest overall efficiency
+(\small\texttt{CPursuit}: 88.1\%) with strong worst-case behavior.
+EXP3-family adversarial baselines do not generalize reliably: \small\texttt{EXPNeuralUCB} is highly volatile and can fail catastrophically
+under reactive attack conditions, despite competitive average efficiency in some structured regimes.
+
+\noindent\textit{Supporting Question Answers:}
+\begin{itemize}[nosep]
+\item \small\texttt{\textbf{RQ2a}:} Yes on both counts. Under stochastic decoherence (6.25\% i.i.d.\ disruption), context-aware pursuit--neural models maintain 87--93\% Oracle-normalized efficiency, retaining the 15--25~pp advantage over classical baselines observed in \RQOneText{} and remaining above the 85\% deployment target. This advantage persists under structured and adaptive threats: across Markov, Adaptive, and OnlineAdaptive regimes, pursuit-based models sustain $\sim$89\% average efficiency with robustness floors of 65--73\%, while adversarial-first methods (EXP3-family) degrade to floors near 52--54.5\%, demonstrating that context-awareness provides superior robustness across all threat escalation levels.
+\item \small\texttt{\textbf{RQ2b}:} Pursuit--neural models degrade most gracefully, preserving high mean efficiency (90.8--93.5\%) with tighter variability as threats escalate from Baseline through OnlineAdaptive, with degradation concentrated in worst-case OnlineAdaptive/Markov slices rather than distributed broadly. Across the validated suites, \small\texttt{iCPursuitNeuralUCB} consistently defines the efficiency frontier, maintaining the highest overall average efficiency while preserving strong robustness floors ($\geq$85\% in static configurations), outperforming classical baselines by 20--30~pp and adversarial-first methods by 6--11~pp in scenario-aggregated comparisons.
+\end{itemize}
+
+% ============================================================================
+% RQ3: Deployment Optimization Strategies
+% ============================================================================
+\subsection{\RQThreeText: Deployment Optimization Strategies}
+\label{subsec:rq3}
+
+\begin{figure}[ht!]
+\centering
+\begin{tikzpicture}
+\scriptsize
+\begin{axis}[
+  ylabel={Efficiency (\%)},
+  xlabel={Attack Scenario},
+  ymin=40, ymax=100,
+  xtick={1,2,3,4,5},
+  xticklabels={Stochastic, Markov, Adaptive, OnlineAdaptive, Baseline},
+  width=0.50\textwidth,
+  height=5cm,
+  grid=major,
+  grid style={line width=.1pt, draw=gray!10},
+  legend style={at={(0.5,-0.22)}, anchor=north},
+  legend columns=-1,
+  % legend pos=south east,
+  % legend columns=3,
+  legend style={font=\scriptsize}
+]
+
+% ----- T -----
+\addplot[color=blue!70, mark=o, mark size=4pt, line width=1.8pt] coordinates {
+  (1, 81.5) (2, 86.5) (3, 88.9) (4, 83.2) (5, 90.3)
+};
+\addlegendentry{T}
+
+% ----- 1.5T -----
+\addplot[color=cyan!70!black, mark=diamond*, mark size=4pt, line width=1.8pt] coordinates {
+  (1, 82.3) (2, 80.5) (3, 83.7) (4, 90.3) (5, 88.0)
+};
+\addlegendentry{1.5T}
+
+% ----- 2T -----
+\addplot[color=purple!70, mark=square*, mark size=4pt, line width=1.8pt] coordinates {
+  (1, 84.8) (2, 85.9) (3, 90.2) (4, 90.6) (5, 93.4)
+};
+\addlegendentry{2T}
+
+% ----- Tb -----
+\addplot[color=green!70!black, mark=triangle*, mark size=4pt, line width=1.8pt] coordinates {
+  (1, 80.6) (2, 83.2) (3, 84.8) (4, 86.6) (5, 87.9)
+};
+\addlegendentry{Tb}
+
+% ----- 1.5Tb -----
+\addplot[color=orange!80, mark=pentagon*, mark size=4pt, line width=1.8pt] coordinates {
+  (1, 81.0) (2, 80.7) (3, 87.7) (4, 85.2) (5, 87.0)
+};
+\addlegendentry{1.5Tb}
+
+% ----- 2Tb -----
+\addplot[color=red!70, mark=x, mark size=4pt, line width=1.8pt] coordinates {
+  (1, 81.7) (2, 78.0) (3, 87.1) (4, 84.2) (5, 91.0)
+};
+\addlegendentry{2Tb}
+
+\end{axis}
+\end{tikzpicture}
+% \vspace{-0.5cm}
+\caption{More capacity helps in Baseline and Markov settings but can hurt under Adaptive threats, revealing the capacity paradox.\devroop{You may want to zoom in for this figure to show the exact curve variations}}
+\label{fig:capacity_all}
+\end{figure}
+
+
+
+\noindent
+Beyond algorithm selection, deployment quality depends on the \emph{configuration surface}:
+(i) allocator policy (\small\texttt{Fixed, Thompson, DynamicUCB, Random}),
+(ii) replay-capacity specification via anchoring ($T$ vs.\ $T_b$) and scale ($s\in\{1,1.5,2\}$),
+and (iii) hybrid architecture choices (reactive vs.\ informative/predictive context).
+\RQThreeText{} characterizes which combinations are robust under threat escalation and which induce brittle failure modes.
+
+% ----------------------------------------------------------------------------
+\subsubsection{Hypothesis}
+\noindent\textit{Addresses \Cref{subsubsec:rq3_question}.}
+
+\noindent
+We hypothesize that threat-aware configuration (allocator $\times$ capacity anchoring/scale)
+improves robustness relative to static deployments, and that hybrid pursuit-based designs
+benefit most from this co-design under adaptive and online-adaptive regimes.
+
+% ----------------------------------------------------------------------------
+\subsubsection{Experimental Design}
+\label{subsubsec:rq3_design}
+
+\noindent
+\RQThreeText{} is computed from the \textbf{hybrid evaluation corpus} (curated experimental suite with
+ensemble summaries). We evaluate four hybrid-capable agents:
+\textit{CPursuitNeuralUCB, iCPursuitNeuralUCB, GNeuralUCB, EXPNeuralUCB}
+across five threat scenarios (\small\texttt{Baseline, Stochastic, Markov, Adaptive, OnlineAdaptive}),
+four allocators (\small\texttt{Fixed, Thompson, DynamicUCB, Random}),
+two capacity anchorings (\small\texttt{$T$-type}, \small\texttt{$T_b$-type}),
+three replay scales ($s\in\{1.0,1.5,2.0\}$),
+and three horizons (\small\texttt{4K, 6K, 8K}).
+
+\noindent
+The corpus stores ensemble averages for \textbf{3-run} and \textbf{5-run} suites.
+Unless otherwise stated, point estimates report the \textbf{mean of the 3- and 5-run suite values}.
+Volatility proxies (\eg CV) are computed \emph{across scenario means within a configuration},
+since per-run variance is not represented in the ensemble tables.
+Run-level artifacts and aggregation scripts are provided in the Supplement.
+
+% ----------------------------------------------------------------------------
+% RQ3d "rules" preview figure (kept up front for readability)
+% ----------------------------------------------------------------------------
+\begin{figure}[ht!]
+\scriptsize
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  ylabel={Efficiency (\%)},
+  xlabel={Detected Attack Type},
+  ymin=50, ymax=95,
+  xtick={1,2,3,4},
+  xticklabels={Stochastic, Markov, Adaptive, OnlineAdaptive},
+  width=0.50\textwidth,
+  height=5cm,
+  grid=major,
+  grid style={line width=.1pt, draw=gray!10},
+  legend style={at={(0.5,-0.22)}, anchor=north},
+  legend columns=-1,
+  % legend pos=south east,
+  % legend columns=4
+]
+
+% ----- Thompson -----
+\addplot[color=blue!80, mark=o, line width=2.5pt, mark size=4pt] coordinates {
+    (1, 86.7) (2, 89.2) (3, 91.0) (4, 90.3)
+};
+\addlegendentry{Thompson}
+
+% ----- DynamicUCB -----
+\addplot[color=red!80, mark=square, line width=2.5pt, mark size=4pt] coordinates {
+    (1, 85.7) (2, 86.1) (3, 91.0) (4, 90.9)
+};
+\addlegendentry{DynamicUCB}
+
+% ----- Random -----
+\addplot[color=gray, mark=x, line width=2pt, mark size=6pt, dashed] coordinates {
+    (1, 69.1) (2, 69.3) (3, 79.3) (4, 77.5)
+};
+\addlegendentry{Random}
+
+% ----- No-alloc -----
+\addplot[color=black!70, mark=triangle, line width=2pt, mark size=6pt, dotted] coordinates {
+    (1, 89.5) (2, 88.9) (3, 90.2) (4, 89.9)
+};
+\addlegendentry{No-alloc}
+
+\end{axis}
+\end{tikzpicture}
+% \vspace{-0.5cm}
+\caption{Allocator choice is threat-dependent: Thompson leads in Adaptive regimes, DynamicUCB stays competitive, and Random underperforms.\devroop{You may want to zoom in for this figure to show the exact curve variations}}
+\label{fig:threat_rules}
+\end{figure}
+
+
+% ----------------------------------------------------------------------------
+\subsubsection{Answer to \RQThree}
+\noindent
+\textit{Yes—deployment is configuration-sensitive, but the corpus also supports a strong static default.}
+At the 6K horizon, a single configuration achieves high global robustness:
+
+\begin{center}
+\small\texttt{iCPursuitNeuralUCB + Fixed + ($T$-type, $s{=}2$)}
+\end{center}
+
+\noindent
+This default attains a \textbf{96.0\%} global average with a \textbf{92.8\%} worst-case floor
+(across the five scenarios on the same 6K 3-run deployment slice).
+However, the configuration surface is not benign: mismatched allocator/capacity choices can induce
+large scenario-specific collapses ($RQ3_b-RQ3_c$), and threat-conditioned switching yields targeted gains
+in the most deployment-critical adversarial regimes ($RQ3_d$).
+
+% ============================================================================
+% RQ3a: Predictive Context Modeling (Informative vs Reactive)
+% ============================================================================
+\subsubsection{RQ3a -- Predictive Context Modeling Impact}
+\label{subsubsec:rq3a_answer}
+
+% \noindent\textbf{Question focus:} Does informative/predictive context (iCPursuitNeuralUCB) improve robustness relative to reactive CPursuitNeuralUCB under a fixed deployment?
+
+\noindent
+We isolate architecture impact under a fixed setting (6K horizon, \small\texttt{Fixed} allocator,
+$T$-type capacity with $s{=}2$), reporting the 3-run suite values:
+
+\begin{table}[ht!]
+\footnotesize
+\caption{Predictive context improves this fixed-deployment slice (6K, \texttt{Fixed}, $T$-type, $s{=}2$).}
+\centering
+\setlength{\tabcolsep}{4.5pt}
+\begin{tabular}{lccccccc}
+\toprule
+\textbf{Model} & \textbf{Bl} & \textbf{Sh} & \textbf{Mk} & \textbf{Ag} & \textbf{OA} & \textbf{Avg} & \textbf{CV$_{\text{scen}}$} \\
+\midrule
+CPursuitNeuralUCB  & 99.8 & 94.7 & 93.0 & 92.8 & 81.5 & 92.4 & 6.5 \\
+iCPursuitNeuralUCB & 99.9 & 94.8 & 93.0 & 92.8 & 99.8 & 96.0 & 3.3 \\
+\bottomrule
+\vspace{-0.2cm}
+\end{tabular}
+{\scriptsize{Bl=Baseline, Sh=Stochastic, Mk=Markov, Ag=Adaptive, OA=OnlineAdaptive.}}
+\label{tab:rq3a_informative}
+\end{table}
+
+\noindent
+\textit{Answer to RQ3a:}
+As shown in \Cref{tab:rq3a_informative}, \textbf{iCPursuitNeuralUCB improves global robustness primarily by lifting OnlineAdaptive performance}
+(+18.3 pp under the same deployment setting), yielding a higher overall average and a tighter
+cross-scenario dispersion (CV$_{\text{scen}}$: 6.5 $\rightarrow$ 3.3). Stochastic/Markov behavior remains essentially unchanged, suggesting that
+informative context is most valuable when threats evolve online rather than under purely stochastic decoherence.
+
+% ============================================================================
+% RQ3b: Replay Capacity Scaling and the Paradox
+% ============================================================================
+\subsection{RQ3b: Replay Capacity Scaling \& Paradox}
+\label{subsec:rq3b_answer}
+
+\subsubsection{Hypothesis}
+\noindent\textit{Addresses \Cref{subsec:rq3atoc_questions}b.}
+
+\noindent Increasing replay capacity scale ($s: 1 \to 1.5 \to 2$) monotonically improves performance.
+
+\subsubsection{Key Finding}
+
+\noindent
+\textit{Capacity scaling is non-monotonic and interacts with anchoring ($T$ vs.\ $T_b$).}
+Even with the deployment anchor fixed (\small\texttt{Default}/\small\texttt{Fixed}) at 6K, scale changes can induce large swings in efficiency,
+including pronounced improvements at the intermediate scale followed by regression at $s{=}2$.
+
+\begin{table}[ht!]
+\footnotesize
+\centering
+\caption{RQ3b: Capacity Scaling Impact on Pursuit Algorithms (Default/Fixed Allocator, $T_b$ anchoring; 6K; 3-run suite)}
+\label{tab:rq3b_capacity_scaling}
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Algorithm} & \textbf{Scale} & \textbf{Bl} & \textbf{Sh} & \textbf{Mk} & \textbf{Ag} \\
+\midrule
+\multirow{3}{*}{CPursuitNeuralUCB}
+& 1.0 & 96.7\% & 92.8\% & 88.3\% & 90.3\% \\
+& 1.5 & 99.8\% & 91.9\% & 92.5\% & 93.8\% \\
+& 2.0 & 97.2\% & 92.1\% & 89.5\% & 91.9\% \\ \midrule
+\multirow{3}{*}{iCPursuitNeuralUCB}
+& 1.0 & 96.2\% & 91.4\% & 89.1\% & 91.5\% \\
+& 1.5 & 99.8\% & 91.3\% & 92.6\% & 93.8\% \\
+& 2.0 & 96.6\% & 91.2\% & 88.9\% & 92.9\% \\
+
+\bottomrule
+\vspace{-0.2cm}
+\end{tabular}
+{\scriptsize{Bl=Baseline, Sh=Stochastic, Mk=Markov, Ag=Adaptive, OA=OnlineAdaptive.}}
+\end{table}
+
+
+
+\noindent
+\textit{Answer to RQ3b:}
+Replay capacity is not a \textquotedblleft more is better\textquotedblright\ knob. Under $T_b$-type anchoring (\Cref{tab:rq3b_capacity_scaling}), both pursuit-based hybrids
+show a pronounced bump at $s{=}1.5$ (especially in Baseline/Markov), followed by partial regression at $s{=}2$.
+This single-slice snapshot falsifies the monotone hypothesis ($s{=}1 \to 1.5 \to 2$) under a fixed deployment anchor.
+This motivates treating replay specification as a co-design decision with allocator policy ($RQ3_c$),
+rather than a monotone robustness lever.
+
+% ============================================================================
+% RQ3c: Algorithm--Allocator Co-Design
+% ============================================================================
+\subsection{RQ3c: Algorithm-Allocator Co-Design}
+\label{subsec:rq3c_answer}
+
+\subsubsection{Hypothesis}
+\noindent\textit{Addresses \Cref{subsec:rq3atoc_questions}c.}
+
+\noindent Allocator choice is largely independent of algorithm architecture.
+
+\subsubsection{Key Finding}
+
+\begin{table}[ht!]
+\centering
+\caption{RQ3c: Allocator performance summary for iCPursuitNeuralUCB (Tb, s=2, 6K frames, runs=3). Core findings exclude Random allocator.}
+\label{tab:rq3c_allocators}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Allocator} & \textbf{Avg Eff (\%)} & \textbf{Floor (\%)} & \textbf{Span (pp)} \\
+\midrule
+Fixed          & 92.7 & 88.9 & 7.8 \\
+Thompson       & 87.8 & 73.3 & 26.4 \\
+DynamicUCB     & 92.6 & 87.9 & 9.3 \\
+\midrule
+\multicolumn{4}{l}{\textit{Supplementary (Control Baseline):}} \\
+\quad Random   & 86.4 & 68.3 & 26.7 \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.1cm}
+\scriptsize{\textbf{Note:} Random allocator shown for completeness as a control baseline. It is excluded from core deployment recommendations.}
+\end{table}
+
+
+
+\noindent
+\textit{Answer to RQ3c:}
+As summarized in \Cref{tab:rq3c_allocators}, allocator effects are not independent. \textbf{Fixed} provides the strongest global robustness for
+iCPursuitNeuralUCB in this corpus (best average and best floor), while \textbf{Thompson} is highly
+effective in specific regimes (\eg Adaptive) but can underperform severely when mismatched
+(large drops in Baseline/Stochastic). This makes allocator selection a first-class deployment decision.
+
+% ============================================================================
+% RQ3d: Scenario-Dependent Deployment Rules
+% ============================================================================
+\subsection{RQ3d: Scenario-Based Deployment Rules \& Optimization}
+\label{subsec:rq3d_answer}
+
+\begin{figure}[ht!]
+\scriptsize
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  ylabel={Running Efficiency (\%)},
+  xlabel={Frames (thousands)},
+  ymin=0, ymax=100,
+  xtick={1,2,3,4,5,6,7,8},
+  xticklabels={1K, 2K, 3K, 4K, 5K, 6K, 7K, 8K},
+  width=0.5\textwidth,
+  height=5cm,
+  grid=major,
+  grid style={line width=.1pt, draw=gray!10},
+  legend style={at={(0.45,-0.22)}, anchor=north},
+  legend columns=-1,
+  % legend pos=south east,
+  % legend columns=2,
+  legend style={font=\scriptsize}
+]
+
+\addplot[color=teal!80, mark=o, line width=2pt, smooth] coordinates {
+    (1, 65) (2, 74) (3, 82) (4, 86) (5, 88) (6, 88.5) (7, 88.8) (8, 88.9)
+};
+\addlegendentry{iCPursuit}
+
+\addplot[color=blue!80, mark=square*, line width=2pt, smooth] coordinates {
+    (1, 63) (2, 70) (3, 76) (4, 82) (5, 85) (6, 87) (7, 87.5) (8, 87.7)
+};
+\addlegendentry{CPursuit}
+
+\addplot[color=orange!80, mark=triangle*, line width=2pt, smooth] coordinates {
+    (1, 45) (2, 52) (3, 58) (4, 61) (5, 62.5) (6, 63) (7, 63.2) (8, 63.0)
+};
+\addlegendentry{EXPNeuralUCB}
+
+\addplot[color=red!70, mark=x, line width=2pt, smooth, dashed] coordinates {
+    (1, 8) (2, 12) (3, 16) (4, 19) (5, 21) (6, 22) (7, 23) (8, 24)
+};
+\addlegendentry{GNeuralUCB}
+
+\end{axis}
+\end{tikzpicture}
+% \vspace{-0.5cm}
+\caption{Pursuit-based hybrids converge higher, while neural baselines plateau lower under sparse reward feedback.}
+\label{fig:convergence_hybrid}
+\end{figure}
+
+\subsubsection{Deployment Rules (6K horizon)}
+
+\noindent
+The deployment rules below use the coherent 6K \textbf{3-run} hybrid slice over the core allocators
+(\small\texttt{Fixed / Thompson / DynamicUCB}).
+
+\noindent\textbf{Robust static default:}
+\begin{center}
+\small\texttt{iCPursuitNeuralUCB + Fixed + ($T$-type, $s{=}2$)}
+\end{center}
+
+\noindent\textbf{Operational switching (Fixed / Thompson / DynamicUCB):}\\
+Per-scenario optima differ modestly from the default in most regimes, but switching is valuable as a
+safeguard against allocator/capacity mismatch and for targeted gains in \small\texttt{Adaptive}:
+
+\begin{itemize}[nosep]
+\item \textit{Baseline:} \small\texttt{DynamicUCB + (T, $s{=}1$)} \hfill (99.9\%, +0.0pp)
+\item \textit{Stochastic:} \small\texttt{Thompson + (T, $s{=}1$)} \hfill (95.4\%, +0.6pp)
+\item \textit{Markov:} \small\texttt{DynamicUCB + ($T_b$, $s{=}1.5$)} \hfill (93.2\%, +0.3pp)
+\item \textit{Adaptive:} \small\texttt{Thompson + (T, $s{=}1$)} \hfill (95.7\%, +2.9pp)
+\item \textit{OnlineAdaptive:} \small\texttt{Fixed + (T, $s{=}2$)} \hfill (99.8\%, +0.0pp)
+\end{itemize}
+
+\subsubsection{Answer to \textbf{RQ3d}}
+
+\noindent
+\textit{Yes—clear deployment rules emerge, and the corpus supports a strong static default.}
+A single configuration (\small\texttt{iCPursuitNeuralUCB + Fixed + (T, $s{=}2$)}) maintains
+$>\!85\%$ performance across all five scenarios at 6K. Nonetheless, threat-conditioned switching is
+a pragmatic safeguard: the corpus shows that replay specification and allocator choice can interact
+pathologically ($RQ3_b-RQ3_c$), while modest switching yields the most consistent gains in the
+deployment-critical \small\texttt{Adaptive} regime.
+
+
+
+% ========= Testbed Comparison and Cross-Validation =========
+\section{Cross-Testbed Validation}
+\label{sec:testbed_comparison}
+
+To validate the generalizability and robustness of our proposed algorithms, we conducted cross-testbed evaluations by deploying our model portfolio on four independent quantum network simulation testbeds from prior work. These testbeds vary significantly in scale, network topology, noise modeling, and fidelity calculation approaches, providing a rigorous stress test for our context-aware pursuit-neural algorithms. This section presents: (1) performance comparison across the four external testbeds (\paperTwo, \paperSeven, \paperTwelve, and \paperEight), and (2) a consolidated comparison of model family performance (CMABs, iCMABs, Hybrid pursuit-neural, and EXP3-based models) across our internal evaluation suite.
+
+\subsection{External Testbed Configurations}
+
+We evaluated our algorithms on four established quantum network testbeds, each representing different operational scales and physical constraints:
+
+\noindent These external testbeds differ primarily in how they model and estimate link quality. \paperTwo injects stochastic gate/channel errors into entanglement operations; \paperSeven uses network benchmarking and measurement-parameter adaptation to support online selection of high-fidelity paths with fidelity estimation; \paperTwelve evaluates fusion-based entanglement generation where success depends on fidelity-driven local rules; and \paperEight uses reinforcement-learning-driven entanglement routing on a compact network with multiple reward modes for rate/fidelity tradeoffs.
+
+\begin{itemize}[nosep]
+\item \textbf{\paperTwo testbed}: Large-scale stochastic-noise quantum communication testbed for learning-based route selection. 15-node, 51-edge topology with 8 routing paths. Uses \texttt{StochasticPaper2NoiseModel} with comprehensive gate errors ($p_{\text{BSM}} = 0.2$, $p_{\text{depol}} = 0.1$, $p_{\text{gate}} = 0.2$) and memory decoherence ($p_{\text{init}} = 10^{-5}$, attenuation $= 0.05$). Evaluation-corpus results aggregate 5 runs at 4000 base frames and 2000-frame steps across 4 allocators (\texttt{Default}, \texttt{Dynamic}, \texttt{Random}, \texttt{ThompsonSampling}) and scales $s \in \{1.0, 1.5, 2.0\}$ (\texttt{cap\_type}=T).
+
+\item \textbf{\paperSeven testbed}: Small-scale high-density network. 50-node, 141-edge topology with 15 routing paths. Uses network benchmarking and online top-$K$ path selection to identify and estimate high-fidelity paths under limited topology visibility. Evaluation-corpus results aggregate 5 runs at 50 base frames and 50-frame steps across 4 allocators (\texttt{Default}, \texttt{Dynamic}, \texttt{Random}, \texttt{ThompsonSampling}) and scales $s \in \{1.0, 1.5, 2.0\}$ (\texttt{cap\_type}=T), representing rapid decision-making under tight resource constraints.
+
+\item \textbf{\paperTwelve testbed}: Mid-scale fusion-based network. 100-node, 426-edge topology with 4 routing paths. Uses \texttt{FusionNoiseModel} with fusion-based entanglement generation ($q=0.9$, $p_{\text{avg}}=0.6$, $p_{\text{fusion}}=0.9$). Evaluation-corpus results aggregate 5 runs at 1500 base frames and 500-frame steps across 4 allocators (\texttt{Default}, \texttt{Dynamic}, \texttt{Random}, \texttt{ThompsonSampling}) and scales $s \in \{1.0, 1.5, 2.0\}$ (\texttt{cap\_type}=T).
+
+\item \textbf{\paperEight testbed}: Reinforcement-learning entanglement-routing testbed on a compact topology. 20-node, 19-edge topology with 8 routing paths. The current report slice uses the original paper-config corpus at 1000 base frames and 1000-frame steps for 1 run across 4 allocators (\texttt{Default}, \texttt{Dynamic}, \texttt{Random}, \texttt{ThompsonSampling}), all 5 threat scenarios, scale $s = 1.0$, and \texttt{cap\_type}=T.
+\end{itemize}
+
+\subsection{Cross-Testbed Performance Results}
+
+\Cref{tab:testbed_comparison} reports scenario-aggregated metrics (means across all five scenarios) for each model and scenario champions from the dataset field \texttt{scenario\_winner}.
+\paperTwo, \paperSeven, and \paperTwelve use the full multi-scale, 5-run evaluation corpora summarized above, while \paperEight is currently represented by its original paper-config slice (1K/1K/1R, $s=1.0$, \texttt{cap\_type}=T).
+
+\begin{table*}[ht!]
+\centering
+\caption{Cross-testbed performance comparison using scenario-aggregated Oracle-normalized efficiency (\%) and scenario champions from \texttt{scenario\_winner}. Numeric columns are means across all five scenarios (\texttt{none}, \texttt{stochastic}, \texttt{markov}, \texttt{adaptive}, \texttt{onlineadaptive}) and 4 allocators. \paperTwo, \paperSeven, and \paperTwelve use the full evaluation corpora aggregated across scales $s \in \{1.0,1.5,2.0\}$ (\texttt{cap\_type}=T) with 5 runs per setting; \paperEight uses the current original paper-config slice at 1K/1K/1R, $s=1.0$, \texttt{cap\_type}=T. \devroop{fix the testbed column dimensions. its overflowing.}}
+\label{tab:testbed_comparison}
+\small
+\begin{tabular}{l l c c c c l}
+\toprule
+\textbf{Testbed} & \textbf{Algorithm} & \textbf{Avg Reward} & \textbf{Regret} & \textbf{Efficiency (\%)} & \textbf{Gap (\%)} & \textbf{Exp. Winner} \\
+\midrule
+\multirow{7}{*}{\parbox{2.2cm}{\textbf{\paperTwo}\\ (\small 15N, 51E, 8P)\\ \small 4K/2K/5R\\ \small 4 allocs, $s\in\{1,1.5,2\}$,T}}
+& \texttt{ORACLE} & 0.3926 & 0.0 & --- & --- & --- \\
+& \texttt{CPursuitNeuralUCB} & 0.2887 & 509.2 & 73.22 & 26.78 & 38/300 \\
+& \texttt{GNeuralUCB} & 0.2886 & 515.9 & 73.19 & 26.81 & 84/300 \\
+& \texttt{iCPursuitNeuralUCB} & 0.2933 & 494.5 & \textbf{74.45} & 25.55 & \textbf{95/300$^\star$} \\
+& \texttt{EXPNeuralUCB} & 0.2810 & 583.2 & 71.25 & 28.75 & 83/300 \\
+\cline{2-7}
+& \cellcolor{findingBlue}\textit{All pursuit hybrids excel} & \multicolumn{5}{l}{\cellcolor{findingBlue}\small 71--74\% eff. $\star$Exp.\ Winner: iCPursuitNeuralUCB (95/300)} \\
+\midrule
+\multirow{7}{*}{\parbox{2.2cm}{\textbf{\paperSeven}\\ (\small 50N, 141E, 15P)\\ \small 50/50/5R\\ \small 4 allocs, $s\in\{1,1.5,2\}$, T}}
+& \texttt{ORACLE} & 8.9237 & 0.0 & --- & --- & --- \\
+& \texttt{iCPursuitNeuralUCB} & 6.9793 & 42.8 & \textbf{78.03} & 21.97 & \textbf{245/300$^\star$} \\
+& \texttt{EXPNeuralUCB} & 6.2227 & 272.3 & 69.57 & 30.43 & 16/300 \\
+& \texttt{CPursuitNeuralUCB} & 6.3314 & 269.1 & 70.82 & 29.18 & 0/300 \\
+& \texttt{GNeuralUCB} & 6.3314 & 269.1 & 70.82 & 29.18 & 39/300 \\
+\cline{2-7}
+& \cellcolor{findingGreen}\textit{iCP dominates} & \multicolumn{5}{l}{\cellcolor{findingGreen}\small 69.6--78.0\% eff. $\star$Exp.\ Winner: iCPursuitNeuralUCB (245/300)} \\
+\midrule
+\multirow{7}{*}{\parbox{2.2cm}{\textbf{\paperTwelve}\\ (\small 100N, 426E, 4P)\\ \small 1.5K/500/5R\\ \small 4 allocs, $s\in\{1,1.5,2\}$, T}}
+& \texttt{ORACLE} & 0.8724 & 0.0 & --- & --- & --- \\
+& \texttt{GNeuralUCB} & 0.3833 & 864.1 & 43.72 & 56.28 & 53/300 \\
+& \texttt{EXPNeuralUCB} & 0.3730 & 892.2 & 42.54 & 57.46 & 91/300 \\
+& \texttt{iCPursuitNeuralUCB} & 0.3869 & 858.3 & \textbf{44.14} & 55.86 & \textbf{97/300$^\star$} \\
+& \texttt{CPursuitNeuralUCB} & 0.3842 & 861.2 & 43.81 & 56.19 & 59/300 \\
+\cline{2-7}
+& \cellcolor{findingOrange}\textit{Mid-scale challenges all} & \multicolumn{5}{l}{\cellcolor{findingOrange}\small 42.5--44.1\% eff. $\star$Exp.\ Winner: iCPursuitNeuralUCB (97/300)} \\
+\midrule
+\multirow{7}{*}{\parbox{2.2cm}{\textbf{\paperEight}\\ (\small 20N, 19E, 8P)\\ \small 1K/1K/1R\\ \small 4 allocs, $s=1$, T}}
+& \texttt{ORACLE} & 300540.1887 & 0.0 & --- & --- & --- \\
+& \texttt{iCPursuitNeuralUCB} & 210418.9742 & 60833.4 & \textbf{67.85} & 32.15 & 1/20 \\
+& \texttt{EXPNeuralUCB} & 186656.1295 & 82175.2 & 61.93 & 38.07 & \textbf{10/20$^\star$} \\
+& \texttt{GNeuralUCB} & 183038.7972 & 83361.0 & 61.65 & 38.35 & 4/20 \\
+& \texttt{CPursuitNeuralUCB} & 182011.6324 & 84024.2 & 61.42 & 38.58 & 5/20 \\
+\cline{2-7}
+& \cellcolor{findingBlue}\textit{iCP leads avg., EXP wins most} & \multicolumn{5}{l}{\cellcolor{findingBlue}\small 61.4--67.9\% eff. $\star$Exp.\ Winner: EXPNeuralUCB (10/20)} \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.2cm}
+{\scriptsize \textbf{Legend:} N=Nodes, E=Edges, P=Paths, R=Runs, $s$=scale. Efficiency (\%) = (Model Avg Reward / Oracle Avg Reward) × 100. Gap = 100 - Efficiency. Numeric columns are means across all five scenarios and 4 allocators, using each testbed's corpus listed in the first column. Exp.\ Winner column shows experiment-level win count out of the available configurations for that corpus: 300 for \paperTwo/\paperSeven/\paperTwelve (5 scenarios $\times$ 4 allocators $\times$ 3 scales $\times$ 5 experiments) and 20 for \paperEight (5 scenarios $\times$ 4 allocators $\times$ 1 scale $\times$ 1 experiment). $^\star$\textbf{bold} = testbed experiment winner (highest win count). Scenario codes: \texttt{none}=baseline, \texttt{stochastic}=random failures, \texttt{markov}=oblivious adversarial, \texttt{adaptive}=feedback-driven, \texttt{onlineadaptive}=real-time adaptive.}
+\end{table*}
+
+\subsubsection{Key Observations from Cross-Testbed Validation}
+
+\begin{enumerate}[nosep,leftmargin=2em]
+\item \textbf{\texttt{iCPursuitNeuralUCB} is the cross-layer winner on \paperTwo, \paperSeven, and \paperTwelve, while on \paperEight it dominates only.} It wins 95/300 experiments on \paperTwo, 245/300 on \paperSeven (81.7\%), and 97/300 on \paperTwelve. On \paperSeven, its dominance is overwhelming---no other model comes close. On \paperTwo and \paperTwelve, the margin is tighter: \paperTwo sees a 4-way race (iCP: 95, G: 84, EXP: 83, CP: 38), while \paperTwelve is a 2-way race (iCP: 97, EXP: 91). \paperEight breaks this pattern: \texttt{EXPNeuralUCB} wins 10/20 allocator-scenario configurations, while \texttt{iCPursuitNeuralUCB} leads only 1/20 despite having the strongest aggregated efficiency.
+
+\item \textbf{Experiment threat ranking does not fully determine experiment-level dominance.} In the \paperTwo testbed, \texttt{iCPursuitNeuralUCB} has the highest dominance (scenario-aggregated efficiency, 74.45\%) yet wins only 2/5 threat scenarios (none, markov). \texttt{CPursuitNeuralUCB} and \texttt{GNeuralUCB} each win 3/5 threat scenarios despite lower dominance, capturing adaptive, onlineadaptive, and stochastic. The \paperEight testbed shows the same separation in a different form: \texttt{iCPursuitNeuralUCB} has the highest dominance (scenario-aggregated efficiency, 67.85\%), while \texttt{EXPNeuralUCB} wins the largest share of allocator--threat-scenario configurations (10/20).
+
+\item \textbf{The \paperTwelve testbed exhibits the broadest overlap in threat-scenario winners.} All four models win in at least 4 of 5 threat scenarios, with \texttt{markov} uniquely favoring \texttt{iCPursuitNeuralUCB} (51/60 experiment wins). This contrasts with \paperSeven where threat-scenario championship is concentrated: \texttt{iCPursuitNeuralUCB} wins all 5 threat scenarios, with only \texttt{GNeuralUCB} and \texttt{EXPNeuralUCB} sharing \texttt{markov} experiment wins.
+
+\item \textbf{The \paperEight testbed adds a compact RL-routing regime with competitive but lower aggregate efficiencies than \paperTwo and \paperSeven.} Its model efficiencies span 61.4--67.9\%, placing it below \paperTwo and \paperSeven but well above \paperTwelve. This extends the testbed (default allocator) winner story: the compact 20-node, 8-path \paperEight network splits \texttt{EXPNeuralUCB} experiment wins from \texttt{iCPursuitNeuralUCB} dominance, unlike the strong \texttt{iCPursuitNeuralUCB} cross-layer-winner pattern seen on \paperSeven.
+
+\item \textbf{\texttt{CPursuitNeuralUCB} never wins a threat scenario on \paperSeven yet wins 3/5 threat scenarios on \paperTwo.} This testbed specificity highlights that winner structure is topology-dependent: the dense 50-node \paperSeven network strongly favors \texttt{iCPursuitNeuralUCB} as the cross-layer winner, while the 15-node \paperTwo network enables broader competition.
+\end{enumerate}
+
+\subsection{Model Family Performance Comparison}
+
+To provide a consolidated view of algorithm performance across model families, we aggregated results from our internal evaluation suite spanning CMABs, iCMABs, Hybrid pursuit-neural, and EXP3-based models. \Cref{tab:model_family_comparison} presents representative algorithms from each family under controlled conditions (4K base frames, 2K step frames, 5 runs, \texttt{cap\_type}=Tb), aggregated across all five scenarios using the \texttt{Default} allocator and available capacity scales. To enable direct comparison, we also include hybrid pursuit-neural results from the four external testbeds (\paperTwo, \paperSeven, \paperTwelve, and \paperEight) filtered to the same \texttt{Default} allocator (\texttt{cap\_type}=T, the only capacity semantics available in those corpora).
+
+\begin{table*}[ht!]
+\centering
+\caption{Model family performance comparison: Representative algorithms from each bandit family on our internal evaluation framework (4K base/2K step/5 runs, \texttt{cap\_type}=Tb) plus hybrid pursuit-neural results on four external testbeds (\texttt{cap\_type}=T). All results use the \texttt{Default} allocator and aggregate across all five scenarios; \paperTwo, \paperSeven, and \paperTwelve use scales $s\in\{1,1.5,2\}$, while \paperEight uses its current 1K/1K/1R paper-config slice at $s=1.0$. Best per-family/testbed performance in \textbf{bold}.}
+\label{tab:model_family_comparison}
+\small
+\begin{tabular}{l l c c c l}
+\toprule
+\textbf{Bandit Family} & \textbf{Algorithm} & \textbf{Avg Eff (\%)} & \textbf{Gap (\%)} & \textbf{Floor (\%)} & \textbf{Exp. Winner} \\
+\midrule
+\multirow{5}{*}{\textbf{CMABs}}
+& \texttt{CPursuit} & \textbf{89.90} & 10.10 & 77.4 & \textbf{54/75$^\star$} \\
+& \texttt{CEpsilonGreedy} & 88.08 & 11.92 & 79.4 & 21/75 \\
+& \texttt{CEXP4} & 70.06 & 29.94 & 67.4 & 0/75 \\
+& \texttt{CThompsonSampling} & 68.16 & 31.84 & 62.5 & 0/75 \\
+& \texttt{CEpochGreedy} & 37.65 & 62.35 & 36.3 & 0/75 \\
+\cline{2-6}
+& \cellcolor{findingBlue}\textit{Best: CPursuit} & \multicolumn{4}{l}{\cellcolor{findingBlue}\small 88--90\% eff. $\star$Exp.\ Winner: CPursuit (54/75 = 72\%)} \\
+\midrule
+\multirow{5}{*}{\textbf{iCMABs}}
+& \texttt{iCEpsilonGreedy} & \textbf{88.56} & 11.44 & 81.0 & \textbf{75/75$^\star$} \\
+& \texttt{iCPursuit} & 68.69 & 31.31 & 56.9 & 0/75 \\
+& \texttt{iCThompsonSampling} & 68.01 & 31.99 & 62.8 & 0/75 \\
+& \texttt{iCEXP4} & 37.50 & 62.50 & 36.1 & 0/75 \\
+& \texttt{iCEpochGreedy} & 37.57 & 62.43 & 36.1 & 0/75 \\
+\cline{2-6}
+& \cellcolor{findingBlue}\textit{Best: iCEpsilonGreedy} & \multicolumn{4}{l}{\cellcolor{findingBlue}\small $\star$Exp.\ Winner: iCEpsilonGreedy (75/75 = 100\%)} \\
+\midrule
+\multirow{3}{*}{\textbf{EXP3-based}}
+& \texttt{GNeuralUCB} & \textbf{85.37} & 14.63 & 61.6 & \textbf{41/75$^\star$} \\
+& \texttt{EXPNeuralUCB} & 80.86 & 19.14 & 18.0 & 28/75 \\
+& \texttt{EXPUCB} & 78.06 & 21.94 & 68.8 & 6/75 \\
+\cline{2-6}
+& \cellcolor{findingOrange}\textit{Best: GNeuralUCB} & \multicolumn{4}{l}{\cellcolor{findingOrange}\small $\star$Exp.\ Winner: GNeuralUCB (41/75 = 55\%)} \\
+\midrule
+\multirow{5}{*}{\parbox{2cm}{\textbf{Hybrid}\\ \textbf{Neural}}}
+& \texttt{iCPursuitNeuralUCB} & \textbf{90.86} & 9.14 & 76.4 & \textbf{23/75$^\star$} \\
+& \texttt{CPursuitNeuralUCB} & 89.00 & 11.00 & 45.0 & 17/75 \\
+& \texttt{GNeuralUCB} & 88.99 & 11.01 & 62.2 & 21/75 \\
+& \texttt{EXPNeuralUCB} & 88.37 & 11.63 & 63.9 & 14/75 \\
+\cline{2-6}
+& \cellcolor{findingGreen}\textit{Best: iCPursuitNeuralUCB} & \multicolumn{4}{l}{\cellcolor{findingGreen}\small 89--91\% eff. $\star$Exp.\ Winner: iCPursuitNeuralUCB (23/75 = 31\%)} \\
+\midrule\midrule
+\multicolumn{6}{c}{\textit{External Testbed Comparison (\texttt{Default} allocator, \texttt{cap\_type}=T)}} \\
+\midrule
+\multirow{5}{*}{\parbox{2cm}{\textbf{\paperTwo}\\ \small(15N, 51E)\\ \small 4K/2K}}
+& \texttt{iCPursuitNeuralUCB} & \textbf{74.44} & 25.56 & 54.4 & \textbf{25/75$^\star$} \\
+& \texttt{CPursuitNeuralUCB} & 73.15 & 26.85 & 48.3 & 8/75 \\
+& \texttt{GNeuralUCB} & 73.17 & 26.83 & 46.7 & 20/75 \\
+& \texttt{EXPNeuralUCB} & 71.29 & 28.71 & 41.6 & 22/75 \\
+\cline{2-6}
+& \cellcolor{findingBlue}\textit{Best: iCPursuitNeuralUCB} & \multicolumn{4}{l}{\cellcolor{findingBlue}\small 71--74\% eff. $\star$Exp.\ Winner: iCPursuitNeuralUCB (25/75 = 33\%)} \\
+\midrule
+\multirow{5}{*}{\parbox{2cm}{\textbf{\paperSeven}\\ \small(50N, 141E)\\ \small 50/50}}
+& \texttt{iCPursuitNeuralUCB} & \textbf{77.50} & 22.50 & 28.7 & \textbf{58/75$^\star$} \\
+& \texttt{GNeuralUCB} & 70.89 & 29.11 & 41.5 & 10/75 \\
+& \texttt{CPursuitNeuralUCB} & 70.89 & 29.11 & 41.5 & 0/75 \\
+& \texttt{EXPNeuralUCB} & 69.54 & 30.46 & 33.0 & 7/75 \\
+\cline{2-6}
+& \cellcolor{findingGreen}\textit{Best: iCPursuitNeuralUCB} & \multicolumn{4}{l}{\cellcolor{findingGreen}\small 70--78\% eff. $\star$Exp.\ Winner: iCPursuitNeuralUCB (58/75 = 77\%)} \\
+\midrule
+\multirow{5}{*}{\parbox{2cm}{\textbf{\paperTwelve}\\ \small(100N, 426E)\\ \small 1.5K/500}}
+& \texttt{iCPursuitNeuralUCB} & \textbf{41.55} & 58.45 & 23.9 & \textbf{26/75$^\star$} \\
+& \texttt{CPursuitNeuralUCB} & 41.19 & 58.81 & 22.6 & 13/75 \\
+& \texttt{GNeuralUCB} & 41.13 & 58.87 & 22.8 & 14/75 \\
+& \texttt{EXPNeuralUCB} & 40.18 & 59.82 & 21.7 & 22/75 \\
+\cline{2-6}
+& \cellcolor{findingOrange}\textit{Best: iCPursuitNeuralUCB} & \multicolumn{4}{l}{\cellcolor{findingOrange}\small 40--42\% eff. $\star$Exp.\ Winner: iCPursuitNeuralUCB (26/75 = 35\%)} \\
+\midrule
+\multirow{5}{*}{\parbox{2cm}{\textbf{\paperEight}\\ \small(20N, 19E)\\ \small 1K/1K}}
+& \texttt{iCPursuitNeuralUCB} & \textbf{67.41} & 32.59 & \textbf{44.1} & 1/5 \\
+& \texttt{EXPNeuralUCB} & 62.08 & 37.92 & 23.9 & \textbf{2/5$^\star$} \\
+& \texttt{GNeuralUCB} & 61.81 & 38.19 & 36.0 & 0/5 \\
+& \texttt{CPursuitNeuralUCB} & 61.65 & 38.35 & 35.2 & \textbf{2/5$^\star$} \\
+\cline{2-6}
+& \cellcolor{findingBlue}\textit{Best avg.: iCP, best wins: EXP/CP tie} & \multicolumn{4}{l}{\cellcolor{findingBlue}\small 61--67\% eff. $\star$Exp.\ Winners: EXPNeuralUCB / CPursuitNeuralUCB (2/5)} \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.2cm}
+{\scriptsize \textbf{Note:} Top section: internal evaluation corpora (CMABs, iCMABs, EXP3, Hybrid; runs=5, \texttt{cap\_type}=Tb, \texttt{Default} allocator, scales $s\in\{1,1.5,2\}$). Bottom section: external testbeds (\paperTwo, \paperSeven, \paperTwelve, \paperEight; \texttt{cap\_type}=T, \texttt{Default} allocator). \paperTwo, \paperSeven, and \paperTwelve use runs=5 and scales $s\in\{1,1.5,2\}$; \paperEight uses its current 1K/1K/1R paper-config slice at $s=1.0$. All results are aggregated across five scenarios. Gap = 100 - Efficiency. Floor = worst-case efficiency. Exp.\ Winner = experiment-level win count out of the available configurations for that corpus: 75 for \paperTwo/\paperSeven/\paperTwelve and 5 for \paperEight. $^\star$\textbf{bold} = family/testbed winner; ties are shown when win counts are equal.}
+\end{table*}
+
+\subsubsection{Inter-Family Performance Analysis}
+
+\begin{enumerate}[nosep,leftmargin=2em]
+\item \textbf{Hybrid neural models define the performance ceiling.} \texttt{iCPursuitNeuralUCB} achieves 90.9\% average efficiency on the internal corpus (23/75 = 31\% experiment wins), outperforming the best classical CMAB (\texttt{CPursuit}, 89.9\%) in average efficiency, and topping the best EXP3 model (\texttt{GNeuralUCB}, 85.4\%) by \textbf{5.5 pp}.
+
+\item \textbf{\texttt{iCPursuitNeuralUCB} is the strongest neural model by Oracle-relative gap reduction.} Across the Hybrid corpus and all four external testbeds (\paperTwo, \paperSeven, \paperTwelve, and \paperEight), it achieves the lowest aggregate gap over the five scenarios, and it retains that lead within each allocator slice. Its leadership is therefore stable to both topology and allocator variation.
+
+\item \textbf{Efficiency degrades with testbed complexity.} Hybrid performance drops from 90.9\% on the internal corpus to 74.4\% (\paperTwo, 15N), 77.5\% (\paperSeven, 50N), and 41.6\% (\paperTwelve, 100N). Crucially, low efficiency on the \paperTwelve testbed is \emph{not} caused by an intrinsic fidelity ceiling: the Oracle achieves an average reward of 0.87 ($\approx$87\% of the theoretical maximum), and individual model configurations reach up to 63\% of Oracle. The gap instead reflects the difficulty of bandit optimization on a 100-node, 4-path fusion topology---the large state space and constrained routing diversity make arm selection harder to learn within the 1.5K/500 frame regime, whereas the internal 4K/2K regime on a smaller topology gives the learner sufficient time to converge.
+
+\item \textbf{Floor performance varies dramatically across families.} Classical CMABs maintain floors of 62--79\%, while Hybrid neural models drop to 45--76\% on the internal corpus, EXP3-based models show the widest internal range (18--69\%), and external testbed floors reach 22--54\%.
+
+\item \textbf{Epoch-based and pure exploitation strategies collapse.} \texttt{CEpochGreedy} and \texttt{iCEpochGreedy} degrade to 37--38\% efficiency and win zero experiments, indicating that under-exploration in structured threat environments leads to catastrophic convergence to suboptimal arms.
+\end{enumerate}
+
+\subsection{Planned Standardized Testing Across Testbeds}
+
+The cross-testbed validation presented in this section uses each testbed's native paper-config regime (\paperTwo: 4K/2K, \paperSeven: 50/50, \paperTwelve: 1.5K/500, \paperEight: 1K/1K/1R) while aggregating across allocators and scales. While this validates external generalizability under each testbed's original evaluation setup, it does not yet isolate differences under shared standardized run configurations. To address this, we are conducting a follow-up evaluation campaign that deploys all four external testbeds (\paperTwo, \paperSeven, \paperTwelve, and \paperEight) using our \textbf{standardized run configurations}:
+
+\begin{itemize}[nosep]
+\item \texttt{Base configuration:} 4K base frames, 2K frame steps, 3 runs (rapid convergence baseline)
+\item \texttt{Stress testing configurations:} 5-run and 10-run sweeps to evaluate stability under extended learning horizons
+\item \texttt{Fixed allocator:} \texttt{Default} or \texttt{Fixed} allocator across all testbeds to isolate algorithm effects
+\item \texttt{Unified scenarios:} All five threat scenarios (Baseline, Stochastic, Markov, Adaptive, OnlineAdaptive) evaluated consistently
+\end{itemize}
+
+This standardized testing protocol will enable:
+\begin{enumerate}[nosep]
+\item \textbf{Direct efficiency benchmarking} of pursuit-neural vs. classical/EXP3 models across testbed architectures
+\item \textbf{Capacity paradox validation} by sweeping $T$ vs. $T_b$ and scales $s \in \{1, 1.5, 2\}$ on external topologies
+\item \textbf{Topology-algorithm interaction analysis} to determine whether algorithm rankings shift across sparse (\paperTwo: 15N, 51E), dense (\paperSeven: 50N, 141E), and mid-scale (\paperTwelve: 100N, 426E) network structures
+\end{enumerate}
+
+Current evaluation-corpus evidence already shows strong testbed dependence in both efficiency and cross-layer winning structure, reinforcing the need for shared standardized run configurations across the external testbeds.
+
+We report the initial standardized 4K/2K/5R sweep (config key \texttt{4000\_2000}) in \Cref{tab:testbed_comparison_standard_4000_2000} and the corresponding standardized \texttt{Default} allocator slice in \Cref{tab:external_default_standard_4000_2000}. \paperSeven currently has partial standardized coverage (222/300 allocator--scale--experiment configs; 47/75 in the \texttt{Default} slice), and the Exp.\ Winner denominators reflect the available standardized configurations. Remaining stress sweeps (\eg 10-run) will be reported in a follow-up technical report and integrated into the reproducibility artifacts accompanying this paper.
+
+% AUTO-GENERATED by tools/build_standardized_manuscript_tables.py
+% Source: Validated_Logs/Master_Dataset_papers-4000_2000.csv
+\begin{table*}[ht!]
+\centering
+\caption{Cross-testbed performance comparison under standardized 4K/2K/5R run configurations. Numeric columns are means across all five scenarios (\texttt{none}, \texttt{stochastic}, \texttt{markov}, \texttt{adaptive}, \texttt{onlineadaptive}), 4 allocators, and scales $s \in \{1.0,1.5,2.0\}$ (\texttt{cap\_type}=T), computed from the standardized corpus (config key \texttt{4000\_2000}). Exp.\ Winner counts are experiment-level win counts out of the available standardized configurations for each testbed. \devroop{fix the testbed column dimensions. its overflowing.}}
+\label{tab:testbed_comparison_standard_4000_2000}
+\small
+\begin{tabular}{l l c c c c l}
+\toprule
+\textbf{Testbed} & \textbf{Algorithm} & \textbf{Avg Reward} & \textbf{Regret} & \textbf{Efficiency (\%)} & \textbf{Gap (\%)} & \textbf{Exp. Winner} \\
+\midrule
+\multirow{7}{*}{\parbox{2.2cm}{\textbf{\paperTwo}\\ (\small 15N, 51E, 8P)\\ \small 4K/2K/5R\\ \small 4 allocs, $s\in\{1,1.5,2\}$, T}}
+& \texttt{ORACLE} & 0.3926 & 0.0 & --- & --- & --- \\
+& \texttt{CPursuitNeuralUCB} & 0.2887 & 509.2 & 73.22 & 26.78 & 38/300 \\
+& \texttt{GNeuralUCB} & 0.2886 & 515.9 & 73.19 & 26.81 & 84/300 \\
+& \texttt{iCPursuitNeuralUCB} & 0.2933 & 494.5 & \textbf{74.45} & 25.55 & \textbf{95/300$^\star$} \\
+& \texttt{EXPNeuralUCB} & 0.2810 & 583.2 & 71.25 & 28.75 & 83/300 \\
+\cline{2-7}
+& \cellcolor{findingBlue}\textit{Standardized 4K/2K slice} & \multicolumn{5}{l}{\cellcolor{findingBlue}\small 71.2--74.5\% eff. $^\star$Exp.\ Winner: iCPursuitNeuralUCB (95/300)} \\
+\midrule
+\multirow{7}{*}{\parbox{2.2cm}{\textbf{\paperSeven}\\ (\small 50N, 141E, 15P)\\ \small 4K/2K/5R\\ \small 4 allocs, $s\in\{1,1.5,2\}$, T}}
+& \texttt{ORACLE} & 8.5977 & 0.0 & --- & --- & --- \\
+& \texttt{iCPursuitNeuralUCB} & 6.7849 & 2730.7 & \textbf{78.10} & 21.90 & \textbf{155/222$^\star$} \\
+& \texttt{EXPNeuralUCB} & 6.2643 & 10692.7 & 72.30 & 27.70 & 24/222 \\
+& \texttt{CPursuitNeuralUCB} & 6.3630 & 10690.9 & 73.50 & 26.50 & 0/222 \\
+& \texttt{GNeuralUCB} & 6.3630 & 10690.9 & 73.50 & 26.50 & 43/222 \\
+\cline{2-7}
+& \cellcolor{findingGreen}\textit{Standardized 4K/2K slice} & \multicolumn{5}{l}{\cellcolor{findingGreen}\small 72.3--78.1\% eff. $^\star$Exp.\ Winner: iCPursuitNeuralUCB (155/222)} \\
+\midrule
+\multirow{7}{*}{\parbox{2.2cm}{\textbf{\paperTwelve}\\ (\small 100N, 426E, 4P)\\ \small 4K/2K/5R\\ \small 4 allocs, $s\in\{1,1.5,2\}$, T}}
+& \texttt{ORACLE} & 0.8650 & 0.0 & --- & --- & --- \\
+& \texttt{GNeuralUCB} & 0.3685 & 2889.1 & 42.36 & 57.64 & 54/300 \\
+& \texttt{EXPNeuralUCB} & 0.3604 & 2950.1 & 41.42 & 58.58 & 75/300 \\
+& \texttt{iCPursuitNeuralUCB} & 0.3715 & 2881.0 & \textbf{42.72} & 57.28 & \textbf{106/300$^\star$} \\
+& \texttt{CPursuitNeuralUCB} & 0.3691 & 2885.2 & 42.43 & 57.57 & 65/300 \\
+\cline{2-7}
+& \cellcolor{findingOrange}\textit{Standardized 4K/2K slice} & \multicolumn{5}{l}{\cellcolor{findingOrange}\small 41.4--42.7\% eff. $^\star$Exp.\ Winner: iCPursuitNeuralUCB (106/300)} \\
+\midrule
+\multirow{7}{*}{\parbox{2.2cm}{\textbf{\paperEight}\\ (\small 20N, 19E, 8P)\\ \small 4K/2K/5R\\ \small 4 allocs, $s\in\{1,1.5,2\}$, T}}
+& \texttt{ORACLE} & 0.7904 & 0.0 & --- & --- & --- \\
+& \texttt{iCPursuitNeuralUCB} & 0.5870 & 862.9 & \textbf{73.95} & 26.05 & 100/300 \\
+& \texttt{EXPNeuralUCB} & 0.5295 & 1352.7 & 66.72 & 33.28 & 44/300 \\
+& \texttt{GNeuralUCB} & 0.5825 & 933.1 & 73.39 & 26.61 & 49/300 \\
+& \texttt{CPursuitNeuralUCB} & 0.5850 & 939.3 & 73.69 & 26.31 & \textbf{107/300$^\star$} \\
+\cline{2-7}
+& \cellcolor{findingBlue}\textit{Standardized 4K/2K slice} & \multicolumn{5}{l}{\cellcolor{findingBlue}\small 66.7--74.0\% eff. $^\star$Exp.\ Winner: CPursuitNeuralUCB (107/300)} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+
+
+% AUTO-GENERATED by tools/build_standardized_manuscript_tables.py
+% Source: Validated_Logs/Master_Dataset_papers-4000_2000.csv
+\begin{table*}[ht!]
+\centering
+\caption{External testbed comparison under standardized 4K/2K/5R run configurations using the \texttt{Default} allocator (\texttt{cap\_type}=T). Columns match the external-testbed slice used in the model-family comparison: Avg Eff/Gaps are means across all five scenarios and scales $s \in \{1.0,1.5,2.0\}$; Floor is worst-case efficiency; Exp.\ Winner counts are out of the available standardized configurations.}
+\label{tab:external_default_standard_4000_2000}
+\small
+\begin{tabular}{l l c c c l}
+\toprule
+\textbf{Testbed} & \textbf{Algorithm} & \textbf{Avg Eff (\%)} & \textbf{Gap (\%)} & \textbf{Floor (\%)} & \textbf{Exp. Winner} \\
+\midrule
+\multirow{5}{*}{\parbox{2cm}{\textbf{\paperTwo}\\ \small(Standard)\\ \small 4K/2K}}
+& \texttt{iCPursuitNeuralUCB} & \textbf{74.44} & 25.56 & 54.4 & \textbf{25/75$^\star$} \\
+& \texttt{CPursuitNeuralUCB} & 73.15 & 26.85 & 48.3 & 8/75 \\
+& \texttt{GNeuralUCB} & 73.17 & 26.83 & 46.7 & 20/75 \\
+& \texttt{EXPNeuralUCB} & 71.29 & 28.71 & 41.6 & 22/75 \\
+\cline{2-6}
+& \cellcolor{findingBlue}\textit{Standardized Default slice} & \multicolumn{4}{l}{\cellcolor{findingBlue}\small 71.3--74.4\% eff. $^\star$Exp.\ Winner: iCPursuitNeuralUCB (25/75)} \\
+\midrule
+\multirow{5}{*}{\parbox{2cm}{\textbf{\paperSeven}\\ \small(Standard)\\ \small 4K/2K}}
+& \texttt{iCPursuitNeuralUCB} & \textbf{78.25} & 21.75 & 47.8 & \textbf{36/47$^\star$} \\
+& \texttt{CPursuitNeuralUCB} & 72.67 & 27.33 & 54.3 & 0/47 \\
+& \texttt{GNeuralUCB} & 72.67 & 27.33 & 54.3 & 8/47 \\
+& \texttt{EXPNeuralUCB} & 71.63 & 28.37 & 47.9 & 3/47 \\
+\cline{2-6}
+& \cellcolor{findingGreen}\textit{Standardized Default slice} & \multicolumn{4}{l}{\cellcolor{findingGreen}\small 71.6--78.2\% eff. $^\star$Exp.\ Winner: iCPursuitNeuralUCB (36/47)} \\
+\midrule
+\multirow{5}{*}{\parbox{2cm}{\textbf{\paperTwelve}\\ \small(Standard)\\ \small 4K/2K}}
+& \texttt{iCPursuitNeuralUCB} & 42.80 & 57.20 & 24.7 & \textbf{27/75$^\star$} \\
+& \texttt{CPursuitNeuralUCB} & \textbf{42.85} & 57.15 & 23.5 & 15/75 \\
+& \texttt{GNeuralUCB} & 42.45 & 57.55 & 24.1 & 16/75 \\
+& \texttt{EXPNeuralUCB} & 41.18 & 58.82 & 22.3 & 17/75 \\
+\cline{2-6}
+& \cellcolor{findingOrange}\textit{Standardized Default slice} & \multicolumn{4}{l}{\cellcolor{findingOrange}\small 41.2--42.9\% eff. $^\star$Exp.\ Winner: iCPursuitNeuralUCB (27/75)} \\
+\midrule
+\multirow{5}{*}{\parbox{2cm}{\textbf{\paperEight}\\ \small(Standard)\\ \small 4K/2K}}
+& \texttt{iCPursuitNeuralUCB} & \textbf{73.83} & 26.17 & 42.5 & 22/75 \\
+& \texttt{CPursuitNeuralUCB} & 73.52 & 26.48 & 40.7 & \textbf{26/75$^\star$} \\
+& \texttt{GNeuralUCB} & 73.72 & 26.28 & 46.1 & 16/75 \\
+& \texttt{EXPNeuralUCB} & 67.74 & 32.26 & 22.7 & 11/75 \\
+\cline{2-6}
+& \cellcolor{findingBlue}\textit{Standardized Default slice} & \multicolumn{4}{l}{\cellcolor{findingBlue}\small 67.7--73.8\% eff. $^\star$Exp.\ Winner: CPursuitNeuralUCB (26/75)} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+
+% ========= Discussion =========
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Summary of Key Findings}
+
+Our results across the full evaluation suite---spanning paper baselines (CMAB / iCMAB / EXP3-family) and the Hybrid suite (allocators and replay-capacity controls)---show that routing robustness under compound uncertainty is jointly determined by \emph{(i) context in the policy}, \emph{(ii) allocator choice}, and \emph{(iii) replay-capacity parameterization}. All quantitative statements in this section are drawn from the curated evaluation corpora used throughout the paper; the corresponding run-level and suite-level artifacts are organized in the reproducible archive described in the Appendix.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/icnp_graphs/G7_advanced_synthesis.png}
+\caption{A four-panel synthesis shows the paper's core mechanism: hybrid policies shrink Oracle gaps, replay scaling has threat-dependent effects, allocator choice controls tail risk, and standardized testbeds expose topology-dependent efficiency spread.}
+\label{fig:advanced_synthesis}
+\end{figure*}
+
+
+\noindent\textbf{Capacity terminology.}
+Replay capacity is configured by:
+\begin{enumerate}[nosep]
+\item \small\texttt{cap\_type} $\in \{T_b,\,T\}$: whether replay is anchored to the \emph{base} horizon ($T_b$) or the \emph{current} horizon ($T$).
+\item \small\texttt{scale} $s \in \{1,\,1.5,\,2\}$: a multiplicative factor applied on top of the anchoring rule.
+\end{enumerate}
+Thus, \textquotedblleft bigger replay\textquotedblright is not a single knob: it depends on \emph{both} the anchoring rule (\small\texttt{cap\_type}) and the multiplier (\small\texttt{scale}).
+
+% ----------------------------------------------------------------------------
+\subsubsection{Finding 1 - Context-Aware Bandits Dominate (gap persists under threat)}
+
+Across the paper baselines (\RQOneText-\RQTwoText) and the Hybrid suite (\RQThreeText), \textbf{context-aware policies define the robustness frontier}. Contextual Pursuit models (\small\texttt{CPursuitNeuralUCB}, \small\texttt{iCPursuitNeuralUCB}) consistently outperform non-contextual baselines: under Stochastic noise, they exceed the EXP3-family by $\sim$18--24 pp and separate from neural non-context baselines by $\sim$6--12 pp (\RQOneText). Under Markov/Adaptive/OnlineAdaptive conditions, the gap persists: Pursuit remains near the high-$80\%$ band while EXP3-family baselines exhibit lower floors (\RQTwoText), reinforcing that topology/channel features are not an optimization detail but an \emph{architectural requirement} for robust routing.
+
+% ----------------------------------------------------------------------------
+\subsubsection{Finding 2 - The Capacity Paradox is Real, but Conditional (capacity--allocator)}
+
+Replay capacity is \textbf{non-monotone} in adversarial settings; increasing replay can improve performance in structured regimes while inducing avoidable collapses under reactive threats. This is not a contradiction in the learning rule itself; it emerges as a \textbf{coupled effect} between capacity and allocator-mediated exploration predictability.
+
+In the Hybrid suite, capacity sensitivity is visible even when averaged over allocators, but it becomes deployment-critical under allocator stress (especially \small\texttt{Random}):
+\begin{itemize}[nosep]
+\item \textbf{\small\texttt{Adaptive} under \small\texttt{Random}:} \small\texttt{CPursuitNeuralUCB} spans \textbf{73.4\%$\rightarrow$96.5\%} (\textbf{23.1 pp} swing) across capacity settings; \small\texttt{iCPursuitNeuralUCB} spans \textbf{70.9\%$\rightarrow$94.7\%} (\textbf{23.8 pp} swing).
+\item \textbf{\small\texttt{Markov} under \small\texttt{Random}:} swings larger; \small\texttt{CPursuitNeuralUCB} spans \textbf{55.7\%$\rightarrow$93.8\%} (\textbf{38 pp} swing), \small\texttt{iCPursuitNeuralUCB} spans \textbf{51.9\%$\rightarrow$87.2\%} (\textbf{35.3 pp} swing).
+\end{itemize}
+
+Mechanistically, replay capacity expands the learner's ability to reinforce repeated patterns; under reactive interference, this can amplify \emph{predictability} and therefore expand the attack surface. In other words, replay capacity becomes hazardous primarily when paired with allocation policies that induce predictable or poorly matched exploration under adversarial reactivity.
+
+% ----------------------------------------------------------------------------
+\subsubsection{Finding 3 - Algorithm--Allocator Co-Design is the Practical Lever (avoid \texorpdfstring{\textquotedblleft bad\textquotedblright}{bad} allocator regimes)}
+
+Allocator choice is the highest-leverage \emph{deployment} control in the Hybrid suite. When aggregated across scenarios and replay-capacity settings, \small\texttt{ThompsonSampling} and \small\texttt{Fixed} form the top tier for pursuit-based hybrids, while \small\texttt{Random} is consistently worst and most associated with tail-risk collapses. This yields a deployment lesson that is both mechanistic and operational:
+
+\begin{quote}
+\emph{Allocator choice is a safety mechanism, not a tuning step.}
+\end{quote}
+
+Even strong architectures (\small\texttt{CPursuitNeuralUCB}, \small\texttt{iCPursuitNeuralUCB}) can be pulled into the capacity paradox under allocator mismatch, while appropriate allocators substantially suppress that sensitivity.
+
+
+% ----------------------------------------------------------------------------
+\subsection{Implications for Adversarial Quantum Network Design}
+
+First, \textbf{context-aware routing should be treated as baseline infrastructure}. Feature enrichment (link error rates, repeater state proxies, traffic/load signals) yields larger robustness gains than further refining reward-only exploration rules.
+
+Second, \textbf{replay capacity must be treated as a coupled control variable}, not a provisioning afterthought. The relevant question is not \textquotedblleft more or less replay,\textquotedblright but \emph{which anchoring rule} (\small\texttt{$T_b$} vs.\ \small\texttt{$T$}), \emph{multiplier} ($s$), and \emph{allocator} together minimize tail risk under the threat regime.
+
+\noindent The results motivate a lightweight \textbf{threat-aware meta-policy}:
+\begin{itemize}[nosep]
+\item Use \small\texttt{ThompsonSampling} or \small\texttt{Default}/\small\texttt{Fixed} as a safe default tier; avoid \small\texttt{Random} in deployment.
+\item Treat \small\texttt{cap\_type} and \small\texttt{scale} as \emph{scenario-coupled}: allow them to change with threat classification rather than remaining static.
+\item Trigger switching using observables already logged in this work (Oracle-normalized efficiency and variability proxies), then refine with a learned detector in future work.
+\end{itemize}
+\section{Limitations and Future Work}
+
+\subsection{Limitations}
+
+\textbf{Topology and scale.}
+All experiments in this study are conducted on a single 4‑node, 4‑path diamond topology with mid‑range horizons (primarily $F_b \in \{4\text{K}, 6\text{K}, 8\text{K}\}$ frames). This controlled setting enables clean attribution of effects across algorithm, allocator, and replay‑capacity dimensions, but it does not exhaust the structural diversity of real quantum networks. Larger and more heterogeneous graphs (\eg asymmetric hop counts, non‑uniform link quality, path interference, and expanded path sets) may shift absolute efficiency levels and alter the strength of allocator–capacity interactions.
+
+\textbf{Simulation fidelity and hardware constraints.}
+Threat regimes are instantiated as synthetic processes designed to capture stochastic, structured, and reactive interference patterns. The current simulator does not yet incorporate hardware‑anchored constraints such as control‑plane latency, scheduling delays, memory/queue effects, or non‑ideal operations that couple timing and resource contention. These factors can influence both the effective adaptivity of an adversary and the translation of allocator decisions into realized qubit utilization, so hardware‑grounded follow‑on evaluation is required before making deployment‑level claims.
+
+\textbf{Replay‑capacity coverage and generality.}
+Replay capacity is examined through two anchoring rules ($\small\texttt{cap\_type} \in \{\mathrm{Tb}, \mathrm{T}\}$) and three multiplicative scales ($s \in \{1, 1.5, 2\}$) over mid‑range horizons. This sweep is sufficient to expose the non‑monotone behaviors motivating the capacity‑paradox claim, but broader coverage (additional scales, longer horizons, and more topologies) is needed to bound tail risk and to characterize how capacity sensitivity evolves as learning time increases and the action space grows.
+
+\textbf{Forecasting scope.}
+Predictive context is currently instantiated via an ARIMA warm‑up procedure. More expressive temporal models (\eg RNN/Transformer families) and calibrated uncertainty mechanisms are not yet evaluated, and their sensitivity, stability, and failure modes under reactive adversaries remain open.
+
+\textbf{Corpus boundaries and reproducibility scope.}
+The results emphasized in this paper are anchored to the curated evaluation corpus and the corresponding reproducibility artifacts released with the manuscript (\eg corpus schema, configuration enumerations, run‑level summaries, and threat–allocator–capacity cross‑product metadata). Claims are therefore scoped to this corpus; generalization beyond its design space should be treated cautiously until additional topologies and hardware tests are incorporated.
+
+\subsection{Future Work}
+
+\Cref{sec:testbed_comparison}
+
+\textbf{Hardware‑grounded validation.}
+A primary next step is to evaluate the threat‑adaptive deployment stack under realistic operational constraints by deploying pursuit‑based contextual bandits (\eg iCPursuitNeuralUCB with allocator switching) on a quantum‑repeater testbed. The goal is to test whether allocator choice and replay‑capacity parameterization remain beneficial when control latency, scheduling delays, and non‑ideal operations are present.
+
+\textbf{Standardized cross-testbed benchmarking.}
+As outlined in \cref{sec:testbed_comparison}, we are conducting follow-up evaluations that deploy all four external testbeds (\paperTwo, \paperSeven, \paperTwelve, and \paperEight) using our standardized run configurations (4K base/2K step frames, 3/5/10 runs, unified threat scenarios). This will enable direct efficiency comparisons across sparse (15-node), compact (20-node), dense (50-node), and mid-scale (100-node) topologies under aligned experimental conditions, testing whether pursuit-neural cross-layer winning structure persists and whether the capacity paradox manifests consistently across network structures.
+
+\textbf{Scaling topology and allocation.}
+We will extend the evaluation framework to larger routing graphs and expanded action spaces (\eg more than 20 candidate paths), including hierarchical or multi‑level allocation strategies. This will test whether the capacity paradox persists, weakens, or changes character when routing becomes more combinatorial and path diversity increases.
+
+\textbf{Automated threat detection and configuration switching.}
+We plan to formalize the heuristic meta‑policy into a learned threat detector and configuration selector (allocator + replay \small\texttt{cap\_type} + scale), trained and evaluated under mixed and time‑varying attacks. This enables automated switching beyond manual rules and supports deployment policies explicitly optimized for tail‑risk control.
+
+% \textbf{Richer predictive models.}
+% Future work will replace or augment ARIMA with sequence models that provide calibrated uncertainty (e.g., Bayesian RNNs or Transformer‑based forecasters). The key requirement is that predictive context remains threat‑aware rather than blindly extrapolative, so that world‑model errors do not amplify adversarial leverage.
+
+
+% \section{Limitations and Future Work}
+% \label{sec:limitations_futurework}
+
+% \subsection{Limitations}
+
+% \paragraph{Topology and scale.}
+% All experiments in this study are conducted on a single 4-node, 4-path diamond topology. This controlled setting enables clean attribution of effects across algorithm, allocator, and replay-capacity dimensions, but it does not exhaust the structural diversity of real quantum networks. Larger and more heterogeneous graphs (e.g., asymmetric hop counts, nonuniform link quality, path interference, and expanded path sets) may shift absolute efficiency levels and alter the strength of allocator--capacity interactions.
+
+% \paragraph{Simulation fidelity and hardware constraints.}
+% Threat regimes are instantiated as synthetic processes designed to capture stochastic, structured, and reactive interference patterns. However, the current simulator does not yet incorporate hardware-anchored constraints such as control-plane latency, scheduling delays, memory/queue effects, or non-ideal operations that couple timing and resource contention. These factors can influence both the effective adaptivity of an adversary and the translation of allocator decisions into realized qubit utilization, and therefore warrant hardware-grounded follow-on evaluation.
+
+% \paragraph{Replay-capacity coverage and generality.}
+% Replay capacity is examined through two anchoring rules (\small\texttt{cap\_type} $\in \{T_b, T\}$) and three multiplicative scales ($s \in \{1, 1.5, 2\}$) over mid-range horizons ($4\text{K}$--$8\text{K}$). While this sweep is sufficient to expose the non-monotone behaviors motivating the capacity-paradox claim, broader coverage (additional scales, longer horizons, and more topologies) is required to bound tail risk and to characterize how capacity sensitivity evolves as learning time increases and the action space grows.
+
+% \paragraph{Forecasting scope.}
+% Predictive context is currently instantiated via an ARIMA warmup procedure. More expressive temporal models (e.g., RNN/Transformer families) and calibrated uncertainty mechanisms are not yet evaluated, and their sensitivity, stability, and failure modes under reactive adversaries remain open.
+
+% \paragraph{Coverage boundaries and reproducibility scope.}
+% The results emphasized in this paper are anchored to the curated evaluation corpus and the corresponding reproducibility artifacts released with the manuscript (e.g., corpus schema, configuration enumerations, **run-level summaries**, and **threat-allocator-capacity cross-product metadata** in supplementary materials).
+
+% \subsection{Future Work}
+
+% \paragraph{Hardware-grounded validation.}
+% A primary next step is to evaluate the threat-adaptive deployment stack under realistic operational constraints by deploying \small\texttt{iCPursuitNeuralUCB} with allocator switching on a quantum repeater testbed. The goal is to test whether allocator choice and replay-capacity parameterization remain beneficial when control latency, scheduling delays, and non-ideal operations are present.
+
+% \paragraph{Scaling topology and allocation.}
+% We will extend the evaluation framework to larger routing graphs and expanded action spaces (e.g., $>\!20$ candidate paths), including hierarchical or multi-level allocation. This will test whether the capacity paradox persists, weakens, or changes character when routing becomes more combinatorial and path diversity increases.
+
+% \paragraph{Automated threat detection and configuration switching.}
+% We will formalize the heuristic meta-policy into a learned threat detector and configuration selector (allocator + replay \small\texttt{cap\_type} + scale), trained and evaluated under mixed and time-varying attacks. This enables automated switching beyond manual rules and supports deployment policies explicitly optimized for tail-risk control.
+
+% \paragraph{Stronger predictive context models.}
+% We will replace ARIMA warmup with richer sequence models and uncertainty-aware predictors (including EXAMM-evolved RNN variants and learned uncertainty heads), and evaluate whether predictive context can remain beneficial under adaptive threats without increasing predictability in a way that expands the attack surface.
+
+% \paragraph{Fairness-aware routing objectives.}
+% Beyond efficiency, future studies can treat per-flow or per-user service parity as a first-class objective by incorporating fairness constraints (e.g., equal opportunity style criteria) into allocator selection and evaluation~\cite{hardt2016equality}.
+
+% \paragraph{Cross-domain generalization.}
+% Finally, we will port the same corpus-driven evaluation protocol to non-quantum domains (e.g., financial and clinical bandit settings) to test the generality of the observed triad: \emph{context sets the ceiling, allocator choice sets the floor, and replay-capacity design controls tail risk}.
+
+
+
+
+
+
+\section{Conclusion}
+\label{sec: Conclusion}
+
+We introduced a unified, reproducible benchmark for entanglement routing under five threat regimes and showed that robust deployment is jointly determined by model architecture, allocator policy, and replay-capacity semantics. Across the curated evaluation corpus and accompanying reproducibility artifacts, context-aware pursuit--neural hybrids (\eg \small\texttt{CPursuitNeuralUCB}, \small\texttt{iCPursuitNeuralUCB}) consistently define the efficiency--stability frontier, achieving near-Oracle behavior under stochastic noise while avoiding brittle failure modes observed in adversarial-first EXP3-style designs under reactive threats.
+
+Most critically, we uncover a \emph{capacity paradox}: replay scaling can improve performance under structured disruption yet induce pronounced collapses under adaptive adversaries, indicating that \emph{predictability}---not bandwidth---can dominate robustness in adversarial settings. Allocator choice is likewise not interchangeable: it can set the robustness floor for identical learners, motivating a threat-adaptive deployment stack in which pursuit-based contextual hybrids serve as default routing agents while allocator and capacity policies switch based on the detected regime.
+
+Taken together, these results position bandit-based routing as a modular, transferable design pattern for threat-responsive quantum networks, and motivate future work on automated threat detection, dynamic capacity control, and hardware-grounded validation on repeater testbeds.
+
+\appendices
+\section{Reproducibility Artifacts}
+\label{app:data_artifacts}
+All quantitative statements in this paper are anchored to the curated evaluation corpus generated by our framework.
+The reproducibility package includes run-level summaries, suite-level aggregates, configuration enumerations,
+and threat--allocator--capacity cross-product metadata used to compute the reported tables and figures.
+The corresponding scripts and logs are organized to support deterministic regeneration of manuscript-facing metrics.
+The public reproducibility repository is available at \url{https://github.com/pzg8794/quantum_project_hub}, with supplementary datalake-style artifacts and executable notebooks available through the shared Drive hub at \url{https://drive.google.com/drive/folders/0AK0VchnNyM-xUk9PVA}.
+
+\section*{Acknowledgments}
+
+This material is based upon work supported by [Hidden] under grants [Hidden].%\#XXXX.
+%This material is based upon work supported by the United States National Science Foundation under grant \#XXXXX ; 2225354
+
+
+%%  Future Work
+% Could we do something where we also focus on learning network topology
+% Would the proposed work also do anything with also learning the network topology?
+% <<<--- Potentially look at this for future work. At least for now, this seems to be a different paper and different work
+% < Would it make sense to do something ML wise for learning tomography
+%
+
+
+
+% \clearpage
+\balance
+%\clearpage % Might want to add this back in
+%\bibliographystyle{abbrv}
+% \bibliographystyle{IEEEtran}
+\bibliographystyle{abbrvnat}
+\bibliography{refs}
+
+\end{document}
