@@ -150,10 +150,26 @@ To address this gap, we introduce a threat-aware evaluation framework that compa
 
 This work makes the following contributions:
 \begin{itemize}
-    \item \descStep{Evaluation framework}{A unified threat-aware benchmark that compares stochastic, contextual, adversarial, predictive, and hybrid bandit policies for joint entanglement path selection and qubit allocation under matched threat, allocator, and replay-capacity conditions across 7,890 non-Oracle internal corpus evaluations.}
-    \item \descStep{Capacity paradox}{Evidence that routing robustness is a joint function of bandit policy, allocator, and replay-capacity semantics: under fixed \texttt{Random} allocation and $T$-type anchoring, increasing replay scale from $s{=}1$ to $s{=}1.5$ drops Markov efficiency by 37.8--46.5~pp, while $s{=}2$ recovers above the $s{=}1$ Markov baseline by 6.6--7.6~pp.}
-    \item \descStep{Deployment guidance}{A validated static default (\texttt{iCPursuitNeuralUCB\,+\,Fixed\,+\,$T$-type, $s{=}2$}) that sustains a 92.8\% worst-case floor in the validated 3-run fixed-deployment branch, together with threat-conditioned allocator and replay-switching rules derived from the validated Hybrid corpus.}
-    \item \descStep{Experimental findings}{Pursuit--neural contextual hybrids consistently define the efficiency--stability frontier: 87--96\% Oracle-normalized efficiency with scenario-level CV\,$\leq$\,6.5\%, while adversarial-first baselines exhibit fragile worst-case floors, including an 18.0\% floor for \texttt{EXPNeuralUCB} under reactive attacks.}
+    \item \descStep{Evaluation framework}{A unified threat-aware benchmark
+    comparing five bandit policy families for joint entanglement path
+    selection and qubit allocation under matched threat, allocator, and
+    capacity conditions across 7,890 configurations.}
+
+    \item \descStep{Capacity paradox}{Capacity effects are
+    threat-dependent: $s{=}1{\to}2$ yields +0.8--1.6~pp under Markov
+    but mixed results ($-$0.9 to +0.6~pp) under Adaptive, and allocator
+    mismatch alone can collapse worst-case floors by up to 54~pp.}
+
+    \item \descStep{Deployment guidance}{\texttt{CPursuitNeuralUCB} with
+    default allocator, $T$-type replay, and $s{=}2$ achieves 90.4\%
+    mean Oracle-normalized efficiency and a 76.8\% worst-case floor
+    across all five threat regimes.}
+
+    \item \descStep{Experimental findings}{Pursuit--neural hybrids define
+    the efficiency--stability frontier: \texttt{CPursuitNeuralUCB} at
+    90.4\% / CV\,6.8\% and \texttt{iCPursuitNeuralUCB} at 88.3\% /
+    CV\,10.8\%, versus \texttt{EXPNeuralUCB} floors of 71--77\% under
+    structured and adaptive threats.}
 \end{itemize}
 
 \input{02--related_works}
