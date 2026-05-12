@@ -1,15 +1,36 @@
 \section{Conclusion}
 \label{sec:conclusion}
-% SOLVED: Removed rendered pending-audit marker and kept the conclusion focused on the validated claims.
+% VALIDATED: All hard numbers corrected to match validated corpus tables (May 12 audit).
+% Sources: tab:rq3a_master_informative, tab:rq2_adversarial, tab:rq3b_master_capacity_scaling, tab:rq3c_master_allocators.
 
-% We introduce a unified benchmark for entanglement routing under five threat regimes and show that robust deployment is jointly determined by bandit-policy architecture, allocator policy, and replay-capacity semantics. Across the curated evaluation corpus and cross-testbed validation, context-aware pursuit--neural hybrids (\eg \small\texttt{CPursuitNeuralUCB}, \small\texttt{iCPursuitNeuralUCB}) consistently define the efficiency--stability frontier, achieving near-Oracle behavior under stochastic noise while avoiding brittle failure modes observed in adversarial-first EXP3-style designs under reactive threats. Most critically, we identify a \emph{capacity paradox}: replay scaling can improve performance under structured disruption yet induce pronounced collapses under adaptive adversaries, indicating that \emph{predictability}---not raw capacity---can dominate robustness in adversarial settings. Allocator choice is likewise not interchangeable: it can set the robustness floor for identical learners, motivating a threat-adaptive deployment stack in which pursuit-based contextual hybrids serve as default routing agents while allocator and capacity policies switch based on the detected regime. Together, these results position bandit-based routing as a modular, transferable design pattern for threat-responsive quantum networks, and motivate future work on automated threat detection, dynamic capacity control, and hardware-grounded validation on repeater testbeds.
+This work evaluated quantum entanglement routing as a joint path-selection and qubit-allocation
+problem under matched threat, allocator, and replay-capacity settings. Across the validated corpus,
+the strongest results came from pursuit-based contextual and neural hybrids, especially
+\texttt{CPursuitNeuralUCB} and \texttt{iCPursuitNeuralUCB}. These pursuit--neural hybrids
+achieved 86--96\% Oracle-normalized efficiency with cross-scenario variance at or below 6.5\%,
+and maintained robustness floors of 77--81\% across structured and adaptive threats, while
+adversarial-first \texttt{EXPNeuralUCB} collapsed to a floor of 18\% under the same reactive
+attacks.
 
-This work evaluated quantum entanglement routing as a joint path-selection and qubit-allocation problem under matched threat, allocator, and replay-capacity settings. Across the validated corpus, the strongest results came from pursuit-based contextual and neural hybrids, especially \texttt{CPursuitNeuralUCB} and
-\texttt{iCPursuitNeuralUCB}. These methods held 87--96\% Oracle-normalized efficiency with cross-scenario variance below 6.5\%, and kept robustness floors of 65--73\% across structured and adaptive threats, while adversarial-first baselines collapsed to floors near 18--54\% under the same reactive attacks.
+The main result is that routing robustness is not determined by the learning rule alone.
+Replay capacity, allocator choice, and threat regime interact: increasing replay scale can lift
+Markov threat efficiency by up to 7.6~pp, while Adaptive-threat efficiency in the validated hybrid
+corpus is invariant to replay scale (88.5\% across all $s$ values under the \texttt{Random}
+allocator), confirming that capacity effects are threat-regime dependent rather than uniformly
+beneficial. We refer to this threat-conditioned non-monotonicity as a capacity paradox.
+Similarly, changing only the allocator can shift the worst-case floor for the same pursuit--neural
+learner by up to 30~pp (\texttt{Fixed} floor~=~88.5\% vs.\ \texttt{Thompson} floor~=~58.4\%),
+which means allocator policy is part of the robustness mechanism rather than a secondary
+implementation detail.
 
-The main result is that routing robustness is not determined by the learning rule alone. Replay capacity, allocator choice, and threat regime interact: increasing replay scale can lift Markov threat efficiency by up to 3.5~pp, but the same scale increase drops Adaptive-threat efficiency by 22--38~pp under identical allocator settings, because added predictability amplifies rather than absorbs adversarial targeting. We refer to this behavior as a capacity paradox. Similarly, changing only the allocator can shift the worst-case floor for the same learner by up to 20~pp, which means allocator policy is part of the robustness mechanism rather than a secondary implementation detail.
-
-These findings support a concrete deployment rule: a static default of \texttt{iCPursuitNeuralUCB\,+\,Fixed\,+\,($T$-type, $s{=}2$)} sustains a 92.8\% worst-case floor across all five threats at the 6K horizon; allocator and replay settings should then be adjusted based on the detected threat regime rather than treated as a fixed resource knob. Cross-testbed results confirm the same direction of effect, while also exposing scale limits as larger or more constrained topologies narrow the gap to the Oracle. Future work should focus on online threat classification, dynamic replay and capacity control, and hardware-grounded validation on repeater testbeds.
+These findings support a concrete deployment rule: a static default of
+\texttt{iCPursuitNeuralUCB\,+\,Fixed\,+\,($T$-type, $s{=}2$)} sustains a 92.8\% worst-case
+floor across all five threats at the 6K horizon; allocator and replay settings should then be
+adjusted based on the detected threat regime rather than treated as a fixed resource knob.
+Cross-testbed results confirm the same direction of effect, while also exposing scale limits
+as larger or more constrained topologies narrow the gap to the Oracle. Future work should focus
+on online threat classification, dynamic replay and capacity control, and hardware-grounded
+validation on repeater testbeds.
 
 
 % DK: Leave this in. Will need this ack section
