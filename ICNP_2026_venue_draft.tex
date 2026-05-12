@@ -100,7 +100,7 @@ Quantum networks, entanglement routing, multi-armed bandits, adversarial learnin
 
 % \dan{add the code repo here}
 \section*{Code Metadata}
-All source code, datasets, and experiment scripts are available in the public anonymous repository at \url{IN PROGRESS}. Additional datalake-style artifacts and notebook execution resources are available through the shared Drive hub at \url{IN PROGRESS}. 
+All source code, datasets, experiment scripts, datalake artifacts, and notebook execution resources are available through anonymous repository and Drive links at \url{IN PROGRESS}.
 
 \section{Introduction}\label{sec:Introduction}
 
@@ -153,33 +153,15 @@ Existing quantum-routing studies propose online path selection, benchmarking-dri
 To address this gap, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks. 
 
 
-In summary, our work makes the following contributions:
+\noindent In summary, our work makes the following contributions:
 \begin{itemize}
-    \item \descStep{Evaluation framework}{A unified threat-aware benchmark
-    comparing bandit policy families for joint entanglement path selection
-    and qubit allocation under matched threat, allocator, and capacity
-    conditions across 8,241 model--scenario--configuration evaluations in
-    the internal validation corpus.}
+    \item \descStep{Evaluation framework}{A unified threat-aware benchmark comparing bandit policy families for joint path selection and qubit allocation across 8,241 matched threat--allocator--capacity evaluations.}
 
-    \item \descStep{Capacity paradox}{Capacity effects are
-    threat-dependent and non-monotonic: under \texttt{ThompsonSampling}
-    allocation and $T_b$-type replay anchoring, OnlineAdaptive efficiency
-    drops by 4.35~pp from $s{=}1$ to $s{=}1.5$ and recovers by 5.96~pp at
-    $s{=}2$; allocator choice alone shifts worst-case floors by 15.6~pp in
-    the validated RQ3c 6K deployment slice.}
+    \item \descStep{Capacity paradox}{Capacity effects are threat-dependent: with \texttt{ThompsonSampling} and $T_b$ replay, OnlineAdaptive efficiency drops 4.35~pp at $s{=}1.5$ then recovers 5.96~pp at $s{=}2$; allocators shift RQ3c floors by 15.6~pp.}
 
-    \item \descStep{Deployment guidance}{\texttt{iCPursuitNeuralUCB} with
-    default allocator, $T$-type replay, and $s{=}2$ achieves 96.0\%
-    mean Oracle-normalized efficiency and a 92.8\% worst-case floor
-    across all five threat regimes at the 6K horizon.}
+    \item \descStep{Deployment guidance}{\texttt{iCPursuitNeuralUCB} with default allocator, $T$-type replay, and $s{=}2$ achieves 96.0\% mean Oracle-normalized efficiency and a 92.8\% worst-case floor across all five threat regimes at the 6K horizon.}
 
-    \item \descStep{Experimental findings}{Pursuit--neural hybrids define
-    the efficiency--stability frontier in the fixed 6K, $T$-type, $s{=}2$
-    deployment slice: \texttt{CPursuitNeuralUCB} reaches 92.4\% /
-    CV\,6.5\% and \texttt{iCPursuitNeuralUCB} reaches 96.0\% /
-    CV\,3.3\%, while adversarial-scope validation shows
-    \texttt{EXPNeuralUCB} falling to an 18.0\% floor under reactive
-    threats.}
+    \item \descStep{Experimental findings}{Pursuit--neural hybrids define the efficiency--stability frontier in the fixed 6K, $T$-type, $s{=}2$ slice: \texttt{CPursuitNeuralUCB} reaches 92.4\% / CV\,6.5\% and \texttt{iCPursuitNeuralUCB} reaches 96.0\% / CV\,3.3\%, while adversarial validation shows \texttt{EXPNeuralUCB} falling to an 18.0\% floor under reactive threats.}
 \end{itemize}
 
 \input{02--related_works}
