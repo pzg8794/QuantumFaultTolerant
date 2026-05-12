@@ -157,13 +157,30 @@ To address this gap, we introduce a threat-aware evaluation framework that compa
 
 In summary, our work makes the following contributions:
 \begin{itemize}
-    \item \descStep{Evaluation framework}{A unified threat-aware benchmark comparing bandit policy families for joint entanglement path selection and qubit allocation under matched threat, allocator, and capacity conditions across 8,241 model--scenario--configuration evaluations in the internal validation corpus.}
+    \item \descStep{Evaluation framework}{A unified threat-aware benchmark
+    comparing bandit policy families for joint entanglement path selection
+    and qubit allocation under matched threat, allocator, and capacity
+    conditions across 8,241 model--scenario--configuration evaluations in
+    the internal validation corpus.}
 
-    \item \descStep{Capacity paradox}{Capacity effects are threat-dependent and non-monotonic: under \texttt{ThompsonSampling} allocation and $T_b$-type replay anchoring, OnlineAdaptive efficiency drops by 4.35~pp from $s{=}1$ to $s{=}1.5$ and recovers by 5.96~pp at $s{=}2$; allocator choice alone shifts worst-case floors by 15 6~pp in the validated RQ3c 6K deployment slice.}
+    \item \descStep{Capacity paradox}{Capacity effects are
+    threat-dependent and non-monotonic: under \texttt{ThompsonSampling}
+    allocation and $T_b$-type replay anchoring, OnlineAdaptive efficiency
+    drops by 4.35~pp from $s{=}1$ to $s{=}1.5$ and recovers by 5.96~pp at
+    $s{=}2$; allocator choice alone shifts worst-case floors by 15.6~pp in
+    the validated RQ3c 6K deployment slice.}
 
-    \item \descStep{Deployment guidance}{\texttt{iCPursuitNeuralUCB} with default allocator, $T$-type replay, and $s{=}2$ achieves 96.0\% mean Oracle-normalized efficiency and a 92.8\% worst-case floor across all five threat regimes at the 6K horizon.}
+    \item \descStep{Deployment guidance}{\texttt{iCPursuitNeuralUCB} with
+    default allocator, $T$-type replay, and $s{=}2$ achieves 96.0\%
+    mean Oracle-normalized efficiency and a 92.8\% worst-case floor
+    across all five threat regimes at the 6K horizon.}
 
-    \item \descStep{Experimental findings}{Pursuit--neural hybrids define the efficiency--stability frontier in the fixed 6K, $T$-type, $s{= 2$ deployment slice: \texttt{CPursuitNeuralUCB} reaches 92.4\% / CV\,6.5\% and \texttt{iCPursuitNeuralUCB} reaches 96.0\% / CV\,3.3\%, while adversarial-scope validation shows \texttt{EXPNeuralUCB} falling to an 18.0\% floor under reactive
+    \item \descStep{Experimental findings}{Pursuit--neural hybrids define
+    the efficiency--stability frontier in the fixed 6K, $T$-type, $s{=}2$
+    deployment slice: \texttt{CPursuitNeuralUCB} reaches 92.4\% /
+    CV\,6.5\% and \texttt{iCPursuitNeuralUCB} reaches 96.0\% /
+    CV\,3.3\%, while adversarial-scope validation shows
+    \texttt{EXPNeuralUCB} falling to an 18.0\% floor under reactive
     threats.}
 \end{itemize}
 
