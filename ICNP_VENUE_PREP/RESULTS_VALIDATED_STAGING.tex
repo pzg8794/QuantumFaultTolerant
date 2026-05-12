@@ -5,7 +5,7 @@
 \section{Results}
 \label{sec:SimulationResults}
 
-Using the matched grid defined in \cref{sec:studydesign}, we report validated master-dataset results by \cref{sec:research_questions}: RQ1 tests stochastic viability, RQ2 tests threat escalation, and RQ3 tests allocator/capacity deployment effects. GA-report observations are used only as supporting context.
+Using the matched grid defined in \cref{sec:studydesign}, we report validated corpus results by \cref{sec:research_questions}: RQ1 tests stochastic viability, RQ2 tests threat escalation, and RQ3 tests allocator/capacity deployment effects. GA-report observations are used only as supporting context.
 
 % ============================================================================
 % RQ1: Stochastic Routing Viability
@@ -16,7 +16,7 @@ Using the matched grid defined in \cref{sec:studydesign}, we report validated ma
 Under the Stochastic scenario in \cref{tab:scenario_specs}, contextual pursuit and epsilon-greedy baselines remain viable, while several context-free or poorly matched variants collapse. This establishes baseline viability before the structured and adaptive threats analyzed in RQ2.
 
 \smallTitle{Dataset and aggregation}
-RQ1 uses the EXP-family, CMAB, and iCMAB master datasets, filtered to Stochastic runs under the default allocator. Results aggregate across 4K--8K horizons, $s\in\{1,1.5,2\}$, both $T$/$T_b$ replay semantics, and the 3- and 5-run suites.
+RQ1 uses the EXP-family, CMAB, and iCMAB corpora, filtered to Stochastic runs under the default allocator. Results aggregate across 4K--8K horizons, $s\in\{1,1.5,2\}$, both $T$/$T_b$ replay semantics, and the 3- and 5-run suites.
 
 \begin{figure}[t]
 \centering
@@ -29,7 +29,7 @@ RQ1 uses the EXP-family, CMAB, and iCMAB master datasets, filtered to Stochastic
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{RQ1 stochastic results from the validated master datasets. Values are mean Oracle-normalized efficiency.}
+\caption{RQ1 stochastic results from the validated corpora. Values are mean Oracle-normalized efficiency.}
 \label{tab:rq1_master_stochastic}
 \begin{tabular}{p{0.42\linewidth} c c c}
 \toprule
@@ -117,13 +117,13 @@ EXP3/UCB & 76.3 & 6.0 & 68.8 & 0.0 \\
 \subsection{RQ3: Deployment Optimization}
 \label{subsec:rq3}
 
-RQ3 evaluates whether algorithm, allocator, and replay-capacity choices should change with the threat regime. Deployment is configuration-sensitive, but the hybrid dataset also reveals a strong static configuration that exceeds the 85\% robustness target across all five scenarios.
+RQ3 evaluates whether algorithm, allocator, and replay-capacity choices should change with the threat regime. Deployment is configuration-sensitive, but the hybrid corpus also reveals a strong static configuration that exceeds the 85\% robustness target across all five scenarios.
 
 \smallTitle{Deployment-evaluation corpus}
-RQ3 uses the validated Hybrid master dataset for CPursuitNeuralUCB, iCPursuitNeuralUCB, GNeuralUCB, and EXPNeuralUCB across all scenarios, allocators, replay anchoring types, scales $s\in\{1,1.5,2\}$, and 4K--8K horizons. Unless otherwise noted, point estimates average the 3- and 5-run suites; RQ3 CV values are computed across scenario means as a deployment-volatility proxy because per-run variance is not available in the master table.
+RQ3 uses the validated Hybrid corpus for CPursuitNeuralUCB, iCPursuitNeuralUCB, GNeuralUCB, and EXPNeuralUCB across all scenarios, allocators, replay anchoring types, scales $s\in\{1,1.5,2\}$, and 4K--8K horizons. Unless otherwise noted, point estimates average the 3- and 5-run suites; RQ3 CV values are computed across scenario means as a deployment-volatility proxy because per-run variance is not available in the corpus table.
 
 \smallTitle{Primary deployment observation}
-Deployment is configuration-sensitive, but the Hybrid master dataset also reveals a strong static configuration. At the 6K horizon, \texttt{iCPursuitNeuralUCB + Fixed + ($T$-type, $s=2$)} achieves a 96.0\% global average and a 92.8\% worst-case floor across scenarios, using the validated mean over 3- and 5-run suites. Scenario-specific optima still differ, so later RQ3 analyses disaggregate allocator and replay-capacity effects.
+Deployment is configuration-sensitive, but the Hybrid corpus also reveals a strong static configuration. At the 6K horizon, \texttt{iCPursuitNeuralUCB + Fixed + ($T$-type, $s=2$)} achieves a 96.0\% global average and a 92.8\% worst-case floor across scenarios, using the validated mean over 3- and 5-run suites. Scenario-specific optima still differ, so later RQ3 analyses disaggregate allocator and replay-capacity effects.
 
 % ============================================================================
 % RQ3a: Predictive Context Modeling Impact
@@ -134,13 +134,13 @@ Deployment is configuration-sensitive, but the Hybrid master dataset also reveal
 RQ3a isolates whether the informative/predictive variant, iCPursuitNeuralUCB, improves deployment robustness over reactive CPursuitNeuralUCB.
 
 \smallTitle{Controlled comparison}
-To isolate architecture impact, we hold deployment fixed at 6K horizon, \texttt{Fixed} allocator, $T$-type anchoring, and $s=2$, then use the validated 3-run suite from the Hybrid master dataset.
+To isolate architecture impact, we hold deployment fixed at 6K horizon, \texttt{Fixed} allocator, $T$-type anchoring, and $s=2$, then use the validated 3-run suite from the Hybrid corpus.
 
 \begin{table}[ht!]
 \footnotesize
 \centering
 \setlength{\tabcolsep}{3pt}
-\caption{RQ3a informative-context impact under the fixed deployment setting. Values are from the validated 3-run Hybrid master-dataset provenance branch.}
+\caption{RQ3a informative-context impact under the fixed deployment setting. Values are from the validated 3-run Hybrid corpus provenance branch.}
 \label{tab:rq3a_master_informative}
 \begin{tabular}{p{0.30\linewidth} c c c c c c c}
 \toprule
@@ -165,7 +165,7 @@ iCPursuitNeuralUCB & 99.9 & 94.8 & 93.0 & 92.8 & 99.8 & 96.0 & 3.3 \\
 RQ3b tests whether larger replay scale improves robustness or creates a threat-dependent capacity paradox.
 
 \smallTitle{Replay-scaling setup}
-RQ3b fixes the allocator to \texttt{Random}, the horizon to 6K, and the replay anchoring to $T$-type, then varies $s\in\{1,1.5,2\}$ using Hybrid master-dataset means over the 3- and 5-run suites. This isolates replay-scale behavior before allocator co-design is analyzed in RQ3c.
+RQ3b fixes the allocator to \texttt{Random}, the horizon to 6K, and the replay anchoring to $T$-type, then varies $s\in\{1,1.5,2\}$ using Hybrid corpus means over the 3- and 5-run suites. This isolates replay-scale behavior before allocator co-design is analyzed in RQ3c.
 
 \begin{figure*}[t]
 \centering
@@ -185,7 +185,7 @@ RQ3b fixes the allocator to \texttt{Random}, the horizon to 6K, and the replay a
 \footnotesize
 \centering
 \setlength{\tabcolsep}{3pt}
-\caption{RQ3b capacity scaling under fixed \texttt{Random} allocation, 6K horizon, and $T$-type replay anchoring. Values are Hybrid master-dataset means over the 3- and 5-run suites.}
+\caption{RQ3b capacity scaling under fixed \texttt{Random} allocation, 6K horizon, and $T$-type replay anchoring. Values are Hybrid corpus means over the 3- and 5-run suites.}
 \label{tab:rq3b_master_capacity_scaling}
 \begin{tabular}{p{0.30\linewidth} c c c c c c c}
 \toprule
@@ -205,7 +205,7 @@ iCPursuitNeuralUCB & 1.0 & 92.1 & 93.6 & 88.7 & 88.5 & 70.8 & 86.7 \\
 % \shee{define s} -- SOLVED: Added $s$ definition in the table note and in the RQ3b evidence-slice paragraph.
 \end{table}
 
-\Cref{tab:rq3b_master_capacity_scaling,fig:capacity_paradox} show that replay scale is not a monotonic ``more is better'' knob. Under fixed \texttt{Random} allocation and $T$-type anchoring, both pursuit-based hybrids degrade sharply at $s=1.5$ and recover at $s=2$, confirming that replay capacity must be tuned jointly with allocator and anchoring type. Extended GA ablations remain supporting evidence, but the master-dataset trend is the validated RQ3b conclusion.
+\Cref{tab:rq3b_master_capacity_scaling,fig:capacity_paradox} show that replay scale is not a monotonic ``more is better'' knob. Under fixed \texttt{Random} allocation and $T$-type anchoring, both pursuit-based hybrids degrade sharply at $s=1.5$ and recover at $s=2$, confirming that replay capacity must be tuned jointly with allocator and anchoring type. Extended GA ablations remain supporting evidence, but the corpus trend is the validated RQ3b conclusion.
 
 % ============================================================================
 % RQ3c: Algorithm-Allocator Co-Design
@@ -222,7 +222,7 @@ RQ3c fixes the model to iCPursuitNeuralUCB, the horizon to 6K, and capacity to $
 \footnotesize
 \centering
 \setlength{\tabcolsep}{3pt}
-\caption{RQ3c allocator interaction for iCPursuitNeuralUCB under the fixed 6K, $T$-type, $s=2$ deployment. Values are Hybrid master-dataset means over the 3- and 5-run suites.}
+\caption{RQ3c allocator interaction for iCPursuitNeuralUCB under the fixed 6K, $T$-type, $s=2$ deployment. Values are Hybrid corpus means over the 3- and 5-run suites.}
 \label{tab:rq3c_master_allocators}
 \begin{tabular}{lccccccc}
 \toprule
@@ -247,7 +247,7 @@ Thompson   & 58.4 & 65.4 & 87.8 & 91.7 & 65.2 & 73.7 & 58.4 \\
 \label{subsec:rq3d_answer}
 
 \smallTitle{Deployment-rule synthesis}
-RQ3d converts the RQ3a--RQ3c findings into 6K deployment rules for iCPursuitNeuralUCB. Under the Hybrid master-dataset 3/5-suite mean used for switching analysis, the strong static default is \texttt{iCPursuitNeuralUCB + Fixed + ($T$-type, $s=2$)}, with 95.5\% average efficiency and an 88.5\% floor across scenarios. Scenario-specific switching provides modest gains, with the largest validated improvement under Adaptive disruption.
+RQ3d converts the RQ3a--RQ3c findings into 6K deployment rules for iCPursuitNeuralUCB. Under the Hybrid corpus 3/5-suite mean used for switching analysis, the strong static default is \texttt{iCPursuitNeuralUCB + Fixed + ($T$-type, $s=2$)}, with 95.5\% average efficiency and an 88.5\% floor across scenarios. Scenario-specific switching provides modest gains, with the largest validated improvement under Adaptive disruption.
 
 \begin{figure*}[t]
 \centering
