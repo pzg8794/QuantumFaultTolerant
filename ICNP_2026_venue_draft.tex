@@ -154,28 +154,17 @@ Existing quantum-routing studies propose online path selection, benchmarking-dri
 
 To address this gap, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks. 
 
+
 In summary, our work makes the following contributions:
 \begin{itemize}
-    \item \descStep{Evaluation framework}{A unified threat-aware benchmark
-    comparing five bandit policy families for joint entanglement path
-    selection and qubit allocation under matched threat, allocator, and
-    capacity conditions across 7,890 configurations.}
+    \item \descStep{Evaluation framework}{A unified threat-aware benchmark comparing bandit policy families for joint entanglement path selection and qubit allocation under matched threat, allocator, and capacity conditions across 8,241 model--scenario--configuration evaluations in the internal validation corpus.}
 
-    \item \descStep{Capacity paradox}{Capacity effects are
-    threat-dependent: $s{=}1{\to}2$ yields +0.8--1.6~pp under Markov
-    but mixed results ($-$0.9 to +0.6~pp) under Adaptive, and allocator
-    mismatch alone can collapse worst-case floors by up to 54~pp.}
+    \item \descStep{Capacity paradox}{Capacity effects are threat-dependent and non-monotonic: under \texttt{ThompsonSampling} allocation and $T_b$-type replay anchoring, OnlineAdaptive efficiency drops by 4.35~pp from $s{=}1$ to $s{=}1.5$ and recovers by 5.96~pp at $s{=}2$; allocator choice alone shifts worst-case floors by 15 6~pp in the validated RQ3c 6K deployment slice.}
 
-    \item \descStep{Deployment guidance}{\texttt{CPursuitNeuralUCB} with
-    default allocator, $T$-type replay, and $s{=}2$ achieves 90.4\%
-    mean Oracle-normalized efficiency and a 76.8\% worst-case floor
-    across all five threat regimes.}
+    \item \descStep{Deployment guidance}{\texttt{iCPursuitNeuralUCB} with default allocator, $T$-type replay, and $s{=}2$ achieves 96.0\% mean Oracle-normalized efficiency and a 92.8\% worst-case floor across all five threat regimes at the 6K horizon.}
 
-    \item \descStep{Experimental findings}{Pursuit--neural hybrids define
-    the efficiency--stability frontier: \texttt{CPursuitNeuralUCB} at
-    90.4\% / CV\,6.8\% and \texttt{iCPursuitNeuralUCB} at 88.3\% /
-    CV\,10.8\%, versus \texttt{EXPNeuralUCB} floors of 71--77\% under
-    structured and adaptive threats.}
+    \item \descStep{Experimental findings}{Pursuit--neural hybrids define the efficiency--stability frontier in the fixed 6K, $T$-type, $s{= 2$ deployment slice: \texttt{CPursuitNeuralUCB} reaches 92.4\% / CV\,6.5\% and \texttt{iCPursuitNeuralUCB} reaches 96.0\% / CV\,3.3\%, while adversarial-scope validation shows \texttt{EXPNeuralUCB} falling to an 18.0\% floor under reactive
+    threats.}
 \end{itemize}
 
 \input{02--related_works}
@@ -327,10 +316,11 @@ preserve stronger adversarial-scope stability: \texttt{CPursuit} and
 \texttt{iCEpsilonGreedy} reach 88.1\% and 86.9\% average efficiency with 77.4\%
 and 81.0\% floors, while \texttt{EXPNeuralUCB} collapses to an 18.0\% floor
 under reactive attacks. \textbf{RQ3} showed that robustness is a joint function
-of algorithm, allocator, and capacity: under fixed \texttt{Random} allocation
-and $T$-type anchoring, moving from $s{=}1$ to $s{=}1.5$ drops Markov efficiency
-by 37.8--46.5~pp, while $s{=}2$ recovers above the $s{=}1$ Markov baseline by
-6.6--7.6~pp.
+of algorithm, allocator, and capacity, with replay scaling producing
+threat-dependent non-monotonic effects rather than monotone gains: under
+\texttt{ThompsonSampling} allocation and $T_b$-type anchoring, OnlineAdaptive
+efficiency drops by 4.35~pp from $s{=}1$ to $s{=}1.5$, then recovers by
+5.96~pp at $s{=}2$.
 
 %We organize the evaluation around three research questions that connect routing performance, threat progression, and deployment configuration. \textit{RQ1 asks how classical and context-aware bandit policies perform under stochastic quantum-network conditions. RQ2 asks how bandit-based routing strategies change as network disruptions evolve from stochastic noise to structured, adaptive adversarial interference. RQ3 asks how choices in bandit policy, resource allocation strategy, and replay-capacity semantics interact to affect routing efficiency and stability in quantum entanglement routing.} Together, the findings support a threat-aware view of entanglement routing: robustness depends not only on the learning rule, but also on how allocator policy and replay-capacity semantics interact with the disruption regime.
 % \devroop{Research questions should not be answered here.} -- SOLVED: Converted the RQ section into a compact paragraph that states the primary questions and gives one collective findings-oriented roadmap sentence, while leaving detailed answers for Results and Discussion.
