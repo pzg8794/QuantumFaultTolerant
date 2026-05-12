@@ -40,6 +40,43 @@ def save(fig, name, caption, description):
         json.dump({"caption": caption, "description": description}, f)
     print(f"  {name} ({os.path.getsize(path)//1024} KB)")
 
+
+def review_legend(x=0.5, y=0.02, orientation="h", xanchor="center", yanchor="bottom", font_size=9):
+    return dict(
+        orientation=orientation,
+        x=x,
+        y=y,
+        xanchor=xanchor,
+        yanchor=yanchor,
+        bgcolor="rgba(255,255,255,0.80)",
+        bordercolor="rgba(0,0,0,0.12)",
+        borderwidth=1,
+        font=dict(size=font_size),
+    )
+
+
+def annotate_box_means(fig):
+    maxima = []
+    for trace in fig.data:
+        values = [float(value) for value in getattr(trace, "y", []) if value is not None]
+        if not values:
+            continue
+        mean_value = sum(values) / len(values)
+        trace_max = max(values)
+        maxima.append(trace_max)
+        fig.add_annotation(
+            x=getattr(trace, "name", ""),
+            y=trace_max + 1.4,
+            xref="x",
+            yref="y",
+            text=f"avg {mean_value:.1f}%",
+            showarrow=False,
+            font=dict(size=8, color="#444444"),
+            bgcolor="rgba(255,255,255,0.75)",
+        )
+    if maxima:
+        fig.update_yaxes(range=[0, max(maxima) + 3.2])
+
 # G10: Oracle Gap Box Plot
 fig = go.Figure()
 for m, ev in all_models.items():
@@ -52,6 +89,9 @@ fig.update_layout(
            "<span style='font-size:14px;font-weight:normal'>"
            "Lower = better. CPursuit tightest; EXPNeuralUCB collapses under Stochastic.</span>"},
     yaxis_title="Oracle Gap (%)", xaxis_title="Model")
+fig.add_hline(y=15, line_color="#555555", line_dash="dash", line_width=1.2)
+fig.add_annotation(x=0.98, y=0.42, xref="paper", yref="paper", text="15% gap target<br>Lower is better", showarrow=False, xanchor="right", font=dict(size=9, color="#555555"), bgcolor="rgba(255,255,255,0.72)")
+annotate_box_means(fig)
 save(fig, "G10_gap_box.png",
      "G10: Oracle-Gap Box Plot — CPursuit tightest; EXPNeuralUCB highest variance",
      "Box plot of oracle gap across 5 threat scenarios per routing model")
@@ -98,7 +138,7 @@ fig4.add_trace(go.Bar(x=sn, y=mean_g,
     marker_color=[C[m] for m in mnames], showlegend=False), row=2, col=1)
 fig4.update_yaxes(title_text="Mean Gap %", row=2, col=1)
 avg_eff = {m: np.mean(all_models[m]) for m in mnames}
-sm = sorted(avg_eff, key=avg_eff.get)
+sm = sorted(avg_eff, key=lambda model: avg_eff[model])
 sm_s = ["CThom","ExpUCB","GNeur","CEps","ExpNe","CPurs"]
 fig4.add_trace(go.Bar(x=[avg_eff[m] for m in sm], y=sm_s, orientation="h",
     marker_color=[C[m] for m in sm], showlegend=False), row=2, col=2)
@@ -128,7 +168,8 @@ fig13.add_vrect(x0=1.5, x1=2.5, fillcolor="rgba(255,80,80,0.08)",
 fig13.update_layout(
     title={"text":"G13: Capacity Paradox — More Capacity Hurts Under Adversarial Threats"},
     xaxis_title="Capacity Level", yaxis_title="Oracle-Norm. Efficiency %",
-    yaxis_range=[70,97], legend=dict(orientation="h", y=1.08, x=0))
+    yaxis_range=[70,97], legend=review_legend(x=0.5, y=0.05))
+fig13.add_hline(y=95, line_color="#3498db", line_dash="dash", line_width=1.2)
 save(fig13, "G13_capacity_paradox.png",
      "G13: Capacity Paradox — extra capacity hurts Stochastic/Adaptive",
      "Line chart of efficiency vs capacity level per threat type")
@@ -142,15 +183,25 @@ regret_data = {
     "EXPUCB":         [0.123, 0.254, 0.254, 0.239],
     "CThompson":      [0.327, 0.345, 0.365, 0.370],
 }
+regret_labels = {
+    "CPursuit": "CPursuit",
+    "CEpsilonGreedy": "CEpsGreedy",
+    "EXPNeuralUCB": "EXPNeural",
+    "GNeuralUCB": "GNeural",
+    "EXPUCB": "EXPUCB",
+    "CThompson": "CThompson",
+}
 frames = [1000, 2000, 3000, 4000]
 fig14 = go.Figure()
 for model, vals in regret_data.items():
     fig14.add_trace(go.Scatter(x=frames, y=vals, mode="lines+markers",
-        name=model, line=dict(color=C[model], width=2.5), marker=dict(size=9)))
+        name=regret_labels[model], line=dict(color=C[model], width=2.5), marker=dict(size=9)))
 fig14.update_layout(
     title={"text":"G14: Normalized Regret Trajectory Across Capacity Levels"},
     xaxis_title="Frames (Capacity Steps)", yaxis_title="Normalized Regret",
-    legend=dict(orientation="h", y=1.08, x=0))
+    width=920,
+    margin=dict(l=60, r=24, t=72, b=48, pad=0),
+    legend=review_legend(x=0.5, y=0.99, font_size=7, yanchor="top"))
 save(fig14, "G14_regret.png",
      "G14: Regret Trajectory — CPursuit tightest; Thompson Sampling diverges",
      "Line chart of normalized regret across capacity steps per routing model")

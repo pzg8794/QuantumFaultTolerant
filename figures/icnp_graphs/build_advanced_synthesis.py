@@ -10,7 +10,9 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
+from matplotlib.axes import Axes
 import pandas as pd
 import seaborn as sns
 
@@ -123,9 +125,8 @@ def summarize(frame: pd.DataFrame, panel: str, group_cols: list[str], metric: st
     return out
 
 
-def add_panel_label(ax: plt.Axes, label: str, title: str) -> None:
+def add_panel_label(ax: Axes, label: str, title: str) -> None:
     ax.text(-0.09, 1.08, label, transform=ax.transAxes, fontsize=15, fontweight="bold")
-    ax.set_title(title, loc="left", pad=14, fontsize=12, fontweight="bold")
 
 
 def main() -> None:
@@ -188,6 +189,8 @@ def main() -> None:
     ax.set_ylabel("Oracle gap (percentage points)")
     ax.axhline(15, color="#555", linestyle="--", linewidth=1, alpha=0.55)
     ax.text(3.45, 15.8, "85% efficiency line", ha="right", va="bottom", fontsize=9, color="#555")
+    family_handles = [mpatches.Patch(color=palette_family[family], label=family) for family in FAMILY_ORDER]
+    ax.legend(handles=family_handles, ncol=4, loc="upper left", bbox_to_anchor=(0.01, 0.99), frameon=True, fontsize=8.1, columnspacing=0.9, handlelength=1.1)
 
     ax = axes[0, 1]
     sns.boxplot(
@@ -207,7 +210,8 @@ def main() -> None:
     ax.set_ylabel("Δ efficiency from replay scaling (pp)")
     ax.set_xticks(range(len(SCENARIO_LABELS)))
     ax.set_xticklabels(SCENARIO_LABELS, rotation=18, ha="right")
-    ax.legend(title="Capacity\nsemantic", frameon=True, fontsize=9, title_fontsize=9)
+    ax.legend(frameon=True, fontsize=8.4, loc="upper left", bbox_to_anchor=(0.01, 0.99), ncol=2, columnspacing=0.9, handlelength=1.2)
+    ax.text(0.98, 0.04, "Positive = replay scaling helps", transform=ax.transAxes, ha="right", va="bottom", fontsize=8.5, color="#555", bbox=dict(boxstyle="round,pad=0.25", facecolor="white", alpha=0.78, edgecolor="none"))
 
     ax = axes[1, 0]
     sns.boxplot(
@@ -229,6 +233,12 @@ def main() -> None:
     ax.set_xticks(range(4))
     ax.set_xticklabels(["Default", "DynamicUCB", "Thompson", "Random"], rotation=12, ha="right")
     ax.axhline(15, color="#555", linestyle="--", linewidth=1, alpha=0.55)
+    ax.text(3.45, 15.8, "85% efficiency line", ha="right", va="bottom", fontsize=9, color="#555")
+    alloc_handles = [
+        mpatches.Patch(color=palette_alloc[allocator], label=label)
+        for allocator, label in zip(ALLOCATOR_ORDER, ["Default", "DynamicUCB", "Thompson", "Random"])
+    ]
+    ax.legend(handles=alloc_handles, ncol=4, loc="upper left", bbox_to_anchor=(0.01, 0.99), frameon=True, fontsize=8.0, columnspacing=0.9, handlelength=1.1)
 
     ax = axes[1, 1]
     sns.boxplot(
@@ -251,13 +261,13 @@ def main() -> None:
     ax.set_xticklabels(PAPER_LABELS)
     ax.axhline(85, color="#555", linestyle="--", linewidth=1, alpha=0.55)
     ax.text(3.45, 86.5, "85% deployment target", ha="right", va="bottom", fontsize=9, color="#555")
+    paper_handles = [
+        mpatches.Patch(color=palette_paper[paper], label=label.replace("\n", " "))
+        for paper, label in zip(PAPER_ORDER, PAPER_LABELS)
+    ]
+    ax.legend(handles=paper_handles, ncol=4, loc="upper left", bbox_to_anchor=(0.01, 0.99), frameon=True, fontsize=8.0, columnspacing=0.9, handlelength=1.1)
 
-    fig.suptitle(
-        "Advanced result synthesis: gap, capacity, allocator, and testbed effects",
-        fontsize=16,
-        fontweight="bold",
-        y=1.02,
-    )
+    fig.subplots_adjust(top=0.97)
     fig.text(
         0.5,
         -0.01,
