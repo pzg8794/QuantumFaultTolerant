@@ -33,7 +33,12 @@ SCENARIO_ORDER = ["NONE", "STOCHASTIC", "MARKOV", "ADAPTIVE", "ONLINEADAPTIVE"]
 SCENARIO_LABELS = ["Baseline", "Stochastic", "Markov", "Adaptive", "OnlineAdaptive"]
 ALLOCATOR_ORDER = ["Default", "Dynamic", "ThompsonSampling", "Random"]
 PAPER_ORDER = ["paper2", "paper8", "paper7", "paper12"]
-PAPER_LABELS = ["Paper2\n15N", "Paper8\n20N", "Paper7\n50N", "Paper12\n100N"]
+PAPER_LABELS = [
+    "Learning-based Route\nSelection (15N)",
+    "Adaptive Entanglement\nRouting (20N)",
+    "Quantum BGP\n(50N)",
+    "Adaptive Clustering\n(100N)",
+]
 
 
 def require_file(path: Path) -> Path:
