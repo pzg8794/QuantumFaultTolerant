@@ -2,9 +2,22 @@
 \label{sec:discussion}
 % \devroop{go over this and rewrite as needed} -- SOLVED: Rewrote the Discussion as a concise synthesis of the validated Results claims and removed rendered audit text.
 
-The Results show that routing robustness under compound uncertainty is jointly determined by \emph{policy context}, \emph{allocator choice}, and \emph{replay-capacity semantics}. Across the internal corpus and external testbeds, pursuit-based contextual hybrids consistently define the strongest efficiency--stability frontier, while adversarial-first baselines and poorly matched allocators expose lower robustness floors under structured and adaptive disruption.
+Across corpus and external testbeds, pursuit-based hybrids consistently define the strongest efficiency--stability frontier, while adversarial-first baselines and poorly matched allocators expose lower robustness floors under structured and adaptive disruption. Our results show that routing robustness under compound uncertainty is jointly determined by \emph{policy context}, \emph{allocator choice}, and \emph{replay-capacity semantics}.
 
-The appendix provides the full evidence behind these summarized findings. \Cref{tab:testbed_comparison_full,tab:model_family_comparison_full} report the per-configuration cross-testbed and model-family results supporting the robustness hierarchy, while \Cref{fig:appendix_context_vs_exp3_gap,fig:appendix_context_capacity_effects,fig:appendix_threat_rules,fig:appendix_g8_advanced_synthesis} give additional diagnostics for Oracle-gap behavior, capacity sensitivity, deployment rules, and grouped claim interactions.
+% The appendix provides further details regarding these summarized findings. \Cref{tab:testbed_comparison_full,tab:model_family_comparison_full} report the per-configuration cross-testbed and model-family results supporting the robustness hierarchy, while \Cref{fig:appendix_context_vs_exp3_gap,fig:appendix_context_capacity_effects,fig:appendix_threat_rules,fig:appendix_g8_advanced_synthesis} give additional diagnostics for Oracle-gap behavior, capacity sensitivity, deployment rules, and grouped claim interactions.
+
+The appendix \Cref{tab:model_family_comparison_full} shows \texttt{iCPursuitNeuralUCB} leading the internal model-family ranking with 90.86\% average efficiency, ahead of \texttt{CPursuitNeuralUCB} (89.00\%), \texttt{GNeuralUCB} (88.99\%), and \texttt{EXPNeuralUCB} (88.37\%), establishing pursuit mechanisms as the 1--3 pp differentiator within the neural-hybrid family. Similarly, \Cref{tab:testbed_comparison_full} shows that this aggregate advantage generalizes across external testbeds: \texttt{iCPursuitNeuralUCB} achieves the highest average efficiency on \paperTwo (74.45\%), \paperSeven (78.03\%), \paperTwelve (44.14\%), and \paperEight (67.85\%). While \texttt{EXPNeuralUCB} wins more configurations on \paperEight, \texttt{iCPursuitNeuralUCB} maintains higher average efficiency (67.85\% vs.\ 61.93\%), showing more consistent performance across allocator and capacity settings. Together, \Cref{tab:model_family_comparison_full,tab:testbed_comparison_full} support the main hierarchy: pursuit-informed neural designs provide the strongest average robustness.
+
+% The appendix validates neural hybrid performance in detail. Neural hybrids achieve 
+% 87--96\% efficiency with CV≤6.5\% \Cref{tab:model_family_comparison_full} and 
+% outperform non-contextual baselines by 18--24 pp \Cref{tab:testbed_comparison_full}, 
+% confirming context-awareness provides substantial advantage. Under attacks, they sustain 
+% 5--10 pp Oracle gaps versus 20--40 pp for adversarial-first methods 
+% \Cref{fig:appendix_context_vs_exp3_gap}, defining the stability frontier. The capacity 
+% paradox—22--38 pp degradation under Adaptive threats \Cref{fig:appendix_context_capacity_effects}—shows 
+% predictability, not bandwidth, limits robustness. \Cref{fig:appendix_threat_rules} maps 
+% threat-responsive allocator rules, while \Cref{fig:appendix_g8_advanced_synthesis} 
+% synthesizes how algorithm, allocator, and capacity jointly determine worst-case performance.
 
 % ----------------------------------------------------------------------------
 \subsubsection{Finding 1 - Context-Aware Bandit Policies Define the Robustness Frontier}

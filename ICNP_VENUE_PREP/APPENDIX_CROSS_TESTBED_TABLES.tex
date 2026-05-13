@@ -7,7 +7,7 @@ This appendix reports the full cross-testbed and model-family evidence supportin
 \label{app:full_cross_testbed_results}
 \Cref{tab:testbed_comparison_full} expands the concise main-body summary in \Cref{tab:testbed_comparison_summary}. It shows the configuration-level evidence behind the cross-testbed claim that pursuit--neural hybrids, especially \texttt{iCPursuitNeuralUCB}, provide the strongest average robustness while higher-complexity regimes can alter the winner structure.
 
-\begin{table*}[t]
+\begin{table*}[ht!]
 \centering
 \caption{Full cross-testbed evidence for the robustness hierarchy. The table reports scenario-aggregated Oracle-normalized efficiency, Oracle gap, regret, and configuration-level wins for each external testbed. Across the four testbeds, \texttt{iCPursuitNeuralUCB} is the strongest average-efficiency performer, while the win counts show that higher-complexity regimes can change which learner wins individual configurations. Together, the rows support the cross-testbed claim that pursuit--neural hybrids provide the most reliable average robustness, while topology scale and testbed constraints reduce separation from the Oracle. Numeric columns are means across all five scenarios and four allocators. \paperTwo, \paperSeven, and \paperTwelve use the full evaluation corpora aggregated across $s\in\{1.0,1.5,2.0\}$ (\texttt{cap\_type}=T) with five runs per setting; \paperEight uses the current original paper-config slice at 1K/1K/1R, $s=1.0$, \texttt{cap\_type}=T.}
 % \devroop{fix the testbed column dimensions. its overflowing.} -- SOLVED: Converted the appendix table to fixed-width columns with tighter spacing and shorter testbed descriptors.
@@ -61,7 +61,7 @@ This appendix reports the full cross-testbed and model-family evidence supportin
 \label{app:full_model_family_results}
 \Cref{tab:model_family_comparison_full} expands the model-family summary from \Cref{tab:model_family_comparison_summary}. It provides the per-family evidence behind the claim that contextual and pursuit--neural methods form the strongest efficiency--stability frontier, while EXP-family and structurally mismatched baselines retain weaker robustness floors.
 
-\begin{table*}[t]
+\begin{table*}[ht!]
 \centering
 \caption{Full model-family evidence for the efficiency--stability hierarchy. The internal blocks compare CMABs, iCMABs, EXP3-based methods, and hybrid neural policies, while the external blocks report pursuit--neural performance across four testbeds. The table shows that contextual and informed contextual baselines provide strong internal floors, EXP-family methods remain weaker in tail behavior, and \texttt{iCPursuitNeuralUCB} gives the highest hybrid-neural ceiling and strongest average external performance. Together, the rows support the paper's claim that robust quantum routing depends on model family and context/pursuit structure, not only on a single learner score. Best per-family/testbed performance is bolded.}
 \label{tab:model_family_comparison_full}

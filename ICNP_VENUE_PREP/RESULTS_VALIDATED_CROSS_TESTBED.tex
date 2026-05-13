@@ -1,7 +1,7 @@
 \subsection{Cross-Testbed Validation}
 \label{subsec:cross_test_bed}
 
-\begin{figure*}[t]
+\begin{figure*}[ht!]
 \centering
 \subfloat[External-testbed efficiency and Oracle-gap comparison. The plot reports how the hybrid policies transfer to \paperTwo, \paperSeven, \paperTwelve, and \paperEight, showing that \texttt{iCPursuitNeuralUCB} has the strongest average cross-testbed efficiency while topology scale increases the remaining Oracle gap.\label{fig:cross_testbed_efficiency_main}]{%
   \begin{minipage}{0.48\textwidth}
@@ -10,7 +10,7 @@
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-038_g9_network_gap_analysis_panel_i_cross_testbed_efficiency_oracle_gap_std.png}
   \end{minipage}}
 \hfill
-\subfloat[Internal and external model-family comparison. The plot summarizes the same family-level trend as \Cref{tab:model_family_comparison_summary}: hybrid pursuit--neural methods define the internal performance ceiling, while external topology complexity compresses all methods.\label{fig:model_family_cross_testbed_main}]{%
+\subfloat[Internal and external model-family comparison. The plot summarizes the same family-level trend as \Cref{tab:model_family_comparison_summary}: hybrid pursuit--neural methods define the internal performance ceiling, while external topology complexity compresses all methods.\label{fig:model_family_cross_testbed_main}\shee{change the font color of the threshold label}]{%
   \begin{minipage}{0.48\textwidth}
   \centering
   \textbf{Internal and External Model-Family Ranking}\\[-0.0em]
@@ -25,7 +25,7 @@
 \label{fig:cross_testbed_confirmation}
 \end{figure*}
 
-\begin{table*}[t]
+\begin{table*}[ht!]
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
@@ -43,7 +43,7 @@
 \end{tabular}
 \end{table*}
 
-\begin{table}[t]
+\begin{table}[ht!]
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
@@ -62,4 +62,4 @@ Topology scaling & Efficiency declines as routing scale/complexity increases, fr
 
 \Cref{fig:cross_testbed_confirmation,tab:testbed_comparison_summary} show the cross-testbed claim in our work: pursuit--neural hybrids, especially \texttt{iCPursuitNeuralUCB}, provide the strongest average cross-testbed robustness, while high-complexity regimes can change the winner structure. \Cref{tab:testbed_comparison_full} gives the full per-configuration evidence supporting this hierarchy across the evaluated testbeds.
 
-\Cref{fig:cross_testbed_confirmation,tab:model_family_comparison_summary} keep the model-family claim in the main body: hybrid pursuit--neural policies define the overall performance ceiling, and topology complexity reduces efficiency as routing spaces grow. The detailed family comparison remains available in \Cref{tab:model_family_comparison_full} for readers who need the complete breakdown.
+\Cref{fig:cross_testbed_confirmation,tab:model_family_comparison_summary} keep the model-family claim in the main body: hybrid pursuit--neural policies define the overall performance ceiling, and topology complexity reduces efficiency as routing spaces grow. The detailed family comparison remains available in \Cref{tab:model_family_comparison_full}.

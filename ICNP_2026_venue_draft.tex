@@ -89,8 +89,13 @@
 \maketitle
 
 \begin{abstract}
-Quantum entanglement routing requires joint path selection and qubit allocation under noisy, nonstationary, and adversarial conditions. Existing approaches often assume stationary links, fixed allocation rules, or offline optimization assumptions. When these assumptions fail, routing can degrade end-to-end entanglement quality and waste scarce quantum resources. To address limitations in prior quantum-routing policy evaluations under this assumptions, we introduce a threat-aware evaluation framework for stochastic, contextual/neural, adversarial, predictive, and hybrid bandit policies for joint quantum path selection and qubit allocation. The framework varies threat regime, allocator policy, and replay capacity to attribute robustness to bandit-policy--allocator--capacity interactions. Across thirteen evaluated policies and five threat regimes, the validated stochastic top tier remains above 85\% efficiency; contextual and informed policies maintain 77.4--81.0\% adversarial-scope floors; and \texttt{EXPNeuralUCB} falls to an 18.0\% floor under reactive attacks. Model-family validation shows \texttt{iCPursuitNeuralUCB} reaching 90.86\% aggregate efficiency, ahead of EXP3 baselines (78.06--85.37\%) and lower non-contextual CMAB baselines (68.16--70.06\%). We identify a capacity paradox: under \texttt{ThompsonSampling} allocation and $T_b$-type replay anchoring, mean OnlineAdaptive efficiency drops by 4.35 pp from $s{=}1$ to $s{=}1.5$, then recovers by 5.96 pp at $s{=}2$. Our cross-testbed evaluation on four external quantum-network testbeds confirms the main robustness trends while exposing scale- and topology-dependent limits.
+Quantum entanglement routing requires joint path selection and qubit allocation under noisy, nonstationary, and adversarial conditions. Existing approaches often assume stationary links, fixed allocation rules, or offline optimization assumptions. When these assumptions fail, routing can degrade end-to-end entanglement quality and waste scarce quantum resources. To address these limitations, we introduce a threat-aware evaluation framework for stochastic, contextual/neural, adversarial, predictive, and hybrid bandit policies for joint quantum path selection and qubit allocation. Unlike previous work that fixes allocator policy and replay semantics, we vary threat regime, allocator policy, and replay capacity as first-class 
+factors, enabling attribution of robustness to the bandit-policy--allocator--capacity interaction. Across thirteen bandit policies and five threat regimes, neural hybrids outperform non-contextual baselines by 18--24 percentage points in scenario-aggregated 
+efficiency, sustain worst-case efficiency above 85\% under stochastic threats, and remain more stable than adversarial-first EXP3-style designs under adaptive attacks. We also identify a capacity paradox: under \texttt{ThompsonSampling} allocation and $T_b$-type replay anchoring, mean OnlineAdaptive efficiency drops by 4.4 pp from $s{=}1$ to $s{=}1.5$, then recovers by 6.0 pp at $s{=}2$. Our cross-testbed evaluation on four external quantum-network testbeds confirms the main robustness trends while exposing 
+scale- and topology-dependent limits. These results establish that context-aware neural policies paired with appropriate allocators provide deployment-grade robustness, while capacity scaling must be threat-matched to avoid predictability-induced collapse.
 
+
+% \devroop{Highlight the key findings not just values}
 % \hl{To address limitations in XYZ,} we introduce a threat-aware evaluation framework for comparing stochastic, contextual/neural, adversarial, predictive, and hybrid bandit policies for joint quantum path selection and qubit allocation. Unlike work that fixes allocator policy and replay semantics, we vary threat regime, allocator policy, and replay capacity as first-class factors, enabling attribution of robustness to the bandit-policy--allocator--capacity interaction. Across thirteen bandit policies and five threat regimes, neural hybrids outperform non-contextual baselines by 18--24 percentage points in scenario-aggregated efficiency, sustain worst-case efficiency above 85\% under stochastic threats, and remain more stable than adversarial-first EXP3-style designs under adaptive attacks. We also identify a threat-dependent capacity paradox: under fixed Random allocation and $T$-type replay anchoring, increasing replay scale from $s{=}1$ to $s{=}1.5$ reduces Markov efficiency by 37.8--46.5 percentage points, while $s{=}2$ recovers above the $s{=}1$ Markov baseline. This shows that resource predictability, not raw capacity, can dominate robustness. Cross-testbed evaluation on three external quantum-network simulators confirms the main robustness trends while exposing scale- and physics-dependent limits.
 \end{abstract}
 
@@ -108,7 +113,7 @@ Quantum entanglement distribution is a core primitive for the quantum Internet, 
 
 Existing quantum-routing studies propose online path selection, benchmarking-driven routing, adaptive route selection, and adversarially robust learning~\cite{wang2025learning,coopmans2021benchmark,huang2024quantum}, but they are often evaluated under different threat, topology, allocator, and replay assumptions~\cite{liu2024qbgp,li2025multipath,chaudhary2023quantum}. This creates a matched-threat evaluation gap: it is unclear when contextual structure is necessary, when adversarial robustness dominates, and how allocator and capacity choices alter routing performance.
 
-\begin{figure}[t]
+\begin{figure}[ht!]
 \centering
 \footnotesize
 \resizebox{0.96\columnwidth}{!}{%
@@ -149,16 +154,21 @@ Existing quantum-routing studies propose online path selection, benchmarking-dri
 \caption{Threat-aware evaluation framework. Color, fill, and arrow style distinguish topology, threat, policy, allocator, and replay/capacity inputs while preserving black-and-white readability. These dimensions are matched before reporting metrics, robustness comparisons, and deployment guidance.}
 \label{fig:framework}
 \end{figure}
-
-To address this gap, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks. In summary, our work makes the following contributions:
+% this gap
+To address this lack of a unified and controlled evaluation framework for quantum-routing strategies, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. This evaluation provides practical guidance for designing quantum-network controllers that can maintain high entanglement efficiency and robustness under changing network conditions and adversarial disruptions. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks. In summary, our work makes the following contributions:
 \begin{itemize}
-    \item \descStep{Evaluation framework}{A unified threat-aware benchmark comparing bandit policy families for joint path selection and qubit allocation across 8,241 matched threat--allocator--capacity evaluations.}
+    \item \descStep{Evaluation framework}{A threat-aware benchmark comparing bandit policies for joint path pick and qubit allocation across 8,241 matched threat--allocator--capacity tests.}
 
     \item \descStep{Capacity paradox}{Capacity effects are threat-dependent: with \texttt{ThompsonSampling} and $T_b$ replay, OnlineAdaptive efficiency drops 4.35~pp at $s{=}1.5$ then recovers 5.96~pp at $s{=}2$; allocators shift RQ3c floors by 15.6~pp.}
 
-    \item \descStep{Deployment guidance}{\texttt{iCPursuitNeuralUCB} with default allocator, $T$-type replay, and $s{=}2$ achieves 96.0\% mean Oracle-normalized efficiency and a 92.8\% worst-case floor across all five threat regimes at the 6K horizon.}
+    \item \descStep{Deployment guidance}
+    {Neural hybrids sustain $\geq$85\% worst-case efficiency while allocator choice induces 10--15 pp swings, requiring algorithm--allocator co-design.}
+    % {\texttt{iCPursuitNeuralUCB} with default allocator, $T$-type replay, and $s{=}2$ achieves 96.0\% mean Oracle-normalized efficiency and a 92.8\% worst-case floor across all five threat regimes at the 6K horizon.}
 
-    \item \descStep{Experimental findings}{Pursuit--neural hybrids define the efficiency--stability frontier in the fixed 6K, $T$-type, $s{=}2$ slice: \texttt{CPursuitNeuralUCB} reaches 92.4\% / CV\,6.5\% and \texttt{iCPursuitNeuralUCB} reaches 96.0\% / CV\,3.3\%, while adversarial validation shows \texttt{EXPNeuralUCB} falling to an 18.0\% floor under reactive threats.}
+    \item \descStep{Experimental findings} 
+    % {We show that pursuit--neural hybrid methods achieve the best balance between efficiency and stability, while some adversarial approaches degrade significantly under reactive threat conditions.}
+    {Pursuit--neural hybrids achieve 87--96\% efficiency, outperforming non-contextual baselines by 18--24 pp, and sustaining stability under strategic attacks.}
+    %{Pursuit--neural hybrids define the efficiency--stability frontier in the fixed 6K, $T$-type, $s{=}2$ slice: \texttt{CPursuitNeuralUCB} reaches 92.4\% / CV\,6.5\% and \texttt{iCPursuitNeuralUCB} reaches 96.0\% / CV\,3.3\%, while adversarial validation shows \texttt{EXPNeuralUCB} falling to an 18.0\% floor under reactive threats.}
 \end{itemize}
 
 \input{02--related_works}
@@ -168,7 +178,7 @@ To address this gap, we introduce a threat-aware evaluation framework that compa
 
 At each decision frame $t$, a routing agent selects a candidate path $P_r$ and qubit-allocation vector $\mathbf{x}$ under uncertain link success and path availability. The model defines the topology, reward and availability process, threat regimes, allocator policies, and bandit interface used in the evaluation.
 
-\begin{figure}[h]
+\begin{figure}[ht!]
 \centering
 \footnotesize
 \resizebox{1.0\columnwidth}{!}{%
