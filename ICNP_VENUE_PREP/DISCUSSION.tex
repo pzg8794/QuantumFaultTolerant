@@ -14,7 +14,7 @@ Across the paper baselines (\RQOneText--\RQTwoText) and the Hybrid suite (\RQThr
 % ----------------------------------------------------------------------------
 \subsubsection{Finding 2 - The Capacity Paradox is Conditional}
 
-Replay capacity is not a monotonic improvement knob. Increasing replay can improve stability in structured regimes while amplifying vulnerability under reactive threats. The effect emerges from the interaction between replay capacity and allocator-driven exploration predictability: larger replay buffers can reinforce recurring patterns, and reactive adversaries can exploit those patterns.
+Increasing replay capacity can improve stability in structured regimes while amplifying vulnerability under reactive threats. The effect emerges from the interaction between replay capacity and allocator-driven exploration predictability: larger replay buffers can reinforce recurring patterns, and reactive adversaries can exploit those patterns.
 
 Capacity sensitivity is most severe under allocator stress, particularly with \small\texttt{Random}. In the Hybrid suite, efficiency swings exceed 20--38 percentage points across replay-capacity settings under Adaptive and Markov threats. Replay capacity therefore cannot be tuned independently of allocator policy or threat regime.
 
