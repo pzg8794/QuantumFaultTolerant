@@ -20,6 +20,7 @@ RQ1 uses the EXP-family, CMAB, and iCMAB corpora, filtered to Stochastic runs un
 
 \begin{figure}[t]
 \centering
+\textbf{Stochastic Algorithm-Tier Separation}\\[-0.3em]
 \includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-033_g9_network_gap_analysis_panel_d_rq1_algorithm_tier_separation_stochastic.png}
 \caption{Stochastic-regime algorithm separation. The figure compares Oracle-normalized efficiency under stochastic decoherence and separates the evaluated bandit policies into viable, degraded, and collapsed tiers. This visual supports the RQ1 claim that contextual pursuit and epsilon-greedy baselines remain viable while several structurally mismatched policies fail.}
 \label{fig:main_performance_summary}
@@ -72,6 +73,7 @@ RQ2 uses the Markov, Adaptive, and OnlineAdaptive threat slice from \cref{tab:sc
 
 \begin{figure}[t]
 \centering
+\textbf{Worst-Case Robustness Floors}\\[-0.3em]
 \includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-040_g2_robustness_floor.png}
 \caption{Worst-case robustness floor under structured and adaptive threats. The figure reports each representative policy's lowest Oracle-normalized efficiency across the locked adversarial scope. Higher floors indicate policies that avoid catastrophic collapse; iCEpsilonGreedy has the strongest floor, CPursuit has the best average, and EXPNeuralUCB is fragile despite adversarial-style exploration.}
 % \shee{Replace low quality images - 5, 7, 8a, 9b, 11, 12} -- SOLVED: Refreshed the manuscript-facing PNG assets at print-quality resolution and revalidated the active draft build.
@@ -82,10 +84,18 @@ RQ2 uses the Markov, Adaptive, and OnlineAdaptive threat slice from \cref{tab:sc
 \begin{figure*}[t]
 \centering
 \subfloat[Scenario penalties relative to the baseline condition. Larger penalties indicate greater threat-induced degradation for a given algorithm family.\label{fig:scenario_penalty_main}]{%
-  \includegraphics[width=0.48\textwidth]{figures/icnp/ICNP-CODE-036_g9_network_gap_analysis_panel_g_scenario_penalty_vs_baseline_by_algorith.png}}
+  \begin{minipage}{0.48\textwidth}
+  \centering
+  \textbf{Scenario Penalties}\\[-0.3em]
+  \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-036_g9_network_gap_analysis_panel_g_scenario_penalty_vs_baseline_by_algorith.png}
+  \end{minipage}}
 \hfill
 \subfloat[Threat-escalation heatmap across algorithms and scenarios. The heatmap shows how performance changes as disruption progresses from stochastic noise to structured and adaptive interference.\label{fig:threat_escalation_heatmap_main}]{%
-  \includegraphics[width=0.48\textwidth]{figures/icnp/ICNP-CODE-034_g9_network_gap_analysis_panel_e_threat_escalation_heatmap_algo_scenario.png}}
+  \begin{minipage}{0.48\textwidth}
+  \centering
+  \textbf{Threat-Escalation Heatmap}\\[-0.3em]
+  \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-034_g9_network_gap_analysis_panel_e_threat_escalation_heatmap_algo_scenario.png}
+  \end{minipage}}
 \caption{Main-body threat diagnostics for RQ2. Panel (a) quantifies how much efficiency is lost when moving from the baseline condition to each threat regime; Panel (b) shows the same escalation as an algorithm-by-scenario heatmap. Together with \Cref{fig:robustness_floor}, these figures show that contextual and informed policies preserve stronger stability than EXP-family baselines as the threat model becomes more structured and adaptive.}
 % \devroop{Try to group figures supporting a single point of observation.} -- SOLVED: Grouped scenario-penalty and threat-escalation diagnostics into one RQ2 figure.
 \label{fig:threat_penalty_escalation}
@@ -170,10 +180,18 @@ The formal capacity-paradox claim is anchored to non-Random evidence: under \tex
 \begin{figure*}[t]
 \centering
 \subfloat[Compact capacity-paradox summary. Bars show the replay-scale effect by threat regime, emphasizing that added replay can help or hurt depending on the disruption process.\label{fig:capacity_paradox_summary}]{%
-  \includegraphics[width=0.48\textwidth]{figures/icnp/ICNP-CODE-039_g1_capacity_paradox.png}}
+  \begin{minipage}{0.48\textwidth}
+  \centering
+  \textbf{Compact Capacity-Paradox Summary}\\[-0.3em]
+  \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-039_g1_capacity_paradox.png}
+  \end{minipage}}
 \hfill
 \subfloat[Detailed replay-configuration sensitivity. The panel expands the same claim across all six replay configurations and scenarios, exposing where the non-monotonic capacity effect is strongest.\label{fig:capacity_paradox_all_configs_main}]{%
-  \includegraphics[width=0.48\textwidth]{figures/icnp/ICNP-CODE-035_g9_network_gap_analysis_panel_f_capacity_paradox_all_6_replay_configs_sc.png}}
+  \begin{minipage}{0.48\textwidth}
+  \centering
+  \textbf{Replay-Configuration Sensitivity}\\[-0.3em]
+  \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-035_g9_network_gap_analysis_panel_f_capacity_paradox_all_6_replay_configs_sc.png}
+  \end{minipage}}
 \caption{Replay capacity has threat-dependent effects. Panel (a) gives the compact main finding: replay scale is not a monotonic improvement knob. Panel (b) expands that finding across replay semantics and scenarios, showing that the capacity paradox depends jointly on threat regime and replay configuration.}
 % \shee{Can data labels be added to all graphs?} -- SOLVED: Replaced temporary PGFPlots placeholder with exported notebook-validated images containing finalized graph styling/labels.
 % \shee{Is this figure the same as 12B?} -- SOLVED: Grouped the compact capacity-paradox graph with the detailed replay-configuration panel so the relationship is explicit instead of duplicated separately.
@@ -252,10 +270,18 @@ RQ3d converts the RQ3a--RQ3c findings into 6K deployment rules for iCPursuitNeur
 \begin{figure*}[t]
 \centering
 \subfloat[Scenario-based deployment guidance. The plot compares the strong static default against scenario-specific switching rules and shows that switching produces its largest gain under Adaptive disruption.\label{fig:deployment_rules_main}]{%
-  \includegraphics[width=0.48\textwidth]{figures/icnp/ICNP-CODE-042_g4_deployment_rules.png}}
+  \begin{minipage}{0.48\textwidth}
+  \centering
+  \textbf{Scenario-Based Deployment Guidance}\\[-0.3em]
+  \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-042_g4_deployment_rules.png}
+  \end{minipage}}
 \hfill
 \subfloat[Allocator-induced risk for iCPursuitNeuralUCB. The floor/mean/peak comparison shows that allocator choice can improve average efficiency while still lowering the worst-case floor, making allocator selection part of the robustness decision.\label{fig:allocator_risk_main}]{%
-  \includegraphics[width=0.48\textwidth]{figures/icnp/ICNP-CODE-037_g9_network_gap_analysis_panel_h_allocator_risk_floor_mean_peak_icpursuit.png}}
+  \begin{minipage}{0.48\textwidth}
+  \centering
+  \textbf{Allocator-Induced Risk}\\[-0.3em]
+  \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-037_g9_network_gap_analysis_panel_h_allocator_risk_floor_mean_peak_icpursuit.png}
+  \end{minipage}}
 \caption{Deployment guidance and allocator-risk evidence for RQ3d. Panel (a) summarizes when scenario-specific switching improves over the strong static default. Panel (b) explains why the rule cannot be based on average efficiency alone: allocator choices also change the robustness floor and peak behavior.}
 % \shee{Don't use 'The exported validation figure' in every caption. Refer to the corresponding plot.} -- SOLVED: Removed generic exported-figure language and described the specific plotted quantities and observed deployment consequence.
 % \devroop{Include the allocator-risk figure in the main body.} -- SOLVED: Grouped deployment guidance with allocator-risk evidence in one RQ3d figure.
