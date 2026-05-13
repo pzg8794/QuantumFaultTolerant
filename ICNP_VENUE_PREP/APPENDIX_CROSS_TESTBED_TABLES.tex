@@ -1,11 +1,11 @@
 \section{Detailed Cross-Testbed and Model-Family Results}
 \label{app:cross_testbed_full_tables}
 
-This appendix preserves the full cross-testbed and model-family tables that support the concise Results summaries in \Cref{tab:testbed_comparison_summary,tab:model_family_comparison_summary}. These tables are retained for auditability but moved out of the main Results flow so the paper body can focus on the central claims and final graph slots.
+This appendix reports the full cross-testbed and model-family evidence supporting the concise Results summaries in \Cref{tab:testbed_comparison_summary,tab:model_family_comparison_summary}. The tables preserve the per-testbed, per-family, and per-configuration detail behind the robustness hierarchy discussed in the main text.
 
 \subsection{Full Cross-Testbed Results}
 \label{app:full_cross_testbed_results}
-This subsection expands the concise main-body summary in \Cref{tab:testbed_comparison_summary} with the full per-testbed comparison table, while the following subsection expands the family-level summary in \Cref{tab:model_family_comparison_summary}.
+\Cref{tab:testbed_comparison_full} expands the concise main-body summary in \Cref{tab:testbed_comparison_summary}. It shows the configuration-level evidence behind the cross-testbed claim that pursuit--neural hybrids, especially \texttt{iCPursuitNeuralUCB}, provide the strongest average robustness while higher-complexity regimes can alter the winner structure.
 
 \begin{table*}[t]
 \centering
@@ -59,6 +59,7 @@ This subsection expands the concise main-body summary in \Cref{tab:testbed_compa
 
 \subsection{Full Model-Family Results}
 \label{app:full_model_family_results}
+\Cref{tab:model_family_comparison_full} expands the model-family summary from \Cref{tab:model_family_comparison_summary}. It provides the per-family evidence behind the claim that contextual and pursuit--neural methods form the strongest efficiency--stability frontier, while EXP-family and structurally mismatched baselines retain weaker robustness floors.
 
 \begin{table*}[t]
 \centering
