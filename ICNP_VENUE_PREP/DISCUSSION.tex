@@ -6,7 +6,7 @@ Across corpus and external testbeds, pursuit-based hybrids consistently define t
 
 % The appendix provides further details regarding these summarized findings. \Cref{tab:testbed_comparison_full,tab:model_family_comparison_full} report the per-configuration cross-testbed and model-family results supporting the robustness hierarchy, while \Cref{fig:appendix_context_vs_exp3_gap,fig:appendix_context_capacity_effects,fig:appendix_threat_rules,fig:appendix_g8_advanced_synthesis} give additional diagnostics for Oracle-gap behavior, capacity sensitivity, deployment rules, and grouped claim interactions.
 
-The appendix \Cref{tab:model_family_comparison_full} shows \texttt{iCPursuitNeuralUCB} leading the internal model-family ranking with 90.9\% average efficiency, ahead of \texttt{CPursuitNeuralUCB} (89.0\%), \texttt{GNeuralUCB} (89.0\%), and \texttt{EXPNeuralUCB} (88.4\%), establishing pursuit mechanisms as the 1--3 pp differentiator within the neural-hybrid family. Similarly, \Cref{tab:testbed_comparison_full} shows that this aggregate advantage generalizes across external testbeds: \texttt{iCPursuitNeuralUCB} achieves the highest average efficiency on \paperTwo (74.5\%), \paperSeven (78.0\%), \paperTwelve (44.1\%), and \paperEight (67.9\%). While \texttt{EXPNeuralUCB} wins more configurations on \paperEight, \texttt{iCPursuitNeuralUCB} maintains higher average efficiency (67.9\% vs.\ 61.9\%), showing more consistent performance across allocator and capacity settings. Together, \Cref{tab:model_family_comparison_full,tab:testbed_comparison_full} support the main hierarchy: pursuit-informed neural designs provide the strongest average robustness.
+The appendix \Cref{tab:model_family_comparison_full} shows \texttt{iCPursuitNeuralUCB} leading the internal model-family ranking with 90.9\% average efficiency, ahead of \texttt{GNeuralUCB} (89.0\%), and \texttt{EXPNeuralUCB} (88.4\%), establishing pursuit mechanisms as the 1--3 pp differentiator within the neural-hybrid family. Similarly, \Cref{tab:testbed_comparison_full} shows that this aggregate advantage generalizes across external testbeds: \texttt{iCPursuitNeuralUCB} achieves the highest average efficiency on \paperTwo (74.5\%), \paperSeven (78.0\%), \paperTwelve (44.1\%), and \paperEight (67.9\%). While \texttt{EXPNeuralUCB} wins more configurations on \paperEight, \texttt{iCPursuitNeuralUCB} maintains higher average efficiency (67.9\% vs.\ 61.9\%), showing more consistent performance across allocator and capacity settings. Together, both tables support the main hierarchy: pursuit-informed neural designs provide the strongest average robustness.
 
 % The appendix validates neural hybrid performance in detail. Neural hybrids achieve 
 % 87--96\% efficiency with CV≤6.5\% \Cref{tab:model_family_comparison_full} and 
@@ -20,23 +20,21 @@ The appendix \Cref{tab:model_family_comparison_full} shows \texttt{iCPursuitNeur
 % synthesizes how algorithm, allocator, and capacity jointly determine worst-case performance.
 
 % ----------------------------------------------------------------------------
-\subsubsection{Finding 1 - Context-Aware Bandit Policies Define the Robustness Frontier}
+\smallTitle{Context-Aware Bandit Policies vs the Robustness Frontier}
 
 Across the paper baselines (\RQOneText--\RQTwoText) and the Hybrid suite (\RQThreeText), context-aware policies outperform non-contextual and purely adversarial baselines in the settings that matter most for deployment. Pursuit-based contextual hybrids (\small\texttt{CPursuitNeuralUCB}, \small\texttt{iCPursuitNeuralUCB}) maintain strong efficiency across the five threat regimes, while EXP3-family baselines show weaker robustness floors under Markov, Adaptive, and OnlineAdaptive disruption. This suggests that topology and channel-state context are not optional refinements; they are part of the routing architecture needed for robust quantum-network operation.
 
 % ----------------------------------------------------------------------------
-\subsubsection{Finding 2 - The Capacity Paradox is Conditional}
+\smallTitle{The Capacity Paradox is Conditional}
 
 Increasing replay capacity can improve stability in structured regimes while amplifying vulnerability under reactive threats. The effect emerges from the interaction between replay capacity and allocator-driven exploration predictability: larger replay buffers can reinforce recurring patterns, and reactive adversaries can exploit those patterns.
 
 Capacity sensitivity is most severe under allocator stress, particularly with \small\texttt{Random}. In the Hybrid suite, efficiency swings exceed 20--38 percentage points across replay-capacity settings under Adaptive and Markov threats. Replay capacity therefore cannot be tuned independently of allocator policy or threat regime.
 
 % ----------------------------------------------------------------------------
-\subsubsection{Finding 3 - Allocator Choice is the Practical Deployment Lever}
+\smallTitle{Allocator Choice is the Practical Deployment Lever}
 
-Allocator choice is the highest-leverage deployment control in the Hybrid suite. Aggregated across scenarios and replay-capacity settings, \small\texttt{ThompsonSampling} and \small\texttt{Fixed}/\small\texttt{Default} form the top performance tier, while \small\texttt{Random} is strongly associated with catastrophic efficiency collapses. Allocator choice therefore functions as a safety mechanism, not merely as a tuning step.
-
-Even strong pursuit-neural architectures can be pulled into the capacity paradox under allocator mismatch, while robust allocators substantially suppress replay sensitivity.
+Allocator choice is the highest-leverage deployment control in the Hybrid suite. Aggregated across scenarios and replay-capacity settings, \small\texttt{ThompsonSampling} and \small\texttt{Fixed}/\small\texttt{Default} form the top performance tier, while \small\texttt{Random} is strongly associated with catastrophic efficiency collapses. Allocator choice therefore functions as a safety mechanism, not merely as a tuning step. Even strong pursuit-neural architectures can be pulled into the capacity paradox under allocator mismatch, while robust allocators substantially suppress replay sensitivity.
 
 % ----------------------------------------------------------------------------
 \subsection{Implications for Adversarial Quantum Network Design}
@@ -47,7 +45,7 @@ Second, replay capacity must be treated as a coupled control variable. The relev
 
 Finally, the results motivate lightweight threat-aware meta-policies:
 \begin{itemize}[nosep]
-\item Use \small\texttt{ThompsonSampling} or \small\texttt{Fixed}/\small\texttt{Default} allocators as safe deployment defaults.
-\item Treat replay-capacity settings as \emph{scenario-coupled} rather than static.
+\item Use \small\texttt{ThompsonSampling} or \small\texttt{Default} allocators as safe deployment defaults.
+\item Treat replay-capacity settings as \emph{scenario-coupled}.
 \item Dynamically adapt allocator and replay configurations using efficiency and variability signals observed during operation.
 \end{itemize}

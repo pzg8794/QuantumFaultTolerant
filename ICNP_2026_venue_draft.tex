@@ -279,9 +279,7 @@ under the threat process and allocator semantics fixed for that evaluation run. 
 
 The evaluated policies share the joint action/reward interface in \cref{subsec:mab} but differ in how they score paths, allocate qubits, and update from feedback. Hybrid policies combine a path-level selection rule (e.g., adversarial weighting or pursuit) with an allocation-level contextual scorer.
 
-Adversarial variants maintain path weights or probabilities over $r\in\{1,\ldots,|\mathcal{P}|\}$, then sample or select $r_t$ before choosing an allocation. This connects the update mechanism to the adversarial-feedback setting in \cref{subsec:threats}.
-
-Given $r_t$, contextual or neural policies score feasible allocations $\mathbf{x}\in\mathcal{X}_{r_t}$ using reward estimates and uncertainty:
+Adversarial variants maintain path weights or probabilities over $r\in\{1,\ldots,|\mathcal{P}|\}$, then sample or select $r_t$ before choosing an allocation. This connects the update mechanism to the adversarial-feedback setting in \cref{subsec:threats}. Given $r_t$, contextual or neural policies score feasible allocations $\mathbf{x}\in\mathcal{X}_{r_t}$ using reward estimates and uncertainty:
 \[
 \mathbf{x}_t \in \arg\max_{\mathbf{x}\in\mathcal{X}_{r_t}}
 \left[\widehat{q}_{r_t}(\mathbf{x})+\beta_t U_{r_t}(\mathbf{x})\right].
@@ -295,15 +293,34 @@ Informed variants augment the context vector from \cref{subsec:mab} with predict
 \subsection{Research Questions}
 \label{sec:research_questions}
 
-Our work addresses three research questions:
+\noindent Our work addresses three research questions:
+\begin{itemize}
+    \item \textbf{RQ1.} \emph{How do classical and context-aware multi-armed
+    bandit (MAB) policies perform under stochastic quantum network conditions?}
+    Stochastic decoherence alone separates viable from failing policies:
+    \texttt{CPursuit}, \texttt{CEpsilonGreedy}, and \texttt{iCEpsilonGreedy}
+    stay above 85\%, while epoch-greedy designs collapse to $\approx$37\%
+    without adversarial pressure.
 
-\noindent \textbf{RQ1.} \emph{How do classical and context-aware multi-armed bandit (MAB) policies perform under stochastic quantum network conditions?} We found that stochastic decoherence alone separates viable from failing policies: \texttt{CPursuit}, \texttt{CEpsilonGreedy}, and \texttt{iCEpsilonGreedy} stay above 85\%, while epoch-greedy designs collapse to $\approx$37\% without adversarial pressure.
-% \hl{We found that....}
+    \item \textbf{RQ2.} \emph{How does the performance of bandit-based routing
+    strategies change as network disruptions evolve from stochastic noise to
+    structured, adaptive adversarial interference?} Context-aware representatives
+    display stronger adversarial-scope stability: \texttt{CPursuit} and
+    \texttt{iCEpsilonGreedy} reach 88.1\% and 86.9\% average efficiency with
+    77.4\% and 81.0\% floors, while \texttt{EXPNeuralUCB} falls to an
+    18.0\% floor.
 
-\noindent \textbf{RQ2.} \emph{How does the performance of bandit-based routing strategies change as network disruptions evolve from stochastic noise to structured, adaptive adversarial interference?} Context-aware representatives display stronger adversarial-scope stability:
-\texttt{CPursuit} and \texttt{iCEpsilonGreedy} reach 88.1\% and 86.9\% average efficiency with 77.4\% and 81.0\% floors, while \texttt{EXPNeuralUCB} falls to an 18.0\% floor.
+    \item \textbf{RQ3.} \emph{How do choices in bandit policy, resource
+    allocation strategy, and replay-capacity semantics interact to affect
+    routing efficiency and stability in quantum entanglement routing?}
+    Robustness is a joint function of algorithm, allocator, and capacity:
+    under \texttt{ThompsonSampling} allocation and $T_b$-type anchoring,
+    OnlineAdaptive efficiency drops by 4.4~pp from $s{=}1$ to $s{=}1.5$,
+    then recovers by 6.0~pp at $s{=}2$.
+\end{itemize}
 
-\noindent \textbf{RQ3.} \emph{How do choices in bandit policy, resource allocation strategy, and replay-capacity semantics interact to affect routing efficiency and stability in quantum entanglement routing?} We found that robustness is a joint function of algorithm, allocator, and capacity, with replay scaling producing threat-dependent non-monotonic effects rather than monotone gains: under \texttt{ThompsonSampling} allocation and $T_b$-type anchoring, OnlineAdaptive efficiency drops by 4.4~pp from $s{=}1$ to $s{=}1.5$, then recovers by 6.0~pp at $s{=}2$.
+
+
 % Dan, grouped the RQ findings into one paragraph to show the through-line across all three: stochastic decoherence separates viable from failing policies (RQ1), context-awareness holds that advantage under escalation (RQ2), and the real lever is the algorithm–allocator–capacity interaction including the capacity paradox (RQ3). Let me know if you'd prefer them split
 
 %We organize the evaluation around three research questions that connect routing performance, threat progression, and deployment configuration. \textit{RQ1 asks how classical and context-aware bandit policies perform under stochastic quantum-network conditions. RQ2 asks how bandit-based routing strategies change as network disruptions evolve from stochastic noise to structured, adaptive adversarial interference. RQ3 asks how choices in bandit policy, resource allocation strategy, and replay-capacity semantics interact to affect routing efficiency and stability in quantum entanglement routing.} Together, the findings support a threat-aware view of entanglement routing: robustness depends not only on the learning rule, but also on how allocator policy and replay-capacity semantics interact with the disruption regime.
