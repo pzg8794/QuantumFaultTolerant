@@ -10,6 +10,7 @@ The following figures provide supporting views for claims that are central to th
 
 \begin{figure}[h]
 \centering
+\textbf{Contextual vs. EXP3 Oracle Gap}\\[-0.3em]
 \includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-032_g9_network_gap_analysis_panel_c_oracle_gap_context_vs_exp3_by_scenario_c.png}
 \caption{Contextual versus EXP3-style Oracle-gap diagnostic by scenario and capacity setting. The Oracle gap is the percentage-point distance between a policy's achieved efficiency and the perfect-information Oracle. Smaller gaps indicate policies that track the best available routing/allocation choice more closely; the plotted comparison shows where context-aware policies reduce this gap relative to EXP3-style baselines.\shee{White is not a good label color. It disappears in the background for some bars.}}
 % \devroop{dont use "supports the claim". simply showcase what observations we can derive from this and mention what you mean by oracle gap} -- SOLVED: Caption now defines Oracle gap and states the observable comparison directly.
@@ -18,6 +19,7 @@ The following figures provide supporting views for claims that are central to th
 
 \begin{figure}[h]
 \centering
+\textbf{Context-Capacity Interaction}\\[-0.3em]
 \includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-053_fig6_context_capacity.png}
 \caption{Context-capacity interaction diagnostic. The plot shows how context-aware policy efficiency changes as replay/capacity settings vary, illustrating that capacity affects policy families differently rather than acting as a uniform improvement knob.}
 \label{fig:appendix_context_capacity_effects}
@@ -25,6 +27,7 @@ The following figures provide supporting views for claims that are central to th
 
 \begin{figure}[h]
 \centering
+\textbf{Threat-Conditioned Deployment Rules}\\[-0.3em]
 \includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-056_fig10_threat_rules.png}
 \caption{Threat-rule diagnostic. The plot shows which scenario-conditioned deployment choices dominate under each threat regime, reinforcing the main-body observation that adaptive disruption benefits most from threat-aware allocator/capacity selection rather than a single universal rule.}
 % \shee{What is the additional support provided? All captions need to be more descriptive and explicitly mention the results that are shown. Don't just mention what the graph shows, also mention what is being observed.} -- SOLVED: Caption now states the observed deployment consequence.
@@ -38,6 +41,7 @@ The grouped synthesis figure below remains in the appendix because it combines m
 
 \begin{figure*}[t]
 \centering
+\textbf{Advanced Synthesis Diagnostics}\\[-0.3em]
 \includegraphics[width=0.98\textwidth]{figures/icnp/ICNP-CODE-024_g8_advanced_4panel_grouped_full_figure.png}
 \caption{Advanced synthesis diagnostic. Panel~(A) shows that the strongest contextual and pursuit--neural policies concentrate at lower Oracle gaps, supporting the claim that context-aware routing reduces efficiency loss relative to weaker baselines. Panel~(B) shows that replay scale changes performance non-monotonically: the intermediate setting produces the weakest robustness, while the larger setting recovers performance. This supports the capacity-paradox claim that capacity must be interpreted jointly with replay semantics and threat regime, not as a uniformly beneficial resource increase. Panel~(C) shows that allocator choice changes both average efficiency and tail behavior, supporting the claim that allocation policy is part of the robustness mechanism rather than a secondary implementation detail. Panel~(D) shows that the pursuit--neural advantage persists across external testbeds, while larger or more constrained topologies reduce separation from the Oracle and can change second-tier rankings. Together, the panels show that routing robustness is not determined by the learner alone, but by the interaction among policy family, replay/capacity setting, allocator choice, and testbed scale.}
 % \shee{Legend for figure C overlaps the bars. Move legends so that they don't overlap the graph} -- Source note retained for any future appendix-only figure-layout pass; removed from rendered caption for the active draft.
