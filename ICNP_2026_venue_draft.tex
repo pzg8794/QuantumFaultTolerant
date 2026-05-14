@@ -151,7 +151,11 @@ Existing quantum-routing studies propose online path selection, benchmarking-dri
 \draw[arrow, draw=black!75, dotted] (grid) -- (guidance);
 \end{tikzpicture}%
 }
-\caption{Threat-aware evaluation framework. Color, fill, and arrow style distinguish topology, threat, policy, allocator, and replay/capacity inputs while preserving black-and-white readability. These dimensions are matched before reporting metrics, robustness comparisons, and deployment guidance.}
+\caption{Threat-aware evaluation framework. Five matched inputs---topology,
+threat, policy, allocator, and replay---feed a shared evaluation grid that
+produces Oracle-normalized metrics, robustness comparisons, and deployment
+guidance. Matching all five simultaneously exposes the policy--allocator--capacity
+interaction as the controlling robustness factor.}
 \label{fig:framework}
 \end{figure}
 % this gap
