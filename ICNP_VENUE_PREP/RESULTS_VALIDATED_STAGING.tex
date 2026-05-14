@@ -93,7 +93,7 @@ iCEXP4 & 35.6 & 38.3 & 37.0 \\
 Under Markov, Adaptive, and OnlineAdaptive threats, contextual and informed policies maintain stronger robustness floors than EXP-family adversarial-first baselines. This extends RQ1 from stochastic viability to adaptive disruption.
 
 \smallTitle{Threat scope and aggregation}
-RQ2 uses the Markov, Adaptive, and OnlineAdaptive threat slice from \cref{tab:scenario_specs}, restricted to the default allocator and aggregated across 4K--8K horizons, $s\in\{1,1.5,2\}$, both $T$/$T_b$ replay semantics, and the 3- and 5-run suites. The table reports the strongest CMAB and iCMAB representatives together with two EXP-family adversarial baselines.
+RQ2 uses the Markov, Adaptive, and OnlineAdaptive threat slice from \cref{tab:scenario_specs}, restricted to the default allocator and aggregated across 4K--8K horizons, $s\in\{1,1.5,2\}$, both $T$/$T_b$ replay semantics, and the 3- and 5-run suites. The table reports the strongest CMAB and iCMAB representatives along with EXP-family adversarial baselines.
 
 \begin{figure}[ht!]
 \centering
@@ -163,7 +163,7 @@ RQ3 evaluates whether algorithm, allocator, and replay-capacity choices should c
 RQ3 uses the validated Hybrid corpus for CPursuitNeuralUCB, iCPursuitNeuralUCB, GNeuralUCB, and EXPNeuralUCB across all scenarios, allocators, replay anchoring types, scales $s\in\{1,1.5,2\}$, and 4K--8K horizons. Unless otherwise noted, point estimates average the 3- and 5-run suites; RQ3 CV values are computed across scenario means as a deployment-volatility proxy because per-run variance is not available in the corpus table.
 
 \smallTitle{Primary deployment observation}
-Deployment is configuration-sensitive, but the Hybrid corpus also reveals a strong static configuration. At the 6K horizon, \texttt{iCPursuitNeuralUCB + Fixed + ($T$-type, $s=2$)} achieves a 96.0\% global average and a 92.8\% worst-case floor across scenarios, using the validated mean over 3- and 5-run suites. Scenario-specific optima still differ, so later RQ3 analyses disaggregate allocator and replay-capacity effects.
+Deployment is configuration-sensitive, but the Hybrid corpus also reveals a strong static configuration. At the 6K horizon, \texttt{iCPursuitNeuralUCB+Fixed+($T$-type, $s=2$)} achieves a 96.0\% global average and a 92.8\% worst-case floor across scenarios, using the validated mean over 3- and 5-run suites. Scenario-specific optima still differ, so later RQ3 analyses disaggregate allocator and replay-capacity effects.
 
 % ============================================================================
 % RQ3a: Predictive Context Modeling Impact

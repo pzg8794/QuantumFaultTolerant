@@ -27,9 +27,7 @@ Across the paper baselines (\RQOneText--\RQTwoText) and the Hybrid suite (\RQThr
 % ----------------------------------------------------------------------------
 \smallTitle{The Capacity Paradox is Conditional}
 
-Increasing replay capacity can improve stability in structured regimes while amplifying vulnerability under reactive threats. The effect emerges from the interaction between replay capacity and allocator-driven exploration predictability: larger replay buffers can reinforce recurring patterns, and reactive adversaries can exploit those patterns.
-
-Capacity sensitivity is most severe under allocator stress, particularly with \small\texttt{Random}. In the Hybrid suite, efficiency swings exceed 20--38 percentage points across replay-capacity settings under Adaptive and Markov threats. Replay capacity therefore cannot be tuned independently of allocator policy or threat regime.
+Increasing replay capacity can improve stability in structured regimes while amplifying vulnerability under reactive threats. The effect emerges from the interaction between replay capacity and allocator-driven exploration predictability: larger replay buffers can reinforce recurring patterns, and reactive adversaries can exploit those patterns. Capacity sensitivity is most severe under allocator stress, particularly with \small\texttt{Random}. In the Hybrid suite, efficiency swings exceed 20--38 percentage points across replay-capacity settings under Adaptive and Markov threats. Replay capacity therefore cannot be tuned independently of allocator policy or threat regime.
 
 % ----------------------------------------------------------------------------
 \smallTitle{Allocator Choice is the Practical Deployment Lever}
@@ -39,13 +37,15 @@ Allocator choice is the highest-leverage deployment control in the Hybrid suite.
 % ----------------------------------------------------------------------------
 \subsection{Implications for Adversarial Quantum Network Design}
 
-First, context-aware routing should be treated as baseline infrastructure. Feature enrichment through topology, link-state, and traffic information yields larger robustness gains than refining reward-only exploration rules.
+The results imply three design principles for adversarial quantum-network routing: context-aware routing should be treated as baseline infrastructure, replay capacity should be tuned as a coupled control variable, and deployment settings should adapt to the active threat regime. First, feature enrichment through topology, link-state, and traffic information yields larger robustness gains than refining reward-only exploration rules. Second, replay capacity is not simply a ``more or less replay'' decision; the anchoring rule ($T_b$ vs.\ $T$), scale ($s$), and allocator jointly determine tail risk under structured and adaptive disruption. Finally, lightweight threat-aware meta-policies should use \texttt{ThompsonSampling} or the static \texttt{Default} allocator as conservative deployment choices, treat replay-capacity settings as scenario-coupled, and adapt allocator and replay configurations using observed efficiency and variability signals.
 
-Second, replay capacity must be treated as a coupled control variable. The relevant deployment question is not simply \textquotedblleft more or less replay,\textquotedblright but which anchoring rule (\small\texttt{$T_b$} vs.\ \small\texttt{$T$}), scale ($s$), and allocator jointly minimize tail risk under the active threat regime.
+% First, context-aware routing should be treated as baseline infrastructure. Feature enrichment through topology, link-state, and traffic information yields larger robustness gains than refining reward-only exploration rules.
 
-Finally, the results motivate lightweight threat-aware meta-policies:
-\begin{itemize}[nosep]
-\item Use \small\texttt{ThompsonSampling} or \small\texttt{Default} allocators as safe deployment defaults.
-\item Treat replay-capacity settings as \emph{scenario-coupled}.
-\item Dynamically adapt allocator and replay configurations using efficiency and variability signals observed during operation.
-\end{itemize}
+% Second, replay capacity must be treated as a coupled control variable. The relevant deployment question is not simply \textquotedblleft more or less replay,\textquotedblright but which anchoring rule (\small\texttt{$T_b$} vs.\ \small\texttt{$T$}), scale ($s$), and allocator jointly minimize tail risk under the active threat regime.
+
+% Finally, the results motivate lightweight threat-aware meta-policies:
+% \begin{itemize}[nosep]
+% \item Use \small\texttt{ThompsonSampling} or \small\texttt{Default} allocators as safe deployment defaults.
+% \item Treat replay-capacity settings as \emph{scenario-coupled}.
+% \item Dynamically adapt allocator and replay configurations using efficiency and variability signals observed during operation.
+% \end{itemize}
