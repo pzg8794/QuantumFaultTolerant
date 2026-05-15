@@ -16,16 +16,10 @@
   \textbf{Internal and External Model-Family Ranking}\\[-0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-041_g3_family_summary.png}
   \end{minipage}}
-\caption{Cross-testbed and model-family confirmation. Panel (a) compares
-efficiency and Oracle gap across external quantum-network testbeds, showing
-that \texttt{iCPursuitNeuralUCB} provides the strongest average transfer while
-larger and more complex topologies increase the remaining Oracle gap. Panel (b)
-places the external results beside the internal model-family ranking, showing
-that pursuit--neural hybrids define the strongest average robustness hierarchy
-across internal and external validation. Together, the panels support the
-cross-testbed claim that pursuit-informed neural designs generalize beyond the
-primary evaluation network even as topology complexity compresses performance
-separation.}
+\caption{Cross-testbed and model-family confirmation. External-testbed transfer
+and family-level rankings show that \texttt{iCPursuitNeuralUCB} provides the
+strongest average robustness, even as larger topologies increase Oracle gaps and
+compress performance separation.}
 % \shee{Resize and edit the font of all sub-plot captions to match other figures and the paper content.} -- SOLVED: Removed the rendered note and retained the grouped two-panel formatting used by the main-body figure set.
 % \shee{This figure might be better in one-column.} -- SOLVED: Initially moved to one column; later grouped with model-family evidence as a two-panel figure to address table-to-figure alignment feedback.
 % \devroop{Use Author etal. instead of Paper 1, 2,... and cite. Be more descriptive about what is being plotted} -- SOLVED: Caption now names the author-cited testbed macros and states what efficiency/oracle-gap quantities are plotted.
@@ -38,7 +32,11 @@ separation.}
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{Concise cross-testbed findings retained in the main paper. Full per-algorithm and per-testbed detail is reported in \Cref{tab:testbed_comparison_full}.}
+\caption{Concise cross-testbed findings. \texttt{iCPursuitNeuralUCB} gives the
+strongest average efficiency across the four external testbeds, while
+configuration-level wins on \paperEight show that average and per-configuration
+dominance can diverge. Full detail appears in
+\Cref{tab:testbed_comparison_full}.}
 \label{tab:testbed_comparison_summary}
 \begin{tabular}{p{0.15\linewidth} p{0.73\linewidth} p{0.07\linewidth}}
 \toprule
@@ -56,7 +54,10 @@ separation.}
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{Concise model-family findings retained in the main paper. Full family-level detail is reported in \Cref{tab:model_family_comparison_full}.}
+\caption{Concise model-family findings. Hybrid pursuit--neural methods define
+the internal performance ceiling, and \texttt{iCPursuitNeuralUCB} preserves the
+strongest average efficiency across external testbeds. Full detail appears in
+\Cref{tab:model_family_comparison_full}.}
 \label{tab:model_family_comparison_summary}
 \begin{tabular}{p{0.1\linewidth} p{0.83\linewidth}}
 \toprule
