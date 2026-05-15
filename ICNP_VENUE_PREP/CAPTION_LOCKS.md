@@ -16,6 +16,12 @@ Locked fig:capacity_paradox panel (b) subcaption: Across the six replay configur
 
 Locked fig:capacity_paradox main caption: Panels (a) and (b) jointly support the RQ3b capacity-paradox claim: replay capacity acts as a threat-conditioned control variable governed by replay scale, anchoring rule, allocator behavior, and threat regime.
 
+Locked fig:deployment_guidance panel (a) subcaption: Comparing the strong static default with scenario-specific switching, Adaptive disruption gives the largest validated gain: ThompsonSampling with Tb-type replay at s=1.5 reaches 95.7 percent, a 2.9 percentage-point improvement. This supports the RQ3d claim that deployment rules should match policy, allocator, and replay settings to the active threat.
+
+Locked fig:deployment_guidance panel (b) subcaption: For iCPursuitNeuralUCB, allocator choice changes worst-case robustness: Fixed keeps an 88.9 percent floor, while Thompson drops to 73.3 percent. This 15.6 percentage-point floor shift supports the RQ3c/RQ3d claim that allocator selection is a first-class deployment control.
+
+Locked fig:deployment_guidance main caption: Panels (a) and (b) jointly support the RQ3d deployment claim: robust quantum-routing deployment is strongest when policy, allocator, and replay settings are matched to the active threat regime.
+
 Locked fig:threat_penalty_escalation panel (a) subcaption: Compared with Baseline, EXPNeuralUCB incurs the largest Stochastic and Adaptive penalties (12.4 and 13.8 percentage points), while CPursuit stays lower under Stochastic and OnlineAdaptive disruption (3.2 and 4.5 percentage points), supporting the RQ2 claim that threat escalation separates fragile adversarial-first designs from more stable contextual/pursuit models.
 
 Locked fig:threat_penalty_escalation panel (b) subcaption: Across Baseline, Stochastic, Markov, Adaptive, and OnlineAdaptive regimes, iCPursuitNeuralUCB preserves high efficiency (92.8 percent under Adaptive and 99.8 percent under OnlineAdaptive), while EXPUCB remains lower across Markov/Adaptive/OnlineAdaptive (73.8--76.4 percent), supporting the RQ2 claim that adaptive threats expose stability gaps across model families.
