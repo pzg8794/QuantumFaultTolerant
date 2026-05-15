@@ -41,7 +41,14 @@ the policy-family robustness hierarchy.}
 \centering
 \textbf{Threat-Conditioned Deployment Rules}\\[-0.0em]
 \includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-056_fig10_threat_rules.png}
-\caption{Threat-rule diagnostic. The preferred deployment choice changes with the active threat regime. This supports the deployment-guidance claim that adaptive disruption benefits from threat-aware allocator and replay selection, while the static default remains a strong baseline. In the broader argument, this diagnostic explains why the paper treats deployment as a threat-conditioned control problem. \shee{Move the legend so that it doesn't overlap the lines, change 'trails' to 'trials' in the bottom left label}}
+\caption{Threat-rule diagnostic. Recommended deployment choices vary with the
+active threat regime, showing that allocator and replay settings act as
+threat-conditioned controls. One visible rule pattern is that Adaptive disruption
+selects \texttt{ThompsonSampling} with $T_b$-type replay, while OnlineAdaptive
+returns to the static \texttt{Fixed} allocator with $T$-type replay. The static
+default remains strong across scenarios, and the threat-specific rules show that
+robust quantum-routing deployment requires matching policy, allocator, and
+replay settings to the active threat regime.}
 % \shee{What is the additional support provided? All captions need to be more descriptive and explicitly mention the results that are shown. Don't just mention what the graph shows, also mention what is being observed.} -- SOLVED: Caption now states the observed deployment consequence.
 \label{fig:appendix_threat_rules}
 \end{figure}
