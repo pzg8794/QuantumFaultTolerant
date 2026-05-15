@@ -216,9 +216,8 @@ At each decision frame $t$, a routing agent selects a candidate path $P_r$ and q
 \caption{System-model loop. At frame $t$, the agent observes candidate-path
 context, jointly selects a path and qubit allocation, interacts with the
 threat-conditioned quantum-network testbed, and updates from reward feedback.
-The loop supports the paper's core modeling claim: routing robustness must be
-evaluated as a coupled path-selection, allocation, threat, and feedback process,
-not as path selection alone.}
+The loop supports the paper's core modeling claim: routing robustness is governed
+by the full path-selection, allocation, threat, and feedback loop.}
 \label{fig:system_model}
 \end{figure}
 
@@ -226,7 +225,7 @@ not as path selection alone.}
 \label{subsec:topology}
 
 \smallTitle{4-node diamond topology}
-We use a four-node diamond topology with source $S$, destination $D$, and two intermediate repeaters, yielding four candidate paths $\mathcal{P}=\{P_1,P_2,P_3,P_4\}$: $P_1=S{\to}B{\to}D$, $P_2=S{\to}C{\to}D$, $P_3=S{\to}B{\to}C{\to}D$, and $P_4=S{\to}C{\to}B{\to}D$. We use $r$ to index paths, so $P_r$ is the selected path, while $r'$ denotes a dummy path index for summations or comparisons. Each path $P_r$ has hop count $h_r$, with $h_1=h_2=2$ and $h_3=h_4=3$; each hop denotes one adjacent entanglement link. This topology instantiates the path-length and routing-allocation tradeoffs introduced in \cref{sec:RelatedWork}, while keeping the path set small enough for controlled matched-regime evaluation.
+We use a four-node diamond topology with source $S$, destination $D$, and two intermediate repeaters, yielding four candidate paths $\mathcal{P}=\{P_1,P_2,P_3,P_4\}$: $P_1=S{\to}B{\to}D$, $P_2=S{\to}C{\to}D$, $P_3=S{\to}B{\to}C{\to}D$, and $P_4=S{\to}C{\to}B{\to}D$. We use $r$ to index paths, so $P_r$ is the selected path, while $r'$ denotes a dummy path index for summations or comparisons. Each path $P_r$ has hop count $h_r$, with $h_1=h_2=2 and $h_3=h_4=3$; each hop denotes one adjacent entanglement link. This topology instantiates the path-length and routing-allocation tradeoffs introduced in \cref{sec:RelatedWork}, while keeping the path set small enough for controlled matched-regime evaluation.
 % \devroop{define r} -- SOLVED: Defined $r$ in the topology/path notation as the candidate-path index, with $P_r$ denoting the selected path.
 % \shee{Is this supposed to be $P_r$? Define r'} -- SOLVED: Clarified that $r'$ is a dummy path index used in comparisons/summations over candidate paths; $P_r$ remains the selected path indexed by $r$.
 
