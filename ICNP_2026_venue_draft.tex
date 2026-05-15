@@ -149,10 +149,11 @@ Existing quantum-routing studies propose online path selection, benchmarking-dri
 \draw[arrow, draw=black!75, dotted] (grid) -- (guidance);
 \end{tikzpicture}%
 }
-\caption{Topology, threat, policy, allocator, and replay settings feed a matched
-evaluation grid that produces Oracle-normalized metrics, robustness comparisons,
-and deployment guidance. The five-way matching exposes the
-policy--allocator--capacity interaction as the controlling robustness factor.}
+\caption{The framework combines topology, threat regime, policy family,
+allocator, and replay configuration in a matched evaluation grid, yielding
+Oracle-normalized metrics, robustness comparisons, and deployment guidance. The
+design makes explicit the central robustness claim: performance depends on the
+joint policy--allocator--capacity configuration.}
 \label{fig:framework}
 \end{figure}
 % this gap
