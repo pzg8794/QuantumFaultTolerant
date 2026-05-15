@@ -55,9 +55,7 @@ We evaluate \texttt{4K}, \texttt{6K}, and \texttt{8K}-frame horizons to capture 
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{Matched evaluation-grid design matrix. Configuration axes, tested
-options, and RQ coverage define the controlled
-policy--allocator--capacity--threat comparison.}
+\caption{Experimental design matrix linking configuration dimensions, tested options, and research-question coverage.}
 \label{tab:config_summary}
 \begin{tabular}{>{\raggedright\arraybackslash}p{0.25\linewidth} >{\raggedright\arraybackslash}p{0.60\linewidth} >{\centering\arraybackslash}p{0.07\linewidth}}
 \toprule
@@ -106,9 +104,7 @@ The five threat settings follow \cref{subsec:threats} and \cref{tab:config_summa
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{Matched hyperparameter specification. Fixed, sourced settings keep
-robustness comparisons attributable to policy family, allocator, replay, and
-threat regime.}
+\caption{Hyperparameter settings and literature justifications.}
 \label{tab:setup-hyperparameters}
 \begin{tabular}{p{0.25\linewidth} p{0.25\linewidth} p{0.20\linewidth} p{0.16\linewidth}}
 \toprule
@@ -138,9 +134,7 @@ Replay semantics & All & $T_b=sF_b$, $T=sF_c$ & \cite{schaul2015prioritized,mnih
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{Matched threat-scenario specification. Baseline through
-OnlineAdaptive define the controlled escalation used for RQ1/RQ2 robustness
-attribution.}
+\caption{Scenario specifications used for matched threat evaluation.}
 \label{tab:scenario_specs}
 \begin{tabular}{p{0.22\linewidth} p{0.62\linewidth} p{0.08\linewidth}}
 \toprule
@@ -162,9 +156,7 @@ The evaluated bandit-policy portfolio spans classical, adversarial, contextual/n
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{Policy-family coverage for matched robustness comparison. Classical,
-adversarial, contextual/neural, pursuit-based, predictive, and Oracle-reference
-policies share one routing/reward interface.}
+\caption{Bandit-policy portfolio by evaluation phase.}
 \label{tab:setup-algorithm-portfolio}
 % \begin{tabular}{p{0.18\linewidth} p{0.24\linewidth} p{0.48\linewidth}}
 \begin{tabular}{@{}m{0.17\linewidth}>{\raggedright\arraybackslash}m{0.24\linewidth}>{\raggedright\arraybackslash}m{0.5\linewidth}@{}}
@@ -191,9 +183,7 @@ Phase 3 varies the allocator policies defined in \cref{subsec:topology} and summ
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{Qubit allocation strategies as deployment controls. The
-\texttt{Thompson}--\texttt{Random} efficiency spread shows allocator policy as
-a first-class factor in the policy--capacity--threat interaction.}
+\caption{Qubit allocation strategies and average efficiency across scenarios.}
 \label{tab:setup-allocators}
 % \begin{tabular}{p{0.20\linewidth} p{0.42\linewidth} p{0.14\linewidth} p{0.14\linewidth}}
 \begin{tabular}{@{}p{0.2\linewidth}>{\centering\arraybackslash}p{0.42\linewidth}>{\centering\arraybackslash}p{0.14\linewidth}>{\centering\arraybackslash}p{0.14\linewidth}@{}}
