@@ -22,7 +22,12 @@ RQ1 uses the EXP-family, CMAB, and iCMAB corpora, filtered to Stochastic runs un
 \centering
 \textbf{Stochastic Algorithm-Tier Separation}\\[-0.0em]
 \includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-033_g9_network_gap_analysis_panel_d_rq1_algorithm_tier_separation_stochastic.png}
-\caption{Stochastic-regime algorithm separation. The figure compares Oracle-normalized efficiency under stochastic decoherence and separates the evaluated bandit policies into viable, degraded, and collapsed tiers. This visual supports the RQ1 claim that contextual pursuit and epsilon-greedy baselines remain viable while several structurally mismatched policies fail.}
+\caption{Stochastic-regime algorithm separation. Policies are grouped by
+Oracle-normalized efficiency under stochastic decoherence, showing that
+contextual pursuit and epsilon-greedy baselines remain viable while epoch-greedy
+and other structurally mismatched policies collapse. This supports the RQ1 claim
+that stochastic noise alone is sufficient to separate robust contextual learners
+from failing policy designs.}
 \label{fig:main_performance_summary}
 \end{figure}
 
