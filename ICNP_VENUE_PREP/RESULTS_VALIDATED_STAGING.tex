@@ -140,7 +140,12 @@ threats expose stability gaps not visible from average efficiency alone.}
   \textbf{Replay-Configuration Sensitivity}\\[-0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-035_g9_network_gap_analysis_panel_f_capacity_paradox_all_6_replay_configs_sc.png}
   \end{minipage}}
-\caption{Replay capacity has threat-dependent effects. Panel (a) gives the compact main finding: replay scale is not a monotonic improvement knob. Panel (b) expands that finding across replay semantics and scenarios, showing that the capacity paradox depends jointly on threat regime and replay configuration.}
+\caption{Capacity-paradox diagnostics for RQ3b. Panel (a) summarizes how
+replay scale changes efficiency across threat regimes, and Panel (b) expands
+this effect across replay semantics and scenarios. Together, the panels support
+the RQ3b claim that replay capacity acts as a threat-conditioned control
+variable: robustness depends jointly on replay scale, anchoring rule, allocator
+behavior, and threat regime.}
 % \shee{Can data labels be added to all graphs?} -- SOLVED: Replaced temporary PGFPlots placeholder with exported notebook-validated images containing finalized graph styling/labels.
 % \shee{Is this figure the same as 12B?} -- SOLVED: Grouped the compact capacity-paradox graph with the detailed replay-configuration panel so the relationship is explicit instead of duplicated separately.
 % \devroop{Group capacity figures that support the same point.} -- SOLVED: Grouped the compact capacity-paradox figure and detailed replay-configuration panel into one two-panel Results figure.
