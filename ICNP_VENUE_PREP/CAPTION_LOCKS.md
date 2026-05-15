@@ -10,6 +10,8 @@ Locked fig:system_model caption: At frame t, the routing controller observes can
 
 Locked fig:robustness_floor caption: The figure reports each representative policy lowest Oracle-normalized efficiency across the locked Markov, Adaptive, and OnlineAdaptive scope. Higher floors indicate resistance to catastrophic collapse: iCEpsilonGreedy has the strongest floor, CPursuit has the best average, and EXPNeuralUCB remains fragile despite adversarial-style exploration. Together with fig:threat_penalty_escalation, this supports the RQ2 claim that adaptive threats expose stability gaps not visible from average efficiency alone.
 
+Locked fig:capacity_paradox caption: Panel (a) summarizes how replay scale changes efficiency across threat regimes, and Panel (b) expands this effect across replay semantics and scenarios. Together, the panels support the RQ3b claim that replay capacity acts as a threat-conditioned control variable: robustness depends jointly on replay scale, anchoring rule, allocator behavior, and threat regime.
+
 Locked terminology: use routing controller, not agent, in fig:system_model caption.
 
 Patch rule: patch one figure-bearing section at a time. Preserve visible titles, figure bodies, and short table captions unless a separate table-caption change is approved.
