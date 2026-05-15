@@ -149,11 +149,10 @@ Existing quantum-routing studies propose online path selection, benchmarking-dri
 \draw[arrow, draw=black!75, dotted] (grid) -- (guidance);
 \end{tikzpicture}%
 }
-\caption{Threat-aware evaluation framework. Topology, threat, policy, allocator,
-and replay settings feed a matched evaluation grid that produces
-Oracle-normalized metrics, robustness comparisons, and deployment guidance. The
-five-way matching exposes the policy--allocator--capacity interaction as the
-controlling robustness factor.}
+\caption{Topology, threat, policy, allocator, and replay settings feed a matched
+evaluation grid that produces Oracle-normalized metrics, robustness comparisons,
+and deployment guidance. The five-way matching exposes the
+policy--allocator--capacity interaction as the controlling robustness factor.}
 \label{fig:framework}
 \end{figure}
 % this gap
@@ -212,11 +211,10 @@ At each decision frame $t$, a routing agent selects a candidate path $P_r$ and q
 \draw[arrow, draw=black!75, dashed] (reward) -- (agent);
 \end{tikzpicture}%
 }
-\caption{System-model loop. At frame $t$, the routing controller observes path
-context, jointly selects a path and qubit allocation, interacts with the
-threat-conditioned testbed, and updates from reward feedback. The loop frames
-routing robustness as a coupled path-selection, allocation, threat, and feedback
-process.}
+\caption{At frame $t$, the routing controller observes path context, jointly
+selects a path and qubit allocation, interacts with the threat-conditioned
+testbed, and updates from reward feedback. The loop frames routing robustness as
+a coupled path-selection, allocation, threat, and feedback process.}
 \label{fig:system_model}
 \end{figure}
 
