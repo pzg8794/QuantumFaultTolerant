@@ -243,23 +243,31 @@ Under \texttt{ThompsonSampling} allocation and $T_b$-type replay anchoring, Onli
 
 \begin{figure*}[ht!]
 \centering
-\subfloat[Scenario-based deployment guidance. The plot compares the strong static default against scenario-specific switching rules and shows that switching produces its largest gain under Adaptive disruption.\label{fig:deployment_rules_main}]{%
+\subfloat[Comparing the strong static default with scenario-specific switching,
+Adaptive disruption gives the largest validated gain: \texttt{ThompsonSampling}
+with $T_b$-type replay at $s{=}1.5$ reaches 95.7\%, a 2.9 percentage-point
+improvement. This supports the RQ3d claim that deployment rules should match
+policy, allocator, and replay settings to the active threat.
+\label{fig:deployment_rules_main}]{%
   \begin{minipage}{0.45\textwidth}
   \centering
   \textbf{Scenario-Based Deployment Guidance}\\[-0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-042_g4_deployment_rules.png}
   \end{minipage}}
 \hfill
-\subfloat[Allocator-induced risk for iCPursuitNeuralUCB. The floor/mean/peak comparison shows that allocator choice can improve average efficiency while still lowering the worst-case floor, making allocator selection part of the robustness decision.\label{fig:allocator_risk_main}]{%
+\subfloat[For \texttt{iCPursuitNeuralUCB}, allocator choice changes worst-case
+robustness: \texttt{Fixed} keeps an 88.9\% floor, while \texttt{Thompson} drops
+to 73.3\%. This 15.6 percentage-point floor shift supports the RQ3c/RQ3d claim
+that allocator selection is a first-class deployment control.
+\label{fig:allocator_risk_main}]{%
   \begin{minipage}{0.52\textwidth}
   \centering
   \textbf{Allocator-Induced Risk}\\[-0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-037_g9_network_gap_analysis_panel_h_allocator_risk_floor_mean_peak_icpursuit.png}
   \end{minipage}}
-\caption{Panel~(a) shows that scenario switching gives its largest gain under
-Adaptive disruption. Panel~(b) shows that allocator choice changes floor, mean,
-and peak efficiency for \texttt{iCPursuitNeuralUCB}. Together, the panels
-motivate threat-matched policy, allocator, and replay settings.}
+\caption{Panels~(a) and~(b) jointly support the RQ3d deployment claim:
+robust quantum-routing deployment is strongest when policy, allocator, and
+replay settings are matched to the active threat regime.}
 % \shee{Don't use 'The exported validation figure' in every caption. Refer to the corresponding plot.} -- SOLVED: Removed generic exported-figure language and described the specific plotted quantities and observed deployment consequence.
 % \devroop{Include the allocator-risk figure in the main body.} -- SOLVED: Grouped deployment guidance with allocator-risk evidence in one RQ3d figure.
 \label{fig:deployment_guidance}
