@@ -130,23 +130,30 @@ threats expose stability gaps not visible from average efficiency alone.}
 
 \begin{figure*}[ht!]
 \centering
-\subfloat[Compact capacity-paradox summary. Bars show the replay-scale effect by threat regime, emphasizing that added replay can help or hurt depending on the disruption process.\label{fig:capacity_paradox_summary}]{%
+\subfloat[Under the OnlineAdaptive threat, replay scaling is non-monotonic:
+efficiency drops from 89.2\% at $s{=}1$ to 84.9\% at $s{=}1.5$, then recovers
+to 90.8\% at $s{=}2$. This pattern supports the capacity-paradox claim that
+added replay can help or hurt depending on the active threat.
+\label{fig:capacity_paradox_summary}]{%
   \begin{minipage}{0.45\textwidth}
   \centering
   \textbf{Compact Capacity-Paradox Summary}\\[-0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-039_g1_capacity_paradox.png}
   \end{minipage}}
 \hfill
-\subfloat[Detailed replay-configuration sensitivity. The panel expands the same claim across all six replay configurations and scenarios, exposing where the capacity-paradox effect is strongest.\label{fig:capacity_paradox_all_configs_main}]{%
+\subfloat[Across the six replay configurations, replay semantics changes the
+same scale effect: under OnlineAdaptive, $T$-type replay spans 83.2--90.6\%,
+while $T_b$-type replay spans 84.2--86.6\%. This supports the RQ3b claim that
+replay capacity must be interpreted jointly with anchoring rule and threat
+regime.
+\label{fig:capacity_paradox_all_configs_main}]{%
   \begin{minipage}{0.52\textwidth}
   \centering
   \textbf{Replay-Configuration Sensitivity}\\[-0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-035_g9_network_gap_analysis_panel_f_capacity_paradox_all_6_replay_configs_sc.png}
   \end{minipage}}
-\caption{Panel~(a) summarizes how replay scale changes efficiency across threat
-regimes, and Panel~(b) expands this effect across replay semantics and
-scenarios. Together, the panels support the RQ3b claim that replay capacity acts
-as a threat-conditioned control variable: robustness depends jointly on replay
+\caption{Panels~(a) and~(b) jointly support the RQ3b capacity-paradox claim:
+replay capacity acts as a threat-conditioned control variable governed by replay
 scale, anchoring rule, allocator behavior, and threat regime.}
 % \shee{Can data labels be added to all graphs?} -- SOLVED: Replaced temporary PGFPlots placeholder with exported notebook-validated images containing finalized graph styling/labels.
 % \shee{Is this figure the same as 12B?} -- SOLVED: Grouped the compact capacity-paradox graph with the detailed replay-configuration panel so the relationship is explicit instead of duplicated separately.
