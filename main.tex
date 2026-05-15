@@ -1,3 +1,4 @@
+% !TeX program = pdflatex
 \documentclass[10pt,conference]{IEEEtran}
 
 % Piter
@@ -452,7 +453,7 @@ We study a canonical 4-node quantum network connecting source $S$ (Alice) to des
 Each path $P_r$ has $h_r$ hops ($h_1 = h_2 = 2$, $h_3 = h_4 = 3$), where a \textbf{hop} denotes a single entanglement link between adjacent nodes (\eg source-to-repeater or repeater-to-destination) requiring one entanglement generation operation. Shorter paths reduce swapping overhead but may traverse noisier channels; longer paths enable route diversity but accumulate fidelity loss.
 
 \smallTitle{Qubit budget and allocator policies}
-The network operates under a \textbf{fixed total budget of 35 qubits} distributed across paths. We evaluate \textbf{four allocator strategies} chosen to span complementary allocation behaviors: a static baseline (\textbf{Fixed}), two principled adaptive heuristics based on posterior sampling and optimistic exploration (\textbf{ThompsonSampling} and \textbf{DynamicUCB}), and a non-informative control baseline (\textbf{Random}). This set allows us to compare whether routing robustness is best supported by fixed, uncertainty-aware, or uninformed allocation under the same total resource budget.
+The canonical internal topology operates under a \textbf{35-qubit baseline budget} distributed across paths. This 35-qubit setting defines the controlled internal system model in this section, not a global limit of the broader framework, which also supports topology-specific budgets for the external testbeds. We evaluate \textbf{four allocator strategies} chosen to span complementary allocation behaviors: a static baseline (\textbf{Fixed}), two principled adaptive heuristics based on posterior sampling and optimistic exploration (\textbf{ThompsonSampling} and \textbf{DynamicUCB}), and a non-informative control baseline (\textbf{Random}). This set allows us to compare whether routing robustness is best supported by fixed, uncertainty-aware, or uninformed allocation under the same total resource budget.
 \begin{enumerate}
 \item \textbf{Fixed} ($T_1{=}8, T_2{=}10, T_3{=}8, T_4{=}9$): static baseline
 \item \textbf{ThompsonSampling}: Bayesian posterior sampling over path utilities
@@ -1026,7 +1027,7 @@ This section specifies the experimental design used to evaluate adaptive quantum
 \paragraph*{Network configuration}
 We use a 4-node quantum network with four alternative paths connecting source $S$ to destination $D$ via repeater nodes (\Cref{fig:network_topology}). Paths $P_1$ and $P_4$ have two hops, while $P_2$ and $P_3$ have three hops, matching common small-scale quantum-network architectures and demonstrations~\cite{wehner2018quantum,pompili2021realization} \shee{$P_1$ and $P_2$ have 2 hops while $P_3$ and $P_4$ have 3 hops}. This topology provides sufficient action-space complexity for bandit learning~\cite{huang2024quantum,dai2020quantum} while keeping exhaustive cross-product sweeps tractable (hundreds of algorithm--scenario--allocator configurations; see \Cref{tab:config_summary}).
 
-Total physical network capacity is fixed at 35 qubits across all experiments, representing resource-constrained early-stage deployments~\cite{simon2017towards}. This induces non-trivial exploration--exploitation tradeoffs: algorithms cannot over-provision all paths. Per-path allocations are determined by the allocator (\Cref{tab:setup-allocators}), enabling controlled comparison of static versus adaptive resource management.
+For the canonical internal topology, total physical network capacity is fixed at 35 qubits, representing a resource-constrained baseline deployment~\cite{simon2017towards}. This is not a framework-wide ceiling: the broader evaluation also includes external testbeds with topology-specific native budgets. The fixed 35-qubit baseline induces non-trivial exploration--exploitation tradeoffs: algorithms cannot over-provision all paths. Per-path allocations are determined by the allocator (\Cref{tab:setup-allocators}), enabling controlled comparison of static versus adaptive resource management.
 	% NOTE: TikZ uses right=of / below=of -> requires \usetikzlibrary{positioning}
 \begin{figure}[ht!]
 \centering
