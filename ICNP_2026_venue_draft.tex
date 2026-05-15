@@ -93,7 +93,7 @@ Quantum entanglement routing requires joint path selection and qubit allocation 
 
 
 % \devroop{Highlight the key findings not just values}
-% \hl{To address limitations in XYZ,} we introduce a threat-aware evaluation framework for comparing stochastic, contextual/neural, adversarial, predictive, and hybrid bandit policies for joint quantum path selection and qubit allocation. Unlike work that fixes allocator policy and replay semantics, we vary threat regime, allocator policy, and replay capacity as first-class factors, enabling attribution of robustness to the bandit-policy--allocator--capacity interaction. Across thirteen bandit policies and five threat regimes, neural hybrids outperform non-contextual baselines by 18--24 percentage points in scenario-aggregated efficiency, sustain worst-case efficiency above 85\% under stochastic threats, and remain more stable than adversarial-first EXP3-style designs under adaptive attacks. We also identify a threat-dependent capacity paradox: under fixed Random allocation and $T$-type replay anchoring, increasing replay scale from $s{=}1$ to $s{=}1.5$ reduces Markov efficiency by 37.8--46.5 percentage points, while $s{=}2$ recovers above the $s{=}1$ Markov baseline. This shows that resource predictability, not raw capacity, can dominate robustness. Cross-testbed evaluation on three external quantum-network simulators confirms the main robustness trends while exposing scale- and physics-dependent limits.
+% \hl{To address limitations in XYZ,} we introduce a threat-aware evaluation framework for comparing stochastic, contextual/neural, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation. Unlike work that fixes allocator policy and replay semantics, we vary threat regime, allocator policy, and replay capacity as first-class factors, enabling attribution of robustness to the bandit-policy--allocator--capacity interaction. Across thirteen bandit policies and five threat regimes, neural hybrids outperform non-contextual baselines by 18--24 percentage points in scenario-aggregated efficiency, sustain worst-case efficiency above 85\% under stochastic threats, and remain more stable than adversarial-first EXP3-style designs under adaptive attacks. We also identify a threat-dependent capacity paradox: under fixed Random allocation and $T$-type replay anchoring, increasing replay scale from $s{=}1$ to $s{=}1.5$ reduces Markov efficiency by 37.8--46.5 percentage points, while $s{=}2$ recovers above the $s{=}1$ Markov baseline. This shows that resource predictability, not raw capacity, can dominate robustness. Cross-testbed evaluation on three external quantum-network simulators confirms the main robustness trends while exposing scale- and physics-dependent limits.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -149,10 +149,11 @@ Existing quantum-routing studies propose online path selection, benchmarking-dri
 \draw[arrow, draw=black!75, dotted] (grid) -- (guidance);
 \end{tikzpicture}%
 }
-\caption{Topology, threat, policy, allocator, and replay settings feed a matched
-evaluation grid that produces Oracle-normalized metrics, robustness comparisons,
-and deployment guidance. The five-way matching exposes the
-policy--allocator--capacity interaction as the controlling robustness factor.}
+\caption{Five matched inputs---topology, threat, policy, allocator, and
+replay---feed a shared evaluation grid to produce \texttt{Oracle}-normalized
+metrics, robustness comparisons, and deployment guidance. Matching all five
+simultaneously exposes the \texttt{policy--allocator--capacity} interaction as
+the controlling robustness factor.}
 \label{fig:framework}
 \end{figure}
 % this gap
