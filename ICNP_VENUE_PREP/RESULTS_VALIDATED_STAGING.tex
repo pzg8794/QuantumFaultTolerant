@@ -248,7 +248,14 @@ Under \texttt{ThompsonSampling} allocation and $T_b$-type replay anchoring, Onli
   \textbf{Allocator-Induced Risk}\\[-0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-037_g9_network_gap_analysis_panel_h_allocator_risk_floor_mean_peak_icpursuit.png}
   \end{minipage}}
-\caption{Deployment guidance and allocator-risk evidence for RQ3d. Panel (a) summarizes when scenario-specific switching improves over the strong static default. Panel (b) explains why the rule cannot be based on average efficiency alone: allocator choices also change the robustness floor and peak behavior.}
+\caption{Deployment guidance and allocator-risk evidence for RQ3d. Panel (a)
+compares the strong static default with scenario-specific switching rules,
+showing that adaptive switching yields its largest gains under Adaptive
+disruption. Panel (b) links allocator choice to floor, mean, and peak efficiency
+for \texttt{iCPursuitNeuralUCB}, showing that allocator selection controls both
+average performance and tail risk. Together, the panels support the RQ3d claim
+that robust deployment comes from jointly tuning policy, allocator, and replay
+settings to the active threat regime.}
 % \shee{Don't use 'The exported validation figure' in every caption. Refer to the corresponding plot.} -- SOLVED: Removed generic exported-figure language and described the specific plotted quantities and observed deployment consequence.
 % \devroop{Include the allocator-risk figure in the main body.} -- SOLVED: Grouped deployment guidance with allocator-risk evidence in one RQ3d figure.
 \label{fig:deployment_guidance}
