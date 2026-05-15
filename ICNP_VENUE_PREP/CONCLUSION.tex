@@ -1,27 +1,30 @@
 \section{Conclusion}
 \label{sec:conclusion}
-% VALIDATED: Conclusion revised after the May 15 meeting feedback to avoid a
-% compressed Results-section summary. The active paragraph keeps the conclusion
-% as a single paragraph, reduces metric density, and states the paper-level
-% takeaways in plain English.
+% LOCKED: Validated May 15 conclusion wording. Keep this as a single paragraph.
+% Requirements: plain-English takeaway, no future-work sentence, numeric evidence
+% only where it proves the main claims, and explicit external-testbed comparison.
 
-This work shows that quantum entanglement routing is a deployment co-design
-problem rather than only a path-selection problem. Across the matched evaluation
-grid, context-aware pursuit and neural models, especially
-\texttt{iCPursuitNeuralUCB}, provide the clearest deployment advantage because
-they use path context and feedback to remain stable as disruption becomes
-structured and adaptive. Adversarial-first exploration alone is not enough: it
-can look competitive in aggregate while still becoming fragile under harder
-threat regimes. The main takeaway is that robustness comes from matching the
-learning model, qubit allocator, and replay configuration to the active threat.
-Replay capacity is therefore a control knob, not a monotonic upgrade, and
-allocator choice is part of the routing mechanism rather than an implementation
-detail. A strong static default is useful when the threat is unknown, but the
-safest deployment strategy is to adapt allocator and replay settings once the
-threat regime is detected. The cross-testbed results reinforce the same lesson:
-pursuit-informed neural routing transfers beyond the primary network, while
-larger and more constrained topologies reduce the separation among models and
-make deployment tuning more important.
+This work shows that robust quantum entanglement routing under adversarial
+conditions requires joint control of path selection, qubit allocation, replay
+capacity, and threat response. The matched evaluation identifies
+\texttt{iCPursuitNeuralUCB} as the strongest context-aware neural routing model:
+it reaches 90.9\% internal average efficiency, clears the 90\% model-family
+threshold, and outperforms the closest internal alternatives, which remain below
+that mark. Under harder threats, adversarial-first exploration remains less
+reliable: \texttt{EXPNeuralUCB} falls to an 18.0\% robustness floor, while the
+strongest contextual baselines maintain floors near 77--81\%. The capacity
+paradox shows why deployment tuning matters: replay capacity must be matched to
+the active threat, and allocator choice directly shapes routing robustness. When
+the threat is unknown, a fixed pursuit--neural deployment baseline provides a
+strong starting point; when the threat is detected, allocator and replay settings
+should be adapted to the threat regime. The external-testbed comparison shows
+why the proposed approach is stronger than a topology-specific result:
+\texttt{iCPursuitNeuralUCB} leads average efficiency on \paperTwo{} (74.5\%,
+95/300 wins), \paperSeven{} (78.0\%, 245/300 wins), \paperTwelve{} (44.1\%,
+97/300 wins), and \paperEight{} (67.9\%). The advantage is clearest on the dense
+50-node \paperSeven{} setting, where it reaches 78.0\% versus 70.8\% for the
+next strongest models, and it still remains best on the larger \paperTwelve{}
+fusion topology, where all methods compress tightly at 44.1\% versus 43.8\%.
 
 % -----------------------------------------------------------------------------
 % Previous result-heavy one-paragraph conclusion retained for reference.
