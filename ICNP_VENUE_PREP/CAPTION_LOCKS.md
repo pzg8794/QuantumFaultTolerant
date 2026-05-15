@@ -12,6 +12,12 @@ Locked fig:robustness_floor caption: The figure reports each representative poli
 
 Locked fig:capacity_paradox caption: Panel (a) summarizes how replay scale changes efficiency across threat regimes, and Panel (b) expands this effect across replay semantics and scenarios. Together, the panels support the RQ3b claim that replay capacity acts as a threat-conditioned control variable: robustness depends jointly on replay scale, anchoring rule, allocator behavior, and threat regime.
 
+Locked fig:threat_penalty_escalation panel (a) subcaption: Compared with Baseline, EXPNeuralUCB incurs the largest Stochastic and Adaptive penalties (12.4 and 13.8 percentage points), while CPursuit stays lower under Stochastic and OnlineAdaptive disruption (3.2 and 4.5 percentage points), supporting the RQ2 claim that threat escalation separates fragile adversarial-first designs from more stable contextual/pursuit models.
+
+Locked fig:threat_penalty_escalation panel (b) subcaption: Across Baseline, Stochastic, Markov, Adaptive, and OnlineAdaptive regimes, iCPursuitNeuralUCB preserves high efficiency (92.8 percent under Adaptive and 99.8 percent under OnlineAdaptive), while EXPUCB remains lower across Markov/Adaptive/OnlineAdaptive (73.8--76.4 percent), supporting the RQ2 claim that adaptive threats expose stability gaps across model families.
+
+Locked fig:threat_penalty_escalation main caption: Panels (a) and (b) jointly support the RQ2 escalation claim: contextual and informed models preserve stronger robustness as disruption progresses from stochastic noise to structured and adaptive interference.
+
 Locked fig:cross_testbed_confirmation panel (a) subcaption: Across Paper 2, Paper 7, Paper 12, and Paper 8, iCPursuitNeuralUCB yields the strongest average cross-testbed efficiency, with leading averages ranging from 44.1 percent on Paper 12 to 78.0 percent on Paper 7. The larger Oracle gaps on harder topologies support the claim that pursuit-informed neural routing transfers beyond the primary testbed but becomes harder to separate from the reference as topology complexity increases.
 
 Locked fig:cross_testbed_confirmation panel (b) subcaption: iCPursuitNeuralUCB is the only model that clears the plotted average-efficiency threshold, reaching 90.9 percent; all other families fall below it, supporting the model-family claim that pursuit-neural hybrids form the strongest robustness tier. Across external testbeds, the same top-family pattern persists even as topology complexity compresses efficiency across models.
