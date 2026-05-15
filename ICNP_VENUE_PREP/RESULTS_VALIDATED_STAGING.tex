@@ -82,7 +82,14 @@ iCEXP4 & 35.6 & 38.3 & 37.0 \\
   \textbf{Threat-Escalation Heatmap}\\[-0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-034_g9_network_gap_analysis_panel_e_threat_escalation_heatmap_algo_scenario.png}
   \end{minipage}}
-\caption{Main-body threat diagnostics for RQ2. Panel (a) quantifies how much efficiency is lost when moving from the baseline condition to each threat regime; Panel (b) shows the same escalation as an algorithm-by-scenario heatmap. Together with \Cref{fig:robustness_floor}, these figures show that contextual and informed policies preserve stronger stability than EXP-family baselines as the threat model becomes more structured and adaptive.}
+\caption{Threat-escalation diagnostics for RQ2. Panel (a) reports efficiency
+penalties relative to the baseline condition, and Panel (b) shows the
+per-algorithm degradation pattern as threats progress from stochastic noise to
+structured and adaptive interference. Together with
+\Cref{fig:robustness_floor}, these diagnostics support the RQ2 claim that
+threat escalation exposes stability gaps: contextual and informed policies
+preserve stronger robustness, while EXP-family baselines remain vulnerable under
+adaptive disruption.}
 % \devroop{Try to group figures supporting a single point of observation.} -- SOLVED: Grouped scenario-penalty and threat-escalation diagnostics into one RQ2 figure.
 \label{fig:threat_penalty_escalation}
 \end{figure*}
