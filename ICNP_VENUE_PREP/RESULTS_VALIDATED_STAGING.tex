@@ -22,11 +22,10 @@ RQ1 uses the EXP-family, CMAB, and iCMAB corpora, filtered to Stochastic runs un
 \centering
 \textbf{Stochastic Algorithm-Tier Separation}\\[-0.0em]
 \includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-033_g9_network_gap_analysis_panel_d_rq1_algorithm_tier_separation_stochastic.png}
-\caption{Stochastic-regime algorithm separation. Oracle-normalized efficiency
-groups contextual pursuit and epsilon-greedy policies as viable, while
-epoch-greedy and structurally mismatched designs collapse, supporting the RQ1
-claim that stochastic noise alone separates robust contextual learners from
-failing policy designs.}
+\caption{\texttt{Oracle}-normalized efficiency groups contextual pursuit and
+epsilon-greedy policies as viable, while epoch-greedy and structurally
+mismatched designs collapse, supporting the RQ1 claim that stochastic noise
+alone separates robust contextual learners from failing policy designs.}
 \label{fig:main_performance_summary}
 \end{figure}
 
@@ -81,10 +80,9 @@ iCEXP4 & 35.6 & 38.3 & 37.0 \\
   \textbf{Threat-Escalation Heatmap}\\[-0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-034_g9_network_gap_analysis_panel_e_threat_escalation_heatmap_algo_scenario.png}
   \end{minipage}}
-\caption{Threat-escalation diagnostics for RQ2. Scenario penalties and
-per-algorithm degradation patterns show that contextual and informed policies
-preserve stronger robustness as disruption progresses from stochastic noise to
-structured and adaptive interference.}
+\caption{Scenario penalties and per-algorithm degradation patterns show that
+contextual and informed policies preserve stronger robustness as disruption
+progresses from stochastic noise to structured and adaptive interference.}
 % \devroop{Try to group figures supporting a single point of observation.} -- SOLVED: Grouped scenario-penalty and threat-escalation diagnostics into one RQ2 figure.
 \label{fig:threat_penalty_escalation}
 \end{figure*}
@@ -135,10 +133,11 @@ threats expose stability gaps not visible from average efficiency alone.}
   \textbf{Replay-Configuration Sensitivity}\\[-0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-035_g9_network_gap_analysis_panel_f_capacity_paradox_all_6_replay_configs_sc.png}
   \end{minipage}}
-\caption{Capacity-paradox diagnostics for RQ3b. Replay-scale effects vary across
-threat regimes, replay semantics, and scenarios, showing that replay capacity
-acts as a threat-conditioned control variable governed jointly by scale,
-anchoring rule, allocator behavior, and threat regime.}
+\caption{Panel~(a) summarizes how replay scale changes efficiency across threat
+regimes, and Panel~(b) expands this effect across replay semantics and
+scenarios. Together, the panels support the RQ3b claim that replay capacity acts
+as a threat-conditioned control variable: robustness depends jointly on replay
+scale, anchoring rule, allocator behavior, and threat regime.}
 % \shee{Can data labels be added to all graphs?} -- SOLVED: Replaced temporary PGFPlots placeholder with exported notebook-validated images containing finalized graph styling/labels.
 % \shee{Is this figure the same as 12B?} -- SOLVED: Grouped the compact capacity-paradox graph with the detailed replay-configuration panel so the relationship is explicit instead of duplicated separately.
 % \devroop{Group capacity figures that support the same point.} -- SOLVED: Grouped the compact capacity-paradox figure and detailed replay-configuration panel into one two-panel Results figure.
@@ -240,11 +239,10 @@ Under \texttt{ThompsonSampling} allocation and $T_b$-type replay anchoring, Onli
   \textbf{Allocator-Induced Risk}\\[-0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-037_g9_network_gap_analysis_panel_h_allocator_risk_floor_mean_peak_icpursuit.png}
   \end{minipage}}
-\caption{Deployment guidance and allocator-risk evidence for RQ3d. Panel (a)
-shows that scenario switching gives its largest gain under Adaptive disruption.
-Panel (b) shows that allocator choice changes floor, mean, and peak efficiency
-for \texttt{iCPursuitNeuralUCB}. Together, the panels motivate threat-matched
-policy, allocator, and replay settings.}
+\caption{Panel~(a) shows that scenario switching gives its largest gain under
+Adaptive disruption. Panel~(b) shows that allocator choice changes floor, mean,
+and peak efficiency for \texttt{iCPursuitNeuralUCB}. Together, the panels
+motivate threat-matched policy, allocator, and replay settings.}
 % \shee{Don't use 'The exported validation figure' in every caption. Refer to the corresponding plot.} -- SOLVED: Removed generic exported-figure language and described the specific plotted quantities and observed deployment consequence.
 % \devroop{Include the allocator-risk figure in the main body.} -- SOLVED: Grouped deployment guidance with allocator-risk evidence in one RQ3d figure.
 \label{fig:deployment_guidance}
