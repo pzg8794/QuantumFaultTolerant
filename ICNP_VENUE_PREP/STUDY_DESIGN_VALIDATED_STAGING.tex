@@ -40,12 +40,10 @@ Across all experiments, the total physical budget remains fixed at 35 qubits, ma
   \draw[pathPthree] (S) to[bend left=10] (R1) to[bend left=10] node[right, font=\scriptsize] {$P_3$ (3-hop)} (R2) to[bend left=10] (D);
   \draw[pathPfour] (S) to[bend right=10] (R2) to[bend right=10] node[left, font=\scriptsize] {$P_4$ (3-hop)} (R1) to[bend right=10] (D);
 \end{tikzpicture}
-\caption{Four-path quantum-network testbed used for controlled routing
-evaluation. The topology provides four candidate source--destination paths:
-two shorter two-hop paths ($P_1$, $P_2$) and two longer three-hop paths
-($P_3$, $P_4$). This structure creates the path-length and qubit-allocation
-tradeoff evaluated throughout the study, with per-path budgets varied by
-allocator policy.}
+\caption{Four-path quantum-network testbed. The topology provides two shorter
+two-hop paths ($P_1$, $P_2$) and two longer three-hop paths ($P_3$, $P_4$),
+creating the path-length and qubit-allocation tradeoff evaluated throughout the
+study.}
 % \shee{I think the colors in main.tex were easier to distinguish the paths. } -- SOLVED: Restored color coding while retaining distinct line styles so the topology remains readable in grayscale.
 \label{fig:network_topology}
 \end{figure}
@@ -57,7 +55,13 @@ We evaluate \texttt{4K}, \texttt{6K}, and \texttt{8K}-frame horizons to capture 
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{Experimental design matrix linking configuration dimensions, tested options, and research-question coverage.}
+\caption{Matched evaluation-grid design matrix. This matrix maps each
+configuration axis---topology, horizon, qubit capacity, allocator, replay
+semantics, threat model, forecasting, and policy family---to its tested options
+and research-question coverage. It supports the study-design claim that routing
+robustness is evaluated under matched configuration factors rather than isolated
+experiments, enabling attribution of performance differences to the
+policy--allocator--capacity--threat interaction.}
 \label{tab:config_summary}
 \begin{tabular}{>{\raggedright\arraybackslash}p{0.25\linewidth} >{\raggedright\arraybackslash}p{0.60\linewidth} >{\centering\arraybackslash}p{0.07\linewidth}}
 \toprule
@@ -106,7 +110,14 @@ The five threat settings follow \cref{subsec:threats} and \cref{tab:config_summa
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{Hyperparameter settings and literature justifications.}
+\caption{Matched hyperparameter specification for reproducible policy comparison.
+This specification maps each implementation-sensitive parameter---neural learning
+rate, exponential weighting, pursuit update rate, exploration constant,
+forecasting window, and replay semantics---to its fixed value and literature or
+tuning source. It supports the study-design claim that policy performance is
+compared under a controlled implementation layer, enabling robustness differences
+to be attributed to policy family, allocator choice, replay configuration, and
+threat regime rather than hidden hyperparameter variation.}
 \label{tab:setup-hyperparameters}
 \begin{tabular}{p{0.25\linewidth} p{0.25\linewidth} p{0.20\linewidth} p{0.16\linewidth}}
 \toprule
@@ -136,7 +147,13 @@ Replay semantics & All & $T_b=sF_b$, $T=sF_c$ & \cite{schaul2015prioritized,mnih
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{Scenario specifications used for matched threat evaluation.}
+\caption{Matched threat-scenario specification. This specification maps each
+scenario---Baseline, Stochastic, Markov, Adaptive, and OnlineAdaptive---to its
+disruption process and research-question coverage. It supports the
+matched-threat evaluation claim that routing policies are tested along a
+controlled escalation from no-disruption operation to stochastic, structured,
+and adaptive interference, enabling robustness differences to be attributed to
+policy behavior under increasingly strategic disruption.}
 \label{tab:scenario_specs}
 \begin{tabular}{p{0.22\linewidth} p{0.62\linewidth} p{0.08\linewidth}}
 \toprule
@@ -158,7 +175,13 @@ The evaluated bandit-policy portfolio spans classical, adversarial, contextual/n
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{Bandit-policy portfolio by evaluation phase.}
+\caption{Policy-family coverage for the matched robustness comparison. This
+portfolio defines the learning-design axis evaluated in the study: classical
+MAB, adversarial, contextual/neural, pursuit-based, predictive, and
+Oracle-reference policies. It supports the study-design claim that later
+robustness comparisons are family-level comparisons made through a common
+routing/reward interface, with the Oracle providing a shared reference across
+evaluation phases.}
 \label{tab:setup-algorithm-portfolio}
 % \begin{tabular}{p{0.18\linewidth} p{0.24\linewidth} p{0.48\linewidth}}
 \begin{tabular}{@{}m{0.17\linewidth}>{\raggedright\arraybackslash}m{0.24\linewidth}>{\raggedright\arraybackslash}m{0.5\linewidth}@{}}
@@ -185,7 +208,13 @@ Phase 3 varies the allocator policies defined in \cref{subsec:topology} and summ
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{Qubit allocation strategies and average efficiency across scenarios.}
+\caption{Qubit allocation strategies as deployment controls. This table compares
+the allocator mechanisms used in the matched evaluation grid and reports their
+average efficiency across scenarios, showing that allocator choice changes
+routing performance under the same policy/reward interface. The observed spread
+from \texttt{Thompson} at 88.2\% to \texttt{Random} at 77.3\% supports the
+study-design claim that allocator policy is a first-class factor in the
+policy--allocator--capacity--threat interaction.}
 \label{tab:setup-allocators}
 % \begin{tabular}{p{0.20\linewidth} p{0.42\linewidth} p{0.14\linewidth} p{0.14\linewidth}}
 \begin{tabular}{@{}p{0.2\linewidth}>{\centering\arraybackslash}p{0.42\linewidth}>{\centering\arraybackslash}p{0.14\linewidth}>{\centering\arraybackslash}p{0.14\linewidth}@{}}
