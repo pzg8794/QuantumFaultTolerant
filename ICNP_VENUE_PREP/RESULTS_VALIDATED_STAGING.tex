@@ -67,21 +67,31 @@ iCEXP4 & 35.6 & 38.3 & 37.0 \\
 
 \begin{figure*}[ht!]
 \centering
-\subfloat[Scenario penalties relative to the baseline condition. Larger penalties indicate greater threat-induced degradation for a given algorithm family.\label{fig:scenario_penalty_main}]{%
+\subfloat[Compared with Baseline, \texttt{EXPNeuralUCB} incurs the largest
+Stochastic and Adaptive penalties (12.4 and 13.8 percentage points), while
+\texttt{CPursuit} stays lower under Stochastic and OnlineAdaptive disruption
+(3.2 and 4.5 percentage points), supporting the RQ2 claim that threat escalation
+separates fragile adversarial-first designs from more stable contextual/pursuit
+models.\label{fig:scenario_penalty_main}]{%
   \begin{minipage}{0.48\textwidth}
   \centering
   \textbf{Scenario Penalties}\\[-0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-036_g9_network_gap_analysis_panel_g_scenario_penalty_vs_baseline_by_algorith.png}
   \end{minipage}}
 \hfill
-\subfloat[Threat-escalation heatmap across algorithms and scenarios. The heatmap shows how performance changes as disruption progresses from stochastic noise to structured and adaptive interference.\label{fig:threat_escalation_heatmap_main}]{%
+\subfloat[Across Baseline, Stochastic, Markov, Adaptive, and OnlineAdaptive
+regimes, \texttt{iCPursuitNeuralUCB} preserves high efficiency (92.8\% under
+Adaptive and 99.8\% under OnlineAdaptive), while \texttt{EXPUCB} remains lower
+across Markov/Adaptive/OnlineAdaptive (73.8--76.4\%), supporting the RQ2 claim
+that adaptive threats expose stability gaps across model families.
+\label{fig:threat_escalation_heatmap_main}]{%
   \begin{minipage}{0.48\textwidth}
   \centering
   \textbf{Threat-Escalation Heatmap}\\[-0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-034_g9_network_gap_analysis_panel_e_threat_escalation_heatmap_algo_scenario.png}
   \end{minipage}}
-\caption{Scenario penalties and per-algorithm degradation patterns show that
-contextual and informed policies preserve stronger robustness as disruption
+\caption{Panels~(a) and~(b) jointly support the RQ2 escalation claim:
+contextual and informed models preserve stronger robustness as disruption
 progresses from stochastic noise to structured and adaptive interference.}
 % \devroop{Try to group figures supporting a single point of observation.} -- SOLVED: Grouped scenario-penalty and threat-escalation diagnostics into one RQ2 figure.
 \label{fig:threat_penalty_escalation}
