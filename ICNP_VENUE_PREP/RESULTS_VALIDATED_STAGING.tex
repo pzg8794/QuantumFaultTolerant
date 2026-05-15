@@ -108,8 +108,8 @@ RQ2 uses the Markov, Adaptive, and OnlineAdaptive threat slice from \cref{tab:sc
 \includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-040_g2_robustness_floor.png}
 \caption{Worst-case robustness floors for RQ2. Across Markov, Adaptive, and
 OnlineAdaptive threats, \texttt{iCEpsilonGreedy} has the strongest floor,
-\texttt{CPursuit} has the best average, and \texttt{EXPNeuralUCB} remains
-fragile, showing why adaptive-threat analysis requires worst-case floors.}
+\texttt{CPursuit} has the best average, and \texttt{EXPNeuralUCB} has the
+weakest floor, showing why adaptive-threat analysis requires worst-case floors.}
 % \shee{Replace low quality images - 5, 7, 8a, 9b, 11, 12} -- SOLVED: Refreshed the manuscript-facing PNG assets at print-quality resolution and revalidated the active draft build.
 % \shee{If the red labels are the floor values, can it be placed on the left of the squares? It is inconsistent right now. The caption needs to be further elaborated. "figure shows which bandit policies maintain stable worst-case performance and which become fragile under adaptive disruption" - which ones are they? Mention it explicitly.} -- SOLVED: Caption now names the stable and fragile policies explicitly; label-position changes must be handled in the source image generator if still needed.
 \label{fig:robustness_floor}
@@ -125,7 +125,7 @@ fragile, showing why adaptive-threat analysis requires worst-case floors.}
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-039_g1_capacity_paradox.png}
   \end{minipage}}
 \hfill
-\subfloat[Detailed replay-configuration sensitivity. The panel expands the same claim across all six replay configurations and scenarios, exposing where the non-monotonic capacity effect is strongest.\label{fig:capacity_paradox_all_configs_main}]{%
+\subfloat[Detailed replay-configuration sensitivity. The panel expands the same claim across all six replay configurations and scenarios, exposing where the capacity-paradox effect is strongest.\label{fig:capacity_paradox_all_configs_main}]{%
   \begin{minipage}{0.52\textwidth}
   \centering
   \textbf{Replay-Configuration Sensitivity}\\[-0.0em]
