@@ -212,10 +212,12 @@ At each decision frame $t$, a routing agent selects a candidate path $P_r$ and q
 \draw[arrow, draw=black!75, dashed] (reward) -- (agent);
 \end{tikzpicture}%
 }
-\caption{At frame $t$, the routing controller observes path context, jointly
-selects a path and qubit allocation, interacts with the threat-conditioned
-testbed, and updates from reward feedback. The loop frames routing robustness as
-a coupled path-selection, allocation, threat, and feedback process.}
+\caption{At frame $t$, the routing controller observes candidate-path
+context, jointly selects a path and qubit allocation, interacts with the
+threat-conditioned quantum-network testbed, and updates from reward feedback.
+The loop supports the paper's core modeling claim: routing robustness must be
+evaluated as a coupled path-selection, allocation, threat, and feedback process,
+not as path selection alone.}
 \label{fig:system_model}
 \end{figure}
 
