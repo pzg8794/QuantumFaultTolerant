@@ -12,16 +12,16 @@ hybrids, \texttt{CPursuitNeuralUCB} and \texttt{iCPursuitNeuralUCB}, produced
 the strongest deployment results: under the fixed 6K, \texttt{Fixed}-allocator,
 $T$-type, $s{=}2$ slice, they achieved 92.4--96.0\% Oracle-normalized
 efficiency with cross-scenario CVs of 6.5\% and 3.3\%, while contextual policies
-maintained 77--81\% robustness floors in the adversarial-scope RQ2 comparison
-and adversarial-first \texttt{EXPNeuralUCB} fell to an 18.0\% floor. The main
-result is that routing robustness is jointly determined by the learning rule,
-replay capacity, allocator choice, and threat regime: under
-\texttt{ThompsonSampling} allocation and $T_b$-type replay anchoring,
-OnlineAdaptive efficiency drops from 89.2\% to 84.9\% as replay scale increases
-from $s{=}1$ to $s{=}1.5$, then recovers to 90.8\% at $s{=}2$, revealing a
-threat-conditioned capacity paradox; changing only the allocator shifts the
-worst-case floor for the same \texttt{iCPursuitNeuralUCB} learner by 15.6~pp in
-the validated RQ3c 6K allocator comparison slice
+maintained 77--81\% robustness floors across the Markov, Adaptive, and
+OnlineAdaptive threat regimes and adversarial-first \texttt{EXPNeuralUCB} fell
+to an 18.0\% floor. The main result is that routing robustness is jointly
+determined by the learning rule, replay capacity, allocator choice, and threat
+regime: under \texttt{ThompsonSampling} allocation and $T_b$-type replay
+anchoring, OnlineAdaptive efficiency drops from 89.2\% to 84.9\% as replay scale
+increases from $s{=}1$ to $s{=}1.5$, then recovers to 90.8\% at $s{=}2$,
+revealing a threat-conditioned capacity paradox; changing only the allocator
+shifts the worst-case floor for the same \texttt{iCPursuitNeuralUCB} learner by
+15.6~pp in the validated RQ3c 6K allocator comparison slice
 (\texttt{Fixed} floor~=~88.9\% vs.\ \texttt{Thompson} floor~=~73.3\%), making
 allocator policy part of the robustness mechanism. These findings support a
 concrete deployment rule: a static default of
