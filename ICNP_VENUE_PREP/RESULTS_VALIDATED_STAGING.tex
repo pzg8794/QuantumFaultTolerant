@@ -243,7 +243,7 @@ Under \texttt{ThompsonSampling} allocation and $T_b$-type replay anchoring, Onli
 
 \begin{figure*}[ht!]
 \centering
-\subfloat[Comparing the strong static default with scenario-specific switching,
+\subfloat[Comparing the baseline with scenario-specific switching,
 Adaptive disruption gives the largest validated gain: \texttt{ThompsonSampling}
 with $T_b$-type replay at $s{=}1.5$ reaches 95.7\%, a 2.9 percentage-point
 improvement. This supports the RQ3d claim that deployment rules should match
@@ -256,7 +256,7 @@ policy, allocator, and replay settings to the active threat.
   \end{minipage}}
 \hfill
 \subfloat[For \texttt{iCPursuitNeuralUCB}, allocator choice changes worst-case
-robustness: \texttt{Fixed} keeps an 88.9\% floor, while \texttt{Thompson} drops
+robustness: \texttt{Fixed (Default or Baseline)} keeps an 88.9\% floor, while \texttt{Thompson} drops
 to 73.3\%. This 15.6 percentage-point floor shift supports the RQ3c/RQ3d claim
 that allocator selection is a first-class deployment control.
 \label{fig:allocator_risk_main}]{%
