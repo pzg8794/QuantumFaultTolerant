@@ -10,7 +10,11 @@ Locked fig:system_model caption: At frame t, the routing controller observes can
 
 Locked fig:robustness_floor caption: The figure reports each representative policy lowest Oracle-normalized efficiency across the locked Markov, Adaptive, and OnlineAdaptive scope. Higher floors indicate resistance to catastrophic collapse: iCEpsilonGreedy has the strongest floor, CPursuit has the best average, and EXPNeuralUCB remains fragile despite adversarial-style exploration. Together with fig:threat_penalty_escalation, this supports the RQ2 claim that adaptive threats expose stability gaps not visible from average efficiency alone.
 
-Locked fig:capacity_paradox caption: Panel (a) summarizes how replay scale changes efficiency across threat regimes, and Panel (b) expands this effect across replay semantics and scenarios. Together, the panels support the RQ3b claim that replay capacity acts as a threat-conditioned control variable: robustness depends jointly on replay scale, anchoring rule, allocator behavior, and threat regime.
+Locked fig:capacity_paradox panel (a) subcaption: Under the OnlineAdaptive threat, replay scaling is non-monotonic: efficiency drops from 89.2 percent at s=1 to 84.9 percent at s=1.5, then recovers to 90.8 percent at s=2. This pattern supports the capacity-paradox claim that added replay can help or hurt depending on the active threat.
+
+Locked fig:capacity_paradox panel (b) subcaption: Across the six replay configurations, replay semantics changes the same scale effect: under OnlineAdaptive, T-type replay spans 83.2--90.6 percent, while Tb-type replay spans 84.2--86.6 percent. This supports the RQ3b claim that replay capacity must be interpreted jointly with anchoring rule and threat regime.
+
+Locked fig:capacity_paradox main caption: Panels (a) and (b) jointly support the RQ3b capacity-paradox claim: replay capacity acts as a threat-conditioned control variable governed by replay scale, anchoring rule, allocator behavior, and threat regime.
 
 Locked fig:threat_penalty_escalation panel (a) subcaption: Compared with Baseline, EXPNeuralUCB incurs the largest Stochastic and Adaptive penalties (12.4 and 13.8 percentage points), while CPursuit stays lower under Stochastic and OnlineAdaptive disruption (3.2 and 4.5 percentage points), supporting the RQ2 claim that threat escalation separates fragile adversarial-first designs from more stable contextual/pursuit models.
 
