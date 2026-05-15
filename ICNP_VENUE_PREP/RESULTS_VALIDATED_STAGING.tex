@@ -34,10 +34,8 @@ failing policy designs.}
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{RQ1 stochastic-viability results. Mean Oracle-normalized efficiency
-shows contextual policies above the 85\% viability target
-(\texttt{CPursuit}=89.9\%, \texttt{CEpsilonGreedy}/\texttt{iCEpsilonGreedy}=87.8\%)
-while epoch-greedy variants collapse near 37.0\%.}
+\caption{RQ1 stochastic-viability results. Contextual policies exceed the
+85\% target, while epoch-greedy variants collapse near 37.0\%.}
 \label{tab:rq1_master_stochastic}
 \begin{tabular}{p{0.42\linewidth} c c c}
 \toprule
@@ -151,10 +149,9 @@ anchoring rule, allocator behavior, and threat regime.}
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{RQ2 adversarial-scope results. Under Markov, Adaptive, and
-OnlineAdaptive threats, \texttt{CPursuit} leads average efficiency,
-\texttt{iCEpsilonGreedy} gives the strongest floor, and \texttt{EXPNeuralUCB}
-falls to an 18.0\% floor.}
+\caption{RQ2 adversarial-scope results. \texttt{CPursuit} leads average
+efficiency, \texttt{iCEpsilonGreedy} gives the strongest floor, and
+\texttt{EXPNeuralUCB} falls to 18.0\%.}
 \label{tab:rq2_adversarial}
 \begin{tabular}{p{0.30\linewidth} c c c c}
 \toprule
@@ -199,9 +196,8 @@ To isolate architecture impact, we hold deployment fixed at 6K horizon, \texttt{
 \footnotesize
 \centering
 \setlength{\tabcolsep}{3pt}
-\caption{RQ3a informative-context impact. Under the fixed 6K deployment setting,
-\texttt{iCPursuitNeuralUCB} lifts OnlineAdaptive efficiency from 81.5\% to
-99.8\% and reduces scenario-level CV from 6.5 to 3.3.}
+\caption{RQ3a informative-context impact. \texttt{iCPursuitNeuralUCB} lifts
+OnlineAdaptive efficiency from 81.5\% to 99.8\% and cuts CV from 6.5 to 3.3.}
 \label{tab:rq3a_master_informative}
 \begin{tabular}{p{0.30\linewidth} c c c c c c c}
 \toprule
@@ -259,10 +255,8 @@ policy, allocator, and replay settings.}
 \footnotesize
 \centering
 \setlength{\tabcolsep}{3pt}
-\caption{Supporting RQ3b stress-control capacity scaling. Under fixed
-\texttt{Random} allocation at 6K with $T$-type replay, the $s=1.5$ setting
-produces sharp degradation while $s=2$ recovers performance, reinforcing the
-capacity-paradox pattern.}
+\caption{RQ3b stress-control capacity scaling. Under fixed \texttt{Random}
+allocation and $T$ replay, $s=1.5$ degrades sharply while $s=2$ recovers.}
 \label{tab:rq3b_master_capacity_scaling}
 \begin{tabular}{p{0.30\linewidth} c c c c c c c}
 \toprule
@@ -299,10 +293,8 @@ RQ3c fixes the model to iCPursuitNeuralUCB, the horizon to 6K, and capacity to $
 \footnotesize
 \centering
 \setlength{\tabcolsep}{3pt}
-\caption{RQ3c allocator interaction for \texttt{iCPursuitNeuralUCB}. Under the
-fixed 6K, $T$-type, $s=2$ setting, allocator choice shifts both average
-efficiency and floor, with \texttt{Fixed} providing the strongest deployment
-profile.}
+\caption{RQ3c allocator interaction. For \texttt{iCPursuitNeuralUCB},
+\texttt{Fixed} gives the strongest average/floor deployment profile.}
 \label{tab:rq3c_master_allocators}
 \begin{tabular}{lccccccc}
 \toprule
@@ -335,10 +327,8 @@ RQ3d converts the RQ3a--RQ3c findings into 6K deployment rules for iCPursuitNeur
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{RQ3d scenario-specific deployment rules for \texttt{iCPursuitNeuralUCB}
-at 6K. Scenario switching gives its largest validated gain under Adaptive
-disruption, while the strong static default remains competitive across
-scenarios.}
+\caption{RQ3d deployment rules at 6K. Scenario switching gains peak under
+Adaptive disruption, while the strong static default remains competitive.}
 \label{tab:rq3d_deployment_rules}
 \begin{tabular}{p{0.24\linewidth} p{0.42\linewidth} c c}
 \toprule
