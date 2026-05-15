@@ -118,7 +118,8 @@ catastrophic collapse: \texttt{iCEpsilonGreedy} has the strongest floor,
 \texttt{CPursuit} has the best average, and \texttt{EXPNeuralUCB} remains
 fragile despite adversarial-style exploration. Together with
 \Cref{fig:threat_penalty_escalation}, this supports the RQ2 claim that adaptive
-threats expose stability gaps not visible from average efficiency alone.}
+threats expose stability gaps that require worst-case floor analysis in addition
+to average efficiency.}
 % \shee{Replace low quality images - 5, 7, 8a, 9b, 11, 12} -- SOLVED: Refreshed the manuscript-facing PNG assets at print-quality resolution and revalidated the active draft build.
 % \shee{If the red labels are the floor values, can it be placed on the left of the squares? It is inconsistent right now. The caption needs to be further elaborated. "figure shows which bandit policies maintain stable worst-case performance and which become fragile under adaptive disruption" - which ones are they? Mention it explicitly.} -- SOLVED: Caption now names the stable and fragile policies explicitly; label-position changes must be handled in the source image generator if still needed.
 \label{fig:robustness_floor}
@@ -229,7 +230,7 @@ iCPursuitNeuralUCB & 99.9 & 94.8 & 93.0 & 92.8 & 99.8 & 96.0 & 3.3 \\
 RQ3b tests whether larger replay scale improves robustness or creates a threat-dependent capacity paradox.
 
 \smallTitle{Replay-scaling setup}
-Under \texttt{ThompsonSampling} allocation and $T_b$-type replay anchoring, OnlineAdaptive efficiency drops by 4.35~pp from $s{=}1$ to $s{=}1.5$ and recovers by 5.96~pp at $s{=}2$. The fixed-\texttt{Random} slice in \cref{tab:rq3b_master_capacity_scaling} is retained as supporting stress-control evidence: it shows that the same non-monotonic replay behavior can become more severe under uninformed allocation, but it is not the primary evidence for the paper-level RQ3b claim.
+Under \texttt{ThompsonSampling} allocation and $T_b$-type replay anchoring, OnlineAdaptive efficiency drops by 4.35~pp from $s{=}1$ to $s{=}1.5$ and recovers by 5.96~pp at $s{=}2$. The fixed-\texttt{Random} slice in \cref{tab:rq3b_master_capacity_scaling} is retained as supporting stress-control evidence: it shows that the same replay-sensitivity pattern becomes more severe under uninformed allocation, complementing the ThompsonSampling/$T_b$/OnlineAdaptive slice used for the paper-level RQ3b claim.
 
 
 \begin{figure*}[ht!]
@@ -278,7 +279,7 @@ iCPursuitNeuralUCB & 1.0 & 92.1 & 93.6 & 88.7 & 88.5 & 70.8 & 86.7 \\
 % \shee{define s} -- SOLVED: Added $s$ definition in the table note and in the RQ3b evidence-slice paragraph.
 \end{table}
 
-\Cref{fig:capacity_paradox,tab:rq3b_master_capacity_scaling} show that replay scale is not a monotonic ``more is better'' knob. The allocator \texttt{ThompsonSampling}/$T_b$/OnlineAdaptive slice anchors the RQ3b conclusion; the fixed-\texttt{Random} table supports that conclusion as a stress-control comparison by showing sharper $s=1.5$ degradation and $s=2$ recovery under uninformed allocation. Replay capacity therefore must be tuned jointly with allocator and anchoring type.
+\Cref{fig:capacity_paradox,tab:rq3b_master_capacity_scaling} show that replay scale acts as a threat-conditioned control variable. The allocator \texttt{ThompsonSampling}/$T_b$/OnlineAdaptive slice anchors the RQ3b conclusion; the fixed-\texttt{Random} table supports that conclusion as a stress-control comparison by showing sharper $s=1.5$ degradation and $s=2$ recovery under uninformed allocation. Replay capacity therefore must be tuned jointly with allocator and anchoring type.
 
 % ============================================================================
 % RQ3c: Algorithm-Allocator Co-Design
