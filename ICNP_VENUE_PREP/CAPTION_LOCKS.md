@@ -12,6 +12,12 @@ Locked fig:robustness_floor caption: The figure reports each representative poli
 
 Locked fig:capacity_paradox caption: Panel (a) summarizes how replay scale changes efficiency across threat regimes, and Panel (b) expands this effect across replay semantics and scenarios. Together, the panels support the RQ3b claim that replay capacity acts as a threat-conditioned control variable: robustness depends jointly on replay scale, anchoring rule, allocator behavior, and threat regime.
 
+Locked fig:cross_testbed_confirmation panel (a) subcaption: Across Paper 2, Paper 7, Paper 12, and Paper 8, iCPursuitNeuralUCB yields the strongest average cross-testbed efficiency, with leading averages ranging from 44.1 percent on Paper 12 to 78.0 percent on Paper 7. The larger Oracle gaps on harder topologies support the claim that pursuit-informed neural routing transfers beyond the primary testbed but becomes harder to separate from the reference as topology complexity increases.
+
+Locked fig:cross_testbed_confirmation panel (b) subcaption: iCPursuitNeuralUCB is the only model that clears the plotted average-efficiency threshold, reaching 90.9 percent; all other families fall below it, supporting the model-family claim that pursuit-neural hybrids form the strongest robustness tier. Across external testbeds, the same top-family pattern persists even as topology complexity compresses efficiency across models.
+
+Locked fig:cross_testbed_confirmation main caption: Panels (a) and (b) jointly support the core cross-testbed claim: pursuit-informed neural designs generalize beyond the primary evaluation network, while increasing topology complexity widens Oracle gaps and compresses separation among models.
+
 Locked terminology: use routing controller, not agent, in fig:system_model caption.
 
 Patch rule: patch one figure-bearing section at a time. Preserve visible titles, figure bodies, and short table captions unless a separate table-caption change is approved.
