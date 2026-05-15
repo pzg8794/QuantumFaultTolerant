@@ -5,7 +5,7 @@
 \subsection{Experimental Design}
 \label{sec:expDesign}
 
-Using the interface in \cref{sec:SystemModel}, this section defines the configuration axes used to answer \cref{sec:research_questions}. \Cref{tab:config_summary} summarizes the design dimensions, tested options, and RQ coverage.
+\cref{sec:SystemModel} defines the configuration axes used to answer \cref{sec:research_questions}. \Cref{tab:config_summary} summarizes the design dimensions, tested options, and RQ coverage.
 
 \smallTitle{Network configuration}
 We use the four-path diamond topology shown in \cref{fig:network_topology} and defined in \cref{subsec:topology}, with two-hop paths $P_1$ and $P_2$ and three-hop paths $P_3$ and $P_4$. This topology keeps the routing action space nontrivial while preserving tractable cross-product sweeps across \cref{tab:config_summary}.
@@ -14,6 +14,7 @@ Across all experiments, the total physical budget remains fixed at 35 qubits, ma
 
 \begin{figure}[ht!]
 \centering
+\textbf{Four-Path Quantum-Network Testbed}\\[0.25em]
 \small
 \begin{tikzpicture}[
   node distance=2.5cm and 3.0cm,
@@ -40,7 +41,11 @@ Across all experiments, the total physical budget remains fixed at 35 qubits, ma
   \draw[pathPthree] (S) to[bend left=10] (R1) to[bend left=10] node[right, font=\scriptsize] {$P_3$ (3-hop)} (R2) to[bend left=10] (D);
   \draw[pathPfour] (S) to[bend right=10] (R2) to[bend right=10] node[left, font=\scriptsize] {$P_4$ (3-hop)} (R1) to[bend right=10] (D);
 \end{tikzpicture}
-\caption{Four-path quantum-network testbed used for routing evaluation. Color and line style distinguish paths: $P_1$ is solid, $P_2$ dashed, $P_3$ dotted, and $P_4$ dash-dotted. Paths $P_1$ and $P_2$ have two hops, while $P_3$ and $P_4$ have three hops; per-path qubit budgets are varied by allocator policy.}
+\caption{The topology provides four candidate source--destination paths: two
+shorter two-hop paths ($P_1$, $P_2$) and two longer three-hop paths ($P_3$,
+$P_4$). This structure creates the path-length and qubit-allocation tradeoff
+evaluated throughout the study, with per-path budgets varied by allocator
+policy.}
 % \shee{I think the colors in main.tex were easier to distinguish the paths. } -- SOLVED: Restored color coding while retaining distinct line styles so the topology remains readable in grayscale.
 \label{fig:network_topology}
 \end{figure}
@@ -103,7 +108,7 @@ The five threat settings follow \cref{subsec:threats} and \cref{tab:config_summa
 \setlength{\tabcolsep}{4pt}
 \caption{Hyperparameter settings and literature justifications.}
 \label{tab:setup-hyperparameters}
-\begin{tabular}{p{0.22\linewidth} p{0.25\linewidth} p{0.20\linewidth} p{0.20\linewidth}}
+\begin{tabular}{p{0.25\linewidth} p{0.25\linewidth} p{0.20\linewidth} p{0.16\linewidth}}
 \toprule
 \textbf{Parameter} & \textbf{Algorithm} & \textbf{Value} & \textbf{Ref.} \\
 \midrule
@@ -125,7 +130,7 @@ Replay semantics & All & $T_b=sF_b$, $T=sF_c$ & \cite{schaul2015prioritized,mnih
 \end{table}
 
 \smallTitle{Scenario specifications}
-\Cref{tab:scenario_specs} instantiates the five threat settings defined in \cref{subsec:threats} for the matched evaluation grid.
+\Cref{tab:scenario_specs} instantiates the threat settings defined in \cref{subsec:threats} for the matched evaluation grid.
 
 \begin{table}[ht!]
 \footnotesize

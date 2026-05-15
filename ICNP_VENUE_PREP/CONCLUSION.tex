@@ -1,39 +1,68 @@
 \section{Conclusion}
 \label{sec:conclusion}
-% VALIDATED: Hard numbers corrected against Validated_Logs and notebook RQ
-% validation sections during the May 12 contribution/conclusion audit.
-% Sources: H-MABs validation hub contribution/conclusion sections,
-% Validated_Logs/Master_Dataset_Hybrid.csv, and RQ2 validated snapshot.
+% LOCKED: Validated May 15 conclusion wording. Keep this as a single paragraph.
+% Requirements: plain-English takeaway, no future-work sentence, numeric evidence
+% only where it proves the main claims, and explicit external-testbed comparison.
 
-This work evaluated quantum entanglement routing as a joint path-selection and qubit-allocation
-problem under matched threat, allocator, and replay-capacity settings. Across the validated corpus,
-the strongest deployment results came from pursuit-based contextual and neural hybrids, especially
-\texttt{CPursuitNeuralUCB} and \texttt{iCPursuitNeuralUCB}. Under the fixed 6K,
-\texttt{Fixed}-allocator, $T$-type, $s{=}2$ deployment slice, these models achieved
-92.4--96.0\% Oracle-normalized efficiency with cross-scenario CVs of 6.5\% and 3.3\%,
-respectively.
-In the broader adversarial-scope RQ2 comparison, contextual policies maintained robustness floors
-of 77--81\%, while adversarial-first \texttt{EXPNeuralUCB} collapsed to an 18.0\% floor.
+This work shows that robust quantum entanglement routing under adversarial
+conditions requires joint control of path selection, qubit allocation, replay
+capacity, and threat response. The matched evaluation identifies
+\texttt{iCPursuitNeuralUCB} as the strongest context-aware neural routing model:
+it reaches 90.9\% internal average efficiency, clears the 90\% model-family
+threshold, and outperforms the closest internal alternatives, which remain below
+that mark. Under harder threats, adversarial-first exploration remains less
+reliable: \texttt{EXPNeuralUCB} falls to an 18.0\% robustness floor, while the
+strongest contextual baselines maintain floors near 77--81\%. The capacity
+paradox shows why deployment tuning matters: replay capacity must be matched to
+the active threat, and allocator choice directly shapes routing robustness. When
+the threat is unknown, a fixed pursuit--neural deployment baseline provides a
+strong starting point; when the threat is detected, allocator and replay settings
+should be adapted to the threat regime. The external-testbed comparison shows
+why the proposed approach is stronger than a topology-specific result:
+\texttt{iCPursuitNeuralUCB} leads average efficiency on \paperTwo{} (74.5\%,
+95/300 wins), \paperSeven{} (78.0\%, 245/300 wins), \paperTwelve{} (44.1\%,
+97/300 wins), and \paperEight{} (67.9\%). The advantage is clearest on the dense
+50-node \paperSeven{} setting, where it reaches 78.0\% versus 70.8\% for the
+next strongest models, and it still remains best on the larger \paperTwelve{}
+fusion topology, where all methods compress tightly at 44.1\% versus 43.8\%.
 
-The main result is that routing robustness is not determined by the learning rule alone.
-Replay capacity, allocator choice, and threat regime interact: under
-\texttt{ThompsonSampling} allocation and $T_b$-type replay anchoring, OnlineAdaptive efficiency
-drops from 89.2\% to 84.9\% as replay scale increases from $s{=}1$ to $s{=}1.5$, then
-recovers to 90.8\% at $s{=}2$. We refer to this threat-conditioned non-monotonicity as a
-capacity paradox. Similarly, changing only the allocator can shift the worst-case floor for the
-same \texttt{iCPursuitNeuralUCB} learner by 15.6~pp in the validated RQ3c 6K slice
-(\texttt{Fixed} floor~=~88.9\% vs.\ \texttt{Thompson} floor~=~73.3\%), which means allocator
-policy is part of the robustness mechanism rather than a secondary implementation detail.
+% -----------------------------------------------------------------------------
+% Previous result-heavy one-paragraph conclusion retained for reference.
+% -----------------------------------------------------------------------------
+% This work evaluated quantum entanglement routing as a joint path-selection and
+% qubit-allocation problem under matched threat, allocator, and replay-capacity
+% settings. Across the validated corpus, pursuit-based contextual and neural
+% hybrids, \texttt{CPursuitNeuralUCB} and \texttt{iCPursuitNeuralUCB}, produced
+% the strongest deployment results: under the fixed 6K, \texttt{Fixed}-allocator,
+% $T$-type, $s{=}2$ slice, they achieved 92.4--96.0\% Oracle-normalized
+% efficiency with cross-scenario CVs of 6.5\% and 3.3\%, while contextual policies
+% maintained 77--81\% robustness floors across the Markov, Adaptive, and
+% OnlineAdaptive threat regimes and adversarial-first \texttt{EXPNeuralUCB} fell
+% to an 18.0\% floor. The main result is that routing robustness is jointly
+% determined by the learning rule, replay capacity, allocator choice, and threat
+% regime: under \texttt{ThompsonSampling} allocation and $T_b$-type replay
+% anchoring, OnlineAdaptive efficiency drops from 89.2\% to 84.9\% as replay scale
+% increases from $s{=}1$ to $s{=}1.5$, then recovers to 90.8\% at $s{=}2$,
+% revealing a threat-conditioned capacity paradox; changing only the allocator
+% shifts the worst-case floor for the same \texttt{iCPursuitNeuralUCB} learner by
+% 15.6~pp in the validated RQ3c 6K allocator comparison slice
+% (\texttt{Fixed} floor~=~88.9\% vs.\ \texttt{Thompson} floor~=~73.3\%), making
+% allocator policy part of the robustness mechanism. These findings support a
+% concrete deployment rule: a static default of
+% \texttt{iCPursuitNeuralUCB\,+\,Fixed\,+\,($T$-type, $s{=}2$)} sustains a
+% 92.8\% worst-case floor and 96.0\% mean efficiency across all five threats at
+% 6K, while allocator and replay settings should be adjusted to the detected
+% threat regime. Cross-testbed results confirm the same trend while showing that
+% larger or more constrained topologies narrow the Oracle gap.
 
-These findings support a concrete deployment rule: a static default of
-\texttt{iCPursuitNeuralUCB\,+\,Fixed\,+\,($T$-type, $s{=}2$)} sustains a 92.8\% worst-case
-floor and 96.0\% mean efficiency across all five threats at the 6K horizon; allocator and
-replay settings should then be adjusted based on the detected threat regime rather than
-treated as a fixed resource knob.
-Cross-testbed results confirm the same direction of effect, while also exposing scale limits
-as larger or more constrained topologies narrow the gap to the Oracle. Future work should focus
-on online threat classification, dynamic replay and capacity control, and hardware-grounded
-validation on repeater testbeds.
+% -----------------------------------------------------------------------------
+% Previous three-paragraph conclusion retained for reference.
+% -----------------------------------------------------------------------------
+% This work evaluated quantum entanglement routing as a joint path-selection and qubit-allocation problem under matched threat, allocator, and replay-capacity settings. Across the validated corpus, the strongest deployment results came from pursuit-based contextual and neural hybrids, \texttt{CPursuitNeuralUCB} and \texttt{iCPursuitNeuralUCB}. Under the fixed 6K, \texttt{Fixed}-allocator, $T$-type, $s{=}2$ deployment slice, these models achieved 92.4--96.0\% Oracle-normalized efficiency with cross-scenario CVs of 6.5\% and 3.3\%, respectively. In the broader adversarial-scope RQ2 comparison, contextual policies maintained robustness floors of 77--81\%, while adversarial-first \texttt{EXPNeuralUCB} collapsed to an 18.0\% floor.
+%
+% The main result is that routing robustness is jointly determined by the learning rule, replay capacity, allocator choice, and threat regime. Under \texttt{ThompsonSampling} allocation and $T_b$-type replay anchoring, OnlineAdaptive efficiency drops from 89.2\% to 84.9\% as replay scale increases from $s{=}1$ to $s{=}1.5$, then recovers to 90.8\% at $s{=}2$. We refer to this threat-conditioned non-monotonicity as a capacity paradox. Similarly, changing only the allocator can shift the worst-case floor for the same \texttt{iCPursuitNeuralUCB} learner by 15.6~pp in the validated RQ3c 6K allocator-comparison slice (\texttt{Fixed} floor~=~88.9\% vs.\ \texttt{Thompson} floor~=~73.3\%), which means allocator policy is part of the robustness mechanism.
+%
+% These findings support a concrete deployment rule: a static default of \texttt{iCPursuitNeuralUCB\,+\,Fixed\,+\,($T$-type, $s{=}2$)} sustains a 92.8\% worst-case floor and 96.0\% mean efficiency across all five threats at the 6K horizon; allocator and replay settings should then be adjusted based on the detected threat regime. Our cross-testbed results confirm the same direction of effect, while also exposing scale limits as larger or more constrained topologies narrow the gap to the Oracle. Future work should expand the policy class beyond the current pursuit--neural hybrids, including models suggested by the strongest observed gains, and stress test the capacity paradox over longer horizons, larger replay scales, and more diverse threat and topology regimes.
 
 
 % DK: Leave this in. Will need this ack section
