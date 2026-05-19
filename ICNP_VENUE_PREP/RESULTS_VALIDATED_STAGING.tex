@@ -13,7 +13,7 @@ Utilizing the matched grid defined in \cref{sec:studydesign}, we report validate
 \subsection{RQ1: Stochastic Routing Viability}
 \label{subsec:rq1_answer}
 
-Under the Stochastic scenario in \cref{tab:scenario_specs}, contextual pursuit and epsilon-greedy baselines remain viable, while several context-free or poorly matched variants collapse. This establishes baseline viability before the structured and adaptive threats analyzed in RQ2.
+Under the Stochastic scenario shown in \cref{tab:scenario_specs}, contextual pursuit and epsilon-greedy baselines remain viable, while several context-free or poorly matched variants collapse. This establishes baseline viability before the structured and adaptive threats analyzed in RQ2.
 
 \smallTitle{Dataset and aggregation}
 RQ1 uses the EXP-family, CMAB, and iCMAB corpora, filtered to Stochastic runs under the default allocator. Results aggregate across 4K--8K horizons, $s\in\{1,1.5,2\}$, both $T$/$T_b$ replay semantics, and the 3- and 5-run suites.
@@ -108,7 +108,7 @@ progresses from stochastic noise to structured and adaptive interference.}
 Under Markov, Adaptive, and OnlineAdaptive threats, contextual and informed policies maintain stronger robustness floors than EXP-family adversarial-first baselines. This extends RQ1 from stochastic viability to adaptive disruption.
 
 \smallTitle{Threat scope and aggregation}
-RQ2 uses the Markov, Adaptive, and OnlineAdaptive threat slice from \cref{tab:scenario_specs}, restricted to the default allocator and aggregated across 4K--8K horizons, $s\in\{1,1.5,2\}$, both $T$/$T_b$ replay semantics, and the 3- and 5-run suites. The table reports the strongest CMAB and iCMAB representatives along with EXP-family adversarial baselines.
+RQ2 uses the Markov, Adaptive, and OnlineAdaptive threat slice from \cref{tab:scenario_specs}, restricted to the default allocator and aggregated across 4K--8K horizons, $s\in\{1,1.5,2\}$, both $T$/$T_b$ replay semantics, and the 3- and 5-run suites. The table demonstrates the strongest CMAB and iCMAB representatives along with EXP-family adversarial baselines.
 
 \begin{figure}[ht!]
 \centering
@@ -193,7 +193,7 @@ EXP3/UCB & 76.3 & 6.0 & 68.8 & 0.0 \\
 RQ3 evaluates whether algorithm, allocator, and replay-capacity choices should change with the threat regime. Deployment is configuration-sensitive, but the hybrid corpus also reveals a strong static configuration that exceeds the 85\% robustness target across all five scenarios.
 
 \smallTitle{Deployment-evaluation corpus}
-RQ3 uses the validated Hybrid corpus for CPursuitNeuralUCB, iCPursuitNeuralUCB, GNeuralUCB, and EXPNeuralUCB across all scenarios, allocators, replay anchoring types, scales $s\in\{1,1.5,2\}$, and 4K--8K horizons. Unless otherwise noted, point estimates average the 3- and 5-run suites; RQ3 CV values are computed across scenario means as a deployment-volatility proxy because per-run variance is not available in the corpus table.
+RQ3 uses the validated Hybrid corpus for CPursuitNeuralUCB, iCPursuitNeuralUCB, GNeuralUCB, and EXPNeuralUCB across all scenarios, allocators, replay anchoring types, scales $s\in\{1,1.5,2\}$, and 4K--8K horizons. Unless otherwise noted, point estimates average the 3- and 5-run suites; RQ3 CV \devroop{what is CV?} values are computed across scenario means as a deployment-volatility proxy because per-run variance is not available in the corpus table.
 
 \smallTitle{Primary deployment observation}
 Deployment is configuration-sensitive, but the Hybrid corpus also reveals a strong static configuration. At the 6K horizon, \texttt{iCPursuitNeuralUCB+Fixed+($T$-type, $s=2$)} achieves a 96.0\% global average and a 92.8\% worst-case floor across scenarios, using the validated mean over 3- and 5-run suites. Scenario-specific optima still differ, so later RQ3 analyses disaggregate allocator and replay-capacity effects.

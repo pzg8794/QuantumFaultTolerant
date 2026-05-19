@@ -108,7 +108,7 @@ The anonymized evaluation framework and verified logs are available at
 
 \section{Introduction}\label{sec:Introduction}
 
-Quantum entanglement distribution is a core primitive for the quantum Internet, supporting quantum key distribution, distributed quantum computing, and sensing~\cite{kimble2008quantum,wehner2018quantum,pompili2021realization}. Reliable end-to-end entanglement is difficult because generation and swapping are probabilistic, quantum states are fragile, and decoherence makes path quality time-varying~\cite{briegel1998quantum,dahlberg2021netsquid,zukowski1993event}. Unlike classical packet routing, quantum routing must establish and consume entanglement under limited memory coherence, probabilistic operations, and fidelity loss~\cite{bennett1993teleporting,zukowski1993event}. These constraints couple path selection with qubit allocation, since resource placement affects success probability and learner feedback~\cite{li2025multipath,wang2025learning,huang2024quantum}.
+Quantum entanglement distribution is a core primitive for the quantum Internet, supporting quantum key distribution, distributed quantum computing, and sensing~\cite{kimble2008quantum,wehner2018quantum,pompili2021realization}. Reliable end-to-end entanglement is difficult because generation and swapping are probabilistic, quantum states are fragile, and decoherence makes path quality time-varying~\cite{briegel1998quantum,dahlberg2021netsquid,zukowski1993event}. Unlike classical packet routing, quantum routing must establish and consume entanglement under limited memory coherence, probabilistic operations, and fidelity loss~\cite{bennett1993teleporting,zukowski1993event}. These constraints tightly couple path selection with qubit allocation, since resource placement affects success probability and learner feedback~\cite{li2025multipath,wang2025learning,huang2024quantum}.
 
 Existing quantum-routing studies propose online path selection, benchmarking-driven routing, adaptive route selection, and adversarially robust learning~\cite{wang2025learning,coopmans2021benchmark,huang2024quantum}, but they are often evaluated under different threat, topology, allocator, and replay assumptions~\cite{liu2024qbgp,li2025multipath,chaudhary2023quantum}. This creates a matched-threat evaluation gap: it is unclear when contextual structure is necessary, when adversarial robustness dominates, and how allocator and capacity choices alter routing performance.
 
@@ -163,7 +163,7 @@ To address this lack of a unified and controlled evaluation framework for quantu
 \begin{itemize}
     \item \descStep{Evaluation framework}{A threat-aware benchmark comparing bandit policies for joint path pick and qubit allocation across 8,241 matched threat--allocator--capacity tests.}
 
-    \item \descStep{Capacity paradox}{Capacity effects are threat-dependent: with \texttt{ThompsonSampling} and $T_b$ replay, OnlineAdaptive efficiency drops 4.4~pp at $s{=}1.5$ then recovers 6.0~pp at $s{=}2$; allocators shift RQ3c floors by 15.6~pp.}
+    \item \descStep{Capacity paradox}{Capacity effects are threat-dependent: with \texttt{ThompsonSampling} and $T_b$ replay, OnlineAdaptive efficiency drops 4.4~pp at $s{=}1.5$ then recovers 6.0~pp at $s{=}2$; allocators shift RQ3c floors by 15.6~pp.} \devroop{This still needs to be rewritten. For a reader, the person has no idea what OnlineAdaptive and $s$ means. Make it more explainable. Same for the nexr point}
 
     \item \descStep{Deployment guidance}
     {Neural hybrids sustain $\geq$85\% worst-case efficiency while allocator choice induces 10--15 pp swings, requiring algorithm--allocator co-design.}
@@ -175,7 +175,20 @@ To address this lack of a unified and controlled evaluation framework for quantu
     %{Pursuit--neural hybrids define the efficiency--stability frontier in the fixed 6K, $T$-type, $s{=}2$ slice: \texttt{CPursuitNeuralUCB} reaches 92.4\% / CV\,6.5\% and \texttt{iCPursuitNeuralUCB} reaches 96.0\% / CV\,3.3\%, while adversarial validation shows \texttt{EXPNeuralUCB} falling to an 18.0\% floor under reactive threats.}
 \end{itemize}
 
-\input{02--related_works}
+% \input{02--related_works}
+\section{Related Work}
+\label{sec:RelatedWork}
+
+\smallTitle{Quantum routing and online path selection}
+Quantum networks distribute entanglement through repeaters and end nodes to support long-distance communication, distributed quantum computing, and sensing~\cite{wehner2018quantum,kimble2008quantum}. Entanglement routing differs from classical packet routing because path quality depends on probabilistic entanglement generation and swapping, decoherence, fidelity loss, and limited qubit memory~\cite{briegel1998quantum,dahlberg2021netsquid,bennett1993teleporting,zukowski1993event}. Prior quantum-routing work studies fidelity-aware path selection, multipath/inter-domain routing, benchmarking-based path estimation, resource-constrained routing, and adaptive or learning-based route selection~\cite{wang2025learning,li2025multipath,liu2024qbgp,wang2024adaptive,chaudhary2023quantum,jallowkhan2025adaptive,clayton2024quarc,cicconetti2024scalable,kumar2024routing,leone2021costvector}. These studies establish the importance of online path choice, but they often differ in topology, allocator assumptions, feedback model, and disruption setting, making robustness claims difficult to compare directly.
+
+\smallTitle{Bandit policies for routing decisions}
+Bandit methods provide a natural online-learning interface for quantum routing because each decision reveals partial feedback about the selected path, allocation, or context. We compare stochastic, contextual/neural, adversarial, predictive, and hybrid bandit policies rather than treating ``online learning'' as a single category. UCB and Thompson Sampling motivate stochastic baselines~\cite{auer2002finite,thompson1933likelihood}; EXP3 motivates adversarial baselines~\cite{auer2002nonstochastic}; LinUCB, NeuralUCB, and NeuralTS motivate contextual and nonlinear reward models~\cite{li2010contextual,chu2011contextual,zhou2020neuralucb,zhang2022neuralts}; pursuit-style learning automata motivate structured exploitation~\cite{thathachar2011networks}; and informed/contextual bandits motivate forecast-augmented policies~\cite{kar2024icmab,box2015time}. Huang \etal~\cite{huang2024quantum} employs \emph{EXPNeuralUCB}, combining adversarial EXP3-style exploration with NeuralUCB-style reward modeling for joint path selection and qubit allocation. In contrast, we employ a stochastic approach.
+
+\smallTitle{Benchmarking and matched robustness evaluation}
+Quantum-network benchmarking and utility-driven simulation frameworks motivate separating network behavior from policy behavior during evaluation~\cite{coopmans2021benchmark,kozlowski2022utility}, while best-of-both-worlds bandit theory motivates testing across both stochastic and adversarial regimes~\cite{zimmert2019optimal}. Link-level and path-level best-arm formulations such as LinkSelFiE and related benchmarking approaches address unknown link or path qualities~\cite{10621263,wang2025learning}, but they do not jointly test allocator policy, replay-capacity semantics, and threat progression. Our evaluation targets this matched-comparison gap: all bandit-policy families are tested under the same topology, threat regimes, allocator policies, and replay/capacity settings so that robustness differences can be attributed to the bandit-policy--allocator--capacity interaction rather than to incompatible experimental assumptions.
+
+
 
 \section{System Model}
 \label{sec:SystemModel}
@@ -231,7 +244,7 @@ We use a four-node diamond topology with source $S$, destination $D$, and two in
 % \shee{Is this supposed to be $P_r$? Define r'} -- SOLVED: Clarified that $r'$ is a dummy path index used in comparisons/summations over candidate paths; $P_r$ remains the selected path indexed by $r$.
 
 \smallTitle{Qubit budget and allocator policies}
-The canonical 4-path internal topology uses the fixed baseline split $(T_1,T_2,T_3,T_4)=(8,10,8,9)$, totaling 35 qubits. This internal 35-qubit setting defines the controlled baseline in this section, not a global limit of the broader framework, which also supports topology-specific budgets for external testbeds. We evaluate four allocator policies---Fixed, ThompsonSampling, DynamicUCB, and Random---spanning static, uncertainty-aware, optimistic, and uninformed allocation behavior. Fixed maintains the baseline split; ThompsonSampling samples path utilities from posterior estimates; DynamicUCB redistributes capacity using upper-confidence estimates; and Random assigns capacity uniformly as a control. These allocator choices instantiate the deployment-configuration dimension identified in \cref{sec:RelatedWork}.
+The canonical 4-path internal topology uses the fixed baseline split $(T_1,T_2,T_3,T_4)=(8,10,8,9)$, totaling 35 qubits. This internal 35-qubit setting defines the controlled baseline in this section, not a global limit of the broader framework, which also supports topology-specific budgets for external testbeds. We evaluate four allocator policies: Fixed, ThompsonSampling, DynamicUCB, and Random---spanning static, uncertainty-aware, optimistic, and uninformed allocation behavior. Fixed maintains the baseline split; ThompsonSampling samples path utilities from posterior estimates; DynamicUCB redistributes capacity using upper-confidence estimates; and Random assigns capacity uniformly as a control. These allocator choices instantiate the deployment-configuration dimension identified in \cref{sec:RelatedWork}.
 
 For path $P_r$ with budget $T_r$, a feasible allocation is $\mathbf{x}=(x_1,\ldots,x_{h_r})$ with $\sum_{\ell=1}^{h_r}x_\ell=T_r$, defining context space $\mathcal{X}_r$. For three-hop paths, this space grows combinatorially, motivating structure-aware approximation.
 
@@ -325,7 +338,7 @@ Informed variants augment the context vector from \cref{subsec:mab} with predict
     Robustness is a joint function of algorithm, allocator, and capacity:
     under \texttt{ThompsonSampling} allocation and $T_b$-type anchoring,
     OnlineAdaptive efficiency drops by 4.4~pp from $s{=}1$ to $s{=}1.5$,
-    then recovers by 6.0~pp at $s{=}2$.
+    then recovers by 6.0~pp at $s{=}2$. \devroop{Avoid variables that have not been introduced yet}
 \end{itemize}
 
 %We organize the evaluation around three research questions that connect routing performance, threat progression, and deployment configuration. \textit{RQ1 asks how classical and context-aware bandit policies perform under stochastic quantum-network conditions. RQ2 asks how bandit-based routing strategies change as network disruptions evolve from stochastic noise to structured, adaptive adversarial interference. RQ3 asks how choices in bandit policy, resource allocation strategy, and replay-capacity semantics interact to affect routing efficiency and stability in quantum entanglement routing.} Together, the findings support a threat-aware view of entanglement routing: robustness depends not only on the learning rule, but also on how allocator policy and replay-capacity semantics interact with the disruption regime.
