@@ -59,8 +59,14 @@ The grouped synthesis figure below remains in the appendix because it combines m
 
 \begin{figure*}[ht!]
 \centering
-\textbf{Advanced Synthesis Diagnostics}\\[-0.0em]
-\includegraphics[width=0.98\textwidth]{figures/icnp/ICNP-CODE-024_g8_advanced_4panel_grouped_full_figure.png}
+\textbf{Advanced Synthesis Diagnostics}\\[0.75em]
+\begin{tikzpicture}
+\node[anchor=south west, inner sep=0] (img) at (0,0) {\includegraphics[width=0.98\textwidth]{figures/icnp/ICNP-CODE-024_g8_advanced_4panel_grouped_full_figure.png}};
+% Uncomment the below to remove figure D
+% \begin{scope}[x={(img.south east)},y={(img.north west)}]
+%     \fill[white] (0.5,0) rectangle (1,0.5);
+% \end{scope}
+\end{tikzpicture}
 \caption{Panel~(A) shows that contextual and pursuit--neural policies
 concentrate at lower \texttt{Oracle} gaps, indicating lower efficiency loss than
 weaker baselines. Panel~(B) shows the capacity-paradox pattern: intermediate
@@ -69,7 +75,7 @@ performance in this threat configuration. Panel~(C) shows that allocator choice
 changes both average efficiency and tail behavior, making allocation policy part
 of the robustness mechanism. Panel~(D) shows that the pursuit--neural advantage
 persists across external testbeds even as larger or more constrained topologies
-reduce \texttt{Oracle} separation and alter second-tier rankings. Together, the
+reduce \texttt{Oracle} separation and alter second-tier rankings \shee{Isn't Fig 13D the same as Fig. 8a?}. Together, the
 panels show that routing robustness is governed by the interaction among policy
 family, replay/capacity setting, allocator choice, and testbed scale.}
 

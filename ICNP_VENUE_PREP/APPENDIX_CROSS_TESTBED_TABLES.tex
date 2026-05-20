@@ -1,3 +1,99 @@
+\section{System Model Layout}
+
+\begin{figure}[ht!]
+\centering
+\textbf{System-Model Loop}\\[0.75em]
+\footnotesize
+\resizebox{1.0\columnwidth}{!}{%
+\begin{tikzpicture}[
+    >=Latex,
+    node distance=0.2cm and 0.65cm,
+    basebox/.style={rectangle, draw, rounded corners=4pt, align=center, minimum height=0.5cm, text width=5.0cm, inner sep=3pt, font=\bfseries},
+    contextbox/.style={basebox, draw=networkblue!80!black, fill=networkblue!15},
+    agentbox/.style={basebox, draw=algorange!85!black, fill=algorange!18},
+    actionbox/.style={basebox, draw=allocpurple!80!black, fill=allocpurple!15},
+    envbox/.style={basebox, draw=envgreen!70!black, fill=envgreen!18},
+    feedbackbox/.style={basebox, draw=black!60, fill=black!6},
+    arrow/.style={thick,->},
+    contextarrow/.style={arrow, draw=networkblue!80!black},
+    agentarrow/.style={arrow, draw=algorange!85!black},
+    allocarrow/.style={arrow, draw=allocpurple!80!black},
+    envarrow/.style={arrow, draw=envgreen!70!black}
+]
+\node[contextbox] (context) {Candidate Paths + Context};
+\node[agentbox, right=of context] (agent) {Routing Agent (Bandit Policy)};
+\node[actionbox, right=of agent] (action) {Path Selection + Qubit Allocation};
+\node[envbox, below=1.0cm of action] (env) {Quantum Network + Threat Regime};
+\node[feedbackbox, left=of env] (reward) {Reward / Feedback (success, fidelity, efficiency)};
+\draw[contextarrow] (context) -- (agent);
+\draw[agentarrow] (agent) -- (action);
+\draw[allocarrow] (action) -- (env);
+\draw[envarrow] (env) -- (reward);
+\draw[arrow, draw=black!75, dashed] (reward) -- (agent);
+\end{tikzpicture}%
+}
+\caption{At frame $t$, the routing controller observes candidate-path
+context, jointly selects a path and qubit allocation, interacts with the
+threat-conditioned quantum-network testbed, and updates from reward feedback.
+The loop supports the paper's core modeling claim: routing robustness must be
+evaluated as a coupled path-selection, allocation, threat, and feedback process.}
+\label{fig:system_model}
+\end{figure}
+
+
+\begin{table}[ht!]
+\footnotesize
+\centering
+\setlength{\tabcolsep}{4pt}
+\caption{Hyperparameter settings and literature justifications.}
+\label{tab:setup-hyperparameters}
+\begin{tabular}{p{0.25\linewidth} p{0.25\linewidth} p{0.20\linewidth} p{0.16\linewidth}}
+\toprule
+\textbf{Parameter} & \textbf{Algorithm} & \textbf{Value} & \textbf{Ref.} \\
+\midrule
+Neural LR & EXPNeuralUCB & 0.01 & \cite{huang2024quantum} \\
+          & GNeuralUCB   & 0.2  & \cite{zhou2020neuralucb} \\
+\addlinespace[2pt]
+Exp. Weight & EXPNeuralUCB & 0.05  & \cite{huang2024quantum} \\
+            & EXPUCB       & 0.005 & Tuned \\
+\addlinespace[2pt]
+Pursuit LR & Pursuit family & 0.2 & \cite{thathachar2011networks} \\
+\addlinespace[2pt]
+UCB Explore & DynamicUCB & 2.0 & \cite{auer2002finite} \\
+\addlinespace[2pt]
+ARIMA ($n$) & iCPursuit & 50, 100 & \cite{box2015time} \\
+\addlinespace[2pt]
+Replay semantics & All & $T_b=sF_b$, $T=sF_c$ & \cite{schaul2015prioritized,mnih2015human} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\devroop{Mention the exact hyperparameter vartiable names and what they mean}
+
+\smallTitle{Scenario specifications}
+\Cref{tab:scenario_specs} instantiates the threat settings defined in \cref{subsec:threats} for the matched evaluation grid.
+
+\begin{table}[ht!]
+\footnotesize
+\centering
+\setlength{\tabcolsep}{4pt}
+\caption{Bandit-policy portfolio by evaluation phase.}
+\label{tab:setup-algorithm-portfolio}
+% \begin{tabular}{p{0.18\linewidth} p{0.24\linewidth} p{0.48\linewidth}}
+\begin{tabular}{@{}m{0.17\linewidth}>{\raggedright\arraybackslash}m{0.24\linewidth}>{\raggedright\arraybackslash}m{0.5\linewidth}@{}}
+\toprule
+\textbf{Phase} & \textbf{Category} & \textbf{Bandit policies / reference} \\
+\midrule
+Phase 1 & Classical MAB & LinUCB~\cite{li2010contextual}, LinTS~\cite{agrawal2013thompson}, UCB1~\cite{auer2002finite}, Thompson Sampling~\cite{thompson1933likelihood} \\
+Phase 1--2 & Adversarial & EXP3~\cite{auer2002nonstochastic}, EXPUCB~\cite{huang2024quantum}, EXPNeuralUCB~\cite{huang2024quantum} \\
+Phase 2 & Contextual/Neural & GNeuralUCB, NeuralUCB~\cite{zhou2020neuralucb}, NeuralTS~\cite{zhang2022neuralts}, CEpsilonGreedy, CThompsonSampling \\
+Phase 2--3 & Pursuit-based & CPursuitNeuralUCB \\
+Phase 3 & Predictive & iCPursuitNeuralUCB \\
+Baseline & Oracle & Perfect-information reference \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \section{Detailed Cross-Testbed and Model-Family Results}
 \label{app:cross_testbed_full_tables}
 

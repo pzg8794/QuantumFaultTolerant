@@ -20,12 +20,12 @@ RQ1 uses the EXP-family, CMAB, and iCMAB corpora, filtered to Stochastic runs un
 
 \begin{figure}[ht!]
 \centering
-\textbf{Stochastic Algorithm-Tier Separation}\\[-0.0em]
+\textbf{Stochastic Algorithm-Tier Separation}\\[0.5em]
 \includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-033_g9_network_gap_analysis_panel_d_rq1_algorithm_tier_separation_stochastic.png}
 \caption{Under stochastic disruption, \texttt{Oracle}-normalized efficiency
 separates viable contextual policies from failed designs. Contextual pursuit
 and epsilon-greedy variants remain robust, while epoch-greedy and structurally
-mismatched policies collapse.}
+mismatched policies collapse.\shee{variant groups mentioned in the caption are not clear in the graph}}
 % \dan{Longwinded. I'd write this a bit better.}
 % SOLVED: Shortened the caption into two direct sentences that preserve the visible tier-separation insight without overloading one sentence.
 \label{fig:main_performance_summary}
@@ -87,7 +87,7 @@ efficiency more consistently as threats escalate.
   \end{minipage}}
 \hfill
 \subfloat[Across Baseline, Stochastic, Markov, Adaptive, and OnlineAdaptive
-regimes, \texttt{iCPursuitNeuralUCB} preserves high efficiency (92.8\% under
+regimes, \texttt{iCPursuitNeural} preserves high efficiency (92.8\% under
 Adaptive and 99.8\% under OnlineAdaptive), while \texttt{EXPUCB} remains lower
 across Markov/Adaptive/OnlineAdaptive (73.8--76.4\%), showing that adaptive
 threats expose stability gaps across model families.
@@ -124,11 +124,11 @@ RQ2 uses the Markov, Adaptive, and OnlineAdaptive threat slice from \cref{tab:sc
 \caption{The figure reports each representative policy's lowest
 \texttt{Oracle}-normalized efficiency across the locked Markov, Adaptive, and
 OnlineAdaptive scope. Higher floors indicate resistance to catastrophic
-collapse: \texttt{iCEpsilonGreedy} has the strongest floor, \texttt{CPursuit}
+collapse: \texttt{iCEpsGreedy} has the strongest floor, \texttt{CPursuit}
 has the best average, and \texttt{EXPNeuralUCB} remains fragile despite
-adversarial-style exploration. Together with
+adversarial-style exploration \shee{Why? It is not very clear how to read the graph}. Together with
 \Cref{fig:threat_penalty_escalation}, this shows that adaptive threats expose
-stability gaps not visible from average efficiency alone.}
+stability gaps not visible from average efficiency alone.\shee{Markov, Adaptive and OnlineAdaptive scope mentioned in caption are not present in graph}}
 % \shee{Replace low quality images - 5, 7, 8a, 9b, 11, 12} -- SOLVED: Refreshed the manuscript-facing PNG assets at print-quality resolution and revalidated the active draft build.
 % \shee{If the red labels are the floor values, can it be placed on the left of the squares? It is inconsistent right now. The caption needs to be further elaborated. "figure shows which bandit policies maintain stable worst-case performance and which become fragile under adaptive disruption" - which ones are they? Mention it explicitly.} -- SOLVED: Caption now names the stable and fragile policies explicitly; label-position changes must be handled in the source image generator if still needed.
 \label{fig:robustness_floor}
@@ -140,22 +140,22 @@ stability gaps not visible from average efficiency alone.}
 \subfloat[Under the OnlineAdaptive threat, replay scaling is non-monotonic:
 efficiency drops from 89.2\% at $s{=}1$ to 84.9\% at $s{=}1.5$, then recovers
 to 90.8\% at $s{=}2$. This pattern shows that added replay can help or hurt
-depending on the active threat.
+depending on the active threat.\shee{Legend overlaps bars on the top. The caption uses values that are not present in the graph}
 \label{fig:capacity_paradox_summary}]{%
   \begin{minipage}{0.45\textwidth}
   \centering
-  \textbf{Compact Capacity-Paradox Summary}\\[-0.0em]
+  \hspace{3.7em}\textbf{Compact Capacity-Paradox Summary}\\[-0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-039_g1_capacity_paradox.png}
   \end{minipage}}
 \hfill
 \subfloat[Across the six replay configurations, replay semantics changes the
 same scale effect: under OnlineAdaptive, $T$-type replay spans 83.2--90.6\%,
 while $T_b$-type replay spans 84.2--86.6\%. This shows that replay capacity
-must be interpreted jointly with anchoring rule and threat regime.
+must be interpreted jointly with anchoring rule and threat regime.\shee{Re-check the values in the caption.}
 \label{fig:capacity_paradox_all_configs_main}]{%
   \begin{minipage}{0.52\textwidth}
   \centering
-  \textbf{Replay-Configuration Sensitivity}\\[-0.0em]
+  \textbf{Replay-Configuration Sensitivity}\\[0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-035_g9_network_gap_analysis_panel_f_capacity_paradox_all_6_replay_configs_sc.png}
   \end{minipage}}
 \caption{Panels~(a) and~(b) jointly show that replay capacity acts as a
@@ -255,11 +255,11 @@ Under \texttt{ThompsonSampling} allocation and base-horizon ($T_b$)-type replay 
 Adaptive disruption gives the largest validated gain: \texttt{ThompsonSampling}
 with $T_b$-type replay at $s{=}1.5$ reaches 95.7\%, a 2.9 percentage-point
 improvement. This shows that deployment rules should match policy, allocator,
-and replay settings to the active threat.
+and replay settings to the active threat.\shee{Caption mentions Tb-type and s values which are not present on the graph.}
 \label{fig:deployment_rules_main}]{%
   \begin{minipage}{0.45\textwidth}
   \centering
-  \textbf{Scenario-Based Deployment Guidance}\\[-0.0em]
+  \hspace{3.7em}\textbf{Scenario-Based Deployment Guidance}\\[-0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-042_g4_deployment_rules.png}
   \end{minipage}}
 \hfill
@@ -272,7 +272,7 @@ selection is a first-class deployment control.
 \label{fig:allocator_risk_main}]{%
   \begin{minipage}{0.52\textwidth}
   \centering
-  \textbf{Allocator-Induced Risk}\\[-0.0em]
+  \textbf{Allocator-Induced Risk}\\[0.5em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-037_g9_network_gap_analysis_panel_h_allocator_risk_floor_mean_peak_icpursuit.png}
   \end{minipage}}
 \caption{Panels~(a) and~(b) jointly show that robust quantum-routing deployment
