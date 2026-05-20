@@ -103,18 +103,18 @@ Quantum networks, entanglement routing, multi-armed bandits, adversarial learnin
 
 % \dan{add the code repo here}
 \section*{Code Metadata}
-The anonymized evaluation framework and verified logs are available at
-\url{https://anonymous.4open.science/r/quantum_project-D2FF/README.md}.
+The evaluation framework and verified logs are available at
+\url{https://anonymous.4open.science/r/quantum_project-D2FF}.
 
 \section{Introduction}\label{sec:Introduction}
 
-Quantum entanglement distribution is a core primitive for the quantum Internet, supporting quantum key distribution, distributed quantum computing, and sensing~\cite{kimble2008quantum,wehner2018quantum,pompili2021realization}. Reliable end-to-end entanglement is difficult because generation and swapping are probabilistic, quantum states are fragile, and decoherence makes path quality time-varying~\cite{briegel1998quantum,dahlberg2021netsquid,zukowski1993event}. Unlike classical packet routing, quantum routing must establish and consume entanglement under limited memory coherence, probabilistic operations, and fidelity loss~\cite{bennett1993teleporting,zukowski1993event}. These constraints tightly couple path selection with qubit allocation, since resource placement affects success probability and learner feedback~\cite{li2025multipath,wang2025learning,huang2024quantum}.
+Quantum entanglement distribution is a core property for the quantum Internet, supporting quantum key distribution, distributed quantum computing, and sensing~\cite{kimble2008quantum,wehner2018quantum,pompili2021realization}. Reliable end-to-end entanglement is difficult because generation and swapping are probabilistic, quantum states are fragile, and decoherence makes path quality time-varying~\cite{briegel1998quantum,dahlberg2021netsquid,zukowski1993event}. Unlike classical packet routing, quantum routing must establish and consume entanglement under limited memory coherence, probabilistic operations, and fidelity loss~\cite{bennett1993teleporting,zukowski1993event}. These constraints tightly couple path selection with qubit allocation, since resource placement affects success probability and learner feedback~\cite{li2025multipath,wang2025learning,huang2024quantum}.
 
 Existing quantum-routing studies propose online path selection, benchmarking-driven routing, adaptive route selection, and adversarially robust learning~\cite{wang2025learning,coopmans2021benchmark,huang2024quantum}, but they are often evaluated under different threat, topology, allocator, and replay assumptions~\cite{liu2024qbgp,li2025multipath,chaudhary2023quantum}. This creates a matched-threat evaluation gap: it is unclear when contextual structure is necessary, when adversarial robustness dominates, and how allocator and capacity choices alter routing performance.
 
 \begin{figure}[ht!]
 \centering
-\textbf{Threat-Aware Evaluation Framework}\\[0.25em]
+\textbf{Threat-Aware Evaluation Framework}\\[0.75em]
 \footnotesize
 \resizebox{0.96\columnwidth}{!}{%
 \begin{tikzpicture}[
@@ -138,9 +138,9 @@ Existing quantum-routing studies propose online path selection, benchmarking-dri
 \node[allocbox, right=of models] (alloc) {Allocator};
 \node[allocbox, right=of alloc] (capacity) {Replay};
 \node[stage, below=0.55cm of models] (grid) {Matched evaluation grid};
-\node[outputbox, below=0.55cm of grid, xshift=-2.00cm] (metrics) {Metrics};
+\node[outputbox, below=0.55cm of grid, xshift=-2.50cm] (metrics) {Metrics};
 \node[outputbox, below=0.55cm of grid] (robust) {Robustness};
-\node[outputbox, below=0.55cm of grid, xshift=2.00cm] (guidance) {Guidance};
+\node[outputbox, below=0.55cm of grid, xshift=2.50cm] (guidance) {Guidance};
 \draw[topologyarrow] (topology) |- (grid);
 \draw[threatarrow] (threats) -- (grid);
 \draw[policyarrow] (models) -- (grid);
@@ -153,8 +153,8 @@ Existing quantum-routing studies propose online path selection, benchmarking-dri
 }
 \caption{Five matched inputs---topology, threat, policy, allocator, and
 replay---feed a shared evaluation grid to produce \texttt{Oracle}-normalized
-metrics, robustness comparisons, and deployment guidance. Matching all five
-simultaneously exposes the \texttt{policy--allocator--capacity} interaction as
+metrics, robustness comparisons, and deployment guidance. Matching all five inputs,
+simultaneously, exposes the \texttt{policy--allocator--capacity} interaction as
 the controlling robustness factor.}
 \label{fig:framework}
 \end{figure}
@@ -196,7 +196,7 @@ In summary, our work makes the following contributions:
     4.4 percentage-point (pp) efficiency drop under reactive
     adaptive disruption, which then recovers by 6.0~pp at full
     scale ($s{=}2$); allocator choice alone shifts worst-case
-    efficiency floors by 15.6~pp.}
+    efficiency floors\footnote{Defined in \Cref{tab:notation_metrics}} by 15.6~pp.}
     % \devroop{This still needs to be rewritten. For a reader, the person has no idea what OnlineAdaptive and $s$ means. Make it more explainable. Same for the next point}
     % SOLVED: Intro threat table commented out due to page budget. Rewrote bullet
     % to remove naked ``OnlineAdaptive'' label; replaced with ``reactive adaptive
@@ -226,7 +226,7 @@ Quantum networks distribute entanglement through repeaters and end nodes to supp
 % replay-capacity settings common across all policy families.
 
 \smallTitle{Bandit policies for routing decisions}
-Bandit methods provide a natural online-learning interface for quantum routing because each decision reveals partial feedback about the selected path, allocation, or context. We compare stochastic, contextual/neural, adversarial, predictive, and hybrid bandit policies rather than treating ``online learning'' as a single category. UCB and Thompson Sampling motivate stochastic baselines~\cite{auer2002finite,thompson1933likelihood}; EXP3 motivates adversarial baselines~\cite{auer2002nonstochastic}; LinUCB, NeuralUCB, and NeuralTS motivate contextual and nonlinear reward models~\cite{li2010contextual,chu2011contextual,zhou2020neuralucb,zhang2022neuralts}; pursuit-style learning automata motivate structured exploitation~\cite{thathachar2011networks}; and informed/contextual bandits motivate forecast-augmented policies~\cite{kar2024icmab,box2015time}. Huang \etal~\cite{huang2024quantum} employs \emph{EXPNeuralUCB}, combining adversarial EXP3-style exploration with NeuralUCB-style reward modeling for joint path selection and qubit allocation. In contrast, we employ a stochastic approach. The key difference is evaluation scope: Huang \etal test a specific adversarial-neural policy, while our study compares multiple policy families under the same topology, threat regimes, allocator policies, and replay-capacity settings. This lets us attribute robustness differences to the policy--allocator--capacity interaction rather than to incompatible experimental assumptions.
+Bandit methods provide a natural online-learning interface for quantum routing as each decision reveals partial feedback about the selected path, allocation, or context. We compare stochastic, contextual/neural, adversarial, predictive, and hybrid bandit policies rather than treating ``online learning'' as a single category. UCB and Thompson Sampling motivate stochastic baselines~\cite{auer2002finite,thompson1933likelihood}; EXP3 motivates adversarial baselines~\cite{auer2002nonstochastic}; LinUCB, NeuralUCB, and NeuralTS motivate contextual and nonlinear reward models~\cite{li2010contextual,chu2011contextual,zhou2020neuralucb,zhang2022neuralts}; pursuit-style learning automata motivate structured exploitation~\cite{thathachar2011networks}; and informed/contextual bandits motivate forecast-augmented policies~\cite{kar2024icmab,box2015time}. Huang \etal~\cite{huang2024quantum} employs \emph{EXPNeuralUCB}, combining adversarial EXP3-style exploration with NeuralUCB-style reward modeling for joint path selection and qubit allocation. In contrast, we employ a stochastic approach. The key difference is evaluation scope: Huang \etal test a specific adversarial-neural policy, while our study compares multiple policy families under the same topology, threat regimes, allocator policies, and replay-capacity settings. This lets us attribute robustness differences to the policy--allocator--capacity interaction rather than to incompatible experimental assumptions.
 % \dan{Mkae it more clear and direct how these works differ. I would make it clear at the end of the paragraph in 1-2 sentneces.}
 % SOLVED: Preserved the original paragraph wording and appended two direct sentences at the end clarifying how Huang et al.'s specific EXPNeuralUCB setting differs from our matched policy-family, threat, allocator, and replay-capacity evaluation.
 
@@ -240,45 +240,45 @@ Quantum-network benchmarking and utility-driven simulation frameworks motivate s
 
 At each decision frame $t$, a routing agent selects a candidate path $P_r$ and qubit-allocation vector $\mathbf{x}$ under uncertain link success and path availability. The model defines the topology, reward and availability process, threat regimes, allocator policies, and bandit interface used in the evaluation.
 
-\begin{figure}[ht!]
-\centering
-\textbf{System-Model Loop}\\[0.25em]
-\footnotesize
-\resizebox{1.0\columnwidth}{!}{%
-\begin{tikzpicture}[
-    >=Latex,
-    node distance=0.2cm and 0.65cm,
-    basebox/.style={rectangle, draw, rounded corners=4pt, align=center, minimum height=0.5cm, text width=5.0cm, inner sep=3pt, font=\bfseries},
-    contextbox/.style={basebox, draw=networkblue!80!black, fill=networkblue!15},
-    agentbox/.style={basebox, draw=algorange!85!black, fill=algorange!18},
-    actionbox/.style={basebox, draw=allocpurple!80!black, fill=allocpurple!15},
-    envbox/.style={basebox, draw=envgreen!70!black, fill=envgreen!18},
-    feedbackbox/.style={basebox, draw=black!60, fill=black!6},
-    arrow/.style={thick,->},
-    contextarrow/.style={arrow, draw=networkblue!80!black},
-    agentarrow/.style={arrow, draw=algorange!85!black},
-    allocarrow/.style={arrow, draw=allocpurple!80!black},
-    envarrow/.style={arrow, draw=envgreen!70!black}
-]
-\node[contextbox] (context) {Candidate Paths + Context};
-\node[agentbox, right=of context] (agent) {Routing Agent (Bandit Policy)};
-\node[actionbox, right=of agent] (action) {Path Selection + Qubit Allocation};
-\node[envbox, below=1.0cm of action] (env) {Quantum Network + Threat Regime};
-\node[feedbackbox, left=of env] (reward) {Reward / Feedback (success, fidelity, efficiency)};
-\draw[contextarrow] (context) -- (agent);
-\draw[agentarrow] (agent) -- (action);
-\draw[allocarrow] (action) -- (env);
-\draw[envarrow] (env) -- (reward);
-\draw[arrow, draw=black!75, dashed] (reward) -- (agent);
-\end{tikzpicture}%
-}
-\caption{At frame $t$, the routing controller observes candidate-path
-context, jointly selects a path and qubit allocation, interacts with the
-threat-conditioned quantum-network testbed, and updates from reward feedback.
-The loop supports the paper's core modeling claim: routing robustness must be
-evaluated as a coupled path-selection, allocation, threat, and feedback process.}
-\label{fig:system_model}
-\end{figure}
+% \begin{figure}[ht!]
+% \centering
+% \textbf{System-Model Loop}\\[0.75em]
+% \footnotesize
+% \resizebox{1.0\columnwidth}{!}{%
+% \begin{tikzpicture}[
+%     >=Latex,
+%     node distance=0.2cm and 0.65cm,
+%     basebox/.style={rectangle, draw, rounded corners=4pt, align=center, minimum height=0.5cm, text width=5.0cm, inner sep=3pt, font=\bfseries},
+%     contextbox/.style={basebox, draw=networkblue!80!black, fill=networkblue!15},
+%     agentbox/.style={basebox, draw=algorange!85!black, fill=algorange!18},
+%     actionbox/.style={basebox, draw=allocpurple!80!black, fill=allocpurple!15},
+%     envbox/.style={basebox, draw=envgreen!70!black, fill=envgreen!18},
+%     feedbackbox/.style={basebox, draw=black!60, fill=black!6},
+%     arrow/.style={thick,->},
+%     contextarrow/.style={arrow, draw=networkblue!80!black},
+%     agentarrow/.style={arrow, draw=algorange!85!black},
+%     allocarrow/.style={arrow, draw=allocpurple!80!black},
+%     envarrow/.style={arrow, draw=envgreen!70!black}
+% ]
+% \node[contextbox] (context) {Candidate Paths + Context};
+% \node[agentbox, right=of context] (agent) {Routing Agent (Bandit Policy)};
+% \node[actionbox, right=of agent] (action) {Path Selection + Qubit Allocation};
+% \node[envbox, below=1.0cm of action] (env) {Quantum Network + Threat Regime};
+% \node[feedbackbox, left=of env] (reward) {Reward / Feedback (success, fidelity, efficiency)};
+% \draw[contextarrow] (context) -- (agent);
+% \draw[agentarrow] (agent) -- (action);
+% \draw[allocarrow] (action) -- (env);
+% \draw[envarrow] (env) -- (reward);
+% \draw[arrow, draw=black!75, dashed] (reward) -- (agent);
+% \end{tikzpicture}%
+% }
+% \caption{At frame $t$, the routing controller observes candidate-path
+% context, jointly selects a path and qubit allocation, interacts with the
+% threat-conditioned quantum-network testbed, and updates from reward feedback.
+% The loop supports the paper's core modeling claim: routing robustness must be
+% evaluated as a coupled path-selection, allocation, threat, and feedback process.}
+% \label{fig:system_model}
+% \end{figure}
 
 \subsection{Network Topology and Path Structure}
 \label{subsec:topology}
@@ -377,7 +377,7 @@ Informed variants augment the context vector from \cref{subsec:mab} with predict
     (\cref{fig:threat_penalty_escalation,fig:robustness_floor}):
     \texttt{CPursuit} and \texttt{iCEpsilonGreedy} reach 88.1\% and 86.9\%
     average efficiency with 77.4\% and 81.0\% floors, while
-    \texttt{EXPNeuralUCB} falls to an 18.0\% floor.
+    \texttt{EXPNeuralUCB} falls to an 18.0\% floor \footnote{Defined in \Cref{tab:notation_metrics}}.
 
     \item \textbf{RQ3.} \emph{How do choices in bandit policy, resource
     allocation strategy, and replay-capacity semantics interact to affect

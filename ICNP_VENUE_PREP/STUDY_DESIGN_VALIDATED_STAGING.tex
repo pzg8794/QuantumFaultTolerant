@@ -5,7 +5,7 @@
 \subsection{Experimental Design}
 \label{sec:expDesign}
 
-\cref{sec:SystemModel} defines the configuration axes used to answer \cref{sec:research_questions}. \Cref{tab:config_summary} summarizes the design dimensions, tested options, and RQ coverage.
+\cref{sec:SystemModel} defines the configuration axes used to answer \cref{sec:research_questions}. \Cref{tab:notation_metrics} defines all declared variables and \Cref{tab:config_summary} summarizes the design dimensions, tested options, and RQ coverage.
 
 \begin{table}[ht!]
 \footnotesize
@@ -131,33 +131,6 @@ Replay scaling changes only classical memory: the physical network budget remain
 \smallTitle{Adversarial threat taxonomy}
 The five threat settings follow \cref{subsec:threats} and \cref{tab:config_summary}; the scenario-specific parameters below instantiate the matched-interference comparison~\cite{huang2024quantum}.
 
-\begin{table}[ht!]
-\footnotesize
-\centering
-\setlength{\tabcolsep}{4pt}
-\caption{Hyperparameter settings and literature justifications.}
-\label{tab:setup-hyperparameters}
-\begin{tabular}{p{0.25\linewidth} p{0.25\linewidth} p{0.20\linewidth} p{0.16\linewidth}}
-\toprule
-\textbf{Parameter} & \textbf{Algorithm} & \textbf{Value} & \textbf{Ref.} \\
-\midrule
-Neural LR & EXPNeuralUCB & 0.01 & \cite{huang2024quantum} \\
-          & GNeuralUCB   & 0.2  & \cite{zhou2020neuralucb} \\
-\addlinespace[2pt]
-Exp. Weight & EXPNeuralUCB & 0.05  & \cite{huang2024quantum} \\
-            & EXPUCB       & 0.005 & Tuned \\
-\addlinespace[2pt]
-Pursuit LR & Pursuit family & 0.2 & \cite{thathachar2011networks} \\
-\addlinespace[2pt]
-UCB Explore & DynamicUCB & 2.0 & \cite{auer2002finite} \\
-\addlinespace[2pt]
-ARIMA ($n$) & iCPursuit & 50, 100 & \cite{box2015time} \\
-\addlinespace[2pt]
-Replay semantics & All & $T_b=sF_b$, $T=sF_c$ & \cite{schaul2015prioritized,mnih2015human} \\
-\bottomrule
-\end{tabular}
-\end{table}
-
 \smallTitle{Scenario specifications}
 \Cref{tab:scenario_specs} instantiates the threat settings defined in \cref{subsec:threats} for the matched evaluation grid.
 
@@ -183,26 +156,26 @@ OnlineAdaptive & 25\% adaptive targeting with $\gamma=0.97$ and softmax selectio
 \smallTitle{Bandit-policy portfolio}
 The evaluated bandit-policy portfolio spans classical, adversarial, contextual/neural, pursuit-based, and predictive policies, with an Oracle reference enabling matched comparisons across policy families.
 
-\begin{table}[ht!]
-\footnotesize
-\centering
-\setlength{\tabcolsep}{4pt}
-\caption{Bandit-policy portfolio by evaluation phase.}
-\label{tab:setup-algorithm-portfolio}
-% \begin{tabular}{p{0.18\linewidth} p{0.24\linewidth} p{0.48\linewidth}}
-\begin{tabular}{@{}m{0.17\linewidth}>{\raggedright\arraybackslash}m{0.24\linewidth}>{\raggedright\arraybackslash}m{0.5\linewidth}@{}}
-\toprule
-\textbf{Phase} & \textbf{Category} & \textbf{Bandit policies / reference} \\
-\midrule
-Phase 1 & Classical MAB & LinUCB~\cite{li2010contextual}, LinTS~\cite{agrawal2013thompson}, UCB1~\cite{auer2002finite}, Thompson Sampling~\cite{thompson1933likelihood} \\
-Phase 1--2 & Adversarial & EXP3~\cite{auer2002nonstochastic}, EXPUCB~\cite{huang2024quantum}, EXPNeuralUCB~\cite{huang2024quantum} \\
-Phase 2 & Contextual/Neural & GNeuralUCB, NeuralUCB~\cite{zhou2020neuralucb}, NeuralTS~\cite{zhang2022neuralts}, CEpsilonGreedy, CThompsonSampling \\
-Phase 2--3 & Pursuit-based & CPursuitNeuralUCB \\
-Phase 3 & Predictive & iCPursuitNeuralUCB \\
-Baseline & Oracle & Perfect-information reference \\
-\bottomrule
-\end{tabular}
-\end{table}
+% \begin{table}[ht!]
+% \footnotesize
+% \centering
+% \setlength{\tabcolsep}{4pt}
+% \caption{Bandit-policy portfolio by evaluation phase.}
+% \label{tab:setup-algorithm-portfolio}
+% % \begin{tabular}{p{0.18\linewidth} p{0.24\linewidth} p{0.48\linewidth}}
+% \begin{tabular}{@{}m{0.17\linewidth}>{\raggedright\arraybackslash}m{0.24\linewidth}>{\raggedright\arraybackslash}m{0.5\linewidth}@{}}
+% \toprule
+% \textbf{Phase} & \textbf{Category} & \textbf{Bandit policies / reference} \\
+% \midrule
+% Phase 1 & Classical MAB & LinUCB~\cite{li2010contextual}, LinTS~\cite{agrawal2013thompson}, UCB1~\cite{auer2002finite}, Thompson Sampling~\cite{thompson1933likelihood} \\
+% Phase 1--2 & Adversarial & EXP3~\cite{auer2002nonstochastic}, EXPUCB~\cite{huang2024quantum}, EXPNeuralUCB~\cite{huang2024quantum} \\
+% Phase 2 & Contextual/Neural & GNeuralUCB, NeuralUCB~\cite{zhou2020neuralucb}, NeuralTS~\cite{zhang2022neuralts}, CEpsilonGreedy, CThompsonSampling \\
+% Phase 2--3 & Pursuit-based & CPursuitNeuralUCB \\
+% Phase 3 & Predictive & iCPursuitNeuralUCB \\
+% Baseline & Oracle & Perfect-information reference \\
+% \bottomrule
+% \end{tabular}
+% \end{table}
 
 \smallTitle{Key bandit-policy features}
 CPursuitNeuralUCB adds topology/channel-quality context to pursuit learning, while iCPursuitNeuralUCB adds ARIMA$(1,0,1)$ forecasts with warmup window size ($n$), using $n\in\{50,100\}$~\cite{box2015time}. The Oracle normalizes efficiency to a perfect-information reference.

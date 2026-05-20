@@ -9,10 +9,10 @@ efficiency, with leading averages ranging from 44.1\% on \paperTwelve{} to
 78.0\% on \paperSeven{}. The larger \texttt{Oracle} gaps on harder topologies
 show that pursuit-informed neural routing transfers beyond the primary testbed
 but becomes harder to separate from the reference as topology complexity
-increases.\label{fig:cross_testbed_efficiency_main}]{%
+increases.\shee{The paper references in the caption do not connect to the graph. It is hard to understand the graph with the current caption.} \label{fig:cross_testbed_efficiency_main}]{%
   \begin{minipage}{0.52\textwidth}
   \centering
-  \textbf{(a) External-testbed efficiency and Oracle-gap comparison}\\[-0.0em]
+  \hspace{1.5em}\vspace{0.5em}\textbf{External-testbed efficiency and Oracle-gap comparison}\\[0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-038_g9_network_gap_analysis_panel_i_cross_testbed_efficiency_oracle_gap_std.png}
   \end{minipage}}
 \hfill
@@ -20,11 +20,11 @@ increases.\label{fig:cross_testbed_efficiency_main}]{%
 average-efficiency threshold, reaching 90.9\%; all other families fall below it,
 showing that pursuit--neural hybrids form the strongest robustness tier. Across
 external testbeds, the same top-family pattern persists even as topology
-complexity compresses efficiency across models.
+complexity compresses efficiency across models.\shee{The threshold is marked at 85\% and all except Classical surpass it. The caption does not capture this correctly. The threshold is not visible}
 \label{fig:model_family_cross_testbed_main}]{%
   \begin{minipage}{0.45\textwidth}
   \centering
-  \textbf{(b) Internal and external model-family ranking}\\[-0.0em]
+  \textbf{Internal and external model-family ranking}\\[-0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-041_g3_family_summary.png}
   \end{minipage}}
 \caption{Panels~(a) and~(b) jointly show that pursuit-informed neural designs
@@ -39,25 +39,25 @@ complexity widens \texttt{Oracle} gaps and compresses separation among models.}
 \label{fig:cross_testbed_confirmation}
 \end{figure*}
 
-\begin{table*}[ht!]
+\begin{table*}[!ht]
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
 \caption{Concise cross-testbed findings. Full per-algorithm and per-testbed detail is reported in \Cref{tab:testbed_comparison_full}.}
 \label{tab:testbed_comparison_summary}
-\begin{tabular}{p{0.15\linewidth} p{0.73\linewidth} p{0.07\linewidth}}
+\begin{tabular}{@{}p{0.14\linewidth} p{0.83\linewidth}@{}} %  p{0.07\linewidth}}
 \toprule
-\textbf{Testbed} & \textbf{Claim-supporting finding} & \textbf{Full detail} \\
+\textbf{Testbed} & \textbf{Claim-supporting finding} \\ % & \textbf{Full detail} \\
 \midrule
-\paperTwo & Hybrid models are tightly clustered, but \texttt{iCPursuitNeuralUCB} has the best average efficiency (74.5\%) and the most wins (95/300). & \Cref{tab:testbed_comparison_full} \\
-\paperSeven & \texttt{iCPursuitNeuralUCB} dominates the dense 50-node topology, reaching 78.0\% efficiency and 245/300 wins. & \Cref{tab:testbed_comparison_full} \\
-\paperTwelve & All methods degrade on the 100-node fusion topology, but \texttt{iCPursuitNeuralUCB} still leads with 44.1\% efficiency and 97/300 wins. & \Cref{tab:testbed_comparison_full} \\
-\paperEight & \texttt{iCPursuitNeuralUCB} has the best average efficiency (67.9\%), while \texttt{EXPNeuralUCB} has the largest win count (10/20), showing that average dominance and per-configuration dominance can diverge. & \Cref{tab:testbed_comparison_full} \\
+\paperTwo & Hybrid models are tightly clustered, but \texttt{iCPursuitNeuralUCB} has the best average efficiency (74.5\%) and the most wins (95/300). \\ % & \Cref{tab:testbed_comparison_full} \\
+\paperSeven & \texttt{iCPursuitNeuralUCB} dominates the dense 50-node topology, reaching 78.0\% efficiency and 245/300 wins. \\ % & \Cref{tab:testbed_comparison_full} \\
+\paperTwelve & All methods degrade on the 100-node fusion topology, but \texttt{iCPursuitNeuralUCB} leads with 44.1\% efficiency and 97/300 wins. \\ % & \Cref{tab:testbed_comparison_full} \\
+\paperEight & \texttt{iCPursuitNeuralUCB} has the best average efficiency (67.9\%), while \texttt{EXPNeuralUCB} has the largest win count (10/20), showing that average dominance and per-configuration dominance can diverge. \\ % & \Cref{tab:testbed_comparison_full} \\
 \bottomrule
 \end{tabular}
 \end{table*}
 
-\begin{table}[ht!]
+\begin{table}[!ht]
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
@@ -72,6 +72,7 @@ External testbeds & \texttt{iCPursuitNeuralUCB} has the highest average efficien
 Topology scaling & Efficiency declines as routing scale/complexity increases, from roughly 90\% internally to 74--78\% on \paperTwo/\paperSeven and about 42--44\% on \paperTwelve. \\
 \bottomrule
 \end{tabular}
+% \vspace{-4.5mm}
 \end{table}
 
 \Cref{fig:cross_testbed_confirmation,tab:testbed_comparison_summary} show the cross-testbed claim in our work: pursuit--neural hybrids, especially \texttt{iCPursuitNeuralUCB}, provide the strongest average cross-testbed robustness, while high-complexity regimes can change the winner structure. \Cref{tab:testbed_comparison_full} gives the full per-configuration evidence supporting this hierarchy across the evaluated testbeds. \Cref{fig:cross_testbed_confirmation,tab:model_family_comparison_summary} keep the model-family claim in the main body: hybrid pursuit--neural policies define the overall performance ceiling, and topology complexity reduces efficiency as routing spaces grow. The detailed family comparison remains available in \Cref{tab:model_family_comparison_full}.
