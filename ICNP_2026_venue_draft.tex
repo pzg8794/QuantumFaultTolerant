@@ -185,9 +185,11 @@ In summary, our work makes the following contributions:
     \item \descStep{Evaluation framework}{A threat-aware benchmark comparing bandit policies for joint path pick and qubit allocation across 8,241 matched threat--allocator--capacity tests.}
 
     \item \descStep{Capacity paradox}{Capacity effects are threat-dependent: with \texttt{ThompsonSampling} allocation and base-horizon replay capacity ($T_b$), OnlineAdaptive efficiency drops 4.4 percentage points at replay-capacity scale $s{=}1.5$ then recovers 6.0 percentage points at $s{=}2$; allocator choice shifts the worst-case efficiency floor by 15.6 percentage points.}
+    % \devroop{This still needs to be rewritten. For a reader, the person has no idea what OnlineAdaptive and $s$ means. Make it more explainable. Same for the nexr point}
+    % SOLVED: Added the lightweight threat-regime table in the Introduction and rewrote this bullet to define base-horizon replay capacity ($T_b$), replay-capacity scale ($s$), and worst-case efficiency floor at first use. The following deployment-guidance bullet was also expanded to avoid compressed pp/co-design wording.
 
     \item \descStep{Deployment guidance}
-    {Neural hybrids sustain $\geq$85\% worst-case efficiency while allocator choice induces 10--15 pp swings, requiring algorithm--allocator co-design.}
+    {Pursuit--neural hybrids sustain $\geq$85\% worst-case efficiency while allocator choice induces 10--15 percentage-point swings, requiring routing policy and qubit allocation to be selected jointly.}
     % {\texttt{iCPursuitNeuralUCB} with default allocator, $T$-type replay, and $s{=}2$ achieves 96.0\% mean Oracle-normalized efficiency and a 92.8\% worst-case floor across all five threat regimes at the 6K horizon.}
 
     \item \descStep{Experimental findings} 
