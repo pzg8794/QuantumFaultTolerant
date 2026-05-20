@@ -87,7 +87,7 @@ Bandit-policy families & Classical, Predictive, Adversarial, Contextual/Neural &
 % Memory Architecture
 % ----------------------------------------------------------------------------
 \smallTitle{Replay configurations (capacity scaling)}
-We distinguish the base horizon $F_b\in\{4\mathrm{K},6\mathrm{K},8\mathrm{K}\}$ from the current horizon $F_c$ used after frame scaling, and evaluate $S\in\{3,5,8,10\}$ independent runs per configuration. Replay memory is scaled by $s\in\{1,1.5,2\}$, with default $s=2$, under two semantics:
+We distinguish the base horizon $F_b\in\{4\mathrm{K},6\mathrm{K},8\mathrm{K}\}$ from the current horizon $F_c$ used after frame scaling, and evaluate $S\in\{3,5,8,10\}$ \shee{what is S?} independent runs per configuration. Replay memory is scaled by $s\in\{1,1.5,2\}$, with default $s=2$, under two semantics:
 \[
 T_b=sF_b,\qquad T=sF_c.
 \]
@@ -201,7 +201,7 @@ Random & Uniform sampling, $\epsilon=1.0$ & 77.3\% & 1.0$\times$ \\
 \end{table}
 
 \smallTitle{Experimental scope and statistical protocol}
-The four phases in \cref{tab:config_summary} progress from MAB baselines to contextual/adversarial bandit policies, allocator interactions, and replay-capacity ablations. Overall, the design covers 552 unique configurations with up to 10 runs each, targeting roughly 5{,}520 episodes and about 380 A100 GPU-hours. Runs use fixed seeds with $S\in\{3,5,8,10\}$; primary results report 3- and 5-run averages.
+The four phases in \cref{tab:config_summary} progress from MAB baselines to contextual/adversarial bandit policies, allocator interactions, and replay-capacity ablations. Overall, the design covers 552 unique configurations with up to 10 runs each, targeting roughly 5{,}520 episodes and about 380 A100 GPU-hours. Runs use fixed seeds with $S\in\{3,5,8,10\}$; primary results report 3- and 5-run averages. \shee{Define S}
 
 We report Oracle-normalized efficiency,
 \[
