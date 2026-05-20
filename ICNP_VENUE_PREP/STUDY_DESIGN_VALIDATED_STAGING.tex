@@ -13,22 +13,19 @@
 \setlength{\tabcolsep}{4pt}
 \caption{Notation and metrics used in the matched evaluation.}
 \label{tab:notation_metrics}
-\begin{tabular}{p{0.20\linewidth} p{0.70\linewidth}}
+\begin{tabular}{p{0.18\linewidth} p{0.72\linewidth}}
 \toprule
 \textbf{Term} & \textbf{Meaning} \\
 \midrule
-Efficiency & \texttt{Oracle}-normalized routing performance, reported as a percentage. \\
 \texttt{Oracle} gap & Difference between achieved efficiency and the \texttt{Oracle} reference. \\
-Robustness floor & Lowest efficiency observed across the evaluated threat settings. \\
+Floor & Lowest efficiency observed in the stated comparison scope; higher floors indicate stronger worst-case robustness. \\
 CV & Coefficient of variation across scenario-level means; lower values indicate more stable performance. \\
-$s$ & Replay-capacity scale factor; larger $s$ increases the replay scale. \\
+$s$ & Replay-capacity scale factor; larger $s$ increases replay scale. \\
 $S$ & Number of independent runs used for repeated stochastic evaluation. \\
 $F_b$ & Base frame horizon used for $T_b$-type replay anchoring. \\
 $F_c$ & Current frame horizon used for $T$-type replay anchoring. \\
 $T_b$ & Replay capacity anchored to the base horizon, defined as $T_b=sF_b$. \\
 $T$ & Replay capacity anchored to the current horizon, defined as $T=sF_c$. \\
-Run suite & Repeated execution group used to average stochastic experimental outcomes. \\
-Percentage points & Absolute difference between two percentages. \\
 \bottomrule
 \end{tabular}
 \end{table}
