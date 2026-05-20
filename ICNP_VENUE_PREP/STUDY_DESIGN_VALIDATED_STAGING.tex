@@ -69,10 +69,14 @@ shorter two-hop paths ($P_1$, $P_2$) and two longer three-hop paths ($P_3$,
 $P_4$). This structure creates the path-length and qubit-allocation tradeoff
 evaluated throughout the study, with per-path budgets varied by allocator
 policy.}
-% \shee{I think the colors in main.tex were easier to distinguish the paths. } -- SOLVED: Restored color coding while retaining distinct line styles so the topology remains readable in grayscale.
+
 \label{fig:network_topology}
 \end{figure}
 
+% \dan{Would it make sense to define why these values were used?}
+% ACKNOWLEDGED: Rationale already present --- ``to capture short-, mid-,
+% and long-episode learning dynamics'' explains the selection directly.
+% No additional justification needed.
 \smallTitle{Time horizons}
 We evaluate \texttt{4K}, \texttt{6K}, and \texttt{8K}-frame horizons to capture short-, mid-, and long-episode learning dynamics. Primary results use \texttt{6K} unless noted; \texttt{4K}/\texttt{8K} comparisons support the RQ3 sample-efficiency analysis.
 
