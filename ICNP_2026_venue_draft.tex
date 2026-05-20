@@ -159,11 +159,32 @@ the controlling robustness factor.}
 \label{fig:framework}
 \end{figure}
 % this gap
-To address this lack of a unified and controlled evaluation framework for quantum-routing strategies, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. This evaluation provides practical guidance for designing quantum-network controllers that can maintain high entanglement efficiency and robustness under changing network conditions and adversarial disruptions. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks. In summary, our work makes the following contributions:
+To address this lack of a unified and controlled evaluation framework for quantum-routing strategies, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. This evaluation provides practical guidance for designing quantum-network controllers that can maintain high entanglement efficiency and robustness under changing network conditions and adversarial disruptions. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks.
+
+\begin{table}[t]
+\footnotesize
+\centering
+\setlength{\tabcolsep}{4pt}
+\caption{Threat regimes referenced in the evaluation.}
+\label{tab:intro_threat_regimes}
+\begin{tabular}{p{0.26\linewidth} p{0.64\linewidth}}
+\toprule
+\textbf{Threat regime} & \textbf{Meaning} \\
+\midrule
+Baseline & No-disruption reference setting. \\
+Stochastic & Independent random path disruption. \\
+Markov & Temporally correlated structured disruption. \\
+Adaptive & Disruption that targets recently used paths. \\
+OnlineAdaptive & Online reactive disruption based on recent routing behavior. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+In summary, our work makes the following contributions:
 \begin{itemize}
     \item \descStep{Evaluation framework}{A threat-aware benchmark comparing bandit policies for joint path pick and qubit allocation across 8,241 matched threat--allocator--capacity tests.}
 
-    \item \descStep{Capacity paradox}{Capacity effects are threat-dependent: with \texttt{ThompsonSampling} and $T_b$ replay, OnlineAdaptive efficiency drops 4.4~pp at $s{=}1.5$ then recovers 6.0~pp at $s{=}2$; allocators shift RQ3c floors by 15.6~pp.} \devroop{This still needs to be rewritten. For a reader, the person has no idea what OnlineAdaptive and $s$ means. Make it more explainable. Same for the nexr point}
+    \item \descStep{Capacity paradox}{Capacity effects are threat-dependent: with \texttt{ThompsonSampling} allocation and base-horizon replay capacity ($T_b$), OnlineAdaptive efficiency drops 4.4 percentage points at replay-capacity scale $s{=}1.5$ then recovers 6.0 percentage points at $s{=}2$; allocator choice shifts the worst-case efficiency floor by 15.6 percentage points.}
 
     \item \descStep{Deployment guidance}
     {Neural hybrids sustain $\geq$85\% worst-case efficiency while allocator choice induces 10--15 pp swings, requiring algorithm--allocator co-design.}
