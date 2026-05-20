@@ -13,10 +13,12 @@ All data sourced from validated main.tex tables:
   topology §IV-A (4-node diamond, 35-qubit budget)
 
 Run from repo root:
-  python figures/icnp_graphs/build_G8_G9.py
+  python figures/icnp-exported-assets/build_G8_G9.py
+  python figures/icnp-exported-assets/build_G8_G9.py --only panel-h
 """
 from __future__ import annotations
 from pathlib import Path
+import argparse
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -27,6 +29,11 @@ import numpy as np
 SCRIPT_DIR = Path(__file__).resolve().parent
 OUT_G8 = SCRIPT_DIR / "G8_advanced_4panel.png"
 OUT_G9 = SCRIPT_DIR / "G9_network_gap_analysis.png"
+OUT_PANEL_H = (
+    SCRIPT_DIR.parent
+    / "icnp"
+    / "ICNP-CODE-037_g9_network_gap_analysis_panel_h_allocator_risk_floor_mean_peak_icpursuit.png"
+)
 
 RNG = np.random.default_rng(42)
 
@@ -159,6 +166,63 @@ def label_bar_values_inside(ax, bars, *, suffix='%', text_color='white', y_paddi
             fontweight='bold',
             zorder=7,
         )
+
+
+def annotate_point_value(ax, x, y, text, color, xytext, *, ha='left'):
+    ax.annotate(
+        text,
+        xy=(x, y),
+        xytext=xytext,
+        textcoords='offset points',
+        ha=ha,
+        va='center',
+        fontsize=8.2,
+        color=color,
+        fontweight='bold',
+        bbox=dict(boxstyle='round,pad=0.18', facecolor='white', alpha=0.84, edgecolor='none'),
+        arrowprops=dict(arrowstyle='-', color=color, lw=0.8, alpha=0.75),
+        zorder=9,
+        clip_on=False,
+    )
+
+
+def draw_allocator_risk_panel(ax, *, include_panel_label=True):
+    alloc_names_h = ['Fixed', 'DynamicUCB', 'Thompson', 'Random']
+    alloc_cols_h = [C['FIXED'], C['DUB'], C['THOM'], C['RAND']]
+    alloc_peak_h = [min(100.0, f + s) for f, s in zip(ALLOC_FLOOR, ALLOC_SPAN)]
+    label_offsets = {
+        'Fixed': dict(peak=(19, 14), mean=(20, 0), floor=(19, -28), ha='left'),
+        'DynamicUCB': dict(peak=(19, 18), mean=(19, 0), floor=(19, -22), ha='left'),
+        'Thompson': dict(peak=(19, 16), mean=(19, 0), floor=(19, -28), ha='left'),
+        'Random': dict(peak=(24, 16), mean=(24, 0), floor=(24, -12), ha='left'),
+    }
+    for i, (an, ac) in enumerate(zip(alloc_names_h, alloc_cols_h)):
+        fl = ALLOC_FLOOR[i]
+        avg = ALLOC_AVG[i]
+        pk = alloc_peak_h[i]
+        ax.plot([i, i], [fl, pk], color=ac, lw=8, alpha=0.28, solid_capstyle='round')
+        ax.plot([i, i], [fl, pk], color=ac, lw=1.5, alpha=0.9)
+        ax.scatter(i, avg, s=90, color=ac, zorder=6, edgecolors='white', lw=1.5)
+        ax.scatter(i, fl, s=50, marker='v', color=ac, zorder=6, edgecolors='white', lw=1)
+        ax.scatter(i, pk, s=50, marker='^', color=ac, zorder=6, edgecolors='white', lw=1)
+        offsets = label_offsets[an]
+        annotate_point_value(ax, i, pk, f'peak {pk:.1f}%\nspan {ALLOC_SPAN[i]:.1f}pp', ac, offsets['peak'], ha=offsets['ha'])
+        annotate_point_value(ax, i, avg, f'mean {avg:.1f}%', ac, offsets['mean'], ha=offsets['ha'])
+        annotate_point_value(ax, i, fl, f'floor {fl:.1f}%', ac, offsets['floor'], ha=offsets['ha'])
+    ax.axhline(85, color=C['THRESH'], ls='--', lw=1.2, alpha=0.7)
+    ax.text(-0.1, 85.45, '85% target', ha='left', va='bottom', fontsize=8.0, color=C['THRESH'])
+    ax.set_xticks(range(4))
+    ax.set_xticklabels(alloc_names_h)
+    ax.set_xlim(-0.15, 3.85)
+    ax.set_ylim(65, 105)
+    ax.set_ylabel('Oracle-Norm. Efficiency (%)')
+    ax.set_facecolor('#f9f9f9')
+    ax.scatter([], [], s=80, color='#555', label='Mean')
+    ax.scatter([], [], s=45, color='#555', marker='v', label='Floor')
+    ax.scatter([], [], s=45, color='#555', marker='^', label='Peak')
+    ax.legend(fontsize=7.5, loc='lower left', ncol=3, frameon=True, framealpha=0.88)
+    if include_panel_label:
+        panel_label(ax, 'H', 'Allocator Risk: Floor / Mean / Peak (iCPursuitNeural)')
 
 
 def base_style():
@@ -412,27 +476,7 @@ def build_G9():
     panel_label(ax7,'G','Scenario Penalty vs Baseline by Algorithm & Threat')
 
     # H: allocator risk profile
-    alloc_names_h=['Fixed','DynamicUCB','Thompson','Random']
-    alloc_cols_h=[C['FIXED'],C['DUB'],C['THOM'],C['RAND']]
-    alloc_peak_h=[min(100.0,f+s) for f,s in zip(ALLOC_FLOOR,ALLOC_SPAN)]
-    for i,(an,ac) in enumerate(zip(alloc_names_h,alloc_cols_h)):
-        fl=ALLOC_FLOOR[i]; avg=ALLOC_AVG[i]; pk=alloc_peak_h[i]
-        ax8.plot([i,i],[fl,pk],color=ac,lw=8,alpha=0.28,solid_capstyle='round')
-        ax8.plot([i,i],[fl,pk],color=ac,lw=1.5,alpha=0.9)
-        ax8.scatter(i,avg,s=90,color=ac,zorder=6,edgecolors='white',lw=1.5)
-        ax8.scatter(i,fl,s=50,marker='v',color=ac,zorder=6,edgecolors='white',lw=1)
-        ax8.scatter(i,pk,s=50,marker='^',color=ac,zorder=6,edgecolors='white',lw=1)
-        ax8.text(i+0.08,avg,f'{avg:.1f}%',va='center',fontsize=8.5,color=ac,fontweight='bold')
-        ax8.text(i+0.08,fl-1.5,f'floor {fl:.1f}%',va='top',fontsize=7.5,color=ac)
-        ax8.text(i+0.08,pk+0.5,f'span {ALLOC_SPAN[i]:.1f}pp',va='bottom',fontsize=7.5,color=ac)
-    ax8.axhline(85,color=C['THRESH'],ls='--',lw=1.2,alpha=0.7)
-    ax8.set_xticks(range(4)); ax8.set_xticklabels(alloc_names_h)
-    ax8.set_ylim(65,105); ax8.set_ylabel('Oracle-Norm. Efficiency (%)')
-    ax8.set_facecolor('#f9f9f9')
-    ax8.scatter([],[],s=80,color='#555',label='Mean'); ax8.scatter([],[],s=45,color='#555',marker='v',label='Floor')
-    ax8.scatter([],[],s=45,color='#555',marker='^',label='Peak')
-    ax8.legend(fontsize=7.5,loc='lower left',ncol=3,frameon=True,framealpha=0.88)
-    panel_label(ax8,'H','Allocator Risk: Floor / Mean / Peak (iCPursuitNeural)')
+    draw_allocator_risk_panel(ax8)
 
     # I: cross-testbed violin
     tl=list(TESTBED_EFF.keys()); tv=list(TESTBED_EFF.values())
@@ -470,7 +514,30 @@ def build_G9():
     print(f"Wrote {OUT_G9}")
 
 
+def build_allocator_risk_panel():
+    base_style()
+    fig, ax = plt.subplots(figsize=(7.625, 4.59), dpi=200)
+    fig.patch.set_facecolor('white')
+    draw_allocator_risk_panel(ax, include_panel_label=False)
+    fig.subplots_adjust(left=0.08, right=0.98, top=0.97, bottom=0.13)
+    fig.savefig(OUT_PANEL_H, dpi=200, facecolor='white')
+    plt.close(fig)
+    print(f"Wrote {OUT_PANEL_H}")
+
+
 if __name__ == "__main__":
-    build_G8()
-    build_G9()
-    print("All done.")
+    parser = argparse.ArgumentParser(description="Build ICNP G8/G9 result figures.")
+    parser.add_argument(
+        "--only",
+        choices=["all", "panel-h"],
+        default="all",
+        help="Build all figures or only the Figure 7B allocator-risk panel.",
+    )
+    args = parser.parse_args()
+    if args.only == "panel-h":
+        build_allocator_risk_panel()
+    else:
+        build_G8()
+        build_G9()
+        build_allocator_risk_panel()
+        print("All done.")

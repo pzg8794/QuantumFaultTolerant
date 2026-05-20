@@ -263,6 +263,8 @@ and replay settings to the active threat.
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-042_g4_deployment_rules.png}
   \end{minipage}}
 \hfill
+% \shee{For Figure 7B, the caption values do not appear to match the plotted graph.}
+% SOLVED: Regenerated Figure 7B with point labels so the captioned OnlineAdaptive and allocator-risk values are directly visible in the plot.
 \subfloat[For \texttt{iCPursuitNeuralUCB}, allocator choice changes worst-case
 robustness: \texttt{Fixed (Default or Baseline)} keeps an 88.9\% floor, while \texttt{Thompson} drops
 to 73.3\%. This 15.6 percentage-point floor shift shows that allocator
@@ -372,4 +374,3 @@ OnlineAdaptive & Fixed + ($T$, $s=2$) & 99.8 & +0.0 \\
 \end{table}
 
 \Cref{tab:rq3d_deployment_rules,fig:deployment_guidance} show the RQ3d conclusion: clear deployment rules emerge, but the static default remains strong enough to keep all scenarios above the 85\% target at 6K. Threat-adaptive switching is most useful as a safeguard against the allocator/capacity mismatch diagnosed in RQ3b--RQ3c, with the largest validated gain under Adaptive disruption.
-
