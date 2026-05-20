@@ -110,7 +110,9 @@ Bandit-policy families & Classical, Predictive, Adversarial, Contextual/Neural &
 % Memory Architecture
 % ----------------------------------------------------------------------------
 \smallTitle{Replay configurations (capacity scaling)}
-We distinguish the base horizon $F_b\in\{4\mathrm{K},6\mathrm{K},8\mathrm{K}\}$ from the current horizon $F_c$ used after frame scaling, and evaluate $S\in\{3,5,8,10\}$ \shee{what is S?} independent runs per configuration. Replay memory is scaled by $s\in\{1,1.5,2\}$, with default $s=2$, under two semantics:
+We distinguish the base horizon $F_b\in\{4\mathrm{K},6\mathrm{K},8\mathrm{K}\}$ from the current horizon $F_c$ used after frame scaling, and evaluate the number of independent runs ($S$), with $S\in\{3,5,8,10\}$, per configuration. Replay memory is scaled by the replay-capacity scale factor ($s$), with $s\in\{1,1.5,2\}$ and default $s=2$, under two semantics:
+% \shee{what is S?}
+% SOLVED: Defined $S$ inline at first use as the number of independent runs per configuration.
 \[
 T_b=sF_b,\qquad T=sF_c.
 \]
@@ -199,7 +201,9 @@ Baseline & Oracle & Perfect-information reference \\
 \end{table}
 
 \smallTitle{Key bandit-policy features}
-CPursuitNeuralUCB adds topology/channel-quality context to pursuit learning, while iCPursuitNeuralUCB adds ARIMA$(1,0,1)$ forecasts with $n\in\{50,100\}$ warmup~\cite{box2015time} \shee{Define n}. The Oracle normalizes efficiency to a perfect-information reference.
+CPursuitNeuralUCB adds topology/channel-quality context to pursuit learning, while iCPursuitNeuralUCB adds ARIMA$(1,0,1)$ forecasts with warmup window size ($n$), using $n\in\{50,100\}$~\cite{box2015time}. The Oracle normalizes efficiency to a perfect-information reference.
+% \shee{Define n}
+% SOLVED: Defined $n$ inline at first use as the ARIMA warmup window size.
 
 \smallTitle{Qubit allocation strategies}
 Phase 3 varies the allocator policies defined in \cref{subsec:topology} and summarized in \cref{tab:config_summary} while keeping the physical budget fixed at 35 qubits.
@@ -224,14 +228,16 @@ Random & Uniform sampling, $\epsilon=1.0$ & 77.3\% & 1.0$\times$ \\
 \end{table}
 
 \smallTitle{Experimental scope and statistical protocol}
-The four phases in \cref{tab:config_summary} progress from MAB baselines to contextual/adversarial bandit policies, allocator interactions, and replay-capacity ablations. Overall, the design covers 552 unique configurations with up to 10 runs each, targeting roughly 5{,}520 episodes and about 380 A100 GPU-hours. Runs use fixed seeds with $S\in\{3,5,8,10\}$; primary results report 3- and 5-run averages. \shee{Define S}
+The four phases in \cref{tab:config_summary} progress from MAB baselines to contextual/adversarial bandit policies, allocator interactions, and replay-capacity ablations. Overall, the design covers 552 unique configurations with up to 10 runs each, targeting roughly 5{,}520 episodes and about 380 A100 GPU-hours. Runs use fixed seeds with repeated-run count $S\in\{3,5,8,10\}$; primary results report 3- and 5-run averages.
+% \shee{Define S}
+% SOLVED: Defined $S$ earlier in this section as the number of independent runs and reused that notation here.
 
 We report Oracle-normalized efficiency,
 \[
 \mathrm{Eff}(\%)=\frac{\sum_{t=1}^{T} r_t}{T\theta^*}\times100,
 \]
-and coefficient of variation,
+and coefficient of variation (CV),
 \[
 \mathrm{CV}(\%)=\frac{\sigma(\mathrm{Eff})}{\mu(\mathrm{Eff})}\times100.
 \]
-Significance uses 10{,}000-sample nonparametric bootstrap confidence intervals~\cite{efron1994introduction}; differences above 5 pp with non-overlapping intervals are practically significant, and head-to-head wins require more than a 2 pp efficiency lead.
+Significance uses 10{,}000-sample nonparametric bootstrap confidence intervals~\cite{efron1994introduction}; differences above 5 percentage points (pp) with non-overlapping intervals are practically significant, and head-to-head wins require more than a 2 pp efficiency lead.
