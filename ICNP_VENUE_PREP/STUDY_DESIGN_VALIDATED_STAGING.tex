@@ -7,6 +7,32 @@
 
 \cref{sec:SystemModel} defines the configuration axes used to answer \cref{sec:research_questions}. \Cref{tab:config_summary} summarizes the design dimensions, tested options, and RQ coverage.
 
+\begin{table}[ht!]
+\footnotesize
+\centering
+\setlength{\tabcolsep}{4pt}
+\caption{Notation and metrics used in the matched evaluation.}
+\label{tab:notation_metrics}
+\begin{tabular}{p{0.20\linewidth} p{0.70\linewidth}}
+\toprule
+\textbf{Term} & \textbf{Meaning} \\
+\midrule
+Efficiency & \texttt{Oracle}-normalized routing performance, reported as a percentage. \\
+\texttt{Oracle} gap & Difference between achieved efficiency and the \texttt{Oracle} reference. \\
+Robustness floor & Lowest efficiency observed across the evaluated threat settings. \\
+CV & Coefficient of variation across scenario-level means; lower values indicate more stable performance. \\
+$s$ & Replay-capacity scale factor; larger $s$ increases the replay scale. \\
+$S$ & Number of independent runs used for repeated stochastic evaluation. \\
+$F_b$ & Base frame horizon used for $T_b$-type replay anchoring. \\
+$F_c$ & Current frame horizon used for $T$-type replay anchoring. \\
+$T_b$ & Replay capacity anchored to the base horizon, defined as $T_b=sF_b$. \\
+$T$ & Replay capacity anchored to the current horizon, defined as $T=sF_c$. \\
+Run suite & Repeated execution group used to average stochastic experimental outcomes. \\
+Percentage points & Absolute difference between two percentages. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \smallTitle{Network configuration}
 We use the four-path diamond topology shown in \cref{fig:network_topology} and defined in \cref{subsec:topology}, with two-hop paths $P_1$ and $P_2$ and three-hop paths $P_3$ and $P_4$. This topology keeps the routing action space nontrivial while preserving tractable cross-product sweeps across \cref{tab:config_summary}.
 
