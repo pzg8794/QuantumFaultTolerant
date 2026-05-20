@@ -13,7 +13,7 @@ Utilizing the matched grid defined in \cref{sec:studydesign}, we report validate
 \subsection{RQ1: Stochastic Routing Viability}
 \label{subsec:rq1_answer}
 
-Under the Stochastic scenario shown in \cref{tab:scenario_specs}, contextual pursuit and epsilon-greedy baselines remain viable, while several context-free or poorly matched variants collapse. This establishes baseline viability before the structured and adaptive threats analyzed in RQ2.
+Under the Stochastic scenario shown in \cref{tab:scenario_specs}, contextual pursuit and epsilon-greedy baselines remain viable, while several context-free or poorly matched variants collapse (\cref{fig:main_performance_summary}). This establishes baseline viability before the structured and adaptive threats analyzed in RQ2.
 
 \smallTitle{Dataset and aggregation}
 RQ1 uses the EXP-family, CMAB, and iCMAB corpora, filtered to Stochastic runs under the default allocator. Results aggregate across 4K--8K horizons, $s\in\{1,1.5,2\}$, both $T$/$T_b$ replay semantics, and the 3- and 5-run suites.
@@ -24,8 +24,8 @@ RQ1 uses the EXP-family, CMAB, and iCMAB corpora, filtered to Stochastic runs un
 \includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-033_g9_network_gap_analysis_panel_d_rq1_algorithm_tier_separation_stochastic.png}
 \caption{\texttt{Oracle}-normalized efficiency groups contextual pursuit and
 epsilon-greedy policies as viable, while epoch-greedy and structurally
-mismatched designs collapse, supporting the RQ1 claim that stochastic noise
-alone separates robust contextual learners from failing policy designs.}
+mismatched designs collapse, showing that stochastic noise alone separates
+robust contextual learners from failing policy designs.}
 \label{fig:main_performance_summary}
 \end{figure}
 
@@ -70,9 +70,9 @@ iCEXP4 & 35.6 & 38.3 & 37.0 \\
 \subfloat[Compared with Baseline, \texttt{EXPNeuralUCB} incurs the largest
 Stochastic and Adaptive penalties (12.4 and 13.8 percentage points), while
 \texttt{CPursuit} stays lower under Stochastic and OnlineAdaptive disruption
-(3.2 and 4.5 percentage points), supporting the RQ2 claim that threat escalation
-separates fragile adversarial-first designs from more stable contextual/pursuit
-models.\label{fig:scenario_penalty_main}]{%
+(3.2 and 4.5 percentage points), showing that threat escalation separates
+fragile adversarial-first designs from more stable contextual/pursuit models.
+\label{fig:scenario_penalty_main}]{%
   \begin{minipage}{0.48\textwidth}
   \centering
   \textbf{Scenario Penalties}\\[-0.0em]
@@ -82,17 +82,17 @@ models.\label{fig:scenario_penalty_main}]{%
 \subfloat[Across Baseline, Stochastic, Markov, Adaptive, and OnlineAdaptive
 regimes, \texttt{iCPursuitNeuralUCB} preserves high efficiency (92.8\% under
 Adaptive and 99.8\% under OnlineAdaptive), while \texttt{EXPUCB} remains lower
-across Markov/Adaptive/OnlineAdaptive (73.8--76.4\%), supporting the RQ2 claim
-that adaptive threats expose stability gaps across model families.
+across Markov/Adaptive/OnlineAdaptive (73.8--76.4\%), showing that adaptive
+threats expose stability gaps across model families.
 \label{fig:threat_escalation_heatmap_main}]{%
   \begin{minipage}{0.48\textwidth}
   \centering
   \textbf{Threat-Escalation Heatmap}\\[-0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-034_g9_network_gap_analysis_panel_e_threat_escalation_heatmap_algo_scenario.png}
   \end{minipage}}
-\caption{Panels~(a) and~(b) jointly support the RQ2 escalation claim:
-contextual and informed models preserve stronger robustness as disruption
-progresses from stochastic noise to structured and adaptive interference.}
+\caption{Panels~(a) and~(b) jointly show that contextual and informed models
+preserve stronger robustness as disruption progresses from stochastic noise to
+structured and adaptive interference.}
 % \devroop{Try to group figures supporting a single point of observation.} -- SOLVED: Grouped scenario-penalty and threat-escalation diagnostics into one RQ2 figure.
 \label{fig:threat_penalty_escalation}
 \end{figure*}
@@ -105,7 +105,7 @@ progresses from stochastic noise to structured and adaptive interference.}
 \subsection{RQ2: Robustness Under Adaptive Threats}
 \label{subsec:rq2_answer}
 
-Under Markov, Adaptive, and OnlineAdaptive threats, contextual and informed policies maintain stronger robustness floors than EXP-family adversarial-first baselines. This extends RQ1 from stochastic viability to adaptive disruption.
+Under Markov, Adaptive, and OnlineAdaptive threats, contextual and informed policies maintain stronger robustness floors than EXP-family adversarial-first baselines (\cref{fig:threat_penalty_escalation,fig:robustness_floor}). This extends RQ1 from stochastic viability to adaptive disruption.
 
 \smallTitle{Threat scope and aggregation}
 RQ2 uses the Markov, Adaptive, and OnlineAdaptive threat slice from \cref{tab:scenario_specs}, restricted to the default allocator and aggregated across 4K--8K horizons, $s\in\{1,1.5,2\}$, both $T$/$T_b$ replay semantics, and the 3- and 5-run suites. The table demonstrates the strongest CMAB and iCMAB representatives along with EXP-family adversarial baselines.
@@ -120,8 +120,8 @@ OnlineAdaptive scope. Higher floors indicate resistance to catastrophic
 collapse: \texttt{iCEpsilonGreedy} has the strongest floor, \texttt{CPursuit}
 has the best average, and \texttt{EXPNeuralUCB} remains fragile despite
 adversarial-style exploration. Together with
-\Cref{fig:threat_penalty_escalation}, this supports the RQ2 claim that adaptive
-threats expose stability gaps not visible from average efficiency alone.}
+\Cref{fig:threat_penalty_escalation}, this shows that adaptive threats expose
+stability gaps not visible from average efficiency alone.}
 % \shee{Replace low quality images - 5, 7, 8a, 9b, 11, 12} -- SOLVED: Refreshed the manuscript-facing PNG assets at print-quality resolution and revalidated the active draft build.
 % \shee{If the red labels are the floor values, can it be placed on the left of the squares? It is inconsistent right now. The caption needs to be further elaborated. "figure shows which bandit policies maintain stable worst-case performance and which become fragile under adaptive disruption" - which ones are they? Mention it explicitly.} -- SOLVED: Caption now names the stable and fragile policies explicitly; label-position changes must be handled in the source image generator if still needed.
 \label{fig:robustness_floor}
@@ -132,8 +132,8 @@ threats expose stability gaps not visible from average efficiency alone.}
 \centering
 \subfloat[Under the OnlineAdaptive threat, replay scaling is non-monotonic:
 efficiency drops from 89.2\% at $s{=}1$ to 84.9\% at $s{=}1.5$, then recovers
-to 90.8\% at $s{=}2$. This pattern supports the capacity-paradox claim that
-added replay can help or hurt depending on the active threat.
+to 90.8\% at $s{=}2$. This pattern shows that added replay can help or hurt
+depending on the active threat.
 \label{fig:capacity_paradox_summary}]{%
   \begin{minipage}{0.45\textwidth}
   \centering
@@ -143,18 +143,17 @@ added replay can help or hurt depending on the active threat.
 \hfill
 \subfloat[Across the six replay configurations, replay semantics changes the
 same scale effect: under OnlineAdaptive, $T$-type replay spans 83.2--90.6\%,
-while $T_b$-type replay spans 84.2--86.6\%. This supports the RQ3b claim that
-replay capacity must be interpreted jointly with anchoring rule and threat
-regime.
+while $T_b$-type replay spans 84.2--86.6\%. This shows that replay capacity
+must be interpreted jointly with anchoring rule and threat regime.
 \label{fig:capacity_paradox_all_configs_main}]{%
   \begin{minipage}{0.52\textwidth}
   \centering
   \textbf{Replay-Configuration Sensitivity}\\[-0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-035_g9_network_gap_analysis_panel_f_capacity_paradox_all_6_replay_configs_sc.png}
   \end{minipage}}
-\caption{Panels~(a) and~(b) jointly support the RQ3b capacity-paradox claim:
-replay capacity acts as a threat-conditioned control variable governed by replay
-scale, anchoring rule, allocator behavior, and threat regime.}
+\caption{Panels~(a) and~(b) jointly show that replay capacity acts as a
+threat-conditioned control variable governed by replay scale, anchoring rule,
+allocator behavior, and threat regime.}
 % \shee{Can data labels be added to all graphs?} -- SOLVED: Replaced temporary PGFPlots placeholder with exported notebook-validated images containing finalized graph styling/labels.
 % \shee{Is this figure the same as 12B?} -- SOLVED: Grouped the compact capacity-paradox graph with the detailed replay-configuration panel so the relationship is explicit instead of duplicated separately.
 % \devroop{Group capacity figures that support the same point.} -- SOLVED: Grouped the compact capacity-paradox figure and detailed replay-configuration panel into one two-panel Results figure.
@@ -246,8 +245,8 @@ Under \texttt{ThompsonSampling} allocation and $T_b$-type replay anchoring, Onli
 \subfloat[Comparing the baseline with scenario-specific switching,
 Adaptive disruption gives the largest validated gain: \texttt{ThompsonSampling}
 with $T_b$-type replay at $s{=}1.5$ reaches 95.7\%, a 2.9 percentage-point
-improvement. This supports the RQ3d claim that deployment rules should match
-policy, allocator, and replay settings to the active threat.
+improvement. This shows that deployment rules should match policy, allocator,
+and replay settings to the active threat.
 \label{fig:deployment_rules_main}]{%
   \begin{minipage}{0.45\textwidth}
   \centering
@@ -257,17 +256,17 @@ policy, allocator, and replay settings to the active threat.
 \hfill
 \subfloat[For \texttt{iCPursuitNeuralUCB}, allocator choice changes worst-case
 robustness: \texttt{Fixed (Default or Baseline)} keeps an 88.9\% floor, while \texttt{Thompson} drops
-to 73.3\%. This 15.6 percentage-point floor shift supports the RQ3c/RQ3d claim
-that allocator selection is a first-class deployment control.
+to 73.3\%. This 15.6 percentage-point floor shift shows that allocator
+selection is a first-class deployment control.
 \label{fig:allocator_risk_main}]{%
   \begin{minipage}{0.52\textwidth}
   \centering
   \textbf{Allocator-Induced Risk}\\[-0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-037_g9_network_gap_analysis_panel_h_allocator_risk_floor_mean_peak_icpursuit.png}
   \end{minipage}}
-\caption{Panels~(a) and~(b) jointly support the RQ3d deployment claim:
-robust quantum-routing deployment is strongest when policy, allocator, and
-replay settings are matched to the active threat regime.}
+\caption{Panels~(a) and~(b) jointly show that robust quantum-routing deployment
+is strongest when policy, allocator, and replay settings are matched to the
+active threat regime.}
 % \shee{Don't use 'The exported validation figure' in every caption. Refer to the corresponding plot.} -- SOLVED: Removed generic exported-figure language and described the specific plotted quantities and observed deployment consequence.
 % \devroop{Include the allocator-risk figure in the main body.} -- SOLVED: Grouped deployment guidance with allocator-risk evidence in one RQ3d figure.
 \label{fig:deployment_guidance}
@@ -363,5 +362,5 @@ OnlineAdaptive & Fixed + ($T$, $s=2$) & 99.8 & +0.0 \\
 \end{tabular}
 \end{table}
 
-\Cref{tab:rq3d_deployment_rules,fig:deployment_guidance} support the RQ3d conclusion: clear deployment rules emerge, but the static default remains strong enough to keep all scenarios above the 85\% target at 6K. Threat-adaptive switching is most useful as a safeguard against the allocator/capacity mismatch diagnosed in RQ3b--RQ3c, with the largest validated gain under Adaptive disruption.
+\Cref{tab:rq3d_deployment_rules,fig:deployment_guidance} show the RQ3d conclusion: clear deployment rules emerge, but the static default remains strong enough to keep all scenarios above the 85\% target at 6K. Threat-adaptive switching is most useful as a safeguard against the allocator/capacity mismatch diagnosed in RQ3b--RQ3c, with the largest validated gain under Adaptive disruption.
 
