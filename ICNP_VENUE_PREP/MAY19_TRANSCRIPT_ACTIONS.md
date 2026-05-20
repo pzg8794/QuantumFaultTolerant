@@ -50,17 +50,41 @@ Source: 2026-05-19 team meeting on draft clarification, variable definitions, an
 
 **Ask:** Address the unresolved Devroop comment that `OnlineAdaptive`, `$s$`, and replay shorthand were not understandable in the Introduction.
 
-**Meaning:** Threat names and notation must be understandable before the reader reaches Study Design. The solution is two-part: add a lightweight threat-regime table in the Introduction and define symbols at first use in the contribution bullet.
+**Meaning:** Threat names and notation must be understandable before the reader reaches Study Design. The solution is two-part: initially add a lightweight threat-regime table in the Introduction, then define technical symbols at first use in the contribution bullet. After page-budget review, the lightweight threat-regime table was commented out, while the contribution bullet was rewritten to avoid naked `OnlineAdaptive` terminology and to define `$T_b$`, `$s$`, and percentage points (`pp`) inline.
 
-**Implementation:** Added `tab:intro_threat_regimes` in `ICNP_2026_venue_draft.tex`, defining Baseline, Stochastic, Markov, Adaptive, and OnlineAdaptive in one line each. Rewrote the Capacity paradox contribution bullet to define base-horizon replay capacity (`$T_b$`), replay-capacity scale (`$s$`), and worst-case efficiency floor at first use. Removed the live `\devroop{...}` comment.
+**Implementation:** `ICNP_2026_venue_draft.tex` now retains the intro threat table as a commented audit block due to page budget. The Capacity paradox contribution bullet defines base-horizon replay capacity (`$T_b$`), replay-capacity scale (`$s$`), and percentage points (`pp`) at first use, and replaces the naked `OnlineAdaptive` label with plain-language reactive adaptive disruption. The original Devroop comment is preserved as a `%` comment with a `% SOLVED:` note.
 
-**Commit:** `0ecb3d2228676f86b7fca5d62d1ec51ae4cfea4d`
+**Commits:**
+
+- `0ecb3d2228676f86b7fca5d62d1ec51ae4cfea4d`
+- `d0df195a5509f5f482dcba1b5ed554cd5fe5eb78`
+- `22ee8570e798d42bdc41a5ca30e0e75645479c03`
+- `8e97e03daf443f0351627f8bd434e33e2cedf58d`
+
+### 5. Apply first-use abbreviation rule across active sections
+
+**Ask:** Remove rendered reviewer comments asking “what is ...?” or “define ...?” by defining symbols/abbreviations at first use in the section.
+
+**Meaning:** Technical notation should not be removed or diluted. At first use, the paper should write meaning first, then symbol/abbreviation in parentheses; afterward the abbreviation can be reused normally.
+
+**Implementation:** Updated `ICNP_VENUE_PREP/STUDY_DESIGN_VALIDATED_STAGING.tex` and `ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex`.
+
+**Resolved items:**
+
+- `\shee{what is S?}`: defined the number of independent runs (`$S$`) at first use.
+- `\shee{Define n}`: defined ARIMA warmup window size (`$n$`) at first use.
+- `\shee{Define S}`: reused the previously defined repeated-run count (`$S$`) and added a `% SOLVED:` note.
+- `\devroop{what is CV?}`: defined coefficient of variation (`CV`) at first use in Results.
+- Added first-use wording for replay-capacity scale factor (`$s$`), current-horizon replay capacity (`$T$`), base-horizon replay capacity (`$T_b$`), and percentage points (`pp`) in active Study Design/Results sections.
+
+**Verification:** Searches for `what is CV`, `Define S`, `Define n`, and `what is S` return no active hits.
+
+**Commits:**
+
+- `3e078b10771782087305b06d442b182634895170`
+- `7e33c9643ce7e6e14c67b0705469890d35cf600c`
 
 ## Remaining high-priority items
-
-### 5. Apply first-use abbreviation rule across sections
-
-Status: Pending. Search section-by-section for symbols/abbreviations such as `$s$`, `$S$`, `$T_b$`, `$T$`, `CV`, `floor`, and scenario labels, then ensure first use follows meaning-first notation.
 
 ### 6. Add the missing graph if page space allows
 
