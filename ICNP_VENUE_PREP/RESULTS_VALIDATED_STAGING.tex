@@ -71,9 +71,14 @@ iCEXP4 & 35.6 & 38.3 & 37.0 \\
 \centering
 \subfloat[Compared with Baseline, \texttt{EXPNeuralUCB} incurs the largest
 Stochastic and Adaptive penalties (12.4 and 13.8 percentage points), while
-\texttt{CPursuit} stays lower under Stochastic and OnlineAdaptive disruption
-(3.2 and 4.5 percentage points), showing that threat escalation separates
-fragile adversarial-first designs from more stable contextual/pursuit models.
+\texttt{CPursuit} has smaller penalties under Stochastic and OnlineAdaptive
+disruption (3.2 and 4.5 percentage points). Adversarial-first exploration
+does not guarantee robustness; contextual and pursuit-style policies preserve
+efficiency more consistently as threats escalate.
+% \dan{WHat is the takeaway for this?}
+% SOLVED: Split the caption into two sentences. The first states the observed penalty differences;
+% the second delivers the explicit takeaway without the informal ``The takeaway is that'' lead-in,
+% consistent with IEEE double-column figure-caption conventions.
 \label{fig:scenario_penalty_main}]{%
   \begin{minipage}{0.48\textwidth}
   \centering
