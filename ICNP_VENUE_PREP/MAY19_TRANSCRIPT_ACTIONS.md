@@ -34,18 +34,38 @@ Source: 2026-05-19 team meeting on draft clarification, variable definitions, an
 - `d84943975fe8c5c567ae552cf57becfb2e236fca`
 - `04c31ee43ada30ad5068dd353ae5bf3b0c1b9ba3`
 
-**Note:** The top-level draft file `ICNP_2026_venue_draft.tex` still contains early RQ/contribution comments and should be patched separately. It is large enough that the current GitHub update tool risks a full-file overwrite if applied without a safe patch mechanism.
+### 3. Reference figures from RQ claim text
+
+**Ask:** Keep captions descriptive and place figure references where the RQ claims are stated in the body text.
+
+**Meaning:** Readers should connect each RQ claim to the figure evidence from the claim sentence itself, not from caption meta-language.
+
+**Implementation:** Updated `ICNP_2026_venue_draft.tex` so RQ1, RQ2, and RQ3 claim text references the active figure labels.
+
+**Labels used:** `fig:main_performance_summary`, `fig:threat_penalty_escalation`, `fig:robustness_floor`, `fig:capacity_paradox`, and `fig:deployment_guidance`.
+
+**Commit:** `4589b30538fc92ee38898177ccde331c40563383`
+
+### 4. Clarify Introduction threat regimes and capacity-paradox bullet
+
+**Ask:** Address the unresolved Devroop comment that `OnlineAdaptive`, `$s$`, and replay shorthand were not understandable in the Introduction.
+
+**Meaning:** Threat names and notation must be understandable before the reader reaches Study Design. The solution is two-part: add a lightweight threat-regime table in the Introduction and define symbols at first use in the contribution bullet.
+
+**Implementation:** Added `tab:intro_threat_regimes` in `ICNP_2026_venue_draft.tex`, defining Baseline, Stochastic, Markov, Adaptive, and OnlineAdaptive in one line each. Rewrote the Capacity paradox contribution bullet to define base-horizon replay capacity (`$T_b$`), replay-capacity scale (`$s$`), and worst-case efficiency floor at first use. Removed the live `\devroop{...}` comment.
+
+**Commit:** `0ecb3d2228676f86b7fca5d62d1ec51ae4cfea4d`
 
 ## Remaining high-priority items
 
-### 3. Rewrite early RQ/contribution wording to avoid undefined shorthand
+### 5. Apply first-use abbreviation rule across sections
 
-Status: Pending. The notation table reduces the definition problem, but the early contribution bullet still has reviewer comments about `OnlineAdaptive`, `$s$`, and replay shorthand.
+Status: Pending. Search section-by-section for symbols/abbreviations such as `$s$`, `$S$`, `$T_b$`, `$T$`, `CV`, `floor`, and scenario labels, then ensure first use follows meaning-first notation.
 
-### 4. Add the missing graph if page space allows
+### 6. Add the missing graph if page space allows
 
 Status: Pending.
 
-### 5. Address Dan’s remaining draft comments and mark resolved comments complete
+### 7. Address Dan’s remaining draft comments and mark resolved comments complete
 
 Status: Pending.
