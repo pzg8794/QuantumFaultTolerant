@@ -7,9 +7,9 @@
 \texttt{iCPursuitNeuralUCB} yields the strongest average cross-testbed
 efficiency, with leading averages ranging from 44.1\% on \paperTwelve{} to
 78.0\% on \paperSeven{}. The larger \texttt{Oracle} gaps on harder topologies
-support the claim that pursuit-informed neural routing transfers beyond the
-primary testbed but becomes harder to separate from the reference as topology
-complexity increases.\label{fig:cross_testbed_efficiency_main}]{%
+show that pursuit-informed neural routing transfers beyond the primary testbed
+but becomes harder to separate from the reference as topology complexity
+increases.\label{fig:cross_testbed_efficiency_main}]{%
   \begin{minipage}{0.52\textwidth}
   \centering
   \textbf{(a) External-testbed efficiency and Oracle-gap comparison}\\[-0.0em]
@@ -18,19 +18,18 @@ complexity increases.\label{fig:cross_testbed_efficiency_main}]{%
 \hfill
 \subfloat[\texttt{iCPursuitNeuralUCB} is the only model that clears the plotted
 average-efficiency threshold, reaching 90.9\%; all other families fall below it,
-supporting the model-family claim that pursuit--neural hybrids form the strongest
-robustness tier. Across external testbeds, the same top-family pattern persists
-even as topology complexity compresses efficiency across models.
+showing that pursuit--neural hybrids form the strongest robustness tier. Across
+external testbeds, the same top-family pattern persists even as topology
+complexity compresses efficiency across models.
 \label{fig:model_family_cross_testbed_main}]{%
   \begin{minipage}{0.45\textwidth}
   \centering
   \textbf{(b) Internal and external model-family ranking}\\[-0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-041_g3_family_summary.png}
   \end{minipage}}
-\caption{Panels~(a) and~(b) jointly support the core cross-testbed claim:
-pursuit-informed neural designs generalize beyond the primary evaluation network,
-while increasing topology complexity widens \texttt{Oracle} gaps and compresses
-separation among models.}
+\caption{Panels~(a) and~(b) jointly show that pursuit-informed neural designs
+generalize beyond the primary evaluation network, while increasing topology
+complexity widens \texttt{Oracle} gaps and compresses separation among models.}
 % \shee{change the font color of the threshold label}
 % \shee{Resize and edit the font of all sub-plot captions to match other figures and the paper content.} -- SOLVED: Removed the rendered note and retained the grouped two-panel formatting used by the main-body figure set.
 % \shee{This figure might be better in one-column.} -- SOLVED: Initially moved to one column; later grouped with model-family evidence as a two-panel figure to address table-to-figure alignment feedback.
