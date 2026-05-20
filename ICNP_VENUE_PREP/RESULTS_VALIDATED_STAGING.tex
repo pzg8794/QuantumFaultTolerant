@@ -16,7 +16,7 @@ Utilizing the matched grid defined in \cref{sec:studydesign}, we report validate
 Under the Stochastic scenario shown in \cref{tab:scenario_specs}, contextual pursuit and epsilon-greedy baselines remain viable, while several context-free or poorly matched variants collapse (\cref{fig:main_performance_summary}). This establishes baseline viability before the structured and adaptive threats analyzed in RQ2.
 
 \smallTitle{Dataset and aggregation}
-RQ1 uses the EXP-family, CMAB, and iCMAB corpora, filtered to Stochastic runs under the default allocator. Results aggregate across 4K--8K horizons, $s\in\{1,1.5,2\}$, both $T$/$T_b$ replay semantics, and the 3- and 5-run suites.
+RQ1 uses the EXP-family, CMAB, and iCMAB corpora, filtered to Stochastic runs under the default allocator. Results aggregate across 4K--8K horizons, replay-capacity scale factor ($s$) with $s\in\{1,1.5,2\}$, both current-horizon ($T$) and base-horizon ($T_b$) replay semantics, and the 3- and 5-run suites.
 
 \begin{figure}[ht!]
 \centering
@@ -108,7 +108,7 @@ structured and adaptive interference.}
 Under Markov, Adaptive, and OnlineAdaptive threats, contextual and informed policies maintain stronger robustness floors than EXP-family adversarial-first baselines (\cref{fig:threat_penalty_escalation,fig:robustness_floor}). This extends RQ1 from stochastic viability to adaptive disruption.
 
 \smallTitle{Threat scope and aggregation}
-RQ2 uses the Markov, Adaptive, and OnlineAdaptive threat slice from \cref{tab:scenario_specs}, restricted to the default allocator and aggregated across 4K--8K horizons, $s\in\{1,1.5,2\}$, both $T$/$T_b$ replay semantics, and the 3- and 5-run suites. The table demonstrates the strongest CMAB and iCMAB representatives along with EXP-family adversarial baselines.
+RQ2 uses the Markov, Adaptive, and OnlineAdaptive threat slice from \cref{tab:scenario_specs}, restricted to the default allocator and aggregated across 4K--8K horizons, replay-capacity scale factor ($s$) with $s\in\{1,1.5,2\}$, both current-horizon ($T$) and base-horizon ($T_b$) replay semantics, and the 3- and 5-run suites. The table demonstrates the strongest CMAB and iCMAB representatives along with EXP-family adversarial baselines.
 
 \begin{figure}[ht!]
 \centering
@@ -192,7 +192,9 @@ EXP3/UCB & 76.3 & 6.0 & 68.8 & 0.0 \\
 RQ3 evaluates whether algorithm, allocator, and replay-capacity choices should change with the threat regime. Deployment is configuration-sensitive, but the hybrid corpus also reveals a strong static configuration that exceeds the 85\% robustness target across all five scenarios.
 
 \smallTitle{Deployment-evaluation corpus}
-RQ3 uses the validated Hybrid corpus for CPursuitNeuralUCB, iCPursuitNeuralUCB, GNeuralUCB, and EXPNeuralUCB across all scenarios, allocators, replay anchoring types, scales $s\in\{1,1.5,2\}$, and 4K--8K horizons. Unless otherwise noted, point estimates average the 3- and 5-run suites; RQ3 CV \devroop{what is CV?} values are computed across scenario means as a deployment-volatility proxy because per-run variance is not available in the corpus table.
+RQ3 uses the validated Hybrid corpus for CPursuitNeuralUCB, iCPursuitNeuralUCB, GNeuralUCB, and EXPNeuralUCB across all scenarios, allocators, replay anchoring types, replay-capacity scales ($s$), with $s\in\{1,1.5,2\}$, and 4K--8K horizons. Unless otherwise noted, point estimates average the 3- and 5-run suites; RQ3 coefficient of variation (CV) values are computed across scenario means as a deployment-volatility proxy because per-run variance is not available in the corpus table.
+% \devroop{what is CV?}
+% SOLVED: Defined CV inline at first use in Results as coefficient of variation and retained the notation-table definition in Study Design.
 
 \smallTitle{Primary deployment observation}
 Deployment is configuration-sensitive, but the Hybrid corpus also reveals a strong static configuration. At the 6K horizon, \texttt{iCPursuitNeuralUCB+Fixed+($T$-type, $s=2$)} achieves a 96.0\% global average and a 92.8\% worst-case floor across scenarios, using the validated mean over 3- and 5-run suites. Scenario-specific optima still differ, so later RQ3 analyses disaggregate allocator and replay-capacity effects.
@@ -206,7 +208,7 @@ Deployment is configuration-sensitive, but the Hybrid corpus also reveals a stro
 RQ3a isolates whether the informative/predictive variant, iCPursuitNeuralUCB, improves deployment robustness over reactive CPursuitNeuralUCB.
 
 \smallTitle{Controlled comparison}
-To isolate architecture impact, we hold deployment fixed at 6K horizon, \texttt{Fixed} allocator, $T$-type anchoring, and $s=2$, then use the validated 3-run suite from the Hybrid corpus.
+To isolate architecture impact, we hold deployment fixed at 6K horizon, \texttt{Fixed} allocator, current-horizon ($T$)-type anchoring, and replay-capacity scale $s=2$, then use the validated 3-run suite from the Hybrid corpus.
 
 \begin{table}[ht!]
 \footnotesize
@@ -226,7 +228,7 @@ iCPursuitNeuralUCB & 99.9 & 94.8 & 93.0 & 92.8 & 99.8 & 96.0 & 3.3 \\
 {\footnotesize Bl=Baseline, Sh=Stochastic, Mk=Markov, Ag=Adaptive, OA=OnlineAdaptive; CV is computed across scenario means.}
 \end{table}
 
-\Cref{tab:rq3a_master_informative} shows that iCPursuitNeuralUCB improves global robustness mainly by lifting OnlineAdaptive efficiency from 81.5\% to 99.8\% (+18.3 pp) while keeping Stochastic, Markov, and Adaptive performance effectively unchanged. It reduces scenario-level dispersion from 6.5 to 3.3 CV. Thus, informative context is most valuable when the threat adapts online.
+\Cref{tab:rq3a_master_informative} shows that iCPursuitNeuralUCB improves global robustness mainly by lifting OnlineAdaptive efficiency from 81.5\% to 99.8\% (+18.3 percentage points (pp)) while keeping Stochastic, Markov, and Adaptive performance effectively unchanged. It reduces scenario-level dispersion from 6.5 to 3.3 CV. Thus, informative context is most valuable when the threat adapts online.
 
 % ============================================================================
 % RQ3b: Replay Capacity Scaling and Paradox
@@ -237,7 +239,7 @@ iCPursuitNeuralUCB & 99.9 & 94.8 & 93.0 & 92.8 & 99.8 & 96.0 & 3.3 \\
 RQ3b tests whether larger replay scale improves robustness or creates a threat-dependent capacity paradox.
 
 \smallTitle{Replay-scaling setup}
-Under \texttt{ThompsonSampling} allocation and $T_b$-type replay anchoring, OnlineAdaptive efficiency drops by 4.35~pp from $s{=}1$ to $s{=}1.5$ and recovers by 5.96~pp at $s{=}2$. The fixed-\texttt{Random} slice in \cref{tab:rq3b_master_capacity_scaling} is retained as supporting stress-control evidence: it shows that the same replay-sensitivity pattern becomes more severe under uninformed allocation, complementing the ThompsonSampling/$T_b$/OnlineAdaptive slice used for the paper-level RQ3b claim.
+Under \texttt{ThompsonSampling} allocation and base-horizon ($T_b$)-type replay anchoring, OnlineAdaptive efficiency drops by 4.35~pp from replay-capacity scale $s{=}1$ to $s{=}1.5$ and recovers by 5.96~pp at $s{=}2$. The fixed-\texttt{Random} slice in \cref{tab:rq3b_master_capacity_scaling} is retained as supporting stress-control evidence: it shows that the same replay-sensitivity pattern becomes more severe under uninformed allocation, complementing the ThompsonSampling/$T_b$/OnlineAdaptive slice used for the paper-level RQ3b claim.
 
 
 \begin{figure*}[ht!]
@@ -308,7 +310,7 @@ iCPursuitNeuralUCB & 1.0 & 92.1 & 93.6 & 88.7 & 88.5 & 70.8 & 86.7 \\
 RQ3c tests whether allocator choice is independent of algorithm architecture or instead acts as a first-class deployment decision.
 
 \smallTitle{Allocator-comparison setup}
-RQ3c fixes the model to iCPursuitNeuralUCB, the horizon to 6K, and capacity to $T$-type with $s=2$, then varies allocator policy. This isolates allocator effects after RQ3b isolates replay-scale behavior.
+RQ3c fixes the model to iCPursuitNeuralUCB, the horizon to 6K, and capacity to current-horizon ($T$)-type replay with replay-capacity scale $s=2$, then varies allocator policy. This isolates allocator effects after RQ3b isolates replay-scale behavior.
 
 \begin{table}[ht!]
 \footnotesize
