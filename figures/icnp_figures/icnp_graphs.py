@@ -48,56 +48,45 @@ SCENARIOS_5 = ['Stochastic', 'Markov', 'Adaptive', 'OnlineAdaptive', 'Baseline']
 
 # ══════════════════════════════════════════════════════════════════════════════
 # G1  CAPACITY PARADOX
-#     Diverging horizontal bar: Δ efficiency from doubling replay (s=1 → s=2)
-#     Source: fig:capacity_all in main.tex
+#     Compact OnlineAdaptive stress slice used in the Figure 6A caption
+#     Source: validated RQ3b ThompsonSampling / Tb / OnlineAdaptive slice
 # ══════════════════════════════════════════════════════════════════════════════
-T1   = [81.5, 86.5, 88.9, 83.2, 90.3]
-T2   = [84.8, 85.9, 90.2, 90.6, 93.4]
-Tb1  = [80.6, 83.2, 84.8, 86.6, 87.9]
-Tb2  = [81.7, 78.0, 87.1, 84.2, 91.0]
-
-eff_T_gain  = [round(T2[i]  - T1[i],  1) for i in range(5)]
-eff_Tb_gain = [round(Tb2[i] - Tb1[i], 1) for i in range(5)]
+capacity_scales = ['s=1', 's=1.5', 's=2']
+onlineadaptive_tb_eff = [89.2, 84.9, 90.8]
 
 fig1 = go.Figure()
-fig1.add_trace(go.Bar(
-    name='T-type (s: 1→2)',
-    y=SCENARIOS_5, x=eff_T_gain,
-    orientation='h',
-    marker_color='#2980b9',
-    width=0.32, offset=-0.18,
-    text=[f"{v:+.1f}" for v in eff_T_gain],
-    textposition='inside',
-    textfont=dict(size=12, color='white'),
+fig1.add_trace(go.Scatter(
+    name='ThompsonSampling + Tb / OnlineAdaptive',
+    x=capacity_scales,
+    y=onlineadaptive_tb_eff,
+    mode='lines+markers+text',
+    line=dict(color='#7B2CBF', width=4),
+    marker=dict(symbol='circle', size=16, color='#7B2CBF', line=dict(color='white', width=2)),
+    text=[f"{value:.1f}%" for value in onlineadaptive_tb_eff],
+    textposition=['top center', 'bottom center', 'top center'],
+    textfont=dict(size=12, color='#1f2f4d'),
 ))
-fig1.add_trace(go.Bar(
-    name='Tb-type (s: 1→2)',
-    y=SCENARIOS_5, x=eff_Tb_gain,
-    orientation='h',
-    marker_color='#e67e22',
-    width=0.32, offset=0.18,
-    text=[f"{v:+.1f}" for v in eff_Tb_gain],
-    textposition='inside',
-    textfont=dict(size=12, color='white'),
-))
-fig1.add_shape(type='line', x0=0, x1=0, y0=-0.5, y1=4.5,
-               line=dict(color='white', width=2, dash='dot'))
-fig1.add_shape(type='rect', x0=-10, x1=0, y0=-0.5, y1=4.5,
-               fillcolor='rgba(231,76,60,0.07)', line_width=0)
-fig1.add_annotation(x=-5, y=4.42, text="← Hurts",
-                    showarrow=False, font=dict(color='#e74c3c', size=12))
-fig1.add_annotation(x=5,  y=4.42, text="Helps →",
-                    showarrow=False, font=dict(color='#27ae60', size=12))
+fig1.add_shape(type='rect', x0=0.75, x1=1.25, y0=84.2, y1=89.7,
+               fillcolor='rgba(231,76,60,0.08)', line_width=0)
+fig1.add_shape(type='rect', x0=1.75, x1=2.25, y0=84.2, y1=91.4,
+               fillcolor='rgba(39,174,96,0.08)', line_width=0)
+fig1.add_annotation(x='s=1.5', y=87.1, text='drop −4.4 pp',
+                    showarrow=True, arrowhead=2, ax=-55, ay=-18,
+                    font=dict(color='#e74c3c', size=11),
+                    arrowcolor='#e74c3c',
+                    bgcolor='rgba(255,255,255,0.80)')
+fig1.add_annotation(x='s=2', y=88.0, text='recovery +6.0 pp',
+                    showarrow=True, arrowhead=2, ax=-58, ay=35,
+                    font=dict(color='#27ae60', size=11),
+                    arrowcolor='#27ae60',
+                    bgcolor='rgba(255,255,255,0.80)')
 fig1.update_layout(
     margin=dict(t=8, r=12, b=44, l=60, pad=0),
-    barmode='overlay',
     legend=in_figure_legend(font_size=9, y=0.99, yanchor='top'),
     showlegend=True,
-    xaxis_range=[-10, 12],
 )
-fig1.update_xaxes(title_text="Δ Efficiency (pp vs s=1)", zeroline=True,
-                  zerolinewidth=2, zerolinecolor='white')
-fig1.update_yaxes(title_text="Scenario")
+fig1.update_xaxes(title_text="Replay-capacity scale")
+fig1.update_yaxes(title_text="Oracle-Norm. Efficiency (%)", range=[83.5, 92.0])
 save_plotly_figure(fig1, "icnp_graphs/G1_capacity_paradox.png")
 print("✓ G1 saved")
 
@@ -135,23 +124,43 @@ fig2.add_trace(go.Scatter(
 ))
 
 for i, algo in enumerate(algos):
-    xanchor = 'left' if floor_v[i] > 45 else 'right'
-    xshift  = 8     if floor_v[i] > 45 else -8
-    fig2.add_annotation(x=floor_v[i], y=algo,
-                        text=f" {floor_v[i]}%", showarrow=False,
-                        xanchor=xanchor, xshift=xshift,
-                        font=dict(size=10, color='#e74c3c'))
+    label_specs = [
+        (floor_v[i], f"floor {floor_v[i]:.1f}%", '#e74c3c', -24, 'right'),
+        (mean_v[i], f"mean {mean_v[i]:.1f}%", '#f39c12', 10, 'left'),
+        (peak_v[i], f"peak {peak_v[i]:.1f}%", '#27ae60', 10, 'left'),
+    ]
+    for x_value, label, color, xshift, xanchor in label_specs:
+        fig2.add_annotation(
+            x=x_value,
+            y=algo,
+            text=label,
+            showarrow=False,
+            xanchor=xanchor,
+            xshift=xshift,
+            yshift=-9 if label.startswith('mean') else 10 if label.startswith('peak') else 0,
+            font=dict(size=9, color=color),
+            bgcolor='rgba(255,255,255,0.72)',
+            bordercolor='rgba(0,0,0,0.08)',
+            borderwidth=1,
+        )
 
 fig2.add_shape(type='line', x0=85, x1=85, y0=-0.5, y1=4.5,
                line=dict(color='#3498db', width=1.5, dash='dash'))
 fig2.add_annotation(x=86.5, y=0.2, text="85% deploy threshold",
                     showarrow=False, font=dict(color='#3498db', size=10),
                     xanchor='left')
+fig2.add_annotation(x=0.02, y=0.98, xref='paper', yref='paper',
+                    text="Scope: Markov + Adaptive + OnlineAdaptive",
+                    showarrow=False, xanchor='left', yanchor='top',
+                    font=dict(color='#1f2f4d', size=10),
+                    bgcolor='rgba(255,255,255,0.78)',
+                    bordercolor='rgba(0,0,0,0.12)',
+                    borderwidth=1)
 
 fig2.update_layout(
     margin=dict(t=8, r=12, b=44, l=66, pad=0),
     legend=in_figure_legend(),
-    xaxis_range=[25, 103],
+    xaxis_range=[25, 110],
 )
 fig2.update_xaxes(title_text="Oracle-Norm. Efficiency (%)")
 fig2.update_yaxes(title_text="")
@@ -190,10 +199,13 @@ fig3.add_annotation(x=-0.48, y=83.9, text="+13.9pp",
 
 # 85% threshold
 fig3.add_shape(type='line', x0=-0.5, x1=4.5, y0=85, y1=85,
-               line=dict(color='#3498db', width=1.5, dash='dash'))
-fig3.add_annotation(x=4.5, y=85.8, text="85% threshold",
+               line=dict(color='#005BBB', width=3, dash='dash'))
+fig3.add_annotation(x=4.45, y=85.65, text="85% threshold",
                     showarrow=False, font=dict(color='#3498db', size=10),
-                    xanchor='right')
+                    xanchor='right',
+                    bgcolor='rgba(255,255,255,0.80)',
+                    bordercolor='rgba(0,91,187,0.30)',
+                    borderwidth=1)
 
 fig3.update_layout(
     margin=dict(t=8, r=12, b=34, l=56, pad=0),
@@ -246,6 +258,21 @@ for i in range(len(scenarios_d)):
                             showarrow=False, yshift=-14,
                             font=dict(size=9, color='#27ae60'),
                             xanchor='center')
+
+fig4.add_annotation(
+    x=95.7,
+    y='Adaptive',
+    text="ThompsonSampling + Tb, s=1.5",
+    showarrow=True,
+    arrowhead=2,
+    ax=74,
+    ay=-44,
+    font=dict(size=9, color='#1f2f4d'),
+    arrowcolor='#27ae60',
+    bgcolor='rgba(255,255,255,0.82)',
+    bordercolor='rgba(39,174,96,0.35)',
+    borderwidth=1,
+)
 
 fig4.update_layout(
     margin=dict(t=8, r=12, b=44, l=72, pad=0),

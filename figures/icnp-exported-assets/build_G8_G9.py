@@ -29,10 +29,25 @@ import numpy as np
 SCRIPT_DIR = Path(__file__).resolve().parent
 OUT_G8 = SCRIPT_DIR / "G8_advanced_4panel.png"
 OUT_G9 = SCRIPT_DIR / "G9_network_gap_analysis.png"
+OUT_PANEL_D = (
+    SCRIPT_DIR.parent
+    / "icnp"
+    / "ICNP-CODE-033_g9_network_gap_analysis_panel_d_rq1_algorithm_tier_separation_stochastic.png"
+)
+OUT_PANEL_F = (
+    SCRIPT_DIR.parent
+    / "icnp"
+    / "ICNP-CODE-035_g9_network_gap_analysis_panel_f_capacity_paradox_all_6_replay_configs_sc.png"
+)
 OUT_PANEL_H = (
     SCRIPT_DIR.parent
     / "icnp"
     / "ICNP-CODE-037_g9_network_gap_analysis_panel_h_allocator_risk_floor_mean_peak_icpursuit.png"
+)
+OUT_PANEL_I = (
+    SCRIPT_DIR.parent
+    / "icnp"
+    / "ICNP-CODE-038_g9_network_gap_analysis_panel_i_cross_testbed_efficiency_oracle_gap_std.png"
 )
 
 RNG = np.random.default_rng(42)
@@ -76,10 +91,10 @@ ALLOC_FLOOR = [88.9, 87.9, 73.3, 68.3]
 ALLOC_SPAN  = [7.8,   9.3, 26.4, 26.7]
 
 TESTBED_EFF = {
-    'Learning-based Route\nSelection (15N)': [74.44,73.15,73.17,71.29],
-    'Adaptive Entanglement\nRouting (20N)': [73.83,73.52,73.72,67.74],
-    'Quantum BGP\n(50N)': [78.25,72.67,72.67,71.63],
-    'Adaptive Clustering\n(100N)': [42.80,42.85,42.45,41.18],
+    'Chaudhary et al.\n(Paper 2, 15N)': [74.5,73.2,73.2,71.3],
+    'Liu et al.\n(Paper 7, 50N)': [78.0,70.8,70.8,69.6],
+    'Clayton et al.\n(Paper 12, 100N)': [44.1,43.8,43.7,42.5],
+    'Jallow--Khan\n(Paper 8, 20N)': [67.9,61.4,61.7,61.9],
 }
 
 # RQ1 stochastic tier data (tab:rq1masterstochastic)
@@ -223,6 +238,106 @@ def draw_allocator_risk_panel(ax, *, include_panel_label=True):
     ax.legend(fontsize=7.5, loc='lower left', ncol=3, frameon=True, framealpha=0.88)
     if include_panel_label:
         panel_label(ax, 'H', 'Allocator Risk: Floor / Mean / Peak (iCPursuitNeural)')
+
+
+def draw_rq1_tier_panel(ax, *, include_panel_label=True):
+    y=np.arange(len(RQ1_MODELS))[::-1]
+    tier_cols={'Tier1':'#2ca02c','Tier2':'#f28e2b','Tier3':'#e63946'}
+    tier_labels={'Tier1':'Viable (≥85%)','Tier2':'Degraded','Tier3':'Collapsed'}
+    for yi,model,eff,tier in zip(y,RQ1_MODELS,RQ1_EFF,RQ1_TIERS):
+        col=tier_cols[tier]
+        ax.hlines(yi,20,eff,color=col,lw=1.9,alpha=0.55)
+        ax.scatter(eff,yi,s=55,color=col,edgecolors='white',lw=0.8,zorder=4)
+        ax.text(eff+0.6,yi,f'{eff:.1f}',va='center',fontsize=7.6,color=col)
+    ax.axvline(85,color='#777',ls='--',lw=1.2)
+    ax.set_yticks(y); ax.set_yticklabels(RQ1_MODELS,fontsize=8.8)
+    ax.set_xlim(20,103); ax.set_ylim(-0.6,len(RQ1_MODELS)-0.4)
+    ax.set_xlabel('Oracle-Norm. Efficiency % (Stochastic)')
+    ax.set_facecolor('#f9f9f9')
+    for tier, ypos in [('Tier1', 10.5), ('Tier2', 5.5), ('Tier3', 1.0)]:
+        ax.text(99.5, ypos, tier_labels[tier], ha='right', va='center',
+                fontsize=8.0, color=tier_cols[tier], fontweight='bold',
+                bbox=dict(boxstyle='round,pad=0.2', facecolor='white', alpha=0.82, edgecolor='none'))
+    for tier,col in tier_cols.items():
+        ax.scatter([],[],color=col,s=50,label=tier_labels[tier])
+    ax.legend(fontsize=7.2,loc='lower right',ncol=3,frameon=True,framealpha=0.88,columnspacing=0.8,handlelength=1.1)
+    if include_panel_label:
+        panel_label(ax,'D','RQ1: Algorithm Tier Separation (Stochastic Decoherence)')
+
+
+def draw_capacity_all_configs_panel(ax, *, include_panel_label=True):
+    cap_styles={'T':('-',C['T'],'o',2.2),'1.5T':('--',C['T15'],'s',1.8),
+                '2T':('-',C['T2'],'^',2.2),'Tb':('-',C['Tb'],'o',2.2),
+                '1.5Tb':('--','#d4730a','s',1.8),'2Tb':('-','#8b2500','^',2.2)}
+    label_offsets = {
+        'T': (0, -16), '1.5T': (-8, 16), '2T': (0, 16),
+        'Tb': (12, -13), '1.5Tb': (-16, -16), '2Tb': (18, 12),
+    }
+    x6=np.arange(5)
+    cap_scens=['Stochastic','Markov','Adaptive','OnlineAdap','Baseline']
+    for cname,(ls,col,mk,lw) in cap_styles.items():
+        ax.plot(x6,CAP_DATA[cname],ls=ls,color=col,marker=mk,lw=lw,ms=6,label=cname,alpha=0.88)
+        for xi, yi in zip(x6, CAP_DATA[cname]):
+            dx, dy = label_offsets[cname]
+            ax.annotate(f'{yi:.1f}', xy=(xi, yi), xytext=(dx, dy), textcoords='offset points',
+                        ha='center', va='center', fontsize=6.8, color=col, fontweight='bold',
+                        bbox=dict(boxstyle='round,pad=0.12', facecolor='white', alpha=0.80, edgecolor='none'),
+                        zorder=8, clip_on=False)
+    ax.axhline(85,color=C['THRESH'],ls=':',lw=1.1,alpha=0.7)
+    ax.text(4.95,85.2,'85% target',ha='right',va='bottom',fontsize=7.3,color=C['THRESH'])
+    ax.set_xticks(x6); ax.set_xticklabels(cap_scens,fontsize=9,rotation=10,ha='right')
+    ax.set_ylim(76.8,94.5); ax.set_ylabel('Oracle-Norm. Efficiency (%)')
+    ax.legend(fontsize=6.2,ncol=3,frameon=True,framealpha=0.88,loc='lower left',
+              bbox_to_anchor=(0.01,0.01),columnspacing=0.7,handlelength=1.0)
+    ax.set_facecolor('#f9f9f9')
+    ax.annotate('OnlineAdap T span: 83.2--90.6%',
+                xy=(3,CAP_DATA['2T'][3]),xytext=(2.35,92.9),fontsize=7.6,color=C['T2'],
+                arrowprops=dict(arrowstyle='->',color=C['T2'],lw=0.9),
+                bbox=dict(boxstyle='round,pad=0.18', facecolor='white', alpha=0.86, edgecolor='none'))
+    ax.annotate(r'OnlineAdap $T_b$ span: 84.2--86.6%',
+                xy=(3,CAP_DATA['Tb'][3]),xytext=(2.0,78.0),fontsize=7.6,color=C['Tb'],
+                arrowprops=dict(arrowstyle='->',color=C['Tb'],lw=0.9),
+                bbox=dict(boxstyle='round,pad=0.18', facecolor='white', alpha=0.86, edgecolor='none'))
+    if include_panel_label:
+        panel_label(ax,'F','Capacity Paradox: All 6 Replay Configs × Scenario')
+
+
+def draw_cross_testbed_panel(ax, *, include_panel_label=True):
+    tl=list(TESTBED_EFF.keys()); tv=list(TESTBED_EFF.values())
+    tc9=[C['P2'],C['P7'],C['P12'],C['P8']]
+    amk9=['o','s','^','D']
+    aln9=['iCPursuitNeural','CPursuitNeural','GNeuralUCB','EXPNeuralUCB']
+    vd=[np.repeat(v,20)+RNG.normal(0,0.18,len(v)*20) for v in tv]
+    vp=ax.violinplot(vd,positions=range(4),widths=0.62,showmedians=False,showextrema=False)
+    for body,col in zip(vp['bodies'],tc9):
+        body.set_facecolor(col); body.set_alpha(0.35)
+    bp=ax.boxplot(tv,positions=range(4),widths=0.20,patch_artist=True,
+        medianprops=dict(color='white',lw=2.2),
+        whiskerprops=dict(lw=1.3,color='#666'),capprops=dict(lw=1.3,color='#666'),
+        flierprops=dict(marker='o',ms=3,alpha=0.4))
+    for p,col in zip(bp['boxes'],tc9):
+        p.set_facecolor(col); p.set_alpha(0.88)
+    for ji,(vals,col) in enumerate(zip(tv,tc9)):
+        for ki,v in enumerate(vals):
+            ax.scatter(ji+RNG.uniform(-0.07,0.07),v,s=52,color=col,marker=amk9[ki],
+                       zorder=6,alpha=0.95,edgecolors='white',lw=0.9)
+            if v == max(vals):
+                ax.text(ji, v + 1.05, f'best {v:.1f}%', ha='center',
+                        fontsize=8.0, color=col, fontweight='bold',
+                        bbox=dict(boxstyle='round,pad=0.16', facecolor='white', alpha=0.82, edgecolor='none'))
+        ax.text(ji,max(vals)+2.65,f'gap {100-max(vals):.1f}pp',ha='center',
+                fontsize=7.8,color=col,fontweight='bold')
+    ax.axhline(85,color=C['THRESH'],ls='--',lw=1.2,alpha=0.7)
+    ax.text(3.45,85.45,'85% internal target',ha='right',va='bottom',fontsize=7.4,color=C['THRESH'])
+    ax.set_xticks(range(4)); ax.set_xticklabels(tl,fontsize=7.8)
+    ax.set_ylabel('Oracle-Norm. Efficiency (%)')
+    ax.set_ylim(39,88)
+    ax.set_facecolor('#f9f9f9')
+    for mk,mn in zip(amk9,aln9):
+        ax.scatter([],[],marker=mk,color='#555',s=42,label=mn[:12])
+    ax.legend(loc='lower left',ncol=2,frameon=True,framealpha=0.88,fontsize=7.0)
+    if include_panel_label:
+        panel_label(ax,'I','Cross-Testbed Efficiency & Oracle Gap (Std. 4K/2K/5R)')
 
 
 def base_style():
@@ -525,19 +640,61 @@ def build_allocator_risk_panel():
     print(f"Wrote {OUT_PANEL_H}")
 
 
+def build_rq1_tier_panel():
+    base_style()
+    fig, ax = plt.subplots(figsize=(7.64, 4.58), dpi=200)
+    fig.patch.set_facecolor('white')
+    draw_rq1_tier_panel(ax, include_panel_label=False)
+    fig.subplots_adjust(left=0.12, right=0.98, top=0.98, bottom=0.14)
+    fig.savefig(OUT_PANEL_D, dpi=200, facecolor='white')
+    plt.close(fig)
+    print(f"Wrote {OUT_PANEL_D}")
+
+
+def build_capacity_all_configs_panel():
+    base_style()
+    fig, ax = plt.subplots(figsize=(7.64, 4.585), dpi=200)
+    fig.patch.set_facecolor('white')
+    draw_capacity_all_configs_panel(ax, include_panel_label=False)
+    fig.subplots_adjust(left=0.09, right=0.98, top=0.98, bottom=0.18)
+    fig.savefig(OUT_PANEL_F, dpi=200, facecolor='white')
+    plt.close(fig)
+    print(f"Wrote {OUT_PANEL_F}")
+
+
+def build_cross_testbed_panel():
+    base_style()
+    fig, ax = plt.subplots(figsize=(7.64, 4.545), dpi=200)
+    fig.patch.set_facecolor('white')
+    draw_cross_testbed_panel(ax, include_panel_label=False)
+    fig.subplots_adjust(left=0.08, right=0.98, top=0.97, bottom=0.22)
+    fig.savefig(OUT_PANEL_I, dpi=200, facecolor='white')
+    plt.close(fig)
+    print(f"Wrote {OUT_PANEL_I}")
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Build ICNP G8/G9 result figures.")
     parser.add_argument(
         "--only",
-        choices=["all", "panel-h"],
+        choices=["all", "panel-d", "panel-f", "panel-h", "panel-i"],
         default="all",
-        help="Build all figures or only the Figure 7B allocator-risk panel.",
+        help="Build all figures or only one manuscript-facing labeled panel.",
     )
     args = parser.parse_args()
-    if args.only == "panel-h":
+    if args.only == "panel-d":
+        build_rq1_tier_panel()
+    elif args.only == "panel-f":
+        build_capacity_all_configs_panel()
+    elif args.only == "panel-h":
         build_allocator_risk_panel()
+    elif args.only == "panel-i":
+        build_cross_testbed_panel()
     else:
         build_G8()
         build_G9()
+        build_rq1_tier_panel()
+        build_capacity_all_configs_panel()
         build_allocator_risk_panel()
+        build_cross_testbed_panel()
         print("All done.")
