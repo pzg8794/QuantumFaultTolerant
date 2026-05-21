@@ -11,7 +11,7 @@ This log records feedback-resolution batches applied to the active ICNP venue dr
 
 1. **Repository-link placement**
    - **Issue:** The anonymous artifact link rendered as a standalone `Code Metadata` section below the abstract, costing space.
-   - **Change:** Moved the same anonymous link to the end of the Introduction and preserved Dan's original request as a solved source comment.
+   - **Change:** Moved the same anonymous link to the final sentence of the Introduction, after the contribution bullets, and preserved Dan's original request as a solved source comment.
 
 2. **Capacity-paradox contribution clarity**
    - **Issue:** The contribution bullet described `s=1` to `s=1.5` as "doubling" and did not state why the 15.6 pp allocator-floor shift matters.

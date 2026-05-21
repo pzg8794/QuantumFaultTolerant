@@ -154,8 +154,7 @@ the controlling robustness factor.}
 \label{fig:framework}
 \end{figure}
 % this gap
-To address this lack of a unified and controlled evaluation framework for quantum-routing strategies, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. This evaluation provides practical guidance for designing quantum-network controllers that can maintain high entanglement efficiency and robustness under changing network conditions and adversarial disruptions. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks. The anonymized evaluation framework and verified logs are available at \url{https://anonymous.4open.science/r/quantum_project-D2FF}.
-% \dan{add the code repo here} -- SOLVED: Moved the anonymous artifact link from a standalone Code Metadata section to the end of the Introduction to save space.
+To address this lack of a unified and controlled evaluation framework for quantum-routing strategies, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. This evaluation provides practical guidance for designing quantum-network controllers that can maintain high entanglement efficiency and robustness under changing network conditions and adversarial disruptions. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks.
 
 % COMMENTED OUT: Intro threat table removed temporarily due to page budget (>10 pages).
 % Restore once space is recovered. Table defined all five threat regimes (Baseline,
@@ -210,6 +209,9 @@ In summary, our work makes the following contributions:
     {Pursuit--neural hybrids achieve 87--96\% efficiency, outperforming non-contextual baselines by 18--24 pp, and sustaining stability under strategic attacks.}
     %{Pursuit--neural hybrids define the efficiency--stability frontier in the fixed 6K, $T$-type, $s{=}2$ slice: \texttt{CPursuitNeuralUCB} reaches 92.4\% / CV\,6.5\% and \texttt{iCPursuitNeuralUCB} reaches 96.0\% / CV\,3.3\%, while adversarial validation shows \texttt{EXPNeuralUCB} falling to an 18.0\% floor under reactive threats.}
 \end{itemize}
+
+% \dan{add the code repo here} -- SOLVED: Moved the anonymous artifact link from a standalone Code Metadata section to the final sentence of the Introduction to save space.
+The anonymized evaluation framework and verified logs are available at \url{https://anonymous.4open.science/r/quantum_project-D2FF}.
 
 % \input{02--related_works}
 \section{Related Work}
