@@ -101,11 +101,6 @@ Quantum entanglement routing requires joint path selection and qubit allocation 
 Quantum networks, entanglement routing, multi-armed bandits, adversarial learning, qubit allocation, online optimization.
 \end{IEEEkeywords}
 
-% \dan{add the code repo here}
-\section*{Code Metadata}
-The evaluation framework and verified logs are available at
-\url{https://anonymous.4open.science/r/quantum_project-D2FF}.
-
 \section{Introduction}\label{sec:Introduction}
 
 Quantum entanglement distribution is a core property for the quantum Internet, supporting quantum key distribution, distributed quantum computing, and sensing~\cite{kimble2008quantum,wehner2018quantum,pompili2021realization}. Reliable end-to-end entanglement is difficult because generation and swapping are probabilistic, quantum states are fragile, and decoherence makes path quality time-varying~\cite{briegel1998quantum,dahlberg2021netsquid,zukowski1993event}. Unlike classical packet routing, quantum routing must establish and consume entanglement under limited memory coherence, probabilistic operations, and fidelity loss~\cite{bennett1993teleporting,zukowski1993event}. These constraints tightly couple path selection with qubit allocation, since resource placement affects success probability and learner feedback~\cite{li2025multipath,wang2025learning,huang2024quantum}.
@@ -159,7 +154,8 @@ the controlling robustness factor.}
 \label{fig:framework}
 \end{figure}
 % this gap
-To address this lack of a unified and controlled evaluation framework for quantum-routing strategies, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. This evaluation provides practical guidance for designing quantum-network controllers that can maintain high entanglement efficiency and robustness under changing network conditions and adversarial disruptions. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks.
+To address this lack of a unified and controlled evaluation framework for quantum-routing strategies, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. This evaluation provides practical guidance for designing quantum-network controllers that can maintain high entanglement efficiency and robustness under changing network conditions and adversarial disruptions. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks. The anonymized evaluation framework and verified logs are available at \url{https://anonymous.4open.science/r/quantum_project-D2FF}.
+% \dan{add the code repo here} -- SOLVED: Moved the anonymous artifact link from a standalone Code Metadata section to the end of the Introduction to save space.
 
 % COMMENTED OUT: Intro threat table removed temporarily due to page budget (>10 pages).
 % Restore once space is recovered. Table defined all five threat regimes (Baseline,
@@ -191,12 +187,13 @@ In summary, our work makes the following contributions:
 
     \item \descStep{Capacity paradox}{Capacity effects are
     threat-dependent: under \texttt{ThompsonSampling} allocation
-    with base-horizon replay capacity ($T_b$), doubling the
+    with base-horizon replay capacity ($T_b$), increasing the
     replay-capacity scale from $s{=}1$ to $s{=}1.5$ causes a
     4.4 percentage-point (pp) efficiency drop under reactive
     adaptive disruption, which then recovers by 6.0~pp at full
-    scale ($s{=}2$); allocator choice alone shifts worst-case
-    efficiency floors\footnote{Defined in \Cref{tab:notation_metrics}} by 15.6~pp.}
+    scale ($s{=}2$). Allocator mismatch also lowers worst-case
+    efficiency floors\footnote{Defined in \Cref{tab:notation_metrics}} by 15.6~pp,
+    showing that replay capacity and allocation must be tuned together.}
     % \devroop{This still needs to be rewritten. For a reader, the person has no idea what OnlineAdaptive and $s$ means. Make it more explainable. Same for the next point}
     % SOLVED: Intro threat table commented out due to page budget. Rewrote bullet
     % to remove naked ``OnlineAdaptive'' label; replaced with ``reactive adaptive

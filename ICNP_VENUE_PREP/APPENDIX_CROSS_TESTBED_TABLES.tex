@@ -1,6 +1,6 @@
 \section{System Model Layout}
 
-\begin{figure}[ht!]
+\begin{figure}[H]
 \centering
 \textbf{System-Model Loop}\\[0.75em]
 \footnotesize
@@ -41,7 +41,7 @@ evaluated as a coupled path-selection, allocation, threat, and feedback process.
 \end{figure}
 
 
-\begin{table}[ht!]
+\begin{table}[H]
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
@@ -73,7 +73,7 @@ Replay semantics & All & $T_b=sF_b$, $T=sF_c$ & \cite{schaul2015prioritized,mnih
 \smallTitle{Scenario specifications}
 \Cref{tab:scenario_specs} instantiates the threat settings defined in \cref{subsec:threats} for the matched evaluation grid.
 
-\begin{table}[ht!]
+\begin{table}[H]
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
@@ -93,6 +93,8 @@ Baseline & Oracle & Perfect-information reference \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\clearpage
 
 \section{Detailed Cross-Testbed and Model-Family Results}
 \label{app:cross_testbed_full_tables}
@@ -152,6 +154,8 @@ This appendix reports the full cross-testbed and model-family evidence supportin
 \vspace{0.2cm}
 {\scriptsize \textit{Legend:} N=nodes, E=edges, P=paths, R=runs. Efficiency (\%) = model average reward divided by Oracle average reward. Gap = 100 - Efficiency. Wins denote experiment-level wins out of the available configurations: 300 for \paperTwo/\paperSeven/\paperTwelve and 20 for \paperEight. $^\star$ indicates the testbed-level experiment-winner count.}
 \end{table*}
+
+\clearpage
 
 \subsection{Full Model-Family Results}
 \label{app:full_model_family_results}
@@ -230,3 +234,5 @@ This appendix reports the full cross-testbed and model-family evidence supportin
 \vspace{0.2cm}
 {\scriptsize \textit{Note:} Internal corpus rows use the validated CMAB, iCMAB, EXP3, and Hybrid master datasets with \texttt{Default} allocator and reported run/scale settings. External rows use the standardized external-testbed corpus where available. Gap = 100 - Efficiency. Floor = worst-case efficiency. Wins denote experiment-level win counts; $^\star$ marks the row with the highest win count in its scope.}
 \end{table*}
+
+\clearpage

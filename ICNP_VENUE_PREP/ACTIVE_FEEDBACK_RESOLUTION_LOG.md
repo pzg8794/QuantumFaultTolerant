@@ -2,6 +2,36 @@
 
 This log records feedback-resolution batches applied to the active ICNP venue draft. It complements the per-section audit notes and follows the repository process in `AGENTS.md`: identify the owning file, make the smallest safe change, preserve validated content, and keep reviewer feedback traceable as LaTeX source comments with `SOLVED` explanations.
 
+## Batch: May 20 meeting cleanup
+
+- **Owning files changed:** `ICNP_2026_venue_draft.tex`, `ICNP_VENUE_PREP/STUDY_DESIGN_VALIDATED_STAGING.tex`, `ICNP_VENUE_PREP/APPENDIX_CROSS_TESTBED_TABLES.tex`
+- **Reason for batching:** The transcript-derived items were local venue-cleanup fixes: move the anonymous artifact link out of its own section, clarify the capacity-paradox contribution bullet, reference the allocator table, and stabilize appendix setup-float ordering. No result values, figure assets, or validated table values were changed.
+
+### Resolved feedback / cleanup
+
+1. **Repository-link placement**
+   - **Issue:** The anonymous artifact link rendered as a standalone `Code Metadata` section below the abstract, costing space.
+   - **Change:** Moved the same anonymous link to the end of the Introduction and preserved Dan's original request as a solved source comment.
+
+2. **Capacity-paradox contribution clarity**
+   - **Issue:** The contribution bullet described `s=1` to `s=1.5` as "doubling" and did not state why the 15.6 pp allocator-floor shift matters.
+   - **Change:** Replaced "doubling" with "increasing" and stated that allocator mismatch lowers worst-case floors, making the consequence explicit without changing the validated numbers.
+
+3. **Allocator-table reference hygiene**
+   - **Issue:** The allocator table remained useful in the main body but was not directly referenced.
+   - **Change:** Added `\Cref{tab:setup-allocators}` to the allocator-strategy setup sentence.
+
+4. **Appendix setup-float ordering**
+   - **Issue:** The moved System Model appendix figure and setup tables could float past later appendix headings.
+   - **Change:** Used fixed appendix placement for the setup figure/tables and inserted a page break before the detailed cross-testbed/model-family appendix section.
+
+### Validation status
+
+- [x] Full LaTeX compile completed with existing warning noise only.
+- [x] References begin on page 11, preserving the 10-page main-body target.
+- [x] Rendered reviewer-marker sweep found no visible feedback text from this batch.
+- [x] Appendix setup material appears before the detailed cross-testbed/model-family tables.
+
 ## Batch: simple active-draft System Model feedback
 
 - **Commit:** `c435b55f24ed0b05f1a18710ea2b5c834077ae17`
