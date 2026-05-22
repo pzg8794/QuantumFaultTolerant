@@ -25,6 +25,7 @@ Observed outcome:
 
 - The image batch did not introduce missing-graphic errors or LaTeX build failures.
 - Figures 3, 4, 5, 6A, 6B, 7B, 8A, 8B, 10, and 13 now better expose the values or labels used by their captions.
+- A surgical follow-up corrected the Figure 5 legend placement and mean-label side, restored the Figure 6A drop/recovery shadows, cleaned the Contextual-vs-EXP3 numeric labels, and removed Figure 13C bar numbers while adding A--D panel subtitles.
 - Remaining LaTeX warnings are consistent with existing draft noise: underfull/overfull boxes, duplicate PDF-destination warnings, and appendix/floating behavior. No broad formatting fix was attempted in this image-first pass.
 
 ## Validation pass: source-level preflight after feedback cleanup

@@ -76,6 +76,10 @@ fig1.add_annotation(x='s=2', y=88.0, text='recovery +6.0 pp',
                     font=dict(color='#27ae60', size=11),
                     arrowcolor='#27ae60',
                     bgcolor='rgba(255,255,255,0.80)')
+fig1.add_shape(type='rect', x0=0.72, x1=1.28, y0=84.2, y1=89.7,
+               fillcolor='rgba(231,76,60,0.08)', line_width=0, layer='below')
+fig1.add_shape(type='rect', x0=1.72, x1=2.28, y0=84.2, y1=91.4,
+               fillcolor='rgba(39,174,96,0.08)', line_width=0, layer='below')
 fig1.add_shape(type='line', x0='s=1', x1='s=1.5', y0=89.2, y1=84.9,
                line=dict(color='rgba(231,76,60,0.55)', width=7), layer='below')
 fig1.add_shape(type='line', x0='s=1.5', x1='s=2', y0=84.9, y1=90.8,
@@ -126,7 +130,7 @@ fig2.add_trace(go.Scatter(
 for i, algo in enumerate(algos):
     label_specs = [
         (floor_v[i], f"floor {floor_v[i]:.1f}%", '#e74c3c', -24, 'right'),
-        (mean_v[i], f"mean {mean_v[i]:.1f}%", '#f39c12', 10, 'left'),
+        (mean_v[i], f"mean {mean_v[i]:.1f}%", '#f39c12', -12, 'right'),
         (peak_v[i], f"peak {peak_v[i]:.1f}%", '#27ae60', 10, 'left'),
     ]
     for x_value, label, color, xshift, xanchor in label_specs:
@@ -161,8 +165,8 @@ fig2.add_annotation(x=0.02, y=0.98, xref='paper', yref='paper',
                     borderwidth=1)
 
 fig2.update_layout(
-    margin=dict(t=8, r=12, b=82, l=66, pad=0),
-    legend=in_figure_legend(y=-0.22, yanchor='top'),
+    margin=dict(t=8, r=12, b=44, l=66, pad=0),
+    legend=in_figure_legend(x=0.18, y=0.03, xanchor='left', yanchor='bottom'),
     xaxis_range=[25, 110],
 )
 fig2.update_xaxes(title_text="Oracle-Norm. Efficiency (%)")

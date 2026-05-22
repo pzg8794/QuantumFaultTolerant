@@ -34,6 +34,11 @@ OUT_PANEL_D = (
     / "icnp"
     / "ICNP-CODE-033_g9_network_gap_analysis_panel_d_rq1_algorithm_tier_separation_stochastic.png"
 )
+OUT_PANEL_C = (
+    SCRIPT_DIR.parent
+    / "icnp"
+    / "ICNP-CODE-032_g9_network_gap_analysis_panel_c_oracle_gap_context_vs_exp3_by_scenario_c.png"
+)
 OUT_PANEL_F = (
     SCRIPT_DIR.parent
     / "icnp"
@@ -150,6 +155,10 @@ def path_p(hops, total_q, pe=1.5e-4):
 
 def panel_label(ax, letter, title, fs=11):
     ax.text(-0.10,1.07,letter,transform=ax.transAxes,fontsize=14,fontweight='bold',va='top')
+
+
+def panel_subtitle(ax, title):
+    ax.set_title(title, fontsize=10.4, fontweight='bold', pad=8)
 
 
 def label_box_medians(ax, positions, datasets, colors, *, dy=0.6):
@@ -328,6 +337,38 @@ def draw_scenario_penalty_panel(ax, *, include_panel_label=True):
         panel_label(ax,'G','Scenario Penalty vs Baseline by Algorithm & Threat')
 
 
+def draw_oracle_gap_panel(ax, *, include_panel_label=True):
+    x3=np.arange(len(SCEN_ORDER)); w3=0.18
+    gap_pairs=[('Context(T)',[100-v for v in CTX_T],C['T']),
+               ('Context(Tb)',[100-v for v in CTX_TB],'#72b7b2'),
+               ('EXP3(T)',[100-v for v in EXP_T],C['EXP3']),
+               ('EXP3(Tb)',[100-v for v in EXP_TB],'#d4730a')]
+    for (lbl,gaps,col),off in zip(gap_pairs,[-1.5,-0.5,0.5,1.5]):
+        bars = ax.bar(x3+off*w3,gaps,width=w3*0.88,color=col,alpha=0.85,label=lbl,edgecolor='white',lw=0.6)
+        for bar, gap in zip(bars, gaps):
+            ax.text(
+                bar.get_x() + bar.get_width() / 2,
+                gap + 0.35,
+                f'{gap:.1f}',
+                ha='center',
+                va='bottom',
+                fontsize=6.6,
+                color='#111111',
+                fontweight='bold',
+                zorder=7,
+                bbox=dict(boxstyle='round,pad=0.08', facecolor='white', alpha=0.74, edgecolor='none'),
+            )
+    ax.axhline(15,color=C['THRESH'],ls='--',lw=1.2,alpha=0.7)
+    ax.set_xticks(x3); ax.set_xticklabels(SCEN_ORDER,fontsize=9,rotation=10,ha='right')
+    ax.set_ylabel('Oracle Gap (pp)')
+    ax.legend(fontsize=6.8,ncol=2,frameon=True,framealpha=0.88,loc='upper right',bbox_to_anchor=(0.98,0.92),columnspacing=0.9,handlelength=1.1)
+    ax.set_facecolor('#f9f9f9')
+    ax.text(0.02,0.82,'Context(T) cuts the Stochastic gap by 8.5 vs EXP3(T)',transform=ax.transAxes,ha='left',va='top',fontsize=8,color='#555',bbox=dict(boxstyle='round,pad=0.25',facecolor='white',alpha=0.75,edgecolor='none'))
+    ax.text(0.98,0.92,'Lower is better',transform=ax.transAxes,ha='right',va='top',fontsize=8,color='#555',bbox=dict(boxstyle='round,pad=0.25',facecolor='white',alpha=0.75,edgecolor='none'))
+    if include_panel_label:
+        panel_label(ax,'C','Oracle Gap: Context vs EXP3 by Scenario & Capacity')
+
+
 def draw_cross_testbed_panel(ax, *, include_panel_label=True):
     tl=list(TESTBED_EFF.keys()); tv=list(TESTBED_EFF.values())
     tc9=[C['P2'],C['P7'],C['P12'],C['P8']]
@@ -431,6 +472,7 @@ def build_G8():
     fam_handles=[mpatches.Patch(color=col,alpha=0.82,label=fam) for fam,col in zip(fams,fc)]
     axA.legend(handles=fam_handles,loc='upper right',ncol=2,frameon=True,framealpha=0.88,fontsize=8,title='Family')
     panel_label(axA,'A','Oracle-Gap Distribution by Model Family')
+    panel_subtitle(axA, 'Oracle-gap distribution')
 
     # B — grouped box: capacity paradox
     n=5; pos_T=[i*2.6+0.45 for i in range(n)]; pos_Tb=[i*2.6+1.15 for i in range(n)]
@@ -456,15 +498,15 @@ def build_G8():
     axB.legend(handles=[phT,phTb],loc='lower left',bbox_to_anchor=(0.01,0.02),ncol=2,frameon=True,framealpha=0.88,columnspacing=0.8,handlelength=1.1)
     axB.set_facecolor('#f9f9f9')
     panel_label(axB,'B','Capacity Paradox: Replay Scaling Δ by Scenario & Semantic')
+    panel_subtitle(axB, 'Replay drop/recovery')
 
     # C — grouped bar: allocator × scenario
     anames=['Fixed','DynamicUCB','Thompson','Random']
     acols=[C['FIXED'],C['DUB'],C['THOM'],C['RAND']]
     x=np.arange(5); w=0.18; offs=np.array([-1.5,-0.5,0.5,1.5])*w
     for ai,(an,ac) in enumerate(zip(anames,acols)):
-        bars = axC.bar(x+offs[ai],ALLOC_SCEN_EFF[an],width=w*0.88,color=ac,alpha=0.85,
-                       label=an,edgecolor='white',lw=0.6)
-        label_bar_values_inside(axC, bars, suffix='%', text_color='white', y_padding=1.2)
+        axC.bar(x+offs[ai],ALLOC_SCEN_EFF[an],width=w*0.88,color=ac,alpha=0.85,
+                label=an,edgecolor='white',lw=0.6)
     axC.axhline(85,color=C['THRESH'],ls='--',lw=1.2,alpha=0.7)
     axC.set_xticks(x); axC.set_xticklabels(SCENARIOS,fontsize=9.5)
     axC.set_ylim(55,105); axC.set_ylabel('Oracle-Norm. Efficiency (%)')
@@ -474,9 +516,11 @@ def build_G8():
              bbox=dict(boxstyle='round,pad=0.22',facecolor='white',alpha=0.78,edgecolor='none'))
     axC.set_facecolor('#f9f9f9')
     panel_label(axC,'C','Allocator Efficiency per Scenario (iCPursuitNeuralUCB)')
+    panel_subtitle(axC, 'Allocator efficiency')
 
     # D — context-capacity detail replacing duplicate cross-testbed content
     draw_context_capacity_panel(axD)
+    panel_subtitle(axD, 'Context-capacity effects')
 
     fig.subplots_adjust(top=0.96)
     fig.text(0.5,-0.008,
@@ -532,33 +576,7 @@ def build_G9():
     panel_label(ax2,'B','Qubit Budget per Path × Allocator (Total=35)')
 
     # C: Oracle-gap bars
-    x3=np.arange(len(SCEN_ORDER)); w3=0.18
-    gap_pairs=[('Context(T)',[100-v for v in CTX_T],C['T']),
-               ('Context(Tb)',[100-v for v in CTX_TB],'#72b7b2'),
-               ('EXP3(T)',[100-v for v in EXP_T],C['EXP3']),
-               ('EXP3(Tb)',[100-v for v in EXP_TB],'#d4730a')]
-    for (lbl,gaps,col),off in zip(gap_pairs,[-1.5,-0.5,0.5,1.5]):
-        bars = ax3.bar(x3+off*w3,gaps,width=w3*0.88,color=col,alpha=0.85,label=lbl,edgecolor='white',lw=0.6)
-        for bar, gap in zip(bars, gaps):
-            ax3.text(
-                bar.get_x() + bar.get_width() / 2,
-                max(gap - 0.9, gap * 0.58),
-                f'{gap:.1f}pp',
-                ha='center',
-                va='top',
-                fontsize=6.6,
-                color='white',
-                fontweight='bold',
-                zorder=7,
-            )
-    ax3.axhline(15,color=C['THRESH'],ls='--',lw=1.2,alpha=0.7)
-    ax3.set_xticks(x3); ax3.set_xticklabels(SCEN_ORDER,fontsize=9,rotation=10,ha='right')
-    ax3.set_ylabel('Oracle Gap (pp)')
-    ax3.legend(fontsize=6.8,ncol=2,frameon=True,framealpha=0.88,loc='upper right',bbox_to_anchor=(0.98,0.92),columnspacing=0.9,handlelength=1.1)
-    ax3.set_facecolor('#f9f9f9')
-    ax3.text(0.02,0.82,'Context(T) cuts the Stochastic gap by 8.5pp vs EXP3(T)',transform=ax3.transAxes,ha='left',va='top',fontsize=8,color='#555',bbox=dict(boxstyle='round,pad=0.25',facecolor='white',alpha=0.75,edgecolor='none'))
-    ax3.text(0.98,0.92,'Lower is better',transform=ax3.transAxes,ha='right',va='top',fontsize=8,color='#555',bbox=dict(boxstyle='round,pad=0.25',facecolor='white',alpha=0.75,edgecolor='none'))
-    panel_label(ax3,'C','Oracle Gap: Context vs EXP3 by Scenario & Capacity')
+    draw_oracle_gap_panel(ax3)
 
     # D: RQ1 lollipop
     tier_colors={'Tier1':'#2ca02c','Tier2':'#f28e2b','Tier3':'#e63946'}
@@ -673,6 +691,17 @@ def build_rq1_tier_panel():
     print(f"Wrote {OUT_PANEL_D}")
 
 
+def build_oracle_gap_panel():
+    base_style()
+    fig, ax = plt.subplots(figsize=(7.64, 4.58), dpi=200)
+    fig.patch.set_facecolor('white')
+    draw_oracle_gap_panel(ax, include_panel_label=False)
+    fig.subplots_adjust(left=0.08, right=0.985, top=0.97, bottom=0.16)
+    fig.savefig(OUT_PANEL_C, dpi=200, facecolor='white')
+    plt.close(fig)
+    print(f"Wrote {OUT_PANEL_C}")
+
+
 def build_capacity_all_configs_panel():
     base_style()
     fig, ax = plt.subplots(figsize=(7.64, 4.585), dpi=200)
@@ -710,12 +739,14 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Build ICNP G8/G9 result figures.")
     parser.add_argument(
         "--only",
-        choices=["all", "panel-d", "panel-f", "panel-g", "panel-h", "panel-i"],
+        choices=["all", "panel-c", "panel-d", "panel-f", "panel-g", "panel-h", "panel-i"],
         default="all",
         help="Build all figures or only one manuscript-facing labeled panel.",
     )
     args = parser.parse_args()
-    if args.only == "panel-d":
+    if args.only == "panel-c":
+        build_oracle_gap_panel()
+    elif args.only == "panel-d":
         build_rq1_tier_panel()
     elif args.only == "panel-f":
         build_capacity_all_configs_panel()
@@ -728,6 +759,7 @@ if __name__ == "__main__":
     else:
         build_G8()
         build_G9()
+        build_oracle_gap_panel()
         build_rq1_tier_panel()
         build_capacity_all_configs_panel()
         build_scenario_penalty_panel()

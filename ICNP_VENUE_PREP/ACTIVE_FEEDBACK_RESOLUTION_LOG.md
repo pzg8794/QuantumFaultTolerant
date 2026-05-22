@@ -7,6 +7,7 @@ This log records feedback-resolution batches applied to the active ICNP venue dr
 - **Owning files changed:** `figures/icnp-exported-assets/build_G8_G9.py`, `figures/icnp_figures/icnp_graphs.py`, `figures/icnp_graphs/code_and_plots/script.py`, `ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex`, `ICNP_VENUE_PREP/APPENDIX_DIAGNOSTIC_FIGURES.tex`
 - **Regenerated assets:** `figures/icnp/ICNP-CODE-024_g8_advanced_4panel_grouped_full_figure.png`, `ICNP-CODE-033`, `ICNP-CODE-035`, `ICNP-CODE-036`, `ICNP-CODE-037`, `ICNP-CODE-038`, `ICNP-CODE-039`, `ICNP-CODE-040`, `ICNP-CODE-041`, and `ICNP-CODE-056`
 - **Reason for batching:** The May 21 transcript prioritized image-internal fixes before broad formatting. This batch updates generated figures and only touches nearby LaTeX when the image/caption alignment required it. No table values, result claims, or broad page-flow changes were made.
+- **Follow-up correction:** A surgical correction restored the Figure 6A drop/recovery shadows, moved the Figure 5 legend inside the plot near the 40--60 x-axis region, moved orange mean labels left, converted Contextual-vs-EXP3 numeric labels to black without repeated `pp`, and removed bar numbers from Figure 13C while adding short A--D panel subtitles.
 
 ### Resolved feedback / cleanup
 
