@@ -49,6 +49,11 @@ OUT_PANEL_G = (
     / "icnp"
     / "ICNP-CODE-036_g9_network_gap_analysis_panel_g_scenario_penalty_vs_baseline_by_algorith.png"
 )
+OUT_PANEL_E = (
+    SCRIPT_DIR.parent
+    / "icnp"
+    / "ICNP-CODE-034_g9_network_gap_analysis_panel_e_threat_escalation_heatmap_algo_scenario.png"
+)
 OUT_PANEL_H = (
     SCRIPT_DIR.parent
     / "icnp"
@@ -303,10 +308,10 @@ def draw_capacity_all_configs_panel(ax, *, include_panel_label=True):
                     zorder=8, clip_on=False)
     ax.axhline(85,color=C['THRESH'],ls=':',lw=1.1,alpha=0.7)
     ax.text(4.95,85.2,'85% target',ha='right',va='bottom',fontsize=7.3,color=C['THRESH'])
-    ax.set_xticks(x6); ax.set_xticklabels(cap_scens,fontsize=9,rotation=10,ha='right')
+    ax.set_xticks(x6); ax.set_xticklabels(cap_scens,fontsize=9,rotation=0,ha='center')
     ax.set_ylim(76.8,94.5); ax.set_ylabel('Oracle-Norm. Efficiency (%)')
-    ax.legend(fontsize=6.5,ncol=6,frameon=True,framealpha=0.90,loc='upper center',
-              bbox_to_anchor=(0.5,0.995),columnspacing=0.7,handlelength=1.0)
+    ax.legend(fontsize=6.5,ncol=6,frameon=True,framealpha=0.90,loc='upper left',
+              bbox_to_anchor=(0.01,0.995),columnspacing=0.7,handlelength=1.0)
     ax.set_facecolor('#f9f9f9')
     ax.annotate('OnlineAdaptive T span: 83.2--90.6%',
                 xy=(3,CAP_DATA['2T'][3]),xytext=(2.35,92.9),fontsize=7.6,color=C['T2'],
@@ -335,6 +340,21 @@ def draw_scenario_penalty_panel(ax, *, include_panel_label=True):
     ax.set_facecolor('#f9f9f9')
     if include_panel_label:
         panel_label(ax,'G','Scenario Penalty vs Baseline by Algorithm & Threat')
+
+
+def draw_threat_heatmap_panel(ax, *, include_panel_label=True):
+    im=ax.imshow(HEAT_MAT,cmap='RdYlGn',aspect='auto',vmin=60,vmax=100)
+    ax.set_xticks(range(5)); ax.set_xticklabels(SCENARIOS,fontsize=8.5,rotation=0,ha='center')
+    ax.set_yticks(range(len(HEAT_ALGOS))); ax.set_yticklabels(HEAT_ALGOS,fontsize=8.5)
+    for i in range(len(HEAT_ALGOS)):
+        for j in range(5):
+            value=HEAT_MAT[i,j]
+            ax.text(j,i,f'{value:.0f}',ha='center',va='center',fontsize=8,fontweight='bold',
+                    color='white' if value<75 else '#1a1a1a')
+    plt.colorbar(im,ax=ax,shrink=0.85,label='Eff. %')
+    ax.grid(False)
+    if include_panel_label:
+        panel_label(ax,'E','Threat Escalation Heatmap: Algo × Scenario')
 
 
 def draw_oracle_gap_panel(ax, *, include_panel_label=True):
@@ -598,16 +618,7 @@ def build_G9():
     panel_label(ax4,'D','RQ1: Algorithm Tier Separation (Stochastic Decoherence)')
 
     # E: threat heatmap
-    im5=ax5.imshow(HEAT_MAT,cmap='RdYlGn',aspect='auto',vmin=60,vmax=100)
-    ax5.set_xticks(range(5)); ax5.set_xticklabels(SCENARIOS,fontsize=8.5,rotation=10,ha='right')
-    ax5.set_yticks(range(len(HEAT_ALGOS))); ax5.set_yticklabels(HEAT_ALGOS,fontsize=8.5)
-    for i in range(len(HEAT_ALGOS)):
-        for j in range(5):
-            v=HEAT_MAT[i,j]
-            ax5.text(j,i,f'{v:.0f}',ha='center',va='center',fontsize=8,fontweight='bold',
-                     color='white' if v<75 else '#1a1a1a')
-    plt.colorbar(im5,ax=ax5,shrink=0.85,label='Eff. %'); ax5.grid(False)
-    panel_label(ax5,'E','Threat Escalation Heatmap: Algo × Scenario')
+    draw_threat_heatmap_panel(ax5)
 
     # F: capacity paradox lines
     cap_styles={'T':('-',C['T'],'o',2.2),'1.5T':('--',C['T15'],'s',1.8),
@@ -618,7 +629,7 @@ def build_G9():
     for cname,(ls,col,mk,lw) in cap_styles.items():
         ax6.plot(x6,CAP_DATA[cname],ls=ls,color=col,marker=mk,lw=lw,ms=6,label=cname,alpha=0.88)
     ax6.axhline(85,color=C['THRESH'],ls=':',lw=1.1,alpha=0.7)
-    ax6.set_xticks(x6); ax6.set_xticklabels(cap_scens,fontsize=9,rotation=10,ha='right')
+    ax6.set_xticks(x6); ax6.set_xticklabels(cap_scens,fontsize=9,rotation=0,ha='center')
     ax6.set_ylim(77,94); ax6.set_ylabel('Oracle-Norm. Efficiency (%)')
     ax6.legend(fontsize=6.2,ncol=6,frameon=True,framealpha=0.88,loc='upper center',bbox_to_anchor=(0.5,0.99),columnspacing=0.7,handlelength=1.0)
     ax6.set_facecolor('#f9f9f9')
@@ -724,6 +735,17 @@ def build_scenario_penalty_panel():
     print(f"Wrote {OUT_PANEL_G}")
 
 
+def build_threat_heatmap_panel():
+    base_style()
+    fig, ax = plt.subplots(figsize=(7.64, 4.58), dpi=200)
+    fig.patch.set_facecolor('white')
+    draw_threat_heatmap_panel(ax, include_panel_label=False)
+    fig.subplots_adjust(left=0.17, right=0.98, top=0.97, bottom=0.13)
+    fig.savefig(OUT_PANEL_E, dpi=200, facecolor='white')
+    plt.close(fig)
+    print(f"Wrote {OUT_PANEL_E}")
+
+
 def build_cross_testbed_panel():
     base_style()
     fig, ax = plt.subplots(figsize=(7.64, 4.545), dpi=200)
@@ -739,7 +761,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Build ICNP G8/G9 result figures.")
     parser.add_argument(
         "--only",
-        choices=["all", "panel-c", "panel-d", "panel-f", "panel-g", "panel-h", "panel-i"],
+        choices=["all", "panel-c", "panel-d", "panel-e", "panel-f", "panel-g", "panel-h", "panel-i"],
         default="all",
         help="Build all figures or only one manuscript-facing labeled panel.",
     )
@@ -748,6 +770,8 @@ if __name__ == "__main__":
         build_oracle_gap_panel()
     elif args.only == "panel-d":
         build_rq1_tier_panel()
+    elif args.only == "panel-e":
+        build_threat_heatmap_panel()
     elif args.only == "panel-f":
         build_capacity_all_configs_panel()
     elif args.only == "panel-g":
@@ -761,6 +785,7 @@ if __name__ == "__main__":
         build_G9()
         build_oracle_gap_panel()
         build_rq1_tier_panel()
+        build_threat_heatmap_panel()
         build_capacity_all_configs_panel()
         build_scenario_penalty_panel()
         build_allocator_risk_panel()
