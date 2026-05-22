@@ -2,25 +2,6 @@
 
 This log records feedback-resolution batches applied to the active ICNP venue draft. It complements the per-section audit notes and follows the repository process in `AGENTS.md`: identify the owning file, make the smallest safe change, preserve validated content, and keep reviewer feedback traceable as LaTeX source comments with `SOLVED` explanations.
 
-## Batch: May 21 formatting-check font-size compliance
-
-- **Owning files changed:** `ICNP_2026_venue_draft.tex`, `ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex`, `ICNP_VENUE_PREP/RESULTS_VALIDATED_CROSS_TESTBED.tex`, `ICNP_VENUE_PREP/DISCUSSION.tex`
-- **Reason for batching:** The submission checker reported body text below the 10pt minimum on Results pages 7--10. The fix is a formatting-compliance pass only: captions, subcaptions, table floats, table notes, and inline monospace text were normalized to 10pt where they appear in the main-body Results/Discussion flow. No result values, claims, figure assets, labels, or table data were changed.
-
-### Resolved compliance item
-
-1. **Submission checker: body font too small**
-   - **Issue:** IEEE's default 8pt caption/table styling and several long subcaptions caused the external checker to report text as small as 8.3pt on pages 7--10.
-   - **Change:** Added a review-PDF caption/table-font override in the active venue draft, shortened long subfigure captions to concise labels, set main-body Results tables and table notes to `\normalsize`, and removed inline `\small` wrappers around `\texttt{...}` terms in Discussion.
-   - **Scope guard:** This pass does not alter scientific content; it only changes text sizing and caption compactness needed for venue-format compliance.
-
-### Validation status
-
-- [x] Full LaTeX compile completed with existing warning noise only.
-- [x] Output remains 18 pages with references beginning on page 11, preserving the 10-page main-body target.
-- [x] Local `pdftotext -bbox-layout` precheck over pages 7--10 found no remaining small text below the conservative caption-font threshold.
-- [x] No validated result values, figure files, labels, or table data were changed.
-
 ## Batch: May 20 meeting cleanup
 
 - **Owning files changed:** `ICNP_2026_venue_draft.tex`, `ICNP_VENUE_PREP/STUDY_DESIGN_VALIDATED_STAGING.tex`, `ICNP_VENUE_PREP/APPENDIX_CROSS_TESTBED_TABLES.tex`

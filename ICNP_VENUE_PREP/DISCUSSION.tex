@@ -22,17 +22,17 @@ The appendix \Cref{tab:model_family_comparison_full} shows \texttt{iCPursuitNeur
 % ----------------------------------------------------------------------------
 \smallTitle{Context-Aware Bandit Policies vs the Robustness Frontier}
 
-Across the paper baselines (\RQOneText--\RQTwoText) and the Hybrid suite (\RQThreeText), context-aware policies outperform non-contextual and purely adversarial baselines in the settings that matter most for deployment. Pursuit-based contextual hybrids (\texttt{CPursuitNeuralUCB}, \texttt{iCPursuitNeuralUCB}) maintain strong efficiency across the five threat regimes, while EXP3-family baselines show weaker robustness floors under Markov, Adaptive, and OnlineAdaptive disruption. This suggests that topology and channel-state context are core routing features needed for robust quantum-network operation.
+Across the paper baselines (\RQOneText--\RQTwoText) and the Hybrid suite (\RQThreeText), context-aware policies outperform non-contextual and purely adversarial baselines in the settings that matter most for deployment. Pursuit-based contextual hybrids (\small\texttt{CPursuitNeuralUCB}, \small\texttt{iCPursuitNeuralUCB}) maintain strong efficiency across the five threat regimes, while EXP3-family baselines show weaker robustness floors under Markov, Adaptive, and OnlineAdaptive disruption. This suggests that topology and channel-state context are core routing features needed for robust quantum-network operation.
 
 % ----------------------------------------------------------------------------
 \smallTitle{The Capacity Paradox is Conditional}
 
-Increasing replay capacity can improve stability in structured regimes while amplifying vulnerability under reactive threats. The effect emerges from the interaction between replay capacity and allocator-driven exploration predictability: larger replay buffers can reinforce recurring patterns, and reactive adversaries can exploit those patterns. Capacity sensitivity is most severe under allocator stress, particularly with \texttt{Random}. In the Hybrid suite, efficiency swings exceed 20--38 percentage points across replay-capacity settings under Adaptive and Markov threats. Replay capacity must therefore be tuned jointly with allocator policy and threat regime.
+Increasing replay capacity can improve stability in structured regimes while amplifying vulnerability under reactive threats. The effect emerges from the interaction between replay capacity and allocator-driven exploration predictability: larger replay buffers can reinforce recurring patterns, and reactive adversaries can exploit those patterns. Capacity sensitivity is most severe under allocator stress, particularly with \small\texttt{Random}. In the Hybrid suite, efficiency swings exceed 20--38 percentage points across replay-capacity settings under Adaptive and Markov threats. Replay capacity must therefore be tuned jointly with allocator policy and threat regime.
 
 % ----------------------------------------------------------------------------
 \smallTitle{Allocator Choice is the Practical Deployment Lever}
 
-Allocator choice is the highest-leverage deployment control in the Hybrid suite. Aggregated across scenarios and replay-capacity settings, \texttt{ThompsonSampling} and \texttt{Fixed}/\texttt{Default} form the top performance tier, while \texttt{Random} is strongly associated with catastrophic efficiency collapses. Allocator choice therefore functions as a safety mechanism and a first-class deployment control. Even strong pursuit-neural architectures can be pulled into the capacity paradox under allocator mismatch, while robust allocators substantially suppress replay sensitivity.
+Allocator choice is the highest-leverage deployment control in the Hybrid suite. Aggregated across scenarios and replay-capacity settings, \small\texttt{ThompsonSampling} and \small\texttt{Fixed}/\small\texttt{Default} form the top performance tier, while \small\texttt{Random} is strongly associated with catastrophic efficiency collapses. Allocator choice therefore functions as a safety mechanism and a first-class deployment control. Even strong pursuit-neural architectures can be pulled into the capacity paradox under allocator mismatch, while robust allocators substantially suppress replay sensitivity.
 
 % ----------------------------------------------------------------------------
 \subsection{Implications for Adversarial Quantum Network Design}
@@ -41,11 +41,11 @@ The results imply three design principles for adversarial quantum-network routin
 
 % First, context-aware routing should be treated as baseline infrastructure. Feature enrichment through topology, link-state, and traffic information yields larger robustness gains than refining reward-only exploration rules.
 
-% Second, replay capacity must be treated as a coupled control variable. The relevant deployment question is not simply \textquotedblleft more or less replay,\textquotedblright but which anchoring rule (\texttt{$T_b$} vs.\ \texttt{$T$}), scale ($s$), and allocator jointly minimize tail risk under the active threat regime.
+% Second, replay capacity must be treated as a coupled control variable. The relevant deployment question is not simply \textquotedblleft more or less replay,\textquotedblright but which anchoring rule (\small\texttt{$T_b$} vs.\ \small\texttt{$T$}), scale ($s$), and allocator jointly minimize tail risk under the active threat regime.
 
 % Finally, the results motivate lightweight threat-aware meta-policies:
 % \begin{itemize}[nosep]
-% \item Use \texttt{ThompsonSampling} or \texttt{Default} allocators as safe deployment defaults.
+% \item Use \small\texttt{ThompsonSampling} or \small\texttt{Default} allocators as safe deployment defaults.
 % \item Treat replay-capacity settings as \emph{scenario-coupled}.
 % \item Dynamically adapt allocator and replay configurations using efficiency and variability signals observed during operation.
 % \end{itemize}
