@@ -22,10 +22,8 @@ RQ1 uses the EXP-family, CMAB, and iCMAB corpora, filtered to Stochastic runs un
 \centering
 \textbf{Stochastic Algorithm-Tier Separation}\\[0.5em]
 \includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-033_g9_network_gap_analysis_panel_d_rq1_algorithm_tier_separation_stochastic.png}
-\caption{Under stochastic disruption, \texttt{Oracle}-normalized efficiency
-separates viable contextual policies from failed designs. Contextual pursuit
-and epsilon-greedy variants remain robust, while epoch-greedy and structurally
-mismatched policies collapse.}
+\caption{Contextual pursuit and epsilon-greedy policies remain viable under
+stochastic disruption, while mismatched policies collapse.}
 % \shee{variant groups mentioned in the caption are not clear in the graph} -- SOLVED: Regenerated the RQ1 panel with direct viable/degraded/collapsed tier labels and all plotted efficiency values.
 % \dan{Longwinded. I'd write this a bit better.}
 % SOLVED: Shortened the caption into two direct sentences that preserve the visible tier-separation insight without overloading one sentence.
@@ -33,7 +31,7 @@ mismatched policies collapse.}
 \end{figure}
 
 \begin{table}[ht!]
-\footnotesize
+\normalsize
 \centering
 \setlength{\tabcolsep}{4pt}
 \caption{RQ1 stochastic results from the validated corpora. Values are mean Oracle-normalized efficiency.}
@@ -70,12 +68,7 @@ iCEXP4 & 35.6 & 38.3 & 37.0 \\
 
 \begin{figure*}[ht!]
 \centering
-\subfloat[Compared with Baseline, \texttt{EXPNeuralUCB} incurs the largest
-Stochastic and Adaptive penalties (12.4 and 13.8 percentage points), while
-\texttt{CPursuit} has smaller penalties under Stochastic and OnlineAdaptive
-disruption (3.2 and 4.5 percentage points). Adversarial-first exploration
-does not guarantee robustness; contextual and pursuit-style policies preserve
-efficiency more consistently as threats escalate.
+\subfloat[Scenario penalties.
 % \dan{WHat is the takeaway for this?}
 % SOLVED: Split the caption into two sentences. The first states the observed penalty differences;
 % the second delivers the explicit takeaway without the informal ``The takeaway is that'' lead-in,
@@ -87,20 +80,15 @@ efficiency more consistently as threats escalate.
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-036_g9_network_gap_analysis_panel_g_scenario_penalty_vs_baseline_by_algorith.png}
   \end{minipage}}
 \hfill
-\subfloat[Across Baseline, Stochastic, Markov, Adaptive, and OnlineAdaptive
-regimes, \texttt{iCPursuitNeural} preserves high efficiency (92.8\% under
-Adaptive and 99.8\% under OnlineAdaptive), while \texttt{EXPUCB} remains lower
-across Markov/Adaptive/OnlineAdaptive (73.8--76.4\%), showing that adaptive
-threats expose stability gaps across model families.
+\subfloat[Threat-escalation heatmap.
 \label{fig:threat_escalation_heatmap_main}]{%
   \begin{minipage}{0.48\textwidth}
   \centering
   \textbf{Threat-Escalation Heatmap}\\[-0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-034_g9_network_gap_analysis_panel_e_threat_escalation_heatmap_algo_scenario.png}
   \end{minipage}}
-\caption{Panels~(a) and~(b) jointly show that contextual and informed models
-preserve stronger robustness as disruption progresses from stochastic noise to
-structured and adaptive interference.}
+\caption{Contextual and informed models preserve stronger robustness as
+disruption progresses from stochastic noise to adaptive interference.}
 % \devroop{Try to group figures supporting a single point of observation.} -- SOLVED: Grouped scenario-penalty and threat-escalation diagnostics into one RQ2 figure.
 \label{fig:threat_penalty_escalation}
 \end{figure*}
@@ -122,14 +110,9 @@ RQ2 uses the Markov, Adaptive, and OnlineAdaptive threat slice from \cref{tab:sc
 \centering
 \hspace{4em}\textbf{Worst-Case Robustness Floors}\\[0.1em]
 \includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-040_g2_robustness_floor.png}
-\caption{The figure reports each representative policy's lowest
-\texttt{Oracle}-normalized efficiency across the locked Markov, Adaptive, and
-OnlineAdaptive scope. Higher floors indicate resistance to catastrophic
-collapse: \texttt{iCEpsGreedy} has the strongest floor, \texttt{CPursuit}
-has the best average, and \texttt{EXPNeuralUCB} remains fragile despite
-adversarial-style exploration. Together with
-\Cref{fig:threat_penalty_escalation}, this shows that adaptive threats expose
-stability gaps not visible from average efficiency alone.}
+\caption{Worst-case floors expose stability gaps: \texttt{iCEpsGreedy} is most
+stable, \texttt{CPursuit} has the best average, and \texttt{EXPNeuralUCB}
+remains fragile.}
 % \shee{Why? It is not very clear how to read the graph} -- SOLVED: Regenerated the robustness-floor plot with direct floor/mean/peak point labels.
 % \shee{Markov, Adaptive and OnlineAdaptive scope mentioned in caption are not present in graph} -- SOLVED: Added the Markov/Adaptive/OnlineAdaptive scope label directly inside the figure.
 % \shee{Replace low quality images - 5, 7, 8a, 9b, 11, 12} -- SOLVED: Refreshed the manuscript-facing PNG assets at print-quality resolution and revalidated the active draft build.
@@ -140,10 +123,7 @@ stability gaps not visible from average efficiency alone.}
 
 \begin{figure*}[ht!]
 \centering
-\subfloat[Under the OnlineAdaptive threat, replay scaling is non-monotonic:
-efficiency drops from 89.2\% at $s{=}1$ to 84.9\% at $s{=}1.5$, then recovers
-to 90.8\% at $s{=}2$. This pattern shows that added replay can help or hurt
-depending on the active threat.
+\subfloat[Compact capacity-paradox summary.
 \label{fig:capacity_paradox_summary}]{%
   \begin{minipage}{0.45\textwidth}
   \centering
@@ -151,19 +131,15 @@ depending on the active threat.
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-039_g1_capacity_paradox.png}
   \end{minipage}}
 \hfill
-\subfloat[Across the six replay configurations, replay semantics changes the
-same scale effect: under OnlineAdaptive, $T$-type replay spans 83.2--90.6\%,
-while $T_b$-type replay spans 84.2--86.6\%. This shows that replay capacity
-must be interpreted jointly with anchoring rule and threat regime.
+\subfloat[Replay-configuration sensitivity.
 \label{fig:capacity_paradox_all_configs_main}]{%
   \begin{minipage}{0.52\textwidth}
   \centering
   \textbf{Replay-Configuration Sensitivity}\\[0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-035_g9_network_gap_analysis_panel_f_capacity_paradox_all_6_replay_configs_sc.png}
   \end{minipage}}
-\caption{Panels~(a) and~(b) jointly show that replay capacity acts as a
-threat-conditioned control variable governed by replay scale, anchoring rule,
-allocator behavior, and threat regime.}
+\caption{Replay capacity acts as a threat-conditioned control variable governed
+by scale, anchoring rule, allocator behavior, and threat regime.}
 % \shee{Legend overlaps bars on the top. The caption uses values that are not present in the graph} -- SOLVED: Regenerated Figure 6A with the captioned 89.2/84.9/90.8 OnlineAdaptive values and drop/recovery labels directly visible.
 % \shee{Re-check the values in the caption.} -- SOLVED: Regenerated Figure 6B with direct point labels for all replay configurations and OnlineAdaptive T/T_b span callouts matching the caption.
 % \shee{Can data labels be added to all graphs?} -- SOLVED: Replaced temporary PGFPlots placeholder with exported notebook-validated images containing finalized graph styling/labels.
@@ -176,10 +152,10 @@ allocator behavior, and threat regime.}
 
 
 \begin{table}[ht!]
-\footnotesize
+\normalsize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{RQ2 adversarial-scope results. Win Dominance is each displayed model's share of aggregated scenario wins among the four representatives under the locked Markov/Adaptive/OnlineAdaptive scope.}
+\caption{RQ2 adversarial-scope results under Markov, Adaptive, and OnlineAdaptive threats.}
 \label{tab:rq2_adversarial}
 \begin{tabular}{p{0.30\linewidth} c c c c}
 \toprule
@@ -223,10 +199,10 @@ RQ3a isolates whether the informative/predictive variant, iCPursuitNeuralUCB, im
 To isolate architecture impact, we hold deployment fixed at 6K horizon, \texttt{Fixed} allocator, current-horizon ($T$)-type anchoring, and replay-capacity scale $s=2$, then use the validated 3-run suite from the Hybrid corpus.
 
 \begin{table}[ht!]
-\footnotesize
+\normalsize
 \centering
 \setlength{\tabcolsep}{3pt}
-\caption{RQ3a informative-context impact under the fixed deployment setting. Values are from the validated 3-run Hybrid corpus.}
+\caption{RQ3a informative-context impact under the fixed deployment setting.}
 \label{tab:rq3a_master_informative}
 \begin{tabular}{p{0.30\linewidth} c c c c c c c}
 \toprule
@@ -237,7 +213,7 @@ iCPursuitNeuralUCB & 99.9 & 94.8 & 93.0 & 92.8 & 99.8 & 96.0 & 3.3 \\
 \bottomrule
 \end{tabular}
 
-{\footnotesize Bl=Baseline, Sh=Stochastic, Mk=Markov, Ag=Adaptive, OA=OnlineAdaptive; CV is computed across scenario means.}
+{\normalsize Bl=Baseline, Sh=Stochastic, Mk=Markov, Ag=Adaptive, OA=OnlineAdaptive; CV is computed across scenario means.}
 \end{table}
 
 \Cref{tab:rq3a_master_informative} shows that iCPursuitNeuralUCB improves global robustness mainly by lifting OnlineAdaptive efficiency from 81.5\% to 99.8\% (+18.3 percentage points (pp)) while keeping Stochastic, Markov, and Adaptive performance effectively unchanged. It reduces scenario-level dispersion from 6.5 to 3.3 CV. Thus, informative context is most valuable when the threat adapts online.
@@ -256,11 +232,7 @@ Under \texttt{ThompsonSampling} allocation and base-horizon ($T_b$)-type replay 
 
 \begin{figure*}[ht!]
 \centering
-\subfloat[Comparing the baseline with scenario-specific switching,
-Adaptive disruption gives the largest validated gain: \texttt{ThompsonSampling}
-with $T_b$-type replay at $s{=}1.5$ reaches 95.7\%, a 2.9 percentage-point
-improvement. This shows that deployment rules should match policy, allocator,
-and replay settings to the active threat.
+\subfloat[Scenario-based deployment guidance.
 \label{fig:deployment_rules_main}]{%
   \begin{minipage}{0.45\textwidth}
   \centering
@@ -270,19 +242,15 @@ and replay settings to the active threat.
 \hfill
 % \shee{For Figure 7B, the caption values do not appear to match the plotted graph.}
 % SOLVED: Regenerated Figure 7B with point labels so the captioned OnlineAdaptive and allocator-risk values are directly visible in the plot.
-\subfloat[For \texttt{iCPursuitNeuralUCB}, allocator choice changes worst-case
-robustness: \texttt{Fixed (Default or Baseline)} keeps an 88.9\% floor, while \texttt{Thompson} drops
-to 73.3\%. This 15.6 percentage-point floor shift shows that allocator
-selection is a first-class deployment control.
+\subfloat[Allocator-induced risk.
 \label{fig:allocator_risk_main}]{%
   \begin{minipage}{0.52\textwidth}
   \centering
   \textbf{Allocator-Induced Risk}\\[0.5em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-037_g9_network_gap_analysis_panel_h_allocator_risk_floor_mean_peak_icpursuit.png}
   \end{minipage}}
-\caption{Panels~(a) and~(b) jointly show that robust quantum-routing deployment
-is strongest when policy, allocator, and replay settings are matched to the
-active threat regime.}
+\caption{Robust deployment is strongest when policy, allocator, and replay
+settings match the active threat regime.}
 % \shee{Caption mentions Tb-type and s values which are not present on the graph.} -- SOLVED: Regenerated Figure 7A with a callout labeling the Adaptive optimum as ThompsonSampling + T_b, s=1.5.
 % \shee{Don't use 'The exported validation figure' in every caption. Refer to the corresponding plot.} -- SOLVED: Removed generic exported-figure language and described the specific plotted quantities and observed deployment consequence.
 % \devroop{Include the allocator-risk figure in the main body.} -- SOLVED: Grouped deployment guidance with allocator-risk evidence in one RQ3d figure.
@@ -291,10 +259,11 @@ active threat regime.}
 
 
 \begin{table}[ht!]
-\footnotesize
+\normalsize
 \centering
 \setlength{\tabcolsep}{3pt}
-\caption{Supporting RQ3b stress-control capacity scaling under fixed \texttt{Random} allocation, 6K horizon, and $T$-type replay anchoring. Values are Hybrid corpus means over the 3- and 5-run suites.}
+\caption{Supporting RQ3b stress-control capacity scaling under fixed
+\texttt{Random} allocation.}
 \label{tab:rq3b_master_capacity_scaling}
 \begin{tabular}{p{0.30\linewidth} c c c c c c c}
 \toprule
@@ -310,7 +279,7 @@ iCPursuitNeuralUCB & 1.0 & 92.1 & 93.6 & 88.7 & 88.5 & 70.8 & 86.7 \\
 \bottomrule
 % \vspace{-30cm}
 \end{tabular}
-{\footnotesize Bl=Baseline, Sh=Stochastic, Mk=Markov, Ag=Adaptive, OA=OnlineAdaptive; $s$ is the replay-capacity scale factor.}
+{\normalsize Bl=Baseline, Sh=Stochastic, Mk=Markov, Ag=Adaptive, OA=OnlineAdaptive; $s$ is the replay-capacity scale factor.}
 % \shee{define s} -- SOLVED: Added $s$ definition in the table note and in the RQ3b evidence-slice paragraph.
 \end{table}
 
@@ -328,10 +297,10 @@ RQ3c tests whether allocator choice is independent of algorithm architecture or 
 RQ3c fixes the model to iCPursuitNeuralUCB, the horizon to 6K, and capacity to current-horizon ($T$)-type replay with replay-capacity scale $s=2$, then varies allocator policy. This isolates allocator effects after RQ3b isolates replay-scale behavior.
 
 \begin{table}[ht!]
-\footnotesize
+\normalsize
 \centering
 \setlength{\tabcolsep}{3pt}
-\caption{RQ3c allocator interaction for \texttt{iCPursuitNeuralUCB} under the fixed 6K, $T$-type, $s=2$ deployment. Values are Hybrid corpus means over the 3- and 5-run suites.}
+\caption{RQ3c allocator interaction for \texttt{iCPursuitNeuralUCB}.}
 \label{tab:rq3c_master_allocators}
 \begin{tabular}{lccccccc}
 \toprule
@@ -344,7 +313,7 @@ Thompson   & 58.4 & 65.4 & 87.8 & 91.7 & 65.2 & 73.7 & 58.4 \\
 \bottomrule
 \end{tabular}
 
-{\footnotesize Bl=Baseline, Sh=Stochastic, Mk=Markov, Ag=Adaptive, OA=OnlineAdaptive.}
+{\normalsize Bl=Baseline, Sh=Stochastic, Mk=Markov, Ag=Adaptive, OA=OnlineAdaptive.}
 \end{table}
 
 \Cref{tab:rq3c_master_allocators} shows that allocator effects are deployment-critical: Fixed gives iCPursuitNeuralUCB the best average and floor, while Thompson is strong under Adaptive but fragile under Baseline/Stochastic mismatch. Thus, allocator selection is a first-class deployment decision.
@@ -361,10 +330,10 @@ RQ3d converts the RQ3a--RQ3c findings into 6K deployment rules for iCPursuitNeur
 
 
 \begin{table}[ht!]
-\footnotesize
+\normalsize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{RQ3d scenario-specific deployment rules for \texttt{iCPursuitNeuralUCB} at 6K. Gain is measured relative to the strong static default where applicable.}
+\caption{RQ3d scenario-specific deployment rules for \texttt{iCPursuitNeuralUCB}.}
 \label{tab:rq3d_deployment_rules}
 \begin{tabular}{p{0.24\linewidth} p{0.42\linewidth} c c}
 \toprule

@@ -5,7 +5,8 @@
 % Rebuilt from validated audit/staging material in ICNP_VENUE_PREP.
 
 \usepackage{graphicx}
-\usepackage[caption=false,font=footnotesize]{subfig}
+\usepackage[caption=false,font=normalsize]{subfig}
+\captionsetup{font=normalsize}
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{multicol}
@@ -57,6 +58,27 @@
 \Crefname{table}{Table}{Tables}
 \crefname{equation}{Equation}{Equations}
 \Crefname{equation}{Equation}{Equations}
+
+% Submission-checker compliance: render captions and table floats at 10pt in
+% the review PDF so body-text scans do not report IEEE's default 8pt captions.
+\makeatletter
+\long\def\@makecaption#1#2{%
+\ifx\@captype\@IEEEtablestring%
+\normalsize\bgroup\par\centering\@IEEEtabletopskipstrut{\normalfont\normalsize #1}\\{\normalfont\normalsize\scshape #2}\par\addvspace{0.5\baselineskip}\egroup%
+\@IEEEtablecaptionsepspace%
+\else%
+\@IEEEfigurecaptionsepspace%
+\setbox\@tempboxa\hbox{\normalfont\normalsize {#1.}\nobreakspace\nobreakspace #2}%
+\ifdim \wd\@tempboxa >\hsize%
+\setbox\@tempboxa\hbox{\normalfont\normalsize {#1.}\nobreakspace\nobreakspace}%
+\parbox[t]{\hsize}{\normalfont\normalsize\noindent\unhbox\@tempboxa#2}%
+\else%
+\ifCLASSOPTIONconference \hbox to\hsize{\normalfont\normalsize\hfil\box\@tempboxa\hfil}%
+\else \hbox to\hsize{\normalfont\normalsize\box\@tempboxa\hfil}%
+\fi\fi\fi}
+\def\table{\def\@floatboxreset{\reset@font\normalsize\@setminipage}\@float{table}}
+\@namedef{table*}{\def\@floatboxreset{\reset@font\normalsize\@setminipage}\@dblfloat{table}}
+\makeatother
 
 \newcommand{\paperTwo}{Chaudhary \etal~\cite{chaudhary2023quantum}\xspace}
 \newcommand{\paperSeven}{Liu \etal~\cite{liu2024qbgp}\xspace}
