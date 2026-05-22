@@ -361,9 +361,9 @@ def draw_oracle_gap_panel(ax, *, include_panel_label=True):
     ax.axhline(15,color=C['THRESH'],ls='--',lw=1.2,alpha=0.7)
     ax.set_xticks(x3); ax.set_xticklabels(SCEN_ORDER,fontsize=9,rotation=10,ha='right')
     ax.set_ylabel('Oracle Gap (pp)')
-    ax.legend(fontsize=6.8,ncol=2,frameon=True,framealpha=0.88,loc='upper left',bbox_to_anchor=(0.02,0.98),columnspacing=0.9,handlelength=1.1)
+    ax.legend(fontsize=6.8,ncol=4,frameon=True,framealpha=0.88,loc='upper left',bbox_to_anchor=(0.02,0.98),columnspacing=0.9,handlelength=1.1)
     ax.set_facecolor('#f9f9f9')
-    ax.text(1.05,20.65,'Context(T) cuts the Stochastic gap by 8.5 vs EXP3(T)',ha='left',va='bottom',fontsize=8,color='#555',bbox=dict(boxstyle='round,pad=0.25',facecolor='white',alpha=0.75,edgecolor='none'))
+    ax.text(-0.45,20.65,'Context(T) cuts the Stochastic gap by 8.5 vs EXP3(T)',ha='left',va='bottom',fontsize=8,color='#555',bbox=dict(boxstyle='round,pad=0.25',facecolor='white',alpha=0.75,edgecolor='none'),clip_on=False)
     ax.text(0.98,0.92,'Lower is better',transform=ax.transAxes,ha='right',va='top',fontsize=8,color='#555',bbox=dict(boxstyle='round,pad=0.25',facecolor='white',alpha=0.75,edgecolor='none'))
     if include_panel_label:
         panel_label(ax,'C','Oracle Gap: Context vs EXP3 by Scenario & Capacity')
