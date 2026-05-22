@@ -39,6 +39,11 @@ OUT_PANEL_F = (
     / "icnp"
     / "ICNP-CODE-035_g9_network_gap_analysis_panel_f_capacity_paradox_all_6_replay_configs_sc.png"
 )
+OUT_PANEL_G = (
+    SCRIPT_DIR.parent
+    / "icnp"
+    / "ICNP-CODE-036_g9_network_gap_analysis_panel_g_scenario_penalty_vs_baseline_by_algorith.png"
+)
 OUT_PANEL_H = (
     SCRIPT_DIR.parent
     / "icnp"
@@ -48,6 +53,11 @@ OUT_PANEL_I = (
     SCRIPT_DIR.parent
     / "icnp"
     / "ICNP-CODE-038_g9_network_gap_analysis_panel_i_cross_testbed_efficiency_oracle_gap_std.png"
+)
+OUT_G8_PUBLIC = (
+    SCRIPT_DIR.parent
+    / "icnp"
+    / "ICNP-CODE-024_g8_advanced_4panel_grouped_full_figure.png"
 )
 
 RNG = np.random.default_rng(42)
@@ -60,7 +70,7 @@ C = dict(
     P2='#4c78a8', P8='#59a14f', P7='#f28e2b', P12='#e15759',
     THRESH='#555555',
 )
-SCENARIOS = ['Baseline', 'Stochastic', 'Markov', 'Adaptive', 'OnlineAdap']
+SCENARIOS = ['Baseline', 'Stochastic', 'Markov', 'Adaptive', 'OnlineAdaptive']
 
 # ════════════════════════════════════════════════════════════════════════════
 # DATA — all numbers traced to main.tex
@@ -91,10 +101,10 @@ ALLOC_FLOOR = [88.9, 87.9, 73.3, 68.3]
 ALLOC_SPAN  = [7.8,   9.3, 26.4, 26.7]
 
 TESTBED_EFF = {
-    'Chaudhary et al.\n(Paper 2, 15N)': [74.5,73.2,73.2,71.3],
-    'Liu et al.\n(Paper 7, 50N)': [78.0,70.8,70.8,69.6],
-    'Clayton et al.\n(Paper 12, 100N)': [44.1,43.8,43.7,42.5],
-    'Jallow--Khan\n(Paper 8, 20N)': [67.9,61.4,61.7,61.9],
+    'Chaudhary et al.': [74.5,73.2,73.2,71.3],
+    'Liu et al.': [78.0,70.8,70.8,69.6],
+    'Clayton et al.': [44.1,43.8,43.7,42.5],
+    'Jallow-Khan': [67.9,61.4,61.7,61.9],
 }
 
 # RQ1 stochastic tier data (tab:rq1masterstochastic)
@@ -104,13 +114,13 @@ RQ1_MODELS = ['CPursuit','iCEpsGreedy','CEpsGreedy','GNeuralUCB',
 RQ1_EFF    = [89.9,88.3,87.8,86.3,81.5,77.6,70.1,67.4,67.5,67.5,37.6,37.5,37.4]
 RQ1_TIERS  = ['Tier1']*4 + ['Tier2']*6 + ['Tier3']*3
 
-SCEN_ORDER = ['Stochastic','Markov','Adaptive','OnlineAdap','Baseline']
+SCEN_ORDER = ['Stochastic','Markov','Adaptive','OnlineAdaptive','Baseline']
 CTX_T  = [89.9, 85.9, 86.8, 88.8, 93.2]
 CTX_TB = [88.1, 86.1, 87.7, 86.5, 93.3]
 EXP_T  = [81.4, 80.6, 77.2, 82.5, 90.5]
 EXP_TB = [81.1, 81.7, 79.5, 81.1, 85.9]
 
-PEN_ALGOS = ['EXPUCB','EXPNeural','iCEpsGreedy','CPursuit']
+PEN_ALGOS = ['EXPUCB','EXPNeuralUCB','iCEpsGreedy','CPursuit']
 PEN_STOCH = [7.3,12.4,4.9,3.2]; PEN_MARK=[9.8,6.9,7.0,7.6]
 PEN_ADAP  = [8.9,13.8,6.1,6.3]; PEN_OA  =[7.2,10.1,5.8,4.5]
 
@@ -250,14 +260,13 @@ def draw_rq1_tier_panel(ax, *, include_panel_label=True):
         ax.scatter(eff,yi,s=55,color=col,edgecolors='white',lw=0.8,zorder=4)
         ax.text(eff+0.6,yi,f'{eff:.1f}',va='center',fontsize=7.6,color=col)
     ax.axvline(85,color='#777',ls='--',lw=1.2)
+    ax.text(85.8, len(RQ1_MODELS)-1.15, '85% target', ha='left', va='top',
+            fontsize=8.0, color='#555',
+            bbox=dict(boxstyle='round,pad=0.18', facecolor='white', alpha=0.82, edgecolor='none'))
     ax.set_yticks(y); ax.set_yticklabels(RQ1_MODELS,fontsize=8.8)
     ax.set_xlim(20,103); ax.set_ylim(-0.6,len(RQ1_MODELS)-0.4)
     ax.set_xlabel('Oracle-Norm. Efficiency % (Stochastic)')
     ax.set_facecolor('#f9f9f9')
-    for tier, ypos in [('Tier1', 10.5), ('Tier2', 5.5), ('Tier3', 1.0)]:
-        ax.text(99.5, ypos, tier_labels[tier], ha='right', va='center',
-                fontsize=8.0, color=tier_cols[tier], fontweight='bold',
-                bbox=dict(boxstyle='round,pad=0.2', facecolor='white', alpha=0.82, edgecolor='none'))
     for tier,col in tier_cols.items():
         ax.scatter([],[],color=col,s=50,label=tier_labels[tier])
     ax.legend(fontsize=7.2,loc='lower right',ncol=3,frameon=True,framealpha=0.88,columnspacing=0.8,handlelength=1.1)
@@ -269,37 +278,54 @@ def draw_capacity_all_configs_panel(ax, *, include_panel_label=True):
     cap_styles={'T':('-',C['T'],'o',2.2),'1.5T':('--',C['T15'],'s',1.8),
                 '2T':('-',C['T2'],'^',2.2),'Tb':('-',C['Tb'],'o',2.2),
                 '1.5Tb':('--','#d4730a','s',1.8),'2Tb':('-','#8b2500','^',2.2)}
-    label_offsets = {
-        'T': (0, -16), '1.5T': (-8, 16), '2T': (0, 16),
-        'Tb': (12, -13), '1.5Tb': (-16, -16), '2Tb': (18, 12),
+    online_label_offsets = {
+        'T': (-18, -18), '1.5T': (-10, 18), '2T': (0, 18),
+        'Tb': (22, 0), '1.5Tb': (-24, -18), '2Tb': (24, 16),
     }
     x6=np.arange(5)
-    cap_scens=['Stochastic','Markov','Adaptive','OnlineAdap','Baseline']
+    cap_scens=['Stochastic','Markov','Adaptive','Online\nAdaptive','Baseline']
     for cname,(ls,col,mk,lw) in cap_styles.items():
         ax.plot(x6,CAP_DATA[cname],ls=ls,color=col,marker=mk,lw=lw,ms=6,label=cname,alpha=0.88)
-        for xi, yi in zip(x6, CAP_DATA[cname]):
-            dx, dy = label_offsets[cname]
-            ax.annotate(f'{yi:.1f}', xy=(xi, yi), xytext=(dx, dy), textcoords='offset points',
-                        ha='center', va='center', fontsize=6.8, color=col, fontweight='bold',
-                        bbox=dict(boxstyle='round,pad=0.12', facecolor='white', alpha=0.80, edgecolor='none'),
-                        zorder=8, clip_on=False)
+        dx, dy = online_label_offsets[cname]
+        ax.annotate(f'{CAP_DATA[cname][3]:.1f}', xy=(3, CAP_DATA[cname][3]), xytext=(dx, dy),
+                    textcoords='offset points', ha='center', va='center', fontsize=7.4,
+                    color=col, fontweight='bold',
+                    bbox=dict(boxstyle='round,pad=0.12', facecolor='white', alpha=0.84, edgecolor='none'),
+                    zorder=8, clip_on=False)
     ax.axhline(85,color=C['THRESH'],ls=':',lw=1.1,alpha=0.7)
     ax.text(4.95,85.2,'85% target',ha='right',va='bottom',fontsize=7.3,color=C['THRESH'])
     ax.set_xticks(x6); ax.set_xticklabels(cap_scens,fontsize=9,rotation=10,ha='right')
     ax.set_ylim(76.8,94.5); ax.set_ylabel('Oracle-Norm. Efficiency (%)')
-    ax.legend(fontsize=6.2,ncol=3,frameon=True,framealpha=0.88,loc='lower left',
-              bbox_to_anchor=(0.01,0.01),columnspacing=0.7,handlelength=1.0)
+    ax.legend(fontsize=6.5,ncol=6,frameon=True,framealpha=0.90,loc='upper center',
+              bbox_to_anchor=(0.5,0.995),columnspacing=0.7,handlelength=1.0)
     ax.set_facecolor('#f9f9f9')
-    ax.annotate('OnlineAdap T span: 83.2--90.6%',
+    ax.annotate('OnlineAdaptive T span: 83.2--90.6%',
                 xy=(3,CAP_DATA['2T'][3]),xytext=(2.35,92.9),fontsize=7.6,color=C['T2'],
                 arrowprops=dict(arrowstyle='->',color=C['T2'],lw=0.9),
                 bbox=dict(boxstyle='round,pad=0.18', facecolor='white', alpha=0.86, edgecolor='none'))
-    ax.annotate(r'OnlineAdap $T_b$ span: 84.2--86.6%',
+    ax.annotate(r'OnlineAdaptive $T_b$ span: 84.2--86.6%',
                 xy=(3,CAP_DATA['Tb'][3]),xytext=(2.0,78.0),fontsize=7.6,color=C['Tb'],
                 arrowprops=dict(arrowstyle='->',color=C['Tb'],lw=0.9),
                 bbox=dict(boxstyle='round,pad=0.18', facecolor='white', alpha=0.86, edgecolor='none'))
     if include_panel_label:
         panel_label(ax,'F','Capacity Paradox: All 6 Replay Configs × Scenario')
+
+
+def draw_scenario_penalty_panel(ax, *, include_panel_label=True):
+    x=np.arange(4); w=0.18
+    pen_data=[('Stochastic',PEN_STOCH,'#4da6ff'),('Markov',PEN_MARK,'#2b6cb0'),
+              ('Adaptive',PEN_ADAP,'#e63946'),('OnlineAdaptive',PEN_OA,'#f28e2b')]
+    for (lbl,vals,col),off in zip(pen_data,[-1.5,-0.5,0.5,1.5]):
+        container=ax.bar(x+off*w,vals,width=w*0.88,color=col,alpha=0.88,label=lbl,edgecolor='white',lw=0.6)
+        ax.bar_label(container,fmt='%.1f',padding=1,fontsize=7.0)
+    ax.set_xticks(x); ax.set_xticklabels(PEN_ALGOS,fontsize=9.0)
+    ax.set_ylabel('Penalty vs Baseline (pp)')
+    ax.set_ylim(0, 14.7)
+    ax.legend(fontsize=8,ncol=4,frameon=True,framealpha=0.90,loc='upper center',
+              bbox_to_anchor=(0.5,0.995),columnspacing=0.9,handlelength=1.1)
+    ax.set_facecolor('#f9f9f9')
+    if include_panel_label:
+        panel_label(ax,'G','Scenario Penalty vs Baseline by Algorithm & Threat')
 
 
 def draw_cross_testbed_panel(ax, *, include_panel_label=True):
@@ -338,6 +364,34 @@ def draw_cross_testbed_panel(ax, *, include_panel_label=True):
     ax.legend(loc='lower left',ncol=2,frameon=True,framealpha=0.88,fontsize=7.0)
     if include_panel_label:
         panel_label(ax,'I','Cross-Testbed Efficiency & Oracle Gap (Std. 4K/2K/5R)')
+
+
+def draw_context_capacity_panel(ax):
+    x=np.arange(len(SCEN_ORDER))
+    lines=[
+        ('Context T', CTX_T, C['T'], '-', 'o'),
+        (r'Context $T_b$', CTX_TB, '#72b7b2', '-', 's'),
+        ('EXP3 T', EXP_T, C['EXP3'], '--', '^'),
+        (r'EXP3 $T_b$', EXP_TB, '#d4730a', '--', 'D'),
+    ]
+    for label, values, color, linestyle, marker in lines:
+        ax.plot(x, values, color=color, linestyle=linestyle, marker=marker,
+                lw=2.1, ms=5.5, label=label, alpha=0.92)
+        ax.text(x[-1] + 0.04, values[-1], f'{values[-1]:.1f}', ha='left',
+                va='center', fontsize=7.2, color=color, fontweight='bold')
+    ax.axhline(85,color=C['THRESH'],ls='--',lw=1.2,alpha=0.7)
+    ax.text(0.04,85.45,'85% target',ha='left',va='bottom',fontsize=8.0,color=C['THRESH'])
+    ax.set_xticks(x); ax.set_xticklabels(SCEN_ORDER,fontsize=8.7,rotation=10,ha='right')
+    ax.set_xlim(-0.15, len(SCEN_ORDER)-0.45)
+    ax.set_ylim(74,95)
+    ax.set_ylabel('Oracle-Norm. Efficiency (%)')
+    ax.set_facecolor('#f9f9f9')
+    ax.legend(fontsize=7.2,ncol=2,loc='lower left',frameon=True,framealpha=0.88,
+              columnspacing=0.8,handlelength=1.2)
+    ax.text(0.02,0.94,'Context lines stay above EXP3 under most threats',
+            transform=ax.transAxes,ha='left',va='top',fontsize=7.6,color='#555',
+            bbox=dict(boxstyle='round,pad=0.22',facecolor='white',alpha=0.80,edgecolor='none'))
+    panel_label(ax,'D','Context-Capacity Efficiency by Threat')
 
 
 def base_style():
@@ -414,37 +468,15 @@ def build_G8():
     axC.axhline(85,color=C['THRESH'],ls='--',lw=1.2,alpha=0.7)
     axC.set_xticks(x); axC.set_xticklabels(SCENARIOS,fontsize=9.5)
     axC.set_ylim(55,105); axC.set_ylabel('Oracle-Norm. Efficiency (%)')
-    axC.legend(loc='upper right',bbox_to_anchor=(0.98,0.90),ncol=1,frameon=True,framealpha=0.88,fontsize=8.0,columnspacing=0.9,handlelength=1.1)
-    axC.text(0.02,0.82,'Default stays above 92% in every scenario; Random drops to 68.3% in Markov',transform=axC.transAxes,ha='left',va='top',fontsize=8,color='#555',bbox=dict(boxstyle='round,pad=0.25',facecolor='white',alpha=0.78,edgecolor='none'))
+    axC.legend(loc='upper center',bbox_to_anchor=(0.5,0.995),ncol=4,frameon=True,framealpha=0.90,fontsize=7.2,columnspacing=0.8,handlelength=1.0)
+    axC.text(0.02,0.82,'Default stays above 92%; Random drops to 68.3% in Markov',
+             transform=axC.transAxes,ha='left',va='top',fontsize=7.6,color='#555',
+             bbox=dict(boxstyle='round,pad=0.22',facecolor='white',alpha=0.78,edgecolor='none'))
     axC.set_facecolor('#f9f9f9')
     panel_label(axC,'C','Allocator Efficiency per Scenario (iCPursuitNeuralUCB)')
 
-    # D — violin + box: cross-testbed
-    tl=list(TESTBED_EFF.keys()); tv=list(TESTBED_EFF.values())
-    tc=[C['P2'],C['P8'],C['P7'],C['P12']]
-    amk=['o','s','^','D']; aln=['iCPursuitNeural','CPursuitNeural','GNeuralUCB','EXPNeuralUCB']
-    vd=[np.repeat(v,20)+RNG.normal(0,0.18,len(v)*20) for v in tv]
-    vp=axD.violinplot(vd,positions=range(4),widths=0.62,showmedians=False,showextrema=False)
-    for body,col in zip(vp['bodies'],tc): body.set_facecolor(col); body.set_alpha(0.35)
-    bpD=axD.boxplot(tv,positions=range(4),widths=0.20,patch_artist=True,
-        medianprops=dict(color='white',lw=2.2),
-        whiskerprops=dict(lw=1.3,color='#666'),capprops=dict(lw=1.3,color='#666'),
-        flierprops=dict(marker='o',ms=3,alpha=0.4))
-    for p,col in zip(bpD['boxes'],tc): p.set_facecolor(col); p.set_alpha(0.88)
-    for ji,(vals,col) in enumerate(zip(tv,tc)):
-        for ki,v in enumerate(vals):
-            axD.scatter(ji+RNG.uniform(-0.07,0.07),v,s=55,color=col,marker=amk[ki],
-                        zorder=6,alpha=0.95,edgecolors='white',lw=0.9)
-        axD.text(ji,max(vals)+0.8,f'gap:{100-max(vals):.1f}pp',ha='center',
-                 fontsize=8,color=col,fontweight='bold')
-    axD.axhline(80,color=C['THRESH'],ls='--',lw=1.2,alpha=0.7)
-    axD.set_xticks(range(4)); axD.set_xticklabels(tl,fontsize=8.7)
-    axD.set_ylim(38,82)
-    axD.set_yticks([40, 65, 70, 75, 80])
-    axD.set_ylabel('Oracle-Norm. Efficiency (%)')
-    axD.set_facecolor('#f9f9f9')
-    axD.text(0.02,0.94,'Color = testbed | Marker = model | gap:x = best-model oracle gap',transform=axD.transAxes,ha='left',va='top',fontsize=8,color='#555',bbox=dict(boxstyle='round,pad=0.25',facecolor='white',alpha=0.82,edgecolor='none'))
-    panel_label(axD,'D','Cross-Testbed Efficiency + Oracle Gap (Std. 4K/2K/5R)')
+    # D — context-capacity detail replacing duplicate cross-testbed content
+    draw_context_capacity_panel(axD)
 
     fig.subplots_adjust(top=0.96)
     fig.text(0.5,-0.008,
@@ -564,7 +596,7 @@ def build_G9():
                 '2T':('-',C['T2'],'^',2.2),'Tb':('-',C['Tb'],'o',2.2),
                 '1.5Tb':('--','#d4730a','s',1.8),'2Tb':('-','#8b2500','^',2.2)}
     x6=np.arange(5)
-    cap_scens=['Stochastic','Markov','Adaptive','OnlineAdap','Baseline']
+    cap_scens=['Stochastic','Markov','Adaptive','Online\nAdaptive','Baseline']
     for cname,(ls,col,mk,lw) in cap_styles.items():
         ax6.plot(x6,CAP_DATA[cname],ls=ls,color=col,marker=mk,lw=lw,ms=6,label=cname,alpha=0.88)
     ax6.axhline(85,color=C['THRESH'],ls=':',lw=1.1,alpha=0.7)
@@ -578,24 +610,14 @@ def build_G9():
     panel_label(ax6,'F','Capacity Paradox: All 6 Replay Configs × Scenario')
 
     # G: scenario penalty bars
-    x7=np.arange(4); w7=0.18
-    pen_data=[('Stochastic',PEN_STOCH,'#4da6ff'),('Markov',PEN_MARK,'#2b6cb0'),
-              ('Adaptive',PEN_ADAP,'#e63946'),('OnlineAdap',PEN_OA,'#f28e2b')]
-    for (lbl,vals,col),off in zip(pen_data,[-1.5,-0.5,0.5,1.5]):
-        container=ax7.bar(x7+off*w7,vals,width=w7*0.88,color=col,alpha=0.88,label=lbl,edgecolor='white',lw=0.6)
-        ax7.bar_label(container,fmt='%.1f',padding=1,fontsize=6.8)
-    ax7.set_xticks(x7); ax7.set_xticklabels(PEN_ALGOS,fontsize=9.5)
-    ax7.set_ylabel('Penalty vs Baseline (pp)')
-    ax7.legend(fontsize=8,ncol=2,frameon=True,framealpha=0.88)
-    ax7.set_facecolor('#f9f9f9')
-    panel_label(ax7,'G','Scenario Penalty vs Baseline by Algorithm & Threat')
+    draw_scenario_penalty_panel(ax7)
 
     # H: allocator risk profile
     draw_allocator_risk_panel(ax8)
 
     # I: cross-testbed violin
     tl=list(TESTBED_EFF.keys()); tv=list(TESTBED_EFF.values())
-    tc9=[C['P2'],C['P8'],C['P7'],C['P12']]; amk9=['o','s','^','D']
+    tc9=[C['P2'],C['P7'],C['P12'],C['P8']]; amk9=['o','s','^','D']
     aln9=['iCPursuitNeural','CPursuitNeural','GNeuralUCB','EXPNeuralUCB']
     vd=[np.repeat(v,20)+RNG.normal(0,0.18,len(v)*20) for v in tv]
     vp=ax9.violinplot(vd,positions=range(4),widths=0.62,showmedians=False,showextrema=False)
@@ -645,7 +667,7 @@ def build_rq1_tier_panel():
     fig, ax = plt.subplots(figsize=(7.64, 4.58), dpi=200)
     fig.patch.set_facecolor('white')
     draw_rq1_tier_panel(ax, include_panel_label=False)
-    fig.subplots_adjust(left=0.12, right=0.98, top=0.98, bottom=0.14)
+    fig.subplots_adjust(left=0.17, right=0.98, top=0.98, bottom=0.14)
     fig.savefig(OUT_PANEL_D, dpi=200, facecolor='white')
     plt.close(fig)
     print(f"Wrote {OUT_PANEL_D}")
@@ -660,6 +682,17 @@ def build_capacity_all_configs_panel():
     fig.savefig(OUT_PANEL_F, dpi=200, facecolor='white')
     plt.close(fig)
     print(f"Wrote {OUT_PANEL_F}")
+
+
+def build_scenario_penalty_panel():
+    base_style()
+    fig, ax = plt.subplots(figsize=(7.64, 4.58), dpi=200)
+    fig.patch.set_facecolor('white')
+    draw_scenario_penalty_panel(ax, include_panel_label=False)
+    fig.subplots_adjust(left=0.08, right=0.985, top=0.98, bottom=0.14)
+    fig.savefig(OUT_PANEL_G, dpi=200, facecolor='white')
+    plt.close(fig)
+    print(f"Wrote {OUT_PANEL_G}")
 
 
 def build_cross_testbed_panel():
@@ -677,7 +710,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Build ICNP G8/G9 result figures.")
     parser.add_argument(
         "--only",
-        choices=["all", "panel-d", "panel-f", "panel-h", "panel-i"],
+        choices=["all", "panel-d", "panel-f", "panel-g", "panel-h", "panel-i"],
         default="all",
         help="Build all figures or only one manuscript-facing labeled panel.",
     )
@@ -686,6 +719,8 @@ if __name__ == "__main__":
         build_rq1_tier_panel()
     elif args.only == "panel-f":
         build_capacity_all_configs_panel()
+    elif args.only == "panel-g":
+        build_scenario_penalty_panel()
     elif args.only == "panel-h":
         build_allocator_risk_panel()
     elif args.only == "panel-i":
@@ -695,6 +730,9 @@ if __name__ == "__main__":
         build_G9()
         build_rq1_tier_panel()
         build_capacity_all_configs_panel()
+        build_scenario_penalty_panel()
         build_allocator_risk_panel()
         build_cross_testbed_panel()
+        OUT_G8_PUBLIC.write_bytes(OUT_G8.read_bytes())
+        print(f"Wrote {OUT_G8_PUBLIC}")
         print("All done.")

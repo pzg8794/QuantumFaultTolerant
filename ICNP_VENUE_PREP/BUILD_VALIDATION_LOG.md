@@ -2,6 +2,31 @@
 
 This log records non-destructive Overleaf/PDF validation for `ICNP_2026_venue_draft.tex`.
 
+## Validation pass: May 21 image-first graph cleanup
+
+- **Date:** 2026-05-22
+- **Active draft:** `ICNP_2026_venue_draft.tex`
+- **Purpose:** Validate the source-regenerated image batch requested from the May 21 meeting transcript without reopening broad formatting or page-flow work.
+
+What was checked:
+
+- [x] Python figure generators compile in the `.quantum` environment:
+  - `figures/icnp-exported-assets/build_G8_G9.py`
+  - `figures/icnp_figures/icnp_graphs.py`
+  - `figures/icnp_graphs/code_and_plots/script.py`
+- [x] Affected manuscript-facing PNGs were regenerated from source scripts, preserving existing active LaTeX include paths.
+- [x] Regenerated figures were visually checked for captioned-value visibility and label alignment.
+- [x] Full draft compiled locally with `latexmk -pdf -interaction=nonstopmode -halt-on-error ICNP_2026_venue_draft.tex`.
+- [x] Generated PDF remains 18 pages total.
+- [x] Conclusion remains on page 10 and References begin on page 11.
+- [x] PDF spot-check pages 5--10 were rendered and visually inspected for affected main-body figures.
+
+Observed outcome:
+
+- The image batch did not introduce missing-graphic errors or LaTeX build failures.
+- Figures 3, 4, 5, 6A, 6B, 7B, 8A, 8B, 10, and 13 now better expose the values or labels used by their captions.
+- Remaining LaTeX warnings are consistent with existing draft noise: underfull/overfull boxes, duplicate PDF-destination warnings, and appendix/floating behavior. No broad formatting fix was attempted in this image-first pass.
+
 ## Validation pass: source-level preflight after feedback cleanup
 
 - **Date:** 2026-05-11

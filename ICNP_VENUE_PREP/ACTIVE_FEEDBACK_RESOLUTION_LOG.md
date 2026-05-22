@@ -2,6 +2,41 @@
 
 This log records feedback-resolution batches applied to the active ICNP venue draft. It complements the per-section audit notes and follows the repository process in `AGENTS.md`: identify the owning file, make the smallest safe change, preserve validated content, and keep reviewer feedback traceable as LaTeX source comments with `SOLVED` explanations.
 
+## Batch: May 21 image-first graph cleanup
+
+- **Owning files changed:** `figures/icnp-exported-assets/build_G8_G9.py`, `figures/icnp_figures/icnp_graphs.py`, `figures/icnp_graphs/code_and_plots/script.py`, `ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex`, `ICNP_VENUE_PREP/APPENDIX_DIAGNOSTIC_FIGURES.tex`
+- **Regenerated assets:** `figures/icnp/ICNP-CODE-024_g8_advanced_4panel_grouped_full_figure.png`, `ICNP-CODE-033`, `ICNP-CODE-035`, `ICNP-CODE-036`, `ICNP-CODE-037`, `ICNP-CODE-038`, `ICNP-CODE-039`, `ICNP-CODE-040`, `ICNP-CODE-041`, and `ICNP-CODE-056`
+- **Reason for batching:** The May 21 transcript prioritized image-internal fixes before broad formatting. This batch updates generated figures and only touches nearby LaTeX when the image/caption alignment required it. No table values, result claims, or broad page-flow changes were made.
+
+### Resolved feedback / cleanup
+
+1. **Figure 3: variant grouping and redundant labels**
+   - **Issue:** The RQ1 tier plot made variant groupings harder to connect to the caption and carried redundant right-side label clutter.
+   - **Change:** Regenerated the panel with visible tier/value labels, no redundant right-side text boxes, and a caption that explicitly names `CPursuit`, `CEpsGreedy`, and `iCEpsGreedy`.
+
+2. **Figure 4: threat-penalty naming**
+   - **Issue:** The graph labels needed to match the caption, especially for `EXPNeuralUCB` and `OnlineAdaptive`.
+   - **Change:** Regenerated the threat-penalty panel with full `EXPNeuralUCB` and `OnlineAdaptive` labels and visible bar values.
+
+3. **Figure 5: robustness-floor readability**
+   - **Issue:** The legend and 85% threshold annotation could overlap plotted labels.
+   - **Change:** Moved the legend below the plot and shifted the threshold label so floor/mean/peak values remain readable.
+
+4. **Figures 6A and 6B: capacity-paradox label support**
+   - **Issue:** The compact plot used ambiguous shading, and the detailed replay plot was crowded while the caption depended on specific OnlineAdaptive values.
+   - **Change:** Replaced shading with explicit drop/recovery callouts in Figure 6A and simplified Figure 6B to emphasize labeled OnlineAdaptive values and replay-configuration spans.
+
+5. **Figures 7B, 8A, 8B, 10, and 13: caption-to-image alignment**
+   - **Issue:** Several later figures needed clearer point labels, author/testbed labels, visible threshold labels, or removal of duplicate appendix content.
+   - **Change:** Preserved the regenerated allocator-risk labels for the 88.9% vs 73.3% floor claim, replaced `Paper N`/`N` labels with author/testbed labels, strengthened the 85% threshold label, removed overlapping threat-rules text, and replaced the duplicate Figure 13 cross-testbed panel with context-capacity support.
+
+### Validation status
+
+- [x] Figure assets regenerated from source scripts, not manually edited PNGs.
+- [x] Captioned values checked visually against regenerated images.
+- [x] Python generator scripts compile in the `.quantum` environment.
+- [x] Full LaTeX compile completed; generated PDF remains 18 pages total with Conclusion on page 10 and References starting on page 11.
+
 ## Batch: May 20 meeting cleanup
 
 - **Owning files changed:** `ICNP_2026_venue_draft.tex`, `ICNP_VENUE_PREP/STUDY_DESIGN_VALIDATED_STAGING.tex`, `ICNP_VENUE_PREP/APPENDIX_CROSS_TESTBED_TABLES.tex`

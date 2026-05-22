@@ -10,8 +10,8 @@ This checklist ties the content-reduction audit to the ICNP venue-preparation re
 - [x] Stage accepted Background reductions in `ICNP_2026_venue_draft.tex`.
 - [x] Add the framework figure to the draft for early figure/caption/layout review.
 - [ ] Add remaining figure environments from `main.tex` as their sections are reached in the audit.
-- [ ] Confirm the draft compiles in IEEE conference mode.
-- [ ] Confirm page count once enough sections are staged.
+- [x] Confirm the draft compiles in IEEE conference mode.
+- [x] Confirm page count once enough sections are staged.
 
 ## ICNP compliance checks to handle during audit
 
@@ -25,7 +25,7 @@ This checklist ties the content-reduction audit to the ICNP venue-preparation re
 - [ ] Keep core claims in the main body, not only in appendix/supplement.
 - [ ] Ensure all fonts are embedded in the PDF.
 - [ ] Ensure the PDF displays and prints correctly with standard tools and printers.
-- [ ] Ensure all figures are readable in one-column/two-column ICNP layout.
+- [x] Ensure all figures are readable in one-column/two-column ICNP layout for the May 21 image-first pass.
 - [ ] Ensure all figure captions are concise and takeaway-oriented.
 - [ ] Use color when helpful, but never rely on color alone; plots and graphs must remain distinguishable when printed on black-and-white printers.
 - [x] Check no overfull appendix table content crosses columns; full cross-testbed/model-family tables were reformatted with fixed-width columns and concise descriptors.
@@ -44,7 +44,7 @@ This checklist ties the content-reduction audit to the ICNP venue-preparation re
 - [x] `fig:network_topology` — restored color coding plus line-style redundancy for black-and-white readability.
 - [x] Main Results figures — replaced temporary PGFPlots with exported notebook-validated image plots.
 - [x] Appendix diagnostic figures — organized into second-checkpoint claim support, grouped synthesis diagnostics, and detailed supporting diagnostics.
-- [ ] Replace or remove any image that fails readability/page-flow review after compile.
+- [x] Replace or remove any image that fails readability/page-flow review after compile for the May 21 image-first pass.
 
 ## Appendix audit status
 

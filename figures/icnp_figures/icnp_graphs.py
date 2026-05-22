@@ -66,10 +66,6 @@ fig1.add_trace(go.Scatter(
     textposition=['top center', 'bottom center', 'top center'],
     textfont=dict(size=12, color='#1f2f4d'),
 ))
-fig1.add_shape(type='rect', x0=0.75, x1=1.25, y0=84.2, y1=89.7,
-               fillcolor='rgba(231,76,60,0.08)', line_width=0)
-fig1.add_shape(type='rect', x0=1.75, x1=2.25, y0=84.2, y1=91.4,
-               fillcolor='rgba(39,174,96,0.08)', line_width=0)
 fig1.add_annotation(x='s=1.5', y=87.1, text='drop −4.4 pp',
                     showarrow=True, arrowhead=2, ax=-55, ay=-18,
                     font=dict(color='#e74c3c', size=11),
@@ -80,6 +76,10 @@ fig1.add_annotation(x='s=2', y=88.0, text='recovery +6.0 pp',
                     font=dict(color='#27ae60', size=11),
                     arrowcolor='#27ae60',
                     bgcolor='rgba(255,255,255,0.80)')
+fig1.add_shape(type='line', x0='s=1', x1='s=1.5', y0=89.2, y1=84.9,
+               line=dict(color='rgba(231,76,60,0.55)', width=7), layer='below')
+fig1.add_shape(type='line', x0='s=1.5', x1='s=2', y0=84.9, y1=90.8,
+               line=dict(color='rgba(39,174,96,0.55)', width=7), layer='below')
 fig1.update_layout(
     margin=dict(t=8, r=12, b=44, l=60, pad=0),
     legend=in_figure_legend(font_size=9, y=0.99, yanchor='top'),
@@ -146,9 +146,12 @@ for i, algo in enumerate(algos):
 
 fig2.add_shape(type='line', x0=85, x1=85, y0=-0.5, y1=4.5,
                line=dict(color='#3498db', width=1.5, dash='dash'))
-fig2.add_annotation(x=86.5, y=0.2, text="85% deploy threshold",
+fig2.add_annotation(x=86.5, y='EXPUCB', text="85% deploy threshold",
                     showarrow=False, font=dict(color='#3498db', size=10),
-                    xanchor='left')
+                    xanchor='left', yshift=25,
+                    bgcolor='rgba(255,255,255,0.78)',
+                    bordercolor='rgba(52,152,219,0.30)',
+                    borderwidth=1)
 fig2.add_annotation(x=0.02, y=0.98, xref='paper', yref='paper',
                     text="Scope: Markov + Adaptive + OnlineAdaptive",
                     showarrow=False, xanchor='left', yanchor='top',
@@ -158,8 +161,8 @@ fig2.add_annotation(x=0.02, y=0.98, xref='paper', yref='paper',
                     borderwidth=1)
 
 fig2.update_layout(
-    margin=dict(t=8, r=12, b=44, l=66, pad=0),
-    legend=in_figure_legend(),
+    margin=dict(t=8, r=12, b=82, l=66, pad=0),
+    legend=in_figure_legend(y=-0.22, yanchor='top'),
     xaxis_range=[25, 110],
 )
 fig2.update_xaxes(title_text="Oracle-Norm. Efficiency (%)")
@@ -203,6 +206,7 @@ fig3.add_shape(type='line', x0=-0.5, x1=4.5, y0=85, y1=85,
 fig3.add_annotation(x=4.45, y=85.65, text="85% threshold",
                     showarrow=False, font=dict(color='#3498db', size=10),
                     xanchor='right',
+                    yanchor='bottom',
                     bgcolor='rgba(255,255,255,0.80)',
                     bordercolor='rgba(0,91,187,0.30)',
                     borderwidth=1)

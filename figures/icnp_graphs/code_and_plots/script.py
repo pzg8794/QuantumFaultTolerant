@@ -265,17 +265,17 @@ fig10.add_trace(go.Scatter(x=scenarios_4, y=noalloc,  mode='lines+markers', name
 fig10.add_trace(go.Scatter(x=scenarios_4, y=random_,  mode='lines+markers', name='Random',    line=dict(width=2, dash='dash')))
 fig10.update_layout(
     margin=dict(t=8, r=12, b=42, l=54, pad=0),
-    legend=in_figure_legend(font_size=8, x=0.99, y=0.99, orientation='v', xanchor='right', yanchor='top')
+    legend=in_figure_legend(font_size=8, x=0.02, y=0.99, orientation='h', xanchor='left', yanchor='top')
 )
 fig10.add_hline(y=85, line_color='#555555', line_dash='dash', line_width=1.2)
 fig10.add_annotation(
-    x=0.02,
-    y=0.06,
+    x=0.98,
+    y=0.08,
     xref='paper',
     yref='paper',
-    text='85% target | Random trails by 11-22pp under threat',
+    text='85% target; Random trails under threat',
     showarrow=False,
-    xanchor='left',
+    xanchor='right',
     font=dict(size=8, color='#555555'),
     bgcolor='rgba(255,255,255,0.72)',
 )

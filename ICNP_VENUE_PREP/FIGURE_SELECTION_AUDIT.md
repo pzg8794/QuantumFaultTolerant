@@ -24,6 +24,18 @@ Main paper figures should carry one central claim each. Appendix figures should 
 
 Figures marked as convergence/regret/TBD in the verification workflow are excluded from the main paper until they are explicitly accepted as source-backed manuscript evidence.
 
+## May 21 image regeneration note
+
+The May 21 image-first cleanup regenerated the manuscript-facing PNGs from the existing source scripts rather than manual PNG edits. The active generators are:
+
+```text
+figures/icnp-exported-assets/build_G8_G9.py
+figures/icnp_figures/icnp_graphs.py
+figures/icnp_graphs/code_and_plots/script.py
+```
+
+The pass preserved active figure filenames, improved label visibility, replaced `Paper N` style testbed labels with author/testbed labels, made captioned values visible in the plots, and replaced the duplicate cross-testbed panel in the grouped appendix synthesis with a context-capacity panel.
+
 ## Main-body selections
 
 | Claim slot | Selected image | Paper placement | Rationale |
@@ -50,7 +62,7 @@ These figures were added after checking the second-checkpoint archive for append
 
 | Appendix image | Rationale |
 |---|---|
-| `figures/icnp/ICNP-CODE-024_g8_advanced_4panel_grouped_full_figure.png` | Dense synthesis of oracle gaps, capacity effects, allocator efficiency, and cross-testbed behavior. |
+| `figures/icnp/ICNP-CODE-024_g8_advanced_4panel_grouped_full_figure.png` | Dense synthesis of oracle gaps, capacity effects, allocator efficiency, and contextual-capacity behavior. |
 | `figures/icnp/ICNP-CODE-029_g9_network_gap_analysis_grouped_full_figure.png` | Broad diagnostic suite for path/fidelity, allocator budgets, threat escalation, capacity sensitivity, scenario penalties, allocator risk, and cross-testbed behavior. |
 | `figures/icnp/ICNP-CODE-035_g9_network_gap_analysis_panel_f_capacity_paradox_all_6_replay_configs_sc.png` | Detailed support for the capacity-paradox claim beyond the compact main figure. |
 | `figures/icnp/ICNP-CODE-036_g9_network_gap_analysis_panel_g_scenario_penalty_vs_baseline_by_algorith.png` | Detailed support for threat penalty and robustness-floor analysis. |
