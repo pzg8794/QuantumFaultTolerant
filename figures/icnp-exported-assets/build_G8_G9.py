@@ -297,7 +297,7 @@ def draw_capacity_all_configs_panel(ax, *, include_panel_label=True):
         'Tb': (22, 0), '1.5Tb': (-24, -18), '2Tb': (24, 16),
     }
     x6=np.arange(5)
-    cap_scens=['Stochastic','Markov','Adaptive','Online\nAdaptive','Baseline']
+    cap_scens=['Stochastic','Markov','Adaptive','OnlineAdaptive','Baseline']
     for cname,(ls,col,mk,lw) in cap_styles.items():
         ax.plot(x6,CAP_DATA[cname],ls=ls,color=col,marker=mk,lw=lw,ms=6,label=cname,alpha=0.88)
         dx, dy = online_label_offsets[cname]
@@ -625,7 +625,7 @@ def build_G9():
                 '2T':('-',C['T2'],'^',2.2),'Tb':('-',C['Tb'],'o',2.2),
                 '1.5Tb':('--','#d4730a','s',1.8),'2Tb':('-','#8b2500','^',2.2)}
     x6=np.arange(5)
-    cap_scens=['Stochastic','Markov','Adaptive','Online\nAdaptive','Baseline']
+    cap_scens=['Stochastic','Markov','Adaptive','OnlineAdaptive','Baseline']
     for cname,(ls,col,mk,lw) in cap_styles.items():
         ax6.plot(x6,CAP_DATA[cname],ls=ls,color=col,marker=mk,lw=lw,ms=6,label=cname,alpha=0.88)
     ax6.axhline(85,color=C['THRESH'],ls=':',lw=1.1,alpha=0.7)
