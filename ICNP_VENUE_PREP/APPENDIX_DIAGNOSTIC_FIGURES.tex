@@ -10,10 +10,10 @@ The following figures provide supporting views for claims that are central to th
 
 \begin{figure*}[ht!]
 \centering
-\subfloat[Oracle-gap behavior across scenario and capacity settings:
-contextual policies show lower percentage-point distance from \texttt{Oracle}
-than EXP3-style baselines, meaning path/context information reduces efficiency
-loss under escalating disruption.
+\subfloat[Contextual policies show lower percentage-point distance from
+\texttt{Oracle} than EXP3-style baselines across scenario and capacity settings,
+meaning path/context information reduces efficiency loss under escalating
+disruption.
 \label{fig:appendix_context_vs_exp3_gap}]{%
   \begin{minipage}{0.49\textwidth}
   \centering
@@ -21,10 +21,10 @@ loss under escalating disruption.
   \includegraphics[width=\linewidth,height=1.98in]{figures/icnp/ICNP-CODE-032_g9_network_gap_analysis_panel_c_oracle_gap_context_vs_exp3_by_scenario_c.png}
   \end{minipage}}
 \hfill
-\subfloat[Qubit-budget structure across paths and allocators: the heatmap shows
-the 35-qubit internal split, including the \texttt{Fixed} $(8,10,8,9)$ baseline
-and allocator-driven path shifts, meaning resource allocation is part of the
-evaluated routing action.
+\subfloat[The heatmap shows the 35-qubit internal split across paths and
+allocators, including the \texttt{Fixed} $(8,10,8,9)$ baseline and
+allocator-driven path shifts; resource allocation is part of the evaluated
+routing action.
 \label{fig:appendix_qubit_budget_support}]{%
   \begin{minipage}{0.49\textwidth}
   \centering
@@ -34,10 +34,10 @@ evaluated routing action.
 
 \vspace{0.45em}
 
-\subfloat[Scenario-level efficiency for the top policy families: \texttt{CPursuit}
-remains strongest across most regimes, while \texttt{EXPNeuralUCB} drops sharply
-under Stochastic, showing that policy selection separates robust and fragile
-regimes before replay-capacity tuning is even applied.
+\subfloat[\texttt{CPursuit} remains strongest across most scenario-level
+efficiency regimes, while \texttt{EXPNeuralUCB} drops sharply under Stochastic;
+policy selection separates robust and fragile regimes before replay-capacity
+tuning is applied.
 \label{fig:appendix_g12_efficiency_by_scenario}]{%
   \begin{minipage}{0.49\textwidth}
   \centering
@@ -45,10 +45,10 @@ regimes before replay-capacity tuning is even applied.
   \includegraphics[width=\linewidth,height=1.98in]{figures/icnp/ICNP-NOTEBOOK-053_g12_panel_a_efficiency_by_scenario.png}
   \end{minipage}}
 \hfill
-\subfloat[Stochastic-vs-Adaptive Oracle-gap scatter: models close to the
-origin stay near \texttt{Oracle} in both regimes, while separated points expose
-threat-specific weakness, showing why one policy can tolerate a capacity change
-in one regime and fail in another.
+\subfloat[Models close to the Stochastic-vs-Adaptive origin stay near
+\texttt{Oracle} in both regimes, while separated points expose threat-specific
+weakness; one policy can tolerate a capacity change in one regime and fail in
+another.
 \label{fig:appendix_g12_stochastic_vs_adaptive_gap}]{%
   \begin{minipage}{0.49\textwidth}
   \centering
@@ -58,10 +58,10 @@ in one regime and fail in another.
 
 \vspace{0.45em}
 
-\subfloat[Mean Oracle gap with standard-deviation spread across scenarios:
-pursuit/contextual families hold lower average distance to \texttt{Oracle}, while
-\texttt{CThompson} and \texttt{EXPUCB} remain higher-gap options, showing the
-stable policy margin available before replay-capacity tuning.
+\subfloat[Pursuit/contextual families hold lower mean distance to
+\texttt{Oracle} across scenarios, while \texttt{CThompson} and \texttt{EXPUCB}
+remain higher-gap options; the spread shows the stable policy margin available
+before replay-capacity tuning.
 \label{fig:appendix_g12_mean_oracle_gap}]{%
   \begin{minipage}{0.49\textwidth}
   \centering
@@ -69,10 +69,9 @@ stable policy margin available before replay-capacity tuning.
   \includegraphics[width=\linewidth,height=1.98in]{figures/icnp/ICNP-NOTEBOOK-015_g12_panel_c_mean_oracle_gap_std.png}
   \end{minipage}}
 \hfill
-\subfloat[Overall model ranking by average efficiency: \texttt{CPursuit}
-defines the strongest average frontier and \texttt{CThompson} the weakest,
-showing that capacity choices modulate but do not erase family-level robustness
-differences.
+\subfloat[\texttt{CPursuit} defines the strongest average-efficiency frontier
+and \texttt{CThompson} the weakest; capacity choices modulate but do not erase
+family-level robustness differences.
 \label{fig:appendix_g12_overall_model_ranking}]{%
   \begin{minipage}{0.49\textwidth}
   \centering
@@ -96,9 +95,9 @@ The grouped synthesis figure below remains in the appendix because it lays out t
 
 \begin{figure*}[ht!]
 \centering
-\subfloat[Oracle-gap distributions by family: EXP3 has the largest losses,
-while hybrid/contextual families concentrate closer to the 15~pp line, showing
-that context-aware and pursuit--neural designs define the stability frontier.
+\subfloat[EXP3 has the largest Oracle-gap losses, while hybrid/contextual
+families concentrate closer to the 15~pp line; context-aware and pursuit--neural
+designs define the stability frontier.
 \label{fig:appendix_g8_panel_a}]{%
   \begin{minipage}{0.49\textwidth}
   \centering
@@ -106,9 +105,9 @@ that context-aware and pursuit--neural designs define the stability frontier.
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-025_g8_advanced_4panel_panel_a_oracle_gap_distribution_by_model_family.png}
   \end{minipage}}
 \hfill
-\subfloat[Replay drop/recovery distribution by threat and replay semantic: the
-replay effect changes sign across scenarios and semantics, with Markov and
-OnlineAdaptive showing the clearest helpful-to-harmful flip behind the capacity paradox.
+\subfloat[Replay effects change sign across threats and replay semantics, with
+Markov and OnlineAdaptive showing the clearest helpful-to-harmful flip behind
+the capacity paradox.
 \label{fig:appendix_g8_panel_b}]{%
   \begin{minipage}{0.49\textwidth}
   \centering
@@ -118,9 +117,9 @@ OnlineAdaptive showing the clearest helpful-to-harmful flip behind the capacity 
 
 \vspace{0.75em}
 
-\subfloat[Allocator efficiency by scenario for \texttt{iCPursuitNeuralUCB}:
-\texttt{Fixed} remains strongest, while \texttt{Random} and mismatched adaptive
-allocators expose lower floors, showing allocator-driven tail risk.
+\subfloat[\texttt{Fixed} remains strongest for \texttt{iCPursuitNeuralUCB}
+across allocator-efficiency scenarios, while \texttt{Random} and mismatched
+adaptive allocators expose lower floors and allocator-driven tail risk.
 \label{fig:appendix_g8_panel_c}]{%
   \begin{minipage}{0.49\textwidth}
   \centering
@@ -128,9 +127,9 @@ allocators expose lower floors, showing allocator-driven tail risk.
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-027_g8_advanced_4panel_panel_c_allocator_efficiency_per_scenario_icpursuitne.png}
   \end{minipage}}
 \hfill
-\subfloat[Context-capacity behavior by family and threat: contextual $T$/$T_b$
-curves stay near or above 85\%, while EXP3 variants remain lower until Baseline,
-showing that replay robustness depends on path/context structure.
+\subfloat[Contextual $T$/$T_b$ curves stay near or above 85\% across
+family/threat capacity settings, while EXP3 variants remain lower until
+Baseline; replay robustness depends on path/context structure.
 \label{fig:appendix_g8_panel_d}]{%
   \begin{minipage}{0.49\textwidth}
   \centering
@@ -140,9 +139,9 @@ showing that replay robustness depends on path/context structure.
 
 \vspace{0.75em}
 
-\subfloat[Capacity-paradox trajectory by capacity level: Stochastic and
-Adaptive rise from $4$K to $6$K and then fall at $8$K, while Markov continues
-upward, showing that more capacity is not uniformly beneficial.
+\subfloat[Stochastic and Adaptive rise from $4$K to $6$K and then fall at $8$K
+along the capacity-paradox trajectory, while Markov continues upward; more
+capacity is not uniformly beneficial.
 \label{fig:appendix_g8_panel_e}]{%
   \begin{minipage}{0.49\textwidth}
   \centering
@@ -150,9 +149,9 @@ upward, showing that more capacity is not uniformly beneficial.
   \includegraphics[width=\linewidth,height=1.98in]{figures/icnp/ICNP-CODE-008_g13_capacity_paradox.png}
   \end{minipage}}
 \hfill
-\subfloat[Regret trajectory over capacity steps: \texttt{CThompsonSampling} and
-\texttt{EXPUCB} accumulate larger normalized regret than pursuit/contextual
-baselines, showing the learning-cost side of capacity-sensitive routing.
+\subfloat[\texttt{CThompsonSampling} and \texttt{EXPUCB} accumulate larger
+normalized regret over capacity steps than pursuit/contextual baselines,
+showing the learning-cost side of capacity-sensitive routing.
 \label{fig:appendix_g8_panel_f}]{%
   \begin{minipage}{0.49\textwidth}
   \centering
