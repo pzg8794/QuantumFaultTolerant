@@ -220,7 +220,7 @@ Deployment is configuration-sensitive, but the Hybrid corpus also reveals a stro
 RQ3a isolates whether the informative/predictive variant, iCPursuitNeuralUCB, improves deployment robustness over reactive CPursuitNeuralUCB.
 
 \smallTitle{Controlled comparison}
-To isolate architecture impact, we hold deployment fixed at 6K horizon, \texttt{Fixed} allocator, current-horizon ($T$)-type anchoring, and replay-capacity scale $s=2$, then use the validated 3-run suite from the Hybrid corpus.
+To isolate architecture impact, we fix deployment at 6K horizon, \texttt{Fixed} allocator, current-horizon ($T$)-type anchoring, and replay-capacity scale $s=2$, using the validated 3-run suite from the Hybrid corpus.
 
 \begin{table}[ht!]
 \footnotesize
@@ -280,9 +280,8 @@ selection is a first-class deployment control.
   \textbf{Allocator-Induced Risk}\\[0.5em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-037_g9_network_gap_analysis_panel_h_allocator_risk_floor_mean_peak_icpursuit.png}
   \end{minipage}}
-\caption{Panels~(a) and~(b) jointly show that robust quantum-routing deployment
-is strongest when policy, allocator, and replay settings are matched to the
-active threat regime.}
+\caption{Panels~(a) and~(b) show that robust quantum-routing deployment
+is strongest when policy, allocator, and replay settings are matched to the threat.}
 % \shee{Caption mentions Tb-type and s values which are not present on the graph.} -- SOLVED: Regenerated Figure 7A with a callout labeling the Adaptive optimum as ThompsonSampling + T_b, s=1.5.
 % \shee{Don't use 'The exported validation figure' in every caption. Refer to the corresponding plot.} -- SOLVED: Removed generic exported-figure language and described the specific plotted quantities and observed deployment consequence.
 % \devroop{Include the allocator-risk figure in the main body.} -- SOLVED: Grouped deployment guidance with allocator-risk evidence in one RQ3d figure.
@@ -357,8 +356,6 @@ Thompson   & 58.4 & 65.4 & 87.8 & 91.7 & 65.2 & 73.7 & 58.4 \\
 
 \smallTitle{Deployment-rule synthesis}
 RQ3d converts the RQ3a--RQ3c findings into 6K deployment rules for iCPursuitNeuralUCB. Under the Hybrid corpus 3/5-suite mean used for switching analysis, the strong static default is \texttt{iCPursuitNeuralUCB+Fixed+($T$-type,$s=2$)}, with 95.5\% average efficiency and an 88.5\% floor across scenarios. Scenario-specific switching provides modest gains, with the largest validated improvement under Adaptive disruption.
-
-
 
 \begin{table}[ht!]
 \footnotesize

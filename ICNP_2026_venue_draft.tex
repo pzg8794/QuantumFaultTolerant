@@ -107,54 +107,56 @@ Quantum entanglement distribution is a core property for the quantum Internet, s
 
 Existing quantum-routing studies propose online path selection, benchmarking-driven routing, adaptive route selection, and adversarially robust learning~\cite{wang2025learning,coopmans2021benchmark,huang2024quantum}, but they are often evaluated under different threat, topology, allocator, and replay assumptions~\cite{liu2024qbgp,li2025multipath,chaudhary2023quantum}. This creates a matched-threat evaluation gap: it is unclear when contextual structure is necessary, when adversarial robustness dominates, and how allocator and capacity choices alter routing performance.
 
-\begin{figure}[ht!]
-\centering
-\textbf{Threat-Aware Evaluation Framework}\\[0.75em]
-\footnotesize
-\resizebox{0.96\columnwidth}{!}{%
-\begin{tikzpicture}[
-  >=Latex,
-  node distance=0.45cm and 0.35cm,
-  stage/.style={rectangle, draw=black!70, rounded corners=3pt, align=center, minimum height=0.72cm, text width=2.35cm, inner sep=2.5pt, fill=black!4, font=\bfseries},
-  topologybox/.style={rectangle, draw=networkblue!80!black, rounded corners=3pt, align=center, minimum height=0.55cm, text width=1.70cm, inner sep=2pt, fill=networkblue!15},
-  threatbox/.style={rectangle, draw=envgreen!70!black, rounded corners=3pt, align=center, minimum height=0.55cm, text width=1.70cm, inner sep=2pt, fill=envgreen!18},
-  policybox/.style={rectangle, draw=algorange!85!black, rounded corners=3pt, align=center, minimum height=0.55cm, text width=1.70cm, inner sep=2pt, fill=algorange!18},
-  allocbox/.style={rectangle, draw=allocpurple!80!black, rounded corners=3pt, align=center, minimum height=0.55cm, text width=1.70cm, inner sep=2pt, fill=allocpurple!15},
-  outputbox/.style={rectangle, draw=black!60, rounded corners=3pt, align=center, minimum height=0.58cm, text width=1.86cm, inner sep=2pt, fill=black!6},
-  arrow/.style={thick,->},
-  topologyarrow/.style={arrow, draw=networkblue!80!black},
-  threatarrow/.style={arrow, draw=envgreen!70!black},
-  policyarrow/.style={arrow, draw=algorange!85!black},
-  allocarrow/.style={arrow, draw=allocpurple!80!black}
-]
-\node[topologybox] (topology) {Topology};
-\node[threatbox, right=of topology] (threats) {Threats};
-\node[policybox, right=of threats] (models) {Policies};
-\node[allocbox, right=of models] (alloc) {Allocator};
-\node[allocbox, right=of alloc] (capacity) {Replay};
-\node[stage, below=0.55cm of models] (grid) {Matched evaluation grid};
-\node[outputbox, below=0.55cm of grid, xshift=-2.50cm] (metrics) {Metrics};
-\node[outputbox, below=0.55cm of grid] (robust) {Robustness};
-\node[outputbox, below=0.55cm of grid, xshift=2.50cm] (guidance) {Guidance};
-\draw[topologyarrow] (topology) |- (grid);
-\draw[threatarrow] (threats) -- (grid);
-\draw[policyarrow] (models) -- (grid);
-\draw[allocarrow] (alloc) -- (grid);
-\draw[allocarrow, dashed] (capacity) |- (grid);
-\draw[arrow, draw=black!75] (grid) -- (metrics);
-\draw[arrow, draw=black!75, dashed] (grid) -- (robust);
-\draw[arrow, draw=black!75, dotted] (grid) -- (guidance);
-\end{tikzpicture}%
-}
-\caption{Five matched inputs---topology, threat, policy, allocator, and
-replay---feed a shared evaluation grid to produce \texttt{Oracle}-normalized
-metrics, robustness comparisons, and deployment guidance. Matching all five inputs,
-simultaneously, exposes the \texttt{policy--allocator--capacity} interaction as
-the controlling robustness factor.}
-\label{fig:framework}
-\end{figure}
-% this gap
-To address this lack of a unified and controlled evaluation framework for quantum-routing strategies, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. This evaluation provides practical guidance for designing quantum-network controllers that can maintain high entanglement efficiency and robustness under changing network conditions and adversarial disruptions. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks.
+% \begin{figure}[ht!]
+% \centering
+% \textbf{Threat-Aware Evaluation Framework}\\[0.75em]
+% \footnotesize
+% \resizebox{0.96\columnwidth}{!}{%
+% \begin{tikzpicture}[
+%   >=Latex,
+%   node distance=0.45cm and 0.35cm,
+%   stage/.style={rectangle, draw=black!70, rounded corners=3pt, align=center, minimum height=0.72cm, text width=2.35cm, inner sep=2.5pt, fill=black!4, font=\bfseries},
+%   topologybox/.style={rectangle, draw=networkblue!80!black, rounded corners=3pt, align=center, minimum height=0.55cm, text width=1.70cm, inner sep=2pt, fill=networkblue!15},
+%   threatbox/.style={rectangle, draw=envgreen!70!black, rounded corners=3pt, align=center, minimum height=0.55cm, text width=1.70cm, inner sep=2pt, fill=envgreen!18},
+%   policybox/.style={rectangle, draw=algorange!85!black, rounded corners=3pt, align=center, minimum height=0.55cm, text width=1.70cm, inner sep=2pt, fill=algorange!18},
+%   allocbox/.style={rectangle, draw=allocpurple!80!black, rounded corners=3pt, align=center, minimum height=0.55cm, text width=1.70cm, inner sep=2pt, fill=allocpurple!15},
+%   outputbox/.style={rectangle, draw=black!60, rounded corners=3pt, align=center, minimum height=0.58cm, text width=1.86cm, inner sep=2pt, fill=black!6},
+%   arrow/.style={thick,->},
+%   topologyarrow/.style={arrow, draw=networkblue!80!black},
+%   threatarrow/.style={arrow, draw=envgreen!70!black},
+%   policyarrow/.style={arrow, draw=algorange!85!black},
+%   allocarrow/.style={arrow, draw=allocpurple!80!black}
+% ]
+% \node[topologybox] (topology) {Topology};
+% \node[threatbox, right=of topology] (threats) {Threats};
+% \node[policybox, right=of threats] (models) {Policies};
+% \node[allocbox, right=of models] (alloc) {Allocator};
+% \node[allocbox, right=of alloc] (capacity) {Replay};
+% \node[stage, below=0.55cm of models] (grid) {Matched evaluation grid};
+% \node[outputbox, below=0.55cm of grid, xshift=-2.50cm] (metrics) {Metrics};
+% \node[outputbox, below=0.55cm of grid] (robust) {Robustness};
+% \node[outputbox, below=0.55cm of grid, xshift=2.50cm] (guidance) {Guidance};
+% \draw[topologyarrow] (topology) |- (grid);
+% \draw[threatarrow] (threats) -- (grid);
+% \draw[policyarrow] (models) -- (grid);
+% \draw[allocarrow] (alloc) -- (grid);
+% \draw[allocarrow, dashed] (capacity) |- (grid);
+% \draw[arrow, draw=black!75] (grid) -- (metrics);
+% \draw[arrow, draw=black!75, dashed] (grid) -- (robust);
+% \draw[arrow, draw=black!75, dotted] (grid) -- (guidance);
+% \end{tikzpicture}%
+% }
+% \caption{Five matched inputs---topology, threat, policy, allocator, and
+% replay---feed a shared evaluation grid to produce \texttt{Oracle}-normalized
+% metrics, robustness comparisons, and deployment guidance. Matching all five inputs,
+% simultaneously, exposes the \texttt{policy--allocator--capacity} interaction as
+% the controlling robustness factor.}
+% \label{fig:framework}
+% \end{figure}
+
+% % this gap
+To address this lack of a unified and controlled evaluation framework for quantum-routing strategies, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. 
+This evaluation provides practical guidance for designing quantum-network controllers that can maintain high entanglement efficiency and robustness under changing network conditions and adversarial disruptions. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks.
 
 % COMMENTED OUT: Intro threat table removed temporarily due to page budget (>10 pages).
 % Restore once space is recovered. Table defined all five threat regimes (Baseline,
@@ -186,8 +188,7 @@ In summary, our work makes the following contributions:
 
     \item \descStep{Capacity paradox}{Capacity effects are
     threat-dependent: under \texttt{ThompsonSampling} allocation
-    with base-horizon replay capacity ($T_b$), increasing the
-    replay-capacity scale from $s{=}1$ to $s{=}1.5$ causes a
+    with base-horizon replay capacity ($T_b$), increasing replay-capacity scale from $s{=}1$ to $s{=}1.5$ causes a
     4.4 percentage-point (pp) efficiency drop under reactive
     adaptive disruption, which then recovers by 6.0~pp at full
     scale ($s{=}2$). Allocator mismatch also lowers worst-case
