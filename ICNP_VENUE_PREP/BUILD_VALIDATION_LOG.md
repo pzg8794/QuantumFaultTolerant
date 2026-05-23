@@ -2,6 +2,25 @@
 
 This log records non-destructive Overleaf/PDF validation for `ICNP_2026_venue_draft.tex`.
 
+## Validation pass: May 22 space-recovery candidate sweep
+
+- **Date:** 2026-05-22
+- **Active draft:** `ICNP_2026_venue_draft.tex`
+- **Purpose:** Establish the current page-flow baseline before proposing surgical space-recovery cuts.
+
+What was checked:
+
+- [x] Latest GitHub paper state pulled before the sweep (`cd12aa4`, `Updates from Overleaf`).
+- [x] Full draft compiled locally with `latexmk -pdf -interaction=nonstopmode -halt-on-error ICNP_2026_venue_draft.tex`.
+- [x] No unresolved references remained in the final LaTeX log.
+- [x] Generated PDF remains 17 pages total.
+- [x] Conclusion remains on page 10 and References begin on page 11.
+
+Observed outcome:
+
+- No manuscript prose was changed in this pass.
+- Approval-ready remove/replace candidates were documented in `ICNP_VENUE_PREP/SPACE_RECOVERY_CANDIDATE_SWEEP.md`.
+
 ## Validation pass: May 22 appendix-reference and replay-sensitivity bar alternative
 
 - **Date:** 2026-05-22
