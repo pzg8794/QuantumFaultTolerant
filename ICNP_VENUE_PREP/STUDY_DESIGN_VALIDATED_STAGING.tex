@@ -114,7 +114,7 @@ Bandit-policy families & Classical, Predictive, Adversarial, Contextual/Neural &
 % Memory Architecture
 % ----------------------------------------------------------------------------
 \smallTitle{Replay configurations (capacity scaling)}
-We distinguish the base horizon $F_b\in\{4\mathrm{K},6\mathrm{K},8\mathrm{K}\}$ from the current horizon $F_c$ used after frame scaling, and evaluate the number of independent runs ($S$), with $S\in\{3,5,8,10\}$, per configuration. Replay memory is scaled by the replay-capacity scale factor ($s$), with $s\in\{1,1.5,2\}$ and default $s=2$, under two semantics:
+We consider base horizons $F_b\in\{4,6,8\}\mathrm{K}$ from the current horizon $F_c$ used after frame scaling, and evaluate the number of independent runs ($S$), with $S\in\{3,5,8,10\}$, per configuration. Replay memory is scaled by the replay-capacity scale factor ($s$), with $s\in\{1,1.5,2\}$ and default $s=2$, under two semantics:
 % \shee{what is S?}
 % SOLVED: Defined $S$ inline at first use as the number of independent runs per configuration.
 \[
