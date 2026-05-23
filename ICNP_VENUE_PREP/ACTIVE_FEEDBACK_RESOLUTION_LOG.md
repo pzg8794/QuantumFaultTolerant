@@ -18,7 +18,7 @@ This log records feedback-resolution batches applied to the active ICNP venue dr
 ### Follow-up: Appendix support capacity-paradox expansion
 
 - **Reason for follow-up:** The appendix support figure needed the missing capacity-paradox evidence chain: replay efficiency by capacity level, regret over capacity steps, and paired replay-scaling deltas.
-- **Change:** Replaced the `Threat-Conditioned Deployment Rules` panel with the actual `G13 Capacity Paradox` asset (`ICNP-CODE-008`; the current manifest maps `ICNP-CODE-057` to a convergence image), then added `ICNP-CODE-009` and `ICNP-CODE-047` as two new panels. The figure now uses six panels with show/evidence/meaning captions and no duplicate active image files.
+- **Change:** Replaced the `Threat-Conditioned Deployment Rules` panel with the capacity-paradox trajectory asset (`ICNP-CODE-008`; the current manifest maps `ICNP-CODE-057` to a convergence image), added the regret-trajectory panel (`ICNP-CODE-009`), then replaced the older gray replay-delta panel with the clearer color-coded advanced-synthesis Panel B replay drop/recovery boxplot (`ICNP-CODE-074`). Visible `G13`/`G14` source-generation labels were removed from paper-facing titles.
 - **Validation:** Full LaTeX compile passed; PDF remains 16 pages. The validation hub reports 20/20 active images mapped, no exact duplicate active image files, no missing figure labels, and six distinct appendix support panels.
 
 ## Batch: May 23 Figure 11 restyle

@@ -21,6 +21,11 @@ GA_WORK_ROOT = SCRIPT_DIR.parents[3]
 VALIDATED_LOGS = GA_WORK_ROOT / "Validated_Logs"
 OUT_PNG = SCRIPT_DIR / "G7_advanced_synthesis.png"
 OUT_SUMMARY = SCRIPT_DIR / "G7_advanced_synthesis_summary.csv"
+OUT_PANEL_B = (
+    SCRIPT_DIR.parent
+    / "icnp"
+    / "ICNP-CODE-074_g7_advanced_synthesis_panel_b_capacity_delta_boxplot.png"
+)
 
 INTERNAL_FAMILY_FILES = {
     "CMAB": "Master_Dataset_CMABs.csv",
@@ -147,6 +152,30 @@ def color_boxplot_lines(ax: Axes) -> None:
             line.set_linewidth(1.5)
 
 
+def draw_capacity_delta_panel(ax: Axes, panel_b: pd.DataFrame, palette_cap: dict[str, str], *, include_label: bool) -> None:
+    sns.boxplot(
+        data=panel_b,
+        x="scenario",
+        y="delta_eff_pp",
+        hue="cap_type",
+        order=SCENARIO_ORDER,
+        palette=palette_cap,
+        linewidth=1.1,
+        fliersize=2.4,
+        ax=ax,
+    )
+    color_boxplot_lines(ax)
+    ax.axhline(0, color="black", linewidth=1.1)
+    if include_label:
+        add_panel_label(ax, "B", "Capacity paradox as paired $s=2$ vs. $s=1$ delta")
+    ax.set_xlabel("")
+    ax.set_ylabel("Δ efficiency from replay scaling (pp)")
+    ax.set_xticks(range(len(SCENARIO_LABELS)))
+    ax.set_xticklabels(SCENARIO_LABELS, rotation=18, ha="right")
+    ax.legend(frameon=True, fontsize=8.4, loc="upper left", bbox_to_anchor=(0.01, 0.99), ncol=2, columnspacing=0.9, handlelength=1.2)
+    ax.text(0.98, 0.04, "Positive = replay scaling helps", transform=ax.transAxes, ha="right", va="bottom", fontsize=8.5, color="#555", bbox=dict(boxstyle="round,pad=0.25", facecolor="white", alpha=0.78, edgecolor="none"))
+
+
 def main() -> None:
     panel_a = build_panel_a()
     panel_b = build_panel_b()
@@ -212,26 +241,7 @@ def main() -> None:
     ax.legend(handles=family_handles, ncol=4, loc="upper left", bbox_to_anchor=(0.01, 0.99), frameon=True, fontsize=8.1, columnspacing=0.9, handlelength=1.1)
 
     ax = axes[0, 1]
-    sns.boxplot(
-        data=panel_b,
-        x="scenario",
-        y="delta_eff_pp",
-        hue="cap_type",
-        order=SCENARIO_ORDER,
-        palette=palette_cap,
-        linewidth=1.1,
-        fliersize=2.4,
-        ax=ax,
-    )
-    color_boxplot_lines(ax)
-    ax.axhline(0, color="black", linewidth=1.1)
-    add_panel_label(ax, "B", "Capacity paradox as paired $s=2$ vs. $s=1$ delta")
-    ax.set_xlabel("")
-    ax.set_ylabel("Δ efficiency from replay scaling (pp)")
-    ax.set_xticks(range(len(SCENARIO_LABELS)))
-    ax.set_xticklabels(SCENARIO_LABELS, rotation=18, ha="right")
-    ax.legend(frameon=True, fontsize=8.4, loc="upper left", bbox_to_anchor=(0.01, 0.99), ncol=2, columnspacing=0.9, handlelength=1.2)
-    ax.text(0.98, 0.04, "Positive = replay scaling helps", transform=ax.transAxes, ha="right", va="bottom", fontsize=8.5, color="#555", bbox=dict(boxstyle="round,pad=0.25", facecolor="white", alpha=0.78, edgecolor="none"))
+    draw_capacity_delta_panel(ax, panel_b, palette_cap, include_label=True)
 
     ax = axes[1, 0]
     sns.boxplot(
@@ -301,7 +311,14 @@ def main() -> None:
     fig.savefig(OUT_PNG, dpi=300, bbox_inches="tight")
     plt.close(fig)
 
+    fig_b, ax_b = plt.subplots(figsize=(7.25, 4.55))
+    draw_capacity_delta_panel(ax_b, panel_b, palette_cap, include_label=False)
+    fig_b.tight_layout()
+    fig_b.savefig(OUT_PANEL_B, dpi=300, bbox_inches="tight")
+    plt.close(fig_b)
+
     print(f"Wrote {OUT_PNG}")
+    print(f"Wrote {OUT_PANEL_B}")
     print(f"Wrote {OUT_SUMMARY}")
     print("Panel source rows:", {
         "A": len(panel_a),

@@ -86,7 +86,7 @@ The full result tables were reformatted with fixed-width columns, tighter spacin
 
 The standalone replay-sensitivity line plot was consolidated on May 22: the grouped synthesis Panel D now carries the replay-configuration sensitivity view, while the standalone Context-Capacity Interaction figure remains as the kept context-capacity evidence.
 
-The appendix support figure was expanded on May 23 to make the capacity-paradox evidence chain more complete. The retained support figure now includes the actual `G13 Capacity Paradox` asset (`ICNP-CODE-008`), `G14 Regret Trajectory` (`ICNP-CODE-009`), and the paired replay-scaling delta panel (`ICNP-CODE-047`). The manifest currently maps `ICNP-CODE-057` to a convergence image, so it remains excluded unless explicitly selected as a convergence diagnostic.
+The appendix support figure was expanded on May 23 to make the capacity-paradox evidence chain more complete. A later cleanup removed visible `G13`/`G14` source-generation labels from the paper-facing panel titles: `ICNP-CODE-008` is shown as the capacity-paradox trajectory, `ICNP-CODE-009` is shown as the regret trajectory, and the older gray paired-delta panel was replaced with the color-coded replay drop/recovery boxplot (`ICNP-CODE-074`) generated from the existing advanced-synthesis Panel B source calls. The manifest currently maps `ICNP-CODE-057` to a convergence image, so it remains excluded unless explicitly selected as a convergence diagnostic.
 
 ## Excluded from main paper for now
 
