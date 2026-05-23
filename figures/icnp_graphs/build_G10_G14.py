@@ -12,6 +12,7 @@ from plotly.subplots import make_subplots
 import json, os
 
 OUT = os.path.dirname(os.path.abspath(__file__))
+PAPER_OUT = os.path.abspath(os.path.join(OUT, "..", "icnp"))
 
 def hex_rgba(h, a=0.25):
     r,g,b = int(h[1:3],16),int(h[3:5],16),int(h[5:7],16)
@@ -31,13 +32,28 @@ C = {
     "CPursuit":"#2ECC71","CEpsilonGreedy":"#45AAF2","CThompson":"#A29BFE",
 }
 slabels = ["Baseline","Markov","Stochastic","Adaptive","OnlineAdap."]
+scenario_full_labels = ["Baseline", "Markov", "Stochastic", "Adaptive", "Online Adaptive"]
 mnames  = list(all_models.keys())
+short_model_labels = {
+    "EXPNeuralUCB": "EXPNeural",
+    "GNeuralUCB": "GNeural",
+    "EXPUCB": "EXPUCB",
+    "CPursuit": "CPursuit",
+    "CEpsilonGreedy": "CEpsGreedy",
+    "CThompson": "CThompson",
+}
 
 def save(fig, name, caption, description):
     path = os.path.join(OUT, name)
     fig.write_image(path)
     with open(path + ".meta.json", "w") as f:
         json.dump({"caption": caption, "description": description}, f)
+    print(f"  {name} ({os.path.getsize(path)//1024} KB)")
+
+
+def save_paper_panel(fig, name):
+    path = os.path.join(PAPER_OUT, name)
+    fig.write_image(path, width=860, height=500, scale=2)
     print(f"  {name} ({os.path.getsize(path)//1024} KB)")
 
 
@@ -119,15 +135,40 @@ fig4 = make_subplots(rows=2, cols=2, vertical_spacing=0.22, horizontal_spacing=0
                     "C. Mean Oracle Gap +/- Std","D. Overall Model Ranking"])
 top4 = ["CPursuit","CEpsilonGreedy","GNeuralUCB","EXPNeuralUCB"]
 for m in top4:
-    fig4.add_trace(go.Bar(x=["BL","MK","ST","AD","OA"], y=all_models[m],
+    fig4.add_trace(go.Bar(x=scenario_full_labels, y=all_models[m],
         name=m, marker_color=C[m], showlegend=True), row=1, col=1)
 fig4.update_yaxes(range=[50,100], title_text="Eff %", row=1, col=1)
 fig4.update_xaxes(title_text="Scenario", row=1, col=1)
 x_s = [100-all_models[m][2] for m in mnames]
 y_a = [100-all_models[m][3] for m in mnames]
 fig4.add_trace(go.Scatter(x=x_s, y=y_a, mode="markers",
-    marker=dict(size=18, color=[C[m] for m in mnames], opacity=0.9),
+    marker=dict(size=26, color=[C[m] for m in mnames], opacity=0.92,
+                line=dict(color="white", width=1.5)),
     showlegend=False, text=mnames, hoverinfo="text+x+y"), row=1, col=2)
+label_shifts = {
+    "EXPNeuralUCB": (0, 14),
+    "GNeuralUCB": (-18, 14),
+    "EXPUCB": (0, 14),
+    "CPursuit": (18, 14),
+    "CEpsilonGreedy": (0, 14),
+    "CThompson": (0, 14),
+}
+for model, x_val, y_val in zip(mnames, x_s, y_a):
+    xshift, yshift = label_shifts[model]
+    fig4.add_annotation(
+        x=x_val,
+        y=y_val,
+        text=short_model_labels[model],
+        showarrow=False,
+        xshift=xshift,
+        yshift=yshift,
+        font=dict(size=9, color=C[model]),
+        bgcolor="rgba(255,255,255,0.78)",
+        bordercolor="rgba(0,0,0,0.15)",
+        borderwidth=0.5,
+        row=1,
+        col=2,
+    )
 fig4.update_xaxes(title_text="Stochastic Gap %", row=1, col=2)
 fig4.update_yaxes(title_text="Adaptive Gap %", row=1, col=2)
 mean_g = [np.mean([100-v for v in all_models[m]]) for m in mnames]
@@ -149,6 +190,91 @@ fig4.update_layout(
 save(fig4, "G12_4panel.png",
      "G12: 4-Panel Gap Analysis — CPursuit leads; EXPNeuralUCB stochastic collapse",
      "4-panel: A=efficiency bars, B=gap scatter, C=mean gap error bars, D=overall ranking")
+
+# Paper appendix standalone panels derived from the same G12 validated data.
+fig12a = go.Figure()
+for model in top4:
+    fig12a.add_trace(go.Bar(
+        x=scenario_full_labels,
+        y=all_models[model],
+        name=model,
+        marker_color=C[model],
+    ))
+fig12a.add_hline(y=85, line_dash="dash", line_color="#8EC9F4", line_width=1.4)
+fig12a.add_annotation(
+    x=0.04,
+    y=0.95,
+    xref="paper",
+    yref="paper",
+    text="85% efficiency target",
+    showarrow=False,
+    font=dict(size=11, color="#555555"),
+    bgcolor="rgba(255,255,255,0.78)",
+)
+fig12a.update_layout(
+    title=dict(text="Efficiency by Scenario"),
+    xaxis_title="Scenario",
+    yaxis_title="Eff %",
+    yaxis_range=[50, 100],
+    legend=dict(orientation="h", x=0.02, y=1.02, xanchor="left", yanchor="bottom", font=dict(size=9)),
+    margin=dict(l=58, r=18, t=72, b=86),
+    plot_bgcolor="#EAF2FB",
+    paper_bgcolor="white",
+)
+fig12a.update_xaxes(tickangle=0, tickfont=dict(size=10))
+fig12a.update_yaxes(gridcolor="white")
+save_paper_panel(fig12a, "ICNP-NOTEBOOK-053_g12_panel_a_efficiency_by_scenario.png")
+
+fig12b = go.Figure()
+fig12b.add_trace(go.Scatter(
+    x=x_s,
+    y=y_a,
+    mode="markers",
+    marker=dict(size=28, color=[C[m] for m in mnames], opacity=0.94,
+                line=dict(color="white", width=2.0)),
+    text=[short_model_labels[m] for m in mnames],
+    hovertemplate="%{text}<br>Stochastic gap=%{x:.1f}%<br>Adaptive gap=%{y:.1f}%<extra></extra>",
+    showlegend=False,
+))
+for model, x_val, y_val in zip(mnames, x_s, y_a):
+    xshift, yshift = label_shifts[model]
+    fig12b.add_annotation(
+        x=x_val,
+        y=y_val,
+        text=short_model_labels[model],
+        showarrow=False,
+        xshift=xshift,
+        yshift=yshift,
+        font=dict(size=10, color=C[model]),
+        bgcolor="rgba(255,255,255,0.82)",
+        bordercolor="rgba(0,0,0,0.18)",
+        borderwidth=0.6,
+    )
+fig12b.add_hline(y=15, line_dash="dot", line_color="#888888", line_width=1.0)
+fig12b.add_vline(x=15, line_dash="dot", line_color="#888888", line_width=1.0)
+fig12b.add_annotation(
+    x=0.02,
+    y=0.98,
+    xref="paper",
+    yref="paper",
+    text="Lower-left is better",
+    showarrow=False,
+    font=dict(size=10, color="#555555"),
+    bgcolor="rgba(255,255,255,0.78)",
+)
+fig12b.update_layout(
+    title=dict(text="Stochastic vs. Adaptive Gap"),
+    xaxis_title="Stochastic Gap %",
+    yaxis_title="Adaptive Gap %",
+    xaxis_range=[5, 43],
+    yaxis_range=[5, 42],
+    margin=dict(l=62, r=20, t=72, b=64),
+    plot_bgcolor="#EAF2FB",
+    paper_bgcolor="white",
+)
+fig12b.update_xaxes(gridcolor="white")
+fig12b.update_yaxes(gridcolor="white")
+save_paper_panel(fig12b, "ICNP-NOTEBOOK-054_g12_panel_b_stochastic_vs_adaptive_gap.png")
 
 # G13: Capacity Paradox
 cap_labels = ["4k (1x)", "6k (1.5x)", "8k (2x)"]

@@ -28,6 +28,13 @@ This log records feedback-resolution batches applied to the active ICNP venue dr
 - **Change:** Tightened the Figure 10 and Figure 11 main captions to follow the same pattern as the subcaptions: what the grouped figure shows, which evidence is visible, and what larger claim it supports. Added a Discussion sentence that references both appendix diagnostic figure groups and states how they support the deployment interpretation.
 - **Validation:** Full LaTeX compile passed; PDF is 17 pages. The figure-reference audit reports no missing figure labels, and both appendix diagnostic figure groups are now referenced from the Discussion.
 
+### Follow-up: Figure 10(c)--(d) appendix readability
+
+- **Owning files changed:** `figures/icnp_graphs/build_G10_G14.py`, `figures/icnp/ICNP-NOTEBOOK-053_g12_panel_a_efficiency_by_scenario.png`, `figures/icnp/ICNP-NOTEBOOK-054_g12_panel_b_stochastic_vs_adaptive_gap.png`
+- **Reason for follow-up:** Figure 10(c) used abbreviated scenario labels, and Figure 10(d) used colored points without direct labels, making the panel less self-explanatory.
+- **Change:** Regenerated only the active Figure 10(c)--(d) appendix panels from the G12 source script. Panel (c) now spells out `Baseline`, `Markov`, `Stochastic`, `Adaptive`, and `Online Adaptive`; panel (d) uses larger markers and direct model labels above the points.
+- **Validation:** Full LaTeX compile passed; PDF is 16 pages. Appendix page 13 was rendered and inspected to confirm the scenario labels and point labels are visible.
+
 ## Batch: May 23 Figure 11 restyle
 
 - **Owning files changed:** `figures/icnp-exported-assets/build_G8_G9.py`, `figures/icnp/ICNP-CODE-053_fig6_context_capacity.png`, `figures/icnp/icnp_validation_image_manifest.csv`, `ICNP_VENUE_PREP/BUILD_VALIDATION_LOG.md`
