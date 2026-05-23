@@ -2,6 +2,28 @@
 
 This log records non-destructive Overleaf/PDF validation for `ICNP_2026_venue_draft.tex`.
 
+## Validation pass: May 23 Figure 11 restyle and page-9 font-warning triage
+
+- **Date:** 2026-05-23
+- **Active draft:** `ICNP_2026_venue_draft.tex`
+- **Purpose:** Make the retained `Context-Capacity Interaction` standalone figure visually match the former grouped synthesis Panel D, and triage the PDF checker warning about 8.3pt text on page 9.
+
+What was checked:
+
+- [x] Latest GitHub paper state pulled before editing (`1c2fa63`, `Consolidate appendix duplicate figures`).
+- [x] `figures/icnp-exported-assets/build_G8_G9.py` compiles in the `.quantum` environment.
+- [x] `figures/icnp/ICNP-CODE-053_fig6_context_capacity.png` regenerated from the same Matplotlib source style as the former grouped Panel D.
+- [x] Full draft compiled locally with `latexmk -pdf -interaction=nonstopmode -halt-on-error ICNP_2026_venue_draft.tex`.
+- [x] No unresolved references remained in the final LaTeX log.
+- [x] Generated PDF remains 16 pages total.
+- [x] Page 13 rendered and visually inspected to confirm Figure 11 now uses the grouped-panel style.
+- [x] Page 9 rendered and inspected for the checker warning. The warning appears tied to IEEE/table-caption/table/figure text on a page containing Figure 8 and concise summary Tables XI--XII; the surrounding prose remains normal IEEE body size.
+
+Observed outcome:
+
+- Figure 11 is no longer the older Plotly-style context-capacity image; it is now the same style/data view as the former grouped Panel D.
+- The page-9 font warning should be treated as a real submission-check item to monitor, but not as evidence that the main prose is undersized. If the checker escalates from "may violate" to a hard failure, the next surgical fix is to move the concise page-9 tables to the appendix or rebuild them at normal body size.
+
 ## Validation pass: May 22 appendix duplicate-figure consolidation
 
 - **Date:** 2026-05-22
@@ -13,6 +35,7 @@ What was checked:
 - [x] Latest GitHub paper state pulled before editing (`633590f`, `Swap replay sensitivity figures`).
 - [x] `figures/icnp-exported-assets/build_G8_G9.py` compiles in the `.quantum` environment.
 - [x] Grouped synthesis asset regenerated from source code, not manual PNG editing.
+- [x] Retained Context-Capacity Interaction standalone image regenerated from the same Matplotlib source style as the former grouped Panel D.
 - [x] Removed label `fig:appendix_replay_sensitivity_line_view` has no remaining active references.
 - [x] Full draft compiled locally with `latexmk -pdf -interaction=nonstopmode -halt-on-error ICNP_2026_venue_draft.tex`.
 - [x] No unresolved references remained in the final LaTeX log.
@@ -23,7 +46,7 @@ Observed outcome:
 
 - Main-body Figure 6 keeps the bar-based replay-sensitivity panel and now uses matching subfigure image heights.
 - Appendix grouped synthesis Panel D now preserves the replay-configuration sensitivity line view.
-- Standalone replay sensitivity was removed as a duplicate, while standalone Context-Capacity Interaction was retained as the kept context-capacity evidence.
+- Standalone replay sensitivity was removed as a duplicate, while standalone Context-Capacity Interaction was retained and restyled to match the former grouped Panel D.
 
 ## Validation pass: May 22 replay-sensitivity image swap
 

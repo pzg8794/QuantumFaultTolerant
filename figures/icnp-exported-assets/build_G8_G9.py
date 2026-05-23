@@ -49,6 +49,11 @@ OUT_PANEL_F_BAR = (
     / "icnp"
     / "ICNP-CODE-073_fig6b_replay_configuration_sensitivity_bar_alternative.png"
 )
+OUT_CONTEXT_CAPACITY = (
+    SCRIPT_DIR.parent
+    / "icnp"
+    / "ICNP-CODE-053_fig6_context_capacity.png"
+)
 OUT_PANEL_G = (
     SCRIPT_DIR.parent
     / "icnp"
@@ -479,7 +484,7 @@ def draw_cross_testbed_panel(ax, *, include_panel_label=True):
         panel_label(ax,'I','Cross-Testbed Efficiency & Oracle Gap (Std. 4K/2K/5R)')
 
 
-def draw_context_capacity_panel(ax):
+def draw_context_capacity_panel(ax, *, include_panel_label=True):
     x=np.arange(len(SCEN_ORDER))
     lines=[
         ('Context T', CTX_T, C['T'], '-', 'o'),
@@ -504,7 +509,8 @@ def draw_context_capacity_panel(ax):
     ax.text(0.02,0.94,'Context lines stay above EXP3 under most threats',
             transform=ax.transAxes,ha='left',va='top',fontsize=7.6,color='#555',
             bbox=dict(boxstyle='round,pad=0.22',facecolor='white',alpha=0.80,edgecolor='none'))
-    panel_label(ax,'D','Context-Capacity Efficiency by Threat')
+    if include_panel_label:
+        panel_label(ax,'D','Context-Capacity Efficiency by Threat')
 
 
 def base_style():
@@ -788,6 +794,17 @@ def build_capacity_bar_alternative_panel():
     print(f"Wrote {OUT_PANEL_F_BAR}")
 
 
+def build_context_capacity_panel():
+    base_style()
+    fig, ax = plt.subplots(figsize=(7.64, 4.58), dpi=200)
+    fig.patch.set_facecolor('white')
+    draw_context_capacity_panel(ax, include_panel_label=False)
+    fig.subplots_adjust(left=0.09, right=0.985, top=0.97, bottom=0.16)
+    fig.savefig(OUT_CONTEXT_CAPACITY, dpi=200, facecolor='white')
+    plt.close(fig)
+    print(f"Wrote {OUT_CONTEXT_CAPACITY}")
+
+
 def build_scenario_penalty_panel():
     base_style()
     fig, ax = plt.subplots(figsize=(7.64, 4.58), dpi=200)
@@ -825,7 +842,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Build ICNP G8/G9 result figures.")
     parser.add_argument(
         "--only",
-        choices=["all", "panel-c", "panel-d", "panel-e", "panel-f", "fig6b-bar", "panel-g", "panel-h", "panel-i"],
+        choices=["all", "panel-c", "panel-d", "panel-e", "panel-f", "fig6b-bar", "context-capacity", "panel-g", "panel-h", "panel-i"],
         default="all",
         help="Build all figures or only one manuscript-facing labeled panel.",
     )
@@ -840,6 +857,8 @@ if __name__ == "__main__":
         build_capacity_all_configs_panel()
     elif args.only == "fig6b-bar":
         build_capacity_bar_alternative_panel()
+    elif args.only == "context-capacity":
+        build_context_capacity_panel()
     elif args.only == "panel-g":
         build_scenario_penalty_panel()
     elif args.only == "panel-h":
@@ -853,6 +872,7 @@ if __name__ == "__main__":
         build_rq1_tier_panel()
         build_threat_heatmap_panel()
         build_capacity_all_configs_panel()
+        build_context_capacity_panel()
         build_scenario_penalty_panel()
         build_allocator_risk_panel()
         build_cross_testbed_panel()

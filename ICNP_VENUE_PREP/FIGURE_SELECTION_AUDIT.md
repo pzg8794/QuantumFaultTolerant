@@ -55,7 +55,7 @@ These figures were added after checking the second-checkpoint archive for append
 | Appendix image | Rationale |
 |---|---|
 | `figures/icnp/ICNP-CODE-032_g9_network_gap_analysis_panel_c_oracle_gap_context_vs_exp3_by_scenario_c.png` | Supports the contextual-versus-EXP3 robustness contrast under matched threat/capacity variation. |
-| `figures/icnp/ICNP-CODE-053_fig6_context_capacity.png` | Retained standalone context-capacity evidence after the duplicate grouped Panel D was replaced. |
+| `figures/icnp/ICNP-CODE-053_fig6_context_capacity.png` | Retained standalone context-capacity evidence after the duplicate grouped Panel D was replaced; regenerated with the same Matplotlib style as the former grouped panel. |
 | `figures/icnp/ICNP-CODE-056_fig10_threat_rules.png` | Supports scenario-conditioned deployment guidance and threat-rule interpretation. |
 
 ### Grouped synthesis and diagnostics

@@ -2,12 +2,19 @@
 
 This log records feedback-resolution batches applied to the active ICNP venue draft. It complements the per-section audit notes and follows the repository process in `AGENTS.md`: identify the owning file, make the smallest safe change, preserve validated content, and keep reviewer feedback traceable as LaTeX source comments with `SOLVED` explanations.
 
+## Batch: May 23 Figure 11 restyle
+
+- **Owning files changed:** `figures/icnp-exported-assets/build_G8_G9.py`, `figures/icnp/ICNP-CODE-053_fig6_context_capacity.png`, `figures/icnp/icnp_validation_image_manifest.csv`, `ICNP_VENUE_PREP/BUILD_VALIDATION_LOG.md`
+- **Reason for batching:** The retained standalone `Context-Capacity Interaction` figure needed to look like the former grouped synthesis Panel D, because that grouped panel had been replaced by Replay-Configuration Sensitivity.
+- **Change:** Added a reproducible standalone context-capacity export path to the Matplotlib generator and regenerated the existing Figure 11 image path without changing the underlying data or LaTeX label.
+- **Validation:** Full LaTeX compile passed with no unresolved references; PDF remains 16 pages. Page 13 was rendered and inspected, and the page-9 font warning was triaged in `BUILD_VALIDATION_LOG.md`.
+
 ## Batch: May 22 appendix duplicate-figure consolidation
 
 - **Owning files changed:** `ICNP_VENUE_PREP/APPENDIX_DIAGNOSTIC_FIGURES.tex`, `ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex`, `ICNP_VENUE_PREP/DISCUSSION.tex`, `figures/icnp-exported-assets/build_G8_G9.py`, `ICNP_VENUE_PREP/FIGURE_SELECTION_AUDIT.md`
 - **Regenerated asset:** `figures/icnp/ICNP-CODE-024_g8_advanced_4panel_grouped_full_figure.png`
 - **Reason for batching:** The appendix had duplicate capacity/replay diagnostics. The previous grouped synthesis Panel D duplicated the standalone Context-Capacity Interaction figure, so Panel D was repurposed to carry the original Replay-Configuration Sensitivity line view while the standalone context-capacity evidence was retained.
-- **Change:** Removed the standalone replay-sensitivity line figure, retained the standalone Context-Capacity Interaction figure as the kept copy, updated grouped synthesis Panel D/caption/context to the replay-sensitivity view, and set the two main-body Figure 6 panels to matching image heights.
+- **Change:** Removed the standalone replay-sensitivity line figure, retained the standalone Context-Capacity Interaction figure as the kept copy, regenerated that retained figure with the same Matplotlib style/data view as the former grouped Panel D, updated grouped synthesis Panel D/caption/context to the replay-sensitivity view, and set the two main-body Figure 6 panels to matching image heights.
 - **Validation:** Full LaTeX compile passed with no unresolved references; PDF is 16 pages total. Main-body page 7 and appendix pages 12--14 were rendered and visually inspected.
 
 ## Batch: May 22 replay-sensitivity image swap
