@@ -35,6 +35,13 @@ This log records feedback-resolution batches applied to the active ICNP venue dr
 - **Change:** Regenerated only the active Figure 10(c)--(d) appendix panels from the G12 source script. Panel (c) now spells out `Baseline`, `Markov`, `Stochastic`, `Adaptive`, and `Online Adaptive`; panel (d) uses larger markers and direct model labels above the points.
 - **Validation:** Full LaTeX compile passed; PDF is 16 pages. Appendix page 13 was rendered and inspected to confirm the scenario labels and point labels are visible.
 
+### Follow-up: Figure 10(c)--(d) percentage labels and duplicate-title cleanup
+
+- **Owning files changed:** `ICNP_VENUE_PREP/APPENDIX_DIAGNOSTIC_FIGURES.tex`, `figures/icnp_graphs/build_G10_G14.py`, `figures/icnp/ICNP-NOTEBOOK-053_g12_panel_a_efficiency_by_scenario.png`, `figures/icnp/ICNP-NOTEBOOK-054_g12_panel_b_stochastic_vs_adaptive_gap.png`
+- **Reason for follow-up:** The active appendix Figure 10(c)--(d) panels still carried an internal plot title directly under the LaTeX panel title, and the visible values were not consistently marked as percentages.
+- **Change:** Removed the internal Plotly titles from the two active panels, added positive spacing between the LaTeX panel title and the image, added percentage labels to the Figure 10(c) bars, and added percentage coordinates to the Figure 10(d) direct point labels.
+- **Validation:** Full LaTeX compile passed; PDF is 16 pages. Appendix page 13 was rendered and inspected to confirm the duplicate titles are gone and the percentage values remain readable.
+
 ## Batch: May 23 Figure 11 restyle
 
 - **Owning files changed:** `figures/icnp-exported-assets/build_G8_G9.py`, `figures/icnp/ICNP-CODE-053_fig6_context_capacity.png`, `figures/icnp/icnp_validation_image_manifest.csv`, `ICNP_VENUE_PREP/BUILD_VALIDATION_LOG.md`
