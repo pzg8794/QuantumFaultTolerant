@@ -482,19 +482,20 @@ def draw_cross_testbed_panel(ax, *, include_panel_label=True):
                        zorder=6,alpha=0.95,edgecolors='white',lw=0.9)
             if v == max(vals):
                 ax.text(ji, v + 1.05, f'best {v:.1f}%', ha='center',
-                        fontsize=8.0, color=col, fontweight='bold',
+                        fontsize=9.6, color=col, fontweight='bold',
                         bbox=dict(boxstyle='round,pad=0.16', facecolor='white', alpha=0.82, edgecolor='none'))
         ax.text(ji,max(vals)+2.65,f'gap {100-max(vals):.1f}pp',ha='center',
-                fontsize=7.8,color=col,fontweight='bold')
+                fontsize=9.2,color=col,fontweight='bold')
     ax.axhline(85,color=C['THRESH'],ls='--',lw=1.2,alpha=0.7)
-    ax.text(3.45,85.45,'85% internal target',ha='right',va='bottom',fontsize=7.4,color=C['THRESH'])
-    ax.set_xticks(range(4)); ax.set_xticklabels(tl,fontsize=7.8)
-    ax.set_ylabel('Oracle-Norm. Efficiency (%)')
+    ax.text(3.45,85.45,'85% internal target',ha='right',va='bottom',fontsize=8.8,color=C['THRESH'])
+    ax.set_xticks(range(4)); ax.set_xticklabels(tl,fontsize=9.0)
+    ax.set_ylabel('Oracle-Norm. Efficiency (%)', fontsize=10.2)
+    ax.tick_params(axis='y', labelsize=9.0)
     ax.set_ylim(39,88)
     ax.set_facecolor('#f9f9f9')
     for mk,mn in zip(amk9,aln9):
         ax.scatter([],[],marker=mk,color='#555',s=42,label=mn[:12])
-    ax.legend(loc='lower left',ncol=2,frameon=True,framealpha=0.88,fontsize=7.0)
+    ax.legend(loc='lower left',ncol=2,frameon=True,framealpha=0.88,fontsize=8.2)
     if include_panel_label:
         panel_label(ax,'I','Cross-Testbed Efficiency & Oracle Gap (Std. 4K/2K/5R)')
 
@@ -884,11 +885,11 @@ def build_threat_heatmap_panel():
 
 def build_cross_testbed_panel():
     base_style()
-    fig, ax = plt.subplots(figsize=(7.64, 4.545), dpi=200)
+    fig, ax = plt.subplots(figsize=(8.0, 4.9), dpi=240)
     fig.patch.set_facecolor('white')
     draw_cross_testbed_panel(ax, include_panel_label=False)
     fig.subplots_adjust(left=0.08, right=0.98, top=0.97, bottom=0.22)
-    fig.savefig(OUT_PANEL_I, dpi=200, facecolor='white')
+    fig.savefig(OUT_PANEL_I, dpi=240, facecolor='white')
     plt.close(fig)
     print(f"Wrote {OUT_PANEL_I}")
 

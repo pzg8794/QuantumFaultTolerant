@@ -191,6 +191,7 @@ fig3.add_trace(go.Bar(
     marker_color=colors_fam,
     text=[f"{v:.1f}%" for v in best_effs],
     textposition='outside', width=0.6,
+    textfont=dict(size=16),
 ))
 
 # Bracket: classical → hybrid gap
@@ -201,14 +202,14 @@ fig3.add_shape(type='line', x0=-0.35, x1=-0.25, y0=77.0,  y1=77.0,
 fig3.add_shape(type='line', x0=-0.35, x1=-0.25, y0=90.86, y1=90.86,
                line=dict(color='#e74c3c', width=2))
 fig3.add_annotation(x=-0.48, y=83.9, text="+13.9pp",
-                    showarrow=False, font=dict(color='#e74c3c', size=12),
+                    showarrow=False, font=dict(color='#e74c3c', size=15),
                     textangle=-90)
 
 # 85% threshold
 fig3.add_shape(type='line', x0=-0.5, x1=4.5, y0=85, y1=85,
                line=dict(color='#005BBB', width=3, dash='dash'))
 fig3.add_annotation(x=4.45, y=85.65, text="85% threshold",
-                    showarrow=False, font=dict(color='#3498db', size=10),
+                    showarrow=False, font=dict(color='#3498db', size=13),
                     xanchor='right',
                     yanchor='bottom',
                     bgcolor='rgba(255,255,255,0.80)',
@@ -219,9 +220,10 @@ fig3.update_layout(
     margin=dict(t=8, r=12, b=34, l=56, pad=0),
     showlegend=False,
     xaxis_range=[-0.6, 4.6],
+    font=dict(size=14),
 )
-fig3.update_xaxes(title_text="Model Family")
-fig3.update_yaxes(title_text="Oracle-Norm. Efficiency (%)", range=[60, 95])
+fig3.update_xaxes(title_text="Model Family", title_font=dict(size=16), tickfont=dict(size=14))
+fig3.update_yaxes(title_text="Oracle-Norm. Efficiency (%)", range=[60, 95], title_font=dict(size=16), tickfont=dict(size=14))
 save_plotly_figure(fig3, "icnp_graphs/G3_family_summary.png")
 print("✓ G3 saved")
 
