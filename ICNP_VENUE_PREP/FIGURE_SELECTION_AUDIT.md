@@ -55,16 +55,16 @@ These figures were added after checking the second-checkpoint archive for append
 | Appendix image | Rationale |
 |---|---|
 | `figures/icnp/ICNP-CODE-032_g9_network_gap_analysis_panel_c_oracle_gap_context_vs_exp3_by_scenario_c.png` | Supports the contextual-versus-EXP3 robustness contrast under matched threat/capacity variation. |
-| `figures/icnp/ICNP-CODE-053_fig6_context_capacity.png` | Supports the context-capacity interaction and capacity-sensitivity claims. |
+| `figures/icnp/ICNP-CODE-053_fig6_context_capacity.png` | Retained standalone context-capacity evidence after the duplicate grouped Panel D was replaced. |
 | `figures/icnp/ICNP-CODE-056_fig10_threat_rules.png` | Supports scenario-conditioned deployment guidance and threat-rule interpretation. |
 
 ### Grouped synthesis and diagnostics
 
 | Appendix image | Rationale |
 |---|---|
-| `figures/icnp/ICNP-CODE-024_g8_advanced_4panel_grouped_full_figure.png` | Dense synthesis of oracle gaps, capacity effects, allocator efficiency, and contextual-capacity behavior. |
+| `figures/icnp/ICNP-CODE-024_g8_advanced_4panel_grouped_full_figure.png` | Dense synthesis of oracle gaps, capacity effects, allocator efficiency, and replay-configuration sensitivity. |
 | `figures/icnp/ICNP-CODE-029_g9_network_gap_analysis_grouped_full_figure.png` | Broad diagnostic suite for path/fidelity, allocator budgets, threat escalation, capacity sensitivity, scenario penalties, allocator risk, and cross-testbed behavior. |
-| `figures/icnp/ICNP-CODE-035_g9_network_gap_analysis_panel_f_capacity_paradox_all_6_replay_configs_sc.png` | Detailed support for the capacity-paradox claim beyond the compact main figure. |
+| `figures/icnp/ICNP-CODE-035_g9_network_gap_analysis_panel_f_capacity_paradox_all_6_replay_configs_sc.png` | Source panel folded into grouped synthesis Panel D rather than kept as a standalone appendix duplicate. |
 | `figures/icnp/ICNP-CODE-036_g9_network_gap_analysis_panel_g_scenario_penalty_vs_baseline_by_algorith.png` | Detailed support for threat penalty and robustness-floor analysis. |
 | `figures/icnp/ICNP-CODE-037_g9_network_gap_analysis_panel_h_allocator_risk_floor_mean_peak_icpursuit.png` | Detailed support for allocator risk and deployment guidance. |
 | `figures/icnp/ICNP-CODE-034_g9_network_gap_analysis_panel_e_threat_escalation_heatmap_algo_scenario.png` | Diagnostic heatmap behind threat-escalation claims. |
@@ -80,10 +80,11 @@ Detailed Cross-Testbed and Model-Family Results
 Additional Diagnostic Figures
   - Second-Checkpoint Claim Support
   - Grouped Synthesis Diagnostics
-  - Detailed Supporting Diagnostics
 ```
 
 The full result tables were reformatted with fixed-width columns, tighter spacing, concise testbed descriptors, and takeaway rows to prevent overflow and make the appendix presentable under IEEE layout.
+
+The standalone replay-sensitivity line plot was consolidated on May 22: the grouped synthesis Panel D now carries the replay-configuration sensitivity view, while the standalone Context-Capacity Interaction figure remains as the kept context-capacity evidence.
 
 ## Excluded from main paper for now
 

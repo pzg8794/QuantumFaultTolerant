@@ -2,6 +2,29 @@
 
 This log records non-destructive Overleaf/PDF validation for `ICNP_2026_venue_draft.tex`.
 
+## Validation pass: May 22 appendix duplicate-figure consolidation
+
+- **Date:** 2026-05-22
+- **Active draft:** `ICNP_2026_venue_draft.tex`
+- **Purpose:** Validate removal of the duplicate standalone replay figure, retention of the standalone context-capacity figure, and replacement of grouped synthesis Panel D with the replay-sensitivity line view.
+
+What was checked:
+
+- [x] Latest GitHub paper state pulled before editing (`633590f`, `Swap replay sensitivity figures`).
+- [x] `figures/icnp-exported-assets/build_G8_G9.py` compiles in the `.quantum` environment.
+- [x] Grouped synthesis asset regenerated from source code, not manual PNG editing.
+- [x] Removed label `fig:appendix_replay_sensitivity_line_view` has no remaining active references.
+- [x] Full draft compiled locally with `latexmk -pdf -interaction=nonstopmode -halt-on-error ICNP_2026_venue_draft.tex`.
+- [x] No unresolved references remained in the final LaTeX log.
+- [x] Generated PDF is 16 pages total.
+- [x] Main-body Figure 6 page and appendix diagnostic pages were rendered and visually inspected.
+
+Observed outcome:
+
+- Main-body Figure 6 keeps the bar-based replay-sensitivity panel and now uses matching subfigure image heights.
+- Appendix grouped synthesis Panel D now preserves the replay-configuration sensitivity line view.
+- Standalone replay sensitivity was removed as a duplicate, while standalone Context-Capacity Interaction was retained as the kept context-capacity evidence.
+
 ## Validation pass: May 22 replay-sensitivity image swap
 
 - **Date:** 2026-05-22

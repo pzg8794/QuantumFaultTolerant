@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build G8 and G9 advanced result figures for the ICNP paper.
 
-G8 — 4-panel gap synthesis (family gap, capacity paradox, allocator, testbed)
+G8 — 4-panel gap synthesis (family gap, capacity paradox, allocator, replay sensitivity)
 G9 — 9-panel networking performance & gap analysis
      (fidelity decay, qubit budget, Oracle-gap bars, RQ1 tiers,
       threat escalation heatmap, capacity paradox lines,
@@ -590,9 +590,10 @@ def build_G8():
     panel_label(axC,'C','Allocator Efficiency per Scenario (iCPursuitNeuralUCB)')
     panel_subtitle(axC, 'Allocator efficiency')
 
-    # D — context-capacity detail replacing duplicate cross-testbed content
-    draw_context_capacity_panel(axD)
-    panel_subtitle(axD, 'Context-capacity effects')
+    # D — replay-configuration sensitivity retained after standalone duplicate removal
+    draw_capacity_all_configs_panel(axD, include_panel_label=False)
+    panel_label(axD, 'D', 'Replay-Configuration Sensitivity')
+    panel_subtitle(axD, 'Replay sensitivity')
 
     fig.subplots_adjust(top=0.96)
     fig.text(0.5,-0.008,

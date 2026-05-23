@@ -2,6 +2,14 @@
 
 This log records feedback-resolution batches applied to the active ICNP venue draft. It complements the per-section audit notes and follows the repository process in `AGENTS.md`: identify the owning file, make the smallest safe change, preserve validated content, and keep reviewer feedback traceable as LaTeX source comments with `SOLVED` explanations.
 
+## Batch: May 22 appendix duplicate-figure consolidation
+
+- **Owning files changed:** `ICNP_VENUE_PREP/APPENDIX_DIAGNOSTIC_FIGURES.tex`, `ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex`, `ICNP_VENUE_PREP/DISCUSSION.tex`, `figures/icnp-exported-assets/build_G8_G9.py`, `ICNP_VENUE_PREP/FIGURE_SELECTION_AUDIT.md`
+- **Regenerated asset:** `figures/icnp/ICNP-CODE-024_g8_advanced_4panel_grouped_full_figure.png`
+- **Reason for batching:** The appendix had duplicate capacity/replay diagnostics. The previous grouped synthesis Panel D duplicated the standalone Context-Capacity Interaction figure, so Panel D was repurposed to carry the original Replay-Configuration Sensitivity line view while the standalone context-capacity evidence was retained.
+- **Change:** Removed the standalone replay-sensitivity line figure, retained the standalone Context-Capacity Interaction figure as the kept copy, updated grouped synthesis Panel D/caption/context to the replay-sensitivity view, and set the two main-body Figure 6 panels to matching image heights.
+- **Validation:** Full LaTeX compile passed with no unresolved references; PDF is 16 pages total. Main-body page 7 and appendix pages 12--14 were rendered and visually inspected.
+
 ## Batch: May 22 replay-sensitivity image swap
 
 - **Owning files changed:** `ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex`, `ICNP_VENUE_PREP/APPENDIX_DIAGNOSTIC_FIGURES.tex`, `ICNP_VENUE_PREP/HIGH_PRIORITY_REVIEW_BACKLOG.md`
