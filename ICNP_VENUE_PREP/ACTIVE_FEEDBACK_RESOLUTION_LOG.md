@@ -9,6 +9,12 @@ This log records feedback-resolution batches applied to the active ICNP venue dr
 - **Change:** Converted the two standalone appendix support figures into one two-panel figure, equalized the two panel image heights, widened the four grouped synthesis panel slots, rewrote each subcaption to state what the panel shows/evidences/means, and made the nearby appendix prose reference the correct appendix figure labels.
 - **Validation:** Full LaTeX compile passed; PDF remains 16 pages. Appendix pages 13--14 were rendered and inspected to confirm Figures 11--12 fit and captions are visible.
 
+### Follow-up: Appendix support four-panel validation update
+
+- **Reason for follow-up:** The two-panel appendix support view still looked visually similar across panels, and the validation hub needed to reflect the active paper figure set.
+- **Change:** Folded the standalone Contextual-vs-EXP3 Oracle-gap diagnostic into the appendix support figure and added the notebook-validated qubit-budget heatmap, producing a four-panel appendix figure without duplicating the Oracle-gap image elsewhere.
+- **Validation:** Active figure-reference audit reports no missing figure labels, and the active includegraphics audit reports no exact duplicate image files used in the paper.
+
 ## Batch: May 23 Figure 11 restyle
 
 - **Owning files changed:** `figures/icnp-exported-assets/build_G8_G9.py`, `figures/icnp/ICNP-CODE-053_fig6_context_capacity.png`, `figures/icnp/icnp_validation_image_manifest.csv`, `ICNP_VENUE_PREP/BUILD_VALIDATION_LOG.md`
