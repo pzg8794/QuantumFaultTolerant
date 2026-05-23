@@ -34,6 +34,21 @@ OUT_PANEL_D = (
     / "icnp"
     / "ICNP-CODE-033_g9_network_gap_analysis_panel_d_rq1_algorithm_tier_separation_stochastic.png"
 )
+OUT_G8_PANEL_A = (
+    SCRIPT_DIR.parent
+    / "icnp"
+    / "ICNP-CODE-025_g8_advanced_4panel_panel_a_oracle_gap_distribution_by_model_family.png"
+)
+OUT_G8_PANEL_B = (
+    SCRIPT_DIR.parent
+    / "icnp"
+    / "ICNP-CODE-026_g8_advanced_4panel_panel_b_capacity_paradox_replay_scaling_by_scenario_s.png"
+)
+OUT_G8_PANEL_C = (
+    SCRIPT_DIR.parent
+    / "icnp"
+    / "ICNP-CODE-027_g8_advanced_4panel_panel_c_allocator_efficiency_per_scenario_icpursuitne.png"
+)
 OUT_PANEL_C = (
     SCRIPT_DIR.parent
     / "icnp"
@@ -524,35 +539,29 @@ def base_style():
 
 
 # ════════════════════════════════════════════════════════════════════════════
-def build_G8():
-    base_style()
-    fig = plt.figure(figsize=(16,12)); fig.patch.set_facecolor('white')
-    gs  = gridspec.GridSpec(2,2,figure=fig,hspace=0.52,wspace=0.42)
-    axA = fig.add_subplot(gs[0,0]); axB = fig.add_subplot(gs[0,1])
-    axC = fig.add_subplot(gs[1,0]); axD = fig.add_subplot(gs[1,1])
-
-    # A — notched box + strip: Oracle-gap by family
+def draw_g8_oracle_gap_distribution_panel(ax):
     fams=['CMAB','iCMAB','EXP3','Hybrid']; fc=[C['CMAB'],C['iCMAB'],C['EXP3'],C['HYBRID']]
     dA=[GAP_DATA[f] for f in fams]
-    bp=axA.boxplot(dA,patch_artist=True,notch=True,
+    bp=ax.boxplot(dA,patch_artist=True,notch=True,
         medianprops=dict(color='white',linewidth=2.5),
         whiskerprops=dict(linewidth=1.4,linestyle='--'),capprops=dict(linewidth=1.8),
         flierprops=dict(marker='D',markersize=3.5,alpha=0.45,linestyle='none'))
     for p,col in zip(bp['boxes'],fc): p.set_facecolor(col); p.set_alpha(0.82)
     for i,(d,col) in enumerate(zip(dA,fc),1):
         jit=RNG.uniform(-0.22,0.22,len(d))
-        axA.scatter(np.full(len(d),i)+jit,d,s=24,color=col,alpha=0.38,zorder=3,linewidths=0)
-    label_box_medians(axA, range(1, 5), dA, fc, dy=0.8)
-    axA.axhline(15,color=C['THRESH'],ls='--',lw=1.2,alpha=0.7)
-    axA.text(4.42,16.8,'85% eff.',ha='right',va='bottom',fontsize=9,color=C['THRESH'])
-    axA.set_xticks(range(1,5)); axA.set_xticklabels(fams,fontsize=10.5)
-    axA.set_ylabel('Oracle Gap (pp)'); axA.set_facecolor('#f9f9f9')
+        ax.scatter(np.full(len(d),i)+jit,d,s=24,color=col,alpha=0.38,zorder=3,linewidths=0)
+    label_box_medians(ax, range(1, 5), dA, fc, dy=0.8)
+    ax.axhline(15,color=C['THRESH'],ls='--',lw=1.2,alpha=0.7)
+    ax.text(4.42,16.8,'85% eff.',ha='right',va='bottom',fontsize=9,color=C['THRESH'])
+    ax.set_xticks(range(1,5)); ax.set_xticklabels(fams,fontsize=10.5)
+    ax.set_ylabel('Oracle Gap (pp)'); ax.set_facecolor('#f9f9f9')
     fam_handles=[mpatches.Patch(color=col,alpha=0.82,label=fam) for fam,col in zip(fams,fc)]
-    axA.legend(handles=fam_handles,loc='upper right',ncol=2,frameon=True,framealpha=0.88,fontsize=8,title='Family')
-    panel_label(axA,'A','Oracle-Gap Distribution by Model Family')
-    panel_subtitle(axA, 'Oracle-gap distribution')
+    ax.legend(handles=fam_handles,loc='upper right',ncol=2,frameon=True,framealpha=0.88,fontsize=8,title='Family')
+    panel_label(ax,'A','Oracle-Gap Distribution by Model Family')
+    panel_subtitle(ax, 'Oracle-gap distribution')
 
-    # B — grouped box: capacity paradox
+
+def draw_g8_capacity_delta_panel(axB):
     n=5; pos_T=[i*2.6+0.45 for i in range(n)]; pos_Tb=[i*2.6+1.15 for i in range(n)]
     def dboxes(ax,dl,pos,col,lbl):
         b=ax.boxplot(dl,positions=pos,widths=0.52,patch_artist=True,
@@ -578,7 +587,8 @@ def build_G8():
     panel_label(axB,'B','Capacity Paradox: Replay Scaling Δ by Scenario & Semantic')
     panel_subtitle(axB, 'Replay drop/recovery')
 
-    # C — grouped bar: allocator × scenario
+
+def draw_g8_allocator_efficiency_panel(axC):
     anames=['Fixed','DynamicUCB','Thompson','Random']
     acols=[C['FIXED'],C['DUB'],C['THOM'],C['RAND']]
     x=np.arange(5); w=0.18; offs=np.array([-1.5,-0.5,0.5,1.5])*w
@@ -595,6 +605,18 @@ def build_G8():
     axC.set_facecolor('#f9f9f9')
     panel_label(axC,'C','Allocator Efficiency per Scenario (iCPursuitNeuralUCB)')
     panel_subtitle(axC, 'Allocator efficiency')
+
+
+def build_G8():
+    base_style()
+    fig = plt.figure(figsize=(16,12)); fig.patch.set_facecolor('white')
+    gs  = gridspec.GridSpec(2,2,figure=fig,hspace=0.52,wspace=0.42)
+    axA = fig.add_subplot(gs[0,0]); axB = fig.add_subplot(gs[0,1])
+    axC = fig.add_subplot(gs[1,0]); axD = fig.add_subplot(gs[1,1])
+
+    draw_g8_oracle_gap_distribution_panel(axA)
+    draw_g8_capacity_delta_panel(axB)
+    draw_g8_allocator_efficiency_panel(axC)
 
     # D — replay-configuration sensitivity retained after standalone duplicate removal
     draw_capacity_all_configs_panel(axD, include_panel_label=False)
@@ -805,6 +827,39 @@ def build_context_capacity_panel():
     print(f"Wrote {OUT_CONTEXT_CAPACITY}")
 
 
+def build_g8_oracle_gap_distribution_panel():
+    base_style()
+    fig, ax = plt.subplots(figsize=(7.64, 4.58), dpi=200)
+    fig.patch.set_facecolor('white')
+    draw_g8_oracle_gap_distribution_panel(ax)
+    fig.subplots_adjust(left=0.08, right=0.985, top=0.97, bottom=0.13)
+    fig.savefig(OUT_G8_PANEL_A, dpi=200, bbox_inches='tight', pad_inches=0.04, facecolor='white')
+    plt.close(fig)
+    print(f"Wrote {OUT_G8_PANEL_A}")
+
+
+def build_g8_capacity_delta_panel():
+    base_style()
+    fig, ax = plt.subplots(figsize=(7.64, 4.58), dpi=200)
+    fig.patch.set_facecolor('white')
+    draw_g8_capacity_delta_panel(ax)
+    fig.subplots_adjust(left=0.09, right=0.985, top=0.97, bottom=0.16)
+    fig.savefig(OUT_G8_PANEL_B, dpi=200, bbox_inches='tight', pad_inches=0.04, facecolor='white')
+    plt.close(fig)
+    print(f"Wrote {OUT_G8_PANEL_B}")
+
+
+def build_g8_allocator_efficiency_panel():
+    base_style()
+    fig, ax = plt.subplots(figsize=(7.64, 4.58), dpi=200)
+    fig.patch.set_facecolor('white')
+    draw_g8_allocator_efficiency_panel(ax)
+    fig.subplots_adjust(left=0.08, right=0.985, top=0.97, bottom=0.13)
+    fig.savefig(OUT_G8_PANEL_C, dpi=200, bbox_inches='tight', pad_inches=0.04, facecolor='white')
+    plt.close(fig)
+    print(f"Wrote {OUT_G8_PANEL_C}")
+
+
 def build_scenario_penalty_panel():
     base_style()
     fig, ax = plt.subplots(figsize=(7.64, 4.58), dpi=200)
@@ -842,7 +897,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Build ICNP G8/G9 result figures.")
     parser.add_argument(
         "--only",
-        choices=["all", "panel-c", "panel-d", "panel-e", "panel-f", "fig6b-bar", "context-capacity", "panel-g", "panel-h", "panel-i"],
+        choices=["all", "panel-c", "panel-d", "panel-e", "panel-f", "fig6b-bar", "context-capacity", "g8-a", "g8-b", "g8-c", "panel-g", "panel-h", "panel-i"],
         default="all",
         help="Build all figures or only one manuscript-facing labeled panel.",
     )
@@ -859,6 +914,12 @@ if __name__ == "__main__":
         build_capacity_bar_alternative_panel()
     elif args.only == "context-capacity":
         build_context_capacity_panel()
+    elif args.only == "g8-a":
+        build_g8_oracle_gap_distribution_panel()
+    elif args.only == "g8-b":
+        build_g8_capacity_delta_panel()
+    elif args.only == "g8-c":
+        build_g8_allocator_efficiency_panel()
     elif args.only == "panel-g":
         build_scenario_penalty_panel()
     elif args.only == "panel-h":
@@ -873,6 +934,9 @@ if __name__ == "__main__":
         build_threat_heatmap_panel()
         build_capacity_all_configs_panel()
         build_context_capacity_panel()
+        build_g8_oracle_gap_distribution_panel()
+        build_g8_capacity_delta_panel()
+        build_g8_allocator_efficiency_panel()
         build_scenario_penalty_panel()
         build_allocator_risk_panel()
         build_cross_testbed_panel()
