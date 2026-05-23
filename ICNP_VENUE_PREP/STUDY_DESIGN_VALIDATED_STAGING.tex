@@ -5,7 +5,7 @@
 \subsection{Experimental Design}
 \label{sec:expDesign}
 
-\cref{sec:SystemModel} defines the configuration axes used to answer \cref{sec:research_questions}. \Cref{tab:notation_metrics} defines all declared variables and \Cref{tab:config_summary} summarizes the design dimensions, tested options, and RQ coverage.
+\cref{sec:SystemModel} defines the configuration axes to answer \cref{sec:research_questions}. \Cref{tab:notation_metrics} defines variables, and \Cref{tab:config_summary} summarizes design dimensions, tested options, and RQ coverage.
 
 \begin{table}[ht!]
 \footnotesize
@@ -13,19 +13,19 @@
 \setlength{\tabcolsep}{4pt}
 \caption{Notation and metrics used in the matched evaluation.}
 \label{tab:notation_metrics}
-\begin{tabular}{p{0.10\linewidth} p{0.80\linewidth}}
+\begin{tabular}{p{0.09\linewidth} p{0.81\linewidth}}
 \toprule
 \textbf{Term} & \textbf{Meaning} \\
 \midrule
-\texttt{Oracle} gap & Difference between achieved efficiency and the \texttt{Oracle} reference. \\
+\texttt{Oracle} gap & Difference between achieved efficiency and \texttt{Oracle} reference. \\
 Floor & Lowest efficiency observed in the stated comparison scope; higher floors indicate stronger worst-case robustness. \\
 CV & Coefficient of variation across scenario-level means; lower values indicate more stable performance. \\
 $s$ & Replay-capacity scale factor; larger $s$ increases replay scale. \\
-$S$ & Number of independent runs used for repeated stochastic evaluation. \\
+$S$ & Number of independent runs for repeated stochastic evaluation. \\
 $F_b$ & Base frame horizon used for $T_b$-type replay anchoring. \\
 $F_c$ & Current frame horizon used for $T$-type replay anchoring. \\
-$T_b$ & Replay capacity anchored to the base horizon, defined as $T_b=sF_b$. \\
-$T$ & Replay capacity anchored to the current horizon, defined as $T=sF_c$. \\
+$T_b$ & Replay capacity anchored to base horizon: $T_b=sF_b$.\\
+$T$ & Replay capacity anchored to the current horizon: $T=sF_c$. \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -140,12 +140,12 @@ The five threat settings follow \cref{subsec:threats} and \cref{tab:config_summa
 \setlength{\tabcolsep}{4pt}
 \caption{Scenario specifications used for matched threat evaluation.}
 \label{tab:scenario_specs}
-\begin{tabular}{p{0.22\linewidth} p{0.62\linewidth} p{0.08\linewidth}}
+\begin{tabular}{p{0.18\linewidth} p{0.67\linewidth} p{0.09\linewidth}}
 \toprule
 \textbf{Scenario} & \textbf{Specification} & \textbf{RQ(s)} \\
 \midrule
 Baseline & 0\% disruption; benign-operation reference & RQ1 \\
-Stochastic & 6.25\% i.i.d. disruption~\cite{huang2024quantum} & RQ1, RQ2 \\
+Stochastic & 6.25\% i.i.d. disruption~\cite{huang2024quantum} & RQ1-2 \\
 Markov & 25\% four-state structured disruption~\cite{huang2024quantum} & RQ2 \\
 Adaptive & 25\% high-usage, targeting over $w=50$ frames~\cite{huang2024quantum} & RQ2 \\
 OnlineAdaptive & 25\% adaptive targeting with $\gamma=0.97$ and softmax selection~\cite{huang2024quantum} & RQ2 \\
@@ -178,7 +178,7 @@ The evaluated bandit-policy portfolio spans classical, adversarial, contextual/n
 % \end{table}
 
 \smallTitle{Key bandit-policy features}
-CPursuitNeuralUCB adds topology/channel-quality context to pursuit learning, while iCPursuitNeuralUCB adds ARIMA$(1,0,1)$ forecasts with warmup window size ($n$), using $n\in\{50,100\}$~\cite{box2015time}. The Oracle normalizes efficiency to a perfect-information reference.
+CPursuitNeuralUCB adds topology/channel-quality context to pursuit learning, while iCPursuitNeuralUCB adds ARIMA$(1,0,1)$ forecasts with warmup window size ($n$), using $n\in\{50,100\}$~\cite{box2015time}. The Oracle normalizes efficiency to an ideal-reference baseline.
 % \shee{Define n}
 % SOLVED: Defined $n$ inline at first use as the ARIMA warmup window size.
 
@@ -217,4 +217,4 @@ and coefficient of variation (CV),
 \[
 \mathrm{CV}(\%)=\frac{\sigma(\mathrm{Eff})}{\mu(\mathrm{Eff})}\times100.
 \]
-Significance uses 10{,}000-sample nonparametric bootstrap confidence intervals~\cite{efron1994introduction}; differences above 5 percentage points (pp) with non-overlapping intervals are practically significant, and head-to-head wins require more than a 2 pp efficiency lead.
+Significance uses 10{,}000-sample nonparametric bootstrap confidence intervals~\cite{efron1994introduction}; differences above 5 percentage points (pp) with non-overlapping intervals are practically significant, and head-to-head wins require a $>2$ pp efficiency lead.

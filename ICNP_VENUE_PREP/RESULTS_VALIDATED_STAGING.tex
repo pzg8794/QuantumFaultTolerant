@@ -113,7 +113,7 @@ structured and adaptive interference.}
 \subsection{RQ2: Robustness Under Adaptive Threats}
 \label{subsec:rq2_answer}
 
-Under Markov, Adaptive, and OnlineAdaptive threats, contextual and informed policies maintain stronger robustness floors than EXP-family adversarial-first baselines (\cref{fig:threat_penalty_escalation,fig:robustness_floor}). This extends RQ1 from stochastic viability to adaptive disruption.
+Under Markov, Adaptive, and OnlineAdaptive threats, contextual and informed policies maintain stronger robustness floors than adversarial-first baselines (\cref{fig:threat_penalty_escalation,fig:robustness_floor}). This extends RQ1 from stochastic viability to adaptive disruption.
 
 \smallTitle{Threat scope and aggregation}
 RQ2 uses the Markov, Adaptive, and OnlineAdaptive threat slice from \cref{tab:scenario_specs}, restricted to the default allocator and aggregated across 4K--8K horizons, replay-capacity scale factor ($s$) with $s\in\{1,1.5,2\}$, both current-horizon ($T$) and base-horizon ($T_b$) replay semantics, and the 3- and 5-run suites. The table demonstrates the strongest CMAB and iCMAB representatives along with EXP-family adversarial baselines.
@@ -240,7 +240,7 @@ iCPursuitNeuralUCB & 99.9 & 94.8 & 93.0 & 92.8 & 99.8 & 96.0 & 3.3 \\
 {\footnotesize Bl=Baseline, Sh=Stochastic, Mk=Markov, Ag=Adaptive, OA=OnlineAdaptive; CV is computed across scenario means.}
 \end{table}
 
-\Cref{tab:rq3a_master_informative} shows that iCPursuitNeuralUCB improves global robustness mainly by lifting OnlineAdaptive efficiency from 81.5\% to 99.8\% (+18.3 percentage points (pp)) while keeping Stochastic, Markov, and Adaptive performance effectively unchanged. It reduces scenario-level dispersion from 6.5 to 3.3 CV. Thus, informative context is most valuable when the threat adapts online.
+\Cref{tab:rq3a_master_informative} shows that iCPursuitNeuralUCB improves global robustness mainly by lifting OnlineAdaptive efficiency from 81.5\% to 99.8\% (+18.3 \% points (pp)) while keeping Stochastic, Markov, and Adaptive performance unchanged. It reduces scenario-level dispersion from 6.5 to 3.3 CV. Thus, informative context is most valuable when the threat adapts online.
 
 % ============================================================================
 % RQ3b: Replay Capacity Scaling and Paradox
