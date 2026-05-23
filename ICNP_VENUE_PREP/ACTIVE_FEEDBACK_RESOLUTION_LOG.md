@@ -15,6 +15,12 @@ This log records feedback-resolution batches applied to the active ICNP venue dr
 - **Change:** Folded the standalone Contextual-vs-EXP3 Oracle-gap diagnostic into the appendix support figure and added the notebook-validated qubit-budget heatmap, producing a four-panel appendix figure without duplicating the Oracle-gap image elsewhere.
 - **Validation:** Active figure-reference audit reports no missing figure labels, and the active includegraphics audit reports no exact duplicate image files used in the paper.
 
+### Follow-up: Appendix support capacity-paradox expansion
+
+- **Reason for follow-up:** The appendix support figure needed the missing capacity-paradox evidence chain: replay efficiency by capacity level, regret over capacity steps, and paired replay-scaling deltas.
+- **Change:** Replaced the `Threat-Conditioned Deployment Rules` panel with the actual `G13 Capacity Paradox` asset (`ICNP-CODE-008`; the current manifest maps `ICNP-CODE-057` to a convergence image), then added `ICNP-CODE-009` and `ICNP-CODE-047` as two new panels. The figure now uses six panels with show/evidence/meaning captions and no duplicate active image files.
+- **Validation:** Full LaTeX compile passed; PDF remains 16 pages. The validation hub reports 20/20 active images mapped, no exact duplicate active image files, no missing figure labels, and six distinct appendix support panels.
+
 ## Batch: May 23 Figure 11 restyle
 
 - **Owning files changed:** `figures/icnp-exported-assets/build_G8_G9.py`, `figures/icnp/ICNP-CODE-053_fig6_context_capacity.png`, `figures/icnp/icnp_validation_image_manifest.csv`, `ICNP_VENUE_PREP/BUILD_VALIDATION_LOG.md`
