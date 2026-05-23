@@ -2,6 +2,38 @@
 
 This log records feedback-resolution batches applied to the active ICNP venue draft. It complements the per-section audit notes and follows the repository process in `AGENTS.md`: identify the owning file, make the smallest safe change, preserve validated content, and keep reviewer feedback traceable as LaTeX source comments with `SOLVED` explanations.
 
+## Batch: May 22 appendix-reference and Figure 5B bar-alternative pass
+
+- **Owning files changed:** `ICNP_2026_venue_draft.tex`, `ICNP_VENUE_PREP/APPENDIX_CROSS_TESTBED_TABLES.tex`, `ICNP_VENUE_PREP/APPENDIX_DIAGNOSTIC_FIGURES.tex`, `figures/icnp-exported-assets/build_G8_G9.py`, `ICNP_VENUE_PREP/HIGH_PRIORITY_REVIEW_BACKLOG.md`
+- **Generated asset:** `figures/icnp/ICNP-CODE-072_fig5b_threat_escalation_bar_alternative.png`
+- **Reason for batching:** The May 22 transcript asked for a surgical follow-up: briefly reference the moved framework figure in the Introduction, describe it in the appendix, ensure appendix figures/tables are connected to text, and add a bar version of Figure 5B for advisor feedback without replacing the main-body heatmap yet.
+
+### Resolved feedback / cleanup
+
+1. **Moved framework figure reference**
+   - **Issue:** The former Figure 1 evaluation pipeline was moved to the appendix, but the Introduction still needed a brief description that points readers to the appendix figure.
+   - **Change:** Reworded the Introduction sentence to describe the five matched inputs and explicitly identify the pipeline diagram as an appendix figure.
+
+2. **Appendix framework description**
+   - **Issue:** The appendix version of the framework figure needed its own description rather than relying only on the caption.
+   - **Change:** Added a short paragraph before the framework figure explaining how topology, threat regime, policy family, allocator choice, and replay semantics feed the matched evaluation grid.
+
+3. **Appendix figure/table connector coverage**
+   - **Issue:** Appendix figures and tables needed to be explicitly referenced or addressed in nearby prose.
+   - **Change:** Kept the setup tables/framework references, added the new Figure 5B alternative connector, and preserved explicit references to the diagnostic appendix figures and full-result appendix tables.
+
+4. **Figure 5B bar alternative**
+   - **Issue:** The transcript requested a bar-chart version of Figure 5B for advisor feedback before deciding whether to replace the current heatmap.
+   - **Change:** Generated a full-width appendix bar alternative from the same validated threat-escalation values and placed it first in the diagnostic appendix while leaving the main-body heatmap unchanged.
+
+### Validation status
+
+- [x] Pulled latest GitHub paper state before editing (`5bdd987`, `Updates from Overleaf`).
+- [x] Python figure generator compiles in the `.quantum` environment.
+- [x] Full LaTeX compile completed with no unresolved references.
+- [x] Generated PDF remains 18 pages total with Conclusion on page 10 and References starting on page 11.
+- [x] Appendix pages visually inspected for the new Figure 5B alternative and diagnostic figure connector order.
+
 ## Batch: May 21 image-first graph cleanup
 
 - **Owning files changed:** `figures/icnp-exported-assets/build_G8_G9.py`, `figures/icnp_figures/icnp_graphs.py`, `figures/icnp_graphs/code_and_plots/script.py`, `ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex`, `ICNP_VENUE_PREP/APPENDIX_DIAGNOSTIC_FIGURES.tex`
