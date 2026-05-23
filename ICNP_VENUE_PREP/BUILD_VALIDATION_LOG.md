@@ -2,6 +2,31 @@
 
 This log records non-destructive Overleaf/PDF validation for `ICNP_2026_venue_draft.tex`.
 
+## Validation pass: May 23 page-9 table-font warning fix
+
+- **Date:** 2026-05-23
+- **Active draft:** `ICNP_2026_venue_draft.tex`
+- **Purpose:** Apply the smallest safe source fix for the submission-checker warning: "Body font too small: minimum 10pt, saw values as small as 8.3pt (page 9)."
+
+What changed:
+
+- [x] Removed table-level `\footnotesize` from the two concise page-9 summary tables in `ICNP_VENUE_PREP/RESULTS_VALIDATED_CROSS_TESTBED.tex`:
+  - `tab:testbed_comparison_summary`
+  - `tab:model_family_comparison_summary`
+- [x] Left figure captions, table captions, manuscript claims, and page-flow controls unchanged.
+
+Validation:
+
+- [x] Full draft compiled locally with `latexmk -g -pdf -interaction=nonstopmode -halt-on-error ICNP_2026_venue_draft.tex`.
+- [x] No unresolved references remained in the final LaTeX log.
+- [x] Generated PDF remains 16 pages total.
+- [x] Page 9 rendered and visually inspected after the fix; Tables XI--XII remain readable and the main-body flow remains intact.
+
+Observed outcome:
+
+- The only real source-level small body text found on page 9 was the explicit `\footnotesize` used by Tables XI--XII. This fix rebuilds those table bodies at the surrounding IEEE body size without changing content.
+- If the venue checker still reports 8.3pt text after this change, the remaining trigger is likely IEEE caption/subcaption or image-internal text; that should be treated as a separate, higher-risk formatting decision rather than folded into this surgical table-font fix.
+
 ## Validation pass: May 23 Figure 11 restyle and page-9 font-warning triage
 
 - **Date:** 2026-05-23
