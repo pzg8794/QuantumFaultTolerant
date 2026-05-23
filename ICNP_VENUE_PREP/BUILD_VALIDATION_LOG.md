@@ -2,6 +2,22 @@
 
 This log records non-destructive Overleaf/PDF validation for `ICNP_2026_venue_draft.tex`.
 
+## Validation pass: May 22 replay-sensitivity image swap
+
+- **Date:** 2026-05-22
+- **Active draft:** `ICNP_2026_venue_draft.tex`
+- **Purpose:** Validate the requested swap of Replay-Configuration Sensitivity images.
+
+What was checked:
+
+- [x] Latest GitHub paper state pulled before editing (`d3b6442`, `Updates from Overleaf`).
+- [x] Main-body Figure 6B now uses `figures/icnp/ICNP-CODE-073_fig6b_replay_configuration_sensitivity_bar_alternative.png`.
+- [x] Appendix preserves the original line rendering, `figures/icnp/ICNP-CODE-035_g9_network_gap_analysis_panel_f_capacity_paradox_all_6_replay_configs_sc.png`.
+- [x] Full draft compiled locally with `latexmk -pdf -interaction=nonstopmode -halt-on-error ICNP_2026_venue_draft.tex`.
+- [x] No unresolved references remained in the final LaTeX log.
+- [x] Generated PDF remains 17 pages total.
+- [x] Main-body page 7 and appendix page 13 were rendered and visually inspected for the swapped Replay-Configuration Sensitivity images.
+
 ## Validation pass: May 22 space-recovery candidate sweep
 
 - **Date:** 2026-05-22

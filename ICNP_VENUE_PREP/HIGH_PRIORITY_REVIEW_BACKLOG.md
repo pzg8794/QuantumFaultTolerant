@@ -12,7 +12,7 @@ It intentionally does **not** replace `ICNP_DRAFT_AUDIT_TODO.md`; that file rema
 
 - **Active paper path:** `ICNP_2026_venue_draft.tex`.
 - **Editing rule:** update the owning staging file, then verify `ICNP_2026_venue_draft.tex` includes it.
-- **Latest GitHub paper state pulled:** `cd12aa4` (`Updates from Overleaf`) before the space-recovery candidate sweep.
+- **Latest GitHub paper state pulled:** `d3b6442` (`Updates from Overleaf`) before the replay-sensitivity image swap.
 - **Latest Overleaf branch checked:** `overleaf-2026-05-11-0445`.
 - **Overleaf/GitHub state:** latest Overleaf branch is identical to `main` at the time of this tracker.
 - **Review-panel limitation:** live Overleaf review-panel comments are not available through GitHub unless they are pushed/exported into the repository or pasted/uploaded into the working session.
@@ -40,16 +40,15 @@ It intentionally does **not** replace `ICNP_DRAFT_AUDIT_TODO.md`; that file rema
 | H9 | H | Final rendered-marker/source sweep. | **Final-gate / blocked** | Feedback markers may still be useful while advisors are commenting. User explicitly said source sweep should wait until everyone is done commenting. | Do only after advisors/reviewers confirm commenting is done. Convert or remove rendered markers before final submission. |
 | H10 | H | Cross-testbed/new testbed integration in the paper. | **Done in active source, pending reviewer acceptance** | Active draft includes `ICNP_VENUE_PREP/RESULTS_VALIDATED_CROSS_TESTBED`; abstract also states cross-testbed evaluation on three external quantum-network simulators. | Do not reopen unless review-panel comments or advisor feedback ask for changes. |
 | H11 | H | Maintain GitHub/Overleaf sync discipline. | **Done currently / monitor** | Latest Overleaf branch checked is identical to `main`; AGENTS.md says to compare Overleaf branches before overwriting. | Continue comparing before force-syncing or overwriting Overleaf changes. |
-| H12 | H | May 22 transcript: reference the moved framework figure and add a Replay-Configuration Sensitivity bar alternative. | **Done in active source / pending advisor choice** | Transcript requested a brief Introduction reference to the moved framework figure, a separate appendix description, proper appendix figure/table references, and a bar version of the Replay-Configuration Sensitivity panel for feedback. | Inspect the compiled appendix/PDF and ask advisors whether to keep the current line plot, replace it with the bar view, or keep the bar view only in the appendix. |
+| H12 | H | May 22 transcript: reference the moved framework figure and add a Replay-Configuration Sensitivity bar alternative. | **Done in active source** | Transcript requested a brief Introduction reference to the moved framework figure, a separate appendix description, proper appendix figure/table references, and a bar version of the Replay-Configuration Sensitivity panel for feedback. The bar rendering is now promoted to main-body Figure 6B, while the original line rendering is retained in the appendix. | Monitor only unless advisors request the line rendering back in the main body. |
 | H13 | H | Approve surgical space-recovery cuts. | **Open / approval queue ready** | Quick sweep documented approval-ready remove/replace candidates in `ICNP_VENUE_PREP/SPACE_RECOVERY_CANDIDATE_SWEEP.md`; no manuscript prose was changed in this sweep. | Review the candidate list and approve cuts in order: low-risk source/caption cuts first, then medium-risk compression, then page-end compression if still needed. |
 
 ## May 22 transcript-derived next items
 
-- **Done in this lane:** brief Introduction reference to the moved framework schematic; separate appendix description for the schematic; appendix figure/table connector references; bar-chart alternative for Replay-Configuration Sensitivity added as an appendix review option.
-- **Next reviewer-decision item:** decide whether the Replay-Configuration Sensitivity line plot should stay in the main body or be replaced by the bar alternative after advisor feedback.
+- **Done in this lane:** brief Introduction reference to the moved framework schematic; separate appendix description for the schematic; appendix figure/table connector references; Replay-Configuration Sensitivity bar chart promoted to the main body, with the original line rendering retained in the appendix.
 - **Next space-recovery item:** review `ICNP_VENUE_PREP/SPACE_RECOVERY_CANDIDATE_SWEEP.md` and approve which exact remove/replace proposals should be implemented.
 - **Next validation item:** inspect Overleaf warning panel after the GitHub sync/recompile and record only real warnings or regressions in `BUILD_VALIDATION_LOG.md`.
-- **Next visual item:** inspect appendix float order now that the bar alternative is added; fix only if ordering or readability is harmed.
+- **Next visual item:** inspect appendix float order after the image swap; fix only if ordering or readability is harmed.
 - **Final-gate items:** page-limit/font checker, rendered-marker sweep, public-link/double-blind metadata check, and source-comment cleanup after commenting is finished.
 
 ## Done in active source from recent paper work

@@ -2,6 +2,13 @@
 
 This log records feedback-resolution batches applied to the active ICNP venue draft. It complements the per-section audit notes and follows the repository process in `AGENTS.md`: identify the owning file, make the smallest safe change, preserve validated content, and keep reviewer feedback traceable as LaTeX source comments with `SOLVED` explanations.
 
+## Batch: May 22 replay-sensitivity image swap
+
+- **Owning files changed:** `ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex`, `ICNP_VENUE_PREP/APPENDIX_DIAGNOSTIC_FIGURES.tex`, `ICNP_VENUE_PREP/HIGH_PRIORITY_REVIEW_BACKLOG.md`
+- **Reason for batching:** The main-body Replay-Configuration Sensitivity panel should use the bar rendering, while the original line rendering remains available in the appendix for traceability.
+- **Change:** Swapped the main-body and appendix image references without changing underlying data or regenerating figures.
+- **Validation:** Full LaTeX compile passed with no unresolved references; PDF remains 17 pages, and the affected main-body and appendix pages were visually inspected.
+
 ## Batch: May 22 appendix-reference and replay-sensitivity bar-alternative pass
 
 - **Owning files changed:** `ICNP_2026_venue_draft.tex`, `ICNP_VENUE_PREP/APPENDIX_CROSS_TESTBED_TABLES.tex`, `ICNP_VENUE_PREP/APPENDIX_DIAGNOSTIC_FIGURES.tex`, `figures/icnp-exported-assets/build_G8_G9.py`, `ICNP_VENUE_PREP/HIGH_PRIORITY_REVIEW_BACKLOG.md`
