@@ -199,6 +199,9 @@ for model in top4:
         y=all_models[model],
         name=model,
         marker_color=C[model],
+        text=[f"{value:.1f}%" for value in all_models[model]],
+        textposition="outside",
+        cliponaxis=False,
     ))
 fig12a.add_hline(y=85, line_dash="dash", line_color="#8EC9F4", line_width=1.4)
 fig12a.add_annotation(
@@ -212,17 +215,18 @@ fig12a.add_annotation(
     bgcolor="rgba(255,255,255,0.78)",
 )
 fig12a.update_layout(
-    title=dict(text="Efficiency by Scenario"),
     xaxis_title="Scenario",
-    yaxis_title="Eff %",
-    yaxis_range=[50, 100],
+    yaxis_title="Efficiency (%)",
+    yaxis_range=[50, 103],
     legend=dict(orientation="h", x=0.02, y=1.02, xanchor="left", yanchor="bottom", font=dict(size=9)),
-    margin=dict(l=58, r=18, t=72, b=86),
+    margin=dict(l=58, r=18, t=30, b=86),
     plot_bgcolor="#EAF2FB",
     paper_bgcolor="white",
+    uniformtext_minsize=9,
+    uniformtext_mode="hide",
 )
 fig12a.update_xaxes(tickangle=0, tickfont=dict(size=10))
-fig12a.update_yaxes(gridcolor="white")
+fig12a.update_yaxes(gridcolor="white", ticksuffix="%")
 save_paper_panel(fig12a, "ICNP-NOTEBOOK-053_g12_panel_a_efficiency_by_scenario.png")
 
 fig12b = go.Figure()
@@ -241,11 +245,11 @@ for model, x_val, y_val in zip(mnames, x_s, y_a):
     fig12b.add_annotation(
         x=x_val,
         y=y_val,
-        text=short_model_labels[model],
+        text=f"{short_model_labels[model]}<br>{x_val:.1f}%, {y_val:.1f}%",
         showarrow=False,
         xshift=xshift,
         yshift=yshift,
-        font=dict(size=10, color=C[model]),
+        font=dict(size=9, color=C[model]),
         bgcolor="rgba(255,255,255,0.82)",
         bordercolor="rgba(0,0,0,0.18)",
         borderwidth=0.6,
@@ -263,17 +267,16 @@ fig12b.add_annotation(
     bgcolor="rgba(255,255,255,0.78)",
 )
 fig12b.update_layout(
-    title=dict(text="Stochastic vs. Adaptive Gap"),
-    xaxis_title="Stochastic Gap %",
-    yaxis_title="Adaptive Gap %",
+    xaxis_title="Stochastic Gap (%)",
+    yaxis_title="Adaptive Gap (%)",
     xaxis_range=[5, 43],
     yaxis_range=[5, 42],
-    margin=dict(l=62, r=20, t=72, b=64),
+    margin=dict(l=62, r=20, t=30, b=64),
     plot_bgcolor="#EAF2FB",
     paper_bgcolor="white",
 )
-fig12b.update_xaxes(gridcolor="white")
-fig12b.update_yaxes(gridcolor="white")
+fig12b.update_xaxes(gridcolor="white", ticksuffix="%")
+fig12b.update_yaxes(gridcolor="white", ticksuffix="%")
 save_paper_panel(fig12b, "ICNP-NOTEBOOK-054_g12_panel_b_stochastic_vs_adaptive_gap.png")
 
 # G13: Capacity Paradox
