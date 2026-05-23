@@ -6,7 +6,7 @@ This appendix collects diagnostic figures that complement the main Results figur
 \subsection{Additional Claim Support}
 \label{app:checkpoint_claim_support}
 
-The following figures provide supporting views for claims that are central to the paper but too detailed for the main Results flow. They extend the main-body evidence in \Cref{fig:cross_testbed_confirmation,fig:capacity_paradox,fig:deployment_guidance}: \Cref{fig:appendix_context_deployment_support} pairs Oracle-gap, budget, context-capacity, replay-efficiency, regret, and replay-delta evidence, while \Cref{fig:appendix_g8_advanced_synthesis} gives the grouped replay/configuration synthesis.
+The following figures provide supporting views for claims that are central to the paper but too detailed for the main Results flow. They extend the main-body evidence in \Cref{fig:cross_testbed_confirmation,fig:capacity_paradox,fig:deployment_guidance}: \Cref{fig:appendix_context_deployment_support} pairs Oracle-gap, budget, and policy-selection evidence on scenario efficiency, cross-threat gaps, mean Oracle gap, and overall ranking, while \Cref{fig:appendix_g8_advanced_synthesis} groups model, replay, allocator, capacity, and regret views into one appendix synthesis.
 
 \begin{figure*}[ht!]
 \centering
@@ -17,8 +17,8 @@ loss under escalating disruption.
 \label{fig:appendix_context_vs_exp3_gap}]{%
   \begin{minipage}{0.49\textwidth}
   \centering
-  \textbf{Contextual vs. EXP3 Oracle Gap}\\[-0.0em]
-  \includegraphics[width=\linewidth,height=1.85in]{figures/icnp/ICNP-CODE-032_g9_network_gap_analysis_panel_c_oracle_gap_context_vs_exp3_by_scenario_c.png}
+  \textbf{Contextual vs. EXP3 Oracle Gap}\\[-0.20em]
+  \includegraphics[width=\linewidth,height=1.98in]{figures/icnp/ICNP-CODE-032_g9_network_gap_analysis_panel_c_oracle_gap_context_vs_exp3_by_scenario_c.png}
   \end{minipage}}
 \hfill
 \subfloat[Qubit-budget structure across paths and allocators: the heatmap shows
@@ -28,57 +28,62 @@ evaluated routing action.
 \label{fig:appendix_qubit_budget_support}]{%
   \begin{minipage}{0.49\textwidth}
   \centering
-  \textbf{Qubit Budget by Allocator}\\[-0.0em]
-  \includegraphics[width=\linewidth,height=1.85in]{figures/icnp/ICNP-CODE-031_g9_network_gap_analysis_panel_b_qubit_budget_per_path_allocator_total_35.png}
+  \textbf{Qubit Budget by Allocator}\\[-0.20em]
+  \includegraphics[width=\linewidth,height=1.98in]{figures/icnp/ICNP-CODE-031_g9_network_gap_analysis_panel_b_qubit_budget_per_path_allocator_total_35.png}
   \end{minipage}}
 
 \vspace{0.45em}
 
-\subfloat[Context-capacity behavior by family and threat: contextual $T$/$T_b$
-curves stay near or above 85\%, while EXP3 variants remain lower until Baseline,
-showing that replay robustness depends on path/context structure.
-\label{fig:appendix_context_capacity_effects}]{%
+\subfloat[Scenario-level efficiency for the top policy families: \texttt{CPursuit}
+remains strongest across most regimes, while \texttt{EXPNeuralUCB} drops sharply
+under Stochastic, showing that policy selection separates robust and fragile
+regimes before replay-capacity tuning is even applied.
+\label{fig:appendix_g12_efficiency_by_scenario}]{%
   \begin{minipage}{0.49\textwidth}
   \centering
-  \textbf{Context-Capacity Interaction}\\[-0.0em]
-  \includegraphics[width=\linewidth,height=1.85in]{figures/icnp/ICNP-CODE-053_fig6_context_capacity.png}
+  \textbf{Efficiency by Scenario}\\[-0.20em]
+  \includegraphics[width=\linewidth,height=1.98in]{figures/icnp/ICNP-NOTEBOOK-053_g12_panel_a_efficiency_by_scenario.png}
   \end{minipage}}
 \hfill
-\subfloat[Capacity-paradox trajectory by capacity level: Stochastic and
-Adaptive rise from $4$K to $6$K and then fall at $8$K, while Markov continues
-upward, showing that more capacity is not uniformly beneficial.
-\label{fig:appendix_g13_capacity_paradox}]{%
+\subfloat[Stochastic-vs-Adaptive Oracle-gap scatter: models close to the
+origin stay near \texttt{Oracle} in both regimes, while separated points expose
+threat-specific weakness, showing why one policy can tolerate a capacity change
+in one regime and fail in another.
+\label{fig:appendix_g12_stochastic_vs_adaptive_gap}]{%
   \begin{minipage}{0.49\textwidth}
   \centering
-  \textbf{G13 Capacity Paradox}\\[-0.0em]
-  \includegraphics[width=\linewidth,height=1.85in]{figures/icnp/ICNP-CODE-008_g13_capacity_paradox.png}
+  \textbf{Stochastic vs. Adaptive Gap}\\[-0.20em]
+  \includegraphics[width=\linewidth,height=1.98in]{figures/icnp/ICNP-NOTEBOOK-054_g12_panel_b_stochastic_vs_adaptive_gap.png}
   \end{minipage}}
 
 \vspace{0.45em}
 
-\subfloat[Regret trajectory over capacity steps: \texttt{CThompsonSampling} and
-\texttt{EXPUCB} accumulate larger normalized regret than pursuit/contextual
-baselines, showing the learning-cost side of capacity-sensitive routing.
-\label{fig:appendix_g14_regret_trajectory}]{%
+\subfloat[Mean Oracle gap with standard-deviation spread across scenarios:
+pursuit/contextual families hold lower average distance to \texttt{Oracle}, while
+\texttt{CThompson} and \texttt{EXPUCB} remain higher-gap options, showing the
+stable policy margin available before replay-capacity tuning.
+\label{fig:appendix_g12_mean_oracle_gap}]{%
   \begin{minipage}{0.49\textwidth}
   \centering
-  \textbf{G14 Regret Trajectory}\\[-0.0em]
-  \includegraphics[width=\linewidth,height=1.85in]{figures/icnp/ICNP-CODE-009_g14_regret_trajectory.png}
+  \textbf{Mean Oracle Gap $\pm$ Std}\\[-0.20em]
+  \includegraphics[width=\linewidth,height=1.98in]{figures/icnp/ICNP-NOTEBOOK-015_g12_panel_c_mean_oracle_gap_std.png}
   \end{minipage}}
 \hfill
-\subfloat[Replay-scaling deltas by threat: the paired $s{=}2$ versus $s{=}1$
-distribution contains both positive and negative shifts, showing why the
-capacity paradox is a threat-conditioned effect rather than a single average.
-\label{fig:appendix_g7_capacity_delta}]{%
+\subfloat[Overall model ranking by average efficiency: \texttt{CPursuit}
+defines the strongest average frontier and \texttt{CThompson} the weakest,
+showing that capacity choices modulate but do not erase family-level robustness
+differences.
+\label{fig:appendix_g12_overall_model_ranking}]{%
   \begin{minipage}{0.49\textwidth}
   \centering
-  \textbf{Replay-Scaling Delta Distribution}\\[-0.0em]
-  \includegraphics[width=\linewidth,height=1.85in]{figures/icnp/ICNP-CODE-047_g7_advanced_synthesis_panel_f_capacity_paradox_as_paired_s_2_vs_s_1_delt.png}
+  \textbf{Overall Model Ranking}\\[-0.20em]
+  \includegraphics[width=\linewidth,height=1.98in]{figures/icnp/ICNP-NOTEBOOK-016_g12_panel_d_model_family_ranking.png}
   \end{minipage}}
-\caption{Panels~(a)--(f) show the big picture for appendix capacity-paradox
-support: routing robustness is shaped by Oracle-gap behavior, qubit-budget
-structure, policy family, replay semantics, threat regime, regret accumulation,
-and non-monotonic replay-scale effects.}
+\caption{Panels~(a)--(f) show the appendix policy-selection evidence chain:
+Oracle-gap and qubit-budget context in (a)--(b) frame the routing-resource
+setting, while scenario efficiency, cross-threat Oracle-gap shape, mean-gap
+stability, and overall ranking in (c)--(f) show that replay-capacity effects
+must be read against the underlying policy frontier rather than in isolation.}
 % \devroop{dont use "supports the claim". simply showcase what observations we can derive from this and mention what you mean by oracle gap} -- SOLVED: Panel (a) defines Oracle gap and states the observable comparison directly.
 % \shee{What is the additional support provided? All captions need to be more descriptive and explicitly mention the results that are shown. Don't just mention what the graph shows, also mention what is being observed.} -- SOLVED: Caption now states the observed deployment consequence.
 \label{fig:appendix_context_deployment_support}
@@ -87,7 +92,7 @@ and non-monotonic replay-scale effects.}
 \subsection{Grouped Synthesis Diagnostics}
 \label{app:grouped_synthesis_diagnostics}
 
-The grouped synthesis figure below remains in the appendix because it lays out the diagnostic panels as a wider four-panel synthesis. \Cref{fig:appendix_g8_advanced_synthesis} serves as the appendix-side reference point when readers want one view of how model-family gaps, replay drop/recovery, allocator efficiency, and replay-configuration sensitivity connect.
+The grouped synthesis figure below remains in the appendix because it lays out the diagnostic panels as a wider six-panel synthesis. \Cref{fig:appendix_g8_advanced_synthesis} serves as the appendix-side reference point when readers want one view of how model-family gaps, replay drop/recovery behavior, allocator efficiency, context-capacity behavior, capacity-paradox trajectories, and regret views connect.
 
 \begin{figure*}[ht!]
 \centering
@@ -101,9 +106,9 @@ that context-aware and pursuit--neural designs define the stability frontier.
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-025_g8_advanced_4panel_panel_a_oracle_gap_distribution_by_model_family.png}
   \end{minipage}}
 \hfill
-\subfloat[Replay-scale $\Delta$ by threat and semantic: median effects switch
-from helpful to harmful in Markov and OnlineAdaptive slices, giving the
-drop/recovery evidence behind the capacity paradox.
+\subfloat[Replay drop/recovery distribution by threat and replay semantic: the
+replay effect changes sign across scenarios and semantics, with Markov and
+OnlineAdaptive showing the clearest helpful-to-harmful flip behind the capacity paradox.
 \label{fig:appendix_g8_panel_b}]{%
   \begin{minipage}{0.49\textwidth}
   \centering
@@ -123,19 +128,43 @@ allocators expose lower floors, showing allocator-driven tail risk.
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-027_g8_advanced_4panel_panel_c_allocator_efficiency_per_scenario_icpursuitne.png}
   \end{minipage}}
 \hfill
-\subfloat[Replay-configuration sensitivity across six settings: OnlineAdaptive
-spans 83.2--90.6\% for $T$-type replay and 84.2--86.6\% for $T_b$, showing that
-anchoring rule changes the same scale effect.
+\subfloat[Context-capacity behavior by family and threat: contextual $T$/$T_b$
+curves stay near or above 85\%, while EXP3 variants remain lower until Baseline,
+showing that replay robustness depends on path/context structure.
 \label{fig:appendix_g8_panel_d}]{%
   \begin{minipage}{0.49\textwidth}
   \centering
-  \textbf{Replay-Configuration Sensitivity}\\[-0.0em]
-  \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-035_g9_network_gap_analysis_panel_f_capacity_paradox_all_6_replay_configs_sc.png}
+  \textbf{Context-Capacity Interaction}\\[-0.0em]
+  \includegraphics[width=\linewidth,height=1.98in]{figures/icnp/ICNP-CODE-053_fig6_context_capacity.png}
   \end{minipage}}
-\caption{Together, the panels show the big-picture synthesis: routing
-robustness is governed by the interaction among model family, replay/capacity
-setting, allocator choice, and threat regime.}
-% \shee{Isn't Fig 13D the same as Fig. 8a?} -- SOLVED: Kept this appendix figure as a four-panel diagnostic synthesis and removed the rendered feedback marker from the caption.
+
+\vspace{0.75em}
+
+\subfloat[Capacity-paradox trajectory by capacity level: Stochastic and
+Adaptive rise from $4$K to $6$K and then fall at $8$K, while Markov continues
+upward, showing that more capacity is not uniformly beneficial.
+\label{fig:appendix_g8_panel_e}]{%
+  \begin{minipage}{0.49\textwidth}
+  \centering
+  \textbf{Capacity-Paradox Trajectory}\\[-0.0em]
+  \includegraphics[width=\linewidth,height=1.98in]{figures/icnp/ICNP-CODE-008_g13_capacity_paradox.png}
+  \end{minipage}}
+\hfill
+\subfloat[Regret trajectory over capacity steps: \texttt{CThompsonSampling} and
+\texttt{EXPUCB} accumulate larger normalized regret than pursuit/contextual
+baselines, showing the learning-cost side of capacity-sensitive routing.
+\label{fig:appendix_g8_panel_f}]{%
+  \begin{minipage}{0.49\textwidth}
+  \centering
+  \textbf{Regret Trajectory}\\[-0.0em]
+  \includegraphics[width=\linewidth,height=1.98in]{figures/icnp/ICNP-CODE-009_g14_regret_trajectory.png}
+  \end{minipage}}
+\caption{Together, the panels show a grouped appendix synthesis: model-family
+Oracle gaps define the policy hierarchy, replay drop/recovery reveals
+threat-conditioned sign flips, allocator efficiency and context-capacity
+behavior expose complementary control-surface effects, and the capacity-paradox
+and regret views extend the figure with the broader replay/capacity story.}
+% \shee{Isn't Fig 13D the same as Fig. 8a?} -- SOLVED: Kept this appendix figure as a six-panel diagnostic synthesis and removed the rendered feedback marker from the caption.
 
 \label{fig:appendix_g8_advanced_synthesis}
 \end{figure*}
