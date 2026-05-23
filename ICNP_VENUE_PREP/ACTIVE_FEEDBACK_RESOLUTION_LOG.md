@@ -21,6 +21,13 @@ This log records feedback-resolution batches applied to the active ICNP venue dr
 - **Change:** Replaced the `Threat-Conditioned Deployment Rules` panel with the capacity-paradox trajectory asset (`ICNP-CODE-008`; the current manifest maps `ICNP-CODE-057` to a convergence image), added the regret-trajectory panel (`ICNP-CODE-009`), then replaced the older gray replay-delta panel with the clearer color-coded advanced-synthesis Panel B replay drop/recovery boxplot (`ICNP-CODE-074`). Visible `G13`/`G14` source-generation labels were removed from paper-facing titles.
 - **Validation:** Full LaTeX compile passed; PDF remains 16 pages. The validation hub reports 20/20 active images mapped, no exact duplicate active image files, no missing figure labels, and six distinct appendix support panels.
 
+### Follow-up: Appendix caption/reference audit
+
+- **Owning files changed:** `ICNP_VENUE_PREP/APPENDIX_DIAGNOSTIC_FIGURES.tex`, `ICNP_VENUE_PREP/DISCUSSION.tex`
+- **Reason for follow-up:** Figures 10 and 11 needed a final caption-process check, and the appendix diagnostic figures needed to be explicitly connected from the Discussion.
+- **Change:** Tightened the Figure 10 and Figure 11 main captions to follow the same pattern as the subcaptions: what the grouped figure shows, which evidence is visible, and what larger claim it supports. Added a Discussion sentence that references both appendix diagnostic figure groups and states how they support the deployment interpretation.
+- **Validation:** Full LaTeX compile passed; PDF is 17 pages. The figure-reference audit reports no missing figure labels, and both appendix diagnostic figure groups are now referenced from the Discussion.
+
 ## Batch: May 23 Figure 11 restyle
 
 - **Owning files changed:** `figures/icnp-exported-assets/build_G8_G9.py`, `figures/icnp/ICNP-CODE-053_fig6_context_capacity.png`, `figures/icnp/icnp_validation_image_manifest.csv`, `ICNP_VENUE_PREP/BUILD_VALIDATION_LOG.md`
