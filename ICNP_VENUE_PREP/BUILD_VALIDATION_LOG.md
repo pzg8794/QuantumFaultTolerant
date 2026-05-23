@@ -2,28 +2,28 @@
 
 This log records non-destructive Overleaf/PDF validation for `ICNP_2026_venue_draft.tex`.
 
-## Validation pass: May 22 appendix-reference and Figure 5B bar alternative
+## Validation pass: May 22 appendix-reference and replay-sensitivity bar alternative
 
 - **Date:** 2026-05-22
 - **Active draft:** `ICNP_2026_venue_draft.tex`
-- **Purpose:** Validate the May 22 transcript follow-up: moved framework-figure references/descriptions, appendix figure/table connector prose, and the appendix-only Figure 5B bar alternative.
+- **Purpose:** Validate the May 22 transcript follow-up: moved framework-figure references/descriptions, appendix figure/table connector prose, and the appendix-only Replay-Configuration Sensitivity bar alternative.
 
 What was checked:
 
-- [x] Latest GitHub paper state pulled before editing (`5bdd987`, `Updates from Overleaf`).
+- [x] Latest GitHub paper state pulled before editing (`73a6b0f`, `Updates from Overleaf`).
 - [x] `figures/icnp-exported-assets/build_G8_G9.py` compiles in the `.quantum` environment.
-- [x] New bar alternative generated from the same validated threat-escalation matrix used by the main-body heatmap.
+- [x] New bar alternative generated from the same validated replay-configuration values used by the main-body Replay-Configuration Sensitivity line plot.
 - [x] Full draft compiled locally with `latexmk -pdf -interaction=nonstopmode -halt-on-error ICNP_2026_venue_draft.tex`.
 - [x] No unresolved references remained in the final LaTeX log after rerun.
-- [x] Generated PDF remains 18 pages total.
+- [x] Generated PDF remains 17 pages total.
 - [x] Conclusion remains on page 10 and References begin on page 11.
-- [x] Appendix pages containing the new bar alternative and diagnostic figures were rendered and visually inspected.
+- [x] Appendix pages containing the new replay-sensitivity bar alternative and diagnostic figures were rendered and visually inspected.
 
 Observed outcome:
 
 - The former Figure 1 pipeline is now explicitly introduced in the Introduction as an appendix figure and separately described in the appendix before the schematic.
 - The appendix diagnostic figures and setup/full-result tables are connected to nearby prose.
-- The Figure 5B bar alternative appears in the diagnostic appendix as a review option; the main-body heatmap was not replaced in this pass.
+- The Replay-Configuration Sensitivity bar alternative appears in the diagnostic appendix as a review option; the main-body line plot was not replaced in this pass.
 - Remaining local compile noise is existing non-blocking warning noise: underfull/overfull boxes, duplicate PDF-destination warnings, and Times small-caps italic font substitution.
 
 ## Validation pass: May 21 image-first graph cleanup

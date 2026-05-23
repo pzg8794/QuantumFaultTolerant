@@ -12,7 +12,7 @@ It intentionally does **not** replace `ICNP_DRAFT_AUDIT_TODO.md`; that file rema
 
 - **Active paper path:** `ICNP_2026_venue_draft.tex`.
 - **Editing rule:** update the owning staging file, then verify `ICNP_2026_venue_draft.tex` includes it.
-- **Latest GitHub paper state pulled:** `5bdd987` (`Updates from Overleaf`) before the May 22 appendix/figure pass.
+- **Latest GitHub paper state pulled:** `73a6b0f` (`Updates from Overleaf`) before the replay-sensitivity bar-alternative correction.
 - **Latest Overleaf branch checked:** `overleaf-2026-05-11-0445`.
 - **Overleaf/GitHub state:** latest Overleaf branch is identical to `main` at the time of this tracker.
 - **Review-panel limitation:** live Overleaf review-panel comments are not available through GitHub unless they are pushed/exported into the repository or pasted/uploaded into the working session.
@@ -40,12 +40,12 @@ It intentionally does **not** replace `ICNP_DRAFT_AUDIT_TODO.md`; that file rema
 | H9 | H | Final rendered-marker/source sweep. | **Final-gate / blocked** | Feedback markers may still be useful while advisors are commenting. User explicitly said source sweep should wait until everyone is done commenting. | Do only after advisors/reviewers confirm commenting is done. Convert or remove rendered markers before final submission. |
 | H10 | H | Cross-testbed/new testbed integration in the paper. | **Done in active source, pending reviewer acceptance** | Active draft includes `ICNP_VENUE_PREP/RESULTS_VALIDATED_CROSS_TESTBED`; abstract also states cross-testbed evaluation on three external quantum-network simulators. | Do not reopen unless review-panel comments or advisor feedback ask for changes. |
 | H11 | H | Maintain GitHub/Overleaf sync discipline. | **Done currently / monitor** | Latest Overleaf branch checked is identical to `main`; AGENTS.md says to compare Overleaf branches before overwriting. | Continue comparing before force-syncing or overwriting Overleaf changes. |
-| H12 | H | May 22 transcript: reference the moved framework figure and add a Figure 5B bar alternative. | **Done in active source / pending advisor choice** | Transcript requested a brief Introduction reference to the moved framework figure, a separate appendix description, proper appendix figure/table references, and a bar version of Figure 5B for feedback. | Inspect the compiled appendix/PDF and ask advisors whether to keep the current heatmap, replace it with the bar view, or keep the bar view only in the appendix. |
+| H12 | H | May 22 transcript: reference the moved framework figure and add a Replay-Configuration Sensitivity bar alternative. | **Done in active source / pending advisor choice** | Transcript requested a brief Introduction reference to the moved framework figure, a separate appendix description, proper appendix figure/table references, and a bar version of the Replay-Configuration Sensitivity panel for feedback. | Inspect the compiled appendix/PDF and ask advisors whether to keep the current line plot, replace it with the bar view, or keep the bar view only in the appendix. |
 
 ## May 22 transcript-derived next items
 
-- **Done in this lane:** brief Introduction reference to the moved framework schematic; separate appendix description for the schematic; appendix figure/table connector references; bar-chart alternative for Figure 5B added as an appendix review option.
-- **Next reviewer-decision item:** decide whether the Figure 5B heatmap should stay in the main body or be replaced by the bar alternative after advisor feedback.
+- **Done in this lane:** brief Introduction reference to the moved framework schematic; separate appendix description for the schematic; appendix figure/table connector references; bar-chart alternative for Replay-Configuration Sensitivity added as an appendix review option.
+- **Next reviewer-decision item:** decide whether the Replay-Configuration Sensitivity line plot should stay in the main body or be replaced by the bar alternative after advisor feedback.
 - **Next validation item:** inspect Overleaf warning panel after the GitHub sync/recompile and record only real warnings or regressions in `BUILD_VALIDATION_LOG.md`.
 - **Next visual item:** inspect appendix float order now that the bar alternative is added; fix only if ordering or readability is harmed.
 - **Final-gate items:** page-limit/font checker, rendered-marker sweep, public-link/double-blind metadata check, and source-comment cleanup after commenting is finished.

@@ -44,6 +44,11 @@ OUT_PANEL_F = (
     / "icnp"
     / "ICNP-CODE-035_g9_network_gap_analysis_panel_f_capacity_paradox_all_6_replay_configs_sc.png"
 )
+OUT_PANEL_F_BAR = (
+    SCRIPT_DIR.parent
+    / "icnp"
+    / "ICNP-CODE-073_fig6b_replay_configuration_sensitivity_bar_alternative.png"
+)
 OUT_PANEL_G = (
     SCRIPT_DIR.parent
     / "icnp"
@@ -53,11 +58,6 @@ OUT_PANEL_E = (
     SCRIPT_DIR.parent
     / "icnp"
     / "ICNP-CODE-034_g9_network_gap_analysis_panel_e_threat_escalation_heatmap_algo_scenario.png"
-)
-OUT_PANEL_E_BAR = (
-    SCRIPT_DIR.parent
-    / "icnp"
-    / "ICNP-CODE-072_fig5b_threat_escalation_bar_alternative.png"
 )
 OUT_PANEL_H = (
     SCRIPT_DIR.parent
@@ -330,6 +330,53 @@ def draw_capacity_all_configs_panel(ax, *, include_panel_label=True):
         panel_label(ax,'F','Capacity Paradox: All 6 Replay Configs × Scenario')
 
 
+def draw_capacity_bar_alternative_panel(ax):
+    configs = ['T', '1.5T', '2T', 'Tb', '1.5Tb', '2Tb']
+    colors = [C['T'], C['T15'], C['T2'], C['Tb'], '#d4730a', '#8b2500']
+    markers = ['T', '1.5T', '2T', r'$T_b$', r'$1.5T_b$', r'$2T_b$']
+    scenarios = ['Stochastic', 'Markov', 'Adaptive', 'OnlineAdaptive', 'Baseline']
+    x = np.arange(len(scenarios))
+    width = 0.12
+
+    for idx, (config, color, label) in enumerate(zip(configs, colors, markers)):
+        offset = (idx - (len(configs) - 1) / 2) * width
+        values = CAP_DATA[config]
+        bars = ax.bar(x + offset, values, width=width * 0.92, label=label,
+                      color=color, edgecolor='white', linewidth=0.5, alpha=0.92)
+        for bar, value in zip(bars, values):
+            ax.text(bar.get_x() + bar.get_width() / 2, value + 0.18, f'{value:.1f}',
+                    ha='center', va='bottom', fontsize=6.0, rotation=90,
+                    color='#202020', clip_on=False)
+
+    ax.axhline(85, color=C['THRESH'], linestyle=':', linewidth=1.1)
+    ax.text(4.45, 85.2, '85% target', ha='right', va='bottom',
+            fontsize=7.2, color=C['THRESH'],
+            bbox=dict(boxstyle='round,pad=0.15', facecolor='white',
+                      alpha=0.82, edgecolor='none'))
+    ax.annotate('OnlineAdaptive T span: 83.2--90.6%',
+                xy=(3, CAP_DATA['2T'][3]), xytext=(2.35, 94.3),
+                fontsize=7.8, color=C['T2'],
+                arrowprops=dict(arrowstyle='->', color=C['T2'], lw=0.9),
+                bbox=dict(boxstyle='round,pad=0.18', facecolor='white',
+                          alpha=0.88, edgecolor='none'))
+    ax.annotate(r'OnlineAdaptive $T_b$ span: 84.2--86.6%',
+                xy=(3, CAP_DATA['Tb'][3]), xytext=(2.05, 77.1),
+                fontsize=7.8, color=C['Tb'],
+                arrowprops=dict(arrowstyle='->', color=C['Tb'], lw=0.9),
+                bbox=dict(boxstyle='round,pad=0.18', facecolor='white',
+                          alpha=0.88, edgecolor='none'))
+    ax.set_xticks(x)
+    ax.set_xticklabels(scenarios, fontsize=9.2, rotation=0, ha='center')
+    ax.set_ylim(76.5, 96.0)
+    ax.set_ylabel('Oracle-Norm. Efficiency (%)')
+    ax.set_xlabel('Threat scenario')
+    ax.set_facecolor('#f9f9f9')
+    ax.grid(axis='y', alpha=0.25)
+    ax.legend(fontsize=7.0, ncol=6, frameon=True, framealpha=0.92,
+              loc='upper left', bbox_to_anchor=(0.01, 0.99),
+              columnspacing=0.8, handlelength=1.1)
+
+
 def draw_scenario_penalty_panel(ax, *, include_panel_label=True):
     x=np.arange(4); w=0.18
     pen_data=[('Stochastic',PEN_STOCH,'#4da6ff'),('Markov',PEN_MARK,'#2b6cb0'),
@@ -360,34 +407,6 @@ def draw_threat_heatmap_panel(ax, *, include_panel_label=True):
     ax.grid(False)
     if include_panel_label:
         panel_label(ax,'E','Threat Escalation Heatmap: Algo × Scenario')
-
-
-def draw_threat_bar_alternative_panel(ax):
-    scenario_colors = ['#7aa6c2', '#4c78a8', '#f2a65a', '#e15759', '#59a14f']
-    y = np.arange(len(HEAT_ALGOS))
-    offsets = np.linspace(-0.30, 0.30, len(SCENARIOS))
-    bar_h = 0.12
-    for scen_idx, (scenario, color, offset) in enumerate(zip(SCENARIOS, scenario_colors, offsets)):
-        values = HEAT_MAT[:, scen_idx]
-        bars = ax.barh(y + offset, values, height=bar_h, label=scenario,
-                       color=color, edgecolor='white', linewidth=0.45, alpha=0.92)
-        ax.bar_label(bars, labels=[f'{v:.1f}' for v in values], padding=1.5,
-                     fontsize=5.8, color='#202020')
-    ax.axvline(85, color=C['THRESH'], linestyle=':', linewidth=1.1)
-    ax.text(85.2, -0.54, '85% target', ha='left', va='center',
-            fontsize=7.0, color=C['THRESH'],
-            bbox=dict(boxstyle='round,pad=0.15', facecolor='white',
-                      alpha=0.80, edgecolor='none'))
-    ax.set_yticks(y)
-    ax.set_yticklabels(HEAT_ALGOS, fontsize=8.0)
-    ax.invert_yaxis()
-    ax.set_xlim(60, 103)
-    ax.set_xlabel('Oracle-Norm. Efficiency (%)')
-    ax.set_facecolor('#f9f9f9')
-    ax.grid(axis='x', alpha=0.25)
-    ax.legend(loc='lower center', bbox_to_anchor=(0.5, 1.01), ncol=5,
-              frameon=True, framealpha=0.92, fontsize=7.1,
-              columnspacing=0.9, handlelength=1.0)
 
 
 def draw_oracle_gap_panel(ax, *, include_panel_label=True):
@@ -757,6 +776,17 @@ def build_capacity_all_configs_panel():
     print(f"Wrote {OUT_PANEL_F}")
 
 
+def build_capacity_bar_alternative_panel():
+    base_style()
+    fig, ax = plt.subplots(figsize=(9.8, 5.1), dpi=200)
+    fig.patch.set_facecolor('white')
+    draw_capacity_bar_alternative_panel(ax)
+    fig.subplots_adjust(left=0.08, right=0.985, top=0.96, bottom=0.14)
+    fig.savefig(OUT_PANEL_F_BAR, dpi=200, facecolor='white')
+    plt.close(fig)
+    print(f"Wrote {OUT_PANEL_F_BAR}")
+
+
 def build_scenario_penalty_panel():
     base_style()
     fig, ax = plt.subplots(figsize=(7.64, 4.58), dpi=200)
@@ -779,17 +809,6 @@ def build_threat_heatmap_panel():
     print(f"Wrote {OUT_PANEL_E}")
 
 
-def build_threat_bar_alternative_panel():
-    base_style()
-    fig, ax = plt.subplots(figsize=(9.8, 4.9), dpi=200)
-    fig.patch.set_facecolor('white')
-    draw_threat_bar_alternative_panel(ax)
-    fig.subplots_adjust(left=0.18, right=0.985, top=0.88, bottom=0.13)
-    fig.savefig(OUT_PANEL_E_BAR, dpi=200, facecolor='white')
-    plt.close(fig)
-    print(f"Wrote {OUT_PANEL_E_BAR}")
-
-
 def build_cross_testbed_panel():
     base_style()
     fig, ax = plt.subplots(figsize=(7.64, 4.545), dpi=200)
@@ -805,7 +824,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Build ICNP G8/G9 result figures.")
     parser.add_argument(
         "--only",
-        choices=["all", "panel-c", "panel-d", "panel-e", "fig5b-bar", "panel-f", "panel-g", "panel-h", "panel-i"],
+        choices=["all", "panel-c", "panel-d", "panel-e", "panel-f", "fig6b-bar", "panel-g", "panel-h", "panel-i"],
         default="all",
         help="Build all figures or only one manuscript-facing labeled panel.",
     )
@@ -816,10 +835,10 @@ if __name__ == "__main__":
         build_rq1_tier_panel()
     elif args.only == "panel-e":
         build_threat_heatmap_panel()
-    elif args.only == "fig5b-bar":
-        build_threat_bar_alternative_panel()
     elif args.only == "panel-f":
         build_capacity_all_configs_panel()
+    elif args.only == "fig6b-bar":
+        build_capacity_bar_alternative_panel()
     elif args.only == "panel-g":
         build_scenario_penalty_panel()
     elif args.only == "panel-h":

@@ -3,21 +3,21 @@
 
 This appendix collects diagnostic figures that complement the main Results figures without duplicating plots already used in the paper body. The main paper keeps the claim-level figures, while the appendix preserves additional evidence for readers who want broader scenario, capacity, allocator, and cross-testbed views.
 
-\subsection{Alternative Figure~5B Bar View}
-\label{app:fig5b_bar_alternative}
+\subsection{Alternative Replay-Configuration Sensitivity Bar View}
+\label{app:replay_sensitivity_bar_alternative}
 
-\Cref{fig:appendix_fig5b_bar_alternative} provides a bar-chart alternative to the main-body threat-escalation heatmap in \Cref{fig:threat_escalation_heatmap_main}. It uses the same validated values and preserves the same trend: pursuit--neural and contextual models stay above the 85\% target across most regimes, while EXP-family baselines remain lower under Markov, Adaptive, and OnlineAdaptive threats.
+\Cref{fig:appendix_replay_sensitivity_bar_alternative} provides a bar-chart alternative to the main-body Replay-Configuration Sensitivity panel in \Cref{fig:capacity_paradox_all_configs_main}. It uses the same validated six replay configurations and preserves the same trend: replay scale, replay anchoring, and threat regime jointly determine whether added replay helps or hurts.
 
 \begin{figure*}[!t]
 \centering
-\textbf{Threat-Escalation Bar Alternative}\\[0.25em]
-\includegraphics[width=0.98\textwidth]{figures/icnp/ICNP-CODE-072_fig5b_threat_escalation_bar_alternative.png}
-\caption{Alternative bar rendering of the main-body threat-escalation heatmap.
-The same validated values show that \texttt{iCPursuitNeural} and
-\texttt{CPursuitNeural} stay above the 85\% target in most threat regimes,
-whereas \texttt{EXPUCB} remains below the target across Markov, Adaptive, and
-OnlineAdaptive settings.}
-\label{fig:appendix_fig5b_bar_alternative}
+\textbf{Replay-Configuration Sensitivity Bar Alternative}\\[0.25em]
+\includegraphics[width=0.98\textwidth]{figures/icnp/ICNP-CODE-073_fig6b_replay_configuration_sensitivity_bar_alternative.png}
+\caption{Alternative bar rendering of the main-body Replay-Configuration
+Sensitivity panel. The same validated values show that under OnlineAdaptive,
+$T$-type replay spans 83.2--90.6\%, while $T_b$-type replay spans
+84.2--86.6\%, confirming that replay capacity must be interpreted jointly with
+anchoring rule and threat regime.}
+\label{fig:appendix_replay_sensitivity_bar_alternative}
 \end{figure*}
 \clearpage
 
