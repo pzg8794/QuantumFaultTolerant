@@ -6,7 +6,7 @@ This appendix collects diagnostic figures that complement the main Results figur
 \subsection{Additional Claim Support}
 \label{app:checkpoint_claim_support}
 
-The following figures provide supporting views for claims that are central to the paper but too detailed for the main Results flow. They extend the main-body evidence in \Cref{fig:cross_testbed_confirmation,fig:capacity_paradox,fig:deployment_guidance} by showing contextual-versus-EXP3 Oracle-gap behavior, the retained context-capacity interaction, and threat-conditioned deployment structure in more detail. \Cref{fig:appendix_g8_advanced_synthesis} now carries the replay-configuration sensitivity view in Panel~(D), replacing the duplicate context-capacity panel that previously appeared in the grouped synthesis figure.
+The following figures provide supporting views for claims that are central to the paper but too detailed for the main Results flow. They extend the main-body evidence in \Cref{fig:cross_testbed_confirmation,fig:capacity_paradox,fig:deployment_guidance}: \Cref{fig:appendix_context_vs_exp3_gap} shows contextual-versus-EXP3 Oracle-gap behavior, \Cref{fig:appendix_context_deployment_support} pairs context-capacity and deployment-rule evidence, and \Cref{fig:appendix_g8_advanced_synthesis} gives the grouped replay/configuration synthesis.
 
 \begin{figure}[H]
 \centering
@@ -24,60 +24,85 @@ noise to adaptive interference.}
 \label{fig:appendix_context_vs_exp3_gap}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure*}[ht!]
 \centering
-\textbf{Context-Capacity Interaction}\\[-0.0em]
-\includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-053_fig6_context_capacity.png}
-\caption{Context-aware capacity variants remain above EXP3-style baselines in
-most threat regimes, while non-context variants expose larger threat-conditioned
-losses. This retained standalone view preserves the context-capacity evidence
-from the former grouped Panel~(D) after that panel was repurposed for
-replay-configuration sensitivity.}
-\label{fig:appendix_context_capacity_effects}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\textbf{Threat-Conditioned Deployment Rules}\\[-0.0em]
-\includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-056_fig10_threat_rules.png}
-\caption{Recommended deployment choices vary with the active threat regime,
-showing that allocator and replay settings act as threat-conditioned controls.
-One visible rule pattern is that Adaptive disruption selects
-\texttt{ThompsonSampling} with $T_b$-type replay, while OnlineAdaptive returns
-to the static \texttt{Fixed} allocator with $T$-type replay. The static default
-remains strong across scenarios, and the threat-specific rules show that robust
-quantum-routing deployment requires matching policy, allocator, and replay
-settings to the active threat regime.}
+\subfloat[Context-capacity behavior by family and threat: contextual $T$/$T_b$
+curves stay near or above 85\%, while EXP3 variants remain lower until Baseline,
+showing that replay robustness depends on path/context structure.
+\label{fig:appendix_context_capacity_effects}]{%
+  \begin{minipage}{0.49\textwidth}
+  \centering
+  \textbf{Context-Capacity Interaction}\\[-0.0em]
+  \includegraphics[height=1.95in,keepaspectratio]{figures/icnp/ICNP-CODE-053_fig6_context_capacity.png}
+  \end{minipage}}
+\hfill
+\subfloat[Threat-conditioned deployment choices from the validated rule table:
+informed settings remain near or above 85\%, while \texttt{Random} is visibly
+weaker, showing that allocator and replay choices are deployment controls.
+\label{fig:appendix_threat_rules}]{%
+  \begin{minipage}{0.49\textwidth}
+  \centering
+  \textbf{Threat-Conditioned Deployment Rules}\\[-0.0em]
+  \includegraphics[height=1.95in,keepaspectratio]{figures/icnp/ICNP-CODE-056_fig10_threat_rules.png}
+  \end{minipage}}
+\caption{Panels~(a) and~(b) show the big picture for appendix deployment
+support: capacity robustness is jointly shaped by policy family, replay
+semantics, threat regime, and allocator choice.}
 % \shee{What is the additional support provided? All captions need to be more descriptive and explicitly mention the results that are shown. Don't just mention what the graph shows, also mention what is being observed.} -- SOLVED: Caption now states the observed deployment consequence.
-\label{fig:appendix_threat_rules}
-\end{figure}
+\label{fig:appendix_context_deployment_support}
+\end{figure*}
 
 \subsection{Grouped Synthesis Diagnostics}
 \label{app:grouped_synthesis_diagnostics}
 
-The grouped synthesis figure below remains in the appendix because it combines multiple diagnostic views without repeating standalone appendix figures. \Cref{fig:appendix_g8_advanced_synthesis} serves as the appendix-side reference point when readers want one grouped view of how the detailed diagnostics connect, including the original replay-configuration sensitivity line view in Panel~(D).
+The grouped synthesis figure below remains in the appendix because it lays out the diagnostic panels as a wider four-panel synthesis. \Cref{fig:appendix_g8_advanced_synthesis} serves as the appendix-side reference point when readers want one view of how model-family gaps, replay drop/recovery, allocator efficiency, and replay-configuration sensitivity connect.
 
 \begin{figure*}[ht!]
 \centering
-\textbf{Advanced Synthesis Diagnostics}\\[0.75em]
-\begin{tikzpicture}
-\node[anchor=south west, inner sep=0] (img) at (0,0) {\includegraphics[width=0.98\textwidth]{figures/icnp/ICNP-CODE-024_g8_advanced_4panel_grouped_full_figure.png}};
-% Uncomment the below to remove figure D
-% \begin{scope}[x={(img.south east)},y={(img.north west)}]
-%     \fill[white] (0.5,0) rectangle (1,0.5);
-% \end{scope}
-\end{tikzpicture}
-\caption{Panel~(A) shows that contextual and pursuit--neural policies
-concentrate at lower \texttt{Oracle} gaps, indicating lower efficiency loss than
-weaker baselines. Panel~(B) shows the capacity-paradox pattern: intermediate
-replay scale produces the weakest robustness, while larger scale recovers
-performance in this threat configuration. Panel~(C) shows that allocator choice
-changes both average efficiency and tail behavior, making allocation policy part
-of the robustness mechanism. Panel~(D) preserves the original
-replay-configuration sensitivity view: under OnlineAdaptive, $T$-type replay
-spans 83.2--90.6\%, while $T_b$-type replay spans 84.2--86.6\%. Together, the panels
-show that routing robustness is governed by the interaction among policy family,
-replay/capacity setting, allocator choice, and threat regime.}
+\subfloat[Oracle-gap distributions by family: EXP3 has the largest losses,
+while hybrid/contextual families concentrate closer to the 15~pp line, showing
+that context-aware and pursuit--neural designs define the stability frontier.
+\label{fig:appendix_g8_panel_a}]{%
+  \begin{minipage}{0.49\textwidth}
+  \centering
+  \textbf{Oracle-Gap Distribution}\\[-0.0em]
+  \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-025_g8_advanced_4panel_panel_a_oracle_gap_distribution_by_model_family.png}
+  \end{minipage}}
+\hfill
+\subfloat[Replay-scale $\Delta$ by threat and semantic: median effects switch
+from helpful to harmful in Markov and OnlineAdaptive slices, giving the
+drop/recovery evidence behind the capacity paradox.
+\label{fig:appendix_g8_panel_b}]{%
+  \begin{minipage}{0.49\textwidth}
+  \centering
+  \textbf{Replay Drop/Recovery}\\[-0.0em]
+  \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-026_g8_advanced_4panel_panel_b_capacity_paradox_replay_scaling_by_scenario_s.png}
+  \end{minipage}}
+
+\vspace{0.75em}
+
+\subfloat[Allocator efficiency by scenario for \texttt{iCPursuitNeuralUCB}:
+\texttt{Fixed} remains strongest, while \texttt{Random} and mismatched adaptive
+allocators expose lower floors, showing allocator-driven tail risk.
+\label{fig:appendix_g8_panel_c}]{%
+  \begin{minipage}{0.49\textwidth}
+  \centering
+  \textbf{Allocator Efficiency}\\[-0.0em]
+  \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-027_g8_advanced_4panel_panel_c_allocator_efficiency_per_scenario_icpursuitne.png}
+  \end{minipage}}
+\hfill
+\subfloat[Replay-configuration sensitivity across six settings: OnlineAdaptive
+spans 83.2--90.6\% for $T$-type replay and 84.2--86.6\% for $T_b$, showing that
+anchoring rule changes the same scale effect.
+\label{fig:appendix_g8_panel_d}]{%
+  \begin{minipage}{0.49\textwidth}
+  \centering
+  \textbf{Replay-Configuration Sensitivity}\\[-0.0em]
+  \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-035_g9_network_gap_analysis_panel_f_capacity_paradox_all_6_replay_configs_sc.png}
+  \end{minipage}}
+\caption{Together, the panels show the big-picture synthesis: routing
+robustness is governed by the interaction among model family, replay/capacity
+setting, allocator choice, and threat regime.}
 % \shee{Isn't Fig 13D the same as Fig. 8a?} -- SOLVED: Kept this appendix figure as a four-panel diagnostic synthesis and removed the rendered feedback marker from the caption.
 
 \label{fig:appendix_g8_advanced_synthesis}
