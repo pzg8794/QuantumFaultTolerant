@@ -8,3 +8,15 @@ They are generated from source plotting code, not by cropping exported images. I
 - Manifest: `icnp_validation_image_manifest.csv`
 
 Use the `ICNP-CODE-###` prefix to match each image to the validation notebook record.
+
+## Reviewer navigation
+
+- Start with the manifest to map each figure to its generation context.
+- Use code-prefixed filenames to cross-reference notebook cells and validation records.
+- Treat this directory as derived artifacts for review and verification.
+
+## Regeneration guidance
+
+- Regenerate images from plotting code when notebook logic or dataset slices change.
+- Avoid manual image editing to preserve reproducibility.
+- Update the manifest if filenames, counts, or figure provenance change.
