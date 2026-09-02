@@ -1,5 +1,9 @@
 # High-Priority Review Backlog
 
+For the concise advisor-facing status and schedule, see
+[`../updates/README.md`](../updates/README.md). This file retains the detailed
+implementation and evidence view.
+
 This tracker consolidates high-priority work from three sources:
 
 1. the active ICNP venue draft and included staging files;
