@@ -1,8 +1,10 @@
 # ICNP Revision Evidence Index
 
 This directory contains the detailed working evidence behind the concise
-[advisor update](../updates/README.md). Start with the status records below;
-open section-specific audits only when the corresponding task requires them.
+[advisor update](../updates/README.md) and the
+[current reviewer-feedback tasks](../updates/FEEDBACK_TASKS.md). Start with the
+status records below; open section-specific audits only when the corresponding
+task requires them.
 
 ## Current Status
 
@@ -52,7 +54,9 @@ evidence, not separate active task lists.
 - [Official requirements used during ICNP preparation](OFFICIAL_GUIDELINES.md)
 - [Formatting and bold-text reduction record](FORMATTING_BOLD_TEXT_REDUCTION.md)
 
-Current venue selection and retargeting records live in `../venues/`.
+Current venue selection and retargeting records live in `../venues/`. The
+[CCWC 2027 submission checklist](../venues/ccwc_2027/SUBMISSION_CHECKLIST.md)
+maps venue gates directly to the current feedback-task IDs.
 
 ## Documentation Rule
 

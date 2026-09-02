@@ -2,7 +2,9 @@
 
 **Prepared for:** Dan Krutz
 
-**Last updated:** August 27, 2026
+**Last updated:** Thursday, August 27, 2026
+
+**Reporting period:** August 27--September 2, 2026
 
 **Scope:** Post-ICNP reviewer-feedback revision and resubmission preparation
 
@@ -36,6 +38,23 @@ configuration and compute requirements are validated.
 | Diagnose the existing 100-node result | **Planned** | Ablations separating horizon, state size, path diversity, allocator, and replay-capacity effects | Sep. 29 |
 | Complete the final reviewer-risk and submission audit | **Planned** | Residual Reviewer B mapping plus build, evidence, anonymity, venue, and coauthor checks | Oct. 2 |
 
+The task-level status, acceptance evidence, and dependencies are maintained in
+the [current reviewer-feedback task checklist](FEEDBACK_TASKS.md).
+
+## Work Logged Since August 27
+
+**GA hours:** 10 / 10 for the first weekly block
+
+- Re-established the August reviewer roadmap as the revision source of truth.
+- Organized the feedback into an A+C-first checklist with Reviewer B retained
+  as the later residual-risk audit.
+- Reconciled the major paper, evidence, and repository sources needed to avoid
+  restarting from the superseded spring task list.
+- Created the advisor-facing update structure and prepared the first
+  high-priority feedback task for execution.
+- Established the working next-venue checklist and linked its milestones to the
+  reviewer-feedback tasks.
+
 ## Completed Foundation
 
 - The matched evaluation framework, validated result set, capacity-paradox
@@ -54,23 +73,26 @@ will prevent completed work from being repeated and will make every remaining
 paper edit or experiment traceable to a reviewer request and supporting
 evidence.
 
-## Guidance Requested
+## Coordination Checks
 
-- Confirm whether the proposed revision order matches the preferred coauthor
-  review sequence.
-- Confirm whether a coauthor checkpoint should occur after the specification
-  work (Sep. 9) or after the threat-grounding pass (Sep. 11).
-- Confirm whether the realistic submission path should prioritize the next
-  conference opportunity or a longer journal revision after the scale evidence
-  is complete.
+The revision direction and immediate work are established. Feedback is welcome
+on these coordination points while work continues:
 
-## Optional Detail
+- Whether the proposed sequence aligns with the preferred coauthor review
+  cadence.
+- Whether the first coauthor checkpoint is most useful after the specification
+  work on Sep. 9 or after the threat-grounding pass on Sep. 11.
+- Whether IEEE CCWC 2027 should remain the working conference target or the
+  completed revision should move directly to the longer journal route.
 
-- [High-priority working backlog](../ICNP_VENUE_PREP/HIGH_PRIORITY_REVIEW_BACKLOG.md)
+## Current Supporting Detail
+
+- [Current reviewer-feedback task checklist](FEEDBACK_TASKS.md)
+- [CCWC 2027 submission checklist](../venues/ccwc_2027/SUBMISSION_CHECKLIST.md)
 - [Completed feedback-resolution evidence](../ICNP_VENUE_PREP/ACTIVE_FEEDBACK_RESOLUTION_LOG.md)
-- [Full draft audit checklist](../ICNP_VENUE_PREP/ICNP_DRAFT_AUDIT_TODO.md)
 - [Build and validation record](../ICNP_VENUE_PREP/BUILD_VALIDATION_LOG.md)
 - [Active manuscript source](../ICNP_2026_venue_draft.tex)
 
-The detailed files above are supporting records. This page remains the primary
-advisor-facing status summary.
+These links support the current reviewer-feedback and resubmission checklist.
+Historical and superseded planning records are intentionally omitted from this
+advisor-facing page.

@@ -4,8 +4,10 @@ Venue-specific preparation material lives here.
 
 ## Active tracks
 
-- `icnp_2026/` - active ICNP 2026 preparation notes, checklist, timeline, and source links.
-- `journal/` - journal-submission fallback checklist and readiness notes.
+- [`ccwc_2027/SUBMISSION_CHECKLIST.md`](ccwc_2027/SUBMISSION_CHECKLIST.md) - current working conference checklist, deadlines, priorities, and feedback-task mappings.
+- `journal/` - longer-form submission fallback checklist and readiness notes.
+- `icnp_2026/` - historical preparation notes for the completed ICNP 2026 submission.
+- `NEXT_VENUE_DECISION_2026-05-27.md` - historical post-submission venue scan; not the current checklist.
 
 ## Workflow guidance
 
