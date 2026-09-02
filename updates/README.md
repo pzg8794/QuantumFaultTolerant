@@ -2,7 +2,7 @@
 
 **Prepared for:** Dan Krutz
 
-**Last updated:** September 2, 2026
+**Last updated:** August 27, 2026
 
 **Scope:** Post-ICNP reviewer-feedback revision and resubmission preparation
 
