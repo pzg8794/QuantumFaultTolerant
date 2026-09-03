@@ -6,6 +6,32 @@ This repository contains the working ICNP 2026 venue draft and supporting audit 
 
 Do not treat this as a normal single-file LaTeX paper. The active venue draft is assembled from staging files, audit notes, exported figures, and appendix fragments. Update the source fragment that owns the content, then verify that `ICNP_2026_venue_draft.tex` includes it.
 
+## Reviewer-revision strategy
+
+The current revision is reviewer-driven. Every active work item must map directly to documented reviewer feedback or an approved advisor/coauthor decision. Do not invent new research problems, blockers, validation projects, or experiments while resolving a manuscript-language task.
+
+### Low-hanging-fruit rule
+
+The first revision wave is manuscript-only work using material that already exists: reviewer feedback, the current manuscript, validated evidence, and existing documentation. Low-hanging work includes rephrasing, adding or removing text, reorganizing material, clarifying contribution framing, calibrating claims, improving transitions, and reducing narrative clutter.
+
+If resolving a task requires inspecting or modifying implementation code, tracing configurations, running notebooks, analyzing datasets, debugging, or running/designing a new experiment, that task is not low-hanging fruit. Defer that portion to a later complexity tier and move to the next manuscript-only task whose dependencies are satisfied.
+
+### Central-contribution framing rule
+
+For the current paper, the primary contribution is the controlled, threat-aware evaluation framework/methodology and the evidence that this matched evaluation reveals. The evaluated bandit families are objects of comparison and sources of findings; they are not the paper's claimed new contribution.
+
+In the Abstract, Introduction, formal contribution list, and Conclusion, do not let a winning bandit family become the rhetorical center if doing so competes with the controlled framework. Where the same validated result can be stated equivalently, prefer language that foregrounds what the framework exposes: performance gaps, discrepancies, tradeoffs, interactions, instability, failure modes, or boundaries. Preserve the numerical evidence and scientific meaning. Do not distort, omit, or reverse evidence merely to avoid naming a winner.
+
+This is a contribution-positioning rule, not a ban on reporting winners. Results and analysis sections may identify the strongest policy when that is scientifically relevant. The high-level framing should make clear that such rankings are findings produced by the framework, not the reason the paper exists.
+
+### Revision-option rule
+
+Do not manufacture an A/B choice. Every proposed solution must independently satisfy the reviewer feedback and remain scientifically defensible. If only one defensible revision exists, present one. For wording changes, show the complete current paragraph first, then isolate only the competing/problematic sentence(s), then propose solutions for one sentence at a time. Do not mix paragraph context, sentence identification, and replacement language.
+
+### Preservation rule
+
+Preserve the strengths already recognized by Reviewer A: the controlled evaluation design, the separation of policy, allocator, and capacity settings, cross-testbed evidence, and the capacity-paradox finding. This is an operating constraint, not a standalone checklist task or evidence-reconciliation project. Use the existing Validation Hub and validated logs when an empirical claim actually needs evidence checking; do not duplicate that infrastructure.
+
 ## Key files and what owns what
 
 ### Active venue draft
