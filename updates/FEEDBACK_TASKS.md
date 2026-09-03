@@ -4,7 +4,7 @@
 
 **Execution model updated:** Thursday, September 3, 2026
 
-**Current task:** F-02 — align the central contribution
+**Current task:** F-02 — align the central contribution; Abstract framing review complete, proceeding to Introduction
 
 This is the detailed execution board behind the concise [advisor update](README.md). Tasks are ordered from the easiest ready manuscript work to the hardest evidence-producing work. Reviewer classification remains visible, but priority labels do not determine day-to-day order.
 
@@ -18,8 +18,9 @@ This is the detailed execution board behind the concise [advisor update](README.
 6. Use Reviewer B as the final residual-risk audit after overlapping A/C work is complete.
 7. Do not manufacture alternatives. Every proposed solution must independently satisfy the reviewer feedback and remain scientifically defensible. If only one defensible revision exists, present one.
 8. For wording work, show the **complete current paragraph first**, isolate only the competing/problematic sentence(s), and then resolve **one sentence at a time**. Do not mix paragraph context, sentence identification, and replacement language.
-9. Do not edit the manuscript until the proposed wording is explicitly approved when the change affects scientific framing, contribution positioning, interpretation, or claim strength.
-10. Add no new task unless it maps directly to documented reviewer feedback or an approved advisor/coauthor/venue requirement.
+9. Reassess each candidate sentence in the context created by already approved upstream changes. If an earlier surgical edit removes the competition or ambiguity, **do not rewrite an additional sentence merely because it was initially flagged**.
+10. Do not edit the manuscript until the proposed wording is explicitly approved when the change affects scientific framing, contribution positioning, interpretation, or claim strength.
+11. Add no new task unless it maps directly to documented reviewer feedback or an approved advisor/coauthor/venue requirement.
 
 ## Central-Contribution Strategy
 
@@ -30,6 +31,8 @@ In the Abstract, Introduction, formal contribution list, and Conclusion, avoid w
 This does **not** prohibit reporting which policy performs best. Results and analysis may identify winners when scientifically relevant. The framing rule is narrower: high-level contribution language must make clear that those rankings are **findings produced by the framework**, not the reason the paper exists.
 
 Preserve all validated numbers and scientific meaning. Reframing a comparison from the winner's perspective to the underperforming side or to the observed gap is acceptable when it expresses the same result; do not distort evidence merely to avoid naming a winner.
+
+A sentence that names a strong policy is not automatically competing. Evaluate its rhetorical function in the full paragraph. If it primarily demonstrates a policy--allocator, policy--threat, or capacity--threat interaction that the controlled framework was designed to expose, it may reinforce the framework rather than compete with it.
 
 ## Feedback We Are Addressing
 
@@ -47,7 +50,7 @@ The queue is complexity-based. **Anything requiring code, notebooks, datasets, o
 
 | Order | ID | Complexity | Feedback focus | Status | Dependency |
 |---:|---|---|---|---|---|
-| 1 | F-02 | Low | Position the central contribution through surgical manuscript wording | **In progress** | None |
+| 1 | F-02 | Low | Position the central contribution through surgical manuscript wording | **In progress — Abstract reviewed; Introduction next** | None |
 | 2 | F-07 | Low | Calibrate deployment/generalization claims using existing evidence | **Queued** | None |
 | 3 | F-13 | Low–Medium | Compress the main narrative without losing evidence | **Queued** | F-02 |
 | 4 | F-05 | Low if prose-sufficient; later otherwise | Clarify allocator–policy semantics from already documented material | **Queued** | None |
@@ -66,7 +69,7 @@ The queue is complexity-based. **Anything requiring code, notebooks, datasets, o
 
 - **Feedback addressed:** Reviewer A requests clearer contribution positioning. The August review classification records the required change as: state clearly that the primary novelty is the controlled evaluation methodology and the evidence it reveals, not an unsupported claim of a new bandit family. Reviewer C recognizes the controlled grid as a genuine evaluation-methodology contribution.
 - **Problem:** High-level wording can allow a specific bandit family or winner to compete with the controlled framework for narrative priority even when the underlying science is correct.
-- **Method:** Work section by section. Show the complete current paragraph, isolate only the competing sentence(s), and resolve one competing sentence at a time. Prefer the smallest wording change that restores the hierarchy: **framework → evidence/findings**, not **winning policy → central story**.
+- **Method:** Work section by section. Show the complete current paragraph, isolate only the competing sentence(s), and resolve one competing sentence at a time. Prefer the smallest wording change that restores the hierarchy: **framework → evidence/findings**, not **winning policy → central story**. After each approved change, reassess the remaining sentences in their new paragraph context before editing anything else.
 - **Completion evidence:** Abstract, Introduction, formal contribution list, and Conclusion consistently present the controlled threat-aware evaluation as the paper's central contribution while retaining validated findings as evidence of what the framework reveals.
 
 #### F-02.1 — Abstract competing sentence #1
@@ -94,15 +97,33 @@ The queue is complexity-based. **Anything requiring code, notebooks, datasets, o
 - It makes the empirical evidence demonstrate the value of the framework: the framework exposes meaningful performance discrepancies and failure modes across matched conditions.
 - It is intentionally surgical. It does not rewrite the surrounding abstract or introduce a new scientific claim.
 
-**Status:** **Approved for manuscript implementation.**
+**Status:** **Approved; pending local-AI confirmation and manuscript implementation.**
 
-#### F-02.2 — Abstract competing sentence #2
+#### F-02.2 — Abstract sentence initially flagged as competing
 
-**Before:**
+**Current sentence:**
 
 > These results establish that context-aware neural policies paired with appropriate allocators provide deployment-grade robustness, while capacity scaling must be threat-matched to avoid predictability-induced collapse.
 
-**Status:** **Next for review. No replacement approved yet.**
+**Decision:** **Retain as written for F-02 contribution positioning.**
+
+**Why:**
+
+- In the original paragraph, immediately following a winner-centered sentence, this sentence could read as additional promotion of the same winning bandit family.
+- After the approved F-02.1 reframing, its rhetorical function changes: it emphasizes that robustness depends on a **policy--allocator pairing** and that capacity must be **matched to the threat regime**.
+- Those are exactly the multi-factor interactions the controlled framework was designed to evaluate, so the sentence now supports the framework rather than competing with it.
+- No additional rewrite is justified under F-02 merely because the sentence names context-aware neural policies.
+- The phrase **“deployment-grade robustness”** may still require separate review under F-07 claim calibration. That is a different reviewer issue and must not be mixed into F-02.
+
+**Status:** **F-02 abstract review complete. No F-02 rewrite required for this sentence.**
+
+#### F-02 Abstract — section status
+
+**Contribution-positioning review:** **Complete.**
+
+**Implementation gate:** Confirm the approved F-02.1 wording with the local AI, then apply only that approved sentence change to the `.tex` source. Re-read the full revised abstract afterward to verify that the framework remains central and that no unintended meaning changed.
+
+**No other Abstract sentence is currently approved for modification under F-02.**
 
 ### F-07 — Calibrate Claims to Demonstrated Evidence
 
@@ -187,10 +208,12 @@ The queue is complexity-based. **Anything requiring code, notebooks, datasets, o
 Work through the manuscript-only queue first:
 
 - [x] Establish contribution-positioning strategy for F-02.
-- [x] Approve F-02.1 abstract competing sentence #1.
-- [ ] Resolve F-02.2 abstract competing sentence #2.
-- [ ] Continue identifying and resolving contribution-competing language section by section.
-- [ ] Move next to the easiest remaining manuscript-only reviewer task.
+- [x] Approve F-02.1 Abstract competing sentence #1.
+- [x] Reassess F-02.2 in revised context; retain it for contribution positioning.
+- [x] Complete F-02 Abstract contribution-positioning review.
+- [ ] Confirm F-02.1 with the local AI and implement the single approved Abstract sentence change.
+- [ ] Begin F-02 Introduction contribution-positioning review using the same paragraph-first, competing-sentence-only workflow.
+- [ ] Continue section by section through the formal contribution list and Conclusion.
 
 Do **not** spend this first-pass time on code tracing, notebooks, datasets, new validation infrastructure, or experiments while manuscript-only reviewer fixes remain available.
 
