@@ -2,7 +2,7 @@
 
 **Prepared for:** Dan Krutz
 
-**Last updated:** Thursday, August 27, 2026
+**Last updated:** Thursday, September 3, 2026
 
 **Reporting period:** August 27--September 2, 2026
 
@@ -17,26 +17,26 @@ the update.
 
 The revision preserves the controlled policy--allocator--capacity evaluation,
 cross-testbed evidence, and capacity-paradox result recognized positively in
-the reviews. The current work prioritizes the concrete reproducibility,
-interface, physical-grounding, and scale requests before a final residual-risk
-audit and venue decision.
+the reviews. The current work addresses documented feedback from the easiest
+ready task to the hardest experimental task. Reviewer A's accepted core remains
+protected, Reviewer C supplies the primary revision checklist, and Reviewer B
+remains the final residual-risk audit.
 
-## Revision Schedule
+## Complexity-Ordered Work Plan
 
-Dates below are working targets. Experimental dates will be refined after the
-configuration and compute requirements are validated.
+The detailed checklist selects the lowest-complexity task whose dependencies
+are satisfied. Work is scheduled in 10-hour weekly blocks rather than assigning
+an aggressive date to every task.
 
-| Work item | Status | Completed / expected output | Target |
-|---|---|---|---:|
-| Reconcile reviewer feedback with the current manuscript | **In progress** | One evidence-backed matrix identifying completed work and genuine remaining gaps | Sep. 3 |
-| Align the paper's central contribution | **Next** | Consistent framing in the abstract, introduction, contributions, and conclusion | Sep. 4 |
-| Specify the complete routing decision loop | **Next** | Reviewer-traceable pseudocode covering context, route selection, allocation, feedback, replay, and update order | Sep. 7 |
-| Complete the context and configuration inventory | **Planned** | Context features, dimensions, normalization, training cadence, allocator settings, replay semantics, and major hyperparameters traced to code/configuration sources | Sep. 9 |
-| Ground threats and calibrate claims | **Planned** | Threat-to-physics mapping, parameter rationale, citations, and bounded deployment language | Sep. 11 |
-| Design the medium-scale validation | **Planned** | Reproducible 15--20-node experiment design with at least 10 candidate paths and explicit acceptance criteria | Sep. 15 |
-| Run and validate the medium-scale experiment | **Planned; estimate pending design check** | Logs, analysis, plots, and comparison with the current small topology | Initial result target: Sep. 22 |
-| Diagnose the existing 100-node result | **Planned** | Ablations separating horizon, state size, path diversity, allocator, and replay-capacity effects | Sep. 29 |
-| Complete the final reviewer-risk and submission audit | **Planned** | Residual Reviewer B mapping plus build, evidence, anonymity, venue, and coauthor checks | Oct. 2 |
+| Work block | Status | Expected output |
+|---|---|---|
+| Accepted-core preservation and reconciliation | **In progress** | Claim-to-evidence map plus feedback/current-status matrix |
+| Contribution and allocator clarity | **Next** | Aligned central contribution and source-backed allocator interface |
+| Claim calibration | **Next** | Evidence-bounded deployment and generalization language |
+| Narrative and reproducibility specification | **Planned** | Compressed main story, complete decision loop, and context/configuration inventory |
+| Physical grounding | **Planned** | Cited threat-to-physics mapping with explicit stress-test boundaries |
+| Scale evidence | **Pending approved design** | Medium-scale validation and targeted 100-node diagnosis |
+| Residual-risk and submission audit | **Final** | Reviewer B closure plus build, evidence, anonymity, venue, and coauthor gates |
 
 The task-level status, acceptance evidence, and dependencies are maintained in
 the [current reviewer-feedback task checklist](FEEDBACK_TASKS.md).
@@ -68,17 +68,18 @@ the [current reviewer-feedback task checklist](FEEDBACK_TASKS.md).
 
 ## Current Work
 
-The immediate deliverable is the reviewer-feedback/current-status matrix. It
-will prevent completed work from being repeated and will make every remaining
-paper edit or experiment traceable to a reviewer request and supporting
-evidence.
+The immediate deliverable is the accepted-core claim/evidence and reviewer-
+feedback/current-status matrix, followed by contribution positioning and the
+allocator interface. The detailed checklist shows the feedback, problem,
+possible solutions, recommended solution, reasoning, dependencies, and
+completion evidence for every task.
 
 ## Coordination Checks
 
 The revision direction and immediate work are established. Feedback is welcome
 on these coordination points while work continues:
 
-- Whether the proposed sequence aligns with the preferred coauthor review
+- Whether the complexity-ordered sequence aligns with the preferred coauthor review
   cadence.
 - Whether the first coauthor checkpoint is most useful after the specification
   work on Sep. 9 or after the threat-grounding pass on Sep. 11.

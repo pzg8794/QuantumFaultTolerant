@@ -35,7 +35,7 @@ Official sources:
 | Gate | Priority | Requirement / deliverable | Linked feedback tasks | Status | Internal deadline |
 |---|---:|---|---|---|---:|
 | V-01 | P0 | Confirm CCWC 2027 as the working conference target and Regular Paper as the intended category | F-12 | **Working assumption; coordination check open** | Sep. 4 |
-| V-02 | P0 | Reconcile all reviewer-derived work and freeze the accepted evidence core | F-01, F-02 | **In progress** | Sep. 4 |
+| V-02 | P0 | Reconcile reviewer-derived work, freeze the accepted evidence core, and compress the main narrative without losing evidence | F-01, F-02, F-13 | **In progress** | Working-block sequence |
 | V-03 | P0 | Complete decision-loop, context/configuration, and allocator-interface specification | F-03, F-04, F-05 | **Planned** | Sep. 9 |
 | V-04 | P1 | Complete threat grounding and evidence-bounded claim audit | F-06, F-07 | **Planned** | Sep. 11 |
 | V-05 | P1 | Approve medium-scale experiment design and compute budget | F-08 | **Planned** | Sep. 15 |
