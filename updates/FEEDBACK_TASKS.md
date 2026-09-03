@@ -84,20 +84,23 @@ The queue is complexity-based. **Anything requiring code, notebooks, datasets, o
 
 **Approved framing strategy:** Do not make the winning bandit family the subject of the high-level finding. The framework is the contribution, so report the discrepancy/failure-mode evidence that the framework exposes. A comparative result can be stated from the underperforming side or as a performance gap without changing the underlying evidence.
 
-**Approved solution — After:**
+**Final approved solution — After:**
 
-> Across thirteen bandit policies and five threat regimes, our controlled evaluation revealed 18--24 percentage-point (pp) performance gaps associated with non-contextual baselines in scenario-aggregated efficiency, while adversarial-first EXP3-style designs exhibited greater instability under adaptive attacks.
+> Across thirteen bandit policies and five threat regimes, our controlled evaluation revealed 18--24 percentage-point (pp) scenario-aggregated efficiency deficits for non-contextual baselines relative to the leading policy family, identified configurations sustaining worst-case efficiency above 85\% under stochastic threats, and exposed greater instability in adversarial-first EXP3-style designs under adaptive attacks.
 
 **Why this solution is approved:**
 
-- It keeps the controlled evaluation as the source of the finding.
-- It removes the winning bandit family from the rhetorical foreground instead of merely moving its name later in the sentence.
-- It preserves the validated 18--24 pp comparative evidence by expressing the result as a performance gap rather than as a winner announcement.
-- It preserves the adaptive-attack instability finding without turning an alternative policy family into the paper's central contribution.
-- It makes the empirical evidence demonstrate the value of the framework: the framework exposes meaningful performance discrepancies and failure modes across matched conditions.
-- It is intentionally surgical. It does not rewrite the surrounding abstract or introduce a new scientific claim.
+- It keeps the controlled evaluation as the grammatical and rhetorical source of all three findings.
+- It preserves **all three findings from the original sentence**: the 18--24 pp efficiency difference, the above-85\% worst-case stochastic result, and the adaptive-attack instability result.
+- It reports the first result from the underperforming side and refers to the comparator only as **the leading policy family**, avoiding repeated promotion of a named winning family.
+- It converts the stochastic result into a configuration-level finding rather than a winner announcement while retaining the same >85\% evidence.
+- It keeps the adversarial-first instability result as a failure mode exposed by matched evaluation.
+- It therefore demonstrates the value of the framework through the discrepancies and behavior it reveals rather than making a particular bandit family appear to be the contribution.
+- It is intentionally surgical and does not introduce a new scientific claim.
 
-**Status:** **Approved; pending local-AI confirmation and manuscript implementation.**
+**Local-AI review outcome:** The local AI correctly identified that the earlier approved rewrite had dropped the >85\% stochastic finding and that its comparator wording was too implicit. Its initial correction repeatedly named neural hybrids, which would have partially restored the winner-centered narrative. The final wording accepts the evidence-preservation/precision critique while retaining the framework-centered strategy.
+
+**Status:** **Final wording approved for manuscript implementation.**
 
 #### F-02.2 — Abstract sentence initially flagged as competing
 
@@ -121,7 +124,7 @@ The queue is complexity-based. **Anything requiring code, notebooks, datasets, o
 
 **Contribution-positioning review:** **Complete.**
 
-**Implementation gate:** Confirm the approved F-02.1 wording with the local AI, then apply only that approved sentence change to the `.tex` source. Re-read the full revised abstract afterward to verify that the framework remains central and that no unintended meaning changed.
+**Implementation gate:** Apply only the final approved F-02.1 sentence change to the `.tex` source, then re-read the full revised Abstract to verify that the framework remains central, all three findings remain intact, and no unintended meaning changed.
 
 **No other Abstract sentence is currently approved for modification under F-02.**
 
@@ -209,9 +212,10 @@ Work through the manuscript-only queue first:
 
 - [x] Establish contribution-positioning strategy for F-02.
 - [x] Approve F-02.1 Abstract competing sentence #1.
+- [x] Review F-02.1 with the local AI and incorporate the valid evidence-preservation/precision correction without restoring winner-centered framing.
 - [x] Reassess F-02.2 in revised context; retain it for contribution positioning.
 - [x] Complete F-02 Abstract contribution-positioning review.
-- [ ] Confirm F-02.1 with the local AI and implement the single approved Abstract sentence change.
+- [ ] Implement the single final approved Abstract sentence change in the manuscript and re-read the full Abstract.
 - [ ] Begin F-02 Introduction contribution-positioning review using the same paragraph-first, competing-sentence-only workflow.
 - [ ] Continue section by section through the formal contribution list and Conclusion.
 
