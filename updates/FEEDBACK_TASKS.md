@@ -140,34 +140,39 @@ The queue is complexity-based. **Anything requiring code, notebooks, datasets, o
 
 **Finding from paragraph-level review:** Reporting a family-level result in the Introduction is appropriate; the issue is not that the sentence previews a strong-performing family. The rhetorical question is whether the sentence makes that family the center of the paper rather than making it a finding produced by the controlled framework.
 
-**Finding on the word `pursuit`:** The Introduction does not need the narrower pursuit-lineage label to communicate this high-level result. The active Abstract already uses **neural hybrids** as the family-level high-level label, and the validated cross-testbed evidence states that **hybrid neural policies** are highest at 90.9\% in the model-family comparison. Using **neural hybrids** here therefore functions as a supported high-level abstraction rather than as an unsupported generalization. The detailed pursuit lineage and named winning configurations remain available for the Results section.
+**Taxonomy finding:** The high-level distinction needed in the Introduction is **context-aware vs. non-context-aware**, not the narrower pursuit mechanism. Repository evidence explicitly distinguishes contextual pursuit models from **neural non-context baselines** and states that context-aware policies define the robustness frontier. Therefore, unqualified **neural hybrids** is too broad because the paper includes neural models that are not context-aware, while **pursuit--neural hybrids** is more mechanism-specific than necessary for this Introduction-level preview. The detailed pursuit lineage and named configurations remain for the Results section.
 
 **Desired rhetorical hierarchy:**
 
-> **controlled framework/evaluation → family-level finding → capacity-paradox interaction**
+> **controlled framework/evaluation → context-aware family-level finding → capacity-paradox interaction**
 
-The Introduction should connect the controlled evaluation directly to the finding without digging into the named policy lineage or detailed ranking that belongs in Results.
+The Introduction should connect the controlled evaluation directly to the context-aware performance pattern without digging into pursuit-specific or model-specific details that belong in Results.
 
-**Working wording sent for independent review:**
+**Earlier working wording:**
 
 > Across this controlled grid, our framework reveals neural hybrids as defining the strongest robustness--efficiency tier, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks.
 
-**SolM review outcome:** SolM agreed that **neural hybrids** is supported by the family-level evidence and does not materially overgeneralize the Introduction preview. It also agreed that the contribution hierarchy and unchanged capacity-paradox clause work naturally. SolM identified one genuine wording defect: **“reveals neural hybrids as defining”** is rhetorically awkward because a family occupies a performance tier rather than defining it.
+**SolM review outcome:** SolM agreed with the framework-first contribution hierarchy and identified one wording defect in the earlier construction: **“reveals neural hybrids as defining”** is rhetorically awkward because a family occupies a performance tier rather than defining it. This led to the improved empirical construction **“our evaluation identifies ... as occupying.”**
+
+**Perplexity continuity review:** Perplexity then identified a substantive taxonomy nuance: the paper's tier/frontier language is consistently tied to contextual/pursuit-aware models, while the broader neural family also contains non-contextual neural baselines. A follow-up evidence check confirmed the exact archived taxonomy: contextual pursuit models outperform non-contextual baselines and separate from **neural non-context baselines**, while the paper states that **context-aware policies define the robustness frontier**. This makes **context-aware neural hybrids** the appropriate Introduction-level abstraction.
 
 **Final approved solution — After:**
 
-> Across this controlled grid, our evaluation identifies neural hybrids as occupying the strongest robustness--efficiency tier, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks.
+> Across this controlled grid, our evaluation identifies context-aware neural hybrids as occupying the strongest robustness--efficiency tier, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks.
 
 **Why this solution is approved:**
 
-- **Our evaluation** remains the grammatical and rhetorical source of the finding, preserving the paper's contribution hierarchy.
-- **Identifies** is appropriate empirical language for a controlled evaluation and avoids stronger proof-like wording.
-- **Neural hybrids** retains the supported family-level finding without unnecessary pursuit-lineage detail in the Introduction.
-- **Occupying the strongest robustness--efficiency tier** is semantically cleaner than saying the family “defines” the tier while retaining the same empirical hierarchy.
-- The capacity-paradox clause remains unchanged and immediately reinforces that the framework exposes multiple behaviors, not merely a ranking.
-- The detailed model identities, pursuit lineage, and quantitative ranking remain for the Results section.
+- **Our evaluation** remains the grammatical and rhetorical source of the finding, preserving the framework-first contribution hierarchy.
+- **Identifies** is measured empirical language and does not imply causal proof.
+- **Context-aware** captures the scientifically meaningful distinction supported by the paper's own taxonomy and excludes neural non-context baselines from the claim.
+- **Neural hybrids** retains a family-level abstraction suitable for the Introduction without naming the narrower pursuit mechanism.
+- **Occupying the strongest robustness--efficiency tier** is consistent with the paper's established descriptive tier/frontier language once the family is correctly qualified as context-aware.
+- The capacity-paradox clause remains unchanged and supplies a second interaction-level behavior exposed by the same controlled grid.
+- Pursuit-specific and model-specific distinctions remain deferred to Results, where that granularity belongs.
 
-**Status:** **Final wording approved for manuscript implementation. Manuscript implementation remains intentionally deferred.**
+**Independent review convergence:** SolM supports the framework-first construction and the use of **occupying** rather than **defining**; Perplexity independently confirmed that adding **context-aware** resolves the remaining overbreadth/continuity concern and issued **APPROVE F-02.3 INTRODUCTION** with no remaining scientific or rhetorical defect.
+
+**Status:** **Final wording independently confirmed and approved for manuscript implementation. Manuscript implementation remains intentionally deferred.**
 
 ### F-07 — Calibrate Claims to Demonstrated Evidence
 
@@ -260,7 +265,8 @@ Work through the manuscript-only queue first:
 - [x] Begin F-02 Introduction contribution-positioning review using the same paragraph-first, competing-sentence-only workflow.
 - [x] Isolate the Introduction findings-preview sentence and establish the framework-centered, family-level framing strategy.
 - [x] Obtain independent SolM review of the F-02.3 Introduction wording.
-- [x] Finalize F-02.3 wording after adjudicating the SolM review.
+- [x] Resolve the taxonomy continuity issue by qualifying the family as **context-aware neural hybrids**.
+- [x] Obtain final independent Perplexity approval of the context-aware F-02.3 wording.
 - [ ] Implement the final approved F-02.3 Introduction sentence. **Implementation intentionally deferred by the author until later.**
 - [ ] Continue section by section through the formal contribution list and Conclusion.
 
