@@ -4,7 +4,7 @@
 
 **Execution model updated:** Thursday, September 3, 2026
 
-**Current task:** F-02 — align the central contribution; Abstract framing review complete, Introduction findings-preview sentence under independent review
+**Current task:** F-02 — align the central contribution; Abstract and Introduction findings-preview wording approved, formal contribution list next
 
 This is the detailed execution board behind the concise [advisor update](README.md). Tasks are ordered from the easiest ready manuscript work to the hardest evidence-producing work. Reviewer classification remains visible, but priority labels do not determine day-to-day order.
 
@@ -50,7 +50,7 @@ The queue is complexity-based. **Anything requiring code, notebooks, datasets, o
 
 | Order | ID | Complexity | Feedback focus | Status | Dependency |
 |---:|---|---|---|---|---|
-| 1 | F-02 | Low | Position the central contribution through surgical manuscript wording | **In progress — Abstract approved; Introduction sentence under review** | None |
+| 1 | F-02 | Low | Position the central contribution through surgical manuscript wording | **In progress — Abstract and Introduction preview approved; contribution list next** | None |
 | 2 | F-07 | Low | Calibrate deployment/generalization claims using existing evidence | **Queued** | None |
 | 3 | F-13 | Low–Medium | Compress the main narrative without losing evidence | **Queued** | F-02 |
 | 4 | F-05 | Low if prose-sufficient; later otherwise | Clarify allocator–policy semantics from already documented material | **Queued** | None |
@@ -134,7 +134,7 @@ The queue is complexity-based. **Anything requiring code, notebooks, datasets, o
 
 > To address this lack of a unified and controlled evaluation framework for quantum-routing strategies, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. This evaluation provides practical guidance for designing quantum-network controllers that can maintain high entanglement efficiency and robustness under changing network conditions and adversarial disruptions. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks.
 
-**Sentence under review — Before:**
+**Competing sentence — Before:**
 
 > Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks.
 
@@ -144,23 +144,30 @@ The queue is complexity-based. **Anything requiring code, notebooks, datasets, o
 
 **Desired rhetorical hierarchy:**
 
-> **controlled framework → family-level finding → capacity-paradox interaction**
+> **controlled framework/evaluation → family-level finding → capacity-paradox interaction**
 
-The Introduction should connect the framework directly to the finding without digging into the named policy lineage or detailed ranking that belongs in Results.
+The Introduction should connect the controlled evaluation directly to the finding without digging into the named policy lineage or detailed ranking that belongs in Results.
 
-**Working wording for independent review:**
+**Working wording sent for independent review:**
 
 > Across this controlled grid, our framework reveals neural hybrids as defining the strongest robustness--efficiency tier, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks.
 
-**Why this wording is promising:**
+**SolM review outcome:** SolM agreed that **neural hybrids** is supported by the family-level evidence and does not materially overgeneralize the Introduction preview. It also agreed that the contribution hierarchy and unchanged capacity-paradox clause work naturally. SolM identified one genuine wording defect: **“reveals neural hybrids as defining”** is rhetorically awkward because a family occupies a performance tier rather than defining it.
 
-- **Our framework** becomes the grammatical and rhetorical subject.
-- **Reveals** presents the neural-hybrid result as evidence produced by the controlled evaluation rather than as the paper's contribution.
-- **Neural hybrids** retains the important family-level finding while avoiding unnecessary pursuit-lineage detail in the Introduction.
-- **Strongest robustness--efficiency tier** summarizes the result at the appropriate Introduction level without naming a particular winning model.
-- The capacity-paradox clause remains unchanged and immediately reinforces that the framework exposes more than a ranking: it exposes threat-dependent resource behavior.
+**Final approved solution — After:**
 
-**Status:** **Concept and evidence basis agreed by the author; exact wording pending independent SolM review. Do not edit the manuscript yet.**
+> Across this controlled grid, our evaluation identifies neural hybrids as occupying the strongest robustness--efficiency tier, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks.
+
+**Why this solution is approved:**
+
+- **Our evaluation** remains the grammatical and rhetorical source of the finding, preserving the paper's contribution hierarchy.
+- **Identifies** is appropriate empirical language for a controlled evaluation and avoids stronger proof-like wording.
+- **Neural hybrids** retains the supported family-level finding without unnecessary pursuit-lineage detail in the Introduction.
+- **Occupying the strongest robustness--efficiency tier** is semantically cleaner than saying the family “defines” the tier while retaining the same empirical hierarchy.
+- The capacity-paradox clause remains unchanged and immediately reinforces that the framework exposes multiple behaviors, not merely a ranking.
+- The detailed model identities, pursuit lineage, and quantitative ranking remain for the Results section.
+
+**Status:** **Final wording approved for manuscript implementation. Manuscript implementation remains intentionally deferred.**
 
 ### F-07 — Calibrate Claims to Demonstrated Evidence
 
@@ -252,8 +259,9 @@ Work through the manuscript-only queue first:
 - [ ] Implement the single final approved Abstract sentence change in the manuscript and re-read the full Abstract. **Implementation intentionally deferred by the author until later.**
 - [x] Begin F-02 Introduction contribution-positioning review using the same paragraph-first, competing-sentence-only workflow.
 - [x] Isolate the Introduction findings-preview sentence and establish the framework-centered, family-level framing strategy.
-- [ ] Obtain independent SolM review of the F-02.3 Introduction wording.
-- [ ] Finalize F-02.3 wording after adjudicating the SolM review.
+- [x] Obtain independent SolM review of the F-02.3 Introduction wording.
+- [x] Finalize F-02.3 wording after adjudicating the SolM review.
+- [ ] Implement the final approved F-02.3 Introduction sentence. **Implementation intentionally deferred by the author until later.**
 - [ ] Continue section by section through the formal contribution list and Conclusion.
 
 Do **not** spend this first-pass time on code tracing, notebooks, datasets, new validation infrastructure, or experiments while manuscript-only reviewer fixes remain available.
