@@ -4,7 +4,7 @@
 
 **Execution model updated:** Thursday, September 3, 2026
 
-**Current task:** F-02 — align the central contribution; Abstract framing review complete, proceeding to Introduction
+**Current task:** F-02 — align the central contribution; Abstract framing review complete, Introduction findings-preview sentence under independent review
 
 This is the detailed execution board behind the concise [advisor update](README.md). Tasks are ordered from the easiest ready manuscript work to the hardest evidence-producing work. Reviewer classification remains visible, but priority labels do not determine day-to-day order.
 
@@ -50,7 +50,7 @@ The queue is complexity-based. **Anything requiring code, notebooks, datasets, o
 
 | Order | ID | Complexity | Feedback focus | Status | Dependency |
 |---:|---|---|---|---|---|
-| 1 | F-02 | Low | Position the central contribution through surgical manuscript wording | **In progress — Abstract reviewed; Introduction next** | None |
+| 1 | F-02 | Low | Position the central contribution through surgical manuscript wording | **In progress — Abstract approved; Introduction sentence under review** | None |
 | 2 | F-07 | Low | Calibrate deployment/generalization claims using existing evidence | **Queued** | None |
 | 3 | F-13 | Low–Medium | Compress the main narrative without losing evidence | **Queued** | F-02 |
 | 4 | F-05 | Low if prose-sufficient; later otherwise | Clarify allocator–policy semantics from already documented material | **Queued** | None |
@@ -127,6 +127,40 @@ The queue is complexity-based. **Anything requiring code, notebooks, datasets, o
 **Implementation gate:** Apply only the final approved F-02.1 sentence change to the `.tex` source, then re-read the full revised Abstract to verify that the framework remains central, all three findings remain intact, and no unintended meaning changed.
 
 **No other Abstract sentence is currently approved for modification under F-02.**
+
+#### F-02.3 — Introduction findings-preview sentence
+
+**Current paragraph:**
+
+> To address this lack of a unified and controlled evaluation framework for quantum-routing strategies, we introduce a threat-aware evaluation framework that compares stochastic/contextual, adversarial, predictive, and hybrid bandit policies for joint path selection and qubit allocation under matched threat, allocator, and replay-capacity settings. The evaluation pipeline is summarized in \cref{fig:framework}. This evaluation provides practical guidance for designing quantum-network controllers that can maintain high entanglement efficiency and robustness under changing network conditions and adversarial disruptions. Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks.
+
+**Sentence under review — Before:**
+
+> Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks.
+
+**Finding from paragraph-level review:** Reporting a family-level result in the Introduction is appropriate; the issue is not that the sentence previews a strong-performing family. The rhetorical question is whether the sentence makes that family the center of the paper rather than making it a finding produced by the controlled framework.
+
+**Finding on the word `pursuit`:** The Introduction does not need the narrower pursuit-lineage label to communicate this high-level result. The active Abstract already uses **neural hybrids** as the family-level high-level label, and the validated cross-testbed evidence states that **hybrid neural policies** are highest at 90.9\% in the model-family comparison. Using **neural hybrids** here therefore functions as a supported high-level abstraction rather than as an unsupported generalization. The detailed pursuit lineage and named winning configurations remain available for the Results section.
+
+**Desired rhetorical hierarchy:**
+
+> **controlled framework → family-level finding → capacity-paradox interaction**
+
+The Introduction should connect the framework directly to the finding without digging into the named policy lineage or detailed ranking that belongs in Results.
+
+**Working wording for independent review:**
+
+> Across this controlled grid, our framework reveals neural hybrids as defining the strongest robustness--efficiency tier, while replay capacity exhibits a threat-dependent capacity paradox: additional capacity can improve structured-disruption performance yet reduce robustness under adaptive attacks.
+
+**Why this wording is promising:**
+
+- **Our framework** becomes the grammatical and rhetorical subject.
+- **Reveals** presents the neural-hybrid result as evidence produced by the controlled evaluation rather than as the paper's contribution.
+- **Neural hybrids** retains the important family-level finding while avoiding unnecessary pursuit-lineage detail in the Introduction.
+- **Strongest robustness--efficiency tier** summarizes the result at the appropriate Introduction level without naming a particular winning model.
+- The capacity-paradox clause remains unchanged and immediately reinforces that the framework exposes more than a ranking: it exposes threat-dependent resource behavior.
+
+**Status:** **Concept and evidence basis agreed by the author; exact wording pending independent SolM review. Do not edit the manuscript yet.**
 
 ### F-07 — Calibrate Claims to Demonstrated Evidence
 
@@ -215,8 +249,11 @@ Work through the manuscript-only queue first:
 - [x] Review F-02.1 with the local AI and incorporate the valid evidence-preservation/precision correction without restoring winner-centered framing.
 - [x] Reassess F-02.2 in revised context; retain it for contribution positioning.
 - [x] Complete F-02 Abstract contribution-positioning review.
-- [ ] Implement the single final approved Abstract sentence change in the manuscript and re-read the full Abstract.
-- [ ] Begin F-02 Introduction contribution-positioning review using the same paragraph-first, competing-sentence-only workflow.
+- [ ] Implement the single final approved Abstract sentence change in the manuscript and re-read the full Abstract. **Implementation intentionally deferred by the author until later.**
+- [x] Begin F-02 Introduction contribution-positioning review using the same paragraph-first, competing-sentence-only workflow.
+- [x] Isolate the Introduction findings-preview sentence and establish the framework-centered, family-level framing strategy.
+- [ ] Obtain independent SolM review of the F-02.3 Introduction wording.
+- [ ] Finalize F-02.3 wording after adjudicating the SolM review.
 - [ ] Continue section by section through the formal contribution list and Conclusion.
 
 Do **not** spend this first-pass time on code tracing, notebooks, datasets, new validation infrastructure, or experiments while manuscript-only reviewer fixes remain available.
