@@ -2,9 +2,9 @@
 
 **Baseline date:** Thursday, August 27, 2026
 
-**Execution model updated:** Thursday, September 3, 2026
+**Execution model updated:** Thursday, September 10, 2026
 
-**Current task:** F-02 — align the central contribution; Abstract and Introduction findings-preview wording approved, formal contribution list next
+**Current task:** F-07 — calibrate deployment and generalization claims using existing evidence
 
 This is the detailed execution board behind the concise [advisor update](README.md). Tasks are ordered from the easiest ready manuscript work to the hardest evidence-producing work. Reviewer classification remains visible, but priority labels do not determine day-to-day order.
 
@@ -50,8 +50,8 @@ The queue is complexity-based. **Anything requiring code, notebooks, datasets, o
 
 | Order | ID | Complexity | Feedback focus | Status | Dependency |
 |---:|---|---|---|---|---|
-| 1 | F-02 | Low | Position the central contribution through surgical manuscript wording | **In progress — Abstract and Introduction preview approved; contribution list next** | None |
-| 2 | F-07 | Low | Calibrate deployment/generalization claims using existing evidence | **Queued** | None |
+| 1 | F-02 | Low | Position the central contribution through surgical manuscript wording | **Done — independently reviewed, implemented, and build-validated** | None |
+| 2 | F-07 | Low | Calibrate deployment/generalization claims using existing evidence | **Current** | None |
 | 3 | F-13 | Low–Medium | Compress the main narrative without losing evidence | **Queued** | F-02 |
 | 4 | F-05 | Low if prose-sufficient; later otherwise | Clarify allocator–policy semantics from already documented material | **Queued** | None |
 | 5 | F-06 | Medium | Improve threat-to-physics grounding with existing literature/documentation first | **Planned** | None |
@@ -124,7 +124,7 @@ The queue is complexity-based. **Anything requiring code, notebooks, datasets, o
 
 **Contribution-positioning review:** **Complete.**
 
-**Implementation gate:** Apply only the final approved F-02.1 sentence change to the `.tex` source, then re-read the full revised Abstract to verify that the framework remains central, all three findings remain intact, and no unintended meaning changed.
+**Implementation result:** The final approved F-02.1 sentence was applied and the full revised Abstract was re-read and build-validated with all three findings intact.
 
 **No other Abstract sentence is currently approved for modification under F-02.**
 
@@ -172,7 +172,43 @@ The Introduction should connect the controlled evaluation directly to the contex
 
 **Independent review convergence:** SolM supports the framework-first construction and the use of **occupying** rather than **defining**; Perplexity independently confirmed that adding **context-aware** resolves the remaining overbreadth/continuity concern and issued **APPROVE F-02.3 INTRODUCTION** with no remaining scientific or rhetorical defect.
 
-**Status:** **Final wording independently confirmed and approved for manuscript implementation. Manuscript implementation remains intentionally deferred.**
+**Status:** **Final wording independently confirmed, implemented, and build-validated.**
+
+#### F-02.4 — Formal contribution-list wording
+
+**Deployment guidance — Before:**
+
+> Pursuit--neural hybrids sustain $\geq$85\% worst-case efficiency while allocator choice induces 10--15 pp swings, requiring routing policy and qubit allocation to be selected jointly.
+
+**Deployment guidance — Approved after:**
+
+> Our controlled evaluation identifies context-aware neural hybrids as sustaining $\geq$85\% worst-case efficiency, while allocator choice induces 10--15 pp swings, requiring routing policy and qubit allocation to be selected jointly.
+
+**Experimental findings — Before:**
+
+> Pursuit--neural hybrids achieve 87--96\% efficiency, outperforming non-contextual baselines by 18--24 pp, and sustaining stability under strategic attacks.
+
+**Experimental findings — Approved after:**
+
+> Context-aware neural hybrids achieve 87--96\% efficiency, outperforming non-contextual baselines by 18--24 pp, and sustaining stability under strategic attacks.
+
+**Independent review outcome:** The deployment wording was narrowed after review so it preserves the original $\geq$85\% evidence without adding an unsupported threshold claim about every non-contextual baseline. The experimental-finding wording retains the validated comparison while using the established context-aware family taxonomy.
+
+**Status:** **Both formal contribution-list changes independently reviewed, approved, and implemented.**
+
+#### F-02.5 — Framework-first Conclusion
+
+**Before:** The live Conclusion moved directly from the joint-control result to a winner announcement, then presented adversarial fragility, the capacity paradox, deployment guidance, and external-testbed rankings as largely separate findings.
+
+**Approved after:** The revised Conclusion follows the hierarchy **framework → within-tier hierarchy → adversarial failure mode → capacity interaction → deployment implication → external-testbed validation** while retaining the original model-level and numerical evidence.
+
+**Independent review outcome:** The hierarchy and deployment continuation were approved after explicitly grounding fixed-deployment guidance in both the performance ranking and cross-threat robustness results. The external-testbed sentence was corrected from “extends the framework's matched evaluation across” to “extends the evaluation to” four additional testbeds so it does not imply that every external corpus uses an identical matched grid.
+
+**Status:** **Full Conclusion independently reviewed, approved, and implemented.**
+
+#### F-02 — Completion status
+
+**Complete.** The Abstract, Introduction, formal contribution list, and Conclusion now consistently present the controlled threat-aware evaluation framework as the contribution and model rankings, failure modes, capacity interactions, deployment guidance, and cross-testbed behavior as findings it exposes.
 
 ### F-07 — Calibrate Claims to Demonstrated Evidence
 
@@ -261,14 +297,16 @@ Work through the manuscript-only queue first:
 - [x] Review F-02.1 with the local AI and incorporate the valid evidence-preservation/precision correction without restoring winner-centered framing.
 - [x] Reassess F-02.2 in revised context; retain it for contribution positioning.
 - [x] Complete F-02 Abstract contribution-positioning review.
-- [ ] Implement the single final approved Abstract sentence change in the manuscript and re-read the full Abstract. **Implementation intentionally deferred by the author until later.**
+- [x] Implement the single final approved Abstract sentence change and re-read the full Abstract.
 - [x] Begin F-02 Introduction contribution-positioning review using the same paragraph-first, competing-sentence-only workflow.
 - [x] Isolate the Introduction findings-preview sentence and establish the framework-centered, family-level framing strategy.
 - [x] Obtain independent SolM review of the F-02.3 Introduction wording.
 - [x] Resolve the taxonomy continuity issue by qualifying the family as **context-aware neural hybrids**.
 - [x] Obtain final independent Perplexity approval of the context-aware F-02.3 wording.
-- [ ] Implement the final approved F-02.3 Introduction sentence. **Implementation intentionally deferred by the author until later.**
-- [ ] Continue section by section through the formal contribution list and Conclusion.
+- [x] Implement the final approved F-02.3 Introduction sentence.
+- [x] Independently review and implement the two approved formal contribution-list changes.
+- [x] Independently review and implement the approved framework-first Conclusion.
+- [x] Build-validate the complete surgical F-02 implementation.
 
 Do **not** spend this first-pass time on code tracing, notebooks, datasets, new validation infrastructure, or experiments while manuscript-only reviewer fixes remain available.
 
