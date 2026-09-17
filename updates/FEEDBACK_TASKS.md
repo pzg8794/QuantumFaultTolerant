@@ -61,7 +61,7 @@ The queue is complexity-based. **Anything requiring code, notebooks, datasets, o
 | 9 | F-09 | Very High | Run and validate medium-scale experiment | **Blocked by design** | F-08 approval and compute check |
 | 10 | F-10 | Very High | Diagnose 100-node efficiency compression | **Planned later** | F-04, F-05, validated ablation plan |
 | 11 | F-11 | Medium, dependency-late | Audit residual Reviewer B risk | **Blocked by earlier tasks** | F-02–F-10 |
-| 12 | F-12 | Final integration | Complete venue and submission gates | **Ongoing/final** | Accepted revisions and venue confirmation |
+| 12 | F-12 | Final integration | Complete venue and submission gates | **Ongoing/final** | Accepted revisions; JSAC primary and TNET backup confirmed |
 
 ## Task Packages
 
@@ -285,8 +285,9 @@ The Introduction should connect the controlled evaluation directly to the contex
 ### F-12 — Complete Venue and Submission Integration
 
 - **Feedback addressed:** Delivery gate for accepted revisions, not a new scientific claim.
-- **Execution rule:** Keep venue/template/anonymity/build requirements separate from scientific revision work and integrate only approved changes.
-- **Completion evidence:** Required gates in the [CCWC checklist](../venues/ccwc_2027/SUBMISSION_CHECKLIST.md) pass, subject to venue confirmation.
+- **Advisor decision:** Prepare for the [IEEE JSAC Quantum Series](../venues/jsac_quantum_series/SUBMISSION_CHECKLIST.md) as the primary target and [IEEE Transactions on Networking](../venues/tnet/SUBMISSION_CHECKLIST.md) as the backup.
+- **Execution rule:** Keep venue/template/authorship/build requirements separate from scientific revision work and integrate only approved changes. Maintain TNET compatibility, but do not submit concurrently while JSAC is active.
+- **Completion evidence:** The JSAC checklist passes for the primary submission; the TNET conversion checklist is ready if the primary route closes. Internal milestones are tracked in the [venue strategy](../venues/VENUE_STRATEGY.md).
 
 ## Current 10-Hour Work Block
 
@@ -319,4 +320,6 @@ Use existing evidence infrastructure only when a specific empirical statement re
 - [Completed feedback-resolution log](../ICNP_VENUE_PREP/ACTIVE_FEEDBACK_RESOLUTION_LOG.md)
 - [Draft-wide audit checklist](../ICNP_VENUE_PREP/ICNP_DRAFT_AUDIT_TODO.md)
 - [Build validation log](../ICNP_VENUE_PREP/BUILD_VALIDATION_LOG.md)
-- [Working venue checklist](../venues/ccwc_2027/SUBMISSION_CHECKLIST.md)
+- [Primary JSAC Quantum Series checklist](../venues/jsac_quantum_series/SUBMISSION_CHECKLIST.md)
+- [Backup TNET checklist](../venues/tnet/SUBMISSION_CHECKLIST.md)
+- [Venue strategy and internal milestones](../venues/VENUE_STRATEGY.md)

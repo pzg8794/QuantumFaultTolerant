@@ -2,7 +2,7 @@
 
 **Prepared for:** Dan Krutz
 
-**Last updated:** Thursday, September 10, 2026
+**Last updated:** Wednesday, September 16, 2026
 
 **Reporting period:** August 27--September 10, 2026
 
@@ -40,6 +40,8 @@ an aggressive date to every task.
 | Physical grounding | **Planned** | Cited threat-to-physics mapping with explicit stress-test boundaries |
 | Scale evidence | **Pending approved design** | Medium-scale validation and targeted 100-node diagnosis |
 | Residual-risk and submission audit | **Final** | Reviewer B closure plus build, evidence, anonymity, venue, and coauthor gates |
+| JSAC submission package | **Primary venue** | JSAC-formatted rough draft by Oct. 15; internal submission candidate by Oct. 29; internal submission target Nov. 5 |
+| TNET conversion package | **Backup only** | TNET requirements mapped in parallel; no concurrent submission while JSAC is active |
 
 The task-level status, acceptance evidence, and dependencies are maintained in
 the [current reviewer-feedback task checklist](FEEDBACK_TASKS.md).
@@ -85,23 +87,26 @@ until the manuscript-only reviewer fixes are exhausted. The detailed checklist
 shows the feedback, problem, exact before state, defensible proposed wording,
 reasoning, dependencies, and completion evidence for each task.
 
-## Coordination Checks
+## Venue Decision and Delivery Dates
 
-The revision direction and immediate work are established. Feedback is welcome
-on these coordination points while work continues:
+Dan selected the IEEE JSAC Quantum Series as the primary target and IEEE
+Transactions on Networking as the backup. Both accept rolling submissions, so
+March, July, and November are JSAC planned publication issues rather than
+submission deadlines, and neither journal has a conference-registration
+deadline.
 
-- Whether the complexity-ordered sequence aligns with the preferred coauthor review
-  cadence.
-- Whether the first coauthor checkpoint is most useful after the remaining
-  manuscript-only revisions or after the later specification pass.
-- Whether to organize the completed revision for the JSAC Quantum Series journal
-  route or a near-term conference route; CCWC remains a fallback rather than the
-  primary target.
+The current internal targets are a complete JSAC-oriented rough draft for Dan
+and coauthors by **October 15**, a submission candidate by **October 29**, and
+submission by **November 5**. The TNET conversion package will be ready by
+**November 12** as a backup, but the manuscript will not be submitted to both
+journals concurrently.
 
 ## Current Supporting Detail
 
 - [Current reviewer-feedback task checklist](FEEDBACK_TASKS.md)
-- [Historical CCWC 2027 fallback checklist](../venues/ccwc_2027/SUBMISSION_CHECKLIST.md)
+- [Primary JSAC Quantum Series checklist](../venues/jsac_quantum_series/SUBMISSION_CHECKLIST.md)
+- [Backup TNET checklist](../venues/tnet/SUBMISSION_CHECKLIST.md)
+- [Venue strategy and internal milestones](../venues/VENUE_STRATEGY.md)
 - [Completed feedback-resolution evidence](../ICNP_VENUE_PREP/ACTIVE_FEEDBACK_RESOLUTION_LOG.md)
 - [Build and validation record](../ICNP_VENUE_PREP/BUILD_VALIDATION_LOG.md)
 - [Active manuscript source](../ICNP_2026_venue_draft.tex)
