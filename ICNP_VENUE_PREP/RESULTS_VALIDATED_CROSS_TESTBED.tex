@@ -7,7 +7,7 @@
 \texttt{iCPursuitNeuralUCB} yields the strongest average cross-testbed
 efficiency, with leading averages ranging from 44.1\% on \paperTwelve{} to
 78.0\% on \paperSeven{}. The larger \texttt{Oracle} gaps on harder topologies
-show that pursuit-informed neural routing transfers beyond the primary testbed
+show that its performance advantage persists beyond the primary testbed
 but becomes harder to separate from the reference as topology complexity
 increases. \label{fig:cross_testbed_efficiency_main}]{%
   \begin{minipage}{0.52\textwidth}
@@ -27,8 +27,8 @@ complexity compresses efficiency across models.
   \textbf{Internal and external model-family ranking}\\[-0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-041_g3_family_summary.png}
   \end{minipage}}
-\caption{Panels~(a) and~(b) jointly show that pursuit-informed neural designs
-generalize beyond the primary evaluation network, while increasing topology
+\caption{Panels~(a) and~(b) jointly show that the pursuit-informed neural
+performance hierarchy persists across the evaluated networks, while increasing topology
 complexity widens \texttt{Oracle} gaps and compresses separation among models.}
 % \shee{The paper references in the caption do not connect to the graph. It is hard to understand the graph with the current caption.} -- SOLVED: Regenerated Figure 8A with author/testbed labels and direct best-efficiency/Oracle-gap callouts.
 % \shee{The threshold is marked at 85\% and all except Classical surpass it. The caption does not capture this correctly. The threshold is not visible} -- SOLVED: Corrected the Figure 8B subcaption and strengthened the plotted 85% threshold line/label.
@@ -75,4 +75,4 @@ Topology scaling & Efficiency declines as routing scale/complexity increases, fr
 % \vspace{-4.5mm}
 \end{table}
 
-\Cref{fig:cross_testbed_confirmation,tab:testbed_comparison_summary} show the cross-testbed claim in our work: pursuit--neural hybrids, especially \texttt{iCPursuitNeuralUCB}, provide the strongest average cross-testbed robustness, while high-complexity regimes can change the winner structure. \Cref{tab:testbed_comparison_full} gives the full per-configuration evidence supporting this hierarchy across the evaluated testbeds. \Cref{fig:cross_testbed_confirmation,tab:model_family_comparison_summary} keep the model-family claim in the main body: hybrid pursuit--neural policies define the overall performance ceiling, and topology complexity reduces efficiency as routing spaces grow. The detailed family comparison remains available in \Cref{tab:model_family_comparison_full}.
+\Cref{fig:cross_testbed_confirmation,tab:testbed_comparison_summary,tab:model_family_comparison_summary} show that pursuit--neural hybrids, especially \texttt{iCPursuitNeuralUCB}, retain the strongest average efficiency across the evaluated testbeds, while topology complexity compresses separation and can change configuration-level winners. Full per-configuration and family-level evidence remains available in \Cref{tab:testbed_comparison_full,tab:model_family_comparison_full}.
