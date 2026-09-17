@@ -2,6 +2,35 @@
 
 This log records feedback-resolution batches applied to the active ICNP venue draft. It complements the per-section audit notes and follows the repository process in `AGENTS.md`: identify the owning file, make the smallest safe change, preserve validated content, and keep reviewer feedback traceable as LaTeX source comments with `SOLVED` explanations.
 
+## Batch: F-07 claim calibration, F-13 first-pass compression, and F-05 prose clarification
+
+- **Date:** 2026-09-17
+- **Owning files:** `ICNP_2026_venue_draft.tex`, `ICNP_VENUE_PREP/RESULTS_VALIDATED_CROSS_TESTBED.tex`, `ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex`, `ICNP_VENUE_PREP/DISCUSSION.tex`, and `ICNP_VENUE_PREP/CONCLUSION.tex`
+- **Reviewer scope:** Existing Reviewer A narrative-compression request and Reviewer B/C concerns about deployment/generalization language and allocator--policy semantics.
+
+### Resolved in this batch
+
+1. **F-07 claim calibration**
+   - Bounded deployment, transfer, and causal-mechanism wording to the evaluated simulator/testbed evidence.
+   - Preserved every validated number and finding while replacing unrestricted language such as “deployment-grade robustness” and broad “generalizes/confirms” claims.
+
+2. **F-13 first-pass narrative compression**
+   - Tightened the Introduction, cross-testbed synthesis, and Discussion ranking narrative.
+   - Preserved the controlled framework, policy/allocator/capacity separation, capacity paradox, cross-testbed evidence, and evidence pointers.
+
+3. **F-05 manuscript-only clarification**
+   - Clarified that allocator semantics define per-path budgets and feasible allocation spaces, while the bandit policy selects within those spaces.
+   - Deferred exact allocator-update timing because it requires later source/configuration tracing.
+
+### Validation status
+
+- [x] Local LaTeX build completed successfully.
+- [x] No undefined references or citations were reported.
+- [x] PDF decreased from 17 to 16 pages.
+- [x] No validated result values, tables, algorithms, configurations, datasets, notebooks, or experiments changed.
+- [ ] Remaining F-13 paragraph-level compression sweep.
+- [ ] Source-backed allocator timing verification in the later F-03/F-04 tier.
+
 ## Batch: May 23 appendix figure grouping/caption style
 
 - **Owning files changed:** `ICNP_VENUE_PREP/APPENDIX_DIAGNOSTIC_FIGURES.tex`

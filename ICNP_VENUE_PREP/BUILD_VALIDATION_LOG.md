@@ -2,6 +2,17 @@
 
 This log records non-destructive Overleaf/PDF validation for `ICNP_2026_venue_draft.tex`.
 
+## Validation pass: September 17 manuscript-only reviewer batch
+
+- **Date:** 2026-09-17
+- **Source:** `ICNP_2026_venue_draft.tex`
+- **Build command:** `latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=<task-temp-dir> ICNP_2026_venue_draft.tex`
+- **Result:** Successful local build; 16 pages; 2,047,305-byte PDF.
+- **Reference/citation check:** No undefined references or citations reported.
+- **Scope:** F-07 claim calibration, the first F-13 narrative-compression pass, and prose-level F-05 allocator--policy clarification only; no validated values, tables, algorithms, configurations, datasets, notebooks, or experiments changed.
+- **Layout effect:** The surgical compression reduced the clean build from the 17-page pre-edit baseline to 16 pages.
+- **Known warning classes retained:** Existing duplicate PDF destinations for some figure/table anchors, font-shape substitutions, float-only pages, and underfull boxes. No new compile failure or missing-graphics error was introduced.
+
 ## Validation pass: May 23 page-9 table-font warning fix
 
 - **Date:** 2026-05-23

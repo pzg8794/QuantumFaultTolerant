@@ -43,12 +43,13 @@ These are project deadlines, not official journal cutoffs.
 ## Deliverables and gates
 
 - [ ] Preserve F-02 framework-first contribution positioning.
-- [ ] Complete F-07 claim calibration, F-13 narrative compression, and prose-sufficient F-05 clarification.
+- [x] Complete F-07 claim calibration and the prose-sufficient F-05 clarification.
+- [ ] Complete the remaining F-13 narrative-compression sweep.
 - [ ] Close source-backed F-03/F-04/F-06 specification and grounding items.
 - [ ] Resolve scale-evidence items or explicitly bound unsupported generalization claims.
 - [ ] Convert the active manuscript to the official IEEE journal template without changing validated results.
 - [ ] Keep the initial submission at or below 13 pages and record the final count.
-- [ ] Confirm abstract length and no more than five keywords.
+- [ ] Confirm abstract length and no more than five keywords. **Current audit:** 139-word abstract is compliant; six keywords exceed the maximum by one.
 - [ ] Confirm all authors, order, affiliations, corresponding author, acknowledgments, funding, and conflicts.
 - [ ] Verify ScholarOne/IEEE accounts and ORCIDs for all authors before the upload dry run.
 - [ ] Check prior-submission disclosure and explain the relationship to the ICNP submission/reviewer revision where required.
@@ -56,6 +57,15 @@ These are project deadlines, not official journal cutoffs.
 - [ ] Verify every figure/table reference, bibliography entry, macro, link, and supplementary artifact.
 - [ ] Build from a clean source snapshot and save the final PDF/source manifest.
 - [ ] Complete a portal dry run without pressing final submit until coauthor approval.
+
+## September 17 readiness audit
+
+- The active source still uses the IEEE conference class; journal-template conversion remains pending.
+- The clean local build is 16 pages, so the current source is above the 13-page JSAC initial-submission maximum before journal conversion.
+- The abstract is 139 words and therefore within the 75--200-word requirement.
+- The manuscript has six keywords; one must be removed for the five-keyword maximum.
+- Author order, affiliations, corresponding author, funding, conflicts, ScholarOne/IEEE accounts, and ORCIDs require human/coauthor confirmation.
+- The cover letter or portal disclosure must describe the prior ICNP submission and the reviewer-driven revision.
 
 ## Backup boundary
 

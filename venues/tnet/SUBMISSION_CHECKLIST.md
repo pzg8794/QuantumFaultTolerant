@@ -37,7 +37,7 @@ These are internal readiness dates. TNET has no fixed paper-submission deadline.
 
 ## Deliverables and gates
 
-- [ ] Maintain a TNET-specific abstract of 150--250 words and 3--4 keywords.
+- [ ] Maintain a TNET-specific abstract of 150--250 words and 3--4 keywords. **Current audit:** the shared abstract is 139 words with six keywords, so a backup-specific abstract/keyword set is still required.
 - [ ] Keep the manuscript at or below 16 pages or obtain/record Editor-in-Chief guidance.
 - [ ] Target 10 published pages where feasible to avoid mandatory overlength charges.
 - [ ] Confirm all figure formats meet TNET upload rules and replace any JPEG submission assets.
@@ -47,3 +47,12 @@ These are internal readiness dates. TNET has no fixed paper-submission deadline.
 - [ ] Re-run clean build, references, figures, tables, and supplement checks after conversion.
 - [ ] Confirm JSAC is no longer active before starting the TNET submission.
 - [ ] Complete a portal dry run without pressing final submit until coauthor approval.
+
+## September 17 readiness audit
+
+- The clean local build is 16 pages, at the stated TNET maximum before journal-template conversion.
+- The active source still uses the IEEE conference class; journal-template conversion remains pending.
+- The manuscript-facing graphics referenced from the active source are PNG assets; no JPEG include was found in the active path.
+- The shared 139-word abstract and six-keyword set do not satisfy TNET's 150--250-word and 3--4-keyword requirements; prepare the TNET-specific versions only if the backup route is activated.
+- Author records, affiliations, corresponding author, ORCIDs, funding, conflicts, and submission accounts require human/coauthor confirmation.
+- A cover-letter disclosure must explain the prior ICNP submission and overlap; TNET submission cannot begin while JSAC remains active.

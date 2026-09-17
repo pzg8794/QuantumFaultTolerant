@@ -4,7 +4,7 @@
 
 **Execution model updated:** Thursday, September 10, 2026
 
-**Current task:** F-07 — calibrate deployment and generalization claims using existing evidence
+**Current task:** F-13 — continue narrative compression without losing validated evidence
 
 This is the detailed execution board behind the concise [advisor update](README.md). Tasks are ordered from the easiest ready manuscript work to the hardest evidence-producing work. Reviewer classification remains visible, but priority labels do not determine day-to-day order.
 
@@ -51,9 +51,9 @@ The queue is complexity-based. **Anything requiring code, notebooks, datasets, o
 | Order | ID | Complexity | Feedback focus | Status | Dependency |
 |---:|---|---|---|---|---|
 | 1 | F-02 | Low | Position the central contribution through surgical manuscript wording | **Done — independently reviewed, implemented, and build-validated** | None |
-| 2 | F-07 | Low | Calibrate deployment/generalization claims using existing evidence | **Current** | None |
-| 3 | F-13 | Low–Medium | Compress the main narrative without losing evidence | **Queued** | F-02 |
-| 4 | F-05 | Low if prose-sufficient; later otherwise | Clarify allocator–policy semantics from already documented material | **Queued** | None |
+| 2 | F-07 | Low | Calibrate deployment/generalization claims using existing evidence | **Complete** | None |
+| 3 | F-13 | Low–Medium | Compress the main narrative without losing evidence | **Current; first pass complete** | F-02 |
+| 4 | F-05 | Low if prose-sufficient; later otherwise | Clarify allocator–policy semantics from already documented material | **Manuscript-only pass complete; implementation timing deferred** | None |
 | 5 | F-06 | Medium | Improve threat-to-physics grounding with existing literature/documentation first | **Planned** | None |
 | 6 | F-03 | Medium if implementation verification is required | Specify the complete routing decision loop | **Deferred from low-hanging pass if code tracing is required** | F-05 |
 | 7 | F-04 | Medium | Document context and hyperparameters | **Deferred from low-hanging pass if config/code tracing is required** | F-03 |
@@ -217,6 +217,10 @@ The Introduction should connect the controlled evaluation directly to the contex
 - **Low-hanging pass:** Rephrase or bound claims using existing validated evidence and documented testbed limitations. Do not create a new validation exercise merely to edit wording.
 - **Later work if needed:** If a claim cannot be bounded satisfactorily without new evidence, defer that claim to the experimental tier.
 - **Completion evidence:** Abstract, Introduction, Discussion, and Conclusion contain no unsupported scale or deployment claim.
+- **Evidence boundary used:** The paper supports matched simulator evidence on the primary topology and four external testbeds. It does not establish hardware deployment, unrestricted topology transfer, or a causal mechanism for every observed allocator effect.
+- **Before:** The active draft used phrases including “deployment-grade robustness,” said cross-testbed results “confirm” general robustness trends, and presented deployment guidance without consistently bounding it to the evaluated simulator conditions.
+- **After:** The Abstract, Introduction, Results, Discussion, and Conclusion now describe robustness, transfer, configuration guidance, and fixed-baseline selection within the evaluated simulator/testbed conditions. The Discussion explicitly identifies future higher-fidelity validation and treats allocator predictability as an interpretation rather than an isolated causal result.
+- **Status:** **Complete for the manuscript-only pass.** No validated values, algorithms, tables, or experimental meaning changed.
 
 ### F-13 — Compress the Main Narrative
 
@@ -225,6 +229,8 @@ The Introduction should connect the controlled evaluation directly to the contex
 - **Low-hanging pass:** Remove repetition, tighten prose, improve transitions, and relocate secondary detail only when the existing evidence structure already supports doing so.
 - **Guardrail:** Do not delete validated evidence merely to shorten the paper. Every removal or relocation receives before/after review.
 - **Completion evidence:** A reader can identify the problem, controlled methodology, and principal findings quickly, while supporting evidence remains traceable.
+- **First-pass work completed:** Tightened the Introduction framework/findings preview, removed repetitive cross-testbed synthesis, and compressed repeated model/testbed ranking prose in the Discussion while retaining the evidence pointers and all validated numerical findings.
+- **Status:** **Current.** The first surgical compression pass is complete and reduced the compiled draft from 17 to 16 pages. A remaining paragraph-level sweep is still required before this task can be closed.
 
 ### F-05 — Clarify the Allocator–Policy Relationship
 
@@ -233,6 +239,10 @@ The Introduction should connect the controlled evaluation directly to the contex
 - **Low-hanging pass:** First determine whether the relationship can be clarified accurately from the manuscript and existing documentation alone. If yes, fix the prose now.
 - **Defer condition:** If accurate resolution requires implementation tracing or code inspection, stop and move that portion to a later complexity tier.
 - **Completion evidence:** The manuscript explains the relationship accurately without unsupported implementation claims.
+- **Before:** The policy-interface prose could be read as though the bandit policy and allocator independently chose the same qubit-allocation action.
+- **After:** The System Model now states that allocator semantics determine each path's budget and feasible allocation space, while the bandit policy selects the path/allocation action within that space.
+- **Evidence boundary:** The low-hanging prose fix intentionally does not claim an exact per-frame allocator-update order. Confirming that timing requires source/configuration tracing and remains deferred to the source-backed F-03/F-04 tier.
+- **Status:** **Manuscript-only clarification complete; implementation-timing verification deferred.**
 
 ### F-06 — Map Threats to Quantum-Network Phenomena
 
@@ -308,6 +318,10 @@ Work through the manuscript-only queue first:
 - [x] Independently review and implement the two approved formal contribution-list changes.
 - [x] Independently review and implement the approved framework-first Conclusion.
 - [x] Build-validate the complete surgical F-02 implementation.
+- [x] Complete the manuscript-only F-07 claim-calibration pass and build-validate the bounded wording.
+- [x] Complete the first surgical F-13 compression pass without removing validated evidence.
+- [x] Clarify the prose-level allocator--policy relationship for F-05 and record the exact source-tracing blocker.
+- [x] Audit JSAC/TNET abstract, keyword, template, page, figure-format, account, and disclosure deltas.
 
 Do **not** spend this first-pass time on code tracing, notebooks, datasets, new validation infrastructure, or experiments while manuscript-only reviewer fixes remain available.
 

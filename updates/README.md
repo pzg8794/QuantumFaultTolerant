@@ -2,7 +2,7 @@
 
 **Prepared for:** Dan Krutz
 
-**Last updated:** Wednesday, September 16, 2026
+**Last updated:** Thursday, September 17, 2026
 
 **Reporting period:** August 27--September 10, 2026
 
@@ -33,9 +33,9 @@ an aggressive date to every task.
 | Work block | Status | Expected output |
 |---|---|---|
 | Contribution positioning | **Complete** | Framework-first wording independently reviewed, implemented, and build-validated across the Abstract, Introduction, contribution list, and Conclusion |
-| Claim calibration | **Current** | Evidence-bounded deployment and generalization language using existing results |
-| Narrative compression | **Next** | Less repetition and policy/table overload without losing validated evidence |
-| Allocator--policy clarification | **Next** | Manuscript-only clarification using existing documented material |
+| Claim calibration | **Complete** | Deployment, transfer, and mechanism language bounded to the evaluated simulator/testbed evidence |
+| Narrative compression | **Current** | First surgical pass complete; remaining paragraph-level sweep follows without losing validated evidence |
+| Allocator--policy clarification | **Manuscript-only pass complete** | Budget/feasible-space ownership clarified; exact update timing deferred to source-backed work |
 | Reproducibility specification | **Later** | Source-backed decision loop and context/configuration inventory |
 | Physical grounding | **Planned** | Cited threat-to-physics mapping with explicit stress-test boundaries |
 | Scale evidence | **Pending approved design** | Medium-scale validation and targeted 100-node diagnosis |
@@ -65,6 +65,11 @@ the [current reviewer-feedback task checklist](FEEDBACK_TASKS.md).
 - Independently reviewed the approved F-02 wording and build-validated the
   surgical manuscript changes without modifying results, tables, experiments,
   algorithms, configurations, or unrelated prose.
+- Completed the manuscript-only F-07 claim-calibration pass across the Abstract,
+  Introduction, Results, Discussion, and Conclusion.
+- Completed a first F-13 compression pass and the prose-sufficient portion of
+  F-05; the clean local build decreased from 17 to 16 pages without removing
+  validated findings.
 
 ## Completed Foundation
 
@@ -79,9 +84,10 @@ the [current reviewer-feedback task checklist](FEEDBACK_TASKS.md).
 
 ## Current Work
 
-The contribution-positioning package is complete. The current task is F-07:
-calibrating deployment and generalization claims against existing evidence.
-Narrative compression and allocator--policy clarification follow. Source
+The contribution-positioning and manuscript-only claim-calibration packages are
+complete. The current task is the remaining F-13 narrative-compression sweep.
+The prose-level allocator--policy relationship is clarified; exact implementation
+timing remains deferred to the later source-backed specification tier. Source
 inspection, notebook/dataset work, code, and new experiments remain deferred
 until the manuscript-only reviewer fixes are exhausted. The detailed checklist
 shows the feedback, problem, exact before state, defensible proposed wording,
