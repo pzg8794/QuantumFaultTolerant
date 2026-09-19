@@ -4,9 +4,11 @@
 
 **Execution model updated:** Thursday, September 10, 2026
 
-**Current task:** F-13 — continue narrative compression without losing validated evidence
+**Current task:** F-07 — re-adjudicate claim calibration against the exact reviewer feedback and the May 23 submission-era manuscript before accepting any September candidate wording
 
 This is the detailed execution board behind the concise [advisor update](README.md). Tasks are ordered from the easiest ready manuscript work to the hardest evidence-producing work. Reviewer classification remains visible, but priority labels do not determine day-to-day order.
+
+**Mandatory decision record for F-07/F-08/F-09/F-10/F-14:** Read [Reviewer-C Scale, Claim-Scope, and Evidence-Ladder Decision Record](REVIEWER_C_SCALE_CLAIM_DECISION_RECORD.md) before proposing or implementing changes. It preserves the May-23 submission boundary, the contribution-vs-finding distinction, the controlled scale-spectrum plan, and the claim-provenance workflow. Exact private reviewer wording remains outside this public repository.
 
 ## Working Rule
 
@@ -51,17 +53,18 @@ The queue is complexity-based. **Anything requiring code, notebooks, datasets, o
 | Order | ID | Complexity | Feedback focus | Status | Dependency |
 |---:|---|---|---|---|---|
 | 1 | F-02 | Low | Position the central contribution through surgical manuscript wording | **Done — independently reviewed, implemented, and build-validated** | None |
-| 2 | F-07 | Low | Calibrate deployment/generalization claims using existing evidence | **Complete** | None |
+| 2 | F-07 | Low | Calibrate deployment/generalization claims using existing evidence | **Re-opened for source-correct adjudication; September candidate edits remain pending Piter approval** | None |
 | 3 | F-13 | Low–Medium | Compress the main narrative without losing evidence | **Current; first pass complete** | F-02 |
 | 4 | F-05 | Low if prose-sufficient; later otherwise | Clarify allocator–policy semantics from already documented material | **Manuscript-only pass complete; implementation timing deferred** | None |
 | 5 | F-06 | Medium | Improve threat-to-physics grounding with existing literature/documentation first | **Planned** | None |
 | 6 | F-03 | Medium if implementation verification is required | Specify the complete routing decision loop | **Deferred from low-hanging pass if code tracing is required** | F-05 |
 | 7 | F-04 | Medium | Document context and hyperparameters | **Deferred from low-hanging pass if config/code tracing is required** | F-03 |
-| 8 | F-08 | High | Design medium-scale validation | **Planned later** | F-03–F-06 |
-| 9 | F-09 | Very High | Run and validate medium-scale experiment | **Blocked by design** | F-08 approval and compute check |
+| 8 | F-08 | High | Design reviewer-required medium-scale validation as a controlled routing-complexity spectrum | **Planned later; design must include 15–20 nodes and >=10 paths** | F-03–F-06 |
+| 9 | F-09 | Very High | Run and validate the approved controlled scale spectrum | **Blocked by design** | F-08 approval and compute check |
 | 10 | F-10 | Very High | Diagnose 100-node efficiency compression | **Planned later** | F-04, F-05, validated ablation plan |
 | 11 | F-11 | Medium, dependency-late | Audit residual Reviewer B risk | **Blocked by earlier tasks** | F-02–F-10 |
 | 12 | F-12 | Final integration | Complete venue and submission gates | **Ongoing/final** | Accepted revisions; JSAC primary and TNET backup confirmed |
+| 13 | F-14 | Medium after evidence tasks | Build and audit the claim–evidence ladder / provenance matrix across Abstract → Conclusion | **Planned; starter taxonomy approved, final wording depends on F-09/F-10 evidence** | F-07 now; finalize after F-09/F-10 |
 
 ## Task Packages
 
@@ -212,15 +215,17 @@ The Introduction should connect the controlled evaluation directly to the contex
 
 ### F-07 — Calibrate Claims to Demonstrated Evidence
 
+- **Mandatory context:** Read [Reviewer-C Scale, Claim-Scope, and Evidence-Ladder Decision Record](REVIEWER_C_SCALE_CLAIM_DECISION_RECORD.md) first.
 - **Feedback addressed:** Reviewers B and C question whether deployment and generalization language exceeds the tested topologies and simulators.
-- **Problem:** A valid controlled result can still be overstated as unrestricted scalability or real-world deployment proof.
-- **Low-hanging pass:** Rephrase or bound claims using existing validated evidence and documented testbed limitations. Do not create a new validation exercise merely to edit wording.
-- **Later work if needed:** If a claim cannot be bounded satisfactorily without new evidence, defer that claim to the experimental tier.
-- **Completion evidence:** Abstract, Introduction, Discussion, and Conclusion contain no unsupported scale or deployment claim.
-- **Evidence boundary used:** The paper supports matched simulator evidence on the primary topology and four external testbeds. It does not establish hardware deployment, unrestricted topology transfer, or a causal mechanism for every observed allocator effect.
-- **Before:** The active draft used phrases including “deployment-grade robustness,” said cross-testbed results “confirm” general robustness trends, and presented deployment guidance without consistently bounding it to the evaluated simulator conditions.
-- **After:** The Abstract, Introduction, Results, Discussion, and Conclusion now describe robustness, transfer, configuration guidance, and fixed-baseline selection within the evaluated simulator/testbed conditions. The Discussion explicitly identifies future higher-fidelity validation and treats allocator predictability as an interpretation rather than an isolated causal result.
-- **Status:** **Complete for the manuscript-only pass.** No validated values, algorithms, tables, or experimental meaning changed.
+- **Historical source rule:** Reviewer C evaluated the May 23, 2026 submission-era manuscript (commit `b6ebe1daf8f41a285f4db31d43b98d5c22d1a353`), not the September revised draft. All reviewer interpretation must begin from that historical text, then compare it with current post-F-02 wording.
+- **Problem:** The submitted manuscript repeatedly elevated a pursuit/context-aware neural **finding** into high-level robustness/generalization/deployment language, allowing that finding to compete with the paper's true contribution: the controlled evaluation framework.
+- **F-02 interaction:** F-02 already repaired a substantial part of this problem by restoring the hierarchy **framework → evidence/findings**. Do not reopen F-02 merely because pursuit/context-aware configurations remain reportable findings.
+- **Low-hanging pass:** Rephrase or bound claims using existing validated evidence and documented testbed limitations. Distinguish **primary matched evidence** from **heterogeneous external-testbed evidence** and from unestablished **hardware/deployment evidence**.
+- **Later work if needed:** If a claim cannot be bounded satisfactorily without new evidence, defer that empirical question to F-08/F-09/F-10 rather than deleting the finding.
+- **Completion evidence:** Abstract, Introduction, Results, Discussion, and Conclusion contain no unsupported scale/deployment claim and preserve a clear contribution-vs-finding hierarchy.
+- **Evidence boundary:** The paper supports matched simulator evidence on the primary topology plus four heterogeneous external testbeds. It does not yet establish a controlled scale curve, hardware deployment, unrestricted topology transfer, a universal best allocator, or a causal mechanism for every observed effect.
+- **Current adjudication rule:** September SolLight edits are implemented candidates, not automatically approved scientific framing. Review each item using: **exact private reviewer feedback → May-23 submission-era wording → current post-F-02 paragraph → exact sentence under review → possible solutions → recommended solution + reasoning → Piter APPROVE/REVISE/REJECT/DEFER**.
+- **Status:** **Re-opened for source-correct adjudication.** F-07.1 wording has an approved direction, but each remaining item must pass the approval workflow before its status is finalized.
 
 ### F-13 — Compress the Main Narrative
 
@@ -266,24 +271,36 @@ The Introduction should connect the controlled evaluation directly to the contex
 - **Execution rule:** Add only settings already established in authoritative documentation during the manuscript pass. Any configuration/code tracing belongs to the later technical tier.
 - **Completion evidence:** Final feature/configuration descriptions are complete and traceable.
 
-### F-08 — Design Medium-Scale Validation
+### F-08 — Design Medium-Scale Validation as a Controlled Scale Spectrum
 
-- **Feedback addressed:** Reviewers B and C question transfer beyond the small topology.
-- **Problem:** Existing evidence may not fully answer the scale question.
-- **Status:** Later experimental tier. Do not work on this while manuscript-only reviewer fixes remain available.
-- **Completion evidence:** Approved reproducible design with controls, metrics, seeds, stopping criteria, and compute-readiness decision.
+- **Mandatory context:** Read [Reviewer-C Scale, Claim-Scope, and Evidence-Ladder Decision Record](REVIEWER_C_SCALE_CLAIM_DECISION_RECORD.md) first.
+- **Feedback addressed:** Reviewers B and C question transfer beyond the small primary topology; Reviewer C specifically requests a primary-style medium-scale case around **15–20 nodes with 10+ candidate paths**.
+- **Problem:** The existing 15/50/100-node external testbeds are valuable transfer evidence but are heterogeneous; they do not by themselves form a clean node-count scaling curve because topology, path structure, physics/modeling assumptions, and other semantics vary together.
+- **Existing infrastructure clue:** The framework was designed to support variable topology/path sizes, and the existing Paper 2 configuration already provides a validated 15-node / 8-path starting point. F-08 must first determine whether that infrastructure can supply the reviewer-required >=10-path anchor without inventing an unnecessary new testbed.
+- **Recommended design objective:** Build a **controlled routing-complexity spectrum**, not merely one checkbox medium-scale point. The mandatory reviewer anchor is 15–20 nodes / >=10 paths; additional small/intermediate/larger points should be included when feasible under comparable semantics.
+- **Research question:** **How does the performance hierarchy exposed by the primary matched evaluation evolve as routing-space complexity increases?** Do not design the experiment to prove pursuit/context-aware neural configurations win.
+- **Valid outcomes:** persistence, narrowing, reversal, threat-conditional ranking, changing allocator sensitivity, changing replay-capacity effects, or inconclusive behavior are all scientifically useful.
+- **Approval gate:** Before execution, document topology family, node/path spectrum, reviewer anchor, threats/allocators/replay semantics, horizons/stopping criteria, metrics, seeds/repeats, compute-readiness, canonical config provenance, and interpretation rules.
+- **Status:** Later experimental tier. Do not execute while manuscript-only reviewer fixes remain available.
+- **Completion evidence:** Approved reproducible spectrum design with controls, metrics, seeds, stopping criteria, compute-readiness decision, and explicit reviewer-anchor coverage.
 
-### F-09 — Run and Validate the Medium-Scale Experiment
+### F-09 — Run and Validate the Controlled Scale Spectrum
 
 - **Feedback addressed:** Reviewers B and C request actual scale evidence.
+- **Execution rule:** Run only the design approved under F-08. Do not substitute an ad hoc single experiment after approval.
+- **Validation scope:** Preserve canonical configs, logs, datasets, plots, policy-family rankings, robustness floors, allocator sensitivity, replay-capacity behavior, regret/convergence where appropriate, and cross-scale pattern transitions.
 - **Status:** Later experimental tier; blocked on F-08 approval.
-- **Completion evidence:** Canonical logs, validation, plots, configuration provenance, and a bounded cross-scale conclusion.
+- **Completion evidence:** Canonical validated evidence plus a bounded conclusion describing what persists, compresses, reverses, or remains unresolved across scale.
 
 ### F-10 — Diagnose the 100-Node Efficiency Compression
 
+- **Mandatory interpretation:** Do not frame this as "why pursuit failed." The existing external result shows broad method compression on the 100-node testbed.
 - **Feedback addressed:** Reviewers B and C need an explanation for the existing large-topology compression result.
+- **Problem:** Heterogeneous testbed evidence cannot attribute the ~44.1% result to node count alone.
+- **Candidate factors to separate:** convergence horizon, routing/path diversity, context/state complexity, allocator behavior, replay capacity, and topology/physics constraints.
+- **Execution rule:** Use targeted validated diagnostics/ablations; do not replace evidence with intuitive causal storytelling.
 - **Status:** Later experimental/diagnostic tier. Do not start while manuscript-only reviewer fixes remain available.
-- **Completion evidence:** Validated ablations separate the plausible factors, or the manuscript states precisely what remains unresolved.
+- **Completion evidence:** Validated ablations separate plausible factors, or the manuscript states precisely what remains unresolved.
 
 ### F-11 — Complete the Reviewer B Residual-Risk Audit
 
@@ -298,6 +315,22 @@ The Introduction should connect the controlled evaluation directly to the contex
 - **Advisor decision:** Prepare for the [IEEE JSAC Quantum Series](../venues/jsac_quantum_series/SUBMISSION_CHECKLIST.md) as the primary target and [IEEE Transactions on Networking](../venues/tnet/SUBMISSION_CHECKLIST.md) as the backup.
 - **Execution rule:** Keep venue/template/authorship/build requirements separate from scientific revision work and integrate only approved changes. Maintain TNET compatibility, but do not submit concurrently while JSAC is active.
 - **Completion evidence:** The JSAC checklist passes for the primary submission; the TNET conversion checklist is ready if the primary route closes. Internal milestones are tracked in the [venue strategy](../venues/VENUE_STRATEGY.md).
+
+### F-14 — Build the Claim–Evidence Ladder / Claim Provenance Matrix
+
+- **Origin:** Approved follow-up from the F-07/Reviewer-C scale analysis. This task directly addresses the documented reviewer problem that submission-era wording blurred primary matched findings, external-testbed persistence, generalization, and deployment.
+- **Problem:** A valid finding can become misleading when the manuscript does not make its evidence origin, scope, cross-testbed persistence, and boundary visible.
+- **Starter taxonomy:**
+  1. **Level I — Primary matched evidence:** controlled policy × threat × allocator × replay/capacity grid.
+  2. **Level II — Controlled scale-spectrum evidence:** comparable experimental semantics across increasing routing complexity.
+  3. **Level III — External cross-testbed evidence:** heterogeneous independently structured testbeds.
+  4. **Level IV — Hardware/deployment evidence:** not currently established.
+- **Required questions for every major claim:** What evidence produced it? At what scope? Did the pattern persist elsewhere? What changed with scale/topology? What does the evidence not establish?
+- **Execution:** Build a living claim-provenance matrix now using existing evidence; finalize cross-scale claims only after F-09/F-10 evidence exists. Then audit Abstract → Introduction → Results → Discussion → Conclusion for the same evidence progression.
+- **Target reader logic:** **controlled discovery → controlled scaling → external validation → diagnosis → bounded claim**.
+- **Guardrail:** Policy-family winners remain findings produced by the framework; they do not become the paper's contribution merely because they are repeatedly named.
+- **Status:** **Planned; starter taxonomy approved.**
+- **Completion evidence:** Every major high-level claim is traceable to an evidence level and carries an explicit scope/boundary consistent across the manuscript.
 
 ## Current 10-Hour Work Block
 
