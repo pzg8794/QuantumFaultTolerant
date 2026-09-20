@@ -272,13 +272,13 @@ The Introduction should connect the controlled evaluation directly to the contex
 
 > Five matched inputs---topology, threat, policy, allocator, and replay---feed a shared evaluation grid to produce Oracle-normalized metrics, robustness comparisons, and deployment guidance.
 
-**Final candidate after independent review:**
+**Approved after:**
 
 > Five matched inputs---topology, threat, policy, allocator, and classical replay-memory setting---feed a shared evaluation grid to produce Oracle-normalized metrics, robustness comparisons, and configuration guidance for the evaluated simulator settings.
 
-**Decision:** **UNANIMOUS INDEPENDENT-REVIEW APPROVAL; PITER FINAL SIGN-OFF PENDING.**
+**Decision:** **APPROVED BY PITER.**
 
-**Implementation rule:** Do not implement yet. If Piter approves, include the live caption, caption-lock reference, terminology shorthand, and figure-label consistency updates in the final batched F-07 edit.
+**Implementation rule:** Queue for the final batched F-07 edit. Synchronize the live caption, caption-lock reference, terminology shorthand, and figure-label consistency updates together. **Do not implement sentence-by-sentence.**
 
 **Full provenance:** See [Reviewer-C Scale, Claim-Scope, and Evidence-Ladder Decision Record](REVIEWER_C_SCALE_CLAIM_DECISION_RECORD.md), section **F-07.2A — Framework caption, first sentence**.
 
