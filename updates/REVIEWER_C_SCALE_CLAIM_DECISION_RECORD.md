@@ -498,6 +498,62 @@ No manuscript implementation is authorized until Piter explicitly approves/revis
 
 ---
 
+
+## F-07.1B — Final Piter adjudication: Abstract primary-matched finding
+
+**Status:** **APPROVED BY PITER — queue for batched manuscript implementation; do not edit manuscript yet.**
+
+### Final approved wording
+
+> **"Within the primary matched evaluation, the strongest observed robustness--efficiency profiles are associated with context-aware neural policy--allocator configurations, while the effects of classical replay-memory scaling remain threat-dependent."**
+
+### Final independent-review convergence
+
+After the terminology and metric-precision refinement:
+
+- **SolL:** APPROVE exact wording.
+- **Copilot:** APPROVE exact wording.
+- **Perplexity:** APPROVE exact wording.
+
+All three reviewers agreed that **classical replay-memory scaling** is preferable to the earlier `replay-capacity` wording because it:
+- identifies the manipulated classical learning-memory quantity;
+- avoids confusion with physical quantum memory/qubit/network capacity;
+- maps directly to the live Study Design terminology;
+- avoids implying a replay-buffer-specific implementation.
+
+They also converged that:
+- `Within the primary matched evaluation` correctly scopes the claim to Level I evidence;
+- `robustness--efficiency profiles` preserves the intended multi-metric characterization rather than reducing robustness to a single floor metric;
+- `are associated with` is appropriately non-causal;
+- `policy--allocator configurations` retains the interaction as the unit of comparison;
+- `while` is preferable to `whereas` because the two clauses report parallel findings rather than opposing claims;
+- `remain threat-dependent` properly bounds the replay-memory result without claiming an unisolated mechanism.
+
+### Live Study Design cross-check
+
+The active manuscript includes `ICNP_VENUE_PREP/STUDY_DESIGN_VALIDATED_STAGING.tex`, which currently states:
+- `Replay memory is scaled by the replay-capacity scale factor (s)...`
+- `The s sweep ... probe[s] ... when added replay memory helps estimation versus when it increases adversarial predictability.`
+- `Replay scaling changes only classical memory: the physical network budget is fixed at 35 qubits ... isolating replay-memory effects from quantum-network constraints.`
+
+This satisfies Perplexity's residual consistency check and provides the formal handoff from the Abstract phrase `classical replay-memory scaling` to the Study Design definitions of `s`, `T_b`, and `T`.
+
+### Piter decision and implementation rule
+
+**APPROVED.**
+
+Piter's batching rule remains in force:
+- mark the sentence approved in the queue;
+- preserve the complete reasoning/provenance record;
+- **do not edit the manuscript sentence-by-sentence**;
+- implement all approved F-07 wording changes together after the sentence-level adjudication pass.
+
+### Implementation state
+
+**Approved wording only. NOT YET IMPLEMENTED IN THE MANUSCRIPT.**
+
+---
+
 # B. F-08 — Design medium-scale / controlled scale-spectrum validation
 
 ## Problem / feedback
