@@ -4,7 +4,7 @@
 
 **Execution model updated:** Thursday, September 10, 2026
 
-**Current task:** F-08 — design the reviewer-required medium-scale validation as a controlled routing-complexity spectrum before any new runs
+**Current task:** Complete provenance reconciliation and artifact review for the deployed F-03/F-04/F-05/F-06 batch. F-08/F-09/F-10 remain on explicit experimental hold.
 
 This is the detailed execution board behind the concise [advisor update](README.md). Tasks are ordered from the easiest ready manuscript work to the hardest evidence-producing work. Reviewer classification remains visible, but priority labels do not determine day-to-day order.
 
@@ -334,7 +334,7 @@ The Introduction should connect the controlled evaluation directly to the contex
 - **Adaptive-hook rule:** Represent adaptation as **conditional**: “if allocator update is enabled and due at (t).” The existing 50-frame environment/state transition hook is not the allocator cadence. A configurable adaptive-allocator contract/cadence must be aligned before the pseudocode is finalized as executed-method text.
 - **Implementation/alignment follow-up:** Define allocator-update cadence; regenerate (T_r)-dependent action/context/reward structures after reallocation; propagate them to every active model; verify every policy-table row against its concrete class; test the completed loop; preserve the existing validated corpus as the baseline.
 - **Decision record:** See [F-05/F-03 Allocator--Policy Architecture Decision Record](F05_F03_ALLOCATOR_POLICY_ARCHITECTURE_DECISION_RECORD.md) for the complete reasoning path and approval provenance.
-- **Status:** **APPROVED design direction. No manuscript edit yet; final artifacts remain queued for approval and the final batched manuscript pass.**
+- **Status:** **DEPLOYED WITH PROVENANCE HOLD.** The manuscript now includes the two-level allocator--policy explanation, architecture figure, shared Algorithm 1, and source-verified 15-policy-plus-Oracle semantics table. Exact adaptive allocator cadence remains unresolved and is represented only as a conditional hook.
 
 ### F-06 — Map Threats to Quantum-Network Phenomena
 
@@ -347,7 +347,7 @@ The Introduction should connect the controlled evaluation directly to the contex
 - **Exact-parameter provenance gate:** Current `attack_strategy.py` does not match several manuscript parameter/process statements: current Markov is binary per-path with `p_stay=0.7`; Adaptive defaults to `adaptation_window=100` and `adaptation_strength=0.5`; OnlineAdaptive uses response delay/bursts/recent-path targeting rather than the manuscript's stated gamma/softmax rule. Do not copy either current defaults or manuscript values into the final table until the validated data-producing implementation/configuration is recovered.
 - **Active-regime guardrail:** Keep exactly Baseline, Stochastic, Markov, Adaptive, OnlineAdaptive. Do not reintroduce historical `Targeted` without evidence that it belongs to the validated corpus.
 - **Decision record:** See [F-06 Threat-Taxonomy Physical-Grounding Decision Record](F06_THREAT_TAXONOMY_PHYSICAL_GROUNDING_DECISION_RECORD.md) for the complete reasoning path, literature-role boundaries, and provenance requirements.
-- **Status:** **APPROVED conceptual/scientific direction. Exact parameter/process cells remain provenance-pending. No manuscript edit yet; final insertion is deferred to the batched manuscript pass.**
+- **Status:** **DEPLOYED WITH PROVENANCE HOLD.** The manuscript now includes the taxonomy rationale, reward-factor distinction, domain mapping, parameter boundary, and excluded-scope statement. Exact historical Markov/Adaptive/OnlineAdaptive parameters and process semantics remain omitted pending data-producing provenance.
 
 ### F-03 — Specify the Complete Routing Decision Loop
 
@@ -357,7 +357,7 @@ The Introduction should connect the controlled evaluation directly to the contex
 - **Required Algorithm 1 elements:** primary/global physical-budget input; allocator initialization; (T_r); construction of (mathcal{X}_r(T_r)); context/reward construction; replay configuration; model initialization; model-specific route selection; model-specific within-route allocation-action selection; threat-conditioned reward; policy/replay/route-statistics updates; conditional allocator-update hook; regeneration and propagation of affected action/context/reward structures.
 - **Policy-table requirement:** The companion semantics table must be verified row-by-row against the concrete classes represented in the validated corpus; no row may be inferred solely from family resemblance.
 - **Decision record:** See [F-05/F-03 Allocator--Policy Architecture Decision Record](F05_F03_ALLOCATOR_POLICY_ARCHITECTURE_DECISION_RECORD.md).
-- **Status:** **APPROVED jointly with F-05 at the design level. No manuscript edit yet; final diagram/pseudocode/table/prose package remains queued for approval and the final batched manuscript pass.**
+- **Status:** **DEPLOYED WITH PROVENANCE HOLD.** Algorithm 1 and the architecture figure implement the approved common contract while keeping route selection, within-route action selection, and learning updates explicitly model-specific. Adaptive allocator cadence remains conditional and provenance-pending.
 
 ### F-04 — Specify Context and Hyperparameters
 
@@ -372,7 +372,7 @@ The Introduction should connect the controlled evaluation directly to the contex
 - **Provenance rule:** distinguish (1) source-verified mechanism, (2) current-code default, and (3) validated-corpus value. Exact corpus-specific beta/lambda/lr/regularization, Pursuit alpha, predictive warmup/update/order/anomaly settings, replay settings, mode overrides, and testbed-specific overrides remain provenance-pending until tied to the data-producing commit/configuration.
 - **NeuralTS guardrail:** do not add NeuralTS to the evaluated-policy table merely because the class exists; current validated-corpus audit does not include it among the evaluated non-Oracle policies.
 - **Decision record:** See [F-04 Context and Hyperparameter Documentation Decision Record](F04_CONTEXT_HYPERPARAMETER_DECISION_RECORD.md) for the complete reasoning and S/C/P adjudication path.
-- **Status:** **APPROVED conceptual/mechanism direction. Exact validated-corpus hyperparameter values remain provenance-pending. No manuscript edit yet; final insertion is deferred to the batched manuscript pass.**
+- **Status:** **DEPLOYED WITH PROVENANCE HOLD.** The inaccurate universal-context sentence is replaced; the primary context equation, scope-specific context table, NeuralUCB mechanism/training description, Pursuit update, and predictive mechanism are documented. Unverified external-testbed encodings and validated-run hyperparameter values remain omitted.
 
 ### F-08 — Design Medium-Scale Validation as a Controlled Scale Spectrum
 
@@ -436,6 +436,16 @@ The Introduction should connect the controlled evaluation directly to the contex
 - **Completion evidence:** Every major high-level claim is traceable to an evidence level and carries an explicit scope/boundary consistent across the manuscript.
 
 ## Current 10-Hour Work Block
+
+### 2026-09-20 controlled deployment
+
+- **Files:** `ICNP_2026_venue_draft.tex` and `ICNP_VENUE_PREP/APPENDIX_ALGORITHM_SPECIFICATION.tex`.
+- **F-07:** Inserted the locked Abstract scope sentences, framework-caption wording, `Replay memory` box label, and `Configuration guidance` contribution label.
+- **F-03/F-05:** Inserted the allocator--policy distinction, architecture figure, Algorithm 1, and source-verified policy-semantics table.
+- **F-06:** Inserted the reward-factor distinction, dependence/reactivity rationale, physical mapping table, parameter boundary, and excluded-scope statement without freezing provenance-pending attack parameters.
+- **F-04:** Inserted the primary context equation and dimensions, scope-specific context table, NeuralUCB mechanism, Pursuit update, and predictive-mechanism wording without presenting current defaults as validated-run values.
+- **Validation:** Full `latexmk -pdf` build succeeds; cross-references resolve. The conference-format draft is 18 pages after adding the reproducibility appendix. Remaining overfull-box warnings are tracked for artifact-layout refinement.
+- **Holds:** allocator cadence/execution provenance; historical attack-strategy parameters; validated-run hyperparameters; external-testbed context encodings other than Paper8. F-08/F-09/F-10 were not executed.
 
 Work through the manuscript-only queue first:
 
