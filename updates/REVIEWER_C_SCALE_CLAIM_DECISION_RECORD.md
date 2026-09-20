@@ -164,6 +164,70 @@ Removing the phrase "deployment-grade" alone is not enough if the evidence trans
 
 ---
 
+
+## Independent review log — Copilot
+
+**Review stage:** F-07 Abstract transition, independent review before Piter adjudication.
+
+**Overall outcome:** Copilot approves the revision strategy, F-02 contribution-vs-finding distinction, Level I–IV evidence taxonomy, and controlled scale-spectrum plan. It raises two substantive wording refinements for the Abstract.
+
+### Sentence 1 — REVISE
+
+Candidate reviewed:
+
+> "Across four external quantum-network testbeds, the observed performance hierarchy remains visible, although absolute efficiency and model separation vary substantially with topology."
+
+Copilot's valid concerns:
+- **"performance hierarchy"** may imply a fuller stable ranking than the external evidence cleanly establishes;
+- **"vary substantially with topology"** risks attributing the differences to topology alone even though the external testbeds are heterogeneous in topology, path structure, modeling/physics assumptions, horizons, and other settings.
+
+Evidence check:
+- The validated external table shows that **iCPursuitNeuralUCB has the highest average efficiency on all four external testbeds**.
+- The ordering and configuration-level win structure below that leader are not invariant; on Paper 8, for example, EXPNeuralUCB has more individual configuration wins.
+- Therefore, a claim about a **leading average-efficiency pattern** is better supported than an unrestricted "performance hierarchy" claim.
+- Differences should be described as varying **across heterogeneous testbeds**, not causally "with topology" unless a controlled analysis isolates topology.
+
+**Adjudication:** ACCEPT Copilot's concern. Do not automatically adopt its exact replacement yet; carry the issue forward for comparison with other independent reviewers.
+
+### Sentence 2 — REVISE concern accepted; Copilot replacement not adopted
+
+Candidate reviewed:
+
+> "Within the primary matched evaluation, the strongest observed robustness occurs among context-aware neural policy–allocator configurations, while replay-capacity effects remain threat-dependent."
+
+Copilot's valid concern:
+- **"robustness"** is broad and could benefit from clearer metric/evidence meaning.
+
+Copilot suggested:
+> "In the primary matched evaluation, context-aware neural policy–allocator configurations show the strongest observed robustness..."
+
+and, conditionally, a worst-case-efficiency version.
+
+**Why those exact replacements are not accepted at this stage:**
+- Putting **context-aware neural policy–allocator configurations** back in subject position partially reverses the F-02 rhetorical discipline that keeps the finding rather than the winner as the grammatical center.
+- Reducing "robustness" to **highest observed worst-case efficiency** is not automatically supported as the intended aggregate claim: the validated RQ2 evidence distinguishes best average efficiency from strongest robustness floor (for example, iCEpsilonGreedy has the strongest floor in the locked adversarial scope while CPursuit leads average efficiency).
+- The manuscript's existing high-level claim is closer to a **robustness–efficiency / efficiency–stability profile** than to one single floor metric.
+
+**Adjudication:** ACCEPT the precision concern, but REJECT Copilot's exact replacement as premature. Keep Sentence 2 open for a wording that preserves:
+1. explicit **primary matched evaluation** provenance;
+2. finding-centered grammar;
+3. the correct multi-metric meaning of robustness;
+4. the threat-dependent replay-capacity finding.
+
+### Additional design feedback accepted
+
+- Level II must remain explicitly **planned evidence**, not something the manuscript implies already exists.
+- Level III supports qualitative/cross-testbed persistence, not causal explanation of the 100-node compression.
+- F-08 must control or explicitly track multiple complexity dimensions (node count, candidate-path count, path overlap, context dimensionality, topology structure) so the scale spectrum does not become another heterogeneous-testbed comparison.
+- F-10 remains correctly separate from the controlled scale curve.
+
+**Current independent-review state after Copilot:**
+- Sentence 1: **REVISE**
+- Sentence 2: **REVISE concern accepted; exact replacement unresolved**
+- No manuscript change authorized until Piter adjudicates after the independent-review round.
+
+---
+
 # B. F-08 — Design medium-scale / controlled scale-spectrum validation
 
 ## Problem / feedback
