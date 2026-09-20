@@ -105,6 +105,148 @@ The approved common pseudocode will therefore represent allocator adaptation con
 
 The actual configurable allocator-update contract and cadence must be defined/aligned before the revised pseudocode is finalized as executed-method text.
 
+
+## Preserved approval artifacts
+
+### A. Decision-flow diagram
+
+```text
+                 PRIMARY MATCHED-EVALUATION BUDGET
+                          Q = 35 qubits
+                               |
+                               v
+                    +-----------------------+
+                    |  Inter-route         |
+                    |  allocator policy    |
+                    | Fixed / Random /     |
+                    | DynamicUCB / TS      |
+                    +-----------------------+
+                               |
+                    route budgets T_r
+                               |
+          +--------------------+--------------------+
+          v                    v                    v
+       Route 1              Route 2              Route r
+      budget T_1           budget T_2           budget T_r
+          |                    |                    |
+          v                    v                    v
+   X_1(T_1)             X_2(T_2)             X_r(T_r)
+ feasible within-     feasible within-      feasible within-
+ route allocation    route allocation      route allocation
+ actions              actions               actions
+          +--------------------+--------------------+
+                               |
+                               v
+                    +-----------------------+
+                    | Model-specific        |
+                    | bandit policy layer   |
+                    +-----------------------+
+                               |
+                     concrete policy logic
+                               |
+                 +-------------+-------------+
+                 v                           v
+          select route r_t        select within-route
+                                   allocation action
+                                   x_t in X_{r_t}(T_{r_t})
+                 |                           |
+                 +-------------+-------------+
+                               v
+                    threat-conditioned reward
+                               |
+                               v
+                     model-specific update
+                               |
+                               v
+                       route statistics
+                               |
+                               |  if allocator update
+                               |  is enabled and due
+                               +----------------------->
+                                      allocator hook
+                                            |
+                                            v
+                                   updated T_r values
+                                            |
+                                            v
+                             regenerate X_r(T_r), contexts,
+                                  and reward structures
+```
+
+**Interpretation:** The allocator performs inter-route budgeting. The bandit does not duplicate that decision; it chooses a route and then a **within-route allocation action** from the feasible action set induced by the allocator-assigned route budget.
+
+### B. Common Algorithm 1 pseudocode
+
+```text
+Algorithm 1: Shared Threat-Aware Routing and Qubit-Allocation Decision Loop
+
+Input:
+    topology G
+    candidate routes P = {P_1, ..., P_R}
+    physical qubit budget Q
+    allocator A
+    bandit policy pi
+    threat process H
+    replay-memory configuration M
+    horizon H_T
+
+1:  T <- A.initialize(Q, P)
+        # inter-route qubit budgets T_r
+
+2:  for each route r in P do
+3:      X_r <- ConstructFeasibleAllocations(P_r, T_r)
+4:      C_r <- ConstructContexts(P_r, X_r, network_state)
+5:      R_r <- ConstructRewardModel(P_r, X_r, network_state)
+6:  end for
+
+7:  InitializeReplay(M)
+8:  pi.initialize({X_r}, {C_r}, {R_r}, H, M)
+
+9:  for t = 1, ..., H_T do
+10:     r_t <- pi.select_path(t, state, feedback_history)
+11:     x_t <- pi.select_action(r_t, X_{r_t}, C_{r_t})
+
+12:     h_t <- H.realize(t, routing_history, network_state)
+13:     y_t <- ObserveReward(r_t, x_t, h_t, R_{r_t})
+
+14:     pi.update(r_t, x_t, y_t, model_specific_state)
+15:     ReplayUpdate(M, r_t, x_t, y_t)
+16:     UpdateRouteStatistics(r_t, x_t, y_t)
+
+17:     if allocator update is enabled and due at t then
+18:         T <- A.update(t, route_statistics)
+19:         for each affected route r do
+20:             X_r <- ConstructFeasibleAllocations(P_r, T_r)
+21:             C_r <- ConstructContexts(P_r, X_r, network_state)
+22:             R_r <- ConstructRewardModel(P_r, X_r, network_state)
+23:         end for
+24:         PropagateUpdatedStructuresToActiveModels({X_r}, {C_r}, {R_r})
+25:     end if
+26:  end for
+
+27:  return efficiency, regret, robustness, stability, and trace outputs
+```
+
+**Important abstraction rule:** Lines 10, 11, and 14 are deliberately model-specific. The common pseudocode documents the shared contract without pretending heterogeneous policies use the same route selector, within-route action selector, predictive machinery, or update rule.
+
+### C. Preserved reasoning that produced the approved architecture
+
+1. The reviewer concern was initially treated too much as a runner/orchestration question. That was incomplete because the routing semantics live in the concrete model classes.
+2. The model-layer trace showed that the evaluated algorithms share a two-stage decision structure: route selection followed by within-route allocation-action selection.
+3. The environment trace showed that allocator-selected route budgets T_r determine the feasible within-route action sets X_r(T_r) and their reward structures.
+4. Therefore allocator and bandit are not redundant: the allocator operates at the inter-route resource-budget level, while the bandit operates at the route-selection and within-route action-selection level.
+5. Different model families fill the common contract differently. Examples verified directly in source include:
+   - GNeuralUCB: Simple-UCB route selection + NeuralUCB within-route action selection.
+   - EXPNeuralUCB: EXP3 route selection + NeuralUCB within-route action selection.
+   - EXPUCB: EXP3 route selection + Linear-UCB within-route action selection.
+   - CPursuitNeuralUCB: Pursuit/CMAB route selection + NeuralUCB within-route action selection.
+   - iCPursuitNeuralUCB: iCMAB/Pursuit route selection + NeuralUCB within-route action selection with ARIMA forecasting and anomaly-aware reward filtering.
+6. The proper response to the reviewer is therefore not a single defensive sentence. It is an architecture package that makes the existing sophistication reconstructable: diagram + common pseudocode + complete policy-semantics table + concise two-level explanation.
+7. Adaptive allocation must remain visible as a conditional architectural hook. It must not be silently reduced to initialization, but no unsupported universal cadence should be invented.
+8. The current 50-frame transition mechanism is an environment/state transition hook, not evidence of allocator cadence; a Paper12-specific 500-frame epoch alignment is testbed-specific and cannot be generalized.
+9. The existing validated corpus remains the baseline. Code-alignment work is an implementation/completeness task, not a reason to invalidate or weaken the validated findings.
+10. Manuscript insertion remains deferred until the final artifacts are shown through the approval workflow and then applied in the end-of-pass batch.
+
 ## Approved revision package
 
 The final F-05/F-03 package will contain all of the following.
