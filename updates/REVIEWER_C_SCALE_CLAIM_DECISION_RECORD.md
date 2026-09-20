@@ -1233,6 +1233,64 @@ This correction supersedes any earlier interpretation that cast Reviewer C #4 as
 
 ---
 
+
+## Provenance correction — what the earlier productive conversation actually addressed
+
+**Status:** canonical clarification of reviewer mapping; manuscript unchanged.
+
+After re-reading the original ICNP decision email directly, the earlier productive reasoning sequence is confirmed to have been about **Reviewer C Weakness #4**, not a different or invented review.
+
+### Reviewer C #4 — the comment that drove the productive F-07/F-08 reasoning
+
+The exact comment challenges:
+- the 4-node / 4-path **primary evaluation**;
+- the broad **"deployment-grade robustness"** claim for pursuit-neural hybrids;
+- the 44.1% result on the 100-node Clayton et al. external topology;
+- the lack of a mechanistic explanation for that performance compression;
+- the absence of a medium-scale primary-style bridge;
+- and explicitly asks for roughly 15–20 nodes with 10+ paths.
+
+The key insight Piter identified was the reviewer's phrase **"entire primary evaluation"**. Reviewer C plainly knew larger external testbeds existed because the same comment cites the 100-node result. Therefore the correct interpretation was never "the whole framework only supports four nodes." It was:
+- the full matched primary grid is concentrated on the small topology;
+- external testbeds provide broader but structurally different evidence;
+- that evidence does not by itself justify the submission's strong deployment/generalization wording.
+
+That productive discussion led to the evidence ladder:
+1. primary matched evidence;
+2. controlled scale-spectrum evidence;
+3. heterogeneous external-testbed evidence;
+4. hardware/deployment evidence not established.
+
+It also led to the F-08 plan to test how the framework's observed policy hierarchy changes as routing-space complexity increases, rather than trying to "prove" pursuit-neural policies are universally best.
+
+### Reviewer C #2 — a separate, also-real comment
+
+Reviewer C separately states:
+> "The allocator–policy relationship is never clearly articulated"
+
+and asks whether the allocator runs before, after, or jointly with the bandit, whether it changes the action space or feedback distribution, and whether it is resource management or part of exploration.
+
+This is the source for F-05 allocator-semantics work.
+
+### Exact failure that happened later
+
+The assistant later moved from F-07.3A into a Discussion heading containing the phrase "Allocator Choice is the Practical Deployment Lever" and incorrectly treated that heading as though it were directly part of Reviewer C #4's topology criticism.
+
+That conflated:
+- **#4:** scale / topology / deployment-claim scope; with
+- **#2:** allocator–policy interaction semantics.
+
+The feedback was not fabricated; the **attribution and task mapping were wrong**.
+
+### Canonical rule going forward
+
+- Use Reviewer C #4 for F-07 claim-scope calibration, F-08 controlled scale-spectrum design, F-09 execution, F-10 100-node diagnosis, and F-14 evidence-ladder work.
+- Use Reviewer C #2 for F-05 allocator–policy semantics and any source-backed decision-loop clarification.
+- Do not use allocator-centered reasoning to explain #4 unless a specific manuscript sentence independently creates an unsupported deployment/generalization claim.
+- Preserve the original productive #4 conclusion: **the reviewer challenged the breadth of the deployment/generalization claim and the missing controlled scale bridge, not the existence of the matched-grid findings themselves.**
+
+---
+
 # B. F-08 — Design medium-scale / controlled scale-spectrum validation
 
 ## Problem / feedback
