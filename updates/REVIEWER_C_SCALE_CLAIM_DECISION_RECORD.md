@@ -242,6 +242,61 @@ This closes the Copilot review cycle for this wording package pending Piter's fi
 
 ---
 
+
+## Independent review log — SolL
+
+**Review stage:** F-07 Abstract transition, independent review before Piter adjudication.
+
+**Overall outcome:** SolL approves the core interpretation, F-02 contribution-vs-finding distinction, Level I–IV evidence taxonomy, and controlled scale-spectrum plan. It identifies one required revision in Sentence 1 and **approves Sentence 2 as written**.
+
+### Sentence 1 — REVISE
+
+Candidate reviewed:
+
+> "Across four external quantum-network testbeds, the observed performance hierarchy remains visible, although absolute efficiency and model separation vary substantially with topology."
+
+SolL's concern:
+- The phrase **"with topology"** implies an isolated topology effect that the heterogeneous external testbeds do not establish.
+- Level III evidence varies topology, scale, simulator assumptions, path structure, and potentially other factors together, so it supports external corroboration/boundary testing rather than clean causal attribution.
+
+SolL's proposed smallest revision:
+
+> "Across four external quantum-network testbeds, the observed performance hierarchy remains visible, although absolute efficiency and model separation vary substantially across testbeds with different scales and topologies."
+
+**Adjudication:** ACCEPT the underlying evidence-scope concern. The exact replacement remains open until the independent-review round is complete because Copilot raised an additional question about whether `performance hierarchy` itself is broader than the cleanest validated claim.
+
+### Sentence 2 — APPROVE AS WRITTEN
+
+Candidate reviewed:
+
+> "Within the primary matched evaluation, the strongest observed robustness occurs among context-aware neural policy–allocator configurations, while replay-capacity effects remain threat-dependent."
+
+SolL's reasoning:
+- **"Within the primary matched evaluation"** explicitly anchors the claim to Level I evidence.
+- **"observed"** keeps the ranking empirical and bounded.
+- **"policy–allocator configurations"** correctly treats the unit of the finding as an interaction rather than an intrinsic property of a standalone policy family.
+- The sentence removes the vague `appropriate allocators` language and avoids deployment-grade rhetoric.
+- SolL notes that `robustness` should remain connected elsewhere in the manuscript to the paper's defined efficiency-floor/stability measures, but does **not** regard that as a reason to change this Abstract sentence.
+
+**Adjudication:** RECORD SolL's clean APPROVE. This creates a meaningful independent-review split:
+- Perplexity: APPROVE Sentence 2.
+- SolL: APPROVE Sentence 2.
+- Copilot: REVISE for metric precision, although its exact replacement was not accepted because it weakens F-02 rhetorical discipline and risks collapsing robustness into one metric.
+
+### Additional methodological feedback accepted
+
+- Level III is best understood as **external corroboration and boundary testing**, not as controlled validation equivalent to Level II.
+- The reviewer-required 15–20-node / 10+-path case must remain a mandatory F-08 anchor even if a broader controlled spectrum is designed.
+- The broader scale spectrum should not delay satisfying the reviewer's minimum requirement.
+- Complexity variables and experimental semantics must be held sufficiently constant for Level II to support scaling claims.
+
+**Current independent-review state after SolL:**
+- Sentence 1: **REVISE**
+- Sentence 2: **APPROVE from SolL**
+- No manuscript change authorized until Piter completes cross-review adjudication.
+
+---
+
 # B. F-08 — Design medium-scale / controlled scale-spectrum validation
 
 ## Problem / feedback
