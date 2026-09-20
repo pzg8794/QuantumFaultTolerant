@@ -265,6 +265,23 @@ The Introduction should connect the controlled evaluation directly to the contex
 
 **Full provenance:** See [Reviewer-C Scale, Claim-Scope, and Evidence-Ladder Decision Record](REVIEWER_C_SCALE_CLAIM_DECISION_RECORD.md), sections **F-07.1B terminology adjudication** and **F-07.1B — Final Piter adjudication**.
 
+
+#### F-07.2A — Framework caption, first sentence
+
+**Before:**
+
+> Five matched inputs---topology, threat, policy, allocator, and replay---feed a shared evaluation grid to produce Oracle-normalized metrics, robustness comparisons, and deployment guidance.
+
+**Final candidate after independent review:**
+
+> Five matched inputs---topology, threat, policy, allocator, and classical replay-memory setting---feed a shared evaluation grid to produce Oracle-normalized metrics, robustness comparisons, and configuration guidance for the evaluated simulator settings.
+
+**Decision:** **UNANIMOUS INDEPENDENT-REVIEW APPROVAL; PITER FINAL SIGN-OFF PENDING.**
+
+**Implementation rule:** Do not implement yet. If Piter approves, include the live caption, caption-lock reference, terminology shorthand, and figure-label consistency updates in the final batched F-07 edit.
+
+**Full provenance:** See [Reviewer-C Scale, Claim-Scope, and Evidence-Ladder Decision Record](REVIEWER_C_SCALE_CLAIM_DECISION_RECORD.md), section **F-07.2A — Framework caption, first sentence**.
+
 ### F-13 — Compress the Main Narrative
 
 - **Feedback addressed:** Reviewer A asks to reduce policy/table overload and make the main contribution easier to follow.
