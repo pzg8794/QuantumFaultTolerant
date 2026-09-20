@@ -954,6 +954,89 @@ All other code-level findings are deferred and must not distract from the curren
 
 ---
 
+
+## F-07.2B — Independent review after full framework trace
+
+**Status:** independent review converges on the matched-comparison wording; Piter final sign-off pending. Manuscript unchanged.
+
+### Candidate entering independent review
+
+> **"Organizing these inputs in a shared matched grid enables controlled comparisons of measured robustness across bandit policies, allocator configurations, and classical replay-memory settings under common topology and threat conditions."**
+
+### Copilot review
+
+Copilot independently traced the framework's experiment-generation and evaluation paths and confirmed:
+- allocator configuration is an explicit configurable factor;
+- replay scale is explicit;
+- threat/scenario is explicit;
+- evaluation horizon is explicit through `frames_count`;
+- model sets are configurable;
+- one environment is built and reused across models within an experiment, supporting matched within-condition policy comparisons;
+- bootstrap/CV reporting is present, but no ANOVA/regression interaction-term estimator was found.
+
+Copilot added one precision note:
+- **evaluation horizon** and **replication count/runs** are distinct; they should not be casually collapsed into one "horizon/run setting" concept.
+
+Copilot recommended a micro-edit:
+> use **"within common topology and threat conditions"** rather than **"under common topology and threat conditions"**, because "within" more clearly scopes each controlled comparison slice.
+
+### Perplexity review
+
+Perplexity could verify the manuscript/revision repository and the documentation commit, but explicitly stated that it did **not** have access to the implementation repository in its review context. It therefore declined to independently certify the code-level claim.
+
+This is a **reviewer-access provenance caveat**, not contrary evidence. Our own source trace and the Copilot/SolL traces were performed against the actual framework implementation.
+
+Perplexity nevertheless found the proposed sentence internally consistent with the manuscript's matched-grid formalism and agreed that:
+- "controlled/matched comparisons" is appropriately calibrated;
+- "interaction effects" would overstate what a matched comparative design establishes without formal factorial interaction estimation;
+- "allocator configurations" is a suitably neutral term.
+
+### SolL review
+
+SolL independently verified the implementation path in the GA-Work framework and confirmed:
+- experiment configuration records allocator, replay scale/anchoring, scenarios, horizon/run settings, and model selection;
+- the outer pipeline iterates across allocators, testbed/physics settings, replay scales, and evaluation settings;
+- scenario evaluation iterates across threat conditions;
+- one environment is built per experiment and reused across evaluated models;
+- replay scaling changes classical learning-memory capacity;
+- architecture code supports the factorized matched design;
+- completeness/correctness of every reported corpus slice belongs to validated logs/notebook evidence, not architecture code alone;
+- no formal factorial interaction estimator is implemented.
+
+SolL **APPROVED** the proposed matched-comparison sentence.
+
+### Adjudication
+
+The independent feedback strengthens, rather than changes, the substantive conclusion:
+
+**Supported:**
+- the framework executes a factorized matched comparative design;
+- bandit policies are compared within common configured conditions;
+- allocator configuration and classical replay-memory setting are legitimate experimental axes;
+- topology and threat define the conditioning context for those comparisons.
+
+**Not claimed here:**
+- causal identification of a singular "controlling robustness factor";
+- formal statistical interaction-effect estimation;
+- any deferred implementation details discovered during source tracing.
+
+### Current recommended wording
+
+The Copilot micro-edit is accepted because it improves scope precision without changing the scientific claim:
+
+> **"Organizing these inputs in a shared matched grid enables controlled comparisons of measured robustness across bandit policies, allocator configurations, and classical replay-memory settings within common topology and threat conditions."**
+
+### Decision state
+
+- Copilot: **APPROVE, with "within" precision refinement**
+- SolL: **APPROVE**
+- Perplexity: **linguistically/support-scope consistent; code-level verification withheld only because its review context lacked the implementation repository**
+- Piter: **final explicit sign-off pending**
+
+No manuscript changes have been made.
+
+---
+
 # B. F-08 — Design medium-scale / controlled scale-spectrum validation
 
 ## Problem / feedback
