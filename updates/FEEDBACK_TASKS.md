@@ -55,7 +55,7 @@ The queue is complexity-based. **Anything requiring code, notebooks, datasets, o
 | 1 | F-02 | Low | Position the central contribution through surgical manuscript wording | **Done — independently reviewed, implemented, and build-validated** | None |
 | 2 | F-07 | Low | Calibrate deployment/generalization claims using existing evidence | **Re-opened for source-correct adjudication; September candidate edits remain pending Piter approval** | None |
 | 3 | F-13 | Low–Medium | Compress the main narrative without losing evidence | **Current; first pass complete** | F-02 |
-| 4 | F-05 | Low if prose-sufficient; later otherwise | Clarify allocator–policy semantics from already documented material | **Manuscript-only pass complete; implementation timing deferred** | None |
+| 4 | F-05 | Low if prose-sufficient; later otherwise | Clarify allocator–policy semantics from already documented material | **Re-opened: current runner traced; dataset-producing allocator semantics require provenance reconciliation** | None |
 | 5 | F-06 | Medium | Improve threat-to-physics grounding with existing literature/documentation first | **Planned** | None |
 | 6 | F-03 | Medium if implementation verification is required | Specify the complete routing decision loop | **Deferred from low-hanging pass if code tracing is required** | F-05 |
 | 7 | F-04 | Medium | Document context and hyperparameters | **Deferred from low-hanging pass if config/code tracing is required** | F-03 |
@@ -302,7 +302,8 @@ The Introduction should connect the controlled evaluation directly to the contex
 - **Before:** The policy-interface prose could be read as though the bandit policy and allocator independently chose the same qubit-allocation action.
 - **After:** The System Model now states that allocator semantics determine each path's budget and feasible allocation space, while the bandit policy selects the path/allocation action within that space.
 - **Evidence boundary:** The low-hanging prose fix intentionally does not claim an exact per-frame allocator-update order. Confirming that timing requires source/configuration tracing and remains deferred to the source-backed F-03/F-04 tier.
-- **Status:** **Manuscript-only clarification complete; implementation-timing verification deferred.**
+- **Source-trace update (2026-09-19):** Current execution code has now been traced. The runner builds one shared matched environment for all models, but the effective runner allocation is reconstructed from `allocator.allocate(timestep=0,...)`; the later `qubit_cap` passed into `runner.run_experiment(...)` does not rebuild that environment. `QuantumEnvironment.update_qubit_allocation(...)` exists but has no call site in the current repository. Therefore current source does not demonstrate online DynamicUCB/Thompson reallocation during a run. The remaining requirement is to reconcile the code version that generated the validated RQ3/Hybrid datasets before final allocator-interaction wording is accepted.
+- **Status:** **Re-opened for data-producing-code provenance reconciliation.**
 
 ### F-06 — Map Threats to Quantum-Network Phenomena
 
