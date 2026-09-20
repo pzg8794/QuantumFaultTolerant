@@ -227,6 +227,25 @@ The Introduction should connect the controlled evaluation directly to the contex
 - **Current adjudication rule:** September SolLight edits are implemented candidates, not automatically approved scientific framing. Review each item using: **exact private reviewer feedback → May-23 submission-era wording → current post-F-02 paragraph → exact sentence under review → possible solutions → recommended solution + reasoning → Piter APPROVE/REVISE/REJECT/DEFER**.
 - **Status:** **Re-opened for source-correct adjudication.** F-07.1 wording has an approved direction, but each remaining item must pass the approval workflow before its status is finalized.
 
+
+#### F-07.1A — Abstract external-testbed sentence
+
+**Before:**
+
+> Across four external quantum-network testbeds, the main performance hierarchy persists while scale- and topology-dependent limits become visible.
+
+**Approved after:**
+
+> Across four heterogeneous external quantum-network testbeds, the external evaluation identifies the same average-efficiency leader, although absolute efficiency, model separation, and configuration-level winners vary across testbeds.
+
+**Decision:** **APPROVED BY PITER.**
+
+**Why:** The external evidence supports the same average-efficiency leader across all four testbeds, but not an invariant full hierarchy or causal attribution of variation to topology/scale alone. The approved wording preserves Level III corroboration while leaving controlled scaling/causal diagnosis to F-08/F-09/F-10.
+
+**Implementation rule:** Queue for the final batched F-07 manuscript edit. **Do not implement sentence-by-sentence.**
+
+**Full provenance:** See [Reviewer-C Scale, Claim-Scope, and Evidence-Ladder Decision Record](REVIEWER_C_SCALE_CLAIM_DECISION_RECORD.md), section **F-07.1A — Final Piter adjudication**.
+
 ### F-13 — Compress the Main Narrative
 
 - **Feedback addressed:** Reviewer A asks to reduce policy/table overload and make the main contribution easier to follow.
