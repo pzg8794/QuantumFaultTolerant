@@ -1088,6 +1088,48 @@ Piter's batching rule remains in force:
 
 ---
 
+
+## F-07.3A — Final Piter adjudication: contribution label
+
+**Status:** **APPROVED BY PITER — queue for batched manuscript implementation; do not edit manuscript yet.**
+
+### Before
+
+> **Deployment guidance**
+
+### Approved after
+
+> **Configuration guidance**
+
+### Why this did not require another independent-review round
+
+This wording change is not a new scientific judgment. It directly applies the evidence-scope principle already fully adjudicated and approved in **F-07.2A**, where:
+- `deployment guidance` was found to imply a stronger hardware/field-readiness claim than the current evidence supports;
+- `configuration guidance for the evaluated simulator settings` was approved as the evidence-bounded alternative;
+- the distinction between simulator configuration guidance and hardware deployment validation was explicitly documented.
+
+The contribution item's body sentence is already scoped:
+
+> "Within the evaluated conditions, context-aware neural hybrids sustain >=85% worst-case efficiency, while allocator choice induces 10--15 pp swings, showing that routing policy and qubit allocation must be evaluated jointly."
+
+Therefore only the heading required correction. Re-reviewing the same terminology principle externally would duplicate an already-settled decision rather than add new evidence.
+
+### Piter decision
+
+Piter agreed that no additional external feedback was necessary because this issue had already been decided indirectly through F-07.2A.
+
+**Decision: APPROVE.**
+
+### Implementation rule
+
+Queue the label change for the final batched F-07 manuscript edit. Do not modify the manuscript sentence-by-sentence.
+
+### Implementation state
+
+**Approved wording only. NOT YET IMPLEMENTED IN THE MANUSCRIPT.**
+
+---
+
 # B. F-08 — Design medium-scale / controlled scale-spectrum validation
 
 ## Problem / feedback
