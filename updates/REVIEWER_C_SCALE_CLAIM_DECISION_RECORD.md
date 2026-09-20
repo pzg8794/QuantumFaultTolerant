@@ -300,7 +300,7 @@ SolL's reasoning:
 
 ## F-07.1A — Final Piter adjudication: Abstract external-testbed sentence
 
-**Status:** **APPROVED BY PITER — queue for batched manuscript implementation; do not edit manuscript yet.**
+**Status:** **UNANIMOUS INDEPENDENT-REVIEW APPROVAL — pending Piter's explicit final sign-off; do not edit manuscript yet.**
 
 ### Reviewer trigger
 
@@ -410,7 +410,7 @@ Piter explicitly approved the recommended sentence and instructed that:
 
 ### Implementation state
 
-**Approved wording only. NOT YET IMPLEMENTED IN THE MANUSCRIPT.**
+**Final candidate only. NOT YET IMPLEMENTED IN THE MANUSCRIPT.**
 
 ---
 
@@ -499,7 +499,7 @@ No manuscript implementation is authorized until Piter explicitly approves/revis
 ---
 
 
-## F-07.1B — Final Piter adjudication: Abstract primary-matched finding
+## F-07.1B — Final wording candidate after independent review
 
 **Status:** **APPROVED BY PITER — queue for batched manuscript implementation; do not edit manuscript yet.**
 
@@ -538,9 +538,9 @@ The active manuscript includes `ICNP_VENUE_PREP/STUDY_DESIGN_VALIDATED_STAGING.t
 
 This satisfies Perplexity's residual consistency check and provides the formal handoff from the Abstract phrase `classical replay-memory scaling` to the Study Design definitions of `s`, `T_b`, and `T`.
 
-### Piter decision and implementation rule
+### Final-signoff state
 
-**APPROVED.**
+All three independent reviewers approve the exact wording. Piter previously endorsed the direction but raised a terminology concern; that concern has now been resolved. **Explicit Piter approval of the final refined sentence is still required before it is marked approved in the queue.**
 
 Piter's batching rule remains in force:
 - mark the sentence approved in the queue;
