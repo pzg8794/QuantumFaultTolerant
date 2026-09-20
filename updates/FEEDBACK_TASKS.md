@@ -55,9 +55,9 @@ The queue is complexity-based. **Anything requiring code, notebooks, datasets, o
 | 1 | F-02 | Low | Position the central contribution through surgical manuscript wording | **Done — independently reviewed, implemented, and build-validated** | None |
 | 2 | F-07 | Low | Calibrate deployment/generalization claims using existing evidence | **Re-opened for source-correct adjudication; September candidate edits remain pending Piter approval** | None |
 | 3 | F-13 | Low–Medium | Compress the main narrative without losing evidence | **Current; first pass complete** | F-02 |
-| 4 | F-05 | Low if prose-sufficient; later otherwise | Clarify allocator–policy semantics from already documented material | **Re-opened: current runner traced; dataset-producing allocator semantics require provenance reconciliation** | None |
+| 4 | F-05 | Medium | Clarify allocator–policy semantics and expose the two-level allocation architecture | **APPROVED design direction; diagram/pseudocode/table implementation package pending; manuscript edit deferred to final batch** | None |
 | 5 | F-06 | Medium | Improve threat-to-physics grounding with existing literature/documentation first | **Planned** | None |
-| 6 | F-03 | Medium if implementation verification is required | Specify the complete routing decision loop | **Deferred from low-hanging pass if code tracing is required** | F-05 |
+| 6 | F-03 | Medium | Specify the complete routing decision loop | **APPROVED jointly with F-05 at the design level; common Algorithm 1 package pending final artifact approval; manuscript edit deferred to final batch** | F-05 |
 | 7 | F-04 | Medium | Document context and hyperparameters | **Deferred from low-hanging pass if config/code tracing is required** | F-03 |
 | 8 | F-08 | High | Design reviewer-required medium-scale validation as a controlled routing-complexity spectrum | **Planned later; design must include 15–20 nodes and >=10 paths** | F-03–F-06 |
 | 9 | F-09 | Very High | Run and validate the approved controlled scale spectrum | **Blocked by design** | F-08 approval and compute check |
@@ -326,16 +326,15 @@ The Introduction should connect the controlled evaluation directly to the contex
 
 ### F-05 — Clarify the Allocator–Policy Relationship
 
-- **Feedback addressed:** Reviewers B and C ask when allocation occurs and how it changes actions and feedback.
-- **Problem:** Execution order and ownership of allocation decisions may be ambiguous in the prose.
-- **Low-hanging pass:** First determine whether the relationship can be clarified accurately from the manuscript and existing documentation alone. If yes, fix the prose now.
-- **Defer condition:** If accurate resolution requires implementation tracing or code inspection, stop and move that portion to a later complexity tier.
-- **Completion evidence:** The manuscript explains the relationship accurately without unsupported implementation claims.
-- **Before:** The policy-interface prose could be read as though the bandit policy and allocator independently chose the same qubit-allocation action.
-- **After:** The System Model now states that allocator semantics determine each path's budget and feasible allocation space, while the bandit policy selects the path/allocation action within that space.
-- **Evidence boundary:** The low-hanging prose fix intentionally does not claim an exact per-frame allocator-update order. Confirming that timing requires source/configuration tracing and remains deferred to the source-backed F-03/F-04 tier.
-- **Source-trace update (2026-09-19):** Current execution code has now been traced. The runner builds one shared matched environment for all models, but the effective runner allocation is reconstructed from `allocator.allocate(timestep=0,...)`; the later `qubit_cap` passed into `runner.run_experiment(...)` does not rebuild that environment. `QuantumEnvironment.update_qubit_allocation(...)` exists but has no call site in the current repository. Therefore current source does not demonstrate online DynamicUCB/Thompson reallocation during a run. The remaining requirement is to reconcile the code version that generated the validated RQ3/Hybrid datasets before final allocator-interaction wording is accepted.
-- **Status:** **Re-opened for data-producing-code provenance reconciliation.**
+- **Feedback addressed:** Reviewers B and C ask how the allocator and bandit policy divide responsibility, how allocator choice changes feasible actions and feedback, and how the complete routing/allocation loop can be reconstructed.
+- **Resolved architecture:** The allocator and bandit operate at two distinct levels. The allocator performs **inter-route budgeting**, assigning route-level budgets (T_r). Each (T_r) induces a feasible **within-route allocation-action** set (mathcal{X}_r(T_r)) and its reward landscape. The selected bandit model then applies its own algorithm to select a route and a within-route allocation action, observe threat-conditioned reward, and update its model state.
+- **Source-backed model contract:** The shared `QuantumModel` architecture supports heterogeneous concrete policies while preserving the common route-selection -> within-route-action-selection -> feedback/update structure. Direct verification established, among others, GNeuralUCB = Simple-UCB + NeuralUCB; EXPNeuralUCB = EXP3 + NeuralUCB; EXPUCB = EXP3 + Linear-UCB; CPursuitNeuralUCB = Pursuit/CMAB + NeuralUCB; iCPursuitNeuralUCB = iCMAB/Pursuit + NeuralUCB with ARIMA/anomaly-aware reward filtering.
+- **Allocator effect:** In the primary matched simulator, allocator-selected (T_r) values change both the feasible set (mathcal{X}_r(T_r)) and the reward landscape associated with those actions.
+- **Approved revision package:** (1) hierarchical allocator--policy diagram; (2) common Algorithm 1 pseudocode; (3) complete policy-semantics table covering the validated policy corpus plus Oracle; (4) concise prose distinguishing inter-route budgeting from within-route allocation-action selection; (5) conditional feedback arrow from route statistics to the adaptive allocator hook.
+- **Adaptive-hook rule:** Represent adaptation as **conditional**: “if allocator update is enabled and due at (t).” The existing 50-frame environment/state transition hook is not the allocator cadence. A configurable adaptive-allocator contract/cadence must be aligned before the pseudocode is finalized as executed-method text.
+- **Implementation/alignment follow-up:** Define allocator-update cadence; regenerate (T_r)-dependent action/context/reward structures after reallocation; propagate them to every active model; verify every policy-table row against its concrete class; test the completed loop; preserve the existing validated corpus as the baseline.
+- **Decision record:** See [F-05/F-03 Allocator--Policy Architecture Decision Record](F05_F03_ALLOCATOR_POLICY_ARCHITECTURE_DECISION_RECORD.md) for the complete reasoning path and approval provenance.
+- **Status:** **APPROVED design direction. No manuscript edit yet; final artifacts remain queued for approval and the final batched manuscript pass.**
 
 ### F-06 — Map Threats to Quantum-Network Phenomena
 
@@ -348,9 +347,12 @@ The Introduction should connect the controlled evaluation directly to the contex
 ### F-03 — Specify the Complete Routing Decision Loop
 
 - **Feedback addressed:** Reviewers B and C request a reproducible end-to-end algorithm.
-- **Problem:** Context construction, route selection, allocation, feedback, replay, and update order may not be reconstructable from one location.
-- **Execution rule:** This is manuscript-low-hanging only to the extent that the loop is already documented authoritatively. If source-code verification is required, it is deferred from the first revision wave.
-- **Completion evidence:** The final loop can be followed without source code and is eventually verified against implementation provenance.
+- **Problem:** Context construction, inter-route budgeting, route selection, within-route allocation-action selection, threat-conditioned feedback, replay, and update order are not reconstructable from one manuscript location.
+- **Approved design:** F-03 is now coupled to the approved F-05 architecture. Algorithm 1 will express the shared model contract while leaving concrete path/action-selection and update behavior policy-specific.
+- **Required Algorithm 1 elements:** primary/global physical-budget input; allocator initialization; (T_r); construction of (mathcal{X}_r(T_r)); context/reward construction; replay configuration; model initialization; model-specific route selection; model-specific within-route allocation-action selection; threat-conditioned reward; policy/replay/route-statistics updates; conditional allocator-update hook; regeneration and propagation of affected action/context/reward structures.
+- **Policy-table requirement:** The companion semantics table must be verified row-by-row against the concrete classes represented in the validated corpus; no row may be inferred solely from family resemblance.
+- **Decision record:** See [F-05/F-03 Allocator--Policy Architecture Decision Record](F05_F03_ALLOCATOR_POLICY_ARCHITECTURE_DECISION_RECORD.md).
+- **Status:** **APPROVED jointly with F-05 at the design level. No manuscript edit yet; final diagram/pseudocode/table/prose package remains queued for approval and the final batched manuscript pass.**
 
 ### F-04 — Specify Context and Hyperparameters
 
