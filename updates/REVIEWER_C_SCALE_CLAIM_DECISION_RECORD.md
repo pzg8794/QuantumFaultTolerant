@@ -414,6 +414,90 @@ Piter explicitly approved the recommended sentence and instructed that:
 
 ---
 
+
+## F-07.1B terminology adjudication — replay capacity vs. classical replay memory
+
+**Status:** OPEN — terminology refinement under Piter adjudication; manuscript remains unchanged.
+
+### Piter's concern
+
+Piter flagged that **"replay-capacity" is not self-explanatory for a reader who is new to quantum computing and MAB methods**, especially because a quantum-network paper already uses physical resource terms such as qubits, network capacity, and quantum memory.
+
+This is a substantive clarity concern rather than a cosmetic preference.
+
+### Live Study Design verification
+
+The active manuscript includes `ICNP_VENUE_PREP/STUDY_DESIGN_VALIDATED_STAGING.tex`. Its current terminology states:
+
+- `Replay memory is scaled by the replay-capacity scale factor (s)...`
+- `The s sweep ... probe[s] ... when added replay memory helps estimation versus when it increases adversarial predictability.`
+- Under **Resource separation**: `Replay scaling changes only classical memory: the physical network budget is fixed at 35 qubits ... isolating replay-memory effects from quantum-network constraints.`
+
+The notation table currently defines:
+- `s` as the replay-capacity scale factor;
+- `T_b` and `T` as replay capacities anchored to base/current horizons.
+
+Therefore, the manuscript already distinguishes:
+1. **replay memory** — the classical stored learning history being scaled;
+2. **replay capacity** — the formal parameterization of that memory through `s`, `T_b`, and `T`;
+3. **physical qubit/network capacity** — a separate fixed quantum resource.
+
+### Independent feedback
+
+**Copilot**
+- Approved the need to disambiguate replay capacity from quantum capacity.
+- Preferred a construction using `are associated with` rather than `occur among` to avoid intrinsic/causal reading.
+- Suggested `the effect of replay-memory capacity`, while asking Study Design to define the classical-memory/physical-qubit distinction.
+
+**Perplexity**
+- Independently verified the same resource-separation language.
+- Correctly noted that `replay-memory capacity` would be a new compound built from two existing manuscript terms.
+- Suggested comparing it against **classical replay-capacity**, which reuses the manuscript's existing `classical memory` distinction.
+- Emphasized that Abstract terminology should map cleanly to the live Study Design definition.
+
+**SolL**
+- Approved the underlying clarity concern.
+- Preferred **classical replay-memory capacity** to eliminate quantum-capacity ambiguity.
+- Flagged that `robustness--efficiency profiles` is a deliberate substantive characterization and must be explicitly accepted rather than treated as mere terminology cleanup.
+
+### Source-grounded synthesis
+
+The live source suggests an even cleaner Abstract formulation than any of the three capacity compounds:
+
+> **classical replay-memory scaling**
+
+Reasoning:
+- `replay-memory` describes the actual classical stored-history resource;
+- `scaling` describes what the experiment varies through `s`, `T_b`, and `T`;
+- `classical` immediately excludes quantum memory/qubit capacity;
+- removing the word `capacity` from this Abstract clause avoids the exact ambiguity Piter identified;
+- the formal `replay capacity` notation can remain in Study Design, where `s`, `T_b`, and `T` are defined.
+
+### Robustness–efficiency phrase verification
+
+The phrase `robustness--efficiency` is not being introduced without support. The current manuscript already uses:
+- `strongest robustness--efficiency tier` in the Introduction;
+- related `efficiency--stability frontier` terminology in the Discussion/appendix;
+- separate efficiency, floor, and CV/stability measures in the validated results.
+
+Therefore, `robustness--efficiency profiles` is intended as a multi-metric summary rather than a synonym for one worst-case-efficiency metric.
+
+### Current recommended F-07.1B wording for Piter adjudication
+
+> **"Within the primary matched evaluation, the strongest observed robustness--efficiency profiles are associated with context-aware neural policy--allocator configurations, while the effects of classical replay-memory scaling remain threat-dependent."**
+
+Why this version is currently preferred:
+- **Within the primary matched evaluation** — explicit Level-I provenance.
+- **the strongest observed robustness--efficiency profiles** — finding-centered, multi-metric claim.
+- **are associated with** — avoids intrinsic or causal superiority language while preserving finding-centered grammar.
+- **context-aware neural policy--allocator configurations** — retains the interaction as the unit of comparison.
+- **effects of classical replay-memory scaling** — maps directly to the live Study Design and removes ambiguity with physical quantum capacity.
+- **remain threat-dependent** — preserves the validated capacity-paradox conclusion without claiming a universal mechanism.
+
+No manuscript implementation is authorized until Piter explicitly approves/revises/rejects this final candidate.
+
+---
+
 # B. F-08 — Design medium-scale / controlled scale-spectrum validation
 
 ## Problem / feedback
