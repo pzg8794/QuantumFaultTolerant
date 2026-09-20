@@ -142,6 +142,28 @@ Removing the phrase "deployment-grade" alone is not enough if the evidence trans
 
 ---
 
+
+## Independent review log — Perplexity
+
+**Review stage:** F-07 Abstract transition, independent review before Piter adjudication.
+
+**Outcome:**
+- **Sentence 1 — APPROVE.** Perplexity agreed that replacing `persists` with wording that says the hierarchy `remains visible` while absolute efficiency and model separation vary with topology better communicates the external-testbed evidence without implying stable effect magnitude.
+- **Sentence 2 — APPROVE scientifically, pending Piter adjudication before implementation.** Perplexity agreed that `Within the primary matched evaluation...` fixes all three identified defects in the live sentence: vague `appropriate allocators`, intrinsic-sounding `achieve the strongest robustness`, and ambiguous `these evaluated simulator settings`.
+- Perplexity initially issued **DEFER** on Sentence 2 because the repository still preserved the earlier approved direction. After process clarification, it withdrew that DEFER and accepted that the repository mismatch is an expected artifact of active re-adjudication, not a scientific defect.
+- Perplexity also agreed that `the strongest observed robustness occurs among...` is preferable to the more natural `configurations occupy...` because the former keeps the **finding**, rather than the policy family, as the grammatical subject and is therefore more consistent with the F-02 framework-first rhetorical discipline.
+- Perplexity accepted the refined interpretation of `persists`: the problem is not that the word necessarily asserts magnitude stability, but that it permits an overly strong reading when the evidence shows substantial compression in absolute efficiency/model separation.
+- Perplexity endorsed the manuscript-adjacent interpretation: topology-dependent degradation does not invalidate the framework contribution; it demonstrates why robustness claims require evaluation across multiple operating and complexity regimes.
+
+**Process lesson preserved:** During active wording adjudication, a mismatch between the previously recorded candidate and a newly reviewed candidate should be flagged for provenance, but it should not downgrade the scientific verdict. The canonical record and manuscript are updated only after Piter's explicit approval.
+
+**Current independent-review state:**
+- Sentence 1: **APPROVE**
+- Sentence 2: **APPROVE scientifically; pending Piter adjudication**
+- No manuscript or canonical wording update is authorized by this review alone.
+
+---
+
 # B. F-08 — Design medium-scale / controlled scale-spectrum validation
 
 ## Problem / feedback
