@@ -297,6 +297,123 @@ SolL's reasoning:
 
 ---
 
+
+## F-07.1A — Final Piter adjudication: Abstract external-testbed sentence
+
+**Status:** **APPROVED BY PITER — queue for batched manuscript implementation; do not edit manuscript yet.**
+
+### Reviewer trigger
+
+Reviewer C's topology/scale criticism explicitly recognized the larger external testbeds, including the 100-node result, while challenging the breadth of the claims drawn from a primary matched evaluation concentrated on the 4-node / 4-path topology.
+
+The governing interpretation is therefore:
+
+- the external testbeds are real and scientifically useful;
+- they provide **Level III external corroboration and boundary testing**;
+- they do not constitute a controlled scale curve;
+- they cannot isolate topology, node count, path count, simulator assumptions, or other testbed differences as the cause of observed performance changes.
+
+### Current manuscript sentence — BEFORE
+
+> "Across four external quantum-network testbeds, the main performance hierarchy persists while scale- and topology-dependent limits become visible."
+
+### Problem identified
+
+Two evidence-scope problems were isolated:
+
+1. **"main performance hierarchy persists"** can be read as though the full model ordering remains stable across testbeds. The validated evidence supports a narrower statement: the same model has the highest **average efficiency** on all four external testbeds, while model separation and configuration-level winners can change.
+2. **"scale- and topology-dependent limits"** overattributes the observed variation. The four external testbeds differ simultaneously in scale, topology, path structure, simulator/modeling assumptions, horizons/configuration details, and other factors. Level III evidence therefore establishes cross-testbed variation, not a causal topology or scale effect.
+
+### First proposed refinement
+
+> "Across four external quantum-network testbeds, the observed performance hierarchy remains visible, although absolute efficiency and model separation vary substantially with topology."
+
+This improved the strength of the persistence wording but still left two issues:
+- `performance hierarchy` remained broader than the cleanest validated recurring result;
+- `with topology` still implied isolated causal attribution.
+
+### Independent review path
+
+**Perplexity**
+- Initially approved the first refinement.
+- Helped establish that `remains visible` is safer than `persists`.
+- Accepted the later clarification that `persists` is not necessarily false, but permits an overly strong reading when substantial compression exists.
+
+**Copilot**
+- **REVISE.**
+- Identified that `performance hierarchy` may imply a fuller invariant ranking than the evidence establishes.
+- Identified that `with topology` is causally too strong because the external testbeds are heterogeneous.
+- This was accepted as a substantive evidence-scope correction.
+
+**SolL**
+- **REVISE.**
+- Independently agreed that `with topology` attributes variation more specifically than Level III evidence supports.
+- Recommended describing the variation across testbeds with different scales/topologies rather than as an isolated topology effect.
+
+### Evidence check used to resolve the wording
+
+The validated cross-testbed table shows:
+
+- **Paper 2 (15N/51E/8P):** `iCPursuitNeuralUCB` has the highest average efficiency at 74.5% and 95/300 wins.
+- **Paper 7 (50N/141E/15P):** `iCPursuitNeuralUCB` has the highest average efficiency at 78.0% and 245/300 wins.
+- **Paper 12 (100N/426E/4P):** `iCPursuitNeuralUCB` has the highest average efficiency at 44.1%, but the models are tightly compressed.
+- **Paper 8 (20N/19E/8P):** `iCPursuitNeuralUCB` has the highest average efficiency at 67.9%, while `EXPNeuralUCB` wins more individual configurations (10/20).
+
+Therefore, the strongest cross-testbed statement supported consistently is:
+
+> **the same average-efficiency leader appears across all four external testbeds**
+
+while:
+- absolute efficiency changes;
+- separation among models changes;
+- configuration-level winners can change.
+
+### Alternatives considered
+
+**Option A — retain a hierarchy claim**
+
+> "Across four heterogeneous external quantum-network testbeds, the observed performance hierarchy remains visible, although absolute efficiency and model separation vary substantially across testbeds."
+
+Rejected because `performance hierarchy` remains broader than necessary.
+
+**Option B — use a generic pattern claim**
+
+> "Across four heterogeneous external quantum-network testbeds, related performance patterns remain visible, although absolute efficiency, model separation, and configuration-level winners vary across testbeds."
+
+Rejected because it is overly cautious and discards the stronger validated fact that the same average-efficiency leader recurs.
+
+**Option C — state exactly what recurs**
+
+> "Across four heterogeneous external quantum-network testbeds, the external evaluation identifies the same average-efficiency leader, although absolute efficiency, model separation, and configuration-level winners vary across testbeds."
+
+Recommended because it:
+- states the exact recurring result instead of implying a full invariant hierarchy;
+- keeps the **evaluation** as the grammatical actor, preserving F-02 contribution discipline;
+- avoids causal attribution to topology or scale;
+- explicitly distinguishes average ranking from configuration-level wins;
+- preserves the larger-testbed evidence rather than minimizing it;
+- leaves causal scale analysis to F-08/F-09 and F-10.
+
+### FINAL APPROVED WORDING — AFTER
+
+> **"Across four heterogeneous external quantum-network testbeds, the external evaluation identifies the same average-efficiency leader, although absolute efficiency, model separation, and configuration-level winners vary across testbeds."**
+
+### Piter decision
+
+**APPROVE.**
+
+Piter explicitly approved the recommended sentence and instructed that:
+- this complete reasoning path be preserved as the direct provenance record for how the wording was reached;
+- F-07.1A be marked approved in the queue;
+- the manuscript itself **not** be edited sentence-by-sentence;
+- all approved F-07 sentence changes be implemented together in a later batched edit after the sentence-level adjudication pass is complete.
+
+### Implementation state
+
+**Approved wording only. NOT YET IMPLEMENTED IN THE MANUSCRIPT.**
+
+---
+
 # B. F-08 — Design medium-scale / controlled scale-spectrum validation
 
 ## Problem / feedback
