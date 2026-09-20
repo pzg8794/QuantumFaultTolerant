@@ -124,8 +124,8 @@ RQ2 uses the Markov, Adaptive, and OnlineAdaptive threat slice from \cref{tab:sc
 \includegraphics[width=\columnwidth]{figures/icnp/ICNP-CODE-040_g2_robustness_floor.png}
 \caption{The figure reports each representative policy's lowest
 \texttt{Oracle}-normalized efficiency across the locked Markov, Adaptive, and
-OnlineAdaptive scope. Higher floors indicate resistance to catastrophic
-collapse: \texttt{iCEpsGreedy} has the strongest floor, \texttt{CPursuit}
+OnlineAdaptive scope. Higher floors indicate resistance to severe efficiency
+loss: \texttt{iCEpsGreedy} has the strongest floor, \texttt{CPursuit}
 has the best average, and \texttt{EXPNeuralUCB} remains fragile despite
 adversarial-style exploration. Together with
 \Cref{fig:threat_penalty_escalation}, this shows that adaptive threats expose
@@ -260,8 +260,8 @@ Under \texttt{ThompsonSampling} allocation and base-horizon ($T_b$)-type replay 
 \subfloat[Comparing the baseline with scenario-specific switching,
 Adaptive disruption gives the largest validated gain: \texttt{ThompsonSampling}
 with $T_b$-type replay at $s{=}1.5$ reaches 95.7\%, a 2.9 percentage-point
-improvement. This shows that deployment rules should match policy, allocator,
-and replay settings to the active threat.
+improvement. Within the evaluated configurations, this supports matching policy,
+allocator, and replay settings to the active threat.
 \label{fig:deployment_rules_main}]{%
   \begin{minipage}{0.45\textwidth}
   \centering
@@ -281,8 +281,8 @@ selection is a first-class deployment control.
   \textbf{Allocator-Induced Risk}\\[0.5em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-037_g9_network_gap_analysis_panel_h_allocator_risk_floor_mean_peak_icpursuit.png}
   \end{minipage}}
-\caption{Panels~(a) and~(b) show that robust quantum-routing deployment
-is strongest when policy, allocator, and replay settings are matched to the threat.}
+\caption{Panels~(a) and~(b) show that, within the evaluated configurations,
+robustness is highest when policy, allocator, and replay settings are matched to the threat.}
 % \shee{Caption mentions Tb-type and s values which are not present on the graph.} -- SOLVED: Regenerated Figure 7A with a callout labeling the Adaptive optimum as ThompsonSampling + T_b, s=1.5.
 % \shee{Don't use 'The exported validation figure' in every caption. Refer to the corresponding plot.} -- SOLVED: Removed generic exported-figure language and described the specific plotted quantities and observed deployment consequence.
 % \devroop{Include the allocator-risk figure in the main body.} -- SOLVED: Grouped deployment guidance with allocator-risk evidence in one RQ3d figure.
@@ -314,7 +314,7 @@ iCPursuitNeuralUCB & 1.0 & 92.1 & 93.6 & 88.7 & 88.5 & 70.8 & 86.7 \\
 % \shee{define s} -- SOLVED: Added $s$ definition in the table note and in the RQ3b evidence-slice paragraph.
 \end{table}
 
-\Cref{fig:capacity_paradox,tab:rq3b_master_capacity_scaling} show that replay scale acts as a threat-conditioned control variable. The allocator \texttt{ThompsonSampling}/$T_b$/OnlineAdaptive slice anchors the RQ3b conclusion; the fixed-\texttt{Random} table supports that conclusion as a stress-control comparison by showing sharper $s=1.5$ degradation and $s=2$ recovery under uninformed allocation. Replay capacity therefore must be tuned jointly with allocator and anchoring type.
+\Cref{fig:capacity_paradox,tab:rq3b_master_capacity_scaling} show that replay scale acts as a threat-conditioned control variable. The allocator \texttt{ThompsonSampling}/$T_b$/OnlineAdaptive slice anchors the RQ3b conclusion; the fixed-\texttt{Random} table supports that conclusion as a stress-control comparison by showing sharper $s=1.5$ degradation and $s=2$ recovery under uninformed allocation. Replay-capacity effects therefore cannot be interpreted independently of allocator and anchoring type.
 
 % ============================================================================
 % RQ3c: Algorithm-Allocator Co-Design
@@ -347,7 +347,7 @@ Thompson   & 58.4 & 65.4 & 87.8 & 91.7 & 65.2 & 73.7 & 58.4 \\
 {\footnotesize Bl=Baseline, Sh=Stochastic, Mk=Markov, Ag=Adaptive, OA=OnlineAdaptive.}
 \end{table}
 
-\Cref{tab:rq3c_master_allocators} shows that allocator effects are deployment-critical: Fixed gives iCPursuitNeuralUCB the best average and floor, while Thompson is strong under Adaptive but fragile under Baseline/Stochastic mismatch. Thus, allocator selection is a first-class deployment decision.
+\Cref{tab:rq3c_master_allocators} shows that allocator effects are material in the evaluated slice: Fixed gives iCPursuitNeuralUCB the best average and floor, while Thompson is strong under Adaptive but fragile under Baseline/Stochastic mismatch. Thus, allocator selection is a first-class evaluation factor.
 
 % ============================================================================
 % RQ3d: Scenario-Based Deployment Rules and Optimization
@@ -356,13 +356,13 @@ Thompson   & 58.4 & 65.4 & 87.8 & 91.7 & 65.2 & 73.7 & 58.4 \\
 \label{subsec:rq3d_answer}
 
 \smallTitle{Deployment-rule synthesis}
-RQ3d converts the RQ3a--RQ3c findings into 6K deployment rules for iCPursuitNeuralUCB. Under the Hybrid corpus 3/5-suite mean used for switching analysis, the strong static default is \texttt{iCPursuitNeuralUCB+Fixed+($T$-type,$s=2$)}, with 95.5\% average efficiency and an 88.5\% floor across scenarios. Scenario-specific switching provides modest gains, with the largest validated improvement under Adaptive disruption.
+RQ3d converts the RQ3a--RQ3c findings into 6K configuration guidance for iCPursuitNeuralUCB. Under the Hybrid corpus 3/5-suite mean used for switching analysis, the strong static default is \texttt{iCPursuitNeuralUCB+Fixed+($T$-type,$s=2$)}, with 95.5\% average efficiency and an 88.5\% floor across scenarios. Scenario-specific switching provides modest gains, with the largest validated improvement under Adaptive disruption.
 
 \begin{table}[ht!]
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{RQ3d scenario-specific deployment rules for \texttt{iCPursuitNeuralUCB} at 6K. Gain is measured relative to the strong static default where applicable.}
+\caption{RQ3d scenario-specific configuration guidance for \texttt{iCPursuitNeuralUCB} at 6K. Gain is measured relative to the strong static default where applicable.}
 \label{tab:rq3d_deployment_rules}
 \begin{tabular}{p{0.24\linewidth} p{0.42\linewidth} c c}
 \toprule
@@ -377,4 +377,4 @@ OnlineAdaptive & Fixed + ($T$, $s=2$) & 99.8 & +0.0 \\
 \end{tabular}
 \end{table}
 
-\Cref{tab:rq3d_deployment_rules,fig:deployment_guidance} show the RQ3d conclusion: clear deployment rules emerge, but the static default remains strong enough to keep all scenarios above the 85\% target at 6K. Threat-adaptive switching is most useful as a safeguard against the allocator/capacity mismatch diagnosed in RQ3b--RQ3c, with the largest validated gain under Adaptive disruption.
+\Cref{tab:rq3d_deployment_rules,fig:deployment_guidance} show the RQ3d conclusion: clear configuration guidance emerges, and the static default keeps all evaluated scenarios above the 85\% target at 6K. Threat-adaptive switching is most useful in these experiments as a safeguard against the allocator/capacity mismatch diagnosed in RQ3b--RQ3c, with the largest validated gain under Adaptive disruption.

@@ -1,0 +1,1558 @@
+# Reviewer-C Scale, Claim-Scope, and Evidence-Ladder Decision Record
+
+**Status:** Canonical public handoff for all agents working on the post-ICNP revision  
+**Date:** 2026-09-19  
+**Applies to:** F-07, F-08, F-09, F-10, and F-14  
+**Primary manuscript:** `ICNP_2026_venue_draft.tex`  
+**Primary contribution:** the controlled, threat-aware evaluation framework/methodology and the evidence it reveals
+
+> **Mandatory source boundary:** Do not use the current September manuscript to infer what the ICNP reviewers saw. The relevant submission-era source is the May 23, 2026 repository state at commit `b6ebe1daf8f41a285f4db31d43b98d5c22d1a353`. The reviewer text itself is private correspondence and is not reproduced in this public repository. The exact wording is preserved in the private Drive record titled **"PRIVATE — QuantumFaultTolerant Reviewer-C Scale & Claim Decision Record — 2026-09-19."**
+
+## Why this record exists
+
+This decision emerged during the F-07 claim-calibration review when Piter re-read Reviewer C's scale criticism and noticed a crucial word: the reviewer criticized the **primary evaluation**, not the entire framework or every testbed.
+
+That observation led to a source-grounded reconstruction:
+
+1. Re-read the exact July 3, 2026 ICNP reviewer feedback for submission #330.
+2. Reconstructed the actual May 23 submission-era manuscript from commit `b6ebe1d`.
+3. Re-checked the framework/testbed design and validated cross-testbed evidence.
+4. Compared the submission-era rhetoric with the post-F-02 contribution framing.
+5. Identified that the submission had allowed a **pursuit/context-aware neural finding** to compete rhetorically with the paper's true contribution: the **controlled evaluation framework**.
+
+The assistant initially made a provenance mistake by using the current revised manuscript to explain an earlier reviewer comment. Piter caught that immediately. All subsequent reasoning was rebuilt against the historical submission snapshot. Future agents must preserve this historical-version discipline.
+
+## What Reviewer C's scale criticism means
+
+**Private source:** ICNP 2026 Review #330C, July 3 decision email, weakness concerning primary-topology scale and the breadth of the pursuit-neural/deployment claim.
+
+Public paraphrase of the reviewer's ask:
+
+- the **primary matched evaluation** uses a 4-node diamond with 4 candidate paths;
+- the reviewer regarded that as too small to support broad robustness/deployment claims;
+- the reviewer explicitly considered the external 100-node result, so this was **not** a claim that the paper had no larger testbeds;
+- the reviewer requested at least one **medium-scale primary-style evaluation** around 15–20 nodes with 10+ paths;
+- the reviewer also asked for explanation of the substantial efficiency compression on the 100-node external testbed.
+
+Therefore, the correct distinction is:
+
+**primary matched evidence != heterogeneous external-testbed evidence != hardware/deployment validation**
+
+## What the reviewer actually saw in the May submission
+
+The May 23 submission-era draft repeatedly elevated pursuit-neural results into high-level contribution/generalization/deployment language.
+
+Examples from the public historical source include:
+
+> "Across this controlled grid, pursuit--neural hybrids provide the strongest robustness--efficiency tradeoff..."
+
+The formal contribution list included:
+
+> "Deployment guidance: Pursuit--neural hybrids sustain >=85% worst-case efficiency..."
+
+and:
+
+> "Experimental findings: Pursuit--neural hybrids achieve 87--96% efficiency..."
+
+The Abstract ended with:
+
+> "These results establish that context-aware neural policies paired with appropriate allocators provide deployment-grade robustness..."
+
+Submission-era Discussion/cross-testbed language also described pursuit-informed neural designs as defining the strongest frontier, generalizing beyond the primary network, and defining the overall performance ceiling.
+
+This language explains why Reviewer C reasonably treated pursuit-neural performance as a central claim rather than merely one finding produced by the framework.
+
+## Core interpretation
+
+The paper's contribution is **not** "pursuit algorithms are best."
+
+The paper's contribution is the **controlled threat-aware evaluation framework** that compares policy families under matched threat, allocator, replay-capacity, and routing conditions and reveals when performance is robust, fragile, conditional, or configuration-dependent.
+
+The strong pursuit/context-aware neural performance is a **finding produced by the framework**.
+
+That finding is still scientifically important and should be tested more rigorously. It should not be deleted merely because the original rhetoric overstated it.
+
+## Why F-02 already solved a substantial part of the problem
+
+F-02 restored the correct contribution hierarchy:
+
+- high-level contribution language now centers the controlled evaluation;
+- policy-family rankings remain reportable findings;
+- the Abstract/Introduction no longer need to read as though pursuit algorithms are the reason the paper exists.
+
+This is a structural correction, not cosmetic wording cleanup.
+
+F-02 does **not** eliminate the scale question. It changes the question from:
+
+> "Can we prove pursuit-neural is deployment-grade?"
+
+to:
+
+> "How does the performance hierarchy exposed by the framework evolve as routing-space complexity changes?"
+
+That is the correct framework-centered research question.
+
+---
+
+# A. F-07 — Claim calibration
+
+## Problem / feedback
+
+The submission used language that jumped from observed simulator results to broader robustness/generalization/deployment claims.
+
+## Possible solution 1: remove pursuit/context-aware findings entirely
+
+**Not recommended.**
+
+Reason: this would discard validated empirical results. The reviewer challenged claim breadth and missing scale evidence, not the existence of the observed ranking.
+
+## Possible solution 2: keep the same pursuit-centered claims and only add qualifiers
+
+Example: add "within the evaluated simulator settings" everywhere.
+
+**Insufficient by itself.**
+
+Reason: it bounds the words but can still leave a winning policy family as the rhetorical center of the paper.
+
+## Recommended solution
+
+- Keep F-02 framework-first contribution positioning.
+- Treat policy rankings as **findings**.
+- Bound each finding to the evidence level that produced it.
+- Distinguish primary matched findings from external-testbed persistence.
+- Remove unsupported deployment/hardware/unrestricted-transfer language.
+- Avoid universal "appropriate/best allocator" prescriptions.
+- Preserve validated values unless a separate evidence audit changes them.
+
+### Current F-07.1 approved wording direction
+
+> "Within these evaluated simulator settings, the strongest observed robustness occurs among context-aware neural policy–allocator configurations, while replay-capacity effects remain threat-dependent."
+
+### Reasoning
+
+This reports an observed configuration-level result without converting it into a new algorithmic contribution or deployment guarantee.
+
+### Follow-up
+
+The surrounding Abstract transition must clearly distinguish:
+1. what the primary matched grid establishes, and
+2. what the external testbeds show persists or changes.
+
+Removing the phrase "deployment-grade" alone is not enough if the evidence transition remains ambiguous.
+
+---
+
+
+## Independent review log — Perplexity
+
+**Review stage:** F-07 Abstract transition, independent review before Piter adjudication.
+
+**Outcome:**
+- **Sentence 1 — APPROVE.** Perplexity agreed that replacing `persists` with wording that says the hierarchy `remains visible` while absolute efficiency and model separation vary with topology better communicates the external-testbed evidence without implying stable effect magnitude.
+- **Sentence 2 — APPROVE scientifically, pending Piter adjudication before implementation.** Perplexity agreed that `Within the primary matched evaluation...` fixes all three identified defects in the live sentence: vague `appropriate allocators`, intrinsic-sounding `achieve the strongest robustness`, and ambiguous `these evaluated simulator settings`.
+- Perplexity initially issued **DEFER** on Sentence 2 because the repository still preserved the earlier approved direction. After process clarification, it withdrew that DEFER and accepted that the repository mismatch is an expected artifact of active re-adjudication, not a scientific defect.
+- Perplexity also agreed that `the strongest observed robustness occurs among...` is preferable to the more natural `configurations occupy...` because the former keeps the **finding**, rather than the policy family, as the grammatical subject and is therefore more consistent with the F-02 framework-first rhetorical discipline.
+- Perplexity accepted the refined interpretation of `persists`: the problem is not that the word necessarily asserts magnitude stability, but that it permits an overly strong reading when the evidence shows substantial compression in absolute efficiency/model separation.
+- Perplexity endorsed the manuscript-adjacent interpretation: topology-dependent degradation does not invalidate the framework contribution; it demonstrates why robustness claims require evaluation across multiple operating and complexity regimes.
+
+**Process lesson preserved:** During active wording adjudication, a mismatch between the previously recorded candidate and a newly reviewed candidate should be flagged for provenance, but it should not downgrade the scientific verdict. The canonical record and manuscript are updated only after Piter's explicit approval.
+
+**Current independent-review state:**
+- Sentence 1: **APPROVE**
+- Sentence 2: **APPROVE scientifically; pending Piter adjudication**
+- No manuscript or canonical wording update is authorized by this review alone.
+
+---
+
+
+## Independent review log — Copilot
+
+**Review stage:** F-07 Abstract transition, independent review before Piter adjudication.
+
+**Overall outcome:** Copilot approves the revision strategy, F-02 contribution-vs-finding distinction, Level I–IV evidence taxonomy, and controlled scale-spectrum plan. It raises two substantive wording refinements for the Abstract.
+
+### Sentence 1 — REVISE
+
+Candidate reviewed:
+
+> "Across four external quantum-network testbeds, the observed performance hierarchy remains visible, although absolute efficiency and model separation vary substantially with topology."
+
+Copilot's valid concerns:
+- **"performance hierarchy"** may imply a fuller stable ranking than the external evidence cleanly establishes;
+- **"vary substantially with topology"** risks attributing the differences to topology alone even though the external testbeds are heterogeneous in topology, path structure, modeling/physics assumptions, horizons, and other settings.
+
+Evidence check:
+- The validated external table shows that **iCPursuitNeuralUCB has the highest average efficiency on all four external testbeds**.
+- The ordering and configuration-level win structure below that leader are not invariant; on Paper 8, for example, EXPNeuralUCB has more individual configuration wins.
+- Therefore, a claim about a **leading average-efficiency pattern** is better supported than an unrestricted "performance hierarchy" claim.
+- Differences should be described as varying **across heterogeneous testbeds**, not causally "with topology" unless a controlled analysis isolates topology.
+
+**Adjudication:** ACCEPT Copilot's concern. Do not automatically adopt its exact replacement yet; carry the issue forward for comparison with other independent reviewers.
+
+### Sentence 2 — REVISE concern accepted; Copilot replacement not adopted
+
+Candidate reviewed:
+
+> "Within the primary matched evaluation, the strongest observed robustness occurs among context-aware neural policy–allocator configurations, while replay-capacity effects remain threat-dependent."
+
+Copilot's valid concern:
+- **"robustness"** is broad and could benefit from clearer metric/evidence meaning.
+
+Copilot suggested:
+> "In the primary matched evaluation, context-aware neural policy–allocator configurations show the strongest observed robustness..."
+
+and, conditionally, a worst-case-efficiency version.
+
+**Why those exact replacements are not accepted at this stage:**
+- Putting **context-aware neural policy–allocator configurations** back in subject position partially reverses the F-02 rhetorical discipline that keeps the finding rather than the winner as the grammatical center.
+- Reducing "robustness" to **highest observed worst-case efficiency** is not automatically supported as the intended aggregate claim: the validated RQ2 evidence distinguishes best average efficiency from strongest robustness floor (for example, iCEpsilonGreedy has the strongest floor in the locked adversarial scope while CPursuit leads average efficiency).
+- The manuscript's existing high-level claim is closer to a **robustness–efficiency / efficiency–stability profile** than to one single floor metric.
+
+**Adjudication:** ACCEPT the precision concern, but REJECT Copilot's exact replacement as premature. Keep Sentence 2 open for a wording that preserves:
+1. explicit **primary matched evaluation** provenance;
+2. finding-centered grammar;
+3. the correct multi-metric meaning of robustness;
+4. the threat-dependent replay-capacity finding.
+
+### Additional design feedback accepted
+
+- Level II must remain explicitly **planned evidence**, not something the manuscript implies already exists.
+- Level III supports qualitative/cross-testbed persistence, not causal explanation of the 100-node compression.
+- F-08 must control or explicitly track multiple complexity dimensions (node count, candidate-path count, path overlap, context dimensionality, topology structure) so the scale spectrum does not become another heterogeneous-testbed comparison.
+- F-10 remains correctly separate from the controlled scale curve.
+
+**Current independent-review state after Copilot:**
+- Sentence 1: **REVISE**
+- Sentence 2: **REVISE concern accepted; exact replacement unresolved**
+- No manuscript change authorized until Piter adjudicates after the independent-review round.
+
+---
+
+
+### Copilot follow-up confirmation
+
+Copilot accepted the adjudication of its review without further objection:
+
+- Sentence 1 remains **REVISE** to avoid over-attributing external variation to topology and overstating persistence of a complete hierarchy.
+- Sentence 2 remains **REVISE** to improve the precision of the robustness wording while preserving F-02 finding-centered grammar and the multi-metric interpretation.
+- The Level I–IV evidence taxonomy, controlled scale-spectrum plan, and separate F-10 diagnostic remain supported.
+- No manuscript edits are authorized yet.
+
+This closes the Copilot review cycle for this wording package pending Piter's final cross-review adjudication.
+
+---
+
+
+## Independent review log — SolL
+
+**Review stage:** F-07 Abstract transition, independent review before Piter adjudication.
+
+**Overall outcome:** SolL approves the core interpretation, F-02 contribution-vs-finding distinction, Level I–IV evidence taxonomy, and controlled scale-spectrum plan. It identifies one required revision in Sentence 1 and **approves Sentence 2 as written**.
+
+### Sentence 1 — REVISE
+
+Candidate reviewed:
+
+> "Across four external quantum-network testbeds, the observed performance hierarchy remains visible, although absolute efficiency and model separation vary substantially with topology."
+
+SolL's concern:
+- The phrase **"with topology"** implies an isolated topology effect that the heterogeneous external testbeds do not establish.
+- Level III evidence varies topology, scale, simulator assumptions, path structure, and potentially other factors together, so it supports external corroboration/boundary testing rather than clean causal attribution.
+
+SolL's proposed smallest revision:
+
+> "Across four external quantum-network testbeds, the observed performance hierarchy remains visible, although absolute efficiency and model separation vary substantially across testbeds with different scales and topologies."
+
+**Adjudication:** ACCEPT the underlying evidence-scope concern. The exact replacement remains open until the independent-review round is complete because Copilot raised an additional question about whether `performance hierarchy` itself is broader than the cleanest validated claim.
+
+### Sentence 2 — APPROVE AS WRITTEN
+
+Candidate reviewed:
+
+> "Within the primary matched evaluation, the strongest observed robustness occurs among context-aware neural policy–allocator configurations, while replay-capacity effects remain threat-dependent."
+
+SolL's reasoning:
+- **"Within the primary matched evaluation"** explicitly anchors the claim to Level I evidence.
+- **"observed"** keeps the ranking empirical and bounded.
+- **"policy–allocator configurations"** correctly treats the unit of the finding as an interaction rather than an intrinsic property of a standalone policy family.
+- The sentence removes the vague `appropriate allocators` language and avoids deployment-grade rhetoric.
+- SolL notes that `robustness` should remain connected elsewhere in the manuscript to the paper's defined efficiency-floor/stability measures, but does **not** regard that as a reason to change this Abstract sentence.
+
+**Adjudication:** RECORD SolL's clean APPROVE. This creates a meaningful independent-review split:
+- Perplexity: APPROVE Sentence 2.
+- SolL: APPROVE Sentence 2.
+- Copilot: REVISE for metric precision, although its exact replacement was not accepted because it weakens F-02 rhetorical discipline and risks collapsing robustness into one metric.
+
+### Additional methodological feedback accepted
+
+- Level III is best understood as **external corroboration and boundary testing**, not as controlled validation equivalent to Level II.
+- The reviewer-required 15–20-node / 10+-path case must remain a mandatory F-08 anchor even if a broader controlled spectrum is designed.
+- The broader scale spectrum should not delay satisfying the reviewer's minimum requirement.
+- Complexity variables and experimental semantics must be held sufficiently constant for Level II to support scaling claims.
+
+**Current independent-review state after SolL:**
+- Sentence 1: **REVISE**
+- Sentence 2: **APPROVE from SolL**
+- No manuscript change authorized until Piter completes cross-review adjudication.
+
+---
+
+
+## F-07.1A — Final Piter adjudication: Abstract external-testbed sentence
+
+**Status:** **APPROVED BY PITER — queue for batched manuscript implementation; do not edit manuscript yet.**
+
+### Reviewer trigger
+
+Reviewer C's topology/scale criticism explicitly recognized the larger external testbeds, including the 100-node result, while challenging the breadth of the claims drawn from a primary matched evaluation concentrated on the 4-node / 4-path topology.
+
+The governing interpretation is therefore:
+
+- the external testbeds are real and scientifically useful;
+- they provide **Level III external corroboration and boundary testing**;
+- they do not constitute a controlled scale curve;
+- they cannot isolate topology, node count, path count, simulator assumptions, or other testbed differences as the cause of observed performance changes.
+
+### Current manuscript sentence — BEFORE
+
+> "Across four external quantum-network testbeds, the main performance hierarchy persists while scale- and topology-dependent limits become visible."
+
+### Problem identified
+
+Two evidence-scope problems were isolated:
+
+1. **"main performance hierarchy persists"** can be read as though the full model ordering remains stable across testbeds. The validated evidence supports a narrower statement: the same model has the highest **average efficiency** on all four external testbeds, while model separation and configuration-level winners can change.
+2. **"scale- and topology-dependent limits"** overattributes the observed variation. The four external testbeds differ simultaneously in scale, topology, path structure, simulator/modeling assumptions, horizons/configuration details, and other factors. Level III evidence therefore establishes cross-testbed variation, not a causal topology or scale effect.
+
+### First proposed refinement
+
+> "Across four external quantum-network testbeds, the observed performance hierarchy remains visible, although absolute efficiency and model separation vary substantially with topology."
+
+This improved the strength of the persistence wording but still left two issues:
+- `performance hierarchy` remained broader than the cleanest validated recurring result;
+- `with topology` still implied isolated causal attribution.
+
+### Independent review path
+
+**Perplexity**
+- Initially approved the first refinement.
+- Helped establish that `remains visible` is safer than `persists`.
+- Accepted the later clarification that `persists` is not necessarily false, but permits an overly strong reading when substantial compression exists.
+
+**Copilot**
+- **REVISE.**
+- Identified that `performance hierarchy` may imply a fuller invariant ranking than the evidence establishes.
+- Identified that `with topology` is causally too strong because the external testbeds are heterogeneous.
+- This was accepted as a substantive evidence-scope correction.
+
+**SolL**
+- **REVISE.**
+- Independently agreed that `with topology` attributes variation more specifically than Level III evidence supports.
+- Recommended describing the variation across testbeds with different scales/topologies rather than as an isolated topology effect.
+
+### Evidence check used to resolve the wording
+
+The validated cross-testbed table shows:
+
+- **Paper 2 (15N/51E/8P):** `iCPursuitNeuralUCB` has the highest average efficiency at 74.5% and 95/300 wins.
+- **Paper 7 (50N/141E/15P):** `iCPursuitNeuralUCB` has the highest average efficiency at 78.0% and 245/300 wins.
+- **Paper 12 (100N/426E/4P):** `iCPursuitNeuralUCB` has the highest average efficiency at 44.1%, but the models are tightly compressed.
+- **Paper 8 (20N/19E/8P):** `iCPursuitNeuralUCB` has the highest average efficiency at 67.9%, while `EXPNeuralUCB` wins more individual configurations (10/20).
+
+Therefore, the strongest cross-testbed statement supported consistently is:
+
+> **the same average-efficiency leader appears across all four external testbeds**
+
+while:
+- absolute efficiency changes;
+- separation among models changes;
+- configuration-level winners can change.
+
+### Alternatives considered
+
+**Option A — retain a hierarchy claim**
+
+> "Across four heterogeneous external quantum-network testbeds, the observed performance hierarchy remains visible, although absolute efficiency and model separation vary substantially across testbeds."
+
+Rejected because `performance hierarchy` remains broader than necessary.
+
+**Option B — use a generic pattern claim**
+
+> "Across four heterogeneous external quantum-network testbeds, related performance patterns remain visible, although absolute efficiency, model separation, and configuration-level winners vary across testbeds."
+
+Rejected because it is overly cautious and discards the stronger validated fact that the same average-efficiency leader recurs.
+
+**Option C — state exactly what recurs**
+
+> "Across four heterogeneous external quantum-network testbeds, the external evaluation identifies the same average-efficiency leader, although absolute efficiency, model separation, and configuration-level winners vary across testbeds."
+
+Recommended because it:
+- states the exact recurring result instead of implying a full invariant hierarchy;
+- keeps the **evaluation** as the grammatical actor, preserving F-02 contribution discipline;
+- avoids causal attribution to topology or scale;
+- explicitly distinguishes average ranking from configuration-level wins;
+- preserves the larger-testbed evidence rather than minimizing it;
+- leaves causal scale analysis to F-08/F-09 and F-10.
+
+### FINAL APPROVED WORDING — AFTER
+
+> **"Across four heterogeneous external quantum-network testbeds, the external evaluation identifies the same average-efficiency leader, although absolute efficiency, model separation, and configuration-level winners vary across testbeds."**
+
+### Piter decision
+
+**APPROVE.**
+
+Piter explicitly approved the recommended sentence and instructed that:
+- this complete reasoning path be preserved as the direct provenance record for how the wording was reached;
+- F-07.1A be marked approved in the queue;
+- the manuscript itself **not** be edited sentence-by-sentence;
+- all approved F-07 sentence changes be implemented together in a later batched edit after the sentence-level adjudication pass is complete.
+
+### Implementation state
+
+**Approved wording only. NOT YET IMPLEMENTED IN THE MANUSCRIPT.**
+
+---
+
+
+## F-07.1B terminology adjudication — replay capacity vs. classical replay memory
+
+**Status:** OPEN — terminology refinement under Piter adjudication; manuscript remains unchanged.
+
+### Piter's concern
+
+Piter flagged that **"replay-capacity" is not self-explanatory for a reader who is new to quantum computing and MAB methods**, especially because a quantum-network paper already uses physical resource terms such as qubits, network capacity, and quantum memory.
+
+This is a substantive clarity concern rather than a cosmetic preference.
+
+### Live Study Design verification
+
+The active manuscript includes `ICNP_VENUE_PREP/STUDY_DESIGN_VALIDATED_STAGING.tex`. Its current terminology states:
+
+- `Replay memory is scaled by the replay-capacity scale factor (s)...`
+- `The s sweep ... probe[s] ... when added replay memory helps estimation versus when it increases adversarial predictability.`
+- Under **Resource separation**: `Replay scaling changes only classical memory: the physical network budget is fixed at 35 qubits ... isolating replay-memory effects from quantum-network constraints.`
+
+The notation table currently defines:
+- `s` as the replay-capacity scale factor;
+- `T_b` and `T` as replay capacities anchored to base/current horizons.
+
+Therefore, the manuscript already distinguishes:
+1. **replay memory** — the classical stored learning history being scaled;
+2. **replay capacity** — the formal parameterization of that memory through `s`, `T_b`, and `T`;
+3. **physical qubit/network capacity** — a separate fixed quantum resource.
+
+### Independent feedback
+
+**Copilot**
+- Approved the need to disambiguate replay capacity from quantum capacity.
+- Preferred a construction using `are associated with` rather than `occur among` to avoid intrinsic/causal reading.
+- Suggested `the effect of replay-memory capacity`, while asking Study Design to define the classical-memory/physical-qubit distinction.
+
+**Perplexity**
+- Independently verified the same resource-separation language.
+- Correctly noted that `replay-memory capacity` would be a new compound built from two existing manuscript terms.
+- Suggested comparing it against **classical replay-capacity**, which reuses the manuscript's existing `classical memory` distinction.
+- Emphasized that Abstract terminology should map cleanly to the live Study Design definition.
+
+**SolL**
+- Approved the underlying clarity concern.
+- Preferred **classical replay-memory capacity** to eliminate quantum-capacity ambiguity.
+- Flagged that `robustness--efficiency profiles` is a deliberate substantive characterization and must be explicitly accepted rather than treated as mere terminology cleanup.
+
+### Source-grounded synthesis
+
+The live source suggests an even cleaner Abstract formulation than any of the three capacity compounds:
+
+> **classical replay-memory scaling**
+
+Reasoning:
+- `replay-memory` describes the actual classical stored-history resource;
+- `scaling` describes what the experiment varies through `s`, `T_b`, and `T`;
+- `classical` immediately excludes quantum memory/qubit capacity;
+- removing the word `capacity` from this Abstract clause avoids the exact ambiguity Piter identified;
+- the formal `replay capacity` notation can remain in Study Design, where `s`, `T_b`, and `T` are defined.
+
+### Robustness–efficiency phrase verification
+
+The phrase `robustness--efficiency` is not being introduced without support. The current manuscript already uses:
+- `strongest robustness--efficiency tier` in the Introduction;
+- related `efficiency--stability frontier` terminology in the Discussion/appendix;
+- separate efficiency, floor, and CV/stability measures in the validated results.
+
+Therefore, `robustness--efficiency profiles` is intended as a multi-metric summary rather than a synonym for one worst-case-efficiency metric.
+
+### Current recommended F-07.1B wording for Piter adjudication
+
+> **"Within the primary matched evaluation, the strongest observed robustness--efficiency profiles are associated with context-aware neural policy--allocator configurations, while the effects of classical replay-memory scaling remain threat-dependent."**
+
+Why this version is currently preferred:
+- **Within the primary matched evaluation** — explicit Level-I provenance.
+- **the strongest observed robustness--efficiency profiles** — finding-centered, multi-metric claim.
+- **are associated with** — avoids intrinsic or causal superiority language while preserving finding-centered grammar.
+- **context-aware neural policy--allocator configurations** — retains the interaction as the unit of comparison.
+- **effects of classical replay-memory scaling** — maps directly to the live Study Design and removes ambiguity with physical quantum capacity.
+- **remain threat-dependent** — preserves the validated capacity-paradox conclusion without claiming a universal mechanism.
+
+No manuscript implementation is authorized until Piter explicitly approves/revises/rejects this final candidate.
+
+---
+
+
+## F-07.1B — Final Piter adjudication: Abstract primary-matched finding
+
+**Status:** **APPROVED BY PITER — queue for batched manuscript implementation; do not edit manuscript yet.**
+
+### Final approved wording
+
+> **"Within the primary matched evaluation, the strongest observed robustness--efficiency profiles are associated with context-aware neural policy--allocator configurations, while the effects of classical replay-memory scaling remain threat-dependent."**
+
+### Final independent-review convergence
+
+After the terminology and metric-precision refinement:
+
+- **SolL:** APPROVE exact wording.
+- **Copilot:** APPROVE exact wording.
+- **Perplexity:** APPROVE exact wording.
+
+All three reviewers agreed that **classical replay-memory scaling** is preferable to the earlier `replay-capacity` wording because it:
+- identifies the manipulated classical learning-memory quantity;
+- avoids confusion with physical quantum memory/qubit/network capacity;
+- maps directly to the live Study Design terminology;
+- avoids implying a replay-buffer-specific implementation.
+
+They also converged that:
+- `Within the primary matched evaluation` correctly scopes the claim to Level I evidence;
+- `robustness--efficiency profiles` preserves the intended multi-metric characterization rather than reducing robustness to a single floor metric;
+- `are associated with` is appropriately non-causal;
+- `policy--allocator configurations` retains the interaction as the unit of comparison;
+- `while` is preferable to `whereas` because the two clauses report parallel findings rather than opposing claims;
+- `remain threat-dependent` properly bounds the replay-memory result without claiming an unisolated mechanism.
+
+### Live Study Design cross-check
+
+The active manuscript includes `ICNP_VENUE_PREP/STUDY_DESIGN_VALIDATED_STAGING.tex`, which currently states:
+- `Replay memory is scaled by the replay-capacity scale factor (s)...`
+- `The s sweep ... probe[s] ... when added replay memory helps estimation versus when it increases adversarial predictability.`
+- `Replay scaling changes only classical memory: the physical network budget is fixed at 35 qubits ... isolating replay-memory effects from quantum-network constraints.`
+
+This satisfies Perplexity's residual consistency check and provides the formal handoff from the Abstract phrase `classical replay-memory scaling` to the Study Design definitions of `s`, `T_b`, and `T`.
+
+### Final-signoff state
+
+All three independent reviewers approved the exact wording after Piter's terminology concern was resolved. Piter then explicitly approved the final refined sentence.
+
+**Piter decision: APPROVE.**
+
+Piter's batching rule remains in force:
+- mark the sentence approved in the queue;
+- preserve the complete reasoning/provenance record;
+- **do not edit the manuscript sentence-by-sentence**;
+- implement all approved F-07 wording changes together after the sentence-level adjudication pass.
+
+### Implementation state
+
+**Approved wording only. NOT YET IMPLEMENTED IN THE MANUSCRIPT.**
+
+---
+
+
+## F-07.2A — Independent review log: framework-caption first sentence
+
+**Candidate under review:**
+
+> "Five matched inputs---topology, threat, policy, allocator, and classical replay-memory setting---feed a shared evaluation grid to produce Oracle-normalized metrics, robustness comparisons, and configuration guidance for the evaluated simulator settings."
+
+### Copilot
+
+**Decision: APPROVE AS WRITTEN.**
+
+Copilot agreed that:
+- **classical replay-memory setting** clearly separates learner memory from physical quantum resources;
+- **configuration guidance** correctly removes unsupported deployment implications;
+- **for the evaluated simulator settings** explicitly bounds the evidence scope;
+- the five-input structure remains aligned with the approved F-07.1B terminology.
+
+Copilot also approved the terminology-consistency plan for the later batched edit:
+1. define **classical replay-memory setting** formally at first use in Study Design;
+2. use **replay-memory setting/scaling** thereafter;
+3. retain the formal replay quantities `s`, `T_b`, and `T`;
+4. change the framework-figure box label from **Replay** to **Replay memory** for caption/figure/source consistency.
+
+**State:** Independent approval only. Piter has not yet adjudicated F-07.2A. Do not update the manuscript or implementation queue yet.
+
+---
+
+
+## F-07.2A — Final Piter adjudication: framework caption, first sentence
+
+**Status:** **APPROVED BY PITER — queue for batched manuscript implementation; do not edit manuscript yet.**
+
+### Current sentence — BEFORE
+
+> "Five matched inputs---topology, threat, policy, allocator, and replay---feed a shared evaluation grid to produce Oracle-normalized metrics, robustness comparisons, and deployment guidance."
+
+### Final candidate after review
+
+> **"Five matched inputs---topology, threat, policy, allocator, and classical replay-memory setting---feed a shared evaluation grid to produce Oracle-normalized metrics, robustness comparisons, and configuration guidance for the evaluated simulator settings."**
+
+### Why the change is needed
+
+Two distinct issues were identified:
+
+1. **Terminology ambiguity.** Bare `replay` is not self-explanatory in a quantum-network paper and can be confused with physical quantum memory or network capacity. The manuscript's live Study Design already separates classical replay memory from the fixed 35-qubit physical budget.
+2. **Claim scope.** `deployment guidance` carries a hardware/field-readiness implication that the current evidence ladder does not support. The framework does support **configuration guidance within the evaluated simulator settings**.
+
+### Piter's refinement
+
+Piter explicitly preferred retaining **classical** in the caption for terminology consistency, noting that the length difference is negligible and that a formal shorthand can be defined once in Study Design for later reuse.
+
+The resulting terminology plan is:
+- first formal definition: **classical replay-memory setting**;
+- subsequent prose: **replay-memory setting** / **replay-memory scaling** when the classical/quantum distinction is already established;
+- formal quantities remain **replay-capacity scale (s)**, (T_b), and (T);
+- physical quantum resources remain explicitly described as qubit/network capacity.
+
+### Independent feedback
+
+**SolL**
+- Supported the exact revised sentence and the consistency rationale.
+- Agreed that the first formal Study Design definition is the right place to establish shorthand.
+- Supported changing the figure input label from `Replay` to `Replay memory` during the final batch.
+
+**Copilot**
+- **APPROVE exact wording.**
+- Confirmed that `classical replay-memory setting` separates learner memory from quantum resources.
+- Confirmed that `configuration guidance` is properly bounded and that `for the evaluated simulator settings` makes the evidence scope explicit.
+- Approved the terminology-governance plan and figure-label consistency update.
+
+**Perplexity**
+- **APPROVE exact wording.**
+- Verified that the live caption currently contains the old `replay` / `deployment guidance` wording.
+- Identified an implementation consistency requirement: the same locked caption text also appears in `ICNP_VENUE_PREP/CAPTION_LOCKS.md`, and a dormant commented copy remains in `ICNP_VENUE_PREP/APPENDIX_CROSS_TESTBED_TABLES.tex`.
+- Confirmed that `configuration guidance` is the appropriate evidence-bounded replacement for `deployment guidance`.
+
+### Verified implementation footprint for the later batch
+
+When Piter approves and the final F-07 batch is implemented, synchronize:
+1. the live framework caption in `ICNP_2026_venue_draft.tex`;
+2. the canonical locked-caption entry in `ICNP_VENUE_PREP/CAPTION_LOCKS.md`;
+3. the dormant commented framework-caption copy in `ICNP_VENUE_PREP/APPENDIX_CROSS_TESTBED_TABLES.tex` if that audit copy is intentionally kept synchronized;
+4. the figure input node label `Replay` -> `Replay memory`, if approved as part of the consistency batch;
+5. the Study Design first formal definition establishing the classical replay-memory shorthand.
+
+**Important:** This does **not** authorize a blanket replacement of every occurrence of the word `deployment` in the manuscript. Each scientific occurrence remains subject to its own evidence-scope adjudication.
+
+### Current decision state
+
+- SolL: **APPROVE**
+- Copilot: **APPROVE**
+- Perplexity: **APPROVE**
+- Piter: **APPROVE**
+
+No manuscript changes have been made.
+
+### Piter final decision
+
+**APPROVE.**
+
+Piter explicitly approved the exact final F-07.2A wording and reiterated the batching rule:
+- preserve this complete provenance chain as the direct future reference for how the wording was reached;
+- mark F-07.2A approved in the queue;
+- do not edit the manuscript sentence-by-sentence;
+- implement all approved F-07 wording changes together after sentence-level adjudication is complete.
+
+### Implementation state
+
+**Approved wording only. NOT YET IMPLEMENTED IN THE MANUSCRIPT.**
+
+---
+
+
+## F-07.2B — Code-verified interaction-analysis boundary
+
+**Status:** OPEN — evidence check completed before wording adjudication; manuscript unchanged.
+
+### Question verified
+
+Before deciding whether the framework caption could say that the evaluation `quantifies interactions`, Piter required direct verification from the actual code and validation workflow rather than inference.
+
+### Sources checked
+
+- `pzg8794/GA-Work/Validated_Logs/comprehensive_analysis.py`
+- `pzg8794/GA-Work/Validated_Logs/verify_all_claims.py`
+- `pzg8794/GA-Work/Validated_Logs/verify_all_claims_v2.py`
+- `pzg8794/GA-Work/Validated_Logs/validate_full_paper.py`
+- `pzg8794/quantum_project/Dynamic_Routing_Eval_Framework/notebooks/H-MABs_MasterDataset_VerificationHub.ipynb`
+- current `ICNP_VENUE_PREP/RESULTS_RQ3B_AUDIT.md`
+- current `ICNP_VENUE_PREP/RESULTS_RQ3C_AUDIT.md`
+- current `ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex`
+- current `ICNP_VENUE_PREP/STUDY_DESIGN_VALIDATED_STAGING.tex`
+
+### Verified result
+
+The current validated analysis **does not estimate formal statistical interaction effects** through:
+- ANOVA / factorial ANOVA;
+- OLS or regression models with interaction terms;
+- formula-based factor interactions;
+- another explicit factorial interaction estimator.
+
+The authoritative VerificationHub notebook contains no `statsmodels`, ANOVA, OLS/formula, factorial, or explicit interaction-term implementation.
+
+The validated claim-checking scripts instead use:
+- grouped means;
+- fixed-slice comparisons;
+- scenario-conditioned contrasts;
+- replay-scale deltas;
+- allocator max--min swings;
+- winner counts and performance ranges.
+
+The Study Design reports 10,000-sample nonparametric bootstrap confidence intervals and practical-significance thresholds, but these do **not** constitute formal interaction-term estimation.
+
+### RQ3 design behavior
+
+- **RQ3b** fixes allocator, horizon, and replay anchoring, then varies replay scale to isolate replay-scale behavior.
+- **RQ3c** fixes model, horizon, replay anchoring, and scale, then varies allocator to isolate allocator effects.
+- The broader matched grid permits descriptive comparison of conditional patterns across factors, but the current statistical workflow does not estimate a formal policy × allocator × replay interaction coefficient/effect.
+
+### Wording consequence
+
+The manuscript may use `interaction` descriptively when clearly referring to observed conditional patterns, but the framework caption should **not** say it `quantifies interaction effects` or imply a formal factorial interaction analysis.
+
+A source-grounded caption should instead describe the framework as enabling **controlled/matched comparisons** of measured robustness across policies, allocator choices, and classical replay-memory settings under common topology and threat conditions.
+
+No manuscript edit is authorized by this verification.
+
+---
+
+
+## F-07.2B / F-05 — Actual execution-path trace (run_experiment and allocator semantics)
+
+**Status:** **HOLD high-level interaction wording pending provenance reconciliation.** Manuscript unchanged.
+
+### Why this trace was required
+
+Piter correctly challenged the prior evidence check because it had verified validation/analysis code but had not yet traced the actual experiment execution path (for example, `run_experiment`). The execution code was then inspected directly.
+
+### Current execution path verified
+
+#### 1. AllocatorRunner
+
+`daqr/evaluation/allocator_runner.py` runs one allocator type at a time and loops over:
+- physics/testbed model;
+- run-count configuration;
+- replay scale.
+
+For each evaluator it sets:
+- `custom_config.scale = scale`;
+- `custom_config.allocator = self.allocator_obj`;
+- the selected physics parameters;
+and then constructs a `MultiRunEvaluator`.
+
+#### 2. MultiRunEvaluator scenario/model orchestration
+
+`MultiRunEvaluator.run_scenarios_model_evaluation()` iterates over every configured threat/scenario.
+
+For each scenario, `run_experiment()`:
+- updates attack settings;
+- computes an allocator-derived `qubit_cap`;
+- constructs a `QuantumExperimentRunner`;
+- calls `runner.run_experiment(..., models=self.configs.models, qubit_cap=qubit_cap)`.
+
+Thus, the operational design does cross allocator / scale / scenario / model dimensions through nested execution layers.
+
+#### 3. QuantumExperimentRunner matched-model execution
+
+`QuantumExperimentRunner.__init__()`:
+- derives an allocator allocation using `allocator.allocate(timestep=0, ...)`;
+- builds **one shared environment** for the experiment via `_build_environment_once()`.
+
+`_build_environment_once()`:
+- uses a seed independent of the model;
+- builds one threat-conditioned environment;
+- stores the resulting contexts, reward functions, attack pattern, and qubit capacities.
+
+`run_experiment()` then loops through all requested models.
+
+`run_algorithm()` gives each model the same environment-derived:
+- contexts;
+- reward functions;
+- attack pattern;
+while using model-specific algorithm seeds.
+
+This confirms that model comparisons inside one experiment are deliberately matched within the configured environment.
+
+### Critical allocator handoff verified
+
+A runtime mismatch exists in the current code and is already documented by the repository's own `docs/guides/STATE_LAYERS_AND_RESUME.md` audit:
+
+1. `MultiRunEvaluator.run_experiment()` computes `qubit_cap = allocator.allocate(timestep=exp_no, ...)`.
+2. It passes that object to `runner.run_experiment(..., qubit_cap=qubit_cap)`.
+3. **However, `QuantumExperimentRunner.run_experiment()` does not rebuild the environment from that argument.**
+4. The runner environment was already constructed in `QuantumExperimentRunner.__init__()` using a separate call:
+   `allocator.allocate(timestep=0, ...)`.
+
+Therefore, the authoritative allocation that drives the saved runner is `runner.environment.qubit_capacities`, not the evaluator-local `qubit_cap` argument passed later to `run_experiment()`.
+
+### Dynamic allocator behavior in current code
+
+`daqr/core/network_environment.py` defines `update_qubit_allocation(timestep, route_stats)`, which would permit online reallocation and recompute contexts/rewards.
+
+A repository-wide source search found **no call site** for `update_qubit_allocation()` outside its own definition.
+
+Current allocator first-call behavior in `daqr/core/qubit_allocator.py`:
+
+- **Fixed / QubitAllocator:** returns its static baseline allocation.
+- **DynamicQubitAllocator:** when `timestep == 0` or route statistics are empty, returns an initial uniform allocation.
+- **ThompsonSamplingAllocator:** when `timestep == 0` or route statistics are empty, returns an initial uniform allocation.
+- **RandomQubitAllocator:** may generate a random initial allocation according to epsilon.
+
+Because the current execution path constructs the environment from a timestep-0 allocator call and does not invoke `update_qubit_allocation()` during model feedback, the current source does **not** demonstrate online DynamicUCB/Thompson allocator adaptation within a run.
+
+### Important interpretation boundary
+
+This finding does **not yet prove** that every validated manuscript dataset was generated with exactly this current source state. The master datasets may have been produced by an earlier code revision.
+
+Therefore, before using high-level wording such as:
+- `policy--allocator interaction`;
+- `algorithm--allocator co-design`;
+- `dynamic allocator`;
+- `allocator choice directly shapes robustness`;
+
+the revision must reconcile the **data-producing code/version** against the validated RQ3 datasets.
+
+### Consequence for F-07.2B
+
+The previously proposed caption wording is **not approved yet**. It is held until provenance reconciliation establishes what allocator semantics generated the reported RQ3 evidence.
+
+What is already safe:
+- the framework executes models under matched environments;
+- allocator identity/configuration is an experimental axis;
+- replay scale and threat scenario are explicit experimental axes.
+
+What is **not yet safe to characterize more strongly**:
+- formal statistical interaction effects;
+- online allocator adaptation;
+- exact causal policy × allocator × replay interaction semantics.
+
+### Next action
+
+Trace the commits / saved-run provenance associated with the validated Hybrid/RQ3 datasets and determine whether they were generated:
+1. with the current timestep-0 allocator semantics; or
+2. with an earlier implementation that invoked online allocator updates.
+
+This is now a shared dependency of **F-05 allocator semantics** and **F-07.2B high-level wording**.
+
+---
+
+
+## F-07.2B / F-05 — Full top-down framework trace
+
+**Status:** current-source architecture verified end-to-end; data-producing-version provenance still required before final allocator-semantics claims.
+
+Piter requested that the allocator semantics be checked from the actual highest execution layers rather than inferred from the inner runner alone. The framework was therefore traced top-down through the notebook/runner orchestration, `AllocatorRunner`, `MultiRunEvaluator`, `QuantumExperimentRunner`, `ExperimentConfiguration`, `QuantumEnvironment`, and the allocator implementations.
+
+### Full execution hierarchy
+
+The active architecture is genuinely nested:
+
+1. **Notebook / paper runner level**
+   - iterates across allocator types (Default, Random, Dynamic, ThompsonSampling).
+   - each allocator receives its own evaluation run.
+
+2. **AllocatorRunner**
+   - represents one allocator type at a time;
+   - creates the allocator object for the selected physics/testbed;
+   - obtains testbed physics parameters;
+   - loops over run-count/horizon configurations and replay scales;
+   - writes the allocator object and replay scale into the shared `ExperimentConfiguration`;
+   - instantiates a fresh `MultiRunEvaluator` for that configuration.
+
+3. **MultiRunEvaluator**
+   - loops over configured threat/scenario types;
+   - for each scenario, loops over experiment indices / horizons;
+   - constructs a `QuantumExperimentRunner` for each experiment;
+   - stores scenario-level results and computes scenario summaries/winners.
+
+4. **QuantumExperimentRunner**
+   - builds one environment for the experiment using a model-independent environment seed;
+   - executes all requested bandit models against that same environment;
+   - gives each model the same contexts, reward functions, and attack pattern for that experiment.
+
+Therefore allocator identity, replay scale, threat regime, horizon/run configuration, and bandit model are real experimental axes in the execution framework. The model comparisons inside a given runner are deliberately matched.
+
+### Important capacity-allocation handoff detail
+
+There are multiple allocator calls on the path to a run:
+
+- `AllocatorRunner` obtains an initial allocation at `timestep=0`.
+- `MultiRunEvaluator.run_experiment()` computes an allocation for `timestep=exp_no`.
+- `QuantumExperimentRunner.__init__()` again calls the allocator at `timestep=0` and passes that allocation to `ExperimentConfiguration.set_environment(...)`.
+- `ExperimentConfiguration.set_environment(...)` passes both the qubit-capacity tuple **and the allocator object** into `QuantumEnvironment`.
+- `QuantumEnvironment.__init__()`, when an allocator is present, performs another `allocator.allocate(timestep=0,...)` call and assigns that result to `self.qubit_capacities`.
+
+Thus the final environment capacity can be regenerated again inside `QuantumEnvironment`; the evaluator-local `qubit_cap` passed later to `runner.run_experiment(...)` is not the controlling runtime object.
+
+For deterministic timestep-0 allocators this collapses to the same allocation semantics. For Random allocation, repeated allocator calls can yield different draws, so the environment's final `qubit_capacities` remain the authoritative used object.
+
+### What allocator identity means in the current execution code
+
+With the current implementations and the current call chain:
+
+- **Default / Fixed:** produces its fixed/baseline allocation.
+- **DynamicUCB:** at timestep 0 (or with empty route statistics) produces its initial uniform allocation.
+- **ThompsonSampling:** at timestep 0 (or with empty route statistics) produces its initial uniform allocation.
+- **Random:** may produce a random initial allocation.
+
+`QuantumEnvironment.update_qubit_allocation(timestep, route_stats)` exists and would support feedback-driven reallocation, but a repository-wide search found no active call site outside the method definition.
+
+Therefore current-source evidence supports:
+
+- allocator **identity/configuration is a genuine top-level experimental factor**;
+- allocator choice changes the environment's qubit-capacity allocation and therefore can change contexts/reward structure / feasible allocation space;
+- all models within a matched experiment are evaluated under the same realized environment;
+- replay scale and threat scenario are independently configured axes.
+
+Current-source evidence does **not** support, without further provenance:
+
+- claiming that DynamicUCB or Thompson allocator logic adapts online from route feedback during the model run;
+- describing the current analysis as a formal factorial interaction model;
+- asserting a singular causal `controlling robustness factor`.
+
+### Consequence for wording
+
+The full framework trace strengthens the methodological statement that the framework enables **matched comparisons across allocator configurations, replay-memory settings, threat regimes, and bandit policies**.
+
+It does not justify saying that the framework statistically estimates a formal interaction term or that adaptive allocator feedback is exercised online.
+
+The remaining provenance question is narrower than before: determine which source revision generated the validated Hybrid/RQ3 datasets and whether those saved experiments used these same timestep-0 allocator semantics or an earlier online-update path.
+
+---
+
+
+## Scope-control note after execution-path trace
+
+Piter explicitly clarified the boundary for the current revision pass:
+
+- **Do not turn the present wording adjudication into a code-fixing or experiment-debugging exercise.**
+- Findings uncovered while tracing the implementation that are not necessary to answer the current manuscript question must be **recorded for later technical work** and left untouched for now.
+- Existing validated manuscript findings remain the operative evidence base unless/until a later dedicated code/experiment audit establishes otherwise.
+- Current-source observations about allocator timing, repeated allocator calls, unused update paths, or implementation defects are therefore **deferred technical notes**, not reasons to revise validated numerical findings during F-07.
+- Those items belong to the later source-backed F-05/F-03/F-04 or experiment-validation work when that phase is explicitly opened.
+
+### What the current trace was actually needed to establish
+
+For F-07.2B, the only required question was whether the framework supports describing the evaluation as a matched comparison across multiple experimental factors.
+
+**Verified answer:** yes.
+
+The top-down execution hierarchy explicitly varies/configures allocator, replay scale, threat/scenario, horizon/run setting, and bandit model, while models within a runner share the same environment realization. This supports wording about **controlled/matched comparisons across experimental configurations**.
+
+The current analysis does **not** fit formal factorial interaction terms, so wording such as `quantifies interaction effects` remains inappropriate.
+
+All other code-level findings are deferred and must not distract from the current sentence-level claim-calibration task.
+
+---
+
+
+## F-07.2B — Final Piter adjudication: framework caption, second sentence
+
+**Status:** **APPROVED BY PITER — queue for batched manuscript implementation; do not edit manuscript yet.**
+
+### Candidate entering independent review
+
+> **"Organizing these inputs in a shared matched grid enables controlled comparisons of measured robustness across bandit policies, allocator configurations, and classical replay-memory settings under common topology and threat conditions."**
+
+### Copilot review
+
+Copilot independently traced the framework's experiment-generation and evaluation paths and confirmed:
+- allocator configuration is an explicit configurable factor;
+- replay scale is explicit;
+- threat/scenario is explicit;
+- evaluation horizon is explicit through `frames_count`;
+- model sets are configurable;
+- one environment is built and reused across models within an experiment, supporting matched within-condition policy comparisons;
+- bootstrap/CV reporting is present, but no ANOVA/regression interaction-term estimator was found.
+
+Copilot added one precision note:
+- **evaluation horizon** and **replication count/runs** are distinct; they should not be casually collapsed into one "horizon/run setting" concept.
+
+Copilot recommended a micro-edit:
+> use **"within common topology and threat conditions"** rather than **"under common topology and threat conditions"**, because "within" more clearly scopes each controlled comparison slice.
+
+### Perplexity review
+
+Perplexity could verify the manuscript/revision repository and the documentation commit, but explicitly stated that it did **not** have access to the implementation repository in its review context. It therefore declined to independently certify the code-level claim.
+
+This is a **reviewer-access provenance caveat**, not contrary evidence. Our own source trace and the Copilot/SolL traces were performed against the actual framework implementation.
+
+Perplexity nevertheless found the proposed sentence internally consistent with the manuscript's matched-grid formalism and agreed that:
+- "controlled/matched comparisons" is appropriately calibrated;
+- "interaction effects" would overstate what a matched comparative design establishes without formal factorial interaction estimation;
+- "allocator configurations" is a suitably neutral term.
+
+### SolL review
+
+SolL independently verified the implementation path in the GA-Work framework and confirmed:
+- experiment configuration records allocator, replay scale/anchoring, scenarios, horizon/run settings, and model selection;
+- the outer pipeline iterates across allocators, testbed/physics settings, replay scales, and evaluation settings;
+- scenario evaluation iterates across threat conditions;
+- one environment is built per experiment and reused across evaluated models;
+- replay scaling changes classical learning-memory capacity;
+- architecture code supports the factorized matched design;
+- completeness/correctness of every reported corpus slice belongs to validated logs/notebook evidence, not architecture code alone;
+- no formal factorial interaction estimator is implemented.
+
+SolL **APPROVED** the proposed matched-comparison sentence.
+
+### Adjudication
+
+The independent feedback strengthens, rather than changes, the substantive conclusion:
+
+**Supported:**
+- the framework executes a factorized matched comparative design;
+- bandit policies are compared within common configured conditions;
+- allocator configuration and classical replay-memory setting are legitimate experimental axes;
+- topology and threat define the conditioning context for those comparisons.
+
+**Not claimed here:**
+- causal identification of a singular "controlling robustness factor";
+- formal statistical interaction-effect estimation;
+- any deferred implementation details discovered during source tracing.
+
+### Current recommended wording
+
+The Copilot micro-edit is accepted because it improves scope precision without changing the scientific claim:
+
+> **"Organizing these inputs in a shared matched grid enables controlled comparisons of measured robustness across bandit policies, allocator configurations, and classical replay-memory settings within common topology and threat conditions."**
+
+### Decision state
+
+- Copilot: **APPROVE, with "within" precision refinement**
+- SolL: **APPROVE**
+- Perplexity: **linguistically/support-scope consistent; code-level verification withheld only because its review context lacked the implementation repository**
+- Piter: **SUPER APPROVE**
+
+No manuscript changes have been made.
+
+### Piter final decision
+
+**SUPER APPROVE.**
+
+Piter explicitly approved the final refined wording because it is substantially easier to read while remaining source-grounded:
+
+> **"Organizing these inputs in a shared matched grid enables controlled comparisons of measured robustness across bandit policies, allocator configurations, and classical replay-memory settings within common topology and threat conditions."**
+
+### Complete resolution path
+
+The approved sentence is the result of this explicit adjudication chain:
+
+1. **Submission-era/current problem identified:** the caption claimed that matching five inputs "exposes the policy--allocator--capacity interaction as the controlling robustness factor."
+2. **Initial scientific concern:** `the controlling robustness factor` was singular/causal and `interaction` could imply a formally estimated statistical interaction.
+3. **Piter required source verification rather than inference.**
+4. **Validation/statistical code was checked:** grouped contrasts/bootstrap analysis were found, but no ANOVA/regression/factorial interaction-term estimator.
+5. **Piter correctly required tracing the actual experiment code, not only validation code.**
+6. **QuantumExperimentRunner was traced:** one environment is built and reused across evaluated models, establishing matched within-experiment policy comparison.
+7. **Piter then required checking higher orchestration layers.**
+8. **Full top-down trace completed:** notebook/paper runner -> AllocatorRunner -> MultiRunEvaluator -> QuantumExperimentRunner -> ExperimentConfiguration/QuantumEnvironment -> allocator implementations.
+9. **Framework-level conclusion:** allocator configuration, replay scale, threat/scenario, evaluation setting, and bandit model are genuine configured experimental dimensions, while models within an experiment share the same environment realization.
+10. **Scope-control correction from Piter:** incidental implementation observations are deferred technical notes; F-07 is not a code-fixing or experiment-debugging task. Existing validated findings remain the evidence base unless a later dedicated technical audit says otherwise.
+11. **Independent review:** Copilot and SolL independently supported the matched-comparison interpretation; Perplexity agreed with the wording/evidence calibration but explicitly withheld independent code certification because its review context lacked the implementation repository.
+12. **Precision refinement:** Copilot's `within common topology and threat conditions` was accepted over `under common...` because it better describes matched comparison slices without implying one common topology/threat across the entire corpus.
+13. **Piter final approval:** **SUPER APPROVE.**
+
+### What this sentence intentionally claims
+
+- The framework enables controlled/matched comparisons.
+- Bandit policy, allocator configuration, and classical replay-memory setting are explicit comparison axes.
+- Topology and threat condition each matched comparison slice.
+
+### What it intentionally does not claim
+
+- a singular causal controller of robustness;
+- formal statistical interaction-effect estimation;
+- resolution of deferred implementation-semantic observations;
+- hardware/deployment validity.
+
+### Implementation rule
+
+Piter's batching rule remains in force:
+- mark F-07.2B approved in the queue;
+- preserve this record as the direct future answer to "how did we get to this wording?";
+- **do not modify the manuscript sentence-by-sentence**;
+- implement approved F-07 changes together after sentence-level adjudication is complete.
+
+### Implementation state
+
+**Approved wording only. NOT YET IMPLEMENTED IN THE MANUSCRIPT.**
+
+---
+
+
+## F-07.3A — Final Piter adjudication: contribution label
+
+**Status:** **APPROVED BY PITER — queue for batched manuscript implementation; do not edit manuscript yet.**
+
+### Before
+
+> **Deployment guidance**
+
+### Approved after
+
+> **Configuration guidance**
+
+### Why this did not require another independent-review round
+
+This wording change is not a new scientific judgment. It directly applies the evidence-scope principle already fully adjudicated and approved in **F-07.2A**, where:
+- `deployment guidance` was found to imply a stronger hardware/field-readiness claim than the current evidence supports;
+- `configuration guidance for the evaluated simulator settings` was approved as the evidence-bounded alternative;
+- the distinction between simulator configuration guidance and hardware deployment validation was explicitly documented.
+
+The contribution item's body sentence is already scoped:
+
+> "Within the evaluated conditions, context-aware neural hybrids sustain >=85% worst-case efficiency, while allocator choice induces 10--15 pp swings, showing that routing policy and qubit allocation must be evaluated jointly."
+
+Therefore only the heading required correction. Re-reviewing the same terminology principle externally would duplicate an already-settled decision rather than add new evidence.
+
+### Piter decision
+
+Piter agreed that no additional external feedback was necessary because this issue had already been decided indirectly through F-07.2A.
+
+**Decision: APPROVE.**
+
+### Implementation rule
+
+Queue the label change for the final batched F-07 manuscript edit. Do not modify the manuscript sentence-by-sentence.
+
+### Implementation state
+
+**Approved wording only. NOT YET IMPLEMENTED IN THE MANUSCRIPT.**
+
+---
+
+
+## F-07.3B — Piter correction: diagnose the reviewer's interpretation before editing
+
+**Status:** RE-ADJUDICATING. Prior allocator-centered replacement candidates are rejected. Manuscript unchanged.
+
+### Piter correction
+
+Piter rejected attempts to preserve a hierarchy around allocator choice. The core RQ3 result does **not** establish allocator, replay memory, policy, threat, or horizon as a universally higher-order factor. The validated RQ3 evidence instead shows that robustness is **jointly configuration-dependent**: the effect of one choice depends on the settings of the others.
+
+Therefore the revision goal is **not** to replace "deployment lever" with a softer allocator-centered label. The goal is to identify why Reviewer C read the paper as making a deployment-ready, winner-centered claim despite the underlying RQ3 evidence being explicitly coupled.
+
+### Source-grounded diagnosis of the May-23 rhetorical mismatch
+
+The May-23 submission contained two different messages:
+
+**The scientific RQ3 message**
+- RQ3 asks how bandit policy, resource allocation, and replay-capacity semantics **interact**.
+- Its answer states: **"Robustness is a joint function of algorithm, allocator, and capacity."**
+- The capacity-paradox evidence shows that replay scale can help or hurt under the same allocator/threat slice.
+- The Discussion's capacity section says replay capacity must be tuned jointly with allocator policy and threat regime.
+
+**The high-level deployment rhetoric**
+- Abstract: **"context-aware neural policies paired with appropriate allocators provide deployment-grade robustness"**.
+- Introduction: pursuit-neural hybrids are presented as the strongest robustness-efficiency tradeoff.
+- Contribution label: **"Deployment guidance"**.
+- Discussion heading: **"Allocator Choice is the Practical Deployment Lever"**.
+- Discussion paragraph: allocator choice is called the **"highest-leverage deployment control"**, a **"safety mechanism"**, and a **"first-class deployment control"**.
+
+Those high-level phrases implicitly elevate policy/allocator selection above the coupled RQ3 structure and can make the paper read as though choosing the right policy/allocator pair is sufficient for deployment robustness.
+
+### Why Reviewer C's topology criticism follows from that rhetoric
+
+Reviewer C specifically attacks the paper's **"deployment-grade robustness"** claim and points to the 100-node 44.1% result. The most plausible source-grounded interpretation is:
+
+- the reviewer was reacting to the manuscript's **scope/generalization rhetoric**, not disproving the internal matched-grid findings;
+- the Abstract and Discussion invited a reading that a favored policy/allocator configuration was a deployment-ready solution;
+- once that reading is adopted, the four-node primary grid and 100-node performance compression become direct counterevidence to "deployment-grade";
+- the reviewer therefore asks for a medium-scale primary-style bridge to test whether the observed comparative patterns survive a less trivial routing space.
+
+This does **not** imply that allocator effects, replay-memory effects, or the capacity paradox are weak. It means the manuscript rhetorically converted a **conditional joint-configuration finding** into a stronger **deployment prescription/generalization** than the evidence supports.
+
+### Revision principle established
+
+For F-07.3B and related Discussion language:
+
+- do **not** rank allocator above replay memory, policy, threat, or horizon unless a specific controlled slice explicitly supports that local comparison;
+- do **not** weaken the validated RQ3 coupling result;
+- remove the false hierarchy introduced by phrases such as "highest-leverage deployment control";
+- preserve the stronger scientific point: **no single component is sufficient; robustness depends on the matched configuration and operating regime**;
+- keep topology-scale limitations scoped to deployment/generalization claims, not used to erase the internal controlled findings.
+
+No replacement wording is approved yet.
+
+---
+
+
+## Correction — do not conflate Reviewer C #4 with allocator-semantics feedback
+
+**Status:** source-attribution correction; manuscript unchanged.
+
+Piter correctly identified that the prior F-07.3B discussion had drifted across two separate Reviewer C comments.
+
+### Reviewer C #4 — topology / deployment-scope criticism
+
+This comment is about:
+- the 4-node / 4-path **primary evaluation**;
+- whether the pursuit-neural advantage survives non-trivial routing spaces;
+- the 44.1% result on the 100-node external topology;
+- the unsupported phrase **"deployment-grade robustness"**;
+- the need for a medium-scale 15–20-node / 10+ path primary-style bridge.
+
+It is **not an allocator-centered criticism**.
+
+The only allocator reference inside #4 is one diagnostic possibility in:
+> "Is it exploration failure? Curse of dimensionality in context space? Allocator breakdown?"
+
+That question does not make allocator semantics the subject of the review comment.
+
+### Reviewer C #2 — allocator–policy relationship
+
+Allocator semantics are addressed separately in Reviewer C #2, which asks:
+- whether allocation occurs before, after, or jointly with the bandit;
+- whether allocator changes the action space or feedback distribution;
+- whether allocator is a preprocessing/resource-management step or part of exploration.
+
+Therefore:
+- F-07 topology/deployment claim calibration must be driven by Reviewer C #4;
+- allocator-semantics wording belongs under F-05 / Reviewer C #2;
+- discussion headings about allocator should not be treated as direct responses to #4 unless the exact sentence independently contains an unsupported deployment-scope claim.
+
+### Consequence
+
+The prior attempt to explain Reviewer C #4 primarily through the Discussion heading "Allocator Choice is the Practical Deployment Lever" over-weighted allocator language and conflated two reviewer comments.
+
+The direct manuscript trigger for Reviewer C #4 is the May-23 high-level deployment/generalization rhetoric, especially:
+- Abstract: **"deployment-grade robustness"**;
+- winner/generalization framing around pursuit-neural hybrids;
+- the contrast between that deployment-level claim and the 4-node primary evaluation plus 100-node 44.1% external result.
+
+This correction supersedes any earlier interpretation that cast Reviewer C #4 as fundamentally an allocator critique.
+
+---
+
+
+## Provenance correction — what the earlier productive conversation actually addressed
+
+**Status:** canonical clarification of reviewer mapping; manuscript unchanged.
+
+After re-reading the original ICNP decision email directly, the earlier productive reasoning sequence is confirmed to have been about **Reviewer C Weakness #4**, not a different or invented review.
+
+### Reviewer C #4 — the comment that drove the productive F-07/F-08 reasoning
+
+The exact comment challenges:
+- the 4-node / 4-path **primary evaluation**;
+- the broad **"deployment-grade robustness"** claim for pursuit-neural hybrids;
+- the 44.1% result on the 100-node Clayton et al. external topology;
+- the lack of a mechanistic explanation for that performance compression;
+- the absence of a medium-scale primary-style bridge;
+- and explicitly asks for roughly 15–20 nodes with 10+ paths.
+
+The key insight Piter identified was the reviewer's phrase **"entire primary evaluation"**. Reviewer C plainly knew larger external testbeds existed because the same comment cites the 100-node result. Therefore the correct interpretation was never "the whole framework only supports four nodes." It was:
+- the full matched primary grid is concentrated on the small topology;
+- external testbeds provide broader but structurally different evidence;
+- that evidence does not by itself justify the submission's strong deployment/generalization wording.
+
+That productive discussion led to the evidence ladder:
+1. primary matched evidence;
+2. controlled scale-spectrum evidence;
+3. heterogeneous external-testbed evidence;
+4. hardware/deployment evidence not established.
+
+It also led to the F-08 plan to test how the framework's observed policy hierarchy changes as routing-space complexity increases, rather than trying to "prove" pursuit-neural policies are universally best.
+
+### Reviewer C #2 — a separate, also-real comment
+
+Reviewer C separately states:
+> "The allocator–policy relationship is never clearly articulated"
+
+and asks whether the allocator runs before, after, or jointly with the bandit, whether it changes the action space or feedback distribution, and whether it is resource management or part of exploration.
+
+This is the source for F-05 allocator-semantics work.
+
+### Exact failure that happened later
+
+The assistant later moved from F-07.3A into a Discussion heading containing the phrase "Allocator Choice is the Practical Deployment Lever" and incorrectly treated that heading as though it were directly part of Reviewer C #4's topology criticism.
+
+That conflated:
+- **#4:** scale / topology / deployment-claim scope; with
+- **#2:** allocator–policy interaction semantics.
+
+The feedback was not fabricated; the **attribution and task mapping were wrong**.
+
+### Canonical rule going forward
+
+- Use Reviewer C #4 for F-07 claim-scope calibration, F-08 controlled scale-spectrum design, F-09 execution, F-10 100-node diagnosis, and F-14 evidence-ladder work.
+- Use Reviewer C #2 for F-05 allocator–policy semantics and any source-backed decision-loop clarification.
+- Do not use allocator-centered reasoning to explain #4 unless a specific manuscript sentence independently creates an unsupported deployment/generalization claim.
+- Preserve the original productive #4 conclusion: **the reviewer challenged the breadth of the deployment/generalization claim and the missing controlled scale bridge, not the existence of the matched-grid findings themselves.**
+
+---
+
+# B. F-08 — Design medium-scale / controlled scale-spectrum validation
+
+## Problem / feedback
+
+Reviewer C asks for a medium-scale primary-style topology around 15–20 nodes with 10+ candidate paths. Reviewers B/C both question how well the primary findings transfer beyond the small matched topology.
+
+## Existing evidence/infrastructure
+
+The framework was designed so node count and path count are not simply hardcoded as one fixed 4-node case. Existing validated external configurations include approximately:
+
+- Paper 2: 15 nodes / 8 paths;
+- Paper 7: 50 nodes / 15 paths;
+- Paper 12: 100 nodes / 4 paths.
+
+These external testbeds are scientifically useful but **not a clean node-count scaling curve**, because topology, physics/modeling assumptions, path structure, and other semantics change together.
+
+## Possible solution 1: add one brand-new 15–20 node topology
+
+**Valid but limited.**
+
+It meets the minimum reviewer request but provides only one additional point.
+
+## Possible solution 2: reuse the existing 15-node Paper 2 topology and increase to >=10 paths
+
+**Potentially efficient, subject to design validation.**
+
+It leverages validated infrastructure but still risks becoming only a small-vs-medium comparison.
+
+## Recommended solution
+
+Design a **controlled scale spectrum** within one compatible topology-generation/testbed family, including a mandatory 15–20-node / >=10-path anchor that directly satisfies Reviewer C.
+
+The research question is:
+
+> **How does the performance hierarchy exposed by the primary matched evaluation evolve as routing-space complexity increases?**
+
+This design must be able to reveal persistence, compression, reversal, conditionality, or changing allocator/replay sensitivity.
+
+### F-08 approval requirements
+
+Before any execution, specify:
+
+- compatible topology family;
+- node/path-count spectrum;
+- reviewer-required medium-scale anchor;
+- matched threats/allocators/replay semantics;
+- horizons/stopping criteria;
+- metrics;
+- seeds/repeats;
+- compute/readiness estimate;
+- canonical config provenance;
+- predeclared interpretation rules for persistence/compression/reversal/inconclusive results.
+
+No F-09 execution before F-08 approval.
+
+---
+
+# C. F-09 — Run and validate the controlled scale spectrum
+
+## Problem / feedback
+
+The reviewers need actual scale evidence, not just an architectural statement that the framework can support larger graphs.
+
+## Possible solution
+
+Run only a single medium-scale point.
+
+## Recommended solution
+
+Run the approved F-08 spectrum, with the reviewer-required medium-scale point included, and validate:
+
+- canonical configs;
+- logs;
+- datasets;
+- plots;
+- policy-family ranking;
+- robustness floors;
+- allocator sensitivity;
+- replay-capacity behavior;
+- regret/convergence where appropriate;
+- cross-scale pattern transitions.
+
+## Reasoning
+
+This directly addresses the reviewer and produces richer scientific evidence than a one-off checkbox experiment.
+
+---
+
+# D. F-10 — Diagnose the 100-node efficiency compression
+
+## Problem / feedback
+
+Reviewer C highlighted the existing ~44.1% result on the 100-node external topology and asked why performance compresses so substantially.
+
+## Critical interpretation rule
+
+Do **not** frame this as "why pursuit failed."
+
+The existing cross-testbed evidence indicates broad method compression on that testbed.
+
+## Possible solution 1: explain the result from intuition
+
+**Rejected.**
+
+The current experiments do not isolate a mechanism.
+
+## Recommended solution
+
+Run targeted diagnostics/ablations that separate plausible factors, such as:
+
+- convergence horizon;
+- routing/path diversity;
+- context/state complexity;
+- allocator behavior;
+- replay capacity;
+- topology/physics constraints.
+
+If the evidence cannot isolate one mechanism, state precisely what remains unresolved.
+
+## Reasoning
+
+This turns a rhetorical vulnerability into a bounded, evidence-backed scale finding.
+
+---
+
+# E. F-14 — Claim–evidence ladder / provenance matrix
+
+## Problem
+
+The ICNP submission blurred:
+
+**primary matched result -> external persistence -> generalization -> deployment**
+
+That made a policy-family finding look like a central algorithmic/deployment claim.
+
+## Possible solution 1: add one limitations paragraph
+
+**Insufficient.**
+
+Readers encounter claims throughout the paper.
+
+## Possible solution 2: revise only Abstract and Conclusion
+
+**Insufficient.**
+
+Results/Discussion transitions can still collapse evidence levels.
+
+## Recommended solution
+
+Maintain a claim-provenance matrix and audit the full narrative:
+
+**Abstract -> Introduction -> Results -> Discussion -> Conclusion**
+
+### Evidence levels
+
+**Level I — Primary matched evidence**  
+Controlled policy x threat x allocator x replay/capacity grid.
+
+**Level II — Controlled scale-spectrum evidence**  
+Comparable experimental semantics across increasing routing complexity.
+
+**Level III — External cross-testbed evidence**  
+Heterogeneous independently structured testbeds.
+
+**Level IV — Hardware/deployment evidence**  
+Not currently established.
+
+### Questions every major claim must answer
+
+1. What evidence produced it?
+2. At what scope?
+3. Did the pattern persist elsewhere?
+4. What changed with scale/topology?
+5. What does the evidence not establish?
+
+### Starter matrix
+
+| Claim | Evidence origin | Current scope | Follow-up / boundary |
+|---|---|---|---|
+| Context-aware information is associated with stronger robustness | Primary matched grid | Primary + external observations | Exact scale dependence to be mapped; simulator evidence only |
+| Allocator choice materially changes robustness | Matched allocator comparisons | Primary + selected external configurations | No universal best allocator |
+| Replay-capacity effects are threat-dependent | Matched replay/capacity experiments | Strongest in primary controlled grid | Cross-scale persistence pending |
+| Pursuit/context-aware neural configurations occupy strongest observed tier | Primary matched grid + external rankings | Primary + heterogeneous testbeds | Finding, not contribution; controlled scale bridge pending |
+| Efficiency compresses on harder external topology | Cross-testbed evaluation | Heterogeneous environments | Cannot attribute solely to node count; F-10 diagnoses |
+
+---
+
+# Relation to EXPNeuralUCB and the framework's original motivation
+
+A policy can appear broadly strong under one evaluation setup and reveal important conditional weaknesses under a wider matched spectrum.
+
+The current framework does this to comparators such as EXPNeuralUCB by evaluating policies across broader threat, allocator, replay, and context conditions.
+
+Reviewer C effectively applies the same methodological standard back to our strongest observed pursuit/context-aware configurations:
+
+> If this finding matters, test how it behaves when the routing-complexity axis changes.
+
+That is scientifically consistent with the framework's purpose.
+
+The correct response is **not** to defend pursuit at all costs. The correct response is to apply the framework consistently to our own strongest finding.
+
+---
+
+# Target reader logic
+
+The revised paper should support this reasoning chain:
+
+1. **Controlled discovery** — the matched framework exposes a pattern.
+2. **Controlled scaling** — we test how the pattern changes with routing complexity.
+3. **External validation** — we test whether related behavior persists across heterogeneous testbeds.
+4. **Diagnosis** — where performance changes sharply, we investigate why.
+5. **Claim boundary** — we state only what the combined evidence supports.
+
+The intended reader reaction is:
+
+> "I see where that finding came from, how it was tested, what persisted, what changed, and why the authors phrase the conclusion at that level."
+
+---
+
+# Decision summary for all agents
+
+## Keep
+
+- F-02 framework-first contribution strategy.
+- F-07 wording calibration.
+- F-08 design gate.
+- F-09 execution only after F-08 approval.
+- F-10 separate 100-node diagnosis.
+- F-14 claim-evidence ladder/provenance audit.
+- reviewer/task-tracker approval workflow.
+- 10-hour weekly GA scope.
+
+## Change
+
+- Treat F-02 as a major structural correction, not a cosmetic one.
+- Refine F-08 from a single medium-scale checkbox into a controlled scale-spectrum design while still satisfying Reviewer C's minimum request.
+- Separate primary matched evidence from external-testbed evidence in wording.
+- Audit pursuit/context-aware statements as findings, not as contribution claims.
+
+## Do not
+
+- delete valid pursuit/context-aware findings merely to avoid criticism;
+- claim deployment/hardware readiness;
+- claim universal best allocator;
+- attribute the 100-node result to node count alone;
+- run F-09 before F-08 approval;
+- use September revised text to infer what the July reviewer saw;
+- reopen F-02 without a new evidence-backed reason.
+
+## Next action
+
+Return to the F-07 wording package using:
+1. exact private reviewer feedback;
+2. May 23 submission-era wording;
+3. current post-F-02 paragraph;
+4. exact sentence under review;
+5. possible solutions;
+6. recommended solution and reasoning;
+7. explicit Piter approval before manuscript modification.
+
+## Decision attribution
+
+The core conceptual correction came from Piter Garcia's re-reading of the reviewer's use of **primary evaluation**, his recall of the framework's variable-size/testbed design, and his recognition that the ICNP submission had accidentally elevated a pursuit-family **finding** into an apparent central **claim**.
+
+Historical source reconstruction and structured synthesis were completed collaboratively with GPT-5.6 Sol.

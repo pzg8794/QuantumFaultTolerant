@@ -4,8 +4,10 @@ Venue-specific preparation material lives here.
 
 ## Active tracks
 
-- [`ccwc_2027/SUBMISSION_CHECKLIST.md`](ccwc_2027/SUBMISSION_CHECKLIST.md) - current working conference checklist, deadlines, priorities, and feedback-task mappings.
-- `journal/` - longer-form submission fallback checklist and readiness notes.
+- [`jsac_quantum_series/SUBMISSION_CHECKLIST.md`](jsac_quantum_series/SUBMISSION_CHECKLIST.md) - **primary target** selected with Dan: IEEE JSAC Quantum Series.
+- [`tnet/SUBMISSION_CHECKLIST.md`](tnet/SUBMISSION_CHECKLIST.md) - **backup target** selected with Dan: IEEE Transactions on Networking.
+- `journal/` - generic historical journal-readiness notes; the venue-specific checklists above are authoritative.
+- `ccwc_2027/` - superseded conference fallback retained for history, not current execution.
 - `icnp_2026/` - historical preparation notes for the completed ICNP 2026 submission.
 - `NEXT_VENUE_DECISION_2026-05-27.md` - historical post-submission venue scan; not the current checklist.
 

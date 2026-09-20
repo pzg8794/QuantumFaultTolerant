@@ -4,27 +4,30 @@
 % Requirements: plain-English takeaway, no future-work sentence, numeric evidence
 % only where it proves the main claims, and explicit external-testbed comparison.
 
-This work shows that robust quantum entanglement routing under adversarial
-conditions requires joint control of path selection, qubit allocation, replay
-capacity, and threat response. The matched evaluation identifies
-\texttt{iCPursuitNeuralUCB} as the strongest context-aware neural routing model:
-it reaches 90.9\% internal average efficiency, clears the 90\% model-family
-threshold, and outperforms the closest internal alternatives, which remain below
-that mark. Under harder threats, adversarial-first exploration remains less
-reliable: \texttt{EXPNeuralUCB} falls to an 18\% robustness floor, while the
-strongest contextual baselines maintain floors near 77--81\%. The capacity
-paradox shows why deployment tuning matters: replay capacity must be matched to
-the active threat, and allocator choice directly shapes routing robustness. When
-the threat is unknown, a fixed pursuit--neural deployment baseline provides a
-strong starting point; when the threat is detected, allocator and replay settings
-should be adapted to the threat regime. The external-testbed comparison shows
-why the proposed approach is stronger than a topology-specific result:
+Our controlled threat-aware evaluation framework shows that measured quantum
+entanglement-routing robustness varies with the joint interaction
+of path selection, qubit allocation, replay capacity, and threat response. The
+matched evaluation reveals a performance hierarchy within the context-aware neural
+tier: \texttt{iCPursuitNeuralUCB} reaches 90.9\% internal average efficiency and
+clears the 90\% model-family threshold, while the closest internal alternatives
+remain below that mark. Across harder threat regimes, the framework further
+exposes the fragility of adversarial-first exploration: \texttt{EXPNeuralUCB}
+falls to an 18\% robustness floor, while the strongest contextual baselines
+maintain floors near 77--81\%. The same controlled evaluation reveals a
+threat-dependent capacity paradox, showing that replay capacity must be matched to
+the active threat and that allocator choice directly shapes routing robustness.
+Within the evaluated settings, the performance hierarchy and cross-threat
+robustness results identify a candidate fixed routing baseline when the threat is
+unknown; when the threat is detected, they support adapting allocator and replay
+settings to the threat regime. The external-testbed comparison, which extends the
+evaluation to four additional quantum-network testbeds, shows that the observed
+performance hierarchy persists beyond the primary topology:
 \texttt{iCPursuitNeuralUCB} leads average efficiency on \paperTwo{} (74.5\%,
 95/300 wins), \paperSeven{} (78\%, 245/300 wins), \paperTwelve{} (44\%,
 97/300 wins), and \paperEight{} (67.9\%). The advantage is clearest on the dense
-50-node \paperSeven{} setting, where it reaches 78\% versus 70.8\% for the
-next strongest models, and it still remains best on the larger \paperTwelve{}
-fusion topology, where methods compress tightly at 44\% versus 43.8\%.
+50-node \paperSeven{} setting, where it reaches 78\% versus 70.8\% for the next
+strongest models, and it still remains best on the larger \paperTwelve{} fusion
+topology, where methods compress tightly at 44\% versus 43.8\%.
 
 % -----------------------------------------------------------------------------
 % Previous result-heavy one-paragraph conclusion retained for reference.

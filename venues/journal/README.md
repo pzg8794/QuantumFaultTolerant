@@ -1,12 +1,15 @@
 # Journal Submission Preparation
 
-This directory contains the working checklist for turning the current paper into a journal-submission-quality manuscript after the ICNP-oriented version is prepared.
+This directory retains the generic journal-readiness checklist created before the team selected specific targets.
 
-Likely journal target discussed by the team: IEEE/ACM Transactions on Networking (ToN), with the understanding that the journal version can be broader and more complete than the ICNP submission.
+The current authoritative targets are:
+
+- [IEEE JSAC Quantum Series (primary)](../jsac_quantum_series/SUBMISSION_CHECKLIST.md)
+- [IEEE Transactions on Networking (backup)](../tnet/SUBMISSION_CHECKLIST.md)
 
 ## Files
 
-- `JOURNAL_SUBMISSION_CHECKLIST.md` - master checklist for journal readiness.
+- `JOURNAL_SUBMISSION_CHECKLIST.md` - generic historical checklist; use it only where it does not conflict with the venue-specific requirements.
 
 ## Working principle
 

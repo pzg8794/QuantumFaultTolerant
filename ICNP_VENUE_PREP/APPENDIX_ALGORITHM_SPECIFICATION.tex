@@ -1,0 +1,109 @@
+\section{Algorithm and Context Specification}
+\label{app:algorithm_specification}
+
+\Cref{fig:allocator_policy_architecture,alg:joint_loop} distinguish inter-route budgeting from model-specific within-route allocation selection.
+
+\begin{figure*}[t]
+\centering
+\resizebox{0.92\textwidth}{!}{%
+\begin{tikzpicture}[>=Latex,node distance=0.55cm and 0.55cm,box/.style={rectangle,draw=black!70,rounded corners=2pt,align=center,minimum height=0.75cm,text width=2.4cm,fill=black!3},arr/.style={thick,->}]
+\node[box] (budget) {Primary physical budget\\$Q=35$};
+\node[box,right=of budget] (allocator) {Inter-route allocator};
+\node[box,right=of allocator] (routes) {Route budgets\\$T_1,\ldots,T_R$};
+\node[box,right=of routes] (sets) {Feasible sets\\$\mathcal{X}_r(T_r)$};
+\node[box,right=of sets] (model) {Model-specific\\route selection};
+\node[box,right=of model] (action) {Model-specific within-route\\allocation action};
+\node[box,below=0.85cm of action] (reward) {Threat-conditioned\\reward};
+\node[box,left=of reward] (update) {Model-specific\\update};
+\node[box,left=of update] (stats) {Replay and\\route statistics};
+\draw[arr] (budget)--(allocator); \draw[arr] (allocator)--(routes); \draw[arr] (routes)--(sets); \draw[arr] (sets)--(model); \draw[arr] (model)--(action); \draw[arr] (action)--(reward); \draw[arr] (reward)--(update); \draw[arr] (update)--(stats);
+\draw[arr,dashed] (stats.west) -| node[pos=0.25,below,align=center]{if allocator update\\is enabled and due} (allocator.south);
+\end{tikzpicture}%
+}
+\caption{Allocator--policy architecture. The 35-qubit budget is specific to the primary matched evaluation, not a universal framework limit. The dashed feedback path is conditional; no universal allocator-update cadence is asserted.}
+\label{fig:allocator_policy_architecture}
+\end{figure*}
+
+\begin{algorithm}[t]
+\caption{Shared routing and within-route allocation decision loop}
+\label{alg:joint_loop}
+\begin{algorithmic}[1]
+\scriptsize
+\Require topology $G$, budget $Q$, allocator $A$, policy $\pi$, threat process, replay setting
+\State $\mathbf{T}\gets A.\Call{Initialize}{Q,\mathcal{P}}$
+\ForAll{$P_r\in\mathcal{P}$}
+  \State $\mathcal{X}_r(T_r)\gets\Call{FeasibleAllocations}{P_r,T_r}$
+  \State construct route-specific context and reward structures
+\EndFor
+\State initialize replay and $\pi$ over $\{\mathcal{X}_r(T_r)\}$
+\For{$t=1,\ldots,H$}
+  \State $r_t\gets\pi.\Call{SelectRoute}{}$ \Comment{model-specific}
+  \State $\mathbf{x}_t\gets\pi.\Call{SelectAction}{\mathcal{X}_{r_t}(T_{r_t})}$ \Comment{model-specific within-route action}
+  \State $y_t\gets\Call{ObserveReward}{r_t,\mathbf{x}_t}$ \Comment{threat-conditioned}
+  \State $\pi.\Call{Update}{r_t,\mathbf{x}_t,y_t}$ \Comment{model-specific}
+  \State update replay and route statistics
+  \If{allocator update is enabled and due at $t$}
+    \State $\mathbf{T}\gets A.\Call{Update}{t,\text{route statistics}}$
+    \State regenerate and propagate affected action/context/reward structures
+  \EndIf
+\EndFor
+\State \Return efficiency, regret, robustness, and stability metrics
+\end{algorithmic}
+\end{algorithm}
+
+\begin{table*}[t]
+\centering\scriptsize
+\setlength{\tabcolsep}{2pt}
+\caption{Source-verified policy semantics for the validated portfolio. Route-selection behavior is reported from each concrete class rather than inferred from its family name.}
+\label{tab:policy_semantics}
+\begin{tabular}{p{0.19\textwidth}p{0.22\textwidth}p{0.25\textwidth}p{0.27\textwidth}}
+\toprule
+\textbf{Policy} & \textbf{Route selection} & \textbf{Within-route action selection} & \textbf{Update/information mechanism}\\
+\midrule
+\texttt{CEpsilonGreedy} & $\epsilon$-greedy over route means & route-specific $\epsilon$-greedy & selected route/action reward update\\
+\texttt{CEXP4} & EXP4 & route-specific $\epsilon$-greedy & normalized expert advice; route/action updates\\
+\texttt{CPursuit} & UCB over route means & route-specific Pursuit & empirical-best Pursuit update\\
+\texttt{CEpochGreedy} & round-robin & route-specific EpochGreedy & selected-action update\\
+\texttt{CThompsonSampling} & round-robin & route-specific Thompson sampling & selected-action posterior update\\
+\texttt{iCEpsilonGreedy} & exploratory/best observed route mean & informed $\epsilon$-greedy & predictive iCMAB update\\
+\texttt{iCEXP4} & random & informed EXP4 & normalized advice; predictive update\\
+\texttt{iCPursuit} & random & informed Pursuit & predictive Pursuit update\\
+\texttt{iCEpochGreedy} & random & informed EpochGreedy & predictive iCMAB update\\
+\texttt{iCThompsonSampling} & random & informed Thompson sampling & predictive iCMAB update\\
+\texttt{EXPNeuralUCB} & EXP3 & NeuralUCB & adversarial route weights plus neural update\\
+\texttt{EXPUCB} & EXP3 & linear UCB & adversarial route weights plus linear update\\
+\texttt{GNeuralUCB} & simple UCB & NeuralUCB & route statistics plus neural update\\
+\texttt{CPursuitNeuralUCB} & Pursuit/CMAB & NeuralUCB & Pursuit route probabilities plus neural update\\
+\texttt{iCPursuitNeuralUCB} & predictive iCMAB/Pursuit & NeuralUCB & ARIMA-based prediction and anomaly-aware filtering\\
+\texttt{Oracle} & exhaustive reward reference & maximizing feasible action & no learning; evaluation reference\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[t]
+\centering\footnotesize
+\setlength{\tabcolsep}{2pt}
+\caption{Verified context representations. Untraced external-testbed encodings remain provenance-pending.}
+\label{tab:context_representation}
+\begin{tabular}{p{0.18\textwidth}p{0.38\textwidth}p{0.12\textwidth}p{0.25\textwidth}}
+\toprule
+\textbf{Scope} & \textbf{Representation} & \textbf{Dimension} & \textbf{Boundary}\\
+\midrule
+Primary matched evaluation & feasible per-link qubit split $\mathbf{x}\in\mathcal{X}_r(T_r)$ & $h_r$ (2 or 3) & route identity is structural; threat and history enter feedback/update\\
+Paper8 external testbed & capacity, hops, min/mean fidelity, min/mean rate, minimum purification rounds, swap-success product & 8 & one within-path action vector per path\\
+Other external testbeds & testbed-specific construction & provenance pending & no universal context encoding asserted\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+For the verified primary NeuralUCB implementation, a $d_r\!\to\!128\!\to\!1$ ReLU network scores each feasible action as
+\[
+s_t(\mathbf{x})=f_\theta(\mathbf{x})+\beta\sqrt{g_\theta(\mathbf{x})^\top\Sigma_t^{-1}g_\theta(\mathbf{x})}.
+\]
+The learner stores observations in replay, updates the gradient-based confidence state, and trains with Adam using mean-squared error plus squared parameter-drift regularization. The implementation begins training after $T>K$, performs two optimization steps per update, and samples replay minibatches of 64. These are verified mechanism details, not claims that current defaults equal every validated-run configuration.
+
+For Pursuit, probabilities begin uniformly and move toward the empirical-best arm $i^\star$:
+\[
+p_{i^\star}\leftarrow p_{i^\star}+\alpha(1-p_{i^\star}),\qquad p_i\leftarrow p_i-\alpha p_i\quad(i\neq i^\star).
+\]
+Here $\alpha$ controls the movement rate. Reported-run values for $\alpha$, NeuralUCB confidence/regularization parameters, predictive settings, anomaly thresholds, and replay overrides remain provenance-pending unless tied to the validated corpus.
