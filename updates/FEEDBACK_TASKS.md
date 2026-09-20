@@ -4,7 +4,7 @@
 
 **Execution model updated:** Thursday, September 10, 2026
 
-**Current task:** F-04 — document context-vector features and hyperparameters from the concrete model/config implementation, with reviewer-facing manuscript artifacts queued for final batched insertion
+**Current task:** F-08 — design the reviewer-required medium-scale validation as a controlled routing-complexity spectrum before any new runs
 
 This is the detailed execution board behind the concise [advisor update](README.md). Tasks are ordered from the easiest ready manuscript work to the hardest evidence-producing work. Reviewer classification remains visible, but priority labels do not determine day-to-day order.
 
@@ -58,7 +58,7 @@ The queue is complexity-based. **Anything requiring code, notebooks, datasets, o
 | 4 | F-05 | Medium | Clarify allocator–policy semantics and expose the two-level allocation architecture | **APPROVED design direction; diagram/pseudocode/table implementation package pending; manuscript edit deferred to final batch** | None |
 | 5 | F-06 | Medium | Improve threat-to-physics grounding with existing literature/documentation first | **APPROVED conceptual/scientific direction; exact simulator parameters/process rows provenance-pending; manuscript edit deferred to final batch** | None |
 | 6 | F-03 | Medium | Specify the complete routing decision loop | **APPROVED jointly with F-05 at the design level; common Algorithm 1 package pending final artifact approval; manuscript edit deferred to final batch** | F-05 |
-| 7 | F-04 | Medium | Document context and hyperparameters | **Deferred from low-hanging pass if config/code tracing is required** | F-03 |
+| 7 | F-04 | Medium | Document context and hyperparameters | **APPROVED conceptual/mechanism direction; exact validated-corpus hyperparameters provenance-pending; manuscript edit deferred to final batch** | F-03 |
 | 8 | F-08 | High | Design reviewer-required medium-scale validation as a controlled routing-complexity spectrum | **Planned later; design must include 15–20 nodes and >=10 paths** | F-03–F-06 |
 | 9 | F-09 | Very High | Run and validate the approved controlled scale spectrum | **Blocked by design** | F-08 approval and compute check |
 | 10 | F-10 | Very High | Diagnose 100-node efficiency compression | **Planned later** | F-04, F-05, validated ablation plan |
@@ -361,10 +361,18 @@ The Introduction should connect the controlled evaluation directly to the contex
 
 ### F-04 — Specify Context and Hyperparameters
 
-- **Feedback addressed:** Reviewers B and C request feature definitions, dimensions, preprocessing, missing-value behavior, cadence, and model settings.
-- **Problem:** Reproduction is impossible when inputs and settings are implicit.
-- **Execution rule:** Add only settings already established in authoritative documentation during the manuscript pass. Any configuration/code tracing belongs to the later technical tier.
-- **Completion evidence:** Final feature/configuration descriptions are complete and traceable.
+- **Feedback addressed:** Reviewers B and C request concrete context/action definitions, dimensions, NeuralUCB architecture/training, Pursuit update semantics, predictive machinery, and reproducible settings.
+- **Resolved primary representation:** For route r with h_r links and allocator-assigned budget T_r, the primary matched-evaluation context/action set is `X_r(T_r) = {x in Z_{>=0}^{h_r} : sum_l x_l = T_r}`. Two-hop primary routes therefore use 2-dimensional allocation vectors and three-hop routes use 3-dimensional allocation vectors.
+- **Information-role boundary:** Route identity is structural through the route-specific learner/action set; hop count is implicit in h_r/vector dimension; threat availability affects reward feedback rather than being appended to the primary allocation vector; reward history enters learner/replay/update state rather than the instantaneous x.
+- **External-context boundary:** Context construction is testbed-specific under a shared model contract. Paper8 currently uses one 8-dimensional path-feature vector per path and one within-path action per path; other external-testbed representations must be verified before insertion.
+- **Verified NeuralUCB mechanism:** d_r -> 128 -> 1 ReLU network; learned reward score plus gradient-based confidence; replay-backed updates; Adam; MSE plus squared parameter-drift regularization; verified primary implementation trains after T>K using two 64-sample optimization steps per update. Scope this cadence to the verified implementation unless broader provenance is established.
+- **Verified Pursuit mechanism:** uniform initial route probabilities; identify empirical-best arm; update `p_best <- p_best + alpha(1-p_best)` and `p_i <- p_i - alpha p_i` for other arms; sample the next arm from the resulting distribution.
+- **Predictive mechanism:** use mechanism-level wording such as ARIMA-based predictive reward modeling with anomaly-aware filtering. Current code uses `auto_arima()` order search; fixed ARIMA(1,0,1) must not be presented as universal without data-producing provenance.
+- **Approved manuscript package:** primary X_r(T_r) equation; scope-specific context table; NeuralUCB scoring/architecture/training description; Pursuit equation; integrated policy-semantics table; provenance-aware hyperparameter table; replacement of the current generic universal-context sentence.
+- **Provenance rule:** distinguish (1) source-verified mechanism, (2) current-code default, and (3) validated-corpus value. Exact corpus-specific beta/lambda/lr/regularization, Pursuit alpha, predictive warmup/update/order/anomaly settings, replay settings, mode overrides, and testbed-specific overrides remain provenance-pending until tied to the data-producing commit/configuration.
+- **NeuralTS guardrail:** do not add NeuralTS to the evaluated-policy table merely because the class exists; current validated-corpus audit does not include it among the evaluated non-Oracle policies.
+- **Decision record:** See [F-04 Context and Hyperparameter Documentation Decision Record](F04_CONTEXT_HYPERPARAMETER_DECISION_RECORD.md) for the complete reasoning and S/C/P adjudication path.
+- **Status:** **APPROVED conceptual/mechanism direction. Exact validated-corpus hyperparameter values remain provenance-pending. No manuscript edit yet; final insertion is deferred to the batched manuscript pass.**
 
 ### F-08 — Design Medium-Scale Validation as a Controlled Scale Spectrum
 
