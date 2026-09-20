@@ -929,6 +929,31 @@ The remaining provenance question is narrower than before: determine which sourc
 
 ---
 
+
+## Scope-control note after execution-path trace
+
+Piter explicitly clarified the boundary for the current revision pass:
+
+- **Do not turn the present wording adjudication into a code-fixing or experiment-debugging exercise.**
+- Findings uncovered while tracing the implementation that are not necessary to answer the current manuscript question must be **recorded for later technical work** and left untouched for now.
+- Existing validated manuscript findings remain the operative evidence base unless/until a later dedicated code/experiment audit establishes otherwise.
+- Current-source observations about allocator timing, repeated allocator calls, unused update paths, or implementation defects are therefore **deferred technical notes**, not reasons to revise validated numerical findings during F-07.
+- Those items belong to the later source-backed F-05/F-03/F-04 or experiment-validation work when that phase is explicitly opened.
+
+### What the current trace was actually needed to establish
+
+For F-07.2B, the only required question was whether the framework supports describing the evaluation as a matched comparison across multiple experimental factors.
+
+**Verified answer:** yes.
+
+The top-down execution hierarchy explicitly varies/configures allocator, replay scale, threat/scenario, horizon/run setting, and bandit model, while models within a runner share the same environment realization. This supports wording about **controlled/matched comparisons across experimental configurations**.
+
+The current analysis does **not** fit formal factorial interaction terms, so wording such as `quantifies interaction effects` remains inappropriate.
+
+All other code-level findings are deferred and must not distract from the current sentence-level claim-calibration task.
+
+---
+
 # B. F-08 — Design medium-scale / controlled scale-spectrum validation
 
 ## Problem / feedback
