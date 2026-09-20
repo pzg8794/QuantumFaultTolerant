@@ -242,7 +242,7 @@ The Introduction should connect the controlled evaluation directly to the contex
 
 **Why:** The external evidence supports the same average-efficiency leader across all four testbeds, but not an invariant full hierarchy or causal attribution of variation to topology/scale alone. The approved wording preserves Level III corroboration while leaving controlled scaling/causal diagnosis to F-08/F-09/F-10.
 
-**Implementation rule:** Queue for the final batched F-07 manuscript edit. **Do not implement sentence-by-sentence.**
+**Implementation rule:** Do not queue for implementation until Piter explicitly approves the final refined sentence. Once approved, include it in the final batched F-07 manuscript edit. **Do not implement sentence-by-sentence.**
 
 **Full provenance:** See [Reviewer-C Scale, Claim-Scope, and Evidence-Ladder Decision Record](REVIEWER_C_SCALE_CLAIM_DECISION_RECORD.md), section **F-07.1A — Final Piter adjudication**.
 
@@ -253,11 +253,11 @@ The Introduction should connect the controlled evaluation directly to the contex
 
 > Within these evaluated simulator settings, context-aware neural policies paired with appropriate allocators achieve the strongest robustness, while replay-capacity effects remain threat-dependent.
 
-**Approved after:**
+**Final candidate after independent review:**
 
 > Within the primary matched evaluation, the strongest observed robustness--efficiency profiles are associated with context-aware neural policy--allocator configurations, while the effects of classical replay-memory scaling remain threat-dependent.
 
-**Decision:** **APPROVED BY PITER.**
+**Decision:** **UNANIMOUS INDEPENDENT-REVIEW APPROVAL; PITER FINAL SIGN-OFF PENDING.**
 
 **Why:** The approved wording explicitly scopes the finding to Level I primary matched evidence, keeps the result multi-metric, avoids intrinsic/causal superiority language, makes policy--allocator interaction the comparison unit, and disambiguates classical replay memory from quantum hardware capacity.
 
