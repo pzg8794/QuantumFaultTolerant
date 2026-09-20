@@ -668,6 +668,63 @@ Piter explicitly approved the exact final F-07.2A wording and reiterated the bat
 
 ---
 
+
+## F-07.2B — Code-verified interaction-analysis boundary
+
+**Status:** OPEN — evidence check completed before wording adjudication; manuscript unchanged.
+
+### Question verified
+
+Before deciding whether the framework caption could say that the evaluation `quantifies interactions`, Piter required direct verification from the actual code and validation workflow rather than inference.
+
+### Sources checked
+
+- `pzg8794/GA-Work/Validated_Logs/comprehensive_analysis.py`
+- `pzg8794/GA-Work/Validated_Logs/verify_all_claims.py`
+- `pzg8794/GA-Work/Validated_Logs/verify_all_claims_v2.py`
+- `pzg8794/GA-Work/Validated_Logs/validate_full_paper.py`
+- `pzg8794/quantum_project/Dynamic_Routing_Eval_Framework/notebooks/H-MABs_MasterDataset_VerificationHub.ipynb`
+- current `ICNP_VENUE_PREP/RESULTS_RQ3B_AUDIT.md`
+- current `ICNP_VENUE_PREP/RESULTS_RQ3C_AUDIT.md`
+- current `ICNP_VENUE_PREP/RESULTS_VALIDATED_STAGING.tex`
+- current `ICNP_VENUE_PREP/STUDY_DESIGN_VALIDATED_STAGING.tex`
+
+### Verified result
+
+The current validated analysis **does not estimate formal statistical interaction effects** through:
+- ANOVA / factorial ANOVA;
+- OLS or regression models with interaction terms;
+- formula-based factor interactions;
+- another explicit factorial interaction estimator.
+
+The authoritative VerificationHub notebook contains no `statsmodels`, ANOVA, OLS/formula, factorial, or explicit interaction-term implementation.
+
+The validated claim-checking scripts instead use:
+- grouped means;
+- fixed-slice comparisons;
+- scenario-conditioned contrasts;
+- replay-scale deltas;
+- allocator max--min swings;
+- winner counts and performance ranges.
+
+The Study Design reports 10,000-sample nonparametric bootstrap confidence intervals and practical-significance thresholds, but these do **not** constitute formal interaction-term estimation.
+
+### RQ3 design behavior
+
+- **RQ3b** fixes allocator, horizon, and replay anchoring, then varies replay scale to isolate replay-scale behavior.
+- **RQ3c** fixes model, horizon, replay anchoring, and scale, then varies allocator to isolate allocator effects.
+- The broader matched grid permits descriptive comparison of conditional patterns across factors, but the current statistical workflow does not estimate a formal policy × allocator × replay interaction coefficient/effect.
+
+### Wording consequence
+
+The manuscript may use `interaction` descriptively when clearly referring to observed conditional patterns, but the framework caption should **not** say it `quantifies interaction effects` or imply a formal factorial interaction analysis.
+
+A source-grounded caption should instead describe the framework as enabling **controlled/matched comparisons** of measured robustness across policies, allocator choices, and classical replay-memory settings under common topology and threat conditions.
+
+No manuscript edit is authorized by this verification.
+
+---
+
 # B. F-08 — Design medium-scale / controlled scale-spectrum validation
 
 ## Problem / feedback
