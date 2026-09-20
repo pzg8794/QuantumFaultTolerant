@@ -584,9 +584,9 @@ Copilot also approved the terminology-consistency plan for the later batched edi
 ---
 
 
-## F-07.2A — Framework caption, first sentence: independent-review convergence
+## F-07.2A — Final Piter adjudication: framework caption, first sentence
 
-**Status:** **UNANIMOUS INDEPENDENT-REVIEW APPROVAL — pending Piter's explicit final sign-off; do not edit manuscript yet.**
+**Status:** **APPROVED BY PITER — queue for batched manuscript implementation; do not edit manuscript yet.**
 
 ### Current sentence — BEFORE
 
@@ -648,9 +648,23 @@ When Piter approves and the final F-07 batch is implemented, synchronize:
 - SolL: **APPROVE**
 - Copilot: **APPROVE**
 - Perplexity: **APPROVE**
-- Piter: **final explicit sign-off pending**
+- Piter: **APPROVE**
 
 No manuscript changes have been made.
+
+### Piter final decision
+
+**APPROVE.**
+
+Piter explicitly approved the exact final F-07.2A wording and reiterated the batching rule:
+- preserve this complete provenance chain as the direct future reference for how the wording was reached;
+- mark F-07.2A approved in the queue;
+- do not edit the manuscript sentence-by-sentence;
+- implement all approved F-07 wording changes together after sentence-level adjudication is complete.
+
+### Implementation state
+
+**Approved wording only. NOT YET IMPLEMENTED IN THE MANUSCRIPT.**
 
 ---
 
