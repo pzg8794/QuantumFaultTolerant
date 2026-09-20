@@ -228,6 +228,20 @@ and, conditionally, a worst-case-efficiency version.
 
 ---
 
+
+### Copilot follow-up confirmation
+
+Copilot accepted the adjudication of its review without further objection:
+
+- Sentence 1 remains **REVISE** to avoid over-attributing external variation to topology and overstating persistence of a complete hierarchy.
+- Sentence 2 remains **REVISE** to improve the precision of the robustness wording while preserving F-02 finding-centered grammar and the multi-metric interpretation.
+- The Level I–IV evidence taxonomy, controlled scale-spectrum plan, and separate F-10 diagnostic remain supported.
+- No manuscript edits are authorized yet.
+
+This closes the Copilot review cycle for this wording package pending Piter's final cross-review adjudication.
+
+---
+
 # B. F-08 — Design medium-scale / controlled scale-spectrum validation
 
 ## Problem / feedback
