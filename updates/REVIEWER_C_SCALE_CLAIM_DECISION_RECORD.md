@@ -725,6 +725,126 @@ No manuscript edit is authorized by this verification.
 
 ---
 
+
+## F-07.2B / F-05 — Actual execution-path trace (run_experiment and allocator semantics)
+
+**Status:** **HOLD high-level interaction wording pending provenance reconciliation.** Manuscript unchanged.
+
+### Why this trace was required
+
+Piter correctly challenged the prior evidence check because it had verified validation/analysis code but had not yet traced the actual experiment execution path (for example, `run_experiment`). The execution code was then inspected directly.
+
+### Current execution path verified
+
+#### 1. AllocatorRunner
+
+`daqr/evaluation/allocator_runner.py` runs one allocator type at a time and loops over:
+- physics/testbed model;
+- run-count configuration;
+- replay scale.
+
+For each evaluator it sets:
+- `custom_config.scale = scale`;
+- `custom_config.allocator = self.allocator_obj`;
+- the selected physics parameters;
+and then constructs a `MultiRunEvaluator`.
+
+#### 2. MultiRunEvaluator scenario/model orchestration
+
+`MultiRunEvaluator.run_scenarios_model_evaluation()` iterates over every configured threat/scenario.
+
+For each scenario, `run_experiment()`:
+- updates attack settings;
+- computes an allocator-derived `qubit_cap`;
+- constructs a `QuantumExperimentRunner`;
+- calls `runner.run_experiment(..., models=self.configs.models, qubit_cap=qubit_cap)`.
+
+Thus, the operational design does cross allocator / scale / scenario / model dimensions through nested execution layers.
+
+#### 3. QuantumExperimentRunner matched-model execution
+
+`QuantumExperimentRunner.__init__()`:
+- derives an allocator allocation using `allocator.allocate(timestep=0, ...)`;
+- builds **one shared environment** for the experiment via `_build_environment_once()`.
+
+`_build_environment_once()`:
+- uses a seed independent of the model;
+- builds one threat-conditioned environment;
+- stores the resulting contexts, reward functions, attack pattern, and qubit capacities.
+
+`run_experiment()` then loops through all requested models.
+
+`run_algorithm()` gives each model the same environment-derived:
+- contexts;
+- reward functions;
+- attack pattern;
+while using model-specific algorithm seeds.
+
+This confirms that model comparisons inside one experiment are deliberately matched within the configured environment.
+
+### Critical allocator handoff verified
+
+A runtime mismatch exists in the current code and is already documented by the repository's own `docs/guides/STATE_LAYERS_AND_RESUME.md` audit:
+
+1. `MultiRunEvaluator.run_experiment()` computes `qubit_cap = allocator.allocate(timestep=exp_no, ...)`.
+2. It passes that object to `runner.run_experiment(..., qubit_cap=qubit_cap)`.
+3. **However, `QuantumExperimentRunner.run_experiment()` does not rebuild the environment from that argument.**
+4. The runner environment was already constructed in `QuantumExperimentRunner.__init__()` using a separate call:
+   `allocator.allocate(timestep=0, ...)`.
+
+Therefore, the authoritative allocation that drives the saved runner is `runner.environment.qubit_capacities`, not the evaluator-local `qubit_cap` argument passed later to `run_experiment()`.
+
+### Dynamic allocator behavior in current code
+
+`daqr/core/network_environment.py` defines `update_qubit_allocation(timestep, route_stats)`, which would permit online reallocation and recompute contexts/rewards.
+
+A repository-wide source search found **no call site** for `update_qubit_allocation()` outside its own definition.
+
+Current allocator first-call behavior in `daqr/core/qubit_allocator.py`:
+
+- **Fixed / QubitAllocator:** returns its static baseline allocation.
+- **DynamicQubitAllocator:** when `timestep == 0` or route statistics are empty, returns an initial uniform allocation.
+- **ThompsonSamplingAllocator:** when `timestep == 0` or route statistics are empty, returns an initial uniform allocation.
+- **RandomQubitAllocator:** may generate a random initial allocation according to epsilon.
+
+Because the current execution path constructs the environment from a timestep-0 allocator call and does not invoke `update_qubit_allocation()` during model feedback, the current source does **not** demonstrate online DynamicUCB/Thompson allocator adaptation within a run.
+
+### Important interpretation boundary
+
+This finding does **not yet prove** that every validated manuscript dataset was generated with exactly this current source state. The master datasets may have been produced by an earlier code revision.
+
+Therefore, before using high-level wording such as:
+- `policy--allocator interaction`;
+- `algorithm--allocator co-design`;
+- `dynamic allocator`;
+- `allocator choice directly shapes robustness`;
+
+the revision must reconcile the **data-producing code/version** against the validated RQ3 datasets.
+
+### Consequence for F-07.2B
+
+The previously proposed caption wording is **not approved yet**. It is held until provenance reconciliation establishes what allocator semantics generated the reported RQ3 evidence.
+
+What is already safe:
+- the framework executes models under matched environments;
+- allocator identity/configuration is an experimental axis;
+- replay scale and threat scenario are explicit experimental axes.
+
+What is **not yet safe to characterize more strongly**:
+- formal statistical interaction effects;
+- online allocator adaptation;
+- exact causal policy × allocator × replay interaction semantics.
+
+### Next action
+
+Trace the commits / saved-run provenance associated with the validated Hybrid/RQ3 datasets and determine whether they were generated:
+1. with the current timestep-0 allocator semantics; or
+2. with an earlier implementation that invoked online allocator updates.
+
+This is now a shared dependency of **F-05 allocator semantics** and **F-07.2B high-level wording**.
+
+---
+
 # B. F-08 — Design medium-scale / controlled scale-spectrum validation
 
 ## Problem / feedback
