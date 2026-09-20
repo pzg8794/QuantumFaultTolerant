@@ -583,6 +583,77 @@ Copilot also approved the terminology-consistency plan for the later batched edi
 
 ---
 
+
+## F-07.2A — Framework caption, first sentence: independent-review convergence
+
+**Status:** **UNANIMOUS INDEPENDENT-REVIEW APPROVAL — pending Piter's explicit final sign-off; do not edit manuscript yet.**
+
+### Current sentence — BEFORE
+
+> "Five matched inputs---topology, threat, policy, allocator, and replay---feed a shared evaluation grid to produce Oracle-normalized metrics, robustness comparisons, and deployment guidance."
+
+### Final candidate after review
+
+> **"Five matched inputs---topology, threat, policy, allocator, and classical replay-memory setting---feed a shared evaluation grid to produce Oracle-normalized metrics, robustness comparisons, and configuration guidance for the evaluated simulator settings."**
+
+### Why the change is needed
+
+Two distinct issues were identified:
+
+1. **Terminology ambiguity.** Bare `replay` is not self-explanatory in a quantum-network paper and can be confused with physical quantum memory or network capacity. The manuscript's live Study Design already separates classical replay memory from the fixed 35-qubit physical budget.
+2. **Claim scope.** `deployment guidance` carries a hardware/field-readiness implication that the current evidence ladder does not support. The framework does support **configuration guidance within the evaluated simulator settings**.
+
+### Piter's refinement
+
+Piter explicitly preferred retaining **classical** in the caption for terminology consistency, noting that the length difference is negligible and that a formal shorthand can be defined once in Study Design for later reuse.
+
+The resulting terminology plan is:
+- first formal definition: **classical replay-memory setting**;
+- subsequent prose: **replay-memory setting** / **replay-memory scaling** when the classical/quantum distinction is already established;
+- formal quantities remain **replay-capacity scale (s)**, (T_b), and (T);
+- physical quantum resources remain explicitly described as qubit/network capacity.
+
+### Independent feedback
+
+**SolL**
+- Supported the exact revised sentence and the consistency rationale.
+- Agreed that the first formal Study Design definition is the right place to establish shorthand.
+- Supported changing the figure input label from `Replay` to `Replay memory` during the final batch.
+
+**Copilot**
+- **APPROVE exact wording.**
+- Confirmed that `classical replay-memory setting` separates learner memory from quantum resources.
+- Confirmed that `configuration guidance` is properly bounded and that `for the evaluated simulator settings` makes the evidence scope explicit.
+- Approved the terminology-governance plan and figure-label consistency update.
+
+**Perplexity**
+- **APPROVE exact wording.**
+- Verified that the live caption currently contains the old `replay` / `deployment guidance` wording.
+- Identified an implementation consistency requirement: the same locked caption text also appears in `ICNP_VENUE_PREP/CAPTION_LOCKS.md`, and a dormant commented copy remains in `ICNP_VENUE_PREP/APPENDIX_CROSS_TESTBED_TABLES.tex`.
+- Confirmed that `configuration guidance` is the appropriate evidence-bounded replacement for `deployment guidance`.
+
+### Verified implementation footprint for the later batch
+
+When Piter approves and the final F-07 batch is implemented, synchronize:
+1. the live framework caption in `ICNP_2026_venue_draft.tex`;
+2. the canonical locked-caption entry in `ICNP_VENUE_PREP/CAPTION_LOCKS.md`;
+3. the dormant commented framework-caption copy in `ICNP_VENUE_PREP/APPENDIX_CROSS_TESTBED_TABLES.tex` if that audit copy is intentionally kept synchronized;
+4. the figure input node label `Replay` -> `Replay memory`, if approved as part of the consistency batch;
+5. the Study Design first formal definition establishing the classical replay-memory shorthand.
+
+**Important:** This does **not** authorize a blanket replacement of every occurrence of the word `deployment` in the manuscript. Each scientific occurrence remains subject to its own evidence-scope adjudication.
+
+### Current decision state
+
+- SolL: **APPROVE**
+- Copilot: **APPROVE**
+- Perplexity: **APPROVE**
+- Piter: **final explicit sign-off pending**
+
+No manuscript changes have been made.
+
+---
+
 # B. F-08 — Design medium-scale / controlled scale-spectrum validation
 
 ## Problem / feedback
