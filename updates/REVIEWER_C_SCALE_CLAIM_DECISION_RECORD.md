@@ -955,9 +955,9 @@ All other code-level findings are deferred and must not distract from the curren
 ---
 
 
-## F-07.2B — Independent review after full framework trace
+## F-07.2B — Final Piter adjudication: framework caption, second sentence
 
-**Status:** independent review converges on the matched-comparison wording; Piter final sign-off pending. Manuscript unchanged.
+**Status:** **APPROVED BY PITER — queue for batched manuscript implementation; do not edit manuscript yet.**
 
 ### Candidate entering independent review
 
@@ -1031,9 +1031,60 @@ The Copilot micro-edit is accepted because it improves scope precision without c
 - Copilot: **APPROVE, with "within" precision refinement**
 - SolL: **APPROVE**
 - Perplexity: **linguistically/support-scope consistent; code-level verification withheld only because its review context lacked the implementation repository**
-- Piter: **final explicit sign-off pending**
+- Piter: **SUPER APPROVE**
 
 No manuscript changes have been made.
+
+### Piter final decision
+
+**SUPER APPROVE.**
+
+Piter explicitly approved the final refined wording because it is substantially easier to read while remaining source-grounded:
+
+> **"Organizing these inputs in a shared matched grid enables controlled comparisons of measured robustness across bandit policies, allocator configurations, and classical replay-memory settings within common topology and threat conditions."**
+
+### Complete resolution path
+
+The approved sentence is the result of this explicit adjudication chain:
+
+1. **Submission-era/current problem identified:** the caption claimed that matching five inputs "exposes the policy--allocator--capacity interaction as the controlling robustness factor."
+2. **Initial scientific concern:** `the controlling robustness factor` was singular/causal and `interaction` could imply a formally estimated statistical interaction.
+3. **Piter required source verification rather than inference.**
+4. **Validation/statistical code was checked:** grouped contrasts/bootstrap analysis were found, but no ANOVA/regression/factorial interaction-term estimator.
+5. **Piter correctly required tracing the actual experiment code, not only validation code.**
+6. **QuantumExperimentRunner was traced:** one environment is built and reused across evaluated models, establishing matched within-experiment policy comparison.
+7. **Piter then required checking higher orchestration layers.**
+8. **Full top-down trace completed:** notebook/paper runner -> AllocatorRunner -> MultiRunEvaluator -> QuantumExperimentRunner -> ExperimentConfiguration/QuantumEnvironment -> allocator implementations.
+9. **Framework-level conclusion:** allocator configuration, replay scale, threat/scenario, evaluation setting, and bandit model are genuine configured experimental dimensions, while models within an experiment share the same environment realization.
+10. **Scope-control correction from Piter:** incidental implementation observations are deferred technical notes; F-07 is not a code-fixing or experiment-debugging task. Existing validated findings remain the evidence base unless a later dedicated technical audit says otherwise.
+11. **Independent review:** Copilot and SolL independently supported the matched-comparison interpretation; Perplexity agreed with the wording/evidence calibration but explicitly withheld independent code certification because its review context lacked the implementation repository.
+12. **Precision refinement:** Copilot's `within common topology and threat conditions` was accepted over `under common...` because it better describes matched comparison slices without implying one common topology/threat across the entire corpus.
+13. **Piter final approval:** **SUPER APPROVE.**
+
+### What this sentence intentionally claims
+
+- The framework enables controlled/matched comparisons.
+- Bandit policy, allocator configuration, and classical replay-memory setting are explicit comparison axes.
+- Topology and threat condition each matched comparison slice.
+
+### What it intentionally does not claim
+
+- a singular causal controller of robustness;
+- formal statistical interaction-effect estimation;
+- resolution of deferred implementation-semantic observations;
+- hardware/deployment validity.
+
+### Implementation rule
+
+Piter's batching rule remains in force:
+- mark F-07.2B approved in the queue;
+- preserve this record as the direct future answer to "how did we get to this wording?";
+- **do not modify the manuscript sentence-by-sentence**;
+- implement approved F-07 changes together after sentence-level adjudication is complete.
+
+### Implementation state
+
+**Approved wording only. NOT YET IMPLEMENTED IN THE MANUSCRIPT.**
 
 ---
 
