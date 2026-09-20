@@ -246,6 +246,25 @@ The Introduction should connect the controlled evaluation directly to the contex
 
 **Full provenance:** See [Reviewer-C Scale, Claim-Scope, and Evidence-Ladder Decision Record](REVIEWER_C_SCALE_CLAIM_DECISION_RECORD.md), section **F-07.1A — Final Piter adjudication**.
 
+
+#### F-07.1B — Abstract primary-matched finding
+
+**Before:**
+
+> Within these evaluated simulator settings, context-aware neural policies paired with appropriate allocators achieve the strongest robustness, while replay-capacity effects remain threat-dependent.
+
+**Approved after:**
+
+> Within the primary matched evaluation, the strongest observed robustness--efficiency profiles are associated with context-aware neural policy--allocator configurations, while the effects of classical replay-memory scaling remain threat-dependent.
+
+**Decision:** **APPROVED BY PITER.**
+
+**Why:** The approved wording explicitly scopes the finding to Level I primary matched evidence, keeps the result multi-metric, avoids intrinsic/causal superiority language, makes policy--allocator interaction the comparison unit, and disambiguates classical replay memory from quantum hardware capacity.
+
+**Implementation rule:** Queue for the final batched F-07 manuscript edit. **Do not implement sentence-by-sentence.**
+
+**Full provenance:** See [Reviewer-C Scale, Claim-Scope, and Evidence-Ladder Decision Record](REVIEWER_C_SCALE_CLAIM_DECISION_RECORD.md), sections **F-07.1B terminology adjudication** and **F-07.1B — Final Piter adjudication**.
+
 ### F-13 — Compress the Main Narrative
 
 - **Feedback addressed:** Reviewer A asks to reduce policy/table overload and make the main contribution easier to follow.
