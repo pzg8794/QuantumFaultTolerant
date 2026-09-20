@@ -301,6 +301,19 @@ The Introduction should connect the controlled evaluation directly to the contex
 
 **Full provenance:** See [Reviewer-C Scale, Claim-Scope, and Evidence-Ladder Decision Record](REVIEWER_C_SCALE_CLAIM_DECISION_RECORD.md), section **F-07.2B — Final Piter adjudication**.
 
+
+#### F-07.3A — Contribution label
+
+**Before:** `Deployment guidance`
+
+**Approved after:** `Configuration guidance`
+
+**Decision:** **APPROVED BY PITER.** No additional independent-review round required because this is a direct application of the already-approved F-07.2A deployment-vs-configuration evidence boundary.
+
+**Implementation rule:** Queue for the final batched F-07 manuscript edit. **Do not implement sentence-by-sentence.**
+
+**Full provenance:** See [Reviewer-C Scale, Claim-Scope, and Evidence-Ladder Decision Record](REVIEWER_C_SCALE_CLAIM_DECISION_RECORD.md), section **F-07.3A — Final Piter adjudication**.
+
 ### F-13 — Compress the Main Narrative
 
 - **Feedback addressed:** Reviewer A asks to reduce policy/table overload and make the main contribution easier to follow.
