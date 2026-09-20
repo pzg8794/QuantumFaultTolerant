@@ -556,6 +556,33 @@ Piter's batching rule remains in force:
 
 ---
 
+
+## F-07.2A — Independent review log: framework-caption first sentence
+
+**Candidate under review:**
+
+> "Five matched inputs---topology, threat, policy, allocator, and classical replay-memory setting---feed a shared evaluation grid to produce Oracle-normalized metrics, robustness comparisons, and configuration guidance for the evaluated simulator settings."
+
+### Copilot
+
+**Decision: APPROVE AS WRITTEN.**
+
+Copilot agreed that:
+- **classical replay-memory setting** clearly separates learner memory from physical quantum resources;
+- **configuration guidance** correctly removes unsupported deployment implications;
+- **for the evaluated simulator settings** explicitly bounds the evidence scope;
+- the five-input structure remains aligned with the approved F-07.1B terminology.
+
+Copilot also approved the terminology-consistency plan for the later batched edit:
+1. define **classical replay-memory setting** formally at first use in Study Design;
+2. use **replay-memory setting/scaling** thereafter;
+3. retain the formal replay quantities `s`, `T_b`, and `T`;
+4. change the framework-figure box label from **Replay** to **Replay memory** for caption/figure/source consistency.
+
+**State:** Independent approval only. Piter has not yet adjudicated F-07.2A. Do not update the manuscript or implementation queue yet.
+
+---
+
 # B. F-08 — Design medium-scale / controlled scale-spectrum validation
 
 ## Problem / feedback
