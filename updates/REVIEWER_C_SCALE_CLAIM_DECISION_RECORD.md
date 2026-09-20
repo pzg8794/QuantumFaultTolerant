@@ -845,6 +845,90 @@ This is now a shared dependency of **F-05 allocator semantics** and **F-07.2B hi
 
 ---
 
+
+## F-07.2B / F-05 — Full top-down framework trace
+
+**Status:** current-source architecture verified end-to-end; data-producing-version provenance still required before final allocator-semantics claims.
+
+Piter requested that the allocator semantics be checked from the actual highest execution layers rather than inferred from the inner runner alone. The framework was therefore traced top-down through the notebook/runner orchestration, `AllocatorRunner`, `MultiRunEvaluator`, `QuantumExperimentRunner`, `ExperimentConfiguration`, `QuantumEnvironment`, and the allocator implementations.
+
+### Full execution hierarchy
+
+The active architecture is genuinely nested:
+
+1. **Notebook / paper runner level**
+   - iterates across allocator types (Default, Random, Dynamic, ThompsonSampling).
+   - each allocator receives its own evaluation run.
+
+2. **AllocatorRunner**
+   - represents one allocator type at a time;
+   - creates the allocator object for the selected physics/testbed;
+   - obtains testbed physics parameters;
+   - loops over run-count/horizon configurations and replay scales;
+   - writes the allocator object and replay scale into the shared `ExperimentConfiguration`;
+   - instantiates a fresh `MultiRunEvaluator` for that configuration.
+
+3. **MultiRunEvaluator**
+   - loops over configured threat/scenario types;
+   - for each scenario, loops over experiment indices / horizons;
+   - constructs a `QuantumExperimentRunner` for each experiment;
+   - stores scenario-level results and computes scenario summaries/winners.
+
+4. **QuantumExperimentRunner**
+   - builds one environment for the experiment using a model-independent environment seed;
+   - executes all requested bandit models against that same environment;
+   - gives each model the same contexts, reward functions, and attack pattern for that experiment.
+
+Therefore allocator identity, replay scale, threat regime, horizon/run configuration, and bandit model are real experimental axes in the execution framework. The model comparisons inside a given runner are deliberately matched.
+
+### Important capacity-allocation handoff detail
+
+There are multiple allocator calls on the path to a run:
+
+- `AllocatorRunner` obtains an initial allocation at `timestep=0`.
+- `MultiRunEvaluator.run_experiment()` computes an allocation for `timestep=exp_no`.
+- `QuantumExperimentRunner.__init__()` again calls the allocator at `timestep=0` and passes that allocation to `ExperimentConfiguration.set_environment(...)`.
+- `ExperimentConfiguration.set_environment(...)` passes both the qubit-capacity tuple **and the allocator object** into `QuantumEnvironment`.
+- `QuantumEnvironment.__init__()`, when an allocator is present, performs another `allocator.allocate(timestep=0,...)` call and assigns that result to `self.qubit_capacities`.
+
+Thus the final environment capacity can be regenerated again inside `QuantumEnvironment`; the evaluator-local `qubit_cap` passed later to `runner.run_experiment(...)` is not the controlling runtime object.
+
+For deterministic timestep-0 allocators this collapses to the same allocation semantics. For Random allocation, repeated allocator calls can yield different draws, so the environment's final `qubit_capacities` remain the authoritative used object.
+
+### What allocator identity means in the current execution code
+
+With the current implementations and the current call chain:
+
+- **Default / Fixed:** produces its fixed/baseline allocation.
+- **DynamicUCB:** at timestep 0 (or with empty route statistics) produces its initial uniform allocation.
+- **ThompsonSampling:** at timestep 0 (or with empty route statistics) produces its initial uniform allocation.
+- **Random:** may produce a random initial allocation.
+
+`QuantumEnvironment.update_qubit_allocation(timestep, route_stats)` exists and would support feedback-driven reallocation, but a repository-wide search found no active call site outside the method definition.
+
+Therefore current-source evidence supports:
+
+- allocator **identity/configuration is a genuine top-level experimental factor**;
+- allocator choice changes the environment's qubit-capacity allocation and therefore can change contexts/reward structure / feasible allocation space;
+- all models within a matched experiment are evaluated under the same realized environment;
+- replay scale and threat scenario are independently configured axes.
+
+Current-source evidence does **not** support, without further provenance:
+
+- claiming that DynamicUCB or Thompson allocator logic adapts online from route feedback during the model run;
+- describing the current analysis as a formal factorial interaction model;
+- asserting a singular causal `controlling robustness factor`.
+
+### Consequence for wording
+
+The full framework trace strengthens the methodological statement that the framework enables **matched comparisons across allocator configurations, replay-memory settings, threat regimes, and bandit policies**.
+
+It does not justify saying that the framework statistically estimates a formal interaction term or that adaptive allocator feedback is exercised online.
+
+The remaining provenance question is narrower than before: determine which source revision generated the validated Hybrid/RQ3 datasets and whether those saved experiments used these same timestep-0 allocator semantics or an earlier online-update path.
+
+---
+
 # B. F-08 — Design medium-scale / controlled scale-spectrum validation
 
 ## Problem / feedback
