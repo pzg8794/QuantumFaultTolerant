@@ -1130,6 +1130,61 @@ Queue the label change for the final batched F-07 manuscript edit. Do not modify
 
 ---
 
+
+## F-07.3B — Piter correction: diagnose the reviewer's interpretation before editing
+
+**Status:** RE-ADJUDICATING. Prior allocator-centered replacement candidates are rejected. Manuscript unchanged.
+
+### Piter correction
+
+Piter rejected attempts to preserve a hierarchy around allocator choice. The core RQ3 result does **not** establish allocator, replay memory, policy, threat, or horizon as a universally higher-order factor. The validated RQ3 evidence instead shows that robustness is **jointly configuration-dependent**: the effect of one choice depends on the settings of the others.
+
+Therefore the revision goal is **not** to replace "deployment lever" with a softer allocator-centered label. The goal is to identify why Reviewer C read the paper as making a deployment-ready, winner-centered claim despite the underlying RQ3 evidence being explicitly coupled.
+
+### Source-grounded diagnosis of the May-23 rhetorical mismatch
+
+The May-23 submission contained two different messages:
+
+**The scientific RQ3 message**
+- RQ3 asks how bandit policy, resource allocation, and replay-capacity semantics **interact**.
+- Its answer states: **"Robustness is a joint function of algorithm, allocator, and capacity."**
+- The capacity-paradox evidence shows that replay scale can help or hurt under the same allocator/threat slice.
+- The Discussion's capacity section says replay capacity must be tuned jointly with allocator policy and threat regime.
+
+**The high-level deployment rhetoric**
+- Abstract: **"context-aware neural policies paired with appropriate allocators provide deployment-grade robustness"**.
+- Introduction: pursuit-neural hybrids are presented as the strongest robustness-efficiency tradeoff.
+- Contribution label: **"Deployment guidance"**.
+- Discussion heading: **"Allocator Choice is the Practical Deployment Lever"**.
+- Discussion paragraph: allocator choice is called the **"highest-leverage deployment control"**, a **"safety mechanism"**, and a **"first-class deployment control"**.
+
+Those high-level phrases implicitly elevate policy/allocator selection above the coupled RQ3 structure and can make the paper read as though choosing the right policy/allocator pair is sufficient for deployment robustness.
+
+### Why Reviewer C's topology criticism follows from that rhetoric
+
+Reviewer C specifically attacks the paper's **"deployment-grade robustness"** claim and points to the 100-node 44.1% result. The most plausible source-grounded interpretation is:
+
+- the reviewer was reacting to the manuscript's **scope/generalization rhetoric**, not disproving the internal matched-grid findings;
+- the Abstract and Discussion invited a reading that a favored policy/allocator configuration was a deployment-ready solution;
+- once that reading is adopted, the four-node primary grid and 100-node performance compression become direct counterevidence to "deployment-grade";
+- the reviewer therefore asks for a medium-scale primary-style bridge to test whether the observed comparative patterns survive a less trivial routing space.
+
+This does **not** imply that allocator effects, replay-memory effects, or the capacity paradox are weak. It means the manuscript rhetorically converted a **conditional joint-configuration finding** into a stronger **deployment prescription/generalization** than the evidence supports.
+
+### Revision principle established
+
+For F-07.3B and related Discussion language:
+
+- do **not** rank allocator above replay memory, policy, threat, or horizon unless a specific controlled slice explicitly supports that local comparison;
+- do **not** weaken the validated RQ3 coupling result;
+- remove the false hierarchy introduced by phrases such as "highest-leverage deployment control";
+- preserve the stronger scientific point: **no single component is sufficient; robustness depends on the matched configuration and operating regime**;
+- keep topology-scale limitations scoped to deployment/generalization claims, not used to erase the internal controlled findings.
+
+No replacement wording is approved yet.
+
+---
+
 # B. F-08 — Design medium-scale / controlled scale-spectrum validation
 
 ## Problem / feedback
