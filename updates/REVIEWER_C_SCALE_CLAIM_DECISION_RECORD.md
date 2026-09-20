@@ -1185,6 +1185,54 @@ No replacement wording is approved yet.
 
 ---
 
+
+## Correction — do not conflate Reviewer C #4 with allocator-semantics feedback
+
+**Status:** source-attribution correction; manuscript unchanged.
+
+Piter correctly identified that the prior F-07.3B discussion had drifted across two separate Reviewer C comments.
+
+### Reviewer C #4 — topology / deployment-scope criticism
+
+This comment is about:
+- the 4-node / 4-path **primary evaluation**;
+- whether the pursuit-neural advantage survives non-trivial routing spaces;
+- the 44.1% result on the 100-node external topology;
+- the unsupported phrase **"deployment-grade robustness"**;
+- the need for a medium-scale 15–20-node / 10+ path primary-style bridge.
+
+It is **not an allocator-centered criticism**.
+
+The only allocator reference inside #4 is one diagnostic possibility in:
+> "Is it exploration failure? Curse of dimensionality in context space? Allocator breakdown?"
+
+That question does not make allocator semantics the subject of the review comment.
+
+### Reviewer C #2 — allocator–policy relationship
+
+Allocator semantics are addressed separately in Reviewer C #2, which asks:
+- whether allocation occurs before, after, or jointly with the bandit;
+- whether allocator changes the action space or feedback distribution;
+- whether allocator is a preprocessing/resource-management step or part of exploration.
+
+Therefore:
+- F-07 topology/deployment claim calibration must be driven by Reviewer C #4;
+- allocator-semantics wording belongs under F-05 / Reviewer C #2;
+- discussion headings about allocator should not be treated as direct responses to #4 unless the exact sentence independently contains an unsupported deployment-scope claim.
+
+### Consequence
+
+The prior attempt to explain Reviewer C #4 primarily through the Discussion heading "Allocator Choice is the Practical Deployment Lever" over-weighted allocator language and conflated two reviewer comments.
+
+The direct manuscript trigger for Reviewer C #4 is the May-23 high-level deployment/generalization rhetoric, especially:
+- Abstract: **"deployment-grade robustness"**;
+- winner/generalization framing around pursuit-neural hybrids;
+- the contrast between that deployment-level claim and the 4-node primary evaluation plus 100-node 44.1% external result.
+
+This correction supersedes any earlier interpretation that cast Reviewer C #4 as fundamentally an allocator critique.
+
+---
+
 # B. F-08 — Design medium-scale / controlled scale-spectrum validation
 
 ## Problem / feedback
