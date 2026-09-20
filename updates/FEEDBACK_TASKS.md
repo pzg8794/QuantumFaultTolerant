@@ -4,7 +4,7 @@
 
 **Execution model updated:** Thursday, September 10, 2026
 
-**Current task:** F-07 — re-adjudicate claim calibration against the exact reviewer feedback and the May 23 submission-era manuscript before accepting any September candidate wording
+**Current task:** F-04 — document context-vector features and hyperparameters from the concrete model/config implementation, with reviewer-facing manuscript artifacts queued for final batched insertion
 
 This is the detailed execution board behind the concise [advisor update](README.md). Tasks are ordered from the easiest ready manuscript work to the hardest evidence-producing work. Reviewer classification remains visible, but priority labels do not determine day-to-day order.
 
@@ -56,7 +56,7 @@ The queue is complexity-based. **Anything requiring code, notebooks, datasets, o
 | 2 | F-07 | Low | Calibrate deployment/generalization claims using existing evidence | **Re-opened for source-correct adjudication; September candidate edits remain pending Piter approval** | None |
 | 3 | F-13 | Low–Medium | Compress the main narrative without losing evidence | **Current; first pass complete** | F-02 |
 | 4 | F-05 | Medium | Clarify allocator–policy semantics and expose the two-level allocation architecture | **APPROVED design direction; diagram/pseudocode/table implementation package pending; manuscript edit deferred to final batch** | None |
-| 5 | F-06 | Medium | Improve threat-to-physics grounding with existing literature/documentation first | **Planned** | None |
+| 5 | F-06 | Medium | Improve threat-to-physics grounding with existing literature/documentation first | **APPROVED conceptual/scientific direction; exact simulator parameters/process rows provenance-pending; manuscript edit deferred to final batch** | None |
 | 6 | F-03 | Medium | Specify the complete routing decision loop | **APPROVED jointly with F-05 at the design level; common Algorithm 1 package pending final artifact approval; manuscript edit deferred to final batch** | F-05 |
 | 7 | F-04 | Medium | Document context and hyperparameters | **Deferred from low-hanging pass if config/code tracing is required** | F-03 |
 | 8 | F-08 | High | Design reviewer-required medium-scale validation as a controlled routing-complexity spectrum | **Planned later; design must include 15–20 nodes and >=10 paths** | F-03–F-06 |
@@ -339,10 +339,15 @@ The Introduction should connect the controlled evaluation directly to the contex
 ### F-06 — Map Threats to Quantum-Network Phenomena
 
 - **Feedback addressed:** Reviewers B and C request physical motivation, parameter justification, and simulation-to-reality boundaries.
-- **Problem:** Controlled regimes may be mistaken for literal physical attack models.
-- **First pass:** Use existing cited literature and documented rationale to improve wording, analogues, and limitations without new experiments.
-- **Later work if needed:** Any unresolved parameter or mechanism requiring new technical validation is deferred.
-- **Completion evidence:** Each regime is appropriately motivated and bounded without overstating the simulator.
+- **Resolved conceptual framing:** The five active settings form a **controlled progression in route-availability dependence and reactivity** layered on the probabilistic quantum-success process, not a universal escalation in physical threat severity.
+- **Core model distinction:** The reward model separates probabilistic quantum success through \(q_r(\mathbf{x})\) from additional route availability through \(A_t(r)\). Baseline therefore means no added route-level availability disruption, not perfect hardware.
+- **Approved five-setting interpretation:** Baseline = reference/no added unavailability; Stochastic = independent route disruption; Markov = temporally correlated/persistent disruption; Adaptive = routing-history-dependent targeting; OnlineAdaptive = continuously reactive targeting.
+- **Approved manuscript package:** short taxonomy-rationale paragraph; five-row mapping table with availability process / controlled property / quantum-network interpretation / evidence boundary; explicit \(q_r(\mathbf{x})\) versus \(A_t(r)\) sentence; simulator-parameter boundary; excluded-scope statement.
+- **Literature boundary:** Pant supports probabilistic/lossy quantum operation; Li supports node/edge/channel failure robustness; Satoh supports availability-attack motivation but not the exact adaptive rule; Zhang--Zhuang is an optional additional source distinguishing random breakdowns from intentional attacks.
+- **Exact-parameter provenance gate:** Current `attack_strategy.py` does not match several manuscript parameter/process statements: current Markov is binary per-path with `p_stay=0.7`; Adaptive defaults to `adaptation_window=100` and `adaptation_strength=0.5`; OnlineAdaptive uses response delay/bursts/recent-path targeting rather than the manuscript's stated gamma/softmax rule. Do not copy either current defaults or manuscript values into the final table until the validated data-producing implementation/configuration is recovered.
+- **Active-regime guardrail:** Keep exactly Baseline, Stochastic, Markov, Adaptive, OnlineAdaptive. Do not reintroduce historical `Targeted` without evidence that it belongs to the validated corpus.
+- **Decision record:** See [F-06 Threat-Taxonomy Physical-Grounding Decision Record](F06_THREAT_TAXONOMY_PHYSICAL_GROUNDING_DECISION_RECORD.md) for the complete reasoning path, literature-role boundaries, and provenance requirements.
+- **Status:** **APPROVED conceptual/scientific direction. Exact parameter/process cells remain provenance-pending. No manuscript edit yet; final insertion is deferred to the batched manuscript pass.**
 
 ### F-03 — Specify the Complete Routing Decision Loop
 
