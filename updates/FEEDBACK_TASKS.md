@@ -282,6 +282,25 @@ The Introduction should connect the controlled evaluation directly to the contex
 
 **Full provenance:** See [Reviewer-C Scale, Claim-Scope, and Evidence-Ladder Decision Record](REVIEWER_C_SCALE_CLAIM_DECISION_RECORD.md), section **F-07.2A — Framework caption, first sentence**.
 
+
+#### F-07.2B — Framework caption, second sentence
+
+**Before:**
+
+> Matching all five inputs, simultaneously, exposes the policy--allocator--capacity interaction as the controlling robustness factor.
+
+**Approved after:**
+
+> Organizing these inputs in a shared matched grid enables controlled comparisons of measured robustness across bandit policies, allocator configurations, and classical replay-memory settings within common topology and threat conditions.
+
+**Decision:** **SUPER APPROVED BY PITER.**
+
+**Why:** Full source tracing confirmed the framework supports matched cross-factor comparisons, while the analysis does not formally estimate factorial interaction terms and does not establish a singular causal robustness controller. The approved wording states exactly the methodological capability established by the framework without overclaiming causality or statistical interaction estimation.
+
+**Implementation rule:** Queue for the final batched F-07 manuscript edit. **Do not implement sentence-by-sentence.**
+
+**Full provenance:** See [Reviewer-C Scale, Claim-Scope, and Evidence-Ladder Decision Record](REVIEWER_C_SCALE_CLAIM_DECISION_RECORD.md), section **F-07.2B — Final Piter adjudication**.
+
 ### F-13 — Compress the Main Narrative
 
 - **Feedback addressed:** Reviewer A asks to reduce policy/table overload and make the main contribution easier to follow.
