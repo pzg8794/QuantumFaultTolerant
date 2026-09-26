@@ -6,6 +6,8 @@
 
 **Current task:** Complete provenance reconciliation and artifact review for the deployed F-03/F-04/F-05/F-06 batch. F-08/F-09/F-10 remain on explicit experimental hold.
 
+**September 26 preparation checkpoint:** A bounded source-inspection and engineering-planning pass for F-08/F-09 is now documented in [Medium-scale execution preparation](MEDIUM_SCALE_PREPARATION_2026-09-26.md). Scientific settings remain reserved for Sol; no experiment or manuscript claim was produced. This preparation scope does not lift the F-09/F-10 execution holds or close the existing provenance work.
+
 This is the detailed execution board behind the concise [advisor update](README.md). Tasks are ordered from the easiest ready manuscript work to the hardest evidence-producing work. Reviewer classification remains visible, but priority labels do not determine day-to-day order.
 
 **Mandatory decision record for F-07/F-08/F-09/F-10/F-14:** Read [Reviewer-C Scale, Claim-Scope, and Evidence-Ladder Decision Record](REVIEWER_C_SCALE_CLAIM_DECISION_RECORD.md) before proposing or implementing changes. It preserves the May-23 submission boundary, the contribution-vs-finding distinction, the controlled scale-spectrum plan, and the claim-provenance workflow. Exact private reviewer wording remains outside this public repository.
@@ -59,7 +61,7 @@ The queue is complexity-based. **Anything requiring code, notebooks, datasets, o
 | 5 | F-06 | Medium | Improve threat-to-physics grounding with existing literature/documentation first | **APPROVED conceptual/scientific direction; exact simulator parameters/process rows provenance-pending; manuscript edit deferred to final batch** | None |
 | 6 | F-03 | Medium | Specify the complete routing decision loop | **APPROVED jointly with F-05 at the design level; common Algorithm 1 package pending final artifact approval; manuscript edit deferred to final batch** | F-05 |
 | 7 | F-04 | Medium | Document context and hyperparameters | **APPROVED conceptual/mechanism direction; exact validated-corpus hyperparameters provenance-pending; manuscript edit deferred to final batch** | F-03 |
-| 8 | F-08 | High | Design reviewer-required medium-scale validation as a controlled routing-complexity spectrum | **Planned later; design must include 15–20 nodes and >=10 paths** | F-03–F-06 |
+| 8 | F-08 | High | Design reviewer-required medium-scale validation as a controlled routing-complexity spectrum | **Engineering preparation documented; scientific design/execution held; 15–20 nodes and >=10 paths required** | F-03–F-06 |
 | 9 | F-09 | Very High | Run and validate the approved controlled scale spectrum | **Blocked by design** | F-08 approval and compute check |
 | 10 | F-10 | Very High | Diagnose 100-node efficiency compression | **Planned later** | F-04, F-05, validated ablation plan |
 | 11 | F-11 | Medium, dependency-late | Audit residual Reviewer B risk | **Blocked by earlier tasks** | F-02–F-10 |
@@ -384,7 +386,7 @@ The Introduction should connect the controlled evaluation directly to the contex
 - **Research question:** **How does the performance hierarchy exposed by the primary matched evaluation evolve as routing-space complexity increases?** Do not design the experiment to prove pursuit/context-aware neural configurations win.
 - **Valid outcomes:** persistence, narrowing, reversal, threat-conditional ranking, changing allocator sensitivity, changing replay-capacity effects, or inconclusive behavior are all scientifically useful.
 - **Approval gate:** Before execution, document topology family, node/path spectrum, reviewer anchor, threats/allocators/replay semantics, horizons/stopping criteria, metrics, seeds/repeats, compute-readiness, canonical config provenance, and interpretation rules.
-- **Status:** Later experimental tier. Do not execute while manuscript-only reviewer fixes remain available.
+- **Status:** Engineering preparation documented September 26; scientific design not yet approved and no execution begun in this pass. See [preparation record](MEDIUM_SCALE_PREPARATION_2026-09-26.md) and its implementation/preflight dependencies. Experimental execution remains held.
 - **Completion evidence:** Approved reproducible spectrum design with controls, metrics, seeds, stopping criteria, compute-readiness decision, and explicit reviewer-anchor coverage.
 
 ### F-09 — Run and Validate the Controlled Scale Spectrum
@@ -392,7 +394,7 @@ The Introduction should connect the controlled evaluation directly to the contex
 - **Feedback addressed:** Reviewers B and C request actual scale evidence.
 - **Execution rule:** Run only the design approved under F-08. Do not substitute an ad hoc single experiment after approval.
 - **Validation scope:** Preserve canonical configs, logs, datasets, plots, policy-family rankings, robustness floors, allocator sensitivity, replay-capacity behavior, regret/convergence where appropriate, and cross-scale pattern transitions.
-- **Status:** Later experimental tier; blocked on F-08 approval.
+- **Status:** Not started in the September 26 planning pass; blocked on F-08 scientific approval and the documented technical preflight. A preparation document is not run evidence.
 - **Completion evidence:** Canonical validated evidence plus a bounded conclusion describing what persists, compresses, reverses, or remains unresolved across scale.
 
 ### F-10 — Diagnose the 100-Node Efficiency Compression

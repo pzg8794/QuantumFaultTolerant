@@ -8,6 +8,8 @@
 
 **Scope:** Post-ICNP reviewer-feedback revision and resubmission preparation
 
+**September 26 engineering checkpoint:** [Medium-scale execution preparation](MEDIUM_SCALE_PREPARATION_2026-09-26.md) records the current F-08/F-09 technical dependencies and scientific decision queue. The mandatory primary-style anchor is 15–20 nodes and at least ten distinct routes; primary action/reward generalization, provenance/logging, and reproducibility preflight are required. Scientific values remain reserved for Sol. No F-09 or F-10 execution, new result, or manuscript claim is reported. The earlier reporting-period sections below retain their historical dates; the [task checklist](FEEDBACK_TASKS.md) owns current item status.
+
 This page is the concise project-status view. It reports what is complete, what
 is underway, what comes next, and when each deliverable is expected. Detailed
 working notes remain linked as optional evidence and are not required to follow
