@@ -8,6 +8,8 @@
 
 **September 26 preparation checkpoint:** A bounded source-inspection and engineering-planning pass for F-08/F-09 is now documented in [Medium-scale execution preparation](MEDIUM_SCALE_PREPARATION_2026-09-26.md). Scientific settings remain reserved for Sol; no experiment or manuscript claim was produced. This preparation scope does not lift the F-09/F-10 execution holds or close the existing provenance work.
 
+**Later September 26 scientific proposal:** [The public-safe F-08 contract summary](MEDIUM_SCALE_PREPARATION_2026-09-26.md#later-september-26-scientific-adjudication--proposed-not-approved) now records a specific 15-node/10-route primary-form anchor, fixed comparator/threat/resource/seed design, attempt and cache rules, and provenance hard stops. **PROPOSED SCIENTIFIC CONTRACT — PITER APPROVAL REQUIRED BEFORE SUBSTANTIAL EXECUTION.** This is not F-08 signoff; F-09 and F-10 remain held, and no new result or manuscript wording is approved.
+
 This is the detailed execution board behind the concise [advisor update](README.md). Tasks are ordered from the easiest ready manuscript work to the hardest evidence-producing work. Reviewer classification remains visible, but priority labels do not determine day-to-day order.
 
 **Mandatory decision record for F-07/F-08/F-09/F-10/F-14:** Read [Reviewer-C Scale, Claim-Scope, and Evidence-Ladder Decision Record](REVIEWER_C_SCALE_CLAIM_DECISION_RECORD.md) before proposing or implementing changes. It preserves the May-23 submission boundary, the contribution-vs-finding distinction, the controlled scale-spectrum plan, and the claim-provenance workflow. Exact private reviewer wording remains outside this public repository.
@@ -386,7 +388,7 @@ The Introduction should connect the controlled evaluation directly to the contex
 - **Research question:** **How does the performance hierarchy exposed by the primary matched evaluation evolve as routing-space complexity increases?** Do not design the experiment to prove pursuit/context-aware neural configurations win.
 - **Valid outcomes:** persistence, narrowing, reversal, threat-conditional ranking, changing allocator sensitivity, changing replay-capacity effects, or inconclusive behavior are all scientifically useful.
 - **Approval gate:** Before execution, document topology family, node/path spectrum, reviewer anchor, threats/allocators/replay semantics, horizons/stopping criteria, metrics, seeds/repeats, compute-readiness, canonical config provenance, and interpretation rules.
-- **Status:** Engineering preparation documented September 26; scientific design not yet approved and no execution begun in this pass. See [preparation record](MEDIUM_SCALE_PREPARATION_2026-09-26.md) and its implementation/preflight dependencies. Experimental execution remains held.
+- **Status:** Engineering preparation and a specific **proposed**, not approved, scientific contract documented September 26. See [preparation record](MEDIUM_SCALE_PREPARATION_2026-09-26.md) and its implementation/preflight dependencies. Piter approval, manuscript/code provenance reconciliation, and technical preflight remain gates; no execution began in this pass.
 - **Completion evidence:** Approved reproducible spectrum design with controls, metrics, seeds, stopping criteria, compute-readiness decision, and explicit reviewer-anchor coverage.
 
 ### F-09 — Run and Validate the Controlled Scale Spectrum

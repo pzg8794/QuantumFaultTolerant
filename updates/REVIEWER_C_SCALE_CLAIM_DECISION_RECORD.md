@@ -1346,6 +1346,10 @@ Before any execution, specify:
 
 No F-09 execution before F-08 approval.
 
+### September 26 proposed contract — approval pending
+
+**PROPOSED SCIENTIFIC CONTRACT — PITER APPROVAL REQUIRED BEFORE SUBSTANTIAL EXECUTION.** A source-level adjudication proposes a 15-node/10-route layered **primary-form** anchor and a same-family 7/4 → 11/7 → 15/10 → 19/13 controlled spectrum; each route retains the primary allocation-action and product-form reward interface. The 15-node anchor holds three hops and nine qubits per route (550 route–action pairs), uses exact distinct routes covering all nodes, and compares one privileged Oracle reference, one simpler learner, and one explicit neural hybrid under no added attack and 0.0625 independent interruption. Three paired blocks at 6,000 frames give 18 proposed medium policy-run units. Full settings, source discrepancies and implementation gates are in the [preparation record](MEDIUM_SCALE_PREPARATION_2026-09-26.md). This synthetic family does not isolate node count from route count; a prespecified route-subset sensitivity is needed for that claim. The historical diamond is a regression fixture, not a causally matched scale point. No F-09 run or manuscript-result claim is authorized by this proposal; F-10 remains separate.
+
 ---
 
 # C. F-09 — Run and validate the controlled scale spectrum
