@@ -38,7 +38,7 @@ The [Quantum engineering record](https://github.com/pzg8794/quantum_project/blob
 
 ## Scientific decisions and next action
 
-**SCIENTIFIC DECISIONS RESERVED FOR SOL:** exact topology and primary-style physical/reward semantics; candidate-route strategy and endpoints; scale-spectrum points; policy/threat subsets; allocator/update cadence and physical budget; replay semantics; seed count; horizon; retry/inclusion policy; metrics and uncertainty; Tier-1 breadth; Tier-2 expansion; scientific GO/RESIZE/STOP thresholds.
+**SCIENTIFIC DECISIONS RESERVED FOR SOL:** exact topology and primary-style physical/reward semantics; candidate-route strategy and endpoints; scale-spectrum points; approved policy roles; allocator/update cadence and physical budget; replay semantics; seed count; horizon; retry/inclusion policy; metrics and uncertainty; Tier-1 breadth; Tier-2 expansion; scientific GO/RESIZE/STOP thresholds. **The threat/scenario axis is inherited from the canonical approved experiment configuration and is not a scale-tier subset decision.**
 
 Next action: resolve that scientific manifest against the engineering findings, then implement the selected topology/action/logging path and run the documented regression → topology/action → trace/resume → bounded technical preflight sequence. F-09 execution requires its own go decision. Existing provenance holds for the deployed manuscript specification remain in force.
 
