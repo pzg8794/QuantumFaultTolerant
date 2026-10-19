@@ -15,3 +15,7 @@ Added `RESULTS_MEDIUM_ACCEPTED.tex`: exact campaign scope, block-ratio metric, c
 ## Task 3 — F-03/F-05 execution semantics
 
 Algorithm 1 now distinguishes a model-specific feedback record from one universal scalar target and makes preselection availability/prior-history ordering explicit. The adjacent paragraph specifies sampled route versus continuous allocation feedback and fixed medium allocation. Checked the accepted execution revision `f5ed371ca0e3ddd5af942d9deb992fdd82ce0b08`, `neural_bandits.py` update/run methods and `predictive_bandits.py` run/update methods, against the accepted SOURCE_AUDIT. No simulator code changed. Historical adaptive allocator cadence remains unresolved; the conditional architecture hook is not asserted to have run historically. Thus the medium contract is documented, not full historical F-05 provenance closure.
+
+## Task 4 — F-04 context/settings provenance
+
+Replaced the contradictory generic topology/channel context and fixed ARIMA-order statement in Study Design; added the medium context row and explicit recorded-settings table. Read all 75 accepted manifests: one common replay configuration, one common physics/scenario definition, and policy-specific explicit kwargs. Representative manifest `7028df25.../attempt-1/manifest.json` has SHA-256 `49128b0574179db323889dcd99b75b5868008f54d7971e82258f9eda3b84dfda`. Constructor defaults were not treated as effective nested-learner values. Historical run hyperparameters and other external encodings remain open; no NeuralTS policy was added.

@@ -178,7 +178,7 @@ The evaluated bandit-policy portfolio spans classical, adversarial, contextual/n
 % \end{table}
 
 \smallTitle{Key bandit-policy features}
-CPursuitNeuralUCB adds topology/channel-quality context to pursuit learning, while iCPursuitNeuralUCB adds ARIMA$(1,0,1)$ forecasts with warmup window size ($n$), using $n\in\{50,100\}$~\cite{box2015time}. The Oracle normalizes efficiency to an ideal-reference baseline.
+CPursuitNeuralUCB couples Pursuit route selection with NeuralUCB scoring of route-specific allocation vectors; this does not imply that topology or channel metadata are appended to the primary action vector. iCPursuitNeuralUCB adds ARIMA-based predictive reward modeling with anomaly-aware filtering~\cite{box2015time}. A universal fixed ARIMA order is not asserted. \Cref{tab:context_representation,tab:medium_recorded_settings} distinguishes context encodings and recorded medium settings from historical parameter values that still require provenance reconciliation.
 % \shee{Define n}
 % SOLVED: Defined $n$ inline at first use as the ARIMA warmup window size.
 
