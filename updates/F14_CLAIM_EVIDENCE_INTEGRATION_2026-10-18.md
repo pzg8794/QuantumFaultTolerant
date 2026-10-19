@@ -4,11 +4,11 @@
 
 **Task:** 1 of the eight owner-requested revision tasks
 
-**Status:** Evidence map and first exact wording package prepared; manuscript integration awaits sentence approval. This is not final F-14 closure.
+**Status:** Owner authorized the eight-task implementation batch on October 18, including these proposed changes, subject to independent Viber and Perplexity review before release. Scope corrections are implemented on the isolated review branch; final release acceptance is recorded separately.
 
 ## Authority and workflow
 
-Piter authorized implementation of the eight-task closure sequence with a separate commit for each task. The existing [wording-review workflow](FEEDBACK_TASKS.md#working-rule) still requires the complete current paragraph, exact proposed change, and owner approval before scientific wording is edited. Commit creation is not wording approval.
+Piter authorized implementation of the eight-task closure sequence with a separate commit for each task and subsequently approved the proposed batch for independent review. The original dirty checkout and a complete before-version source/PDF snapshot are preserved. This authorization does not close provenance holds or replace the two external reviews. Commit creation is not independent scientific approval.
 
 The approved F-14 design is section E of the [scale/claim decision record at paper revision 0bcc913](https://github.com/pzg8794/QuantumFaultTolerant/blob/0bcc913bc5a28b1e1116245cf692989a9ec98aae/updates/REVIEWER_C_SCALE_CLAIM_DECISION_RECORD.md). It requires claims throughout Abstract, Introduction, Results, Discussion, and Conclusion to identify their evidence origin, scope, persistence, variation, and limits. The present plan adds Limitations because its live topology sentence is already inconsistent with the evaluated evidence.
 
