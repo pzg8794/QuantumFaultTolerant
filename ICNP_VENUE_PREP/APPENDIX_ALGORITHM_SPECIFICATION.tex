@@ -36,12 +36,15 @@
   \State construct route-specific context and reward structures
 \EndFor
 \State initialize replay and $\pi$ over $\{\mathcal{X}_r(T_r)\}$
+\State initialize the configured static or history-dependent availability process
 \For{$t=1,\ldots,H$}
+  \State prepare availability from the configured process and prior history
   \State $r_t\gets\pi.\Call{SelectRoute}{}$ \Comment{model-specific}
   \State $\mathbf{x}_t\gets\pi.\Call{SelectAction}{\mathcal{X}_{r_t}(T_{r_t})}$ \Comment{model-specific within-route action}
-  \State $y_t\gets\Call{ObserveReward}{r_t,\mathbf{x}_t}$ \Comment{threat-conditioned}
-  \State $\pi.\Call{Update}{r_t,\mathbf{x}_t,y_t}$ \Comment{model-specific}
+  \State $\mathcal{F}_t\gets\Call{Feedback}{r_t,\mathbf{x}_t,A_t}$
+  \State $\pi.\Call{Update}{r_t,\mathbf{x}_t,\mathcal{F}_t}$ \Comment{model-specific channels and gates}
   \State update replay and route statistics
+  \State record the selected route for subsequent reactive availability
   \If{allocator update is enabled and due at $t$}
     \State $\mathbf{T}\gets A.\Call{Update}{t,\text{route statistics}}$
     \State regenerate and propagate affected action/context/reward structures
@@ -50,6 +53,11 @@
 \State \Return efficiency, regret, robustness, and stability metrics
 \end{algorithmic}
 \end{algorithm}
+
+\smallTitle{Execution scope and feedback contract}
+Algorithm~\ref{alg:joint_loop} describes an interface, not a claim that every optional hook executed in every corpus. The accepted medium campaign uses fixed inter-route budgets; no adaptive allocator-update cadence is inferred from it. Exact adaptive-allocator cadence in the historical primary corpus remains provenance-pending. Environment-state transition intervals do not establish allocator cadence.
+
+The feedback record $\mathcal{F}_t$ distinguishes continuous selected payoff, sampled route feedback, and whether a within-route update is applied. In the accepted medium implementation, GNeuralUCB, EXPNeuralUCB, and CPursuitNeuralUCB use availability-masked Bernoulli route feedback, while their NeuralUCB action learner receives the selected base payoff when the route is available. EXP additionally importance-weights its route update. iCPursuitNeuralUCB instead supplies continuous selected payoff to its predictive route update; its absent recorded Bernoulli channel is not a sequence of zero observations. These channel differences are part of the evaluated model implementations, not an assertion that every policy learns from the same scalar target. The Bernoulli success model in \cref{subsec:reward} and the continuous medium evaluation outcome must therefore not be conflated.
 
 \begin{table*}[t]
 \centering\scriptsize
