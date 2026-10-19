@@ -1,5 +1,19 @@
 # Paper Revision Update
 
+## Current update — October 18, 2026
+
+The accepted medium-scale evidence is now integrated into an isolated journal-format revision candidate. Eight task-specific commits cover claim provenance, medium findings, allocator/feedback semantics, contexts/settings, threats, compression, residual-review risk, and venue readiness. Independent Viber/latest-model and Perplexity integration reviews are underway; their verdicts are separate from the already-complete Q07 scientific acceptance.
+
+- **Q07 complete:** Astra analysis, Sol independent reproduction, zero material numerical mismatches, and final **PASS WITH REQUIRED CLAIM LIMITATIONS**. Exact evidence identities and restricted mirror links: [source register](EVALUATION_SOURCE_STATUS_2026-10-04.md).
+- **F10 boundary:** Medium diagnosis complete; the historical 100-node cause remains unresolved. No rerun or new experiment is currently required.
+- **Candidate, not submission-ready:** Journal layout and five keywords implemented; the candidate exceeds the 13-page JSAC initial limit. Historical parameter/cadence/context provenance and human author/account confirmations remain open. [Submission audit](F12_SUBMISSION_AUDIT_2026-10-18.md).
+- **Preservation:** Before-version manuscript source/PDF retained; the dirty local main checkout has not been overwritten. Review branch and final mirror status are reported in the [batch record](REVIEWER_BATCH_2026-10-18.md).
+- **Next gate:** Independent integration review and owner/coauthor evaluation of the exact before/after changes, then bounded provenance and submission-length work. Do not reopen accepted analysis.
+
+The older reporting period below is retained as history; its planned/current labels are superseded by this update and the [current task table](FEEDBACK_TASKS.md).
+
+## Historical reporting period
+
 **Prepared for:** Dan Krutz
 
 **Last updated:** Thursday, September 17, 2026

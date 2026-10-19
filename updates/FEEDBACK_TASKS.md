@@ -4,7 +4,24 @@
 
 **Execution model updated:** Thursday, September 10, 2026
 
-**Current task:** Complete provenance reconciliation and artifact review for the deployed F-03/F-04/F-05/F-06 batch. F-08/F-09/F-10 remain on explicit experimental hold.
+**Current task (October 18):** Owner-authorized eight-task manuscript integration is implemented on the isolated review branch and undergoing independent Viber/latest-model and Perplexity review. See [batch record](REVIEWER_BATCH_2026-10-18.md), [claim matrix](F14_CLAIM_EVIDENCE_INTEGRATION_2026-10-18.md), and [submission audit](F12_SUBMISSION_AUDIT_2026-10-18.md). The original dirty checkout is preserved.
+
+**Accepted evidence status:** Q07 diagnosis COMPLETE — **PASS WITH REQUIRED CLAIM LIMITATIONS** after Astra primary analysis, Sol independent reproduction with zero material numerical mismatches, final scientific audit, and hash-verified restricted evidence mirroring. [Exact identities/locations](EVALUATION_SOURCE_STATUS_2026-10-04.md). F10 existing-trace diagnosis is complete; the historical 100-node cause remains unresolved. No new experiment or analysis repair is currently required.
+
+| Current item | Disposition / remaining gate |
+|---|---|
+| F02/F07 | Approved framework-first and bounded-claim foundation preserved; new medium scope handled under F14 |
+| F08/F09 | Accepted 75-cell medium anchor complete; not an assertion that the entire proposed scale spectrum ran |
+| F10/Q07 | Existing-trace diagnosis closed; historical 100-node causality remains a bounded limitation |
+| F14 | Claim map and primary/medium/external integration implemented; external integration review pending |
+| F03/F05 | Architecture/medium feedback contract implemented; historical adaptive cadence remains provenance-pending |
+| F04 | Context/mechanism and explicit medium settings documented; historical effective parameters and other external contexts remain open |
+| F06 | Physical grounding and pinned medium semantics documented; historical process parameters remain open |
+| F13 | Bounded compression implemented without removing validated numerical evidence; length gate remains |
+| F11 | Mapped residual-risk audit prepared; unresolved items named, not falsely closed |
+| F12 | Journal candidate builds; above 13-page limit; authorship/accounts/coauthor and provenance gates remain |
+
+The September checkpoints and queue below are historical decision records, not current execution status. They do not reopen accepted Q07 work or authorize another run.
 
 **September 26 preparation checkpoint:** A bounded source-inspection and engineering-planning pass for F-08/F-09 is now documented in [Medium-scale execution preparation](MEDIUM_SCALE_PREPARATION_2026-09-26.md). Scientific settings remain reserved for Sol; no experiment or manuscript claim was produced. This preparation scope does not lift the F-09/F-10 execution holds or close the existing provenance work.
 
@@ -50,7 +67,7 @@ A sentence that names a strong policy is not automatically competing. Evaluate i
 
 The detailed source classification remains in the [August reviewer roadmap](../../../RESEARCH/RESEARCH/2026-08-04-icnp-review-classification-and-revision-roadmap.md). This checklist paraphrases the actionable feedback rather than reproducing private reviewer text.
 
-## Easiest-to-Hardest Queue
+## Historical September Queue (Superseded by Current Status Above)
 
 The queue is complexity-based. **Anything requiring code, notebooks, datasets, or experiments is not part of the low-hanging-fruit manuscript pass.** Dependencies still override complexity where necessary.
 

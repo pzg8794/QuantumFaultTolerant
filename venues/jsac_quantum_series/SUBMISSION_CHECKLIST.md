@@ -1,5 +1,7 @@
 # IEEE JSAC Quantum Series Submission Checklist
 
+**October 18 superseding audit:** See [F12 submission audit](../../updates/F12_SUBMISSION_AUDIT_2026-10-18.md). Current candidate uses journal mode and one-inch margins, with a 173-word Abstract and five keywords. The build exceeds the 13-page initial limit; historical provenance, author/account confirmations, final layout and coauthor approval remain open. The September 139-word/six-keyword/conference-format figures below are historical, not current compliance measurements.
+
 **Role:** Primary venue selected with Dan on September 10, 2026
 
 **Official call:** [Quantum Series: Quantum Communications and Networking](https://www.comsoc.org/publications/journals/ieee-jsac/cfp/quantum-series-quantum-communications-and-networking)
