@@ -1,5 +1,6 @@
 % !TeX program = pdflatex
-\documentclass[10pt,conference]{IEEEtran}
+\documentclass[10pt,journal]{IEEEtran}
+\usepackage[letterpaper,margin=1in]{geometry}
 
 % ICNP 2026 venue draft working file.
 % Rebuilt from validated audit/staging material in ICNP_VENUE_PREP.
@@ -92,7 +93,7 @@
 \maketitle
 
 \begin{abstract}
-Quantum entanglement routing requires joint path selection and qubit allocation under noisy, nonstationary, and adversarial conditions. Existing approaches often assume stationary links, fixed allocation rules, or offline optimization assumptions. When these assumptions fail, routing can degrade end-to-end entanglement quality and waste scarce quantum resources. To address these limitations, we introduce a threat-aware evaluation framework for stochastic, contextual/neural, adversarial, predictive, and hybrid bandit policies for joint quantum path selection and qubit allocation. Unlike previous work that fixes allocator policy and replay semantics, we vary threat regime, allocator policy, and replay capacity as first-class factors, enabling attribution of robustness to the bandit-policy--allocator--capacity interaction. Across fifteen bandit policies and five threat regimes, our controlled evaluation revealed 18--24 percentage-point (pp) scenario-aggregated efficiency deficits for non-contextual baselines relative to the leading policy family, identified configurations sustaining worst-case efficiency above 85\% under stochastic threats, and exposed greater instability in adversarial-first EXP3-style designs under adaptive attacks. We also identify a capacity paradox: under \texttt{ThompsonSampling} allocation and $T_b$-type replay anchoring, mean OnlineAdaptive efficiency drops by 4.4 pp from $s{=}1$ to $s{=}1.5$, then recovers by 6.0 pp at $s{=}2$. Across four heterogeneous external quantum-network testbeds, the external evaluation identifies the same average-efficiency leader, although absolute efficiency, model separation, and configuration-level winners vary across testbeds. Within the primary matched evaluation, the strongest observed robustness--efficiency profiles are associated with context-aware neural policy--allocator configurations, while the effects of classical replay-memory scaling remain threat-dependent.
+We present a controlled threat-aware evaluation framework for joint quantum entanglement routing and qubit allocation. The primary grid compares fifteen bandit policies across five threat regimes with allocator and replay settings varied explicitly. It reveals 18--24 percentage-point efficiency deficits for non-contextual baselines, configurations above 85\% worst-case efficiency under stochastic threats, and greater adaptive-threat instability in adversarial-first designs. A threat-dependent capacity paradox yields a 4.4-point drop followed by a 6.0-point recovery in a ThompsonSampling replay slice. Across four heterogeneous external quantum-network testbeds, the external evaluation identifies the same average-efficiency leader, although absolute efficiency, model separation, and configuration-level winners vary across testbeds. Within the primary matched evaluation, the strongest observed robustness--efficiency profiles are associated with context-aware neural policy--allocator configurations, while the effects of classical replay-memory scaling remain threat-dependent. A separate 15-node, ten-route fixed-allocation campaign shows sharply compressed learned-policy performance, sparse within-route action exposure, and unresolved convergence over 6,000 frames. Its Oracle-normalized comparisons are descriptive, particularly under policy-reactive availability. These findings bound simulator-specific configuration guidance without establishing hardware readiness or a node-count explanation of cross-testbed compression.
 
 
 % \devroop{Highlight the key findings not just values}
@@ -100,7 +101,7 @@ Quantum entanglement routing requires joint path selection and qubit allocation 
 \end{abstract}
 
 \begin{IEEEkeywords}
-Quantum networks, entanglement routing, multi-armed bandits, adversarial learning, qubit allocation, online optimization.
+Quantum networks, entanglement routing, multi-armed bandits, adversarial learning, qubit allocation.
 \end{IEEEkeywords}
 
 \section{Introduction}\label{sec:Introduction}
@@ -199,12 +200,12 @@ In summary, our work makes the following contributions:
     % ``worst-case efficiency floor'' used generically, consistent with notation table.
 
     \item \descStep{Configuration guidance}
-    {Within the evaluated conditions, context-aware neural hybrids sustain $\geq$85\% worst-case efficiency, while allocator choice induces 10--15 pp swings, showing that routing policy and qubit allocation must be evaluated jointly.}
+    {Within the primary comparison slices, context-aware neural hybrids sustain $\geq$85\% worst-case efficiency, while allocator choice induces 10--15 pp swings, showing that routing policy and qubit allocation must be evaluated jointly. These figures are not medium-campaign guarantees.}
     % {\texttt{iCPursuitNeuralUCB} with default allocator, $T$-type replay, and $s{=}2$ achieves 96.0\% mean Oracle-normalized efficiency and a 92.8\% worst-case floor across all five threat regimes at the 6K horizon.}
 
     \item \descStep{Experimental findings} 
     % {We show that pursuit--neural hybrid methods achieve the best balance between efficiency and stability, while some adversarial approaches degrade significantly under reactive threat conditions.}
-    {Context-aware neural hybrids achieve 87--96\% efficiency, outperform non-contextual baselines by 18--24 pp, and maintain higher robustness floors than adversarial-first baselines under strategic attacks.}
+    {The primary grid reveals 87--96\% efficiency in leading neural configurations and 18--24 pp deficits for non-contextual baselines. The separate medium evaluation exposes compressed performance and threat-, block-, and window-dependent rankings rather than universal superiority.}
     %{Pursuit--neural hybrids define the efficiency--stability frontier in the fixed 6K, $T$-type, $s{=}2$ slice: \texttt{CPursuitNeuralUCB} reaches 92.4\% / CV\,6.5\% and \texttt{iCPursuitNeuralUCB} reaches 96.0\% / CV\,3.3\%, while adversarial validation shows \texttt{EXPNeuralUCB} falling to an 18.0\% floor under reactive threats.}
 \end{itemize}
 

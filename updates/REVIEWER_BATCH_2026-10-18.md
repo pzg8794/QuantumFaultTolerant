@@ -31,3 +31,7 @@ Consolidated repetitive Discussion winner/feature-enrichment/deployment prescrip
 ## Task 7 — F-11 residual-risk disposition
 
 Added the mapped concern/response/evidence/remaining-gate audit. It classifies historical reproducibility gaps separately from accepted medium findings and explicitly refuses whole-workflow closure. This is an audit of the documented B categories, not a claim to have independently re-fetched the private decision email. External reviewers must check coverage and scientific adequacy.
+
+## Task 8 — F-12 journal candidate and submission gates
+
+Converted the active master to IEEEtran journal/Letter with one-inch margins, condensed the Abstract while preserving the two exact approved F07 sentences, reduced keywords to five, and scoped the contribution findings to distinguish the medium counterpoint. Added the live-requirement/readiness audit. Initial journal build: 23 pages; submission limit not met. Human authorship/account gates and historical provenance remain open. The preserved local source-status closure is copied onto this review branch without replacing the original dirty checkout or discarding remote decision records. No raw private evidence is published.
