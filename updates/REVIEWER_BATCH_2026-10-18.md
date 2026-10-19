@@ -27,3 +27,7 @@ Retained the approved physical mapping and q/A separation. Removed unsupported h
 ## Task 6 — F-13 bounded compression and synthesis
 
 Consolidated repetitive Discussion winner/feature-enrichment/deployment prescriptions into scope-specific context and joint-configuration guidance. Retained the 1–3 pp primary separation, capacity-sensitivity numbers, all historical result tables/figures, and external configuration-versus-mean distinction. Removed unsupported feature-attribution and allocator-dominance implications, not measured evidence. Conclusion remains one paragraph, keeps historical numerical support, and adds the medium counterpoint and causal boundary. This is a narrative pass, not a claim that the journal page limit has been met.
+
+## Task 7 — F-11 residual-risk disposition
+
+Added the mapped concern/response/evidence/remaining-gate audit. It classifies historical reproducibility gaps separately from accepted medium findings and explicitly refuses whole-workflow closure. This is an audit of the documented B categories, not a claim to have independently re-fetched the private decision email. External reviewers must check coverage and scientific adequacy.
