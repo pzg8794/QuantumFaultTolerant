@@ -23,3 +23,7 @@ Replaced the contradictory generic topology/channel context and fixed ARIMA-orde
 ## Task 5 — F-06 corpus-specific threat specification
 
 Retained the approved physical mapping and q/A separation. Removed unsupported historical four-state/window-50/gamma-softmax assertions from the live parameter rows, replacing them with explicit historical provenance holds rather than new defaults. Added the pinned medium binary Markov, prior-history Adaptive, and burst/target/random-mask OnlineAdaptive process, including assignment ordering. All 75 manifests agree on the recorded scenario parameters. Checked `attack_strategy.py` at execution revision `f5ed371c`, SHA-256 `9dd1aec6a27cbd6d1a70783b5a9bbac9d3732064dd02378a49571f4acc5d3fe7`. Literature does not validate those exact rules. Historical F-06 parameter provenance remains open.
+
+## Task 6 — F-13 bounded compression and synthesis
+
+Consolidated repetitive Discussion winner/feature-enrichment/deployment prescriptions into scope-specific context and joint-configuration guidance. Retained the 1–3 pp primary separation, capacity-sensitivity numbers, all historical result tables/figures, and external configuration-versus-mean distinction. Removed unsupported feature-attribution and allocator-dominance implications, not measured evidence. Conclusion remains one paragraph, keeps historical numerical support, and adds the medium counterpoint and causal boundary. This is a narrative pass, not a claim that the journal page limit has been met.
