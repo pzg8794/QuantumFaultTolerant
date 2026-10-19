@@ -19,3 +19,7 @@ Algorithm 1 now distinguishes a model-specific feedback record from one universa
 ## Task 4 — F-04 context/settings provenance
 
 Replaced the contradictory generic topology/channel context and fixed ARIMA-order statement in Study Design; added the medium context row and explicit recorded-settings table. Read all 75 accepted manifests: one common replay configuration, one common physics/scenario definition, and policy-specific explicit kwargs. Representative manifest `7028df25.../attempt-1/manifest.json` has SHA-256 `49128b0574179db323889dcd99b75b5868008f54d7971e82258f9eda3b84dfda`. Constructor defaults were not treated as effective nested-learner values. Historical run hyperparameters and other external encodings remain open; no NeuralTS policy was added.
+
+## Task 5 — F-06 corpus-specific threat specification
+
+Retained the approved physical mapping and q/A separation. Removed unsupported historical four-state/window-50/gamma-softmax assertions from the live parameter rows, replacing them with explicit historical provenance holds rather than new defaults. Added the pinned medium binary Markov, prior-history Adaptive, and burst/target/random-mask OnlineAdaptive process, including assignment ordering. All 75 manifests agree on the recorded scenario parameters. Checked `attack_strategy.py` at execution revision `f5ed371c`, SHA-256 `9dd1aec6a27cbd6d1a70783b5a9bbac9d3732064dd02378a49571f4acc5d3fe7`. Literature does not validate those exact rules. Historical F-06 parameter provenance remains open.

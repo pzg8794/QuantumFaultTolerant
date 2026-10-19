@@ -132,13 +132,13 @@ Replay scaling changes only classical memory: the physical network budget is fix
 The five threat settings follow \cref{subsec:threats} and \cref{tab:config_summary}; the scenario-specific parameters below instantiate the matched-interference comparison~\cite{huang2024quantum}.
 
 \smallTitle{Scenario specifications}
-\Cref{tab:scenario_specs} instantiates the threat settings defined in \cref{subsec:threats} for the matched evaluation grid.
+\Cref{tab:scenario_specs} separates the historical primary scenario descriptions from the pinned medium implementation. Historical Markov state structure, Adaptive window, and OnlineAdaptive targeting parameters remain provenance-pending; the medium settings must not be retroactively assigned to that corpus.
 
 \begin{table}[ht!]
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{Scenario specifications used for matched threat evaluation.}
+\caption{Primary-corpus scenario interpretation and provenance boundary. Medium-specific parameters appear in \cref{app:medium_threats}.}
 \label{tab:scenario_specs}
 \begin{tabular}{p{0.18\linewidth} p{0.67\linewidth} p{0.09\linewidth}}
 \toprule
@@ -146,9 +146,9 @@ The five threat settings follow \cref{subsec:threats} and \cref{tab:config_summa
 \midrule
 Baseline & 0\% disruption; benign-operation reference & RQ1 \\
 Stochastic & 6.25\% i.i.d. disruption~\cite{huang2024quantum} & RQ1-2 \\
-Markov & 25\% four-state structured disruption~\cite{huang2024quantum} & RQ2 \\
-Adaptive & 25\% high-usage, targeting over $w=50$ frames~\cite{huang2024quantum} & RQ2 \\
-OnlineAdaptive & 25\% adaptive targeting with $\gamma=0.97$ and softmax selection~\cite{huang2024quantum} & RQ2 \\
+Markov & Temporally correlated interruption; historical state/transition specification pending & RQ2 \\
+Adaptive & Routing-history targeting; historical window/rate specification pending & RQ2 \\
+OnlineAdaptive & Reactive availability stress; historical targeting specification pending & RQ2 \\
 \bottomrule
 \end{tabular}
 \end{table}
