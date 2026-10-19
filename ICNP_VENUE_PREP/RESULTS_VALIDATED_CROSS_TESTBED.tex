@@ -63,16 +63,16 @@ complexity widens \texttt{Oracle} gaps and compresses separation among models.}
 \setlength{\tabcolsep}{4pt}
 \caption{Concise model-family findings. Full family-level detail is reported in \Cref{tab:model_family_comparison_full}.}
 \label{tab:model_family_comparison_summary}
-\begin{tabular}{p{0.1\linewidth} p{0.83\linewidth}}
+\begin{tabular}{p{0.23\linewidth} p{0.68\linewidth}}
 \toprule
 \textbf{Scope} & \textbf{Main finding} \\
 \midrule
 Internal corpus & Hybrid pursuit--neural methods define the performance ceiling: \texttt{iCPursuitNeuralUCB} reaches 90.9\%, above CPursuit (89.9\%) and GNeuralUCB (85.4\%). \\
 External testbeds & \texttt{iCPursuitNeuralUCB} has the highest average efficiency on all four external testbeds, while \paperEight shows that EXP-style exploration can win more individual configurations. \\
-Topology scaling & Efficiency declines as routing scale/complexity increases, from roughly 90\% internally to 74--78\% on \paperTwo/\paperSeven and about 42--44\% on \paperTwelve. \\
+Cross-testbed variation & Efficiency is roughly 90\% internally, 74--78\% on \paperTwo/\paperSeven, and 42--44\% on \paperTwelve; heterogeneous protocols do not isolate a scale effect. \\
 \bottomrule
 \end{tabular}
 % \vspace{-4.5mm}
 \end{table}
 
-\Cref{fig:cross_testbed_confirmation,tab:testbed_comparison_summary,tab:model_family_comparison_summary} show that pursuit--neural hybrids, especially \texttt{iCPursuitNeuralUCB}, retain the strongest average efficiency across the evaluated testbeds, while topology complexity compresses separation and can change configuration-level winners. Full per-configuration and family-level evidence remains available in \Cref{tab:testbed_comparison_full,tab:model_family_comparison_full}.
+\Cref{fig:cross_testbed_confirmation,tab:testbed_comparison_summary,tab:model_family_comparison_summary} show that \texttt{iCPursuitNeuralUCB} retains the highest average efficiency across the four external testbeds, while model separation and configuration-level winners vary. The heterogeneous comparison does not isolate topology complexity as the cause. Full per-configuration and family-level evidence remains available in \Cref{tab:testbed_comparison_full,tab:model_family_comparison_full}.

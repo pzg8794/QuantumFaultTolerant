@@ -12,7 +12,7 @@ E_{b,h,W}=100\frac{\sum_{t\in W}u^{\mathrm{policy}}_{b,h,t}}
 \]
 We average the three block ratios equally, not by pooling payoff sums. Oracle knows the catalog payoffs and current availability and maximizes that frame's available payoff. Under reactive threats, policies induce different availability histories; the Oracle gap is therefore a privileged descriptive comparison, not a causal learning deficit. Diagnostics use prespecified early (1--2,000), middle (2,001--4,000), and late (4,001--6,000) windows and twelve disjoint 500-frame bins. Three-block dispersion is descriptive, not inferential significance.
 
-\begin{table}[t]
+\begin{table*}[t]
 \centering\scriptsize
 \setlength{\tabcolsep}{2pt}
 \caption{Medium-campaign full-horizon efficiency (\%), equal-block mean $\pm$ sample SD, $n=3$. G, EXP, CP, and iCP denote the four learned neural policies defined in the text.}
@@ -28,7 +28,7 @@ Adaptive & $2.769\pm1.001$ & $2.282\pm1.111$ & $3.095\pm1.289$ & $2.277\pm1.488$
 OnlineAdaptive & $0.056\pm0.060$ & $0.066\pm0.010$ & $0.007\pm0.012$ & $0.000\pm0.000$\\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
 
 \smallTitle{Compression and conditional ordering}
 \Cref{tab:medium_efficiency} shows learned means of 1.1122--3.8674\% outside OnlineAdaptive and 0--0.0662\% within it. CP leads four full-horizon threat means but only one of three blocks within each; EXP leads the OnlineAdaptive full mean, with only 15 positive-payoff frames over 18,000 decisions. Early-to-late mean leaders change from CP to G in Baseline/Stochastic, EXP to CP in Markov, and EXP to iCP in Adaptive. In late OnlineAdaptive, EXP leads mean absolute payoff but G leads equal-block normalized efficiency. No stable superiority or statistical equivalence follows from the clustered means.
