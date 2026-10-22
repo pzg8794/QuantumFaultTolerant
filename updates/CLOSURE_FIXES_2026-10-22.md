@@ -6,6 +6,13 @@ Owner-authorized corrections to the October 22 audit, followed by explicit valid
 
 The canonical job/evidence record remains the existing `H-MABs_MasterDataset_VerificationHub.ipynb` in `pzg8794/quantum_project`, branch `codex/mq-q04-notebook-execution`. Its final October 22 cells contain executed reconciliation and validator-test outputs. This checkpoint was executed locally, **not in hosted Colab**, and did not execute the historical notebook wholesale.
 
+- [Exact Validation Hub checkpoint in Colab](https://colab.research.google.com/github/pzg8794/quantum_project/blob/9e82d0e1aa42dc607b32052de14e2919017a15a9/Dynamic_Routing_Eval_Framework/notebooks/H-MABs_MasterDataset_VerificationHub.ipynb).
+- [Notebook, helper and regression tests at the pushed framework commit](https://github.com/pzg8794/quantum_project/tree/9e82d0e1aa42dc607b32052de14e2919017a15a9/Dynamic_Routing_Eval_Framework/notebooks).
+- Validated manuscript source commit: `21ee41bdbdce2f21e13ff4b333340087fb3a2dac`; scientific corrections began at `8bd0214d39449c03c23eb3e857e00148197db998`.
+- [Restricted checkpoint mirror](https://drive.google.com/drive/folders/1B3mo02ruJgq0TQbPH2oaD_gWAWpI5gxr); its synchronization receipt distinguishes upload/readback from byte-level verification.
+
+Use the pinned notebook above, not an older `gcp-main` Colab link. This checkpoint does not merge branches or overwrite the original dirty framework checkout.
+
 ## Changes and evidence
 
 | Audit item | Implemented correction | Evidence and remaining boundary |
