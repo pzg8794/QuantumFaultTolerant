@@ -1,5 +1,7 @@
 # F-12 — Journal candidate, not submission-ready
 
+**October 22 superseding measurement:** The complete figure-integrated review candidate builds to **29 pages**; the 23-page initial measurement below is historical. Abstract remains 173 whitespace-delimited words and five keywords. The live JSAC 13-page initial-submission requirement was rechecked. [Whole-paper audit](FULL_PAPER_FEEDBACK_AUDIT_2026-10-22.md) records remaining scientific-consistency, provenance, layout, human and source-reconciliation gates.
+
 ## Live requirement check
 
 Checked October 18, 2026: [JSAC Quantum Series call](https://www.comsoc.org/publications/journals/ieee-jsac/cfp/quantum-series-quantum-communications-and-networking) permits submission anytime through ScholarOne. March/July/November are publication windows, not deadlines. No conference registration applies.

@@ -1,5 +1,7 @@
 # Reviewer-Feedback Execution Checklist
 
+**October 22 whole-paper audit:** [Full feedback-closure audit](FULL_PAPER_FEEDBACK_AUDIT_2026-10-22.md) checks the entire 29-page review candidate. **Not all feedback is closed:** historical RQ3 baseline/gain scopes and external aggregation definitions conflict; main/appendix feedback descriptions and several claim/threat/family labels need reconciliation; historical provenance and submission-length/human gates remain. Q07/F10 diagnosis stays closed with required claim limitations. This audit does not authorize another experiment or change approved manuscript wording.
+
 **October 22 figure checkpoint:** All six accepted medium diagnostic views are integrated into the review manuscript with explicit body-to-appendix references. Viber/Perplexity figure-review safeguards are implemented and numerical identities checked against accepted derived tables. [Validation, placement, and remaining gates](FIGURE_INTEGRATION_2026-10-22.md). This closes the missing-figure integration item, not the full manuscript review, venue-length, historical provenance, or Overleaf reconciliation gates; Q07 remains scientifically closed.
 
 **Baseline date:** Thursday, August 27, 2026

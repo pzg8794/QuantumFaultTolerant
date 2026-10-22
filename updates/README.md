@@ -1,5 +1,9 @@
 # Paper Revision Update
 
+## Whole-paper audit — October 22, 2026
+
+The full 29-page revision candidate was read and rebuilt. The major reviewer-response artifacts and all six medium diagnostic views are present, but the paper is **not ready for complete feedback closure**. Remaining work includes historical result-slice/aggregation consistency, main-versus-appendix feedback semantics, residual causal/threat labels, historical parameter provenance, and submission-length/coauthor gates. The accepted Q07 analysis is not reopened. See the [task-by-task audit and bounded correction order](FULL_PAPER_FEEDBACK_AUDIT_2026-10-22.md). Overleaf was checked at `7561227`; it is not synchronized with the review candidate.
+
 ## Figure integration — October 22, 2026
 
 All six accepted medium-diagnostic views now appear in the review manuscript: performance and action exposure in the body, with structural-zero occupancy, Oracle gap, OnlineAdaptive, and block-resolved route exposure in a dedicated appendix referenced from the body. The independent figure reviewers' caption/denominator safeguards are implemented. This is presentation/integration of accepted evidence, not another analysis or experiment. See [integration and validation record](FIGURE_INTEGRATION_2026-10-22.md). The dirty original checkout and Overleaf remain untouched; the isolated review candidate is not a submission-ready replacement.
