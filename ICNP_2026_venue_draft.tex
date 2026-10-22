@@ -224,12 +224,12 @@ Quantum networks distribute entanglement through repeaters and end nodes to supp
 % replay-capacity settings common across all policy families.
 
 \smallTitle{Bandit policies for routing decisions}
-Bandit methods provide a natural online-learning interface for quantum routing as each decision reveals partial feedback about the selected path, allocation, or context. We compare stochastic, contextual/neural, adversarial, predictive, and hybrid bandit policies rather than treating ``online learning'' as a single category. UCB and Thompson Sampling motivate stochastic baselines~\cite{auer2002finite,thompson1933likelihood}; EXP3 motivates adversarial baselines~\cite{auer2002nonstochastic}; LinUCB, NeuralUCB, and NeuralTS motivate contextual and nonlinear reward models~\cite{li2010contextual,chu2011contextual,zhou2020neuralucb,zhang2022neuralts}; pursuit-style learning automata motivate structured exploitation~\cite{thathachar2011networks}; and contextual multi-armed bandits (CMABs) and informed contextual multi-armed bandits (iCMABs) motivate context- and forecast-augmented policies~\cite{kar2024icmab,box2015time}. Huang \etal~\cite{huang2024quantum} employs \emph{EXPNeuralUCB}, combining adversarial EXP3-style exploration with NeuralUCB-style reward modeling for joint path selection and qubit allocation. In contrast, we employ a stochastic approach; the key difference is evaluation scope: Huang \etal test a specific adversarial-neural policy, while our study compares multiple policy families under shared topology, threat regimes, allocator policies, and replay-capacity settings. This lets us attribute robustness differences to the policy--allocator--capacity interaction.
+Bandit methods provide a natural online-learning interface for quantum routing as each decision reveals partial feedback about the selected path, allocation, or context. We compare stochastic, contextual/neural, adversarial, predictive, and hybrid bandit policies rather than treating ``online learning'' as a single category. UCB and Thompson Sampling motivate stochastic baselines~\cite{auer2002finite,thompson1933likelihood}; EXP3 motivates adversarial baselines~\cite{auer2002nonstochastic}; LinUCB, NeuralUCB, and NeuralTS motivate contextual and nonlinear reward models~\cite{li2010contextual,chu2011contextual,zhou2020neuralucb,zhang2022neuralts}; pursuit-style learning automata motivate structured exploitation~\cite{thathachar2011networks}; and contextual multi-armed bandits (CMABs) and informed contextual multi-armed bandits (iCMABs) motivate context- and forecast-augmented policies~\cite{kar2024icmab,box2015time}. Huang \etal~\cite{huang2024quantum} employs \emph{EXPNeuralUCB}, combining adversarial EXP3-style exploration with NeuralUCB-style reward modeling for joint path selection and qubit allocation. Our contribution is the matched evaluation of heterogeneous policy families across threat, allocator, and replay settings, rather than a new routing algorithm. The resulting conditioned comparisons describe configuration-dependent robustness; they do not estimate formal statistical interactions.
 % \dan{Mkae it more clear and direct how these works differ. I would make it clear at the end of the paragraph in 1-2 sentneces.}
 % SOLVED: Preserved the original paragraph wording and appended two direct sentences at the end clarifying how Huang et al.'s specific EXPNeuralUCB setting differs from our matched policy-family, threat, allocator, and replay-capacity evaluation.
 
 \smallTitle{Benchmarking and matched robustness evaluation}
-Quantum-network benchmarking and utility-driven simulation frameworks motivate separating network behavior from policy behavior during evaluation~\cite{coopmans2021benchmark,kozlowski2022utility}, while best-of-both-worlds bandit theory motivates testing across both stochastic and adversarial regimes~\cite{zimmert2019optimal}. Link-level and path-level best-arm formulations such as LinkSelFiE and related benchmarking approaches address unknown link or path qualities~\cite{10621263,wang2025learning}, but they do not jointly test allocator policy, replay-capacity semantics, and threat progression. Our evaluation targets this matched-comparison gap: all bandit-policy families are tested under the same topology, threat regimes, allocator policies, and replay/capacity settings so that robustness differences can be attributed to the bandit-policy--allocator--capacity interaction rather than to incompatible experimental assumptions.
+Quantum-network benchmarking and utility-driven simulation frameworks motivate separating network behavior from policy behavior during evaluation~\cite{coopmans2021benchmark,kozlowski2022utility}, while best-of-both-worlds bandit theory motivates testing across both stochastic and adversarial regimes~\cite{zimmert2019optimal}. Link-level and path-level best-arm formulations such as LinkSelFiE and related benchmarking approaches address unknown link or path qualities~\cite{10621263,wang2025learning}, but they do not jointly test allocator policy, replay-capacity semantics, and threat progression. Our evaluation targets this matched-comparison gap: policy families are compared within explicitly stated topology, threat, allocator, and replay slices. This reduces differences in experimental assumptions without making heterogeneous testbeds a controlled causal comparison.
 
 
 
@@ -348,7 +348,7 @@ Using the topology and reward definitions above, each bandit action is a joint r
 \[
 \mathcal{A}=\{(r,\mathbf{x}) : P_r\in\mathcal{P},\ \mathbf{x}\in\mathcal{X}_r\}.
 \]
-At frame $t$, the policy selects $a_t=(r_t,\mathbf{x}_t)\in\mathcal{A}$ and observes only the realized reward $Y_t(r_t,\mathbf{x}_t)$ from \cref{subsec:reward}.
+At frame $t$, the policy selects $a_t=(r_t,\mathbf{x}_t)\in\mathcal{A}$. The Bernoulli variable $Y_t$ in \cref{subsec:reward} models entanglement success, not every implemented learning target. Algorithm~\ref{alg:joint_loop} uses a model-specific feedback record $\mathcal{F}_t$; the accepted medium implementation separates sampled route feedback from continuous allocation feedback as specified in \cref{app:algorithm_specification}.
 
 \smallTitle{Policy interface}
 This interface instantiates the policy-family taxonomy introduced in \cref{sec:RelatedWork}: bandit policies differ in how they estimate or sample action value, not in the underlying routing task. For the primary matched evaluation, the route-specific allocation context/action is $\mathbf{x}\in\mathcal{X}_r(T_r)$ itself. Its dimension is $h_r$: two on the two-hop routes and three on the three-hop routes. Route identity is structural through the route-specific learner and action set; hop count is implicit in vector dimension; threat availability affects reward feedback through $A_t(r)$; and reward history enters learner state, replay, and updates rather than the instantaneous vector. External testbeds may supply testbed-specific representations under the same model interface; they are not assumed to share one universal encoding.
@@ -357,7 +357,7 @@ The learner seeks to maximize cumulative expected success,
 \[
 \max_{\pi}\ \mathbb{E}_{\pi}\!\left[\sum_{t=1}^{H}Y_t(r_t,\mathbf{x}_t)\right],
 \]
-under the threat process and allocator semantics fixed for that evaluation run. We use this objective as the common empirical decision interface, not as a theoretical contribution.
+under the threat process and allocator semantics fixed for that evaluation run. This success objective defines the routing task, not a theoretical contribution or a universal reported outcome. The medium campaign reports continuous payoff with the normalization in \cref{sec:medium_evidence}.
 
 \subsection{Policy Implementation Interface}
 \label{subsec:framework}
@@ -380,31 +380,11 @@ Informed variants add ARIMA-based predictive reward modeling with anomaly-aware 
 
 \noindent Our work addresses three research questions:
 \begin{itemize}
-    \item \textbf{RQ1.} \emph{How do classical and context-aware multi-armed
-    bandit (MAB) policies perform under stochastic quantum network conditions?}
-    Stochastic decoherence alone separates viable from failing policies
-    (\cref{fig:main_performance_summary}): \texttt{CPursuit},
-    \texttt{CEpsilonGreedy}, and \texttt{iCEpsilonGreedy} stay above 85\%,
-    while epoch-greedy designs collapse to $\approx$37\%.
-
-    \item \textbf{RQ2.} \emph{How does the performance of bandit-based routing
-    strategies change as network disruptions evolve from stochastic noise to
-    structured, adaptive adversarial interference?} Context-aware representatives
-    display stronger adversarial-scope stability
-    (\cref{fig:threat_penalty_escalation,fig:robustness_floor}):
-    \texttt{CPursuit} and \texttt{iCEpsilonGreedy} reach 88.1\% and 86.9\%
-    average efficiency with 77.4\% and 81.0\% floors, while
-    \texttt{EXPNeuralUCB} falls to an 18.0\% floor\footnote{Defined in \Cref{tab:notation_metrics}}.
-
-    \item \textbf{RQ3.} \emph{How do choices in bandit policy, resource
-    allocation strategy, and replay-capacity semantics interact to affect
-    routing efficiency and stability in quantum entanglement routing?}
-    Robustness is a joint function of algorithm, allocator, and capacity
-    (\cref{fig:capacity_paradox,fig:deployment_guidance}): under
-    \texttt{ThompsonSampling} allocation and $T_b$-type anchoring,
-    OnlineAdaptive efficiency drops by 4.4~pp from $s{=}1$ to $s{=}1.5$,
-    then recovers by 6.0~pp at $s{=}2$.
+    \item \textbf{RQ1.} How do classical and context-aware bandit policies perform under baseline operation and independent route-availability disruption?
+    \item \textbf{RQ2.} How does routing performance change across independent, temporally correlated, and routing-history-dependent availability settings?
+    \item \textbf{RQ3.} How do policy, inter-route allocation, and classical replay-memory settings jointly condition routing efficiency and stability?
 \end{itemize}
+The primary matched grid answers these questions within its stated comparison slices. The separate medium anchor tests their scope beyond four routes; heterogeneous external testbeds provide additional, non-causal comparisons.
 
 %We organize the evaluation around three research questions that connect routing performance, threat progression, and deployment configuration. \textit{RQ1 asks how classical and context-aware bandit policies perform under stochastic quantum-network conditions. RQ2 asks how bandit-based routing strategies change as network disruptions evolve from stochastic noise to structured, adaptive adversarial interference. RQ3 asks how choices in bandit policy, resource allocation strategy, and replay-capacity semantics interact to affect routing efficiency and stability in quantum entanglement routing.} Together, the findings support a threat-aware view of entanglement routing: robustness depends not only on the learning rule, but also on how allocator policy and replay-capacity semantics interact with the disruption regime.
 % \devroop{Research questions should not be answered here.} -- SOLVED: Converted the RQ section into a compact paragraph that states the primary questions and gives one collective findings-oriented roadmap sentence, while leaving detailed answers for Results and Discussion.
@@ -422,7 +402,6 @@ Informed variants add ARIMA-based predictive reward modeling with anomaly-aware 
 
 % Acknowledgments omitted from the double-blind review version. Restore camera-ready acknowledgments only after acceptance.
 
-\newpage
 \bibliographystyle{IEEEtran}
 \bibliography{refs}
 
@@ -430,9 +409,7 @@ Informed variants add ARIMA-based predictive reward modeling with anomaly-aware 
 \appendices
 \input{ICNP_VENUE_PREP/APPENDIX_CROSS_TESTBED_TABLES}
 \input{ICNP_VENUE_PREP/APPENDIX_DIAGNOSTIC_FIGURES}
-\clearpage
 \input{ICNP_VENUE_PREP/APPENDIX_MEDIUM_DIAGNOSTICS}
-\clearpage
 \input{ICNP_VENUE_PREP/APPENDIX_ALGORITHM_SPECIFICATION}
 
 

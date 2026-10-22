@@ -1,5 +1,9 @@
 # Paper Revision Update
 
+## Bounded corrections and Validation Hub — October 22, 2026
+
+The whole-paper audit's source-backed corrections are implemented in the isolated review candidate: RQ3 three-run switching scope/configuration/plot, external aggregation and Default-only scope, model-specific feedback, residual claim wording, and repeated RQ answers. The draft builds at **27 pages**, with zero undefined references/citations and zero overfull boxes; the JSAC length gate remains open. Historical parameter/cadence/context and exact old table-source parity remain unresolved, not guessed. The existing Validation Hub now records the reconciliation and 13 passing validator regression tests; historical solved badges are explicitly not fresh numerical certification. See [changes, evidence, validation and remaining gates](CLOSURE_FIXES_2026-10-22.md). No experiment or Q07 rerun; no Overleaf synchronization.
+
 ## Whole-paper audit — October 22, 2026
 
 The full 29-page revision candidate was read and rebuilt. The major reviewer-response artifacts and all six medium diagnostic views are present, but the paper is **not ready for complete feedback closure**. Remaining work includes historical result-slice/aggregation consistency, main-versus-appendix feedback semantics, residual causal/threat labels, historical parameter provenance, and submission-length/coauthor gates. The accepted Q07 analysis is not reopened. See the [task-by-task audit and bounded correction order](FULL_PAPER_FEEDBACK_AUDIT_2026-10-22.md). Overleaf was checked at `7561227`; it is not synchronized with the review candidate.

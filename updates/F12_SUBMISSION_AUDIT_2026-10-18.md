@@ -1,6 +1,6 @@
 # F-12 — Journal candidate, not submission-ready
 
-**October 22 superseding measurement:** The complete figure-integrated review candidate builds to **29 pages**; the 23-page initial measurement below is historical. Abstract remains 173 whitespace-delimited words and five keywords. The live JSAC 13-page initial-submission requirement was rechecked. [Whole-paper audit](FULL_PAPER_FEEDBACK_AUDIT_2026-10-22.md) records remaining scientific-consistency, provenance, layout, human and source-reconciliation gates.
+**October 22 superseding measurement after bounded corrections:** The review candidate builds to **27 pages**, down from the 29-page figure-integrated audit; the 23-page initial measurement below is historical. Abstract remains 173 whitespace-delimited words and five keywords. The JSAC 13-page initial-submission gate remains open. [Corrective validation](CLOSURE_FIXES_2026-10-22.md) records remaining historical source parity/provenance, layout, human and source-reconciliation gates. Removing forced whitespace is not enough to establish submission readiness.
 
 ## Live requirement check
 

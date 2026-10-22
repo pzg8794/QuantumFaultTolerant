@@ -34,6 +34,18 @@ Preserve the strengths already recognized by Reviewer A: the controlled evaluati
 
 ## Key files and what owns what
 
+### Canonical validation record
+
+Until Piter explicitly approves migration to a website/dashboard, continue using
+`Dynamic_Routing_Eval_Framework/notebooks/H-MABs_MasterDataset_VerificationHub.ipynb`
+in `pzg8794/quantum_project` as the job/evidence validation record. Record bounded
+work, source identities, executable checks, actual outputs, and unresolved items
+there. Do not replace it with a parallel validator or claim that historical
+outputs certify a newer manuscript. A manual solved/open annotation is not a
+numerical test result. Test validator changes with known-good and known-bad
+fixtures; identify targeted local execution separately from full-notebook or
+hosted-Colab execution. Preserve private inputs and existing dirty checkouts.
+
 ### Active venue draft
 
 ```text

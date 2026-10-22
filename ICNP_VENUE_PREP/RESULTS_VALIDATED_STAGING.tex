@@ -5,7 +5,7 @@
 \section{Results}
 \label{sec:SimulationResults}
 
-Utilizing the matched grid defined in \cref{sec:studydesign}, we report validated corpus results by \cref{sec:research_questions}: RQ1 tests stochastic viability, RQ2 tests threat escalation, and RQ3 tests allocator/capacity deployment effects. GA-report observations are used only as supporting context.
+Utilizing the matched grid defined in \cref{sec:studydesign}, we report validated corpus results by \cref{sec:research_questions}: RQ1 tests stochastic viability, RQ2 compares availability regimes, and RQ3 compares allocator/replay configurations. GA-report observations are used only as supporting context.
 
 % ============================================================================
 % RQ1: Stochastic Routing Viability
@@ -199,35 +199,35 @@ EXP3/UCB & 76.3 & 6.0 & 68.8 & 0.0 \\
 % ============================================================================
 % RQ3: Deployment Optimization
 % ============================================================================
-\subsection{RQ3: Deployment Optimization}
+\subsection{RQ3: Configuration Sensitivity}
 \label{subsec:rq3}
 
-RQ3 evaluates whether algorithm, allocator, and replay-capacity choices should change with the threat regime. Deployment is configuration-sensitive, but the hybrid corpus also reveals a strong static configuration that exceeds the 85\% robustness target across all five scenarios.
+RQ3 compares algorithm, allocator, and replay-capacity settings across threat regimes. The Hybrid corpus includes a static configuration that exceeds the 85\% robustness target across all five evaluated scenarios.
 
-\smallTitle{Deployment-evaluation corpus}
-RQ3 uses the validated Hybrid corpus for CPursuitNeuralUCB, iCPursuitNeuralUCB, GNeuralUCB, and EXPNeuralUCB across all scenarios, allocators, replay anchoring types, replay-capacity scales ($s$), with $s\in\{1,1.5,2\}$, and 4K--8K horizons. Unless otherwise noted, point estimates average the 3- and 5-run suites; RQ3 coefficient of variation (CV) values are computed across scenario means as a deployment-volatility proxy because per-run variance is not available in the corpus table.
+\smallTitle{Configuration-evaluation corpus}
+RQ3 uses the validated Hybrid corpus for CPursuitNeuralUCB, iCPursuitNeuralUCB, GNeuralUCB, and EXPNeuralUCB across all scenarios, allocators, replay anchoring types, replay-capacity scales ($s$), with $s\in\{1,1.5,2\}$, and 4K--8K horizons. Unless otherwise noted, point estimates average the 3- and 5-run suites; RQ3 coefficient of variation (CV) values describe variation across scenario means, not run-to-run uncertainty, because per-run variance is not available in the corpus table.
 % \devroop{what is CV?}
 % SOLVED: Defined CV inline at first use in Results as coefficient of variation and retained the notation-table definition in Study Design.
 
-\smallTitle{Primary deployment observation}
-Deployment is configuration-sensitive, but the Hybrid corpus also reveals a strong static configuration. At the 6K horizon, \texttt{iCPursuitNeuralUCB+Fixed+($T$-type, $s=2$)} achieves a 96.0\% global average and a 92.8\% worst-case floor across scenarios, using the validated mean over 3- and 5-run suites. Scenario-specific optima still differ, so later RQ3 analyses disaggregate allocator and replay-capacity effects.
+\smallTitle{Primary configuration observation}
+At the 6K horizon, \texttt{iCPursuitNeuralUCB+Fixed+($T$-type, $s=2$)} achieves a 96.0\% global average and a 92.8\% worst-case floor across scenarios, using the validated three-run slice reported in \cref{tab:rq3a_master_informative}. This is distinct from the pooled 3/5-suite allocator comparison in \cref{tab:rq3c_master_allocators}. Scenario-specific optima still differ, so later RQ3 analyses disaggregate allocator and replay-capacity comparisons.
 
 % ============================================================================
 % RQ3a: Predictive Context Modeling Impact
 % ============================================================================
-\subsubsection{RQ3a: Predictive Context Modeling Impact}
+\subsubsection{RQ3a: Fixed-Setting Policy Comparison}
 \label{subsubsec:rq3a_answer}
 
-RQ3a isolates whether the informative/predictive variant, iCPursuitNeuralUCB, improves deployment robustness over reactive CPursuitNeuralUCB.
+RQ3a compares CPursuitNeuralUCB and iCPursuitNeuralUCB under a common network/resource setting; it is not an isolated intervention on their predictive component.
 
 \smallTitle{Controlled comparison}
-To isolate architecture impact, we fix deployment at 6K horizon, \texttt{Fixed} allocator, current-horizon ($T$)-type anchoring, and replay-capacity scale $s=2$, using the validated 3-run suite from the Hybrid corpus.
+For this policy comparison, we fix the configuration at 6K horizon, \texttt{Fixed} allocator, current-horizon ($T$)-type anchoring, and replay-capacity scale $s=2$, using the validated 3-run suite from the Hybrid corpus.
 
 \begin{table}[ht!]
 \footnotesize
 \centering
 \setlength{\tabcolsep}{3pt}
-\caption{RQ3a informative-context impact under the fixed deployment setting. Values are from the validated 3-run Hybrid corpus.}
+\caption{RQ3a policy comparison under the fixed simulator configuration. Values are from the validated 3-run Hybrid corpus.}
 \label{tab:rq3a_master_informative}
 \begin{tabular}{p{0.30\linewidth} c c c c c c c}
 \toprule
@@ -241,7 +241,7 @@ iCPursuitNeuralUCB & 99.9 & 94.8 & 93.0 & 92.8 & 99.8 & 96.0 & 3.3 \\
 {\footnotesize Bl=Baseline, Sh=Stochastic, Mk=Markov, Ag=Adaptive, OA=OnlineAdaptive; CV is computed across scenario means.}
 \end{table}
 
-\Cref{tab:rq3a_master_informative} shows that iCPursuitNeuralUCB improves global robustness mainly by lifting OnlineAdaptive efficiency from 81.5\% to 99.8\% (+18.3 \% points (pp)) while keeping Stochastic, Markov, and Adaptive performance unchanged. It reduces scenario-level dispersion from 6.5 to 3.3 CV. Thus, informative context is most valuable when the threat adapts online.
+\Cref{tab:rq3a_master_informative} shows the largest difference between these policies under OnlineAdaptive: 81.5\% versus 99.8\% (+18.3 pp). The other scenario means differ by at most 0.1 pp, and scenario-level CV is 6.5\% versus 3.3\%. These fixed-setting policy differences do not isolate the effect of forecasting or context alone.
 
 % ============================================================================
 % RQ3b: Replay Capacity Scaling and Paradox
@@ -259,14 +259,14 @@ Under \texttt{ThompsonSampling} allocation and base-horizon ($T_b$)-type replay 
 \centering
 \subfloat[Comparing the baseline with scenario-specific switching,
 Adaptive disruption gives the largest validated gain: \texttt{ThompsonSampling}
-with $T_b$-type replay at $s{=}1.5$ reaches 95.7\%, a 2.9 percentage-point
+with $T$-type replay at $s{=}1$ reaches 95.7\%, a 2.9 percentage-point
 improvement. Within the evaluated configurations, this supports matching policy,
 allocator, and replay settings to the active threat.
 \label{fig:deployment_rules_main}]{%
   \begin{minipage}{0.45\textwidth}
   \centering
-  \hspace{3.7em}\textbf{Scenario-Based Deployment Guidance}\\[-0.0em]
-  \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-042_g4_deployment_rules.png}
+  \textbf{Scenario-Based Configuration Guidance}\\[-0.0em]
+  \input{figures/icnp/rq3_switching_reconciled.tex}
   \end{minipage}}
 \hfill
 % \shee{For Figure 7B, the caption values do not appear to match the plotted graph.}
@@ -274,7 +274,7 @@ allocator, and replay settings to the active threat.
 \subfloat[For \texttt{iCPursuitNeuralUCB}, allocator choice changes worst-case
 robustness: \texttt{Fixed (Default or Baseline)} keeps an 88.9\% floor, while \texttt{Thompson} drops
 to 73.3\%. This 15.6 percentage-point floor shift shows that allocator
-selection is a first-class deployment control.
+selection is associated with different observed robustness floors in this summary.
 \label{fig:allocator_risk_main}]{%
   \begin{minipage}{0.52\textwidth}
   \centering
@@ -283,7 +283,7 @@ selection is a first-class deployment control.
   \end{minipage}}
 \caption{Panels~(a) and~(b) show that, within the evaluated configurations,
 robustness is highest when policy, allocator, and replay settings are matched to the threat.}
-% \shee{Caption mentions Tb-type and s values which are not present on the graph.} -- SOLVED: Regenerated Figure 7A with a callout labeling the Adaptive optimum as ThompsonSampling + T_b, s=1.5.
+% \shee{Caption mentions Tb-type and s values which are not present on the graph.} -- Reconciled October 22: the source-backed callout is ThompsonSampling + T, s=1.
 % \shee{Don't use 'The exported validation figure' in every caption. Refer to the corresponding plot.} -- SOLVED: Removed generic exported-figure language and described the specific plotted quantities and observed deployment consequence.
 % \devroop{Include the allocator-risk figure in the main body.} -- SOLVED: Grouped deployment guidance with allocator-risk evidence in one RQ3d figure.
 \label{fig:deployment_guidance}
@@ -322,16 +322,16 @@ iCPursuitNeuralUCB & 1.0 & 92.1 & 93.6 & 88.7 & 88.5 & 70.8 & 86.7 \\
 \subsubsection{RQ3c: Algorithm-Allocator Co-Design}
 \label{subsec:rq3c_answer}
 
-RQ3c tests whether allocator choice is independent of algorithm architecture or instead acts as a first-class deployment decision.
+RQ3c compares allocator configurations while holding the evaluated policy and replay setting fixed; it does not estimate a formal algorithm-by-allocator interaction.
 
 \smallTitle{Allocator-comparison setup}
-RQ3c fixes the model to iCPursuitNeuralUCB, the horizon to 6K, and capacity to current-horizon ($T$)-type replay with replay-capacity scale $s=2$, then varies allocator policy. This isolates allocator effects after RQ3b isolates replay-scale behavior.
+RQ3c fixes the model to iCPursuitNeuralUCB, the horizon to 6K, and capacity to current-horizon ($T$)-type replay with replay-capacity scale $s=2$, then varies allocator policy. This conditions the allocator comparison on a common policy/replay setting, complementing the replay comparisons in RQ3b.
 
 \begin{table}[ht!]
 \footnotesize
 \centering
 \setlength{\tabcolsep}{3pt}
-\caption{RQ3c allocator interaction for \texttt{iCPursuitNeuralUCB} under the fixed 6K, $T$-type, $s=2$ deployment. Values are Hybrid corpus means over the 3- and 5-run suites.}
+\caption{RQ3c allocator comparison for \texttt{iCPursuitNeuralUCB} under the fixed 6K, $T$-type, $s=2$ configuration. Values are Hybrid corpus means over the 3- and 5-run suites.}
 \label{tab:rq3c_master_allocators}
 \begin{tabular}{lccccccc}
 \toprule
@@ -352,17 +352,17 @@ Thompson   & 58.4 & 65.4 & 87.8 & 91.7 & 65.2 & 73.7 & 58.4 \\
 % ============================================================================
 % RQ3d: Scenario-Based Deployment Rules and Optimization
 % ============================================================================
-\subsubsection{RQ3d: Scenario-Based Deployment Rules \& Optimization}
+\subsubsection{RQ3d: Scenario-Based Configuration Guidance}
 \label{subsec:rq3d_answer}
 
-\smallTitle{Deployment-rule synthesis}
-RQ3d converts the RQ3a--RQ3c findings into 6K configuration guidance for iCPursuitNeuralUCB. Under the Hybrid corpus 3/5-suite mean used for switching analysis, the strong static default is \texttt{iCPursuitNeuralUCB+Fixed+($T$-type,$s=2$)}, with 95.5\% average efficiency and an 88.5\% floor across scenarios. Scenario-specific switching provides modest gains, with the largest validated improvement under Adaptive disruption.
+\smallTitle{Configuration-guidance synthesis}
+RQ3d converts the RQ3a--RQ3c findings into 6K configuration guidance for iCPursuitNeuralUCB. The switching analysis uses the Hybrid three-run slice: \texttt{iCPursuitNeuralUCB+Fixed+($T$-type,$s=2$)} has 96.0\% mean efficiency and a 92.8\% floor. These are the RQ3a baseline values, not the pooled 3/5-suite values in RQ3c. Scenario-specific switching provides modest gains, with the largest validated improvement under Adaptive disruption.
 
 \begin{table}[ht!]
 \footnotesize
 \centering
 \setlength{\tabcolsep}{4pt}
-\caption{RQ3d scenario-specific configuration guidance for \texttt{iCPursuitNeuralUCB} at 6K. Gain is measured relative to the strong static default where applicable.}
+\caption{RQ3d scenario-specific configuration guidance for \texttt{iCPursuitNeuralUCB} at 6K. Both selected configurations and baseline use the three-run slice; gains are differences of unrounded scenario efficiencies, then rounded to one decimal place.}
 \label{tab:rq3d_deployment_rules}
 \begin{tabular}{p{0.24\linewidth} p{0.42\linewidth} c c}
 \toprule
@@ -371,7 +371,7 @@ RQ3d converts the RQ3a--RQ3c findings into 6K configuration guidance for iCPursu
 Baseline & DynamicUCB + ($T$, $s=1$) & 99.9 & +0.0 \\
 Stochastic & Thompson + ($T$, $s=1$) & 95.4 & +0.6 \\
 Markov & DynamicUCB + ($T_b$, $s=1.5$) & 93.2 & +0.3 \\
-Adaptive & Thompson + ($T_b$, $s=1.5$) & 95.7 & +2.9 \\
+Adaptive & Thompson + ($T$, $s=1$) & 95.7 & +2.9 \\
 OnlineAdaptive & Fixed + ($T$, $s=2$) & 99.8 & +0.0 \\
 \bottomrule
 \end{tabular}

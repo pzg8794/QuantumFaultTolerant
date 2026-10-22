@@ -6,10 +6,7 @@
 \subfloat[Across \paperTwo, \paperSeven, \paperTwelve, and \paperEight,
 \texttt{iCPursuitNeuralUCB} yields the strongest average cross-testbed
 efficiency, with leading averages ranging from 44.1\% on \paperTwelve{} to
-78.0\% on \paperSeven{}. The larger \texttt{Oracle} gaps on harder topologies
-show that its performance advantage persists beyond the primary testbed
-but becomes harder to separate from the reference as topology complexity
-increases. \label{fig:cross_testbed_efficiency_main}]{%
+78.0\% on \paperSeven{}. Absolute efficiency and Oracle gaps vary across these heterogeneous testbeds; this comparison does not isolate an effect of topology or scale. \label{fig:cross_testbed_efficiency_main}]{%
   \begin{minipage}{0.52\textwidth}
   \centering
   \hspace{1.5em}\vspace{0.5em}\textbf{External-testbed efficiency and Oracle-gap comparison}\\[0.0em]
@@ -18,18 +15,14 @@ increases. \label{fig:cross_testbed_efficiency_main}]{%
 \hfill
 \subfloat[All model families except classical MABs clear the 85\%
 average-efficiency threshold, with hybrid neural policies highest at 90.9\%.
-Across
-external testbeds, the same top-family pattern persists even as topology
-complexity compresses efficiency across models.
+The external slices retain the same average-efficiency leader, with different absolute efficiencies and model separation.
 \label{fig:model_family_cross_testbed_main}]{%
   \begin{minipage}{0.44\textwidth}
   \centering
   \textbf{Internal and external model-family ranking}\\[-0.0em]
   \includegraphics[width=\linewidth]{figures/icnp/ICNP-CODE-041_g3_family_summary.png}
   \end{minipage}}
-\caption{Panels~(a) and~(b) jointly show that the pursuit-informed neural
-performance hierarchy persists across the evaluated networks, while increasing topology
-complexity widens \texttt{Oracle} gaps and compresses separation among models.}
+\caption{Panels~(a) and~(b) summarize internal and heterogeneous external comparisons. The same average-efficiency leader is observed externally, but model separation and configuration-level winners vary. These differences do not identify topology complexity as their cause.}
 % \shee{The paper references in the caption do not connect to the graph. It is hard to understand the graph with the current caption.} -- SOLVED: Regenerated Figure 8A with author/testbed labels and direct best-efficiency/Oracle-gap callouts.
 % \shee{The threshold is marked at 85\% and all except Classical surpass it. The caption does not capture this correctly. The threshold is not visible} -- SOLVED: Corrected the Figure 8B subcaption and strengthened the plotted 85% threshold line/label.
 % \shee{change the font color of the threshold label} -- SOLVED: Regenerated Figure 8B with a darker, higher-contrast 85% threshold label.

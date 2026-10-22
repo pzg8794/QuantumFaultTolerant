@@ -170,7 +170,7 @@ This appendix reports the full cross-testbed and model-family evidence supportin
 & \texttt{EXPNeuralUCB} & 0.4 & 892.2 & 42.5 & 57.5 & 91/300 \\
 & \texttt{iCPursuitNeuralUCB} & 0.4 & 858.3 & \textbf{44.1} & 55.9 & \textbf{97/300$^\star$} \\
 & \texttt{CPursuitNeuralUCB} & 0.4 & 861.2 & 43.8 & 56.2 & 59/300 \\
-& \cellcolor{findingOrange}\textit{Takeaway} & \multicolumn{5}{>{\raggedright\arraybackslash}p{0.51\textwidth}@{}}{\cellcolor{findingOrange}The mid-scale fusion topology compresses all methods, but iCPursuitNeuralUCB still leads.} \\
+& \cellcolor{findingOrange}\textit{Takeaway} & \multicolumn{5}{>{\raggedright\arraybackslash}p{0.51\textwidth}@{}}{\cellcolor{findingOrange}Efficiencies cluster at 42.5--44.1\% in this fusion-testbed corpus; iCPursuitNeuralUCB has the highest mean. The cause is not isolated.} \\
 \midrule
 \multirow{6}{=}{\textbf{\paperEight}\newline 20N/19E/8P\newline 1K/1K/1R\newline 4 allocs, $s=1$}
 & \texttt{ORACLE} & 300540.2 & 0.0 & --- & --- & --- \\
@@ -183,7 +183,7 @@ This appendix reports the full cross-testbed and model-family evidence supportin
 \end{tabular}
 
 \vspace{0.2cm}
-{\scriptsize \textit{Legend:} N=nodes, E=edges, P=paths, R=runs. Efficiency (\%) = model average reward divided by Oracle average reward. Gap = 100 - Efficiency. Wins denote experiment-level wins out of the available configurations: 300 for \paperTwo/\paperSeven/\paperTwelve and 20 for \paperEight. $^\star$ indicates the testbed-level experiment-winner count.}
+{\scriptsize \textit{Legend:} N=nodes, E=edges, P=paths, R=runs. Efficiency and gap are averages of the saved per-configuration percentages, not a ratio of the displayed aggregate rewards. Paper8's reward column is mean cumulative reward, whereas the other testbeds report mean per-frame reward; those raw reward magnitudes are not cross-testbed comparable. Gap is computed before rounding as 100 minus efficiency. Wins denote experiment-level wins out of the available configurations: 300 for \paperTwo/\paperSeven/\paperTwelve and 20 for \paperEight. $^\star$ indicates the testbed-level experiment-winner count.}
 \end{table*}
 
 % \clearpage
@@ -194,7 +194,7 @@ This appendix reports the full cross-testbed and model-family evidence supportin
 
 \begin{table*}[ht!]
 \centering
-\caption{Full model-family evidence for the efficiency--stability hierarchy. The internal blocks compare CMABs, iCMABs, EXP3-based methods, and hybrid neural policies, while the external blocks report pursuit--neural performance across four testbeds. The table shows that contextual and informed contextual baselines provide strong internal floors, EXP-family methods remain weaker in tail behavior, and \texttt{iCPursuitNeuralUCB} gives the highest hybrid-neural ceiling and strongest average external performance. Together, the rows support the paper's claim that robust quantum routing depends on model family and context/pursuit structure, not only on a single learner score. Best per-family/testbed performance is bolded.}
+\caption{Full model-family evidence for the efficiency--stability hierarchy. The internal blocks compare CMAB, iCMAB, EXP-suite, and Hybrid-suite policies, while the external blocks report pursuit--neural performance across four testbeds. The table shows that contextual and informed contextual baselines provide strong internal floors, EXP-family methods remain weaker in tail behavior, and \texttt{iCPursuitNeuralUCB} gives the highest hybrid-neural ceiling and strongest average external performance. Together, the rows support the paper's claim that robust quantum routing depends on model family and context/pursuit structure, not only on a single learner score. Best per-family/testbed performance is bolded.}
 \label{tab:model_family_comparison_full}
 \scriptsize
 \setlength{\tabcolsep}{2.8pt}
@@ -219,11 +219,11 @@ This appendix reports the full cross-testbed and model-family evidence supportin
 & \texttt{iCEpochGreedy} & 37.6 & 62.4 & 36.1 & 0/75 \\
 & \cellcolor{findingBlue}\textit{Takeaway} & \multicolumn{4}{>{\raggedright\arraybackslash}p{0.48\textwidth}@{}}{\cellcolor{findingBlue}iCEpsilonGreedy provides the strongest iCMAB floor and complete win dominance in this slice.} \\
 \midrule
-\multirow{4}{=}{\textbf{EXP3-based}\newline internal corpus}
+\multirow{4}{=}{\textbf{EXP suite}\newline internal corpus}
 & \texttt{GNeuralUCB} & \textbf{85.4} & 14.6 & 61.6 & \textbf{41/75$^\star$} \\
 & \texttt{EXPNeuralUCB} & 80.9 & 19.1 & 18.0 & 28/75 \\
 & \texttt{EXPUCB} & 78.1 & 21.9 & 68.8 & 6/75 \\
-& \cellcolor{findingOrange}\textit{Takeaway} & \multicolumn{4}{>{\raggedright\arraybackslash}p{0.48\textwidth}@{}}{\cellcolor{findingOrange}GNeuralUCB is the strongest EXP-family representative, but its floor remains weaker than the top contextual variants.} \\
+& \cellcolor{findingOrange}\textit{Takeaway} & \multicolumn{4}{>{\raggedright\arraybackslash}p{0.48\textwidth}@{}}{\cellcolor{findingOrange}GNeuralUCB leads this corpus grouping; its route selector is Simple-UCB, not EXP3.} \\
 \midrule
 \multirow{5}{=}{\textbf{Hybrid neural}\newline internal corpus}
 & \texttt{iCPursuitNeuralUCB} & \textbf{90.9} & 9.1 & 76.4 & \textbf{23/75$^\star$} \\
@@ -251,7 +251,7 @@ This appendix reports the full cross-testbed and model-family evidence supportin
 & \texttt{CPursuitNeuralUCB} & 41.2 & 58.8 & 22.6 & 13/75 \\
 & \texttt{GNeuralUCB} & 41.1 & 58.9 & 22.8 & 14/75 \\
 & \texttt{EXPNeuralUCB} & 40.2 & 59.8 & 21.7 & 22/75 \\
-& \cellcolor{findingOrange}\textit{Takeaway} & \multicolumn{4}{>{\raggedright\arraybackslash}p{0.48\textwidth}@{}}{\cellcolor{findingOrange}All methods degrade under the larger fusion topology, but iCPursuitNeuralUCB remains best.} \\
+& \cellcolor{findingOrange}\textit{Takeaway} & \multicolumn{4}{>{\raggedright\arraybackslash}p{0.48\textwidth}@{}}{\cellcolor{findingOrange}All four means are lower in this native Default-allocator slice; iCPursuitNeuralUCB has the highest mean. No topology-only cause is identified.} \\
 \midrule
 \multirow{5}{=}{\textbf{\paperEight}\newline external}
 & \texttt{iCPursuitNeuralUCB} & \textbf{67.4} & 32.6 & \textbf{44.1} & 1/5 \\
@@ -263,7 +263,7 @@ This appendix reports the full cross-testbed and model-family evidence supportin
 \end{tabular}
 
 \vspace{0.2cm}
-{\scriptsize \textit{Note:} Internal corpus rows use the validated CMAB, iCMAB, EXP3, and Hybrid master datasets with \texttt{Default} allocator and reported run/scale settings. External rows use the standardized external-testbed corpus where available. Gap = 100 - Efficiency. Floor = worst-case efficiency. Wins denote experiment-level win counts; $^\star$ marks the row with the highest win count in its scope.}
+{\scriptsize \textit{Note:} Internal corpus rows use the validated CMAB, iCMAB, EXP3, and Hybrid master datasets with \texttt{Default} allocator and reported run/scale settings. External rows use the Default-allocator subset of the native testbed corpora (75 configuration winners per testbed, or five for Paper8), whereas \cref{tab:testbed_comparison_full} pools all four allocators. These are different comparison slices, not a standardized-horizon experiment. Gap = 100 - Efficiency. Floor = worst-case efficiency. Wins denote experiment-level win counts; $^\star$ marks the row with the highest win count in its scope.}
 \end{table*}
 
 % \clearpage
