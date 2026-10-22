@@ -9,9 +9,11 @@ The canonical job/evidence record remains the existing `H-MABs_MasterDataset_Ver
 - [Exact Validation Hub checkpoint in Colab](https://colab.research.google.com/github/pzg8794/quantum_project/blob/9e82d0e1aa42dc607b32052de14e2919017a15a9/Dynamic_Routing_Eval_Framework/notebooks/H-MABs_MasterDataset_VerificationHub.ipynb).
 - [Notebook, helper and regression tests at the pushed framework commit](https://github.com/pzg8794/quantum_project/tree/9e82d0e1aa42dc607b32052de14e2919017a15a9/Dynamic_Routing_Eval_Framework/notebooks).
 - Validated manuscript source commit: `21ee41bdbdce2f21e13ff4b333340087fb3a2dac`; scientific corrections began at `8bd0214d39449c03c23eb3e857e00148197db998`.
-- [Restricted checkpoint mirror](https://drive.google.com/drive/folders/1B3mo02ruJgq0TQbPH2oaD_gWAWpI5gxr); its synchronization receipt distinguishes upload/readback from byte-level verification.
+- [Existing project Drive mirror](https://drive.google.com/drive/folders/1B3mo02ruJgq0TQbPH2oaD_gWAWpI5gxr), containing the supporting evidence in the established campaign infrastructure.
 
-Use the pinned notebook above, not an older `gcp-main` Colab link. This checkpoint does not merge branches or overwrite the original dirty framework checkout.
+The validated notebook and its two support files have also been applied to the established framework `main` (`0712f941`) and `gcp-main` (`40590e47`) branches. Both copies match the validated `9e82d0e1` files byte-for-byte; all 13 regression tests passed on each destination. The existing `gcp-main` Colab link therefore receives these corrections. No unrelated framework branch changes were promoted and the original dirty framework checkout was preserved.
+
+The manuscript changes are promoted to GitHub `main` through a normal fast-forward push, preserving all existing history, including the prior Overleaf update. GitHub is the source for Piter's normal Overleaf pull; that user-operated pull is not a separate engineering blocker. This record does not claim that the Overleaf editor has already pulled. The Drive location above is the existing project mirror, not a new storage system or additional completion gate.
 
 ## Changes and evidence
 
@@ -43,7 +45,7 @@ Adjacent `reviewer_closure_reconciliation.py` performs read-only checks; `test_r
 - **27 pages; 92 unique labels; zero undefined source references/citations; 27 referenced raster/vector assets present; zero overfull hboxes/vboxes.** Three existing font-substitution warnings remain. The new switching plot is additionally included as a TeX vector fragment.
 - Abstract: 173 whitespace-delimited words; five keywords. Visual review checks the replacement plot at final column size. This is not another whole-paper visual/scientific approval.
 
-Private supporting receipts, exact source hashes, full diff and compiled PDF are retained under the existing `research_analysis/REVIEWER_BATCH_2026-10-18/closure_validation_2026-10-22/` evidence area and mirrored within the existing restricted campaign infrastructure. Destination-specific links and synchronization receipt accompany the handoff; do not infer Overleaf parity from a Git push.
+Supporting receipts, exact source hashes, full diff and compiled PDF are retained under the existing `research_analysis/REVIEWER_BATCH_2026-10-18/closure_validation_2026-10-22/` evidence area and the existing project Drive mirror. Current status is maintained here in GitHub; the saved evidence records remain historical snapshots. Overleaf obtains the manuscript from GitHub through Piter's normal pull workflow.
 
 ## Explicit holds
 
@@ -51,6 +53,6 @@ Private supporting receipts, exact source hashes, full diff and compiled PDF are
 2. Exact old table/source revision parity: for example the current native Paper8 all-allocator saved percentage mean is 67.84637%, while the manuscript prints 67.9%. Correct aggregation wording does not certify that rounding discrepancy. Old winner-count differences also require original-output provenance.
 3. Executed-unit crosswalk for 8,241 tests versus planned 552 configurations / 5,520 episodes / 380 GPU-hours; bootstrap resampling units and winner/tie conventions per output.
 4. JSAC length, owner/coauthor approval, independent integration review and human submission fields.
-5. Original dirty paper/framework checkouts and divergent Overleaf remain preserved, not synchronized or overwritten. Work is on the isolated review and framework worktrees; there is no automatic replacement of the owner's active manuscript.
+5. Original dirty paper/framework checkouts remain preserved rather than overwritten. Their local uncommitted work is not part of this publication. GitHub main and the established notebook branch contain the task's corrections; Piter can pull the manuscript into Overleaf normally.
 
 No new experiment, accepted-corpus change, F02 reopening, new causal claim, or manuscript submission is part of this checkpoint.

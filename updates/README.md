@@ -1,5 +1,9 @@
 # Paper Revision Update
 
+## Git source publication — October 22, 2026
+
+The reviewer corrections are published to the paper's GitHub `main`, ready for Piter's normal GitHub-to-Overleaf pull. The validated notebook and its regression helpers are also published to `quantum_project/main` (`0712f941`) and the existing Colab source `quantum_project/gcp-main` (`40590e47`); 13/13 tests passed on each, and the three files match the original validated commit exactly. Supporting evidence remains in the [existing project Drive mirror](https://drive.google.com/drive/folders/1B3mo02ruJgq0TQbPH2oaD_gWAWpI5gxr). Original dirty local checkouts are preserved. This publication status supersedes earlier statements below that corrections were only on review branches or required separate Overleaf synchronization. Historical provenance and submission-readiness holds remain unchanged.
+
 ## Bounded corrections and Validation Hub — October 22, 2026
 
 The whole-paper audit's source-backed corrections are implemented in the isolated review candidate: RQ3 three-run switching scope/configuration/plot, external aggregation and Default-only scope, model-specific feedback, residual claim wording, and repeated RQ answers. The draft builds at **27 pages**, with zero undefined references/citations and zero overfull boxes; the JSAC length gate remains open. Historical parameter/cadence/context and exact old table-source parity remain unresolved, not guessed. The existing Validation Hub now records the reconciliation and 13 passing validator regression tests; historical solved badges are explicitly not fresh numerical certification. See [changes, evidence, validation and remaining gates](CLOSURE_FIXES_2026-10-22.md). No experiment or Q07 rerun; no Overleaf synchronization.
