@@ -1,5 +1,7 @@
 # Reviewer-Feedback Execution Checklist
 
+**October 22 figure checkpoint:** All six accepted medium diagnostic views are integrated into the review manuscript with explicit body-to-appendix references. Viber/Perplexity figure-review safeguards are implemented and numerical identities checked against accepted derived tables. [Validation, placement, and remaining gates](FIGURE_INTEGRATION_2026-10-22.md). This closes the missing-figure integration item, not the full manuscript review, venue-length, historical provenance, or Overleaf reconciliation gates; Q07 remains scientifically closed.
+
 **Baseline date:** Thursday, August 27, 2026
 
 **Execution model updated:** Thursday, September 10, 2026

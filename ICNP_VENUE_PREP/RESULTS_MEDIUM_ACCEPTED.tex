@@ -43,6 +43,15 @@ A structural-zero selection has catalog base payoff exactly zero; a realized-zer
 \label{fig:medium_trajectory}
 \end{figure*}
 
+\Cref{fig:medium_action_exposure} separates mean action exposure from its block variation. Appendix~\ref{app:medium_diagnostics} provides the corresponding structural-zero and Oracle-gap trajectories, OnlineAdaptive availability/comparator diagnostics, and block-resolved route exposure (\cref{fig:medium_structural_zero,fig:medium_zero_gap,fig:medium_onlineadaptive,fig:medium_route_exposure}). These diagnostic views retain the same accepted cells and prespecified windows; they are not additional experiments.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/icnp/medium_action_exposure.pdf}
+\caption{Full-horizon medium-campaign action exposure. Coverage divides distinct visited route/action pairs by 550; concentration divides selections assigned to the five most-selected pairs by 6,000 decisions. The top five are selected separately in each policy/threat/block, not by payoff and not as a common set. Filled markers are equal-block means, open markers are the three blocks, and ranges are min--max, not confidence intervals. G/EXP/CP/iCP abbreviate the learned policies; Base/Stoch/Adapt/Online abbreviate Baseline/Stochastic/Adaptive/OnlineAdaptive. Block variation qualifies mean ordering; sparse visitation alone neither establishes a causal exploration failure nor requires exhaustive catalog exploration.}
+\label{fig:medium_action_exposure}
+\end{figure*}
+
 \smallTitle{Feedback and severe availability stress}
 G, EXP, and CP each record zero positive sampled Bernoulli route-feedback draws over 90,000 decisions, but their within-route learners still receive continuous allocation feedback. Summed recorded Bernoulli draw probabilities are only 0.490, 0.407, and 0.518, respectively; zero positive draws alone do not establish a defective sampler. iCP uses a distinct continuous route-feedback channel. Under OnlineAdaptive, global availability is 8,343/180,000 route-frames (4.635\%) per model, and all routes are unavailable in 12,868/18,000 frames (71.4889\%). Selected-route availability is 2.1556\% for G/CP/iCP, 4.5\% for EXP, and 28.5111\% for Oracle. Among available selections, structural zeros still account for 385/388 (G), 795/810 (EXP), 387/388 (CP), and 388/388 (iCP). Availability scarcity alone therefore does not account for all zero payoff. Equal global availability totals also do not imply equal reactive masks.
 

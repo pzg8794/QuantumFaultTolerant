@@ -1,5 +1,9 @@
 # Paper Revision Update
 
+## Figure integration — October 22, 2026
+
+All six accepted medium-diagnostic views now appear in the review manuscript: performance and action exposure in the body, with structural-zero occupancy, Oracle gap, OnlineAdaptive, and block-resolved route exposure in a dedicated appendix referenced from the body. The independent figure reviewers' caption/denominator safeguards are implemented. This is presentation/integration of accepted evidence, not another analysis or experiment. See [integration and validation record](FIGURE_INTEGRATION_2026-10-22.md). The dirty original checkout and Overleaf remain untouched; the isolated review candidate is not a submission-ready replacement.
+
 ## Current update — October 18, 2026
 
 The accepted medium-scale evidence is now integrated into an isolated journal-format revision candidate. Eight task-specific commits cover claim provenance, medium findings, allocator/feedback semantics, contexts/settings, threats, compression, residual-review risk, and venue readiness. Independent Viber/latest-model and Perplexity integration reviews are underway; their verdicts are separate from the already-complete Q07 scientific acceptance.
