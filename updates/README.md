@@ -1,5 +1,20 @@
 # Paper Revision Update
 
+## Current coverage sweep — October 23, 2026
+
+All 20,774 consolidated component files pass fresh Drive checksum/size checks;
+approved access, historical sources, local logs/notebooks and validator references
+are preserved. The component validator passes 21 tests and the reviewer validator
+passes 27 tests with no skips. Stale task-level "not started"/"planned" entries are
+corrected to match accepted work. Q07/F10 diagnosis remains closed.
+
+**Not all reviewer/submission work is closed:** the Paper8 context row needs a
+scoped correction against recovered model catalogs; remaining historical run
+associations must be stated accurately; the last verified build is **28 pages**,
+not 27; final integration/coauthor and submission gates remain. Production writers
+also have not switched to the new component drives, separately from completed
+copy coverage. [Task-by-task sweep, verified evidence and next action](COVERAGE_SWEEP_2026-10-23.md).
+
 ## Historical run/context bindings — October 23, 2026
 
 Further original datalake retrieval binds 20 historical threat-setting results through complete trajectories and recovers source-backed result fields for 330 Paper7 rows. Actual saved context catalogs are now bound for three Paper8 G source modes and a Paper2 G result. Paper8's saved catalogs differ from its source-notebook feature description, so the appendix needs a scoped wording review rather than a generic missing-data hold. [Exact recovered scope and remaining links](DATALAKE_RUN_BINDING_2026-10-23.md). No new experiment, manuscript edit or Q07 reanalysis.

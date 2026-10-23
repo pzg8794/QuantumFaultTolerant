@@ -1,5 +1,13 @@
 # Reviewer-Feedback Execution Checklist
 
+**Current October 23 post-consolidation sweep:** Component copies/access and source
+registration pass; 21 component and 27 reviewer-validator tests pass. Q07/F10
+diagnosis and the accepted medium anchor remain complete. The current task-level
+statuses below supersede their September planning states. The specific Paper8
+context-scope correction, scoped historical run associations, final integration
+review, and F12's **28-page versus 13-page** length/human gates remain; none implies
+missing exported data or another experiment. [Current evidence and closure map](COVERAGE_SWEEP_2026-10-23.md).
+
 **Historical evidence discovery rule (October 23):** Before declaring original evidence unavailable, inspect the existing shared-drive datalake, local `quantum_logs` including experiment-specific subfolders, saved testbed notebook outputs and any historical Drive IDs they identify. Include ignored files in bounded local discovery. Paper7 has 77 local logs and two saved notebooks; object-to-export nonmatches do not erase these sources. [Audit and remaining source associations](DATALAKE_RUN_BINDING_2026-10-23.md#local-logs-and-saved-notebooks-required-source-coverage).
 
 **Recovered source coverage:** Paper7's saved outputs name historical Drive `0APT9hcMpvuHYUk9PVA` / `ai_quantum_computing`, separately from current `0AK0VchnNyM-xUk9PVA` / `ai_quantum_project`. The historical drive is now **READABLE AND INVENTORIED** through the authorized Rochester browser account and existing archived framework connection: 483 live items, including 22 Paper7 aggregate objects. Earlier 404s were connection-specific. Thirteen distinct Paper7 object contents were not present in the current-root listing. All 77 local logs also have hash-verified shared-drive counterparts. The [source-location register](EVALUATION_SOURCE_STATUS_2026-10-04.md#explicit-paper7-source-location-register--october-23) and Validation Hub retain both source roots and actual original-file checks, rather than treating access status as the end of validation.
@@ -26,7 +34,7 @@
 
 **Execution model updated:** Thursday, September 10, 2026
 
-**Current task (October 18):** Owner-authorized eight-task manuscript integration is implemented on the isolated review branch and undergoing independent Viber/latest-model and Perplexity review. See [batch record](REVIEWER_BATCH_2026-10-18.md), [claim matrix](F14_CLAIM_EVIDENCE_INTEGRATION_2026-10-18.md), and [submission audit](F12_SUBMISSION_AUDIT_2026-10-18.md). The original dirty checkout is preserved.
+**Current task (October 23):** The eight-task integration and later source/method corrections are published; this sweep updates their evidence/status records without changing the manuscript. Next is the specific F04 context-scope wording adjudication, followed by remaining integration and submission gates. See [batch record](REVIEWER_BATCH_2026-10-18.md), [claim matrix](F14_CLAIM_EVIDENCE_INTEGRATION_2026-10-18.md), and [current sweep](COVERAGE_SWEEP_2026-10-23.md). The original dirty checkout is preserved.
 
 **Accepted evidence status:** Q07 diagnosis COMPLETE — **PASS WITH REQUIRED CLAIM LIMITATIONS** after Astra primary analysis, Sol independent reproduction with zero material numerical mismatches, final scientific audit, and hash-verified restricted evidence mirroring. [Exact identities/locations](EVALUATION_SOURCE_STATUS_2026-10-04.md). F10 existing-trace diagnosis is complete; the historical 100-node cause remains unresolved. No new experiment or analysis repair is currently required.
 
@@ -365,7 +373,7 @@ The Introduction should connect the controlled evaluation directly to the contex
 - **Guardrail:** Do not delete validated evidence merely to shorten the paper. Every removal or relocation receives before/after review.
 - **Completion evidence:** A reader can identify the problem, controlled methodology, and principal findings quickly, while supporting evidence remains traceable.
 - **First-pass work completed:** Tightened the Introduction framework/findings preview, removed repetitive cross-testbed synthesis, and compressed repeated model/testbed ranking prose in the Discussion while retaining the evidence pointers and all validated numerical findings.
-- **Status:** **Current.** The first surgical compression pass is complete and reduced the compiled draft from 17 to 16 pages. A remaining paragraph-level sweep is still required before this task can be closed.
+- **Status:** **BOUNDED COMPRESSION IMPLEMENTED; FINAL LENGTH/READABILITY OPEN.** The earlier 17-to-16-page conference pass is historical. Later journal integration and methods/source corrections have a verified 28-page build; repeated RQ answers and forced page breaks were removed. Remaining work is an approved main-paper/supporting-material allocation and final readability review, not repeating the first pass.
 
 ### F-05 — Clarify the Allocator–Policy Relationship
 
@@ -390,7 +398,7 @@ The Introduction should connect the controlled evaluation directly to the contex
 - **Exact-parameter provenance gate:** Current `attack_strategy.py` does not match several manuscript parameter/process statements: current Markov is binary per-path with `p_stay=0.7`; Adaptive defaults to `adaptation_window=100` and `adaptation_strength=0.5`; OnlineAdaptive uses response delay/bursts/recent-path targeting rather than the manuscript's stated gamma/softmax rule. Do not copy either current defaults or manuscript values into the final table until the validated data-producing implementation/configuration is recovered.
 - **Active-regime guardrail:** Keep exactly Baseline, Stochastic, Markov, Adaptive, OnlineAdaptive. Do not reintroduce historical `Targeted` without evidence that it belongs to the validated corpus.
 - **Decision record:** See [F-06 Threat-Taxonomy Physical-Grounding Decision Record](F06_THREAT_TAXONOMY_PHYSICAL_GROUNDING_DECISION_RECORD.md) for the complete reasoning path, literature-role boundaries, and provenance requirements.
-- **Status:** **DEPLOYED WITH PROVENANCE HOLD.** The manuscript now includes the taxonomy rationale, reward-factor distinction, domain mapping, parameter boundary, and excluded-scope statement. Exact historical Markov/Adaptive/OnlineAdaptive parameters and process semantics remain omitted pending data-producing provenance.
+- **Status:** **GROUNDING AND MEDIUM SEMANTICS IMPLEMENTED; HISTORICAL INTEGRATION PARTIAL.** The rationale, reward-factor distinction, domain mapping and pinned medium processes are documented. Twenty historical result records now have complete trajectory bindings and scoped parameter evidence, including Adaptive window 50; see the October 23 source record. Incorporating those values must retain their exact source scope; unrecorded transition/default semantics are not inferred. This is not a blanket missing-parameter claim.
 
 ### F-03 — Specify the Complete Routing Decision Loop
 
@@ -407,7 +415,7 @@ The Introduction should connect the controlled evaluation directly to the contex
 - **Feedback addressed:** Reviewers B and C request concrete context/action definitions, dimensions, NeuralUCB architecture/training, Pursuit update semantics, predictive machinery, and reproducible settings.
 - **Resolved primary representation:** For route r with h_r links and allocator-assigned budget T_r, the primary matched-evaluation context/action set is `X_r(T_r) = {x in Z_{>=0}^{h_r} : sum_l x_l = T_r}`. Two-hop primary routes therefore use 2-dimensional allocation vectors and three-hop routes use 3-dimensional allocation vectors.
 - **Information-role boundary:** Route identity is structural through the route-specific learner/action set; hop count is implicit in h_r/vector dimension; threat availability affects reward feedback rather than being appended to the primary allocation vector; reward history enters learner/replay/update state rather than the instantaneous x.
-- **External-context boundary:** Context construction is testbed-specific under a shared model contract. Paper8 currently uses one 8-dimensional path-feature vector per path and one within-path action per path; other external-testbed representations must be verified before insertion.
+- **External-context boundary:** Context construction is testbed- and run-specific. Paper8's source notebook declares one eight-feature vector per path, but three trajectory-bound saved GNeuralUCB Default/Baseline catalogs have different route-specific action counts/dimensions. A Paper2 G catalog is also result-bound. See [recovered catalog evidence](DATALAKE_RUN_BINDING_2026-10-23.md#external-context-catalogs-actual-model-evidence-recovered). Do not present the notebook construction as a universal executed Paper8 encoding; the appendix correction still needs exact wording review.
 - **Verified NeuralUCB mechanism:** d_r -> 128 -> 1 ReLU network; learned reward score plus gradient-based confidence; replay-backed updates; Adam; MSE plus squared parameter-drift regularization; verified primary implementation trains after T>K using two 64-sample optimization steps per update. Scope this cadence to the verified implementation unless broader provenance is established.
 - **Verified Pursuit mechanism:** uniform initial route probabilities; identify empirical-best arm; update `p_best <- p_best + alpha(1-p_best)` and `p_i <- p_i - alpha p_i` for other arms; sample the next arm from the resulting distribution.
 - **Predictive mechanism:** use mechanism-level wording such as ARIMA-based predictive reward modeling with anomaly-aware filtering. Current code uses `auto_arima()` order search; fixed ARIMA(1,0,1) must not be presented as universal without data-producing provenance.
@@ -415,7 +423,7 @@ The Introduction should connect the controlled evaluation directly to the contex
 - **Provenance rule:** distinguish (1) source-verified mechanism, (2) current-code default, and (3) validated-corpus value. Exact corpus-specific beta/lambda/lr/regularization, Pursuit alpha, predictive warmup/update/order/anomaly settings, replay settings, mode overrides, and testbed-specific overrides remain provenance-pending until tied to the data-producing commit/configuration.
 - **NeuralTS guardrail:** do not add NeuralTS to the evaluated-policy table merely because the class exists; current validated-corpus audit does not include it among the evaluated non-Oracle policies.
 - **Decision record:** See [F-04 Context and Hyperparameter Documentation Decision Record](F04_CONTEXT_HYPERPARAMETER_DECISION_RECORD.md) for the complete reasoning and S/C/P adjudication path.
-- **Status:** **DEPLOYED WITH PROVENANCE HOLD.** The inaccurate universal-context sentence is replaced; the primary context equation, scope-specific context table, NeuralUCB mechanism/training description, Pursuit update, and predictive mechanism are documented. Unverified external-testbed encodings and validated-run hyperparameter values remain omitted.
+- **Status:** **IMPLEMENTED WITH A SPECIFIC CONTEXT CORRECTION AND RUN-BINDING WORK REMAINING.** Primary/medium contexts, NeuralUCB/Pursuit mechanisms and predictive semantics are documented. Original neural states/settings are recovered, not missing. The Paper8 table row and later Paper8 exemption still overgeneralize its notebook construction; correct them against the recovered catalogs through the wording workflow. Remaining historical child-to-run and external-context associations are not filled from defaults.
 
 ### F-08 — Design Medium-Scale Validation as a Controlled Scale Spectrum
 
@@ -427,7 +435,7 @@ The Introduction should connect the controlled evaluation directly to the contex
 - **Research question:** **How does the performance hierarchy exposed by the primary matched evaluation evolve as routing-space complexity increases?** Do not design the experiment to prove pursuit/context-aware neural configurations win.
 - **Valid outcomes:** persistence, narrowing, reversal, threat-conditional ranking, changing allocator sensitivity, changing replay-capacity effects, or inconclusive behavior are all scientifically useful.
 - **Approval gate:** Before execution, document topology family, node/path spectrum, reviewer anchor, the **complete approved scenario axis resolved from canonical configuration** (never a scale-tier threat subset), allocators/replay semantics, horizons/stopping criteria, metrics, seeds/repeats, compute-readiness, canonical config provenance, and interpretation rules.
-- **Status:** Engineering preparation and a specific **proposed**, not approved, scientific contract documented September 26 and corrected September 27 to remove campaign-specific threat-count/subset hardcoding. See [preparation record](MEDIUM_SCALE_PREPARATION_2026-09-26.md) and its implementation/preflight dependencies. **Current PR #2 medium-preflight code still contains a two-scenario technical shortcut and is not an approved scientific scenario manifest until that shortcut is replaced by configuration-driven scenario consumption and revalidated.** Piter approval, manuscript/code provenance reconciliation, and technical preflight remain gates; no execution began in this pass.
+- **Status:** **ACCEPTED MEDIUM-ANCHOR CONTRACT COMPLETE.** The earlier September proposal/preflight status is superseded by the accepted 15-node/ten-route, five-model/five-threat, three-block Default/fixed campaign. [Pinned execution identity](EVALUATION_SOURCE_STATUS_2026-10-04.md#accepted-medium-scale-execution-identity). This completes the approved medium anchor, not every point of the earlier spectrum proposal. No new experiment is authorized.
 - **Completion evidence:** Approved reproducible spectrum design with controls, metrics, seeds, stopping criteria, compute-readiness decision, and explicit reviewer-anchor coverage.
 
 ### F-09 — Run and Validate the Controlled Scale Spectrum
@@ -435,7 +443,7 @@ The Introduction should connect the controlled evaluation directly to the contex
 - **Feedback addressed:** Reviewers B and C request actual scale evidence.
 - **Execution rule:** Run only the design approved under F-08. Do not substitute an ad hoc single experiment after approval.
 - **Validation scope:** Preserve canonical configs, logs, datasets, plots, policy-family rankings, robustness floors, allocator sensitivity, replay-capacity behavior, regret/convergence where appropriate, and cross-scale pattern transitions.
-- **Status:** Not started in the September 26 planning pass; blocked on F-08 scientific approval and the documented technical preflight. A preparation document is not run evidence.
+- **Status:** **ACCEPTED MEDIUM ANCHOR EXECUTED AND VALIDATED.** All 75 cells completed at 6,000 frames; accepted Q05/Q06 evidence and Q07 analysis are recorded in the source register and integrated into the manuscript. The earlier "not started" planning status is superseded. No full multi-point spectrum or unexecuted allocator/replay sweep is claimed.
 - **Completion evidence:** Canonical validated evidence plus a bounded conclusion describing what persists, compresses, reverses, or remains unresolved across scale.
 
 ### F-10 — Diagnose the 100-Node Efficiency Compression
@@ -444,8 +452,8 @@ The Introduction should connect the controlled evaluation directly to the contex
 - **Feedback addressed:** Reviewers B and C need an explanation for the existing large-topology compression result.
 - **Problem:** Heterogeneous testbed evidence cannot attribute the ~44.1% result to node count alone.
 - **Candidate factors to separate:** convergence horizon, routing/path diversity, context/state complexity, allocator behavior, replay capacity, and topology/physics constraints.
-- **Execution rule:** Use targeted validated diagnostics/ablations; do not replace evidence with intuitive causal storytelling.
-- **Status:** Later experimental/diagnostic tier. Do not start while manuscript-only reviewer fixes remain available.
+- **Execution rule:** Preserve the accepted existing-trace diagnosis and explicit causal boundary. Further diagnostics/experiments require a later advisor/reviewer evidence need; none is currently required or authorized.
+- **Status:** **EXISTING-TRACE DIAGNOSIS COMPLETE — PASS WITH REQUIRED CLAIM LIMITATIONS.** Astra analysis, Sol independent reproduction and final audit are accepted. Historical 100-node causality remains unresolved as a bounded limitation; do not reopen Q07 or equate measured medium behavior with a causal explanation of that result.
 - **Completion evidence:** Validated ablations separate plausible factors, or the manuscript states precisely what remains unresolved.
 
 ### F-11 — Complete the Reviewer B Residual-Risk Audit
@@ -475,7 +483,7 @@ The Introduction should connect the controlled evaluation directly to the contex
 - **Execution:** Build a living claim-provenance matrix now using existing evidence; finalize cross-scale claims only after F-09/F-10 evidence exists. Then audit Abstract → Introduction → Results → Discussion → Conclusion for the same evidence progression.
 - **Target reader logic:** **controlled discovery → controlled scaling → external validation → diagnosis → bounded claim**.
 - **Guardrail:** Policy-family winners remain findings produced by the framework; they do not become the paper's contribution merely because they are repeatedly named.
-- **Status:** **Planned; starter taxonomy approved.**
+- **Status:** **CLAIM MATRIX AND MANUSCRIPT INTEGRATION IMPLEMENTED; FINAL ARTIFACT REVIEW OPEN.** The October 18 claim matrix, medium Results/diagnostic figures and subsequent bounded-claim corrections are present. The earlier planning status is superseded; final review must incorporate the current source/catalog distinctions without reopening accepted Q07 or F02/F07 decisions.
 - **Completion evidence:** Every major high-level claim is traceable to an evidence level and carries an explicit scope/boundary consistent across the manuscript.
 
 ## Current 10-Hour Work Block

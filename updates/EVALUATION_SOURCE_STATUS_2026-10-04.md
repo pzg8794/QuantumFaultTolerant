@@ -7,6 +7,15 @@ as evidence of current completion.
 
 ## Current source hierarchy
 
+**October 23 post-copy recheck:** Fresh Drive inventories verify all 20,774 copied
+files and approved memberships; current original component sources show no delta.
+All registered local/Git inputs remain accounted for, including the separately
+published updated validator. The existing suites pass 21 component and 27 reviewer
+tests. [Current reviewer closure map and exact audit scope](COVERAGE_SWEEP_2026-10-23.md)
+supersedes stale task-level planning/27-page status, while preserving the accepted
+Q07 closure. Component-copy completeness does not itself close run bindings,
+manuscript context accuracy or production component-routing integration.
+
 **October 23 component-storage consolidation:** The owner-approved notebooks,
 framework-state, model-state and log shared drives contain 20,774 size/SHA-256/MD5
 verified files representing 21,659 source identities, with exactly the approved
@@ -102,9 +111,9 @@ permission change by this status update.
 **October 22 bounded follow-up:** Exported-record accounting and descriptive statistical definitions are reconciled in the existing Validation Hub using the unchanged shared `StateReporting` source contract. All 1999 experiment winners reproduce; eight Hybrid source/scenario summary labels differ from mean-efficiency leaders and remain traceable in the new output. Historical log header rates and saved external notebook definitions have been recovered without treating them as full effective-run certificates. [Current evidence and remaining boundary](CLOSURE_FIXES_2026-10-22.md). This does not reopen accepted Q07 or authorize an experiment.
 
 - Exact adaptive allocator execution cadence in the data-producing workflow.
-- Historical attack-strategy parameters used for the validated manuscript corpus.
-- Validated-run hyperparameters not already tied to immutable run evidence.
-- External-testbed context encodings other than the verified Paper8 representation.
+- Historical attack-process details outside the 20 trajectory-bound result records and their explicitly recovered values; null overrides do not identify generator defaults.
+- Recovered nested learner settings still needing exact child-to-parent run associations; the original state fields are available, not generically missing.
+- Paper7 result-field associations not covered by the 330 matched native rows, and remaining external context-to-run links. The Paper8 notebook construction is not a universal verified encoding: three result-bound G catalogs differ and require the scoped appendix correction documented in the October 23 source record. Paper2's bound G catalog is also available.
 - Random, DynamicUCB, and ThompsonSampling allocator qualification remains outside
   the accepted Default/fixed Tier-1 campaign.
 
