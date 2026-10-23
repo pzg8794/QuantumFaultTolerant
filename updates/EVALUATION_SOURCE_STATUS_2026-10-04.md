@@ -7,6 +7,8 @@ as evidence of current completion.
 
 ## Current source hierarchy
 
+**October 23 original run/context bindings:** Twenty historical threat-setting results are matched through complete recorded reward/regret/action trajectories; original per-run evidence matches the result fields and source scope of 330 Paper7 rows. Three saved Paper8 G catalogs and a Paper2 G catalog are directly result-bound. Notebook-declared Paper8 features do not match those saved catalogs, requiring documentation review, not replacement of validated results. The inspected new source-master revision covers nine artifacts / 335 contexts, not the entire historical archive. [Exact scope, parameters, nonmatches and remaining limits](DATALAKE_RUN_BINDING_2026-10-23.md). Q07 remains closed.
+
 **Later original-object recovery:** Four separately stored NeuralUCB learners contain their actual networks, Adam optimizer state/settings and replay buffers; original bytes match provider size, MD5 and SHA-256. Those fields are available in the datalake, not absent because the top-level model snapshots omit them. The expanded inventory retains 7097 provider IDs and 153 duplicate filenames. Parent-run binding remains a separate check; Paper7's inspected runner/model still differs from its native export. [Exact recovered values and boundary](DATALAKE_ORIGINAL_SOURCE_VALIDATION_2026-10-22.md#later-source-recovery-correction--separately-saved-learners). This supersedes broad missing-neural-state language below without reopening Q07.
 
 | Purpose | Authoritative source | Current status |

@@ -1,5 +1,7 @@
 # Original datalake source verification — October 22, 2026
 
+**October 23 superseding run/context checkpoint:** Original per-run Paper7 evidence now matches scoped result fields for 330 native rows, and 20 historical threat-setting results are complete-trajectory bound. Three Paper8 G context catalogs and a Paper2 G catalog are result-bound; the actual saved Paper8 catalogs differ from its notebook's declared features. [Recovered parameters, source scope and the remaining exact boundaries](DATALAKE_RUN_BINDING_2026-10-23.md). Earlier blanket source/context holds below are historical descriptions of the narrower inspection, not current evidence that these data are unavailable. No manuscript or experiment changed.
+
 ## Later source-recovery correction — separately saved learners
 
 The owner's direction to inspect the datalake more deeply recovered four separate original within-route NeuralUCB snapshots. Their provider size, MD5 and SHA-256 match the downloaded bytes; strict original-object loading recovers the neural networks, Adam optimizer state and replay buffers. Therefore **do not describe those fields as missing from the datalake** merely because the earlier three top-level model dictionaries omit them.

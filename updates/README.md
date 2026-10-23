@@ -1,5 +1,9 @@
 # Paper Revision Update
 
+## Historical run/context bindings — October 23, 2026
+
+Further original datalake retrieval binds 20 historical threat-setting results through complete trajectories and recovers source-backed result fields for 330 Paper7 rows. Actual saved context catalogs are now bound for three Paper8 G source modes and a Paper2 G result. Paper8's saved catalogs differ from its source-notebook feature description, so the appendix needs a scoped wording review rather than a generic missing-data hold. [Exact recovered scope and remaining links](DATALAKE_RUN_BINDING_2026-10-23.md). No new experiment, manuscript edit or Q07 reanalysis.
+
 ## Original datalake verification — October 22, 2026
 
 Deeper original-object retrieval has now recovered four separately saved NeuralUCB learners, including their networks, Adam optimizer state/settings and replay buffers. These are present in the datalake; the earlier missing-field statement was limited to the top-level snapshots. Their exact parent-run associations still require evidence, and the inspected Paper7 runner/model remains different from the native export. [Recovered settings and scope](DATALAKE_ORIGINAL_SOURCE_VALIDATION_2026-10-22.md#later-source-recovery-correction--separately-saved-learners). No new experiment or manuscript edit.
