@@ -1,5 +1,15 @@
 # Original datalake source verification — October 22, 2026
 
+## Later source-recovery correction — separately saved learners
+
+The owner's direction to inspect the datalake more deeply recovered four separate original within-route NeuralUCB snapshots. Their provider size, MD5 and SHA-256 match the downloaded bytes; strict original-object loading recovers the neural networks, Adam optimizer state and replay buffers. Therefore **do not describe those fields as missing from the datalake** merely because the earlier three top-level model dictionaries omit them.
+
+The four inspected learner objects store hidden size `128`, beta `1.0`, regularization `0.000625`, Adam learning rate `0.0001`, replay capacity `4000`, and two- or three-feature input layers followed by a scalar output. These are serialized values, not current-code defaults. They establish those exact object settings, not a universal configuration for every historical result. Their cumulative update counts are `55489`, `17793`, `3010` and `5184` despite a `4000` frame label; reused child filenames alone do not establish the parent policy/scenario/result binding or training cadence.
+
+The expanded read-only inventory retains **7097 distinct provider object IDs**, including **153 duplicated filenames**, rather than collapsing them through a filename-only index. It also recovers a separate Paper7 experiment-runner snapshot and policy snapshot; the checked Default/Baseline/first-experiment G result is `401`, whereas the preserved native export records `396`. Those particular originals therefore still do not bind that exported result. No result is replaced, and no conclusion that Paper7 originals are absent from all storage is justified. An additional exact-name search through the owner's connected Drive account returned no further candidate in that checked scope.
+
+**Current disposition:** neural state/settings availability is demonstrated; exact parent-run associations and any still-unrecorded cadence/process details remain bounded source-binding tasks. Paper7's matching export-producing run is not yet established. No new experiment is required or authorized. The existing Validation Hub records the source-recovery check; private provider identities, receipts and inventory remain in the existing [original-source evidence folder](https://drive.google.com/drive/folders/16-y5VdX7JWc6OdMuGIXF0H-s6FeZJBWV). Earlier absence statements below apply only to the previously inspected top-level snapshots.
+
 ## Scope and disposition
 
 The original data are present. Earlier CSV-only checks were not original-source validation, and an unavailable connected Drive account did not establish that the datalake was unavailable. This pass uses the existing configured `GoogleDriveBackupManager`, its existing exact-filename indices, and the established `state_analysis.extract_data_from_state_file` exporter. No loader, experiment runner, storage system, or dashboard was replaced.

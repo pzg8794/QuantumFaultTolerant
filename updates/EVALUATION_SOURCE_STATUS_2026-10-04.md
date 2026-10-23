@@ -7,6 +7,8 @@ as evidence of current completion.
 
 ## Current source hierarchy
 
+**Later original-object recovery:** Four separately stored NeuralUCB learners contain their actual networks, Adam optimizer state/settings and replay buffers; original bytes match provider size, MD5 and SHA-256. Those fields are available in the datalake, not absent because the top-level model snapshots omit them. The expanded inventory retains 7097 provider IDs and 153 duplicate filenames. Parent-run binding remains a separate check; Paper7's inspected runner/model still differs from its native export. [Exact recovered values and boundary](DATALAKE_ORIGINAL_SOURCE_VALIDATION_2026-10-22.md#later-source-recovery-correction--separately-saved-learners). This supersedes broad missing-neural-state language below without reopening Q07.
+
 | Purpose | Authoritative source | Current status |
 |---|---|---|
 | Campaign SDLC and task acceptance | [Canonical medium-scale execution board](https://github.com/pzg8794/Fall-2026-Semester-Master-Plan/blob/e4f00e5/CAMPAIGNS/2026-09-26-MEDIUM-SCALE/SDLC-EXECUTION-BOARD-2026-09-27.md) | Linked commit is the earlier campaign checkpoint; local Q-07 scientific closure is recorded below, without claiming that the remote board was updated |
