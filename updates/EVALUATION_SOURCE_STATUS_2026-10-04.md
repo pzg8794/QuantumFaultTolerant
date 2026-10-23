@@ -7,6 +7,17 @@ as evidence of current completion.
 
 ## Current source hierarchy
 
+**October 23 component-storage consolidation:** The owner-approved notebooks,
+framework-state, model-state and log shared drives contain 20,774 size/SHA-256/MD5
+verified files representing 21,659 source identities, with exactly the approved
+three-member access on each drive. Both old Drive roots and local logs/notebooks
+remain explicitly registered. The existing Validation Hub now links the new
+destinations, original-to-copy manifest, 181 Paper7 source mappings and 21 passing
+positive/negative tests. [Drive links, hashes and exact scope](DATALAKE_RUN_BINDING_2026-10-23.md#later-component-consolidation--verified-storage-copies).
+This updates storage access/provenance only: originals remain intact, production
+writers/loaders have not switched roots, and scientific run-binding findings below
+are not changed by copying files. No experiment or manuscript change occurred.
+
 **Local archive coverage correction:** Historical source recovery must include the organized experiment logs and saved notebook outputs as well as datalake objects. The Paper7 audit identifies 77 local logs and two existing GitHub-backed notebooks. All 77 log paths now map to byte-verified shared-drive copies: 50 missing unique contents were uploaded, while identical copies were reused. Different existing remote contents were preserved. [Exact coverage, comparisons and historical-root access](DATALAKE_RUN_BINDING_2026-10-23.md#local-logs-and-saved-notebooks-required-source-coverage). Do not infer missing historical data from experiment-object nonmatches alone.
 
 ### Explicit Paper7 source-location register — October 23

@@ -6,6 +6,45 @@ More of the requested evidence is present in the datalake than the earlier filen
 
 ## Shared-drive identity and full-directory recheck
 
+### Later component consolidation — verified storage copies
+
+Piter authorized four component drives with the existing Rochester/RIT Managers
+and framework service-account Content manager, without public/domain sharing:
+
+| Component | Consolidated copy | Unique files verified |
+|---|---|---:|
+| Notebooks | [ai_quantum_notebooks](https://drive.google.com/drive/folders/0AGbQ6E7AidVNUk9PVA) | 192 |
+| Framework state/support | [ai_quantum_framework_state](https://drive.google.com/drive/folders/0AMEB9SU4Raw3Uk9PVA) | 4,627 |
+| Model state | [ai_quantum_model_state](https://drive.google.com/drive/folders/0AIxNGjMWQME3Uk9PVA) | 15,305 |
+| Execution logs | [ai_quantum_logs](https://drive.google.com/drive/folders/0AEPPet33IkCtUk9PVA) | 650 |
+
+The copy represents 21,659 original source identities with 20,774 unique files
+and 885 exact-content aliases. Original filenames/paths, source IDs and checksums
+remain recorded; different contents are not merged. Fresh destination size,
+SHA-256 and MD5 readback passes for every file. All four permission lists match
+the approved three members. The current original component inventory has no
+added/removed/changed files during the closing comparison. Originals were retained.
+
+The [private consolidation record](https://drive.google.com/drive/folders/1d7T-9kOTbC0n45gvw4tPWMlNFO4IC-9B)
+contains source/destination inventories, receipts, code, 21 passing positive/negative
+tests and `SOURCE_LOCATION_REGISTER.json`, including 181 explicit Paper7
+source-to-copy mappings. `SOURCE_MANIFEST.json` SHA-256:
+`12fedbf89a29f0f78385c5b57bf2216a2d64bc3cbb4e577584527ab41b1dfbce`.
+The existing Validation Hub now names both original Drive roots, the local log and
+notebook sources, and all four new destinations and validates this copy record.
+The [published Validation Hub](https://github.com/pzg8794/quantum_project/blob/5967bbd01737307f45c45f8afd8d8b11a6127089/Dynamic_Routing_Eval_Framework/notebooks/H-MABs_MasterDataset_VerificationHub.ipynb)
+preserves all 141 prior cells and adds the source-register and executed component
+validation cells. The same notebook bytes are published on `gcp-main` and mirrored
+to the notebooks component drive under `notebooks/current/`.
+
+This is **completed component-copy consolidation**, not production-loader cutover
+or a new scientific run-binding result. Existing writers/loaders remain configured
+to their previous root; historical registries retain original IDs. No manuscript,
+experiment, Q07 acceptance or the source-to-export comparisons below were changed.
+Files outside the four requested components remain at their registered sources.
+
+### Earlier source-recovery snapshot
+
 The configured source is the owner's [ai_quantum_project shared drive](https://drive.google.com/drive/folders/0AK0VchnNyM-xUk9PVA). A fresh, explicitly drive-scoped enumeration returned 20,779 live items across 46 complete pages. All 94 original objects read in the preceding run-binding pass are in this exact drive and retain their recorded SHA-256 checksums. The enumeration includes 4,058 Paper7-related objects; none has an ID absent from the previous expanded inventory.
 
 The source paths are `quantum_data_lake/framework_state/` and `quantum_data_lake/model_state/`. The general account-based Drive connector and the framework's authorized service-account connection have different visibility. The framework connection successfully reads this drive. Its `in_share_drive=False` setting on the Mac selects API retrieval rather than a mounted Colab workspace; it does not select a different remote root.
