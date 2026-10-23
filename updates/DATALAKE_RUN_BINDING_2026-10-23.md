@@ -4,6 +4,35 @@
 
 More of the requested evidence is present in the datalake than the earlier filename-index checks established. This pass reads actual preserved evaluator, runner and model objects through the existing loader, checks original bytes against provider size/MD5/SHA-256, and compares recorded results. It does not rerun a simulation, accepted Q07 analysis, or manuscript build. No manuscript text or original data changed.
 
+## Shared-drive identity and full-directory recheck
+
+The configured source is the owner's [ai_quantum_project shared drive](https://drive.google.com/drive/folders/0AK0VchnNyM-xUk9PVA). A fresh, explicitly drive-scoped enumeration returned 20,779 live items across 46 complete pages. All 94 original objects read in the preceding run-binding pass are in this exact drive and retain their recorded SHA-256 checksums. The enumeration includes 4,058 Paper7-related objects; none has an ID absent from the previous expanded inventory.
+
+The source paths are `quantum_data_lake/framework_state/` and `quantum_data_lake/model_state/`. The general account-based Drive connector and the framework's authorized service-account connection have different visibility. The framework connection successfully reads this drive. Its `in_share_drive=False` setting on the Mac selects API retrieval rather than a mounted Colab workspace; it does not select a different remote root.
+
+The twelve short-run Paper7 aggregate objects each expose one retained Drive revision. The expanded per-experiment check reads all 387 current Paper7 runner objects whose names identify observation horizons of 50, 100, 150, 200 or 250 frames, across every allocator, using exact provider IDs and byte checksums. The resulting 330 matched native rows and 1,170 unmatched rows describe this source-to-export comparison, not missing files or an inaccessible datalake. The unmatched count must not be presented as evidence that no corresponding source exists anywhere in the archive.
+
+The exact query, root/ancestry checks, revision IDs, candidate results and targeted Validation Hub receipt are retained with the existing private source evidence. No storage root, source object, experiment or manuscript is changed by this check.
+
+## Local logs and saved notebooks: required source coverage
+
+The owner identified organized local experiment logs and saved notebook outputs as additional evidence. The source search must cover these alongside stored experiment and learner objects. The read-only follow-up finds 77 Paper7 text logs across the local log tree and two Paper7 notebooks, including the organized `Paper7-Testbed-Results` folder. Before mirroring, 21 logs had identical bytes in the current shared-drive listing; the other 56 local paths represented 50 distinct contents absent from that listing. Both notebooks match their existing GitHub versions and need no duplicate publication.
+
+The audit parses 4,991 recorded learned-model reward lines under their allocator, scenario, experiment number, frame horizon and replay scale. There are 84 individual native-row reward matches at logged precision, but no complete four-learned-model reward vector matches under all those keys. Individual coincident values are not substituted for complete run identity. These logs are useful historical evidence, including seed, attack-rate, capacity and setup-allocation records; this comparison does not certify an unrecorded within-episode allocator cadence or a complete learner configuration.
+
+The saved output of **both** Paper7 notebooks refers to historical shared-drive ID `0APT9hcMpvuHYUk9PVA`. In cell 3, output 0 (zero-based), line 53 says `Looking for 'backup_registry.json' in Drive folder: 0APT9hcMpvuHYUk9PVA`; line 39 records `/content/drive/Shareddrives/ai_quantum_computing/quantum_data_lake`. Both the current framework connection and the general Drive connector return 404 for that root. This establishes a historical location requiring source recovery if it still exists; it does not establish that the drive or its data were deleted, migrated or are the current notebook destination. Current `ai_quantum_project` source coverage must not be represented as an exhaustive search of that older location.
+
+The notebook sources are already published at the verified framework commit `5e4c2602ee51eb9fc0a0318dab115cfdb545c699`:
+
+- [Paper7 notebook](https://github.com/pzg8794/quantum_project/blob/5e4c2602ee51eb9fc0a0318dab115cfdb545c699/Dynamic_Routing_Eval_Framework/notebooks/H-MABs_Eval-Testbed-Paper7.ipynb), SHA-256 `0ad4fa14ab51df39e26a7aba71ad88d2bfbf76a118bf38e2e0809b9a053738eb`.
+- [Standardized Paper7 notebook](https://github.com/pzg8794/quantum_project/blob/5e4c2602ee51eb9fc0a0318dab115cfdb545c699/Dynamic_Routing_Eval_Framework/notebooks/H-MABs_Eval-Testbed-Paper7-StandardizedRunConfig.ipynb), SHA-256 `8fbb7263bcdec0b8045dbd55effa5d8ec939eebed0da3021cfb744b635d6aebd`.
+
+**Preservation completed:** all 77 local log paths now have downloaded-byte-verified shared-drive counterparts. Fifty missing unique log contents were uploaded under the existing `quantum_logs` area; identical contents were reused with alias mappings. Existing different files were never overwritten; same-name conflicts use a documented `local-snapshots-20261023` child. The organized [Paper7 log folder](https://drive.google.com/drive/folders/1lqZXpNKlrj2mcpiF4IzBTwTRV-ooZlr3) and the full path-to-file-ID map in `PAPER7_LOCAL_LOG_MIRROR_2026-10-23.json` preserve retrieval. Permissions were not changed.
+
+The source register and Validation Hub explicitly list the current and historical roots, exact notebook references/hashes, local logs and mirror status. `PAPER7_SOURCE_LOCATION_REGISTER_2026-10-23.json` is retained with the other source receipts; the notebook prints the unresolved historical-access state instead of treating a checksum pass as exhaustive source coverage.
+
+**Required follow-up:** use the retained local log inventory, exact notebook revisions and historical-root reference before declaring evidence unavailable. Keep the 1,170-row object-to-export hold scoped to the checked objects; separately track log coverage, remote mirror coverage and historical-root access. Do not reopen accepted Q07 analysis or generate replacement experiments merely because this historical association remains unresolved.
+
 ## Historical threat settings: direct result bindings recovered
 
 Four original Default-allocator first-experiment runners at 4000 frames match the five-run primary evaluator's complete reward, regret and route/action trajectories for all five models. This is **20 matched result records, including 16 learned-policy records**, not a filename-only association.
