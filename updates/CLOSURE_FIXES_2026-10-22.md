@@ -1,5 +1,9 @@
 # Whole-paper corrections and Validation Hub checkpoint
 
+## Superseding original-source verification
+
+The later [original datalake verification](DATALAKE_ORIGINAL_SOURCE_VALIDATION_2026-10-22.md) closes the original-data availability/parity and eight-summary-label questions left open by the earlier documentary/CSV-only inspection below. All 101 primary source filenames / 81 distinct byte groups are checksum-verified and strictly loaded; 10240 rows / 296960 field comparisons reproduce without mismatch. The summary difference is modal experiment-winner frequency versus mean efficiency, not a numerical error. All 27 validator tests pass. Earlier outputs remain preserved as historical evidence; no manuscript edit, new experiment, or Q07 rerun occurred during this verification.
+
 ## Scope and status
 
 **Later October 22 source-method corrections:** The existing Validation Hub now uses the shared `StateReporting.build_source_master_dataset` contract to preserve and inspect the four original CSV exports in memory. The shared implementation is reused unchanged and its five relevant source files are hash-identified in the executed notebook output. Experimental accounting is reconciled; statistical reporting now describes the actual descriptive outputs. Historical reproducibility is partially resolved by the documentary evidence below, not declared fully certified. Rounding differences alone are not scientific closure blockers.

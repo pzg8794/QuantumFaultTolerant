@@ -1,5 +1,11 @@
 # Paper Revision Update
 
+## Original datalake verification — October 22, 2026
+
+Additional original-source work reproduces Paper2/Paper12 results and all 300 Paper8 rows with exact source-mode identities restored. Three model snapshots are trajectory-bound to their original results, recovering specific recorded learning/predictive settings. The genuine remaining data task is narrower: the indexed Paper7 candidates have a different route configuration/results from the native export; omitted neural training fields and truncated historical context strings are not reconstructed by guessing. [Details and exact scope](DATALAKE_ORIGINAL_SOURCE_VALIDATION_2026-10-22.md). All 27 validator tests pass; no experiment or manuscript edit.
+
+Original-source validation is now performed through the existing Drive loader: all 101 primary historical state filenames are checksum-verified, and all 10240 exported rows reproduce across 296960 field comparisons with zero mismatches. The eight apparent winner discrepancies are resolved as modal-win-frequency versus mean-efficiency summaries, not corrupted results. The Validation Hub and 27 passing regression tests record this verification. [Exact scope, evidence and remaining binding boundary](DATALAKE_ORIGINAL_SOURCE_VALIDATION_2026-10-22.md). No experiment or manuscript edit; Q07 remains closed. This supersedes the CSV-only coverage and unresolved-summary statements in the earlier checkpoints below.
+
 ## Source and methods correction — October 22, 2026
 
 Validation: 17/17 tests and independent bounded review passed. The current manuscript builds to 28 pages with no undefined references/citations or overfull boxes; submission length remains open.
