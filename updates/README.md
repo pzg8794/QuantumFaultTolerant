@@ -1,5 +1,11 @@
 # Paper Revision Update
 
+## Source and methods correction — October 22, 2026
+
+Validation: 17/17 tests and independent bounded review passed. The current manuscript builds to 28 pages with no undefined references/citations or overfull boxes; submission length remains open.
+
+The four historical master exports are now checked through the existing shared source-preserving implementation: 8241 non-Oracle records, 1999 Oracle references, fifteen learned policies. Contribution/methods wording now uses these actual units and removes unverified compute totals and bootstrap inference. Winner/tie rules, CV units and the displayed-representative denominator are explicit. Historical log rates and external context constructions have been recovered; exact run binding and some effective settings still need evidence. Eight old scenario-summary labels differ from recomputed mean-efficiency leaders and are retained as a named provenance issue. The existing Validation Hub contains the executed checks. [Detailed record](CLOSURE_FIXES_2026-10-22.md).
+
 ## Git source publication — October 22, 2026
 
 The reviewer corrections are published to the paper's GitHub `main`, ready for Piter's normal GitHub-to-Overleaf pull. The validated notebook and its regression helpers are also published to `quantum_project/main` (`0712f941`) and the existing Colab source `quantum_project/gcp-main` (`40590e47`); 13/13 tests passed on each, and the three files match the original validated commit exactly. Supporting evidence remains in the [existing project Drive mirror](https://drive.google.com/drive/folders/1B3mo02ruJgq0TQbPH2oaD_gWAWpI5gxr). Original dirty local checkouts are preserved. This publication status supersedes earlier statements below that corrections were only on review branches or required separate Overleaf synchronization. Historical provenance and submission-readiness holds remain unchanged.

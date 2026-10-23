@@ -2,6 +2,24 @@
 
 ## Scope and status
 
+**Later October 22 source-method corrections:** The existing Validation Hub now uses the shared `StateReporting.build_source_master_dataset` contract to preserve and inspect the four original CSV exports in memory. The shared implementation is reused unchanged and its five relevant source files are hash-identified in the executed notebook output. Experimental accounting is reconciled; statistical reporting now describes the actual descriptive outputs. Historical reproducibility is partially resolved by the documentary evidence below, not declared fully certified. Rounding differences alone are not scientific closure blockers.
+
+[Current methods evidence in the existing project Drive mirror](https://drive.google.com/drive/folders/1hzkGPv9cYXUoCAE8n-FoLNFBIQZNPkhi-) includes the executed Validation Hub, source/check identities, tests, exact diff and build. The [established Colab notebook](https://colab.research.google.com/github/pzg8794/quantum_project/blob/gcp-main/Dynamic_Routing_Eval_Framework/notebooks/H-MABs_MasterDataset_VerificationHub.ipynb) receives these updates through its normal Git branch. Historical snapshots below remain preserved.
+
+| Export | All model rows | Non-Oracle rows | Oracle rows / source-scoped groups |
+|---|---:|---:|---:|
+| Hybrid | 4920 | 3936 | 984 |
+| CMABs | 1200 | 1000 | 200 |
+| iCMABs | 2580 | 2150 | 430 |
+| EXP3 | 1540 | 1155 | 385 |
+| Total | 10240 | 8241 | 1999 |
+
+All 1999 experiment winner labels agree with non-Oracle reward maxima; no exact reward ties occur. Fifteen unique learned-policy labels occur across the suites. These exported observations are not an independent sample-size count. The contribution and methods now state their units; 552 configurations / 5520 episodes / 380 GPU-hours are no longer presented as executed scope. Source comparisons retain every row and all original CSV text; no data are rewritten or silently deduplicated.
+
+The inspected GA notebook/source/output chain did not establish an executed 10000-resample bootstrap or its sampling unit. Accordingly, that inference claim is removed rather than fabricated. The methods specify descriptive summaries, output-specific CV units, reward-max experiment winners, mean-efficiency evaluator leaders, first-encounter exact ties and the RQ2 displayed-representative win denominator of 82. The accepted medium three-block ranges remain descriptive. Eight Hybrid source/scenario summaries disagree with recomputed mean-efficiency leaders; their exact identities and values are retained in the Validation Hub output. Historical saved winner labels are not silently replaced with current-rule recomputations.
+
+Validation of this later pass: **17/17 tests passed, zero skips**. The independent reviewer reproduced the counts, found an unconditional-PASS defect and contradictory earlier S/CV definitions, then accepted the corrected implementation after rerunning all 17 tests. The semantic negative fixture updates its own input hash and still rejects an invalid winner. The source contract checks raw-text/row conservation and source hashes. Final build: **28 pages, zero undefined references/citations, zero overfull boxes**, with three pre-existing font-substitution warnings. Methods page 6 and context/settings tables on page 28 were visually checked. The added documentary context rows and explicit methods increase the previous 27-page build by one page; the venue-length task remains open. This is bounded methods/accounting review, not final whole-paper acceptance.
+
 Owner-authorized corrections to the October 22 audit, followed by explicit validation of the existing validator. This is **PASS WITH EXPLICIT HOLDS**, not closure of every reviewer item, independent approval of new wording, or submission readiness. Q07/F10 existing-trace diagnosis remains accepted and closed; historical 100-node causality remains unresolved.
 
 The canonical job/evidence record remains the existing `H-MABs_MasterDataset_VerificationHub.ipynb` in `pzg8794/quantum_project`, branch `codex/mq-q04-notebook-execution`. Its final October 22 cells contain executed reconciliation and validator-test outputs. This checkpoint was executed locally, **not in hosted Colab**, and did not execute the historical notebook wholesale.
@@ -49,9 +67,20 @@ Supporting receipts, exact source hashes, full diff and compiled PDF are retaine
 
 ## Explicit holds
 
-1. Historical effective allocator cadence, attack settings, training/predictive overrides and some external context definitions.
-2. Exact old table/source revision parity: for example the current native Paper8 all-allocator saved percentage mean is 67.84637%, while the manuscript prints 67.9%. Correct aggregation wording does not certify that rounding discrepancy. Old winner-count differences also require original-output provenance.
-3. Executed-unit crosswalk for 8,241 tests versus planned 552 configurations / 5,520 episodes / 380 GPU-hours; bootstrap resampling units and winner/tie conventions per output.
+1. Historical effective allocator cadence, attack settings, training/predictive overrides and external context-to-corpus binding. Documentary evidence recovered below does not close these run-certification holds.
+
+### Bounded documentary recovery, October 22
+
+Read-only evidence inspection; manuscript corrections distinguish recorded headers/constructions from effective run certification. No experiment was rerun.
+
+- GA root: `/Users/pitergarcia/DataScience/Semester4/GA-Work/`. `Validated_Logs/Hybrid_Tests/3Runs/3HybridRuns_S1-2T_all_logs_combined.txt`: lines 46, 132, 227, 322 record stochastic rate 0.0625 and Markov/Adaptive/OnlineAdaptive rates 0.25. Summary line 62 instead prints stochastic X Rate 0.25; use the environment header as documentary evidence, not the summary or a universal certificate.
+- Same log: FixedAllocator 45 invocation records, DynamicUCBAllocator 45 (all labelled initial), RandomAllocator 15; observed timesteps are experiment indices 0/1/2. Lines 42/67/92 record fixed allocations (8,10,8,9); 732/757/782 record DynamicUCB (9,9,9,8). These are 35-qubit budgets, distinct from scaled service capacity 6000 at line 736. No within-run continuous adaptation is established.
+- Same log: lines 1438/1439 show different Random invocation/environment allocations. Lines 1448–1454 record substitute (21,6,6,2), validated original runner path `framework_state/day_20251204/QuantumExperimentRunner_1_6000-Random_Stochastic_Random-4000_1_(21_6_6_2).pkl`, file size 3681499, pickle loading, equality check True and resume. Line 1455 skips already-stored results. This proves a historical resume trace, not current file availability or fresh execution.
+- Notebook root under GA root: `hybrid_variable_framework/Dynamic_Routing_Eval_Framework/notebooks/`. `H-MABs_Eval-Testbed-Paper7.ipynb` lines 883–899 define hop count, mean degree and summed distance (missing distance attribute 1.0); saved output 810/814 reports four contexts/paths. `H-MABs_Eval-Testbed-Paper12.ipynb` lines 1302–1315 define topology-derived action counts and repeated three-feature vectors (hop count, normalized mean degree, fusion probability; missing node qubits 5); saved output 830/831 reports four paths and action-vector shape (3,), not one action/path. `H-MABs_Eval-Testbed-Paper2.ipynb` line 1053 returns external_contexts=None; saved output 1416 reports time-based decay. These definitions/outputs are documentary, not exact context-to-result bindings.
+- Explicit runtime beta/learner-mode assignments were not recovered in the bounded scan of 253 configuration-log files and saved Hybrid notebook outputs. Printed static dictionaries and mode-labelled filenames do not certify effective nested settings.
+- Existing `daqr/config/drive_backup_registry.json` indexes 3788 framework and 13069 model .pkl keys; live Drive availability was not checked. `local_backup_registry.json` indexes 205 framework and 502 model pointers; none of those 707 referenced local files existed at inspection. Counts are registry snapshots, not verified datalake holdings. No pickle was loaded or downloaded during this inspection.
+2. Eight historical Hybrid source/scenario summary labels differ from recomputed mean-efficiency leaders. Their original summary/export rule is still unresolved; saved counts must remain explicitly labelled. Small display-rounding differences are not scientific blockers.
+3. Experimental accounting is resolved at the exported-record level. Statistical reporting is resolved as descriptive, with explicit output-specific units and winner rules. No bootstrap result is claimed without evidence. Historical missing settings remain under item 1.
 4. JSAC length, owner/coauthor approval, independent integration review and human submission fields.
 5. Original dirty paper/framework checkouts remain preserved rather than overwritten. Their local uncommitted work is not part of this publication. GitHub main and the established notebook branch contain the task's corrections; Piter can pull the manuscript into Overleaf normally.
 

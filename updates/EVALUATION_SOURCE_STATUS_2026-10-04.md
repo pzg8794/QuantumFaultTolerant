@@ -65,6 +65,8 @@ permission change by this status update.
 
 ## Open provenance items
 
+**October 22 bounded follow-up:** Exported-record accounting and descriptive statistical definitions are reconciled in the existing Validation Hub using the unchanged shared `StateReporting` source contract. All 1999 experiment winners reproduce; eight Hybrid source/scenario summary labels differ from mean-efficiency leaders and remain traceable in the new output. Historical log header rates and saved external notebook definitions have been recovered without treating them as full effective-run certificates. [Current evidence and remaining boundary](CLOSURE_FIXES_2026-10-22.md). This does not reopen accepted Q07 or authorize an experiment.
+
 - Exact adaptive allocator execution cadence in the data-producing workflow.
 - Historical attack-strategy parameters used for the validated manuscript corpus.
 - Validated-run hyperparameters not already tied to immutable run evidence.

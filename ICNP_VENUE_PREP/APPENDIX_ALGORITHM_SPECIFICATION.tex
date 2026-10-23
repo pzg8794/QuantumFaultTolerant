@@ -55,7 +55,7 @@
 \end{algorithm}
 
 \smallTitle{Execution scope and feedback contract}
-Algorithm~\ref{alg:joint_loop} describes an interface, not a claim that every optional hook executed in every corpus. The accepted medium campaign uses fixed inter-route budgets; no adaptive allocator-update cadence is inferred from it. Exact adaptive-allocator cadence in the historical primary corpus remains provenance-pending. Environment-state transition intervals do not establish allocator cadence.
+Algorithm~\ref{alg:joint_loop} describes an interface, not a claim that every optional hook executed in every corpus. The accepted medium campaign uses fixed inter-route budgets; no adaptive allocator-update cadence is inferred from it. Historical primary logs record allocator invocations at experiment indices 0, 1, and 2, with DynamicUCB calls labelled initial; they do not establish continuously adaptive within-run allocation. Exact historical online-update execution remains provenance-pending. Environment-state transition intervals do not establish allocator cadence.
 
 The feedback record $\mathcal{F}_t$ distinguishes continuous selected payoff, sampled route feedback, and whether a within-route update is applied. In the accepted medium implementation, GNeuralUCB, EXPNeuralUCB, and CPursuitNeuralUCB use availability-masked Bernoulli route feedback, while their NeuralUCB action learner receives the selected base payoff when the route is available. EXP additionally importance-weights its route update. iCPursuitNeuralUCB instead supplies continuous selected payoff to its predictive route update; its absent recorded Bernoulli channel is not a sequence of zero observations. These channel differences are part of the evaluated model implementations, not an assertion that every policy learns from the same scalar target. The Bernoulli success model in \cref{subsec:reward} and the continuous medium evaluation outcome must therefore not be conflated.
 
@@ -91,7 +91,7 @@ The feedback record $\mathcal{F}_t$ distinguishes continuous selected payoff, sa
 \begin{table*}[t]
 \centering\footnotesize
 \setlength{\tabcolsep}{2pt}
-\caption{Verified context representations. Untraced external-testbed encodings remain provenance-pending.}
+\caption{Source-documented context representations. Exact external context-to-corpus bindings remain provenance-pending.}
 \label{tab:context_representation}
 \begin{tabular}{p{0.18\textwidth}p{0.38\textwidth}p{0.12\textwidth}p{0.25\textwidth}}
 \toprule
@@ -99,11 +99,15 @@ The feedback record $\mathcal{F}_t$ distinguishes continuous selected payoff, sa
 \midrule
 Primary matched evaluation & feasible per-link qubit split $\mathbf{x}\in\mathcal{X}_r(T_r)$ & $h_r$ (2 or 3) & route identity is structural; threat and history enter feedback/update\\
 Medium anchor & nine qubits split over three links; 55 actions per route & 3 & ten route-specific sets, 550 route/action pairs\\
-Paper8 external testbed & capacity, hops, min/mean fidelity, min/mean rate, minimum purification rounds, swap-success product & 8 & one within-path action vector per path\\
-Other external testbeds & testbed-specific construction & provenance pending & no universal context encoding asserted\\
+\paperEight{} external testbed & capacity, hops, min/mean fidelity, min/mean rate, minimum purification rounds, swap-success product & 8 & one within-path action vector per path\\
+\paperSeven{} source notebook & hop count, mean node degree, summed edge distance & 3 & documentary construction; saved output reports four paths; corpus binding pending\\
+\paperTwelve{} source notebook & hop count, mean degree normalized by topology maximum, fusion probability & 3 & documentary construction repeated across topology-derived arms; corpus binding pending\\
+\paperTwo{} source notebook & no external context supplied & not specified here & downstream representation and corpus binding remain pending\\
 \bottomrule
 \end{tabular}
 \end{table*}
+
+The added external rows document existing notebook constructions, not certified effective encodings for every reported run. The Liu source notebook uses 1.0 for an absent edge-distance attribute; the Clayton notebook uses five qubits when a node lacks that attribute. Saved Clayton output reports four paths and a three-component action vector, not a universal action count. No effective learner mode, confidence coefficient, or nested training setting is established by these outputs or by a printed configuration dictionary.
 
 For the verified primary NeuralUCB implementation, a $d_r\!\to\!128\!\to\!1$ ReLU network scores each feasible action as
 \[

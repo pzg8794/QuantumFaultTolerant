@@ -1,5 +1,7 @@
 # F-12 — Journal candidate, not submission-ready
 
+**Later October 22 source-method update:** The corrected accounting/statistics and expanded source-documented context table build to **28 pages**. This supersedes the 27-page measurement below. Zero undefined references/citations or overfull boxes; three existing font-substitution warnings. The methods and context/settings pages were visually checked. The 13-page initial-submission gate remains open.
+
 **October 22 superseding measurement after bounded corrections:** The review candidate builds to **27 pages**, down from the 29-page figure-integrated audit; the 23-page initial measurement below is historical. Abstract remains 173 whitespace-delimited words and five keywords. The JSAC 13-page initial-submission gate remains open. [Corrective validation](CLOSURE_FIXES_2026-10-22.md) records remaining historical source parity/provenance, layout, human and source-reconciliation gates. Removing forced whitespace is not enough to establish submission readiness.
 
 ## Live requirement check

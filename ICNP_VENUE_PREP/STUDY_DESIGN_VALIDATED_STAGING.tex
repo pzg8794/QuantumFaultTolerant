@@ -19,9 +19,9 @@
 \midrule
 \texttt{Oracle} gap & Historical efficiency gap: $100-\mathrm{Eff}$ in percentage points. Medium payoff gap: Oracle minus learner continuous payoff per frame. \\
 Floor & Lowest efficiency observed in the stated comparison scope; higher floors indicate stronger worst-case robustness. \\
-CV & Coefficient of variation across scenario-level means; lower values indicate more stable performance. \\
+CV & Coefficient of variation over the observations specified for each output; lower values indicate less dispersion in that scope. \\
 $s$ & Replay-capacity scale factor; larger $s$ increases replay scale. \\
-$S$ & Number of independent runs for repeated stochastic evaluation. \\
+$S$ & Historical evaluator suite length; positions may use different horizons and are not assumed independent replications. \\
 $F_b$ & Base frame horizon used for $T_b$-type replay anchoring. \\
 $F_c$ & Current frame horizon used for $T$-type replay anchoring. \\
 $T_b$ & Replay capacity anchored to base horizon: $T_b=sF_b$.\\
@@ -114,9 +114,9 @@ Bandit-policy families & Classical, Predictive, Adversarial, Contextual/Neural &
 % Memory Architecture
 % ----------------------------------------------------------------------------
 \smallTitle{Replay configurations (capacity scaling)}
-We consider base horizons $F_b\in\{4,6,8\}\mathrm{K}$ from the current horizon $F_c$ used after frame scaling, and evaluate the number of independent runs ($S$), with $S\in\{3,5,8,10\}$, per configuration. Replay memory is scaled by the replay-capacity scale factor ($s$), with $s\in\{1,1.5,2\}$ and default $s=2$, under two semantics:
+We distinguish base horizons $F_b\in\{4,6,8\}\mathrm{K}$ from the current horizon $F_c$ used after frame scaling. The historical exports analyzed here record evaluator suite lengths $S\in\{3,5\}$; suite positions can increase the horizon and are not assumed to be independent fixed-horizon replications. Replay memory is scaled by the replay-capacity scale factor ($s$), with $s\in\{1,1.5,2\}$ and default $s=2$, under two semantics:
 % \shee{what is S?}
-% SOLVED: Defined $S$ inline at first use as the number of independent runs per configuration.
+% SOLVED: Defined $S$ as historical suite length; horizon progression is separate from independent replication.
 \[
 T_b=sF_b,\qquad T=sF_c.
 \]
@@ -146,9 +146,9 @@ The five threat settings follow \cref{subsec:threats} and \cref{tab:config_summa
 \midrule
 Baseline & 0\% disruption; benign-operation reference & RQ1 \\
 Stochastic & 6.25\% i.i.d. disruption~\cite{huang2024quantum} & RQ1-2 \\
-Markov & Temporally correlated interruption; historical state/transition specification pending & RQ2 \\
-Adaptive & Routing-history targeting; historical window/rate specification pending & RQ2 \\
-OnlineAdaptive & Reactive availability stress; historical targeting specification pending & RQ2 \\
+Markov & Temporally correlated interruption; recovered log header rate 25\%; exact historical process binding pending & RQ2 \\
+Adaptive & Routing-history targeting; recovered log header rate 25\%; exact historical window/process binding pending & RQ2 \\
+OnlineAdaptive & Reactive availability stress; recovered log header rate 25\%; exact historical targeting binding pending & RQ2 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -205,9 +205,9 @@ Random & Random budgeting; exact historical distribution/settings pending & 77.3
 \end{table}
 
 \smallTitle{Experimental scope and statistical protocol}
-The four phases in \cref{tab:config_summary} progress from MAB baselines to contextual/adversarial bandit policies, allocator interactions, and replay-capacity ablations. Overall, the design covers 552 unique configurations with up to 10 runs each, targeting roughly 5{,}520 episodes and about 380 A100 GPU-hours. Runs use fixed seeds with repeated-run count $S\in\{3,5,8,10\}$; primary results report 3- and 5-run averages.
+The four phases in \cref{tab:config_summary} progress from MAB baselines to contextual/adversarial bandit policies, allocator interactions, and replay-capacity ablations. The four historical master exports contain 10,240 model-result rows: 8,241 non-Oracle records and 1,999 Oracle references across 1,999 source-scoped comparison groups. A group is identified by suite, source filename, scenario, and experiment index. These are export counts, not independent episodes or unique physical configurations. Historical 3- and 5-position suites include increasing-horizon evaluations; their positions must not automatically be interpreted as fixed-horizon replications. Earlier configuration, episode, and GPU-hour planning estimates are not used as executed coverage or measured compute consumption.
 % \shee{Define S}
-% SOLVED: Defined $S$ earlier in this section as the number of independent runs and reused that notation here.
+% SOLVED: Defined historical suite length $S$ earlier; independent replication is not inferred from this label.
 
 For a historical comparison record $j$, let $R_j$ and $R_j^{\rm Oracle}$ denote the learner and matched Oracle reward totals on the same horizon. Its normalized efficiency is
 \[
@@ -217,4 +217,4 @@ Historical aggregate efficiency averages the saved record-level percentages in t
 \[
 \mathrm{CV}(\%)=\frac{\sigma(\mathrm{Eff})}{\mu(\mathrm{Eff})}\times100.
 \]
-The historical validation protocol specifies 10{,}000-sample nonparametric bootstrap intervals~\cite{efron1994introduction}, a practical-difference rule above 5 percentage points (pp) with non-overlapping intervals, and a $>2$ pp head-to-head rule. The resampling unit and application of those rules to each historical output remain to be reconciled; we do not infer significance from the aggregate tables. Their saved evaluator-winner counts must not be equated with a newly computed $>2$ pp comparison. The three-block medium ranges are descriptive, not bootstrap confidence intervals.
+The reported historical summaries are descriptive; no verified bootstrap confidence intervals or significance tests are claimed for these tables. For the deployment summary, CV uses the population standard deviation of the five scenario means; the RQ2 record-level CV uses sample standard deviation over its filtered records. An experiment winner maximizes non-Oracle reward, whereas an evaluator champion maximizes mean experiment-level efficiency; exact ties retain the first encountered maximum in the source selector. Saved winner labels and recomputed mean-efficiency leaders are kept distinct where historical summaries disagree. The RQ2 win-dominance percentages divide each displayed representative's saved evaluator wins by the total wins of those representatives (82), not by all experiments or by a pairwise comparison count. Within-family rates use their own stated denominators. The three-block medium ranges are descriptive, not bootstrap confidence intervals.
